@@ -1,0 +1,101 @@
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
+
+<?$APPLICATION->IncludeComponent("bitrix:news.detail", "landing", Array(
+    	"ACTIVE_DATE_FORMAT" => "d.m.Y",    // Формат показа даты
+        "ADD_ELEMENT_CHAIN" => "N",    // Включать название элемента в цепочку навигации
+        "ADD_SECTIONS_CHAIN" => "N",    // Включать раздел в цепочку навигации
+        "AJAX_MODE" => "N",    // Включить режим AJAX
+        "AJAX_OPTION_ADDITIONAL" => "",    // Дополнительный идентификатор
+        "AJAX_OPTION_HISTORY" => "N",    // Включить эмуляцию навигации браузера
+        "AJAX_OPTION_JUMP" => "N",    // Включить прокрутку к началу компонента
+        "AJAX_OPTION_STYLE" => "N",    // Включить подгрузку стилей
+        "BROWSER_TITLE" => "-",    // Установить заголовок окна браузера из свойства
+        "CACHE_GROUPS" => "N",    // Учитывать права доступа
+        "CACHE_TIME" => "36000000",    // Время кеширования (сек.)
+        "CACHE_TYPE" => "A",    // Тип кеширования
+        "CHECK_DATES" => "Y",    // Показывать только активные на данный момент элементы
+        "DETAIL_URL" => "",    // URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
+        "DISPLAY_BOTTOM_PAGER" => "N",    // Выводить под списком
+        "DISPLAY_DATE" => "N",    // Выводить дату элемента
+        "DISPLAY_NAME" => "N",    // Выводить название элемента
+        "DISPLAY_PICTURE" => "N",    // Выводить детальное изображение
+        "DISPLAY_PREVIEW_TEXT" => "N",    // Выводить текст анонса
+        "DISPLAY_TOP_PAGER" => "N",    // Выводить над списком
+        "ELEMENT_CODE" => "",    // Код новости
+        "ELEMENT_ID" => $_REQUEST["ID"],    // ID новости
+        "FIELD_CODE" => array(),    // Поля
+        "IBLOCK_ID" => "24",    // Код информационного блока
+        "IBLOCK_TYPE" => "landings",    // Тип информационного блока (используется только для проверки)
+        "IBLOCK_URL" => "",    // URL страницы просмотра списка элементов (по умолчанию - из настроек инфоблока)
+        "INCLUDE_IBLOCK_INTO_CHAIN" => "N",    // Включать инфоблок в цепочку навигации
+        "MESSAGE_404" => "",    // Сообщение для показа (по умолчанию из компонента)
+        "META_DESCRIPTION" => "-",    // Установить описание страницы из свойства
+        "META_KEYWORDS" => "-",    // Установить ключевые слова страницы из свойства
+        "PAGER_BASE_LINK_ENABLE" => "N",    // Включить обработку ссылок
+        "PAGER_SHOW_ALL" => "N",    // Показывать ссылку "Все"
+        "PAGER_TEMPLATE" => ".default",    // Шаблон постраничной навигации
+        "PAGER_TITLE" => "Страница",    // Название категорий
+        "PROPERTY_CODE" => array(    // Свойства
+			0 => "MAIN_SLIDER",
+			1 => "SLIDER_2",
+			2 => "SLIDER_3",
+			3 => "SLIDER_4",
+			4 => "ABOUT_TITLE",
+			5 => "ABOUT_TEXT",
+			6 => "REVIEW_IMAGE",
+			7 => "REVIEW_DATE",
+			8 => "REVIEW_TEXT",
+			9 => "REVIEW_LINK",
+			10 => "REVIEW_PRODUCTS",
+			11 => "VIDEO_REVIEW_IMAGE",
+			12 => "VIDEO_REVIEW_IMAGE_TEXT",
+			13 => "VIDEO_REVIEW_LINK",
+			14 => "VIDEO_REVIEW_TITLE",
+			15 => "VIDEO_REVIEW_TEXT",
+			16 => "DESCR_1_TITLE",
+			17 => "DESCR_1_IMAGES",
+			18 => "DESCR_1_TEXT",
+			19 => "CATALOG_SECTION_TITLE",
+			20 => "CATALOG_LINK",
+			21 => "CATALOG_PRODUCTS",
+			22 => "DESCR_2_TITLE",
+			23 => "DESCR_2_IMAGES",
+			24 => "DESCR_2_TEXT",
+			25 => "DESCR_2_WARNING",
+			26 => "DESCR_3_TITLE",
+			27 => "DESCR_3_IMAGES",
+			28 => "DESCR_3_TEXT",
+			29 => "DESCR_3_WARNING",
+			30 => "ASSORT_TITLE",
+			31 => "ASSORT_CLASS_1",
+			32 => "ASSORT_CLASS_2",
+			33 => "ASSORT_IMAGE_1",
+			34 => "ASSORT_IMAGE_2",
+			35 => "ASSORT_DESCR_1",
+			36 => "ASSORT_DESCR_2",
+			37 => "ASSORT_PRODUCTS_1",
+			38 => "ASSORT_PRODUCTS_2",
+			39 => "COND_TITLE",
+			40 => "COND_DESCR",
+			41 => "COND_IMAGE",
+			42 => "COND_BLOCK_TITLE",
+			43 => "COND_BLOCK_DESCR",
+			44 => "COND_BLOCK_LINK",
+			45 => "",
+		),
+        "SET_BROWSER_TITLE" => "N",    // Устанавливать заголовок окна браузера
+        "SET_CANONICAL_URL" => "N",    // Устанавливать канонический URL
+        "SET_LAST_MODIFIED" => "N",    // Устанавливать в заголовках ответа время модификации страницы
+        "SET_META_DESCRIPTION" => "N",    // Устанавливать описание страницы
+        "SET_META_KEYWORDS" => "N",    // Устанавливать ключевые слова страницы
+        "SET_STATUS_404" => "N",    // Устанавливать статус 404
+        "SET_TITLE" => "N",    // Устанавливать заголовок страницы
+        "SHOW_404" => "N",    // Показ специальной страницы
+        "STRICT_SECTION_CHECK" => "N",    // Строгая проверка раздела для показа элемента
+        "USE_PERMISSIONS" => "N",    // Использовать дополнительное ограничение доступа
+        "USE_SHARE" => "N",    // Отображать панель соц. закладок
+    ),
+    false
+);?>
+
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

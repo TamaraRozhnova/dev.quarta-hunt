@@ -1,0 +1,43 @@
+# PhpStorm project files
+/.idea/
+.htpasswd
+.htsecure_
+.well-known
+restore.php
+.htpassword
+# css/js/image assets
+# /assets/
+# Bitrix core
+/bitrix/
+# Bitrix download folder
+/upload/
+# composer folder
+/vendor/
+/api/vendor/
+# root robots
+/robots.txt
+# root htaccess
+/.htaccess
+# root htsecure
+/.htsecure
+# work scripts
+/work/
+# node modules
+node_modules/
+# compiled main template files
+/local/templates/main/dist/
+# bitrix24 interration
+/desktop_app/
+# all logs
+logs/
+# other files
+/webstat/
+/test/
+*.log
+*.sql
+*.txt
+*.xml
+*.dt
+/.dev
+.DS_Store
+/tmp
