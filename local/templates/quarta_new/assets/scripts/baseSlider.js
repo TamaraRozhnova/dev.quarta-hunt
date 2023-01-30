@@ -1,6 +1,4 @@
 class BaseSlider {
-    swiper;
-
     constructor(
         swiperSelector = '.swiper',
         swiperSlideNextSelector = '.base-slider__next',
@@ -9,11 +7,10 @@ class BaseSlider {
         this.swiperSelector = swiperSelector;
         this.swiperSlideNextSelector = swiperSlideNextSelector;
         this.swiperSlidePrevSelector = swiperSlidePrevSelector;
-        this.makeSlider();
     }
 
     makeSlider() {
-        this.swiper = new Swiper(this.swiperSelector, {
+        return new Swiper(this.swiperSelector, {
             slidesPerView: 2.5,
             spaceBetween: 7,
             linesCount: 2,
