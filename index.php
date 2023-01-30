@@ -2,6 +2,46 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
+$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "section_list", [
+    "ADD_SECTIONS_CHAIN" => "N",
+    "CACHE_FILTER" => "N",
+    "CACHE_GROUPS" => "N",
+    "CACHE_TIME" => "36000000",
+    "CACHE_TYPE" => "A",
+    "COUNT_ELEMENTS" => "Y",
+    "COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
+    "FILTER_NAME" => "sectionsFilter",
+    "IBLOCK_ID" => "16",
+    "IBLOCK_TYPE" => "1c_catalog",
+    "SECTION_CODE" => "",
+    "SECTION_FIELDS" => [
+        0 => "ID",
+        1 => "CODE",
+        2 => "XML_ID",
+        3 => "NAME",
+        4 => "SORT",
+        5 => "DESCRIPTION",
+        6 => "PICTURE",
+        7 => "DETAIL_PICTURE",
+        8 => "IBLOCK_TYPE_ID",
+        9 => "IBLOCK_ID",
+        10 => "IBLOCK_CODE",
+        11 => "IBLOCK_EXTERNAL_ID",
+        12 => "",
+    ],
+    "SECTION_ID" => $_REQUEST["SECTION_ID"],
+    "SECTION_URL" => "",
+    "SECTION_USER_FIELDS" => [
+        0 => "",
+        1 => "",
+    ],
+    "SHOW_PARENT_NAME" => "N",
+    "TOP_DEPTH" => isset($_REQUEST["DEPTH"]) ? $_REQUEST["DEPTH"] : 1,
+		"VIEW_MODE" => "LIST",
+	],
+	false
+);
+
 $APPLICATION->IncludeComponent("bitrix:news.list", "about_benefits", [
     "ACTIVE_DATE_FORMAT" => "d.m.Y",
     "ADD_SECTIONS_CHAIN" => "N",

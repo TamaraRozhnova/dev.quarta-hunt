@@ -1,25 +1,76 @@
-const gulp = require("gulp");
-const rename = require("gulp-rename");
-const sass = require("gulp-sass")(require('sass'));
+const gulp = require('gulp');
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
+const sass = require('gulp-sass')(require('sass'));
 
-gulp.task("styles:main", function () {
-    return gulp.src("./../assets/styles/main.scss")
-        .pipe(sass())
-        .pipe(rename("template_styles.css"))
-        .pipe(gulp.dest("../"))
-})
+const configs = require('./configs');
 
-gulp.task("styles:components", function () {
-    return gulp.src("./../components/**/*.scss")
-        .pipe(sass())
-        .pipe(rename({
-            extname: ".css"
-        }))
-        .pipe(gulp.dest("./../components/"))
-})
+const builder = {
+    createTasks() {
+        Object.keys(configs).forEach(type => {
+            let groups = [];
+            configs[type].forEach(config => {
+                groups.push(config.groupName);
+                this.createBuildTask(type, config);
+                this.createWatchTask(type, config);
+                this.createGroupTask(type, config);
+            });
+            this.createMainTask(type, groups);
+        })
+    },
 
-gulp.task("styles", gulp.series("styles:main", "styles:components"));
+    createBuildTask(type, config) {
+        switch (type) {
+            case 'scss':
+                gulp.task(`${type}:${config.groupName}:build`, () => {
+                    if (config.dest.fileName) {
+                        return gulp.src(config.src)
+                            .pipe(sass())
+                            .pipe(rename({basename: config.dest.fileName, extname: '.css'}))
+                            .pipe(gulp.dest(config.dest.path));
+                    }
+                    return gulp.src(config.src)
+                        .pipe(sass())
+                        .pipe(gulp.dest(config.dest.path));
+                });
+                break;
+            case 'js':
+                gulp.task(`${type}:${config.groupName}:build`, () => {
+                    const files = [config.src];
+                    if (config.excludeFile) {
+                        files.push(`!${config.excludeFile}`);
+                    }
+                    return gulp.src(files)
+                        .pipe(uglify())
+                        .pipe(rename({basename: config.dest.fileName, extname: '.js'}))
+                        .pipe(gulp.dest(config.dest.path))
+                })
+                break;
+            default:
+                break;
+        }
+    },
 
-gulp.task("watch", function() {
-    gulp.watch("./../**/*.scss", gulp.series("styles:main", "styles:components"));
-});
+    createWatchTask(type, config) {
+        gulp.task(`${type}:${config.groupName}:watch`, () => {
+            const files = [config.watch];
+            if (config.excludeFile) {
+                files.push(`!${config.excludeFile}`);
+            }
+            gulp.watch(files, gulp.series(`${type}:${config.groupName}:build`));
+        })
+    },
+
+    createGroupTask(type, config) {
+        gulp.task(`${type}:${config.groupName}`, gulp.series(
+            `${type}:${config.groupName}:build`,
+            `${type}:${config.groupName}:watch`
+        ));
+    },
+
+    createMainTask(type, groups) {
+        gulp.task(type, gulp.parallel(...groups.map(groupName => `${type}:${groupName}`)));
+    }
+}
+
+builder.createTasks();
