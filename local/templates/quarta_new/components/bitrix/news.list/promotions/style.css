@@ -1,0 +1,226 @@
+.promo {
+  padding: 3rem 0;
+  background-color: #fff;
+}
+.promo__slider {
+  margin-bottom: 4.25rem;
+}
+
+@media (max-width: 991.98px) {
+  .promo .container {
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 575.98px) {
+  .promo .container {
+    padding: 0 15px;
+  }
+}
+.promo-wide-light {
+  background-color: #fff;
+  height: 20.5rem;
+  margin-bottom: 3rem;
+}
+.promo-wide-light h3,
+.promo-wide-light p {
+  position: relative;
+  max-width: 20.5rem;
+  margin-bottom: 1.375rem;
+  z-index: 1;
+}
+.promo-wide-light p {
+  font-size: 1rem;
+}
+.promo-wide-light .row,
+.promo-wide-light [class*=col-] {
+  height: 100%;
+}
+.promo-wide-light .btn {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.promo-wide-light__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.promo-wide-light__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #eeeff3;
+  border-radius: 0.875rem;
+}
+.promo-wide-light__image img {
+  max-width: 100%;
+}
+@media (max-width: 991.98px) {
+  .promo-wide-light {
+    height: 14.5rem;
+  }
+  .promo-wide-light h3 {
+    font-size: 1.875rem;
+  }
+  .promo-wide-light__image img {
+    max-width: 90%;
+  }
+}
+@media (max-width: 575.98px) {
+  .promo-wide-light {
+    height: auto;
+  }
+  .promo-wide-light h3 {
+    font-size: 1.438rem;
+  }
+  .promo-wide-light p {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+  }
+  .promo-wide-light .row {
+    flex-direction: column-reverse;
+  }
+  .promo-wide-light .col-6 {
+    width: 100%;
+  }
+  .promo-wide-light__image {
+    padding: 0.625rem;
+  }
+}
+
+.promo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 20.5rem;
+  background-color: #eeeff3;
+  border-radius: 0.875rem;
+  padding: 2.25rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: #808d9a;
+}
+.promo-card--large {
+  min-height: 34.25rem;
+  height: 100%;
+  padding-bottom: 3.75rem;
+}
+.promo-card--large figure {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center !important;
+  align-items: flex-start !important;
+}
+.promo-card--large figure img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+.promo-card h3, .promo-card p {
+  position: relative;
+  max-width: 20.5rem;
+  z-index: 1;
+}
+.promo-card p {
+  font-size: 1rem;
+  margin: 0;
+}
+.promo-card small {
+  justify-self: flex-start;
+  margin-bottom: auto;
+  z-index: 1;
+}
+.promo-card--light h3, .promo-card--light p {
+  color: #fff;
+}
+.promo-card--shadow:after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+}
+.promo-card figure {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s;
+}
+.promo-card figure img {
+  max-width: 50%;
+  max-height: 100%;
+  transition: transform 0.5s;
+}
+.promo-card:hover figure img {
+  transform: scale(1.1);
+}
+.promo-card--background-image:hover figure {
+  transform: scale(1.1);
+}
+@media (max-width: 991.98px) {
+  .promo-card {
+    height: 14.5rem;
+    padding: 1.25rem;
+  }
+  .promo-card h3 {
+    font-size: 1.25rem;
+    max-width: 20rem;
+  }
+  .promo-card figure img {
+    max-width: 60%;
+  }
+  .promo-card--large {
+    height: 100%;
+    min-height: 14.5rem;
+  }
+}
+@media (max-width: 650px) {
+  .promo-card h3 {
+    font-size: 1.125rem;
+  }
+  .promo-card p {
+    font-size: 0.875rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .promo-card figure img {
+    max-width: 50%;
+  }
+  .promo-card--large figure {
+    position: static;
+    transform: translate(20px, -20px);
+  }
+  .promo-card--stretch figure {
+    position: absolute;
+    transform: translate(0, 0);
+    background-color: #fff;
+    background-position: right top;
+    background-size: 60%;
+  }
+}
+@media (max-width: 575.98px) {
+  .promo-card figure img {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .index__new-arrivals-item:not(:first-child) {
+    margin-top: 20px;
+  }
+}

@@ -25,10 +25,9 @@ $asset = Asset::getInstance();
         $asset->addCss(SITE_TEMPLATE_PATH . "/assets/fonts/stylesheet.css");
         $asset->addCss(SITE_TEMPLATE_PATH . "/assets/styles/libs/swiper.min.css");
         $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/libs/swiper.min.js");
-        $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/baseSlider.js");
-
+        $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/main.js");
     ?>
 </head>
 
 <body>
-<? $APPLICATION->ShowPanel() ?>
+<? $APPLICATION->ShowPanel();
