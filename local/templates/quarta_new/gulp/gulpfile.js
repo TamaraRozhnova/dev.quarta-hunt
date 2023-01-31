@@ -23,13 +23,17 @@ const builder = {
         switch (type) {
             case 'scss':
                 gulp.task(`${type}:${config.groupName}:build`, () => {
+                    const files = [config.src];
+                    if (config.exclude) {
+                        files.push(`!${config.exclude}`);
+                    }
                     if (config.dest.fileName) {
-                        return gulp.src(config.src)
+                        return gulp.src(files)
                             .pipe(sass())
                             .pipe(rename({basename: config.dest.fileName, extname: '.css'}))
                             .pipe(gulp.dest(config.dest.path));
                     }
-                    return gulp.src(config.src)
+                    return gulp.src(files)
                         .pipe(sass())
                         .pipe(gulp.dest(config.dest.path));
                 });
@@ -37,8 +41,8 @@ const builder = {
             case 'js':
                 gulp.task(`${type}:${config.groupName}:build`, () => {
                     const files = [config.src];
-                    if (config.excludeFile) {
-                        files.push(`!${config.excludeFile}`);
+                    if (config.exclude) {
+                        files.push(`!${config.exclude}`);
                     }
                     return gulp.src(files)
                         .pipe(uglify())
@@ -54,8 +58,8 @@ const builder = {
     createWatchTask(type, config) {
         gulp.task(`${type}:${config.groupName}:watch`, () => {
             const files = [config.watch];
-            if (config.excludeFile) {
-                files.push(`!${config.excludeFile}`);
+            if (config.exclude) {
+                files.push(`!${config.exclude}`);
             }
             gulp.watch(files, gulp.series(`${type}:${config.groupName}:build`));
         })

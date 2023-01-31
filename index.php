@@ -274,6 +274,7 @@ $APPLICATION->IncludeComponent("bitrix:news.list", "news_slider", [
     false
 );
 
+$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH . '/include/subscribeForm.php');
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
 
