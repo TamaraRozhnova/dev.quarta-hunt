@@ -1,18 +1,21 @@
-<?
-include_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/urlrewrite.php');
+<?php
+
+include_once($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/urlrewrite.php');
 
 CHTTP::SetStatus("404 Not Found");
-@define("ERROR_404","Y");
+@define("ERROR_404", "Y");
 define("HIDE_SIDEBAR", true);
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
-$APPLICATION->SetTitle("Страница не найдена");?>
+$APPLICATION->SetTitle("Страница не найдена");
+
+?>
 
 	<div class="bx-404-container">
-		<div class="bx-404-block"><img src="<?=SITE_DIR?>images/404.png" alt=""></div>
+		<div class="bx-404-block"><img src="<?= SITE_DIR ?>images/404.png" alt=""></div>
 		<div class="bx-404-text-block">Неправильно набран адрес, <br>или такой страницы на сайте больше не существует.</div>
-		<div class="">Вернитесь на <a href="<?=SITE_DIR?>">главную</a> или воспользуйтесь картой сайта.</div>
+		<div class="">Вернитесь на <a href="<?= SITE_DIR ?>">главную</a> или воспользуйтесь картой сайта.</div>
 	</div>
 	<div class="map-columns row">
 		<div class="col-sm-10 col-sm-offset-1">
@@ -22,7 +25,7 @@ $APPLICATION->SetTitle("Страница не найдена");?>
 
 	<div class="col-sm-offset-2 col-sm-4">
 		<div class="bx-map-title"><i class="fa fa-leanpub"></i> Каталог</div>
-		<?$APPLICATION->IncludeComponent(
+		<? $APPLICATION->IncludeComponent(
 			"bitrix:catalog.section.list",
 			"tree",
 			array(
@@ -54,8 +57,7 @@ $APPLICATION->SetTitle("Страница не найдена");?>
 
 	<div class="col-sm-offset-1 col-sm-4">
 		<div class="bx-map-title"><i class="fa fa-info-circle"></i> О магазине</div>
-		<?
-		$APPLICATION->IncludeComponent(
+		<? $APPLICATION->IncludeComponent(
 			"bitrix:main.map",
 			".default",
 			array(
@@ -68,6 +70,8 @@ $APPLICATION->SetTitle("Страница не найдена");?>
 				"COMPONENT_TEMPLATE" => ".default"
 			),
 			false
-		);?>
+		);
+        ?>
 	</div>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
