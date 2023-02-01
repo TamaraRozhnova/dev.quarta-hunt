@@ -274,7 +274,18 @@ $APPLICATION->IncludeComponent("bitrix:news.list", "news_slider", [
     false
 );
 
-$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH . '/include/subscribeForm.php');
+$APPLICATION->IncludeComponent("bitrix:form.result.new","subscribe_form", [
+        "SEF_MODE" => "N",
+        "WEB_FORM_ID" => "1",
+        "LIST_URL" => $APPLICATION->GetCurPage(),
+        "CHAIN_ITEM_TEXT" => "",
+        "CHAIN_ITEM_LINK" => "",
+        "USE_EXTENDED_ERRORS" => "Y",
+        "CACHE_TYPE" => "Y",
+        "CACHE_TIME" => "3600000",
+        "VARIABLE_ALIASES" => []
+    ]
+);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
 
