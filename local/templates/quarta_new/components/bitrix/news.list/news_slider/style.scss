@@ -1,0 +1,122 @@
+@import '../assets/styles/base-imports';
+
+.news-slider {
+    background-color: $white;
+
+    &__more {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 27.75rem;
+        background-color: $primary;
+        border-radius: $border-radius-lg;
+        padding: 2.75rem 1.5625rem;
+        color: $white !important;
+
+        h2 {
+            color: $white;
+        }
+    }
+    @include media-breakpoint-down('lg') {
+        &__more {
+            height: 18.75rem;
+        }
+    }
+    @include media-breakpoint-down('sm') {
+        &__more {
+            height: 20rem;
+        }
+    }
+}
+
+.news-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: relative;
+    width: 100%;
+    height: 27.75rem;
+    padding: 2.75rem 1.5625rem;
+
+    border-radius: $border-radius-lg;
+    text-decoration: none;
+    overflow: hidden;
+
+    &__date,
+    &__title {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__date {
+        color: $gray-600;
+        margin-bottom: 1.375rem;
+    }
+
+    &__title {
+        max-width: 40%;
+
+        font-size: 1rem;
+        color: $white;
+    }
+
+    &__background {
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.3s;
+
+        &--multiple {
+            background-size: cover, 0;
+        }
+    }
+
+    &::before,
+    &__background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &::before {
+        content: '';
+        top: 50%;
+        background-image: linear-gradient(
+                        180deg,
+                        rgba(0, 0, 0, 0) 0%,
+                        #000000 100%
+        );
+        z-index: 1;
+    }
+
+    &:hover &__background {
+        transform: scale(1.1);
+    }
+    @include media-breakpoint-down('lg') {
+        height: 18.75rem;
+        &__title {
+            max-width: 90%;
+        }
+    }
+    @include media-breakpoint-down('md') {
+        &__title {
+            max-width: unset;
+        }
+    }
+    @include media-breakpoint-down('sm') {
+        height: 20rem;
+        &__title {
+            font-size: 0.875rem;
+        }
+
+        &__background {
+            &--multiple {
+                background-size: 0, cover;
+            }
+        }
+
+    }
+}
