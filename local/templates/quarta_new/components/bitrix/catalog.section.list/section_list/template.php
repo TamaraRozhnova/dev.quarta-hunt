@@ -9,7 +9,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 <section class="bg-light catalog-slider">
     <div class="base-slider">
         <div class="container">
-            <div class="swiper-sections swiper-container">
+            <div class="swiper-container swiper-container_sections">
                 <div class="swiper-wrapper">
                     <? foreach ($arResult['SECTIONS'] as $section) { ?>
                         <div class="swiper-slide">

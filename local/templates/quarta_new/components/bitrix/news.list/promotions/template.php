@@ -38,7 +38,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <? if (count($arResult['ITEMS']) > 0) { ?>
         <div class="base-slider promo__slider">
             <div class="container">
-                <div class="swiper-promo swiper-container">
+                <div class="swiper-container swiper-container_promo">
                     <div class="swiper-wrapper">
                         <? foreach ($arResult['ITEMS'] as $item) { ?>
                             <div class="swiper-slide">

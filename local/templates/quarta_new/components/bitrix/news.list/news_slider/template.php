@@ -5,14 +5,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 if (!count($arResult['ITEMS'])) {
-    die();
+    return;
 }
 ?>
 
 <section class="news-slider">
     <div class="base-slider">
         <div class="container">
-            <div class="swiper-news swiper-container">
+            <div class="swiper-container swiper-container_news">
                 <div class="swiper-wrapper">
                     <? foreach ($arResult['ITEMS'] as $item) { ?>
                         <div class="swiper-slide">

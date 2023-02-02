@@ -1,11 +1,13 @@
+
 module.exports = Object.freeze(
     {
         scss: [
             {
                 groupName: 'main',
                 src: '../assets/styles/main.scss',
+                exclude: '../assets/styles/libs',
                 dest: {path: '../', fileName: 'template_styles'},
-                watch: '../assets/styles/*.scss'
+                watch: '../assets/styles/**/*.scss'
             },
             {
                 groupName: 'components',
@@ -17,10 +19,9 @@ module.exports = Object.freeze(
         js: [
             {
                 groupName: 'main',
-                src: '../assets/scripts/*.js',
-                excludeFile: '../assets/scripts/main.js',
+                src: '../assets/scripts/components/*.js',
                 dest: {path: '../assets/scripts/', fileName: 'main'},
-                watch: '../assets/scripts/*.js'
+                watch: '../assets/scripts/components/*.js'
             }
         ]
     }
