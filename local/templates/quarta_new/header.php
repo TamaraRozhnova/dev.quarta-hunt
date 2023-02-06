@@ -30,4 +30,7 @@ $asset = Asset::getInstance();
 </head>
 
 <body>
-<? $APPLICATION->ShowPanel();
+<? $APPLICATION->ShowPanel(); ?>
+
+<div class="wrapper">
+<main>
