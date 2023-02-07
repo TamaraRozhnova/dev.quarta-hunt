@@ -8208,3 +8208,78 @@ input.form-check-input:focus {
     display: none;
   }
 }
+
+.input--lg input {
+  padding: 1.125rem;
+}
+.input--required label::after {
+  content: "*";
+  color: #eb5806;
+  font-size: 1.2em;
+}
+.input__container {
+  display: block;
+  position: relative;
+}
+.input__clear {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-right: 0.5rem;
+  cursor: pointer;
+}
+.input__clear svg {
+  transform: scale(1.5);
+}
+.input input {
+  font-size: 0.875rem;
+  color: #808d9a;
+}
+.input input:focus {
+  color: #212529;
+}
+.input label {
+  font-size: 1rem;
+}
+.input .info {
+  position: relative;
+  top: -2px;
+}
+@media (max-width: 575.98px) {
+  .input input {
+    padding: 0.75rem 1.125rem;
+  }
+  .input label, .input .invalid-feedback {
+    font-size: 0.875rem;
+  }
+}
+
+.checkbox {
+  min-height: unset;
+  margin-bottom: 0.5rem;
+}
+.checkbox input {
+  transform: translateY(-0.25rem);
+  cursor: pointer;
+}
+.checkbox label {
+  color: #212529;
+  cursor: pointer;
+}
+.checkbox label small, .checkbox label .small {
+  color: #808d9a;
+  font-size: 1em;
+}
+.checkbox--large input {
+  transform: translateY(-0.15rem);
+}
+.checkbox--large label {
+  font-size: 1rem;
+}
+.checkbox a {
+  color: #808D9A;
+  text-decoration: none;
+}

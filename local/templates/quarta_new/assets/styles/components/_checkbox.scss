@@ -1,0 +1,36 @@
+@import '../assets/styles/base-imports';
+
+.checkbox {
+    min-height: unset;
+    margin-bottom: 0.5rem;
+
+    input {
+        transform: translateY(-0.25rem);
+        cursor: pointer;
+    }
+
+    label {
+        color: $gray-900;
+        cursor: pointer;
+
+        small {
+            color: $gray-600;
+            font-size: 1em;
+        }
+    }
+
+    &--large {
+        input {
+            transform: translateY(-0.15rem);
+        }
+
+        label {
+            font-size: 1rem;
+        }
+    }
+
+    a {
+        color: #808D9A;
+        text-decoration: none;
+    }
+}
