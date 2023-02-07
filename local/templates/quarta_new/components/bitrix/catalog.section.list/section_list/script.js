@@ -10,7 +10,7 @@
                 spaceBetween: 20,
             },
         }
-        const baseSlider = new BaseSlider('.swiper-sections', sliderOptions);
+        const baseSlider = new BaseSlider('.swiper-container_sections', sliderOptions);
         baseSlider.makeSlider();
     })
 })()
