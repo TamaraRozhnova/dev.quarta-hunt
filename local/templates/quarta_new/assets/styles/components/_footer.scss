@@ -1,0 +1,206 @@
+@import '../base-imports';
+
+.footer {
+    padding: 100px 0;
+    background-color: $gray-800;
+    color: $white;
+
+    &__free-call {
+        font-size: 0.875rem;
+        color: $white;
+    }
+
+    &__logo {
+        margin-bottom: 1.875rem;
+        color: $white;
+    }
+
+    a {
+        font-size: 1rem;
+        color: rgba($white, 0.5);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: $white;
+    }
+
+    a[href^='tel:'] {
+        color: $white;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    ul {
+        padding: 0 0 1em;
+
+        li {
+            display: block;
+            margin: 0 0 10px;
+            color: rgba($white, 0.5);
+            text-decoration: none;
+
+            font-size: 0.875rem;
+        }
+    }
+
+    h6 {
+        font-size: 0.875rem;
+        color: $white;
+        text-transform: uppercase;
+    }
+
+    &__nav {
+        h6 {
+            font-size: 0.875rem;
+            text-transform: none;
+            margin-bottom: 1.125rem;
+        }
+
+        a {
+            font-size: 0.875rem;
+        }
+    }
+
+    &__payment-methods {
+        figure {
+            margin-top: 1.5rem;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__social-icons {
+        margin-top: 1rem;
+
+        a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    &__made-by {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding-top: 2.25rem;
+    }
+
+    @include media-breakpoint-down('lg') {
+        padding-top: 2.875rem;
+
+        ul {
+            margin: 0;
+        }
+
+        &__social {
+            align-items: flex-start;
+            font-weight: 500;
+        }
+
+        &__social-icons {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            a {
+                width: 3rem;
+                color: $white !important;
+            }
+        }
+
+        &__payment-methods {
+            font-weight: 500;
+
+            figure {
+                margin-top: 1rem;
+
+                img {
+                    max-width: 90%;
+                }
+            }
+        }
+
+        &__made-by {
+            padding: 0;
+            justify-content: center;
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 30px;
+        }
+    }
+
+    @include media-breakpoint-down('sm') {
+        .container {
+            padding: 0 15px;
+        }
+    }
+}
+
+.footer-collapse {
+    &__toggle--mobile {
+        display: none;
+    }
+
+    @include media-breakpoint-down('lg') {
+        header h6 {
+            position: relative;
+            border-bottom: rgba(255, 255, 255, 0.49) $border-width solid;
+            padding: 1.25rem 0;
+            margin-bottom: 0;
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 6px;
+                transition: transform 0.2s;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-image: url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-3.82963e-07 1.23883L3.61719 5L-5.41509e-08 8.76117L1.19141 10L6 5L1.19141 -5.2078e-08L-3.82963e-07 1.23883Z' fill='white'/%3E%3C/svg%3E%0A");
+            }
+        }
+
+        &__toggle--desktop {
+            display: none;
+        }
+
+        &__toggle--mobile {
+            display: block;
+        }
+
+        &__content {
+            display: none;
+            padding: 1.25rem 0 0;
+        }
+
+        &--expanded {
+            header h6::after {
+                transform: rotate(90deg);
+            }
+            .footer-collapse {
+                &__content {
+                    display: block;
+                }
+            }
+        }
+    }
+}
