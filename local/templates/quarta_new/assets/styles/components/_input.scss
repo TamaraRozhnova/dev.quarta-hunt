@@ -1,0 +1,65 @@
+@import '../assets/styles/base-imports';
+
+.input {
+    &--lg {
+        input {
+            padding: 1.125rem;
+        }
+    }
+
+    &--required {
+        label {
+            &::after {
+                content: '*';
+                color: $secondary;
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    &__container {
+        display: block;
+        position: relative;
+    }
+
+    &__clear {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding-right: 0.5rem;
+        cursor: pointer;
+
+        svg {
+            transform: scale(1.5);
+        }
+    }
+
+    input {
+        font-size: 0.875rem;
+        color: $gray-600;
+
+        &:focus {
+            color: $gray-900;
+        }
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    .info {
+        position: relative;
+        top: -2px;
+    }
+    @include media-breakpoint-down('sm') {
+        input {
+            padding: 0.75rem 1.125rem;
+        }
+        label, .invalid-feedback {
+            font-size: 0.875rem;
+        }
+    }
+}
