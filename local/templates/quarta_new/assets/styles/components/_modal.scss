@@ -1,0 +1,84 @@
+@import '../assets/styles/base-imports';
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: .3;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1055;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+
+    &.show {
+        display: block;
+    }
+
+    &--video-mode {
+        .modal-content {
+            overflow: hidden;
+        }
+
+        .modal-body {
+            padding: 0 !important;
+        }
+
+        .modal__close {
+            transform: scale(3);
+            color: $white !important;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    h4 {
+        margin-bottom: 1.25rem;
+    }
+
+    &__close {
+        position: absolute;
+        top: 1.875rem;
+        right: 1.875rem;
+        z-index: 1;
+        transform: scale(1.5);
+        cursor: pointer;
+        pointer-events: all;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    &-dialog {
+        position: relative;
+        transition: all 0.5s;
+    }
+
+    &-content {
+        box-shadow: 0 4px 31px rgba(0, 0, 0, 0.25);
+    }
+
+    @include media-breakpoint-down('sm') {
+        .modal-body {
+            padding: 1.5rem;
+        }
+    }
+}

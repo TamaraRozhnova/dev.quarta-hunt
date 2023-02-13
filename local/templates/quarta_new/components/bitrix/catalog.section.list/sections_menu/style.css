@@ -1,0 +1,98 @@
+.row .header-categories {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.6875rem;
+}
+.row .header-categories__item {
+  position: relative;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 130%;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.row .header-categories__item > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+  text-decoration: none;
+  padding-bottom: 18px;
+}
+.row .header-categories__item:hover > a {
+  color: #004989;
+}
+.row .header-categories__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.3125rem;
+  border-radius: 0.25rem;
+  color: #004989;
+  background-color: #f9f9fa;
+}
+.row .header-categories__dropdowns {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.nav-dropdown {
+  background-color: #f9f9fa;
+  box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+}
+.nav-dropdown--odd {
+  background-color: #fff;
+}
+.nav-dropdown__wrapper {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1070;
+  width: 22.5rem;
+  max-height: 31.25rem;
+}
+.nav-dropdown__wrapper .nav-dropdown__wrapper {
+  top: 0;
+  left: 100%;
+}
+.nav-dropdown ul {
+  position: relative;
+  padding: 1rem 0;
+  margin: 0;
+  overflow-y: auto;
+  max-height: 31.25rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.nav-dropdown ul::-webkit-scrollbar {
+  display: none;
+}
+.nav-dropdown ul .ps__rail-x,
+.nav-dropdown ul .ps__rail-y {
+  pointer-events: none;
+}
+.nav-dropdown ul li {
+  display: block;
+  margin: 0;
+}
+.nav-dropdown ul li > * > a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 1.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333333;
+  font-weight: 400;
+}
+.nav-dropdown ul li > * > a:hover, .nav-dropdown ul li > * > a:focus {
+  background-color: #eeeff3;
+}
