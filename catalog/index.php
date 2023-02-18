@@ -139,9 +139,7 @@ $APPLICATION->IncludeComponent(
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "24",
 		"PARTIAL_PRODUCT_PROPERTIES" => "Y",
-		"PRICE_CODE" => array(
-			0 => "BASE",
-		),
+        "PRICE_CODE" => array(BASE_PRICE_CODE, OPT_PRICE_CODE),
 		"PRICE_VAT_INCLUDE" => "Y",
 		"PRICE_VAT_SHOW_VALUE" => "Y",
 		"PRODUCT_DISPLAY_MODE" => "N",

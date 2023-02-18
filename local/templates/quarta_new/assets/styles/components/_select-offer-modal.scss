@@ -1,0 +1,104 @@
+@import '../assets/styles/base-imports';
+
+.modal-trade-offers {
+    &__wr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &__count {
+        position: relative;
+        display: inline-block;
+        width: 6.25rem;
+        height: fit-content;
+
+        .form-control {
+            width: 100%;
+            font-size: 1rem;
+            line-height: 130%;
+            color: #000;
+            text-align: center;
+            background-color: #eeeff3;
+            border-color: #eeeff3;
+        }
+    }
+    &__plus {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2rem;
+        color: #000;
+        cursor: pointer;
+    }
+    &__minus {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2rem;
+        color: #000;
+        cursor: pointer;
+    }
+    .select__wrapper {
+        width: calc(100% - 6.25rem - 20px);
+        margin-bottom: 2rem;
+    }
+    .select {
+        width: 100%;
+        margin-bottom: 0;
+        .select__main {
+            background-color: #EEEFF3;
+            font-size: 1rem;
+            color: #333333;
+            &:focus {
+                box-shadow: unset;
+                border-color: #eb5806;
+            }
+        }
+        .select__options {
+            max-height: 240px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: transparent $primary;
+            &::-webkit-scrollbar {
+                width: 0.225rem;
+            }
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 0.125rem;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: $primary;
+            }
+        }
+    }
+    @include media-breakpoint-down('lg') {
+        .select__wrapper {
+            margin-bottom: 0.938rem;
+        }
+        .select {
+            .select__options {
+                max-height: 195px;
+            }
+        }
+    }
+    @include media-breakpoint-down('sm') {
+        .select__wrapper {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        &__count {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+    }
+}

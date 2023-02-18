@@ -4,7 +4,10 @@
             COOKIE_LOCATION_NAME = 'location';
 
             constructor(modalOpenElementSelector, modalSelector = '.modal') {
-                super(modalOpenElementSelector, modalSelector);
+                super({
+                    modalOpenElementSelector,
+                    modalSelector
+                });
                 this.cityElements = document.querySelectorAll('.modal-location__item');
                 this.openModalElementText = this.openModalElement.querySelector('span');
 
@@ -13,7 +16,8 @@
             }
 
             hangEvents() {
-                this.searchInput = new Input('#location-search', {
+                this.searchInput = new Input({
+                    inputSelector: '#location-search',
                     onChange: () => this.searchLocation(),
                     onClear: () => this.displayAllLocations()
                 });

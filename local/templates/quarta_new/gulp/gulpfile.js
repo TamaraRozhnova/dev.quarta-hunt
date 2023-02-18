@@ -26,7 +26,9 @@ const builder = {
                 gulp.task(`${type}:${config.groupName}:build`, () => {
                     const files = [config.src];
                     if (config.exclude) {
-                        files.push(`!${config.exclude}`);
+                        config.exclude.forEach(source => {
+                            files.push(`!${source}`);
+                        })
                     }
                     if (config.dest.fileName) {
                         return gulp.src(files)
@@ -43,7 +45,9 @@ const builder = {
                 gulp.task(`${type}:${config.groupName}:build`, () => {
                     const files = [config.src];
                     if (config.exclude) {
-                        files.push(`!${config.exclude}`);
+                        config.exclude.forEach(source => {
+                            files.push(`!${source}`);
+                        })
                     }
                     return gulp.src(files)
                         .pipe(uglify())
@@ -60,7 +64,9 @@ const builder = {
         gulp.task(`${type}:${config.groupName}:watch`, () => {
             const files = [config.watch];
             if (config.exclude) {
-                files.push(`!${config.exclude}`);
+                config.exclude.forEach(source => {
+                    files.push(`!${source}`);
+                })
             }
             gulp.watch(files, gulp.series(`${type}:${config.groupName}:build`));
         })
