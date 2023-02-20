@@ -1,0 +1,40 @@
+@import '../assets/styles/base-imports';
+
+section.promo-list {
+  background-color: #fff;
+
+  .promo-list__title-wrapper {
+    background-image: url("/local/templates/quarta_new/assets/images/promo-1.jpg");
+    background-size: cover;
+    background-position: 50%;
+
+    h1 {
+      padding: 10.625rem 0;
+      font-size: 3.75rem;
+      color: $white;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+  }
+
+  .promo-filter form {
+    display: flex;
+    justify-content: flex-end;
+    padding: 3.125rem 0;
+
+    .promo-filter__title {
+
+    }
+
+    .promo__select-type a {
+      line-height: 15.6px;
+
+      &.disabled {
+
+        color: #808d9a;
+        text-decoration: none;
+        pointer-events: none;
+      }
+    }
+  }
+}

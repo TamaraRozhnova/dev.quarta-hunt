@@ -1,0 +1,20 @@
+@import '../assets/styles/base-imports';
+
+.row.promo__item {
+  margin-bottom: 8.4375rem;
+
+  &:nth-child(2n) {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &:nth-child(2n+1) .promo__item-body {
+    padding-left: 2.5rem;
+  }
+
+  small {
+    display: inline-block;
+    margin-bottom: 1.875rem;
+    font-size: 0.75 rem;
+  }
+}

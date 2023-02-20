@@ -1,0 +1,15 @@
+.row.promo__item {
+  margin-bottom: 8.4375rem;
+}
+.row.promo__item:nth-child(2n) {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.row.promo__item:nth-child(2n+1) .promo__item-body {
+  padding-left: 2.5rem;
+}
+.row.promo__item small {
+  display: inline-block;
+  margin-bottom: 1.875rem;
+  font-size: 0.75 rem;
+}
