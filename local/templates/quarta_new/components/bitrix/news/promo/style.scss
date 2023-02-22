@@ -2,6 +2,7 @@
 
 section.promo-list {
   background-color: #fff;
+  padding-bottom: 1rem;
 
   .promo-list__title-wrapper {
     background-image: url("/local/templates/quarta_new/assets/images/promo-1.jpg");
@@ -17,24 +18,122 @@ section.promo-list {
     }
   }
 
-  .promo-filter form {
-    display: flex;
-    justify-content: flex-end;
-    padding: 3.125rem 0;
+  .container {
 
-    .promo-filter__title {
+    .promo-filter form {
+      display: flex;
+      justify-content: flex-end;
+      padding: 3.125rem 0;
 
-    }
+      .promo-filter__title {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
 
-    .promo__select-type a {
-      line-height: 15.6px;
+      .promo__select-type {
+        a {
+          line-height: 15.6px;
 
-      &.disabled {
+          &.disabled {
 
-        color: #808d9a;
-        text-decoration: none;
-        pointer-events: none;
+            color: #808d9a;
+            text-decoration: none;
+            pointer-events: none;
+          }
+        }
+
+        @media (max-width: 768px) {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      @media (max-width: 768px) {
+        display: block;
+        padding: 25px 0;
       }
     }
+
+    .promo__item {
+      margin-bottom: 2.5rem;
+
+      &-preview-text {
+        font-size: 1rem;
+      }
+      @media (max-width: 768px) {
+        .preview_picture__wrapper {
+          margin-bottom: 1rem;
+        }
+
+        .promo__item-body {
+          padding-left: 0;
+
+          small {
+            margin-bottom: 1.25rem;
+          }
+
+          h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.938rem;
+            max-width: unset;
+          }
+        }
+      }
+    }
+
+    .promo-list__pagination {
+      padding-top: 3.125rem;
+      margin-bottom: 8.4375rem;
+
+      a, b {
+        -webkit-border-radius: 0.25rem;
+        -moz-border-radius: 0.25rem;
+        border-radius: 0.25rem;
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        line-height: 1.3;
+        text-align: center;
+        cursor: pointer;
+        color: #333333;
+        background-color: #fff;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      b, .nav-btn {
+        background-color: #004989;
+        border-color: #004989;
+        color: #fff;
+        font-weight: 400;
+        line-height: 1.3;
+      }
+
+      @media (max-width: 768px) {
+        margin-bottom: 2.5rem;
+        padding-top: 1rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 30px;
+    }
+    @media (max-width: 768px) {
+      margin: 0;
+      width: 100%;
+      max-width: 100%!important;
+      padding: 0 30px;
+    }
+    @media (max-width: 576px) {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 30px;
+    }
   }
+
+
 }

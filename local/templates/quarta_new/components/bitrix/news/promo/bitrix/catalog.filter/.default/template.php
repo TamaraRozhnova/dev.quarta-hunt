@@ -46,9 +46,8 @@ global ${$FILTER_NAME};
                                value="<?= $arItem['INPUT_VALUES'][1] ?>" data-current-date="<?= $time ?>">
                     </div>
                 <? endif; ?>
-
             <? endforeach; ?>
-            <input type="hidden" name="set_filter" value="Y"/>&nbsp;&nbsp;
+            <input type="hidden" name="set_filter" value="Y"/>
         </form>
     </div>
 </div>
