@@ -1,46 +1,46 @@
-<?php
-
-$aMenuLinks = [
-    [
-        "Гарантии",
-        "/warranty",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Оплата",
-        "/payment",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Доставка",
-        "/delivery",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Контакты",
-        "/contacts",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Вакансии",
-        "/jobs",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Гарантии",
-        "/contacts",
-        [],
-        [],
-        ""
-    ],
-];
+<?
+$aMenuLinks = Array(
+	Array(
+		"Гарантии", 
+		"/warranty", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Оплата", 
+		"/payment", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Доставка", 
+		"/delivery", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"/contacts", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Вакансии", 
+		"/jobs", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Гарантии", 
+		"/contacts", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

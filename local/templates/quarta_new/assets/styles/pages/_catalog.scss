@@ -1,0 +1,43 @@
+@import '../assets/styles/base-imports';
+
+.category {
+    background-color: $gray-100;
+
+    & > .container > .row {
+        align-items: flex-start;
+    }
+
+    &__header {
+        padding-bottom: 3.125rem;
+
+        &-title {
+            font-size: calc(1.34375rem + 1.125vw);
+        }
+    }
+
+    //&__products {
+    //    [class*='col-'] {
+    //        margin-bottom: 20px;
+    //    }
+    //}
+
+    &__main {
+        padding-bottom: 8.4375rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .category {
+        &__header {
+            padding-bottom: 12px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .category {
+        &__main {
+            padding-bottom: 40px;
+        }
+    }
+}

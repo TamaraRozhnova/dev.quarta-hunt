@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const contacts = document.querySelector('.header__contacts');
     const contactsButton = document.querySelector('.header__button-contacts');
 
+    const searchInputWrappers = document.querySelectorAll('.header .search-input');
+
     shopsButton.addEventListener('click', (event) => {
         event.stopPropagation();
         shopsWrapper.classList.toggle('header__spot--show');
@@ -42,4 +44,21 @@ window.addEventListener('DOMContentLoaded', () => {
     contactsButton.addEventListener('click', () => {
         contacts.classList.toggle('header__contacts--show');
     });
+
+    searchInputWrappers.forEach(wrapper => {
+        const input = wrapper.querySelector('input');
+        const buttonSearch = wrapper.querySelector('button');
+
+        input.addEventListener('keyup', (event) => {
+            const enterCode = 13;
+            if (event.keyCode === enterCode) {
+                window.location.href = `/search?q=${input.value}`;
+            }
+        });
+        buttonSearch.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.location.href = `/search?q=${input.value}`;
+        })
+    })
+
 })

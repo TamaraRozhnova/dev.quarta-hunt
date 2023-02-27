@@ -2,11 +2,19 @@
 
 use \Bitrix\Main\Loader;
 
-\Bitrix\Main\EventManager::getInstance()->addEventHandler('sale', 'OnSaleStatusOrder', 'AddBonusPoints');
+include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
 
-Loader::registerAutoLoadClasses(null, array(
+Loader::registerAutoLoadClasses(null, [
+    'Feedback\Reviews' => '/local/php_interface/classes/Feedback/Reviews.php',
+    'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
+    'General\User' => '/local/php_interface/classes/General/User.php',
+    'Helpers\DiscountsHelper' => '/local/php_interface/classes/Helpers/DiscountsHelper.php',
     'OrderId' => '/local/php_interface/classes/OrderId.php',
-));
+    'Personal\Favorites' => '/local/php_interface/classes/Personal/Favorites.php',
+    'Personal\Basket' => '/local/php_interface/classes/Personal/Basket.php',
+]);
+
+\Bitrix\Main\EventManager::getInstance()->addEventHandler('sale', 'OnSaleStatusOrder', 'AddBonusPoints');
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 
