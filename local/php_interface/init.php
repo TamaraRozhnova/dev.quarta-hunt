@@ -9,6 +9,7 @@ Loader::registerAutoLoadClasses(null, [
     'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
     'General\User' => '/local/php_interface/classes/General/User.php',
     'Helpers\DiscountsHelper' => '/local/php_interface/classes/Helpers/DiscountsHelper.php',
+    'Helpers\ProductsFilterHelper' => '/local/php_interface/classes/Helpers/ProductsFilterHelper.php',
     'OrderId' => '/local/php_interface/classes/OrderId.php',
     'Personal\Favorites' => '/local/php_interface/classes/Personal/Favorites.php',
     'Personal\Basket' => '/local/php_interface/classes/Personal/Basket.php',

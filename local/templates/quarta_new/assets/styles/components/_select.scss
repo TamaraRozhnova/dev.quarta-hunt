@@ -69,9 +69,9 @@
             bottom: 0;
             right: 1rem;
             width: 7px;
-            background-image: url("data:image/svg+xml,%3Csvg width='7' height='5' viewBox='0 0 7 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath d='M5.78724 0.878907L3.30278 3.36337L0.818315 0.878906L-1.43079e-07 1.69722L3.30278 5L6.60556 1.69722L5.78724 0.878907Z' fill='%23808D9A'/%3E %3C/svg%3E ");
+            background-image: url('assets/icons/arrow-small.svg');
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: 50%;
             transition: $transition-base;
             transform: scale(1.5);
         }
