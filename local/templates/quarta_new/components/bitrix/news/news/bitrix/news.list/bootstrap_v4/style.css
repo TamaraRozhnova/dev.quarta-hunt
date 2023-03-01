@@ -283,12 +283,24 @@
 	}
 	.news-list-item:nth-child(4n) .card .news-card__image {
 		width: 44.4%;
+		position: absolute;
 	}
 
 	.news-list-item:nth-child(4n) .card .news-card__image img {
 		-webkit-border-radius: 0;
 		-moz-border-radius: 0;
 		border-radius: 0;
+	}
+	.news-list-item:nth-child(4n) .card .card-body {
+		display: block;
+		max-width: 1320px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+	}
+	.news-list-item:nth-child(4n) .card .card-body > * {
+		margin-left: 50%;
 	}
 }
 

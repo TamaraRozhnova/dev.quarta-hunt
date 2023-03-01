@@ -15,9 +15,9 @@ $this->setFrameMode(true);
 \Bitrix\Main\UI\Extension::load('ui.fonts.opensans');
 
 $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-' . $arParams['TEMPLATE_THEME'] : '';
-$resAllSections = CIBlockSection::GetList([],['IBLOCK_ID' => $arParams['IBLOCK_ID']]);
+$resAllSections = CIBlockSection::GetList([], ['IBLOCK_ID' => $arParams['IBLOCK_ID']]);
 $allSections = [];
-while($ar_result = $resAllSections->GetNext()) {
+while ($ar_result = $resAllSections->GetNext()) {
     $allSections[$ar_result['ID']] = ['ID' => $ar_result['ID'], 'NAME' => $ar_result['NAME']];
 }
 
@@ -165,34 +165,34 @@ while($ar_result = $resAllSections->GetNext()) {
                                     <?
                                 }
                                 else if (is_array($arItem["PREVIEW_PICTURE"])) {
-                                if (!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])) {
-                                    ?>
-                                    <figure class="news-card__image">
-                                        <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>" class="">
-                                            <picture>
-                                                <source srcset="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                                        media="(max-width: 990px)">
-                                                <img
-                                                        class="card-img-top"
-                                                        src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                                        alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
-                                                        title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                                                />
-                                            </picture>
-                                        </a>
-                                    </figure>
-                                    <?
-                                }
-                                else {
-                                    ?>
-                                <img
-                                        src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                        class="card-img-top"
-                                        alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
-                                        title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                                />
-                                    <?
-                                }
+                                    if (!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])) {
+                                        ?>
+                                        <figure class="news-card__image">
+                                            <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>" class="">
+                                                <picture>
+                                                    <source srcset="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                                            media="(max-width: 990px)">
+                                                    <img
+                                                            class="card-img-top"
+                                                            src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                                            alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
+                                                            title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
+                                                    />
+                                                </picture>
+                                            </a>
+                                        </figure>
+                                        <?
+                                    }
+                                    else {
+                                        ?>
+                                    <img
+                                            src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                            class="card-img-top"
+                                            alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
+                                            title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
+                                    />
+                                        <?
+                                    }
                                 }
                                 ?>
 
@@ -202,10 +202,11 @@ while($ar_result = $resAllSections->GetNext()) {
                                 <? if ($arParams["DISPLAY_DATE"] != "N" && $arItem["DISPLAY_ACTIVE_FROM"]):
                                     ?>
                                     <div class="news-list-view news-list-post-params">
-                                        <span class="news-list-param"><? echo FormatDate('d F Y', strtotime($arItem["DISPLAY_ACTIVE_FROM"]));//date('d F Y', strtotime($arItem["DISPLAY_ACTIVE_FROM"])) ?></span>
+                                        <span class="news-list-param"><? echo FormatDate('d F Y', strtotime($arItem["DISPLAY_ACTIVE_FROM"]));//date('d F Y', strtotime($arItem["DISPLAY_ACTIVE_FROM"]))
+                                            ?></span>
                                         <? if ($arItem['IBLOCK_SECTION_ID'] != null): ?>
                                             <span class="news-list-item__section-name">
-                                            <?= $allSections[$arItem['IBLOCK_SECTION_ID']]['NAME'];?>
+                                            <?= $allSections[$arItem['IBLOCK_SECTION_ID']]['NAME']; ?>
                                             </span>
                                         <? endif; ?>
                                     </div>
@@ -224,6 +225,8 @@ while($ar_result = $resAllSections->GetNext()) {
                                 <? if ($arParams["DISPLAY_PREVIEW_TEXT"] != "N" && $arItem["PREVIEW_TEXT"]): ?>
                                     <p class="card-text"><? echo $arItem["PREVIEW_TEXT"]; ?></p>
                                 <? endif; ?>
+
+                                <a href="" class="btn btn-primary">Читать</a>
                             </div>
                         </div>
                     </div>
