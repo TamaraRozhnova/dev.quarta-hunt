@@ -28,12 +28,12 @@ $isAuthorized = $USER->IsAuthorized();
     <?
     $APPLICATION->ShowHead();
     $asset->addCss(SITE_TEMPLATE_PATH . "/assets/fonts/stylesheet.css");
-    $asset->addCss(SITE_TEMPLATE_PATH . "/assets/styles/libs/swiper.min.css");
-    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/libs/swiper.min.js");
-    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/libs/jsCookie.min.js");
-    $asset->addCss(SITE_TEMPLATE_PATH . "/assets/styles/libs/perfect-scrollbar.min.css");
-    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/libs/perfectScrollbar.min.js");
-    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/scripts/main.js");
+    $asset->addCss(SITE_TEMPLATE_PATH . "/assets/libs/styles/swiper.min.css");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/swiper.min.js");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/jsCookie.min.js");
+    $asset->addCss(SITE_TEMPLATE_PATH . "/assets/libs/styles/perfect-scrollbar.min.css");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/perfectScrollbar.min.js");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/build/main.js");
     ?>
 </head>
 
