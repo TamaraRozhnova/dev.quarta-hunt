@@ -5,7 +5,8 @@ class Input {
         options = {onChange: () => {}, onClear: () => {}}
     ) {
         this.inputElement = document.querySelector(inputSelector);
-        this.clearButtonElement = this.inputElement.querySelector(`${inputSelector} + .input__clear`);
+        this.clearButtonElement = document.querySelector(`${inputSelector} + .input__clear`);
+
         this.options = options;
 
         this.hangEvents()
