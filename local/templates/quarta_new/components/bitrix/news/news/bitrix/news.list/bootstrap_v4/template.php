@@ -226,7 +226,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                     <p class="card-text"><? echo $arItem["PREVIEW_TEXT"]; ?></p>
                                 <? endif; ?>
 
-                                <a href="" class="btn btn-primary">Читать</a>
+                                <div class="news-list-item__btn-wrapper"><a href="" class="btn btn-primary">Читать</a></div>
                             </div>
                         </div>
                     </div>

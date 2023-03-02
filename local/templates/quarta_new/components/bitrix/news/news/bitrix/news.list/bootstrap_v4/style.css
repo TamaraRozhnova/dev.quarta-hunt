@@ -229,6 +229,16 @@
 	height: 100%;
 }
 
+.news-list .card-body a.btn {
+	display: none;
+}
+
+.bx_catalog_text_ul li.active a {
+	background-color: #eeeff3;
+	border-color: #004989;
+	color: #333333;
+}
+
 @media (max-width: 1399px) {
 	.news-list .news-list-item {
 		max-width: 380px;
@@ -292,7 +302,6 @@
 		border-radius: 0;
 	}
 	.news-list-item:nth-child(4n) .card .card-body {
-		display: block;
 		max-width: 1320px;
 		margin: 0 auto;
 		display: flex;
@@ -302,6 +311,15 @@
 	.news-list-item:nth-child(4n) .card .card-body > * {
 		margin-left: 50%;
 	}
+
+	.news-list-item:nth-child(4n) .card .card-body p.card-text {
+		margin-bottom: 40px;
+	}
+
+	.news-list-item:nth-child(4n) .card .card-body a.btn {
+		display: inline-block;
+		font-weight: 500;
+	}
 }
 
 @media (max-width: 991px) and (min-width: 576px) {
@@ -309,6 +327,86 @@
 		width: 100%;
 		max-width: 100%;
 		padding-right: 0;
+		padding-top: 34px;
+	}
+
+	.news-list-item:nth-child(3) figure {
+		height: 436px;
+	}
+
+	.news-list-item:nth-child(3) figure img {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+
+	.news-list-item:nth-child(3) .card {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+
+	.news-list-item:nth-child(3) .card a.btn {
+		display: inline-block;
+		font-weight: 500;
+		padding: 15px 55px;
+	}
+
+	.news-list .news-list__title-wrapper .container {
+		max-width: 100%;
+	}
+
+	.news-list .news-list__title-wrapper .container h1 {
+		font-size: 30px;
+		margin-right: 51px;
+		margin-left: 20px;
+	}
+
+	.bx_catalog_text_ul {
+		margin-bottom: 0;
+	}
+
+	.bx_catalog_text_ul li a {
+		padding: 10px 20px 9px 20px;
+	}
+
+	.news-list .news-list-item {
+		margin-bottom: 40px;
+	}
+}
+
+@media (max-width: 576px) {
+	.news-list .news-list-item {
+		padding-left: 25px;
+		padding-right: 15px;
+		margin-bottom: 30px;
+	}
+
+	.news-list .news-list-item figure {
+		height: 201px;
+	}
+
+	.news-list .card-title a {
+		font-size: 14px;
+	}
+
+	.news-list .card-text {
+		font-size: 14px;
+	}
+
+	section.news-list h1 {
+		font-size: 23px;
+		line-height: 28px;
+	}
+
+	section.news-list .bx_catalog_text_ul {
+		overflow: auto;
+		display: flex;
+	}
+	section.news-list .bx_catalog_text_ul a {
+		font-size: 12px;
+		padding: 10px 14px 8px 14px;
+		white-space: nowrap;
 	}
 }
 
