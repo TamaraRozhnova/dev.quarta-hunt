@@ -1,0 +1,123 @@
+section.promo-list {
+  background-color: #fff;
+  padding-bottom: 1rem;
+}
+section.promo-list .promo-list__title-wrapper {
+  background-image: url("/local/templates/quarta_new/assets/images/promo-1.jpg");
+  background-size: cover;
+  background-position: 50%;
+}
+section.promo-list .promo-list__title-wrapper h1 {
+  padding: 10.625rem 0;
+  font-size: 3.75rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+section.promo-list .container .promo-filter form {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3.125rem 0;
+}
+@media (max-width: 768px) {
+  section.promo-list .container .promo-filter form .promo-filter__title {
+    display: none;
+  }
+}
+section.promo-list .container .promo-filter form .promo__select-type a {
+  line-height: 15.6px;
+}
+section.promo-list .container .promo-filter form .promo__select-type a.disabled {
+  color: #808d9a;
+  text-decoration: none;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  section.promo-list .container .promo-filter form .promo__select-type {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 768px) {
+  section.promo-list .container .promo-filter form {
+    display: block;
+    padding: 25px 0;
+  }
+}
+section.promo-list .container .promo__item {
+  margin-bottom: 2.5rem;
+}
+section.promo-list .container .promo__item-preview-text {
+  font-size: 1rem;
+}
+@media (max-width: 768px) {
+  section.promo-list .container .promo__item .preview_picture__wrapper {
+    margin-bottom: 1rem;
+  }
+  section.promo-list .container .promo__item .promo__item-body {
+    padding-left: 0;
+  }
+  section.promo-list .container .promo__item .promo__item-body small {
+    margin-bottom: 1.25rem;
+  }
+  section.promo-list .container .promo__item .promo__item-body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.938rem;
+    max-width: unset;
+  }
+}
+section.promo-list .container .promo-list__pagination {
+  padding-top: 3.125rem;
+  margin-bottom: 8.4375rem;
+}
+section.promo-list .container .promo-list__pagination a, section.promo-list .container .promo-list__pagination b {
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+  color: #333333;
+  background-color: #fff;
+  text-decoration: none;
+  display: inline-block;
+}
+section.promo-list .container .promo-list__pagination b, section.promo-list .container .promo-list__pagination .nav-btn {
+  background-color: #004989;
+  border-color: #004989;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.3;
+}
+@media (max-width: 768px) {
+  section.promo-list .container .promo-list__pagination {
+    margin-bottom: 2.5rem;
+    padding-top: 1rem;
+  }
+}
+@media (max-width: 992px) {
+  section.promo-list .container {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 768px) {
+  section.promo-list .container {
+    margin: 0;
+    width: 100%;
+    max-width: 100% !important;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 576px) {
+  section.promo-list .container {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
