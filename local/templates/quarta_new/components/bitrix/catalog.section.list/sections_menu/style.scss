@@ -1,0 +1,118 @@
+@import '../assets/styles/base-imports';
+
+.row {
+    .header-categories {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.6875rem;
+
+        &__item {
+            position: relative;
+            display: flex;
+            justify-content: stretch;
+            align-items: stretch;
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 130%;
+            transition: $transition-base;
+            cursor: pointer;
+
+            > a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $gray-800;
+                text-decoration: none;
+                padding-bottom: 18px;
+            }
+
+            &:hover > a {
+                color: $primary;
+            }
+        }
+
+        &__icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.3125rem;
+            border-radius: $border-radius-sm;
+            color: $primary;
+            background-color: $gray-100;
+        }
+
+        &__dropdowns {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+.nav-dropdown {
+    background-color: $gray-100;
+    box-shadow: $box-shadow-sm;
+
+    &--odd {
+        background-color: $white;
+    }
+
+    &__wrapper {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: $zindex-popover;
+        width: 22.5rem;
+        max-height: 31.25rem;
+    }
+
+    &__wrapper &__wrapper {
+        top: 0;
+        left: 100%;
+    }
+
+    ul {
+        position: relative;
+        padding: 1rem 0;
+        margin: 0;
+        overflow-y: auto;
+        max-height: 31.25rem;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+
+        .ps__rail-x,
+        .ps__rail-y {
+            pointer-events: none;
+        }
+
+        li {
+            display: block;
+            margin: 0;
+
+            > * > a {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 1rem 1.875rem;
+                cursor: pointer;
+                text-decoration: none;
+                color: $gray-800;
+                font-weight: 400;
+
+                &:hover,
+                &:focus {
+                    background-color: $gray-200;
+                }
+            }
+        }
+    }
+}

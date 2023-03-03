@@ -17,12 +17,15 @@
 @import '../../node_modules/bootstrap/scss/modal';
 @import '../../node_modules/bootstrap/scss/spinners';
 @import '../../node_modules/bootstrap/scss/utilities/api';
+@import '../../node_modules/bootstrap/scss/badge';
 
 @import 'global';
 @import 'transitions';
 
+@import "components/header";
 @import "components/footer";
 
 @import "components/base-slider";
 @import "components/input";
 @import "components/checkbox";
+@import "components/modal";

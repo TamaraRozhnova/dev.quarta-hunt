@@ -31,6 +31,14 @@
         bottom: 0;
         padding-right: 0.5rem;
         cursor: pointer;
+        opacity: 0;
+        transition: .2s ease-in-out;
+        pointer-events: none;
+
+        &.show {
+            pointer-events: all;
+            opacity: 1;
+        }
 
         svg {
             transform: scale(1.5);

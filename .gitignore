@@ -36,7 +36,6 @@ logs/
 *.log
 *.sql
 *.txt
-*.xml
 *.dt
 /.dev
 .DS_Store

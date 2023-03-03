@@ -1,0 +1,2 @@
+<a href="/wholesale" class="mobile-nav__item fw-bolder text-primary">Оптовикам</a>
+<a href="/catalog" class="mobile-nav__item mobile-nav__item--block text-center text-dark bg-white py-3">Каталог товаров</a>
