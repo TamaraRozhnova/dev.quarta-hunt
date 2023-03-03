@@ -35,8 +35,8 @@ if (!count($arResult['rows'])) {
                 </div>
 
                 <? foreach ($arResult['rows'] as $city) { ?>
-                    <div class="modal-location__item" data-name="<?= $city['UF_NAME'] ?>" data-code="<?= $city['UF_CODE'] ?>">
-                        <?= $city['UF_NAME'] ?>
+                    <div class="modal-location__item" data-name="<?= strip_tags($city['UF_NAME']) ?>" data-code="<?= strip_tags($city['UF_CODE']) ?>">
+                        <?= strip_tags($city['UF_NAME']) ?>
                     </div>
                 <? } ?>
             </div>

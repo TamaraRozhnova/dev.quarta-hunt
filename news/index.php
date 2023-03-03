@@ -98,8 +98,8 @@ $APPLICATION->SetTitle("Новости");
 		"USE_SHARE" => "N",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
-			"section" => "#SECTION_ID#/",
-			"detail" => "#SECTION_ID#/#ELEMENT_CODE#/",
+			"section" => "",
+			"detail" => "#ELEMENT_CODE#/",
 		)
 	),
 	false
