@@ -42,7 +42,7 @@ $this->setFrameMode(true);
 			1 => "",
 		),
 		"CURRENT_SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
-		"SECTION_URL" => "/news/#SECTION_ID#/",
+		"SECTION_URL" => "/news/?SECTION_ID=#SECTION_ID#",
         "PARENT_URL" => "/news/",
 		"SECTION_USER_FIELDS" => array(
 			0 => "",
@@ -143,7 +143,7 @@ $this->setFrameMode(true);
             "ADD_SECTIONS_CHAIN" => $arParams["ADD_SECTIONS_CHAIN"],
             "HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 
-            "PARENT_SECTION" => $arResult["VARIABLES"]["SECTION_ID"],
+            "PARENT_SECTION" => $_REQUEST['SECTION_ID'],
             "PARENT_SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
             "INCLUDE_SUBSECTIONS" => "Y",
 
