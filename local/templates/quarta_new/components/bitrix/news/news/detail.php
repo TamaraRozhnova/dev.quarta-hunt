@@ -72,6 +72,7 @@ $this->setFrameMode(true);
 		"SLIDER_PROPERTY" => $arParams["SLIDER_PROPERTY"],
 		"TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
 		"STRICT_SECTION_CHECK" => $arParams["STRICT_SECTION_CHECK"],
+        "RETURN_PATH" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
 	),
 	$component
 );?>

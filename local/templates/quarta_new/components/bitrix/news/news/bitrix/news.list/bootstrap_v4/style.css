@@ -282,10 +282,14 @@
 		max-width: 100%;
 		margin: 135px 0;
 		min-height: 405px;
+		padding-right: 0;
 	}
 
 	.news-list-item:nth-child(4n) .card {
 		flex-direction: row;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
 	}
 
 	.news-list-item:nth-child(4n) .card figure.news-card__image {
@@ -294,6 +298,7 @@
 	.news-list-item:nth-child(4n) .card .news-card__image {
 		width: 44.4%;
 		position: absolute;
+		left: -1px;
 	}
 
 	.news-list-item:nth-child(4n) .card .news-card__image img {
