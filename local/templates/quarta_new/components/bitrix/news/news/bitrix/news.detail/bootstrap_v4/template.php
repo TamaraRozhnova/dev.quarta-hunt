@@ -176,7 +176,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                 <? else: ?>
                     <? echo $arResult["PREVIEW_TEXT"]; ?>
                 <? endif ?>
-                <p><a href="<?=$arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
+                <p><a class="btn btn-light px-4 bg-gray-200" href="<?=$arParams["RETURN_PATH"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
             </div>
 
         </div>

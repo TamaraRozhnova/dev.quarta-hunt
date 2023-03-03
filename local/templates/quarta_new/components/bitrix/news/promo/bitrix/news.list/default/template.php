@@ -88,7 +88,7 @@ $this->setFrameMode(true);
         </div>
     <? endforeach; ?>
     <? if ($arParams["DISPLAY_BOTTOM_PAGER"] && !empty(trim($arResult["NAV_STRING"]))): ?>
-        <div class="promo-list__pagination">
+        <div class="list__pagination">
             <?= $arResult["NAV_STRING"] ?>
         </div>
     <? endif; ?>

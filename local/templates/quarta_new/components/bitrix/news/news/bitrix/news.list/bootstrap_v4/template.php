@@ -165,34 +165,34 @@ while ($ar_result = $resAllSections->GetNext()) {
                                     <?
                                 }
                                 else if (is_array($arItem["PREVIEW_PICTURE"])) {
-                                    if (!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])) {
-                                        ?>
-                                        <figure class="news-card__image">
-                                            <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>" class="">
-                                                <picture>
-                                                    <source srcset="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                                            media="(max-width: 990px)">
-                                                    <img
-                                                            class="card-img-top"
-                                                            src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                                            alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
-                                                            title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                                                    />
-                                                </picture>
-                                            </a>
-                                        </figure>
-                                        <?
-                                    }
-                                    else {
-                                        ?>
-                                    <img
-                                            src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
-                                            class="card-img-top"
-                                            alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
-                                            title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                                    />
-                                        <?
-                                    }
+                                if (!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])) {
+                                    ?>
+                                    <figure class="news-card__image">
+                                        <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>" class="">
+                                            <picture>
+                                                <source srcset="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                                        media="(max-width: 990px)">
+                                                <img
+                                                        class="card-img-top"
+                                                        src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                                        alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
+                                                        title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
+                                                />
+                                            </picture>
+                                        </a>
+                                    </figure>
+                                    <?
+                                }
+                                else {
+                                    ?>
+                                <img
+                                        src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
+                                        class="card-img-top"
+                                        alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
+                                        title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
+                                />
+                                    <?
+                                }
                                 }
                                 ?>
 
@@ -226,18 +226,24 @@ while ($ar_result = $resAllSections->GetNext()) {
                                     <p class="card-text"><? echo $arItem["PREVIEW_TEXT"]; ?></p>
                                 <? endif; ?>
 
-                                <div class="news-list-item__btn-wrapper"><a href="" class="btn btn-primary">Читать</a></div>
+                                <div class="news-list-item__btn-wrapper"><a href="<?= $arItem["DETAIL_PAGE_URL"] ?>" class="btn btn-primary">Читать</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 <? endforeach; ?>
+                <div class="list__pagination col-12">
+                    <div class="container">
+                        <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
+                            <?= $arResult["NAV_STRING"] ?>
+                        <? endif; ?>
+                    </div>
+                </div>
             </div>
             <!--            </div>-->
             <!--        --><? // endforeach; ?>
 
-            <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
-                <?= $arResult["NAV_STRING"] ?>
-            <? endif; ?>
+
         </div>
     </div>
 </div>
