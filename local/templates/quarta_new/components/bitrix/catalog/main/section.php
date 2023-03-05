@@ -6,7 +6,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Helpers\ProductsFilterHelper;
 
-$filterHelperInstance = new ProductsFilterHelper();
+$sectionId = $arResult['VARIABLES']['SECTION_ID'];
+
+$filterHelperInstance = new ProductsFilterHelper($sectionId);
 $filterParams = $filterHelperInstance->getFilters();
 
 $headers = getallheaders();
@@ -21,7 +23,6 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
             "component" => $component
         ]
     );
-
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
         [
             "params" => array_merge($arParams, $filterParams),
@@ -37,7 +38,11 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
 <div class="category">
     <section class="category__header">
         <div class="container">
-            <!--            <h1 class="category__header-title" v-html="category ? category.name : ''"></h1>-->
+            <? if ($filterParams['SECTION_NAME']) { ?>
+                <h1 class="category__header-title">
+                    <?= $filterParams['SECTION_NAME']?>
+                </h1>
+            <? } ?>
         </div>
     </section>
 

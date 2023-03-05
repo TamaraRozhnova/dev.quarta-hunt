@@ -14,6 +14,10 @@ switch ($requestBody->action) {
         $response = $basket->getProductsInBasket();
         break;
 
+    case 'GET_COUNT':
+        $response = $basket->getProductsCount();
+        break;
+
     case 'GET_AVAILABLE_OFFERS_FOR_PURCHASING':
         $response = $basket->getAvailableOffersForPurchasing($requestBody->id);
         break;

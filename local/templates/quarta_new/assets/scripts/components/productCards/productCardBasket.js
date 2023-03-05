@@ -105,16 +105,17 @@ class ProductCardBasket {
     }
 
     handleAddFirstProductToBasket(addToBasketButton) {
-        addToBasketButton.disabled = true;
+        addToBasketButton.style.pointerEvents = 'none';
         this.basketApi.addToBasket(this.productId)
             .then(response => {
                 if (!response) {
-                    addToBasketButton.disabled = false;
+                    addToBasketButton.style.pointerEvents = 'all';
                     return;
                 }
                 this.createCounter();
+                this.productElement.dataset.productBasket = 1;
             })
-            .catch(() => addToBasketButton.disabled = false)
+            .catch(() => addToBasketButton.style.pointerEvents = 'all')
     }
 
     handleAddProductToBasket(counterInstance) {
@@ -160,7 +161,7 @@ class ProductCardBasket {
     handleSetQuantityForProduct(value, counterInstance) {
         counterInstance.disableButtons();
         const currentProductQuantityInBasket = this.productElement.dataset.productBasket;
-        this.basketApi.setProductQuantityToBasket(this.productId, currentProductQuantityInBasket, value)
+        this.basketApi.setProductQuantityToBasket(this.productId, value)
             .then(response => {
                 if (response === 0) {
                     this.createAddToBasketButton();
@@ -169,7 +170,7 @@ class ProductCardBasket {
                 }
                 this.productElement.dataset.productBasket = response;
             })
-            .catch(() => setValue(currentProductQuantityInBasket))
+            .catch(() => counterInstance.setValue(currentProductQuantityInBasket))
             .finally(() => counterInstance.activateButtons())
     }
 

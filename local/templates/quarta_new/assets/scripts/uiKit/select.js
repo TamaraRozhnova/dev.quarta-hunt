@@ -3,8 +3,6 @@ class Select {
         data = {
             selector: '.select',
             element: null,
-            initialValue: 0,
-            withPlaceholder: false,
             onSelect: (id) => {},
         }
     )
@@ -16,14 +14,14 @@ class Select {
         }
         this.selectButton = this.select.querySelector('.select__main');
         this.options = this.select.querySelectorAll('.select__option');
-        this.placeholder = data.withPlaceholder ? this.selectButton.childNodes[0].nodeValue.trim() : null;
+        this.placeholder = this.select.dataset.placeholder;
+        this.initialValueId = this.select.dataset.initialId;
 
         this.isOpen = false;
-        this.initialValueId = 0;
         this.value = {};
         this.onSelect = data.onSelect;
 
-        this.setInitialValue(data.initialValue);
+        this.setInitialValue();
         this.hangEvents();
     }
 
@@ -46,32 +44,37 @@ class Select {
 
     resetValue() {
         if (this.placeholder) {
-            this.selectButton.childNodes[0].nodeValue = this.placeholder;
+            this.setValueTextInHtml(this.placeholder);
             this.value = {};
             return;
         }
         this.setValue(this.initialValueId);
     }
 
-    setInitialValue(value) {
-        if (this.options.length === 0 || this.placeholder) {
+    setInitialValue() {
+        if (this.options.length === 0) {
             return;
         }
-        if (!value) {
+        if (this.initialValueId) {
+            this.options.forEach(option => {
+                const optionId = option.dataset.id;
+                if (optionId === this.initialValueId) {
+                    const optionTitle = option.querySelector('span').textContent.trim();
+                    this.setValue(optionId, optionTitle);
+                }
+            })
+            return;
+        }
+        if (this.placeholder) {
+            this.setValueTextInHtml(this.placeholder);
+            return;
+        }
+        if (!this.initialValueId) {
             const optionId = this.options[0].dataset.id;
             const optionTitle = this.options[0].querySelector('span').textContent.trim();
             this.setValue(optionId, optionTitle);
             this.initialValueId = this.value.id;
-            return;
         }
-        this.options.forEach(option => {
-            const optionId = option.dataset.id;
-            if (optionId === value) {
-                const optionTitle = option.querySelector('span').textContent.trim();
-                this.setValue(optionId, optionTitle);
-                this.initialValueId = this.value.id;
-            }
-        })
     }
 
     getValue() {
@@ -85,8 +88,12 @@ class Select {
             title = option.textContent.trim();
         }
         this.value = { id: optionId, title };
+        this.setValueTextInHtml(this.value.title);
+    }
+
+    setValueTextInHtml(value) {
         const text = this.selectButton.childNodes[0];
-        text.nodeValue = this.value.title;
+        text.nodeValue = value;
     }
 
     selectOption(option) {

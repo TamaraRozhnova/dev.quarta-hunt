@@ -113,8 +113,11 @@ $APPLICATION->IncludeComponent(
 			1 => "",
 		),
 		"LIST_PROPERTY_CODE" => array(
-			0 => "",
-			1 => "",
+			0 => "CML2_ARTICLE",
+			1 => "HIT",
+			2 => "NEW_PRODUCT",
+			3 => "DOUBLE_BONUS",
+
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",
@@ -144,8 +147,7 @@ $APPLICATION->IncludeComponent(
 		"PRICE_VAT_SHOW_VALUE" => "Y",
 		"PRODUCT_DISPLAY_MODE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
-		"PRODUCT_PROPERTIES" => array(
-		),
+		"PRODUCT_PROPERTIES" => array(),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
 		"SECTIONS_SHOW_PARENT_NAME" => "N",
@@ -166,6 +168,7 @@ $APPLICATION->IncludeComponent(
 		"SHOW_LINK_TO_FORUM" => "Y",
 		"SHOW_OLD_PRICE" => "Y",
 		"SHOW_PRICE_COUNT" => "1",
+		"SHOW_PRODUCT_TAGS" => "Y",
 		"SHOW_TOP_ELEMENTS" => "N",
 		"SIDEBAR_DETAIL_SHOW" => "Y",
 		"SIDEBAR_PATH" => "",

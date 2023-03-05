@@ -18,22 +18,26 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         id="available"
                         class="form-check-input"
                         type="checkbox"
+                        <?= $arParams['HIDE_NOT_AVAILABLE'] === 'Y' ? 'checked' : '' ?>
                     />
                     <label class="form-check-label" for="available">
                         В наличии
                     </label>
                 </div>
                 <div class="select__wrapper select__wrapper--small">
-                    <div id="select-sort" class="select select--small">
+                    <div id="select-sort"
+                         class="select select--small"
+                         data-initial-id="<?= $arResult['SORT_VALUE'] ?? '' ?>"
+                         data-placeholder="Сортировать:"
+                    >
                         <button class="select__main btn">
-                            Сортировать:
+                            <?= $arResult['SORT_OPTIONS'][$arResult['SORT_VALUE']] ?? 'Сортировать:' ?>
                             <div class="select__options">
-                                <div data-id="cheaper" class="select__option" tabindex="0">
-                                    <span>дешевле</span>
-                                </div>
-                                <div data-id="expensive" class="select__option" tabindex="0">
-                                    <span>дороже</span>
-                                </div>
+                                <? foreach ($arResult['SORT_OPTIONS'] as $key => $title) { ?>
+                                    <div data-id="<?= $key ?>" class="select__option" tabindex="0">
+                                        <span><?= $title ?></span>
+                                    </div>
+                                <? } ?>
                             </div>
                         </button>
                     </div>
@@ -42,30 +46,27 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <div id="list-count" class="filters-sort__count">
                     <span>Выводить по:</span>
                     <ul>
-                        <li class="active" data-id="20">20</li>
-                        <li data-id="40">40</li>
-                        <li data-id="60">60</li>
-                        <li data-id="9999">Показать все</li>
+                        <? foreach ($arResult['ELEMENT_COUNT_OPTIONS'] as $key => $title) { ?>
+                            <li class="<?= $arParams['PAGE_ELEMENT_COUNT'] == $key ? 'active' : '' ?>"  data-id="<?= $key ?>">
+                                <?= $title ?>
+                            </li>
+                        <? } ?>
                     </ul>
                 </div>
 
                 <div class="select__wrapper filters-sort__count filters-sort__count--select select__wrapper--small">
-                    <div id="select-count" class="select select--small">
+                    <div id="select-count"
+                         class="select select--small"
+                         data-initial-id="<?= $arParams['PAGE_ELEMENT_COUNT'] ?>"
+                    >
                         <button class="select__main btn">
-                            20
+                            <?= $arParams['PAGE_ELEMENT_COUNT'] ?>
                             <div class="select__options">
-                                <div data-id="20" tabindex="0" class="select__option">
-                                    <span>20</span>
-                                </div>
-                                <div data-id="40" tabindex="0" class="select__option">
-                                    <span>40</span>
-                                </div>
-                                <div data-id="60" tabindex="0" class="select__option">
-                                    <span>60</span>
-                                </div>
-                                <div data-id="9999" tabindex="0" class="select__option">
-                                    <span>Показать все</span>
-                                </div>
+                                <? foreach ($arResult['ELEMENT_COUNT_OPTIONS'] as $key => $title) { ?>
+                                    <div data-id="<?= $key ?>" tabindex="0" class="select__option">
+                                        <span><?= $title ?></span>
+                                    </div>
+                                <? } ?>
                             </div>
                         </button>
                     </div>
@@ -112,14 +113,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         <a class="products-not-found__button" href="#">сбросить фильтры</a>
                     </div>
                 <? } ?>
+
+                <?= $arResult['NAV_STRING'] ?>
+
             </div>
         </div>
     </div>
 </div>
-<!--            <PaginationVue-->
-<!--                    v-if="productsList.length"-->
-<!--                    :total="itemsTotal"-->
-<!--                    :current="page"-->
-<!--                    :items-per-page="itemsPerPage"-->
-<!--                    @change="setPage"-->
-<!--            />-->

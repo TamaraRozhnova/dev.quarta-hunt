@@ -6,3 +6,6 @@ const CATALOG_IBLOCK_ID = 16;
 
 const OPT_PRICE_CODE = 'OPT';
 const BASE_PRICE_CODE = 'BASE';
+
+const OPT_PRICE_CODE_ID = 'PRICE_3';
+const BASE_PRICE_CODE_ID = 'PRICE_1';

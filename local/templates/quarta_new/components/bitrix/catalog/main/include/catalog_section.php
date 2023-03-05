@@ -4,6 +4,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+if (!empty($GLOBALS['arrFilter'])) {
+    $GLOBALS['arrFilter'] = array_merge($GLOBALS['arrFilter'], $params['PRICES']);
+} else {
+    $GLOBALS['arrFilter'] = $params['PRICES'];
+}
+
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.section",
     "main",
@@ -48,7 +54,7 @@ $APPLICATION->IncludeComponent(
         "DISPLAY_BOTTOM_PAGER" => $params["DISPLAY_BOTTOM_PAGER"],
         "PAGER_TITLE" => $params["PAGER_TITLE"],
         "PAGER_SHOW_ALWAYS" => $params["PAGER_SHOW_ALWAYS"],
-        "PAGER_TEMPLATE" => $params["PAGER_TEMPLATE"],
+        "PAGER_TEMPLATE" => 'main',
         "PAGER_DESC_NUMBERING" => $params["PAGER_DESC_NUMBERING"],
         "PAGER_DESC_NUMBERING_CACHE_TIME" => $params["PAGER_DESC_NUMBERING_CACHE_TIME"],
         "PAGER_SHOW_ALL" => $params["PAGER_SHOW_ALL"],
@@ -63,10 +69,12 @@ $APPLICATION->IncludeComponent(
         "SECTION_ID" => $result["VARIABLES"]["SECTION_ID"],
         "SECTION_CODE" => $result["VARIABLES"]["SECTION_CODE"],
         "SECTION_URL" => $result["FOLDER"] . $result["URL_TEMPLATES"]["section"],
+        "SHOW_PRODUCT_TAGS" => $params["SHOW_PRODUCT_TAGS"],
         "DETAIL_URL" => $result["FOLDER"] . $result["URL_TEMPLATES"]["element"],
         'CONVERT_CURRENCY' => $params['CONVERT_CURRENCY'],
         'CURRENCY_ID' => $params['CURRENCY_ID'],
         'HIDE_NOT_AVAILABLE' => $params["ONLY_AVAILABLE"],
+        "HIDE_NOT_AVAILABLE_OFFERS" => $params["HIDE_NOT_AVAILABLE_OFFERS"],
         "COMPARE_NAME" => $params["COMPARE_NAME"],
         "USE_FILTER" => "Y",
     ],

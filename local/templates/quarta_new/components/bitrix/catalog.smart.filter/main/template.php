@@ -20,7 +20,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <div class="filters-section__header">
                         <h6>
                             Характеристики
-                            <div class="filters-section__header-bage"></div>
                         </h6>
                     </div>
 
@@ -31,7 +30,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     <div class="filters-section__header">
                                         <h6>
                                             <?= $filter['TITLE'] ?>
-                                            <div class="filters-section__header-bage"></div>
                                         </h6>
                                     </div>
                                     <div class="filters-section__body">
@@ -62,7 +60,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <div class="filters-section__header">
                         <h6>
                             <?= $arResult['FILTERS']['BRANDS']['TITLE'] ?>
-                            <div class="filters-section__header-bage"></div>
                         </h6>
                     </div>
 
@@ -94,17 +91,17 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="input">
-                                            <label for="i_44" class="form-label">мин.</label>
+                                            <label for="min-price" class="form-label">мин.</label>
                                             <span class="input__container">
-                                                <input id="i_44" placeholder="0" type="number" class="form-control">
+                                                <input id="min-price" placeholder="0" type="number" class="form-control" min="0">
                                             </span>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="input">
-                                            <label for="i_45" class="form-label">макс.</label>
+                                            <label for="max-price" class="form-label">макс.</label>
                                             <span class="input__container">
-                                                <input id="i_45" placeholder="100000" type="number" class="form-control">
+                                                <input id="max-price" placeholder="100000" type="number" class="form-control">
                                             </span>
                                         </div>
                                     </div>
@@ -118,7 +115,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         </span>
 
         <div class="filters__accept-wrap">
-            <button class="filters__accept-btn">
+            <button type="button" class="filters__accept-btn">
                 Применить
             </button>
         </div>

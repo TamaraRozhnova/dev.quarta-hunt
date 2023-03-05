@@ -21,17 +21,20 @@ $arParams['BASKET_ITEMS'] = $basket->getProductsInBasket();
 
 $isWholesaler = $user->isWholesaler();
 
-$sectionsFilter = [
-    'IBLOCK_ID' => CATALOG_IBLOCK_ID,
-    'IBLOCK_SECTION_ID' => $arResult['SECTION_ID']
-];
+$sections = [];
+$sectionIdsWithBonus = [];
+$sectionsResource = CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
 
-$sectionWithBonus = false;
-$sectionResource = CIBlockSection::GetList([], $sectionsFilter, false, ['UF_*']);
-
-while ($section = $sectionResource->GetNext()) {
+while ($section = $sectionsResource->GetNext()) {
+    $sections[] = $section;
     if ($section['UF_BONUS_SYSTEM_ACTIVE'] === '1' && $section['UF_DOUBLE_BONUS'] === '1') {
-        $sectionWithBonus = true;
+        $sectionIdsWithBonus[] = $section['ID'];
+    }
+}
+
+foreach ($sections as $section) {
+    if (in_array($section['IBLOCK_SECTION_ID'], $sectionIdsWithBonus)) {
+        $sectionIdsWithBonus[] = $section['ID'];
     }
 }
 
@@ -43,13 +46,34 @@ foreach ($arResult['ITEMS'] as $index => $product) {
         unset($arResult['ITEMS'][$index]['PROPERTIES']['DOUBLE_BONUS']);
     } else {
         $arResult['ITEMS'][$index]['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
+        if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithBonus)) {
+            $arResult['ITEMS'][$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
+        }
     }
-    if ($sectionWithBonus) {
-        $arResult['ITEMS'][$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
-    }
-
-    $arResult['ITEMS'][$index]['PRICES'] = DiscountsHelper::getCorrectPrices($arResult['ITEMS'][$index]['PRICES']);
+    $arResult['ITEMS'][$index]['PRICES'] = DiscountsHelper::getCorrectPrices($product);
     $productIds[] = $product['ID'];
 }
 
 $arParams['REVIEWS'] = $reviews->getReviewsRatingForProducts($productIds);
+
+$arResult['SORT_OPTIONS'] = [
+    'cheaper' => 'дешевле',
+    'expensive' => 'дороже',
+];
+
+if ($arParams['ELEMENT_SORT_FIELD2'] === 'SCALED_PRICE_1') {
+    if ($arParams['ELEMENT_SORT_ORDER2'] === 'ASC') {
+        $arResult['SORT_VALUE'] = 'cheaper';
+    } else {
+        $arResult['SORT_VALUE'] = 'expensive';
+    }
+}
+
+$arResult['ELEMENT_COUNT_OPTIONS'] = [
+    20 => '20',
+    40 => '40',
+    60 => '60',
+    9999 => 'Показать все',
+];
+
+$arParams['MAX_ITEMS_PER_PAGE'] = 9999;
