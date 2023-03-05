@@ -1,0 +1,106 @@
+@import '../assets/styles/base-imports';
+
+section.promo-list {
+  background-color: #fff;
+  padding-bottom: 1rem;
+
+  .promo-list__title-wrapper {
+    background-image: url("/local/templates/quarta_new/assets/images/promo-1.jpg");
+    background-size: cover;
+    background-position: 50%;
+
+    h1 {
+      padding: 10.625rem 0;
+      font-size: 3.75rem;
+      color: $white;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+  }
+
+  .container {
+
+    .promo-filter form {
+      display: flex;
+      justify-content: flex-end;
+      padding: 3.125rem 0;
+
+      .promo-filter__title {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+
+      .promo__select-type {
+        a {
+          line-height: 15.6px;
+
+          &.disabled {
+
+            color: #808d9a;
+            text-decoration: none;
+            pointer-events: none;
+          }
+        }
+
+        @media (max-width: 768px) {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+
+      @media (max-width: 768px) {
+        display: block;
+        padding: 25px 0;
+      }
+    }
+
+    .promo__item {
+      margin-bottom: 2.5rem;
+
+      &-preview-text {
+        font-size: 1rem;
+      }
+      @media (max-width: 768px) {
+        .preview_picture__wrapper {
+          margin-bottom: 1rem;
+        }
+
+        .promo__item-body {
+          padding-left: 0;
+
+          small {
+            margin-bottom: 1.25rem;
+          }
+
+          h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.938rem;
+            max-width: unset;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 992px) {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 30px;
+    }
+    @media (max-width: 768px) {
+      margin: 0;
+      width: 100%;
+      max-width: 100%!important;
+      padding: 0 30px;
+    }
+    @media (max-width: 576px) {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 30px;
+    }
+  }
+
+
+}
