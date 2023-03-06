@@ -113,11 +113,11 @@ class ProductsFilterHelper
 
     private function defineSortParams(): void {
         if ($_GET['sort'] === 'expensive') {
-            $this->sortField = $this->isWholesalerUser ? 'SCALED_PRICE_3' : 'SCALED_PRICE_1';
+            $this->sortField = 'SCALED_' . BASE_PRICE_CODE_ID;
             $this->sortOrder = 'DESC';
         }
         if ($_GET['sort'] === 'cheaper') {
-            $this->sortField = $this->isWholesalerUser ? 'SCALED_PRICE_3' : 'SCALED_PRICE_1';
+            $this->sortField = 'SCALED_' . BASE_PRICE_CODE_ID;
             $this->sortOrder = 'ASC';
         }
     }
