@@ -102,7 +102,7 @@ $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "section_list", [
         12 => "",
     ],
     "SECTION_ID" => $_REQUEST["SECTION_ID"],
-    "SECTION_URL" => "",
+    "SECTION_URL" => "/catalog/#SECTION_CODE_PATH#/",
     "SECTION_USER_FIELDS" => [
         0 => "",
         1 => "",

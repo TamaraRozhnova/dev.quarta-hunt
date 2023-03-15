@@ -13,7 +13,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <div class="swiper-wrapper">
                     <? foreach ($arResult['SECTIONS'] as $section) { ?>
                         <div class="swiper-slide">
-                            <a href="/catalog/<?= $section['CODE'] ?>" class="category-card category-card--compact">
+                            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="category-card category-card--compact">
                                 <div class="category-card__background"></div>
 
                                 <div class="category-card__body">

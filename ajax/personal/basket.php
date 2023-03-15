@@ -38,6 +38,10 @@ switch ($requestBody->action) {
         $response = $basket->deleteProductFromBasket($requestBody->id, $requestBody->quantity);
         break;
 
+    case 'DELETE_ALL':
+        $response = $basket->deleteAllProductFromBasket();
+        break;
+
     default:
         break;
 }
