@@ -4,6 +4,7 @@ namespace Personal;
 
 use Bitrix\Sale\Basket as BitrixBasket;
 use Bitrix\Sale\BasketBase;
+use Bitrix\Sale\BasketItem;
 use Bitrix\Sale\BasketItemBase;
 use Bitrix\Main\Context;
 use Bitrix\Currency\CurrencyManager;
@@ -11,6 +12,9 @@ use Bitrix\Sale\Fuser;
 use CCatalogSku;
 use CIBlockElement;
 use CModule;
+use General\Product;
+use General\Section;
+use General\User;
 
 
 /**
@@ -20,6 +24,7 @@ class Basket
 {
     /** @var BasketBase */
     private $basket;
+    private $user;
 
 
     public function __construct()
@@ -27,6 +32,7 @@ class Basket
         CModule::IncludeModule('sale');
         CModule::IncludeModule('catalog');
         $this->basket = BitrixBasket::loadItemsForFUser(Fuser::getId(), Context::getCurrent()->getSite());
+        $this->user = new User();
     }
 
 
@@ -179,11 +185,25 @@ class Basket
 
             $basketItem = $this->getBasketItem($productId);
 
+            $isOpt = $this->user->isWholesaler();
+            $product = new Product($productId);
+            $bonus_system_active = $product->inBonusSection();
+            $doubleBonus = $product->inDoubleBonusSection();
+            $price = $product->getFieldValue('PRICE_1');
+            $price3 = $product->getFieldValue('PRICE_3');
+
+            $notes = [
+                'UF_BONUS_POINTS' => !$isOpt && $bonus_system_active ? $doubleBonus * ceil(0.03 * $price * intval($quantity)) : 0,
+            ];
+
             if ($basketItem) {
                 $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
+                $basketItem->setField('NOTES', serialize($notes));
+                $basketItem->setField('PRICE',  !$isOpt ? $price : $price3);
+                $basketItem->setField('CUSTOM_PRICE',  !$isOpt ? 'N' : 'Y');
                 $this->basket->save();
             } else {
-                $this->createBasketItem($productId, $quantity);
+                $this->createBasketItem($productId, $quantity, ['NOTES' => $notes, 'PRICE' => !$isOpt ? $price : $price3, 'CUSTOM_PRICE' => !$isOpt ? 'N' : 'Y', 'NAME' => $product->getFieldValue('NAME')]);
             }
             return true;
         } catch (\Exception $e) {
@@ -210,6 +230,21 @@ class Basket
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    /**
+     * @throws \Bitrix\Main\ArgumentOutOfRangeException
+     * @throws \Bitrix\Main\ObjectNotFoundException
+     */
+    public function deleteAllProductFromBasket(): bool
+    {
+        /** @var BasketItem $basketItem */
+        foreach($this->basket as $basketItem) {
+            $basketItem->delete();
+        }
+        $this->basket->save();
+
+        return true;
     }
 
 
@@ -250,15 +285,30 @@ class Basket
     }
 
 
-    private function createBasketItem(int $productId, int $quantity): void
+    private function createBasketItem(int $productId, int $quantity, array $data): void
     {
         $basketItem = $this->basket->createItem('catalog', $productId);
-        $basketItem->setFields([
+        $atFields = [
             'QUANTITY' => $quantity,
             'CURRENCY' => CurrencyManager::getBaseCurrency(),
             'LID' => Context::getCurrent()->getSite(),
-            'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
-        ]);
+        ];
+
+        if (isset($data['NOTES'])) {
+            $atFields['NOTES'] = serialize($data['NOTES']);
+        }
+        if (isset($data['PRICE'])) {
+            $atFields['PRICE'] = $data['PRICE'];
+            $atFields['BASE_PRICE'] = $data['PRICE'];
+        }
+        if (isset($data['CUSTOM_PRICE'])) {
+            $atFields['CUSTOM_PRICE'] = $data['CUSTOM_PRICE'];
+        }
+        if (isset($data['NAME'])) {
+            $atFields['NAME'] = $data['NAME'];
+        }
+
+        $basketItem->setFields($atFields);
         $this->basket->save();
     }
 
