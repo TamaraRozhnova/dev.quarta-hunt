@@ -4,7 +4,6 @@ namespace General;
 
 class Section
 {
-    const CATALOG_IBLOCK = 16;
 
     public function __construct()
     {
@@ -14,7 +13,7 @@ class Section
 
     public static function getBonusSectionsArray(): array
     {
-        $sections = \CIBlockSection::GetList([], ['IBLOCK_ID' => self::CATALOG_IBLOCK], false, ['UF_*']);
+        $sections = \CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
 
         $sids = [];
         $arSections = [];
@@ -33,7 +32,7 @@ class Section
 
     public static function getBonusDoubleSectionsArray(): array
     {
-        $sections = \CIBlockSection::GetList([], ['IBLOCK_ID' => self::CATALOG_IBLOCK], false, ['UF_*']);
+        $sections = \CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
 
         $sids_db = [];
         $arSections = [];
@@ -48,5 +47,36 @@ class Section
         }
 
         return $sids_db;
+    }
+
+
+    /**
+     * @return array|false - возвращает массив свойств раздела или false, если не найден
+     */
+    public static function getSection(int $sectionId, string $sectionUrlTemplate) {
+        $sectionResource = \CIBlockSection::GetByID($sectionId);
+        $sectionResource->SetUrlTemplates(false, $sectionUrlTemplate);
+        if ($section = $sectionResource->GetNext()) {
+            return $section;
+        }
+
+        return false;
+    }
+
+    public static function getSubsections(int $sectionId, string $sectionUrlTemplate): array {
+        $filter = [
+            'IBLOCK_ID' => CATALOG_IBLOCK_ID,
+            'SECTION_ID' => $sectionId,
+            'ACTIVE' => 'Y'
+        ];
+
+        $subsections = [];
+        $subsectionsResource = \CIBlockSection::GetList([], $filter);
+        $subsectionsResource->SetUrlTemplates(false, $sectionUrlTemplate);
+        while ($subsection = $subsectionsResource->GetNext()) {
+            $subsections[] = $subsection;
+        }
+
+        return $subsections;
     }
 }
