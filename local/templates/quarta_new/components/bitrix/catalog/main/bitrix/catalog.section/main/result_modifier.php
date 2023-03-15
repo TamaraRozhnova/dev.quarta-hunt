@@ -28,7 +28,7 @@ $sectionsResource = CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_I
 while ($section = $sectionsResource->GetNext()) {
     $sections[] = $section;
     if ($section['UF_BONUS_SYSTEM_ACTIVE'] === '1' && $section['UF_DOUBLE_BONUS'] === '1') {
-        $sectionsWithBonus[] = $section['ID'];
+        $sectionIdsWithBonus[] = $section['ID'];
     }
 }
 
@@ -55,3 +55,25 @@ foreach ($arResult['ITEMS'] as $index => $product) {
 }
 
 $arParams['REVIEWS'] = $reviews->getReviewsRatingForProducts($productIds);
+
+$arResult['SORT_OPTIONS'] = [
+    'cheaper' => 'дешевле',
+    'expensive' => 'дороже',
+];
+
+if ($arParams['ELEMENT_SORT_FIELD2'] === 'SCALED_PRICE_1') {
+    if ($arParams['ELEMENT_SORT_ORDER2'] === 'ASC') {
+        $arResult['SORT_VALUE'] = 'cheaper';
+    } else {
+        $arResult['SORT_VALUE'] = 'expensive';
+    }
+}
+
+$arResult['ELEMENT_COUNT_OPTIONS'] = [
+    20 => '20',
+    40 => '40',
+    60 => '60',
+    9999 => 'Показать все',
+];
+
+$arParams['MAX_ITEMS_PER_PAGE'] = 9999;

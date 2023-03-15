@@ -5,8 +5,8 @@ class Counter {
             selectorMinusButton: '',
             selectorPlusButton: '',
             selectorInput: '',
-            minValue: 0,
-            maxValue: 1000,
+            minValue,
+            maxValue,
             initialValue: 0,
             blockChangeState: false,
             disabledInput: false,
@@ -19,8 +19,8 @@ class Counter {
         this.inputSelector = data.selectorInput;
         this.minusButton = document.querySelector(data.selectorMinusButton);
         this.plusButton = document.querySelector(data.selectorPlusButton);
-        this.minValue = data.minValue;
-        this.maxValue = data.maxValue;
+        this.minValue = data.minValue || 0;
+        this.maxValue = data.maxValue || 1000;
         this.initialValue = data.initialValue;
         this.blockChangeState = data.blockChangeState;
         this.disabledInput = data.disabledInput;
@@ -79,10 +79,10 @@ class Counter {
     }
 
     handleChangeInput(value) {
-        if (value < this.minValue) {
+        if (+value < this.minValue) {
             this.input.setValue(this.minValue);
         }
-        if (value > this.maxValue) {
+        if (+value > this.maxValue) {
             this.input.setValue(this.maxValue);
         }
         if (this.debouceTimeout) {

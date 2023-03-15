@@ -1,0 +1,20 @@
+@import '../assets/styles/base-imports';
+
+.loading {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &--show {
+        display: flex;
+    }
+
+    &__text {
+        color: $primary;
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-left: 0.75rem;
+        transform: translateY(0.125rem);
+    }
+}

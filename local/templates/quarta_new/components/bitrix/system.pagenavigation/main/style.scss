@@ -1,0 +1,14 @@
+@import '../assets/styles/base-imports';
+
+.pagination {
+    margin-top: 3.125rem;
+
+    .btn {
+        font-size: 0.75rem;
+    }
+
+    .btn:not(.btn-primary) {
+        background-color: $white;
+        color: $gray-800;
+    }
+}

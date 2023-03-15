@@ -15,13 +15,19 @@ class DiscountsHelper
 {
     /**
      * Получает цены товара для вывода в каталоге
-     * @param array $prices - ассоциативный массив, где ключи - типы цен, значения - массив свойств типа цен
+     * @param array $product - ассоциативный массив свойств товара
      * @return array - возвращает ассоциативный массив с видами цен
      */
-    public static function getCorrectPrices(array $prices): array
+    public static function getCorrectPrices(array $product): array
     {
         $user = new User();
         $isWholesaler = $user->isWholesaler();
+
+        if (count($product['OFFERS']) > 0) {
+            $prices = $product['OFFERS'][0]['PRICES'];
+        } else {
+            $prices = $product['PRICES'];
+        }
 
         $basePrices = $prices[BASE_PRICE_CODE];
         $discountPrice = $basePrices['DISCOUNT_VALUE'];

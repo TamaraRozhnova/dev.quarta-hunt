@@ -5,6 +5,8 @@ class Input {
             wrapperSelector: '',
             inputSelector: '',
             initialValue: '',
+            debounceTime: 2000,
+            withDebounce: false,
             required: false,
             validMask: null,
             mask: null,
@@ -21,6 +23,8 @@ class Input {
         this.clearButtonElement = document.querySelector(`${this.inputSelector} + .input__clear`);
         this.required = data.required;
         this.errorMessage = data.errorMessage;
+        this.withDebounce = data.withDebounce;
+        this.debouceTime = data.debounceTime || 2000;
         this.validMask = data.validMask;
         this.onChange = data.onChange;
         this.onClear = data.onClear;
@@ -40,6 +44,9 @@ class Input {
     }
 
     setMask(mask) {
+        if (!mask) {
+            return;
+        }
         const inputMask = new Inputmask(mask);
         inputMask.mask(this.inputSelector);
     }
@@ -69,15 +76,30 @@ class Input {
     }
 
     clear() {
+        if (this.clearButtonElement) {
+            this.clearButtonElement.classList.remove('show');
+        }
         this.inputElement.value = '';
-        this.clearButtonElement.classList.remove('show');
         this.onClear && this.onClear();
     }
 
     handleChange() {
         this.inputElement.addEventListener('input', () => {
             this.toggleClearButton();
-            this.onChange && this.onChange(this.getValue());
+            if (this.debouceTimeout) {
+                clearTimeout(this.debouceTimeout);
+            }
+            if (!this.onChange) {
+                return;
+            }
+            const newValue = this.getValue();
+            if (this.withDebounce) {
+                this.debouceTimeout = setTimeout(() => {
+                    this.onChange(newValue, this);
+                }, this.debouceTime);
+                return;
+            }
+            this.onChange(newValue);
         });
     }
 
