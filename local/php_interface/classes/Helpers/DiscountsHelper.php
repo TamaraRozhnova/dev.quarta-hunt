@@ -4,6 +4,7 @@ namespace Helpers;
 
 use Bitrix\Sale\Compatible\DiscountCompatibility;
 use Bitrix\Sale\Discount\Gift\Manager;
+use General\Sections;
 use General\User;
 use Personal\Basket;
 
@@ -51,6 +52,32 @@ class DiscountsHelper
         }
 
         return ['PRICE' => number_format($price, 0, '.', ' ')];
+    }
+
+
+    /**
+     * Проверяет и заполняет массив свойств товаров бонусами
+     * @param array &$products - ассоциативный массив свойств товаров
+     */
+    public static function fillProductsWithBonuses(array &$products): void
+    {
+        $user = new User();
+        $sectionsInstance = new Sections();
+
+        $isWholesaler = $user->isWholesaler();
+        $sectionIdsWithBonus = $sectionsInstance->getSectionsWithBonus();
+
+        foreach ($products as $index => $product) {
+            if ($isWholesaler) {
+                unset($products[$index]['PROPERTIES']['KOMPLEKTY_DLYA_SAYTA']);
+                unset($products[$index]['PROPERTIES']['DOUBLE_BONUS']);
+            } else {
+                $products[$index]['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
+                if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithBonus)) {
+                    $products[$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
+                }
+            }
+        }
     }
 
 

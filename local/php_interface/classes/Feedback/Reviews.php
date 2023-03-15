@@ -12,6 +12,7 @@ class Reviews
 {
     const REVIEWS_IBLOCK_ID = 11;
 
+
     public function __construct()
     {
         CModule::IncludeModule('iblock');
@@ -23,7 +24,7 @@ class Reviews
      * @return array - возвращает ассоциативный массив, где:
      * ключ — идентификатор товара, значение — рейтинг товара
      */
-    public function getReviewsRatingForProducts(array $productIds)
+    public function getReviewsRatingForProducts(array $productIds): array
     {
         $filter = ['IBLOCK_ID' => Reviews::REVIEWS_IBLOCK_ID, 'PROPERTY_PRODUCT_ID' => $productIds];
         $reviewsResource = CIBlockElement::GetList([], $filter);

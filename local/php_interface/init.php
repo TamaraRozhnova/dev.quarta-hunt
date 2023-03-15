@@ -7,6 +7,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Reviews' => '/local/php_interface/classes/Feedback/Reviews.php',
     'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
+    'General\Products' => '/local/php_interface/classes/General/Products.php',
+    'General\Sections' => '/local/php_interface/classes/General/Sections.php',
     'General\User' => '/local/php_interface/classes/General/User.php',
     'Helpers\DiscountsHelper' => '/local/php_interface/classes/Helpers/DiscountsHelper.php',
     'Helpers\ProductsFilterHelper' => '/local/php_interface/classes/Helpers/ProductsFilterHelper.php',

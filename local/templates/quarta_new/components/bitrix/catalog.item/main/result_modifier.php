@@ -8,7 +8,7 @@ $item = $arResult['ITEM'];
 
 $arResult['ITEM']['OFFERS_QUANTITY'] = 0;
 
-if (count($item['OFFERS']) > 0) {
+if ($item['OFFERS'] && count($item['OFFERS']) > 0) {
     foreach ($item['OFFERS'] as $offer) {
         if ($offer['CAN_BUY']) {
             $arResult['ITEM']['AVAILABLE'] = true;
@@ -29,7 +29,7 @@ if (array_key_exists($item['ID'], $arResult['PARAMS']['COMPARE_LIST'])) {
 
 $arResult['ITEM']['QUANTITY_IN_BASKET'] = $arResult['PARAMS']['BASKET_ITEMS'][$item['ID']]['QUANTITY'] ?? 0;
 
-$rating = $arResult['PARAMS']['REVIEWS'][$item['ID']] ?? 0;
+$rating = $item['REVIEWS'] ?? $arResult['PARAMS']['REVIEWS'][$item['ID']] ?? 0;
 
 $maxStars = 5;
 $roundedRating = round($rating);

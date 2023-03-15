@@ -26,7 +26,9 @@ $APPLICATION->IncludeComponent(
         "TEMPLATE_THEME" => $params["TEMPLATE_THEME"],
         'CONVERT_CURRENCY' => $params['CONVERT_CURRENCY'],
         'CURRENCY_ID' => $params['CURRENCY_ID'],
-        "SEF_MODE" => 'N',
+        "SEF_RULE" => $params['SEF_URL_TEMPLATES']['smart_filter'],
+//        "SMART_FILTER_PATH" => $params["SMART_FILTER_PATH"],
+        "SEF_MODE" => 'Y',
         "PAGER_PARAMS_NAME" => "arrPager",
         "INSTANT_RELOAD" => "Y",
         "USE_FILTER" => "Y"

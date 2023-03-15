@@ -117,7 +117,7 @@ $APPLICATION->IncludeComponent(
 			1 => "HIT",
 			2 => "NEW_PRODUCT",
 			3 => "DOUBLE_BONUS",
-
+			4 => "",
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",
@@ -168,7 +168,8 @@ $APPLICATION->IncludeComponent(
 		"SHOW_LINK_TO_FORUM" => "Y",
 		"SHOW_OLD_PRICE" => "Y",
 		"SHOW_PRICE_COUNT" => "1",
-		"SHOW_PRODUCT_TAGS" => "Y",
+		"SHOW_PRODUCT_TAGS_IN_SECTIONS" => "Y",
+		"SHOW_PRODUCT_TAGS_IN_RECOMMENDED" => "N",
 		"SHOW_TOP_ELEMENTS" => "N",
 		"SIDEBAR_DETAIL_SHOW" => "Y",
 		"SIDEBAR_PATH" => "",
@@ -242,7 +243,7 @@ $APPLICATION->IncludeComponent(
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",
-			"element" => "#SECTION_ID#/#ELEMENT_ID#/",
+			"element" => "#ELEMENT_ID#/#ELEMENT_CODE#/",
 			"compare" => "compare.php?action=#ACTION_CODE#",
 			"smart_filter" => "#SECTION_CODE_PATH#/filter/#SMART_FILTER_PATH#/apply/",
 		),
