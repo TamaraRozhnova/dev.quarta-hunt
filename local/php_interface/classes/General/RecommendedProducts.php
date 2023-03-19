@@ -2,23 +2,22 @@
 
 namespace General;
 
+use CCatalogProduct;
 use CCatalogSku;
 use CFile;
 use CIBlockElement;
 use CModule;
 use CPrice;
-use Feedback\Reviews;
+use Feedback\Review;
+use Helpers\DiscountsHelper;
 
 /**
- * Класс по работе с товарами.
+ * Класс по работе с рекомендованными товарами.
  */
-class Products
+class RecommendedProducts
 {
-    const BASE_PRICE_ID = 1;
-    const OPT_PRICE_ID = 3;
-
-    /** @var bool */
-    private bool $userIsWholesaler;
+    /** @var int */
+    private int $priceId;
 
 
     public function __construct()
@@ -26,28 +25,16 @@ class Products
         CModule::IncludeModule('iblock');
 
         $user = new User();
-        $this->userIsWholesaler = $user->isWholesaler();
+        $this->priceId = $user->getUserPriceId();
     }
 
 
-    public function getProducts(array $filter, int $count = 0): array
-    {
-        $products = $this->fetchProducts($filter, $count);
-        $productIds = array_keys($products);
-        $this->fillPrices($products, $productIds);
-        $this->fillRatings($products, $productIds);
-        $this->fillAvailableOffers($products, $productIds);
-
-        return $products;
-    }
-
-
-    public function getRecommendedProducts(array $productIds, int $sectionId, int $count = 4): array {
+    public function getRecommendedProducts(array $productIds, int $sectionId, int $count = 4, string $elementUrlTemplate = ''): array {
         $recommendedProducts = [];
 
         if (count($productIds)) {
-            $filter = ['>*CATALOG_QUANTITY' => 0, 'ID' => $productIds];
-            $recommendedProducts = $this->fetchProducts($filter, $count);
+            $filter = ['ID' => $productIds];
+            $recommendedProducts = $this->fetchProducts($filter, $count, $elementUrlTemplate);
         }
 
         $remainProducts = [];
@@ -55,22 +42,23 @@ class Products
 
         if ($remainCount) {
             $filter = [
-                '>*CATALOG_QUANTITY' => 0,
+                'AVAILABLE' => 'Y',
                 'ACTIVE' => 'Y',
                 '!ID' => $productIds,
                 'SECTION_ID' => $sectionId,
                 'INCLUDE_SUBSECTIONS' => 'Y',
             ];
-            $remainProducts = $this->fetchProducts($filter, $remainCount);
+            $remainProducts = $this->fetchProducts($filter, $remainCount, $elementUrlTemplate);
         }
 
         $products = array_replace($recommendedProducts, $remainProducts);
         $productIds = array_keys($products);
 
-        $this->fillAvailableProducts($products);
         $this->fillPrices($products, $productIds);
         $this->fillRatings($products, $productIds);
+        $this->fillAvailableProducts($products);
         $this->fillAvailableOffers($products, $productIds);
+        DiscountsHelper::fillProductsWithBonuses($products);
 
         return $products;
     }
@@ -103,22 +91,24 @@ class Products
 
     private function fillAvailableProducts(array &$products): void {
         foreach ($products as $key => $product) {
-            $products[$key]['CAN_BUY'] = 'Y';
+            if ((float)$product['PRICES']['PRICE'] > 0) {
+                $products[$key]['CAN_BUY'] = 'Y';
+            }
         }
     }
 
 
     private function fillRatings(array &$products, array $productIds): void {
-        $reviews = new Reviews();
-        $ratings = $reviews->getReviewsRatingForProducts($productIds);
+        $reviews = new Review();
+        $ratings = $reviews->getReviewsRatingAndCountForProducts($productIds);
 
         foreach ($ratings as $key => $rating) {
-            $products[$key]['REVIEWS'] = $rating;
+            $products[$key]['REVIEWS'] = $rating['RATING'];
         }
     }
 
 
-    private function fetchProducts(array $filter, int $count): array {
+    private function fetchProducts(array $filter, int $count, string $detailUrlTemplate = ''): array {
         $filterParams = $this->makeFilterParams($filter);
         $countParams = $this->makeCountParams($count);
         $products = [];
@@ -130,6 +120,7 @@ class Products
             $countParams
         );
 
+        $productsResource->SetUrlTemplates($detailUrlTemplate);
         while ($product = $productsResource->GetNextElement()) {
             $fields = $product->GetFields();
             $fields['PROPERTIES'] = $product->GetProperties();
@@ -148,13 +139,22 @@ class Products
         $pricesResource = CPrice::GetList([], ['PRODUCT_ID' => $productIds]);
 
         while ($price = $pricesResource->Fetch()) {
-            if ($this->userIsWholesaler && $price['CATALOG_GROUP_ID'] != Products::OPT_PRICE_ID && $products[$price['PRODUCT_ID']]['PRICES']['PRICE']) {
+            if ($price['CATALOG_GROUP_ID'] != $this->priceId) {
                 continue;
             }
-            if (!$this->userIsWholesaler && $price['CATALOG_GROUP_ID'] == Products::OPT_PRICE_ID) {
+            $optimalPrice = CCatalogProduct::GetOptimalPrice($price['PRODUCT_ID'], 1, [], 'N', [$price]);
+            $discountPercent = round($optimalPrice['RESULT_PRICE']['PERCENT']);
+            if ($discountPercent > 0) {
+                $products[$price['PRODUCT_ID']]['PRICES'] = [
+                    'PRICE' => number_format($optimalPrice['RESULT_PRICE']['BASE_PRICE'], 0, '.', ' '),
+                    'OLD_PRICE' => number_format($optimalPrice['RESULT_PRICE']['DISCOUNT_PRICE'], 0, '.', ' '),
+                    'DISCOUNT' => $discountPercent
+                ];
                 continue;
             }
-            $products[$price['PRODUCT_ID']]['PRICES']['PRICE'] = number_format($price['PRICE'], 0, '.', ' ');
+            $products[$price['PRODUCT_ID']]['PRICES'] = [
+                'PRICE' => number_format($optimalPrice['RESULT_PRICE']['BASE_PRICE'], 0, '.', ' '),
+            ];
         }
     }
 
@@ -173,6 +173,4 @@ class Products
 
         return ['nTopCount' => $count];
     }
-
-
 }

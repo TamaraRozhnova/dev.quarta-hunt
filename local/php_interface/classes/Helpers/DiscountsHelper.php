@@ -4,7 +4,7 @@ namespace Helpers;
 
 use Bitrix\Sale\Compatible\DiscountCompatibility;
 use Bitrix\Sale\Discount\Gift\Manager;
-use General\Sections;
+use General\Section;
 use General\User;
 use Personal\Basket;
 
@@ -30,18 +30,15 @@ class DiscountsHelper
             $prices = $product['PRICES'];
         }
 
-        $basePrices = $prices[BASE_PRICE_CODE];
-        $discountPrice = $basePrices['DISCOUNT_VALUE'];
-        $price = $basePrices['VALUE'];
-        $discountPercent = $basePrices['DISCOUNT_DIFF_PERCENT'];
-
-        $optPrices = $prices[OPT_PRICE_CODE];
-
-        if ($isWholesaler && !empty($optPrices)) {
-            $discountPrice = $optPrices['DISCOUNT_VALUE'];
-            $price = $optPrices['VALUE'];
-            $discountPercent = $optPrices['DISCOUNT_DIFF_PERCENT'];
+        if ($isWholesaler) {
+            $resultPrices = $prices[OPT_PRICE_CODE];
+        } else {
+            $resultPrices = $prices[BASE_PRICE_CODE];
         }
+
+        $discountPrice = $resultPrices['DISCOUNT_VALUE'];
+        $price = $resultPrices['VALUE'];
+        $discountPercent = $resultPrices['DISCOUNT_DIFF_PERCENT'];
 
         if ($discountPercent > 0) {
             return [
@@ -56,16 +53,38 @@ class DiscountsHelper
 
 
     /**
+     * Проверяет и заполняет массив свойств товара бонусами
+     * @param array &$product - ассоциативный массив свойств товара
+     */
+    public static function fillProductWithBonuses(array &$product): void
+    {
+        $user = new User();
+
+        $isWholesaler = $user->isWholesaler();
+        $sectionIdsWithDoubleBonus = Section::getBonusDoubleSectionsArray();
+
+        if ($isWholesaler) {
+            unset($product['PROPERTIES']['KOMPLEKTY_DLYA_SAYTA']);
+            unset($product['PROPERTIES']['DOUBLE_BONUS']);
+        } else {
+            $product['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
+            if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithDoubleBonus)) {
+                $product['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
+            }
+        }
+    }
+
+
+    /**
      * Проверяет и заполняет массив свойств товаров бонусами
      * @param array &$products - ассоциативный массив свойств товаров
      */
     public static function fillProductsWithBonuses(array &$products): void
     {
         $user = new User();
-        $sectionsInstance = new Sections();
 
         $isWholesaler = $user->isWholesaler();
-        $sectionIdsWithBonus = $sectionsInstance->getSectionsWithBonus();
+        $sectionIdsWithDoubleBonus = Section::getBonusDoubleSectionsArray();
 
         foreach ($products as $index => $product) {
             if ($isWholesaler) {
@@ -73,7 +92,7 @@ class DiscountsHelper
                 unset($products[$index]['PROPERTIES']['DOUBLE_BONUS']);
             } else {
                 $products[$index]['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
-                if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithBonus)) {
+                if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithDoubleBonus)) {
                     $products[$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
                 }
             }

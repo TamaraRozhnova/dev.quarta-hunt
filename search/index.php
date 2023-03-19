@@ -2,6 +2,11 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
+use General\User;
+
+$user = new User();
+$priceCode = $user->getUserPriceCode();
+
 global $searchFilter;
 $searchQuery = '';
 if (isset($_REQUEST['q']) && is_string($_REQUEST['q'])) {
@@ -37,7 +42,7 @@ $APPLICATION->IncludeComponent(
         "CURRENCY_ID" => "RUB",
         "CUSTOM_FILTER" => "",
         "DATA_LAYER_NAME" => "dataLayer",
-        "DETAIL_URL" => "",
+        "DETAIL_URL" => "/catalog/#ELEMENT_ID#/#ELEMENT_CODE#/",
         "DISABLE_INIT_JS_IN_COMPONENT" => "N",
         "DISCOUNT_PERCENT_POSITION" => "bottom-right",
         "DISPLAY_BOTTOM_PAGER" => "Y",
@@ -86,7 +91,7 @@ $APPLICATION->IncludeComponent(
         "PAGER_TITLE" => "Товары",
         "PAGE_ELEMENT_COUNT" => "20",
         "PARTIAL_PRODUCT_PROPERTIES" => "N",
-        "PRICE_CODE" => array(BASE_PRICE_CODE, OPT_PRICE_CODE),
+        "PRICE_CODE" => array($priceCode),
         "PRICE_VAT_INCLUDE" => "Y",
         "PRODUCT_BLOCKS_ORDER" => "price,props,sku,quantityLimit,quantity,buttons,compare",
         "PRODUCT_DISPLAY_MODE" => "Y",

@@ -44,6 +44,7 @@ $basketItemsCount = $basket->getProductsCount();
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/perfectScrollbar.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/popperJs.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/inputMask.min.js");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/sharer.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/build/main.js");
     ?>
 
@@ -429,3 +430,17 @@ $basketItemsCount = $basket->getProductsCount();
         </div>
     </header>
     <main>
+        <? if (showBreadcrumb()) { ?>
+            <div class="breadcrumb-wrapper">
+                <div class="container">
+                    <? $APPLICATION->IncludeComponent(
+                        "bitrix:breadcrumb", "", array(
+                            "START_FROM" => "0",
+                            "PATH" => "",
+                            "SITE_ID" => "s1"
+                        )
+                    ); ?>
+                </div>
+            </div>
+        <? } ?>
+

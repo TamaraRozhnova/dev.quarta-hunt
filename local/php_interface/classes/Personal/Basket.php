@@ -44,16 +44,18 @@ class Basket
 
     /**
      * Получает список ID товаров и их количества в корзине
+     * @param bool $onlyProductIdKeys - true, если нужно отдать в качестве ключей только id товаров,
+     * и false, если ключами могут быть id товаров и id ТП
      * @return array - возвращает ассоциативный массив, где:
      * ключ — идентификатор товара, значение — ассоциативный массив свойств товара в корзине
      */
-    public function getProductsInBasket(): array
+    public function getProductsInBasket(bool $onlyProductIdKeys = true): array
     {
         $result = [];
         foreach ($this->basket as $basketItem) {
             $productId = $basketItem->getProductId();
             $productData = CCatalogSku::GetProductInfo($basketItem->getProductId());
-            if (is_array($productData)) {
+            if (is_array($productData) && $onlyProductIdKeys) {
                 $productId = $productData['ID'];
             }
             $productQuantityAccumulated = $result[$productId]['QUANTITY'] ?? 0;
@@ -200,10 +202,9 @@ class Basket
                 $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
                 $basketItem->setField('NOTES', serialize($notes));
                 $basketItem->setField('PRICE',  !$isOpt ? $price : $price3);
-                $basketItem->setField('CUSTOM_PRICE',  !$isOpt ? 'N' : 'Y');
                 $this->basket->save();
             } else {
-                $this->createBasketItem($productId, $quantity, ['NOTES' => $notes, 'PRICE' => !$isOpt ? $price : $price3, 'CUSTOM_PRICE' => !$isOpt ? 'N' : 'Y', 'NAME' => $product->getFieldValue('NAME')]);
+                $this->createBasketItem($productId, $quantity, ['NOTES' => $notes, 'PRICE' => !$isOpt ? $price : $price3, 'NAME' => $product->getFieldValue('NAME')]);
             }
             return true;
         } catch (\Exception $e) {
@@ -285,7 +286,7 @@ class Basket
     }
 
 
-    private function createBasketItem(int $productId, int $quantity, array $data): void
+    private function createBasketItem(int $productId, int $quantity, array $data = []): void
     {
         $basketItem = $this->basket->createItem('catalog', $productId);
         $atFields = [

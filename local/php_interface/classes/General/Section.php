@@ -2,6 +2,11 @@
 
 namespace General;
 
+use CIBlockSection;
+
+/**
+ * Класс по работе со разделами.
+ */
 class Section
 {
 
@@ -13,7 +18,7 @@ class Section
 
     public static function getBonusSectionsArray(): array
     {
-        $sections = \CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
+        $sections = CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
 
         $sids = [];
         $arSections = [];
@@ -32,7 +37,7 @@ class Section
 
     public static function getBonusDoubleSectionsArray(): array
     {
-        $sections = \CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
+        $sections = CIBlockSection::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID], false, ['UF_*']);
 
         $sids_db = [];
         $arSections = [];
@@ -51,10 +56,25 @@ class Section
 
 
     /**
+     * @return int[] - возвращает массив id разделов до текущего раздела включительно
+     */
+    public static function getSectionIdsChain(int $sectionId): array {
+        $sections = CIBlockSection::GetNavChain(CATALOG_IBLOCK_ID, $sectionId, ['ID'], true);
+        $sectionIds = [];
+
+        foreach ($sections as $section) {
+            $sectionIds[] = $section['ID'];
+        }
+
+        return $sectionIds;
+    }
+
+
+    /**
      * @return array|false - возвращает массив свойств раздела или false, если не найден
      */
     public static function getSection(int $sectionId, string $sectionUrlTemplate) {
-        $sectionResource = \CIBlockSection::GetByID($sectionId);
+        $sectionResource = CIBlockSection::GetByID($sectionId);
         $sectionResource->SetUrlTemplates(false, $sectionUrlTemplate);
         if ($section = $sectionResource->GetNext()) {
             return $section;
@@ -71,7 +91,7 @@ class Section
         ];
 
         $subsections = [];
-        $subsectionsResource = \CIBlockSection::GetList([], $filter);
+        $subsectionsResource = CIBlockSection::GetList([], $filter);
         $subsectionsResource->SetUrlTemplates(false, $sectionUrlTemplate);
         while ($subsection = $subsectionsResource->GetNext()) {
             $subsections[] = $subsection;

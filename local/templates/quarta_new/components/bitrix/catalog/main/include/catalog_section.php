@@ -45,7 +45,7 @@ $APPLICATION->IncludeComponent(
         "PRICE_CODE" => $params["PRICE_CODE"],
         "USE_PRICE_COUNT" => $params["USE_PRICE_COUNT"],
         "SHOW_PRICE_COUNT" => $params["SHOW_PRICE_COUNT"],
-        "ADD_SECTIONS_CHAIN" => $params["ADD_SECTIONS_CHAIN"],
+        "ADD_SECTIONS_CHAIN" => 'N',
         "PRICE_VAT_INCLUDE" => $params["PRICE_VAT_INCLUDE"],
         "USE_PRODUCT_QUANTITY" => $params['USE_PRODUCT_QUANTITY'],
         "QUANTITY_FLOAT" => $params["QUANTITY_FLOAT"],

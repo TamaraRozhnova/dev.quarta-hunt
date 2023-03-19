@@ -29,7 +29,7 @@ if (array_key_exists($item['ID'], $arResult['PARAMS']['COMPARE_LIST'])) {
 
 $arResult['ITEM']['QUANTITY_IN_BASKET'] = $arResult['PARAMS']['BASKET_ITEMS'][$item['ID']]['QUANTITY'] ?? 0;
 
-$rating = $item['REVIEWS'] ?? $arResult['PARAMS']['REVIEWS'][$item['ID']] ?? 0;
+$rating = $item['REVIEWS']['RATING'] ?? $arResult['PARAMS']['REVIEWS'][$item['ID']]['RATING'] ?? 0;
 
 $maxStars = 5;
 $roundedRating = round($rating);

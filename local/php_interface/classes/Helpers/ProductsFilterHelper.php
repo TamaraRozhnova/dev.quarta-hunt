@@ -13,8 +13,8 @@ class ProductsFilterHelper
     /** @var string */
     private string $sectionName = '';
 
-    /** @var bool */
-    private bool $isWholesalerUser = false;
+    /** @var string */
+    private string $priceId = BASE_PRICE_CODE_ID;
 
     /** @var string */
     private string $sortField = 'NAME';
@@ -39,7 +39,7 @@ class ProductsFilterHelper
 
     public function __construct($sectionId)
     {
-        $this->defineUserType();
+        $this->definePriceId();
         $this->prepareParams();
         $this->defineSectionName($sectionId);
     }
@@ -57,9 +57,9 @@ class ProductsFilterHelper
     }
 
 
-    private function defineUserType(): void {
+    private function definePriceId(): void {
         $user = new User();
-        $this->isWholesalerUser = $user->isWholesaler();
+        $this->priceId = $user->getUserPriceCodeId();
     }
 
 
@@ -100,24 +100,26 @@ class ProductsFilterHelper
     private function definePriceParams(): void {
         $minPrice = (int)$_GET['minPrice'];
         $maxPrice = (int)$_GET['maxPrice'];
-        $priceType = $this->isWholesalerUser ? OPT_PRICE_CODE_ID : BASE_PRICE_CODE_ID;
 
+        if ($this->onlyAvailable === 'Y') {
+            $this->prices[">$this->priceId"] = 0;
+        }
         if ($minPrice) {
-            $this->prices[">=$priceType"] = $minPrice;
+            $this->prices[">=$this->priceId"] = $minPrice;
         }
         if ($maxPrice) {
-            $this->prices["<=$priceType"] = $maxPrice;
+            $this->prices["<=$this->priceId"] = $maxPrice;
         }
     }
 
 
     private function defineSortParams(): void {
         if ($_GET['sort'] === 'expensive') {
-            $this->sortField = 'SCALED_' . BASE_PRICE_CODE_ID;
+            $this->sortField = 'SCALED_' . $this->priceId;
             $this->sortOrder = 'DESC';
         }
         if ($_GET['sort'] === 'cheaper') {
-            $this->sortField = 'SCALED_' . BASE_PRICE_CODE_ID;
+            $this->sortField = 'SCALED_' . $this->priceId;
             $this->sortOrder = 'ASC';
         }
     }

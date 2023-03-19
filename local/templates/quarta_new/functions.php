@@ -14,3 +14,22 @@ function getUserFullNameOrEmail(): string {
 
     return $USER->GetEmail();
 }
+
+function showBreadcrumb(): bool {
+    $notAllowedUrls = ['/catalog/index.php'];
+    $allowedUrls = ['/catalog/', '/news/'];
+
+    foreach ($notAllowedUrls as $url) {
+        if (CSite::InDir($url)) {
+            return false;
+        }
+    }
+
+    foreach ($allowedUrls as $url) {
+        if (CSite::InDir($url)) {
+            return true;
+        }
+    }
+
+    return false;
+}

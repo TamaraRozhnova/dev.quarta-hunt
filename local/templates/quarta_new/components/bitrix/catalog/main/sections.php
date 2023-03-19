@@ -78,8 +78,21 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         "COMPACT" => "Y"
     ],
         false
-    );
+    ); ?>
 
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <? $APPLICATION->IncludeComponent(
+                "bitrix:breadcrumb", "", array(
+                    "START_FROM" => "0",
+                    "PATH" => "",
+                    "SITE_ID" => "s1"
+                )
+            ); ?>
+        </div>
+    </div>
+
+    <?
     $APPLICATION->IncludeComponent(
         "bitrix:catalog.section.list",
         "main",

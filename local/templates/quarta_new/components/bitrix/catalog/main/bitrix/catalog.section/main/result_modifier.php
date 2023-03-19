@@ -4,14 +4,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Feedback\Reviews;
+use Feedback\Review;
 use Helpers\DiscountsHelper;
 use Personal\Favorites;
 use Personal\Basket;
 
 $favorites = new Favorites();
 $basket = new Basket();
-$reviews = new Reviews();
+$reviews = new Review();
 
 $arParams['FAVORITES'] = $favorites->getFavoritesIds();
 $arParams['COMPARE_LIST'] = $_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS'];
@@ -26,7 +26,7 @@ foreach ($arResult['ITEMS'] as $index => $product) {
     $productIds[] = $product['ID'];
 }
 
-$arParams['REVIEWS'] = $reviews->getReviewsRatingForProducts($productIds);
+$arParams['REVIEWS'] = $reviews->getReviewsRatingAndCountForProducts($productIds);
 
 $arResult['SORT_OPTIONS'] = [
     'cheaper' => 'дешевле',

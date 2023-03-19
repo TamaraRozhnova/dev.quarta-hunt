@@ -14,7 +14,7 @@
 }
 .subscribe__title {
   padding-bottom: 6rem;
-  background-image: url("assets/images/paper-plane.svg");
+  background-image: url("../../../../assets/images/paper-plane.svg");
   background-repeat: no-repeat;
   background-position: 80% 100%;
 }

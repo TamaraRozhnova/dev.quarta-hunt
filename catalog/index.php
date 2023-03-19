@@ -2,11 +2,17 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
+use General\User;
+
 $APPLICATION->SetTitle('Каталог - QUARTA Hunt');
+$APPLICATION->AddChainItem('Каталог', '/catalog/');
+
+$user = new User();
+$priceCode = $user->getUserPriceCode();
 
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	"main", 
+	"main",
 	array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -67,7 +73,7 @@ $APPLICATION->IncludeComponent(
 			1 => "",
 		),
 		"DETAIL_OFFERS_PROPERTY_CODE" => array(
-			0 => "",
+			0 => "CML2_ATTRIBUTES",
 			1 => "",
 		),
 		"DETAIL_PROPERTY_CODE" => array(
@@ -142,12 +148,13 @@ $APPLICATION->IncludeComponent(
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "24",
 		"PARTIAL_PRODUCT_PROPERTIES" => "Y",
-        "PRICE_CODE" => array(BASE_PRICE_CODE, OPT_PRICE_CODE),
+		"PRICE_CODE" => array($priceCode),
 		"PRICE_VAT_INCLUDE" => "Y",
 		"PRICE_VAT_SHOW_VALUE" => "Y",
 		"PRODUCT_DISPLAY_MODE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
-		"PRODUCT_PROPERTIES" => array(),
+		"PRODUCT_PROPERTIES" => array(
+		),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
 		"SECTIONS_SHOW_PARENT_NAME" => "Y",

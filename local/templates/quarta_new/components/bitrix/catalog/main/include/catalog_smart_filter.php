@@ -22,7 +22,7 @@ $APPLICATION->IncludeComponent(
         "SECTION_CODE" => $result['VARIABLES']['SECTION_CODE'],
         "SECTION_TITLE" => "NAME",
         "SECTION_DESCRIPTION" => "DESCRIPTION",
-        'HIDE_NOT_AVAILABLE' => $params["HIDE_NOT_AVAILABLE"],
+        'HIDE_NOT_AVAILABLE' => $params["ONLY_AVAILABLE"],
         "TEMPLATE_THEME" => $params["TEMPLATE_THEME"],
         'CONVERT_CURRENCY' => $params['CONVERT_CURRENCY'],
         'CURRENCY_ID' => $params['CURRENCY_ID'],

@@ -1,30 +1,41 @@
 window.addEventListener('DOMContentLoaded', () => {
     class ProductDetail {
         constructor() {
-            this.recommendedSliderSelector = '.swiper-container_recommended';
+            new ProductQuestionForm();
+            new PhotosSlider();
+            new Tabs();
+            new DescriptionBlock();
+            new RecommendedProductsSlider();
+            new VideoReviewsSlider();
 
-            this.makeRecommendedProductsSlider();
+            new ProductFavorites();
+            new ProductCompare();
+            new ProductBasket();
+
+            this.hangShareNetworkEvents();
+            this.hangTooltipsEvents();
         }
 
-        makeRecommendedProductsSlider() {
-            const sliderOptions = {
-                default: {
-                    slidesPerView: 2.5,
-                    spaceBetween: 7,
-                },
-                [BaseSlider.breakpointMobile]: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                },
-            }
-            const baseSlider = new BaseSlider(this.recommendedSliderSelector, sliderOptions);
-            baseSlider.makeSlider();
-
-            this.hangRecommendedProductCardsEvents();
+        hangTooltipsEvents() {
+            const tooltipContainers = document.querySelectorAll('.product-photos__tags .info');
+            tooltipContainers.forEach(container => {
+                const wrapperElement = container.querySelector('span:first-child');
+                const tooltipElement = container.querySelector('.tooltip');
+                new Tooltip(wrapperElement, tooltipElement)
+            })
         }
 
-        hangRecommendedProductCardsEvents() {
-            new ProductCards();
+        hangShareNetworkEvents() {
+            const shareNetworkButton = document.querySelector('.product__share-toggle');
+            const shareNetworkPopup = document.querySelector('.product__share-modal');
+            shareNetworkButton.addEventListener('click', () => {
+                shareNetworkPopup.classList.toggle('product__share-modal--show');
+            });
+            window.addEventListener('click', event => {
+                if (!shareNetworkPopup.contains(event.target) && !shareNetworkButton.contains(event.target)) {
+                    shareNetworkPopup.classList.remove('product__share-modal--show');
+                }
+            });
         }
     }
 

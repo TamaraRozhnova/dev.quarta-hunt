@@ -53,6 +53,7 @@ $ElementID = $APPLICATION->IncludeComponent(
         'CURRENCY_ID' => $arParams['CURRENCY_ID'],
         'VIEWED_CURRENCY' => $arParams['VIEWED_CURRENCY'],
         'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
+        'HIDE_NOT_AVAILABLE_OFFERS' => $arParams['HIDE_NOT_AVAILABLE_OFFERS'],
         'USE_ELEMENT_COUNTER' => $arParams['USE_ELEMENT_COUNTER'],
         'ADD_PICT_PROP' => $arParams['ADD_PICT_PROP'],
         'LABEL_PROP' => $arParams['LABEL_PROP'],
@@ -86,4 +87,17 @@ $ElementID = $APPLICATION->IncludeComponent(
         "SHOW_PRODUCT_TAGS" => $arParams["SHOW_PRODUCT_TAGS_IN_RECOMMENDED"],
     ),
     $component
+);
+
+$APPLICATION->IncludeComponent("bitrix:form.result.new", "subscribe_form", [
+        "SEF_MODE" => "N",
+        "WEB_FORM_ID" => "1",
+        "LIST_URL" => $APPLICATION->GetCurPage(),
+        "CHAIN_ITEM_TEXT" => "",
+        "CHAIN_ITEM_LINK" => "",
+        "USE_EXTENDED_ERRORS" => "Y",
+        "CACHE_TYPE" => "Y",
+        "CACHE_TIME" => "3600000",
+        "VARIABLE_ALIASES" => []
+    ]
 );
