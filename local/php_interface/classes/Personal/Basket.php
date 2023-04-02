@@ -44,22 +44,26 @@ class Basket
 
     /**
      * Получает список ID товаров и их количества в корзине
-     * @param bool $onlyProductIdKeys - true, если нужно отдать в качестве ключей только id товаров,
-     * и false, если ключами могут быть id товаров и id ТП
      * @return array - возвращает ассоциативный массив, где:
-     * ключ — идентификатор товара, значение — ассоциативный массив свойств товара в корзине
+     * ключ — идентификатор товара или ТП, значение — ассоциативный массив свойств товара в корзине
      */
-    public function getProductsInBasket(bool $onlyProductIdKeys = true): array
+    public function getProductsInBasket(): array
     {
         $result = [];
         foreach ($this->basket as $basketItem) {
             $productId = $basketItem->getProductId();
-            $productData = CCatalogSku::GetProductInfo($basketItem->getProductId());
-            if (is_array($productData) && $onlyProductIdKeys) {
+            $quantity = $basketItem->getQuantity();
+            $offerId = null;
+            $productData = CCatalogSku::GetProductInfo($productId);
+            if (is_array($productData)) {
+                $offerId = $productId;
                 $productId = $productData['ID'];
             }
             $productQuantityAccumulated = $result[$productId]['QUANTITY'] ?? 0;
-            $result[$productId] = ['ID' => $productId, 'QUANTITY' => $productQuantityAccumulated + $basketItem->getQuantity()];
+            $result[$productId] = ['ID' => $productId, 'QUANTITY' => $productQuantityAccumulated + $quantity];
+            if ($offerId) {
+                $result[$offerId] = ['ID' => $offerId, 'QUANTITY' => $quantity];
+            }
         }
         return $result;
     }

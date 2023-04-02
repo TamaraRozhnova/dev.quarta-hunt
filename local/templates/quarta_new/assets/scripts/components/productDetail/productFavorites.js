@@ -1,14 +1,25 @@
 class ProductFavorites {
-    constructor() {
+    constructor(favoritesList) {
         this.productElement = document.querySelector('.product');
         this.productId = this.productElement.dataset.id;
+
+        this.favoritesList = favoritesList;
         this.favoritesApi = new FavoritesApi();
         this.favoritesButton = this.productElement.querySelector('.product-fav');
-        this.favoritesText = this.favoritesButton.querySelector('span');
-
-        this.inFav = this.favoritesButton.classList.contains('in-fav');
+        this.favoritesText = this.favoritesButton.querySelector('.product-fav__text');
 
         this.hangEvents();
+        this.defineFavorites();
+    }
+
+    defineFavorites() {
+        this.removePlaceholder();
+        this.inFavorites = this.favoritesList[this.productId];
+        if (this.inFavorites) {
+            this.changeStyles(true);
+        } else {
+            this.changeStyles(false);
+        }
     }
 
     hangEvents() {
@@ -19,7 +30,7 @@ class ProductFavorites {
 
     async changeFavorites() {
         this.favoritesButton.style.pointerEvents = 'none';
-        if (this.inFav) {
+        if (this.inFavorites) {
             await this.deleteFavorites();
         } else {
             await this.addFavorites();
@@ -32,11 +43,8 @@ class ProductFavorites {
         if (!response) {
             return;
         }
-        this.changeButtonClasses(true);
-        this.favoritesIconDefault.style.display = 'none';
-        this.favoritesIconActive.style.display = 'inline';
-        this.favoritesText.textContent = 'В избранном';
-        this.inFav = true;
+        this.changeStyles(true);
+        this.inFavorites = true;
     }
 
     async deleteFavorites() {
@@ -44,18 +52,28 @@ class ProductFavorites {
         if (!response) {
             return;
         }
-        this.changeButtonClasses(false);
-        this.favoritesIconActive.style.display = 'none';
-        this.favoritesIconDefault.style.display = 'inline';
-        this.favoritesText.textContent = 'В избранное';
-        this.inFav = false;
+        this.changeStyles(false);
+        this.inFavorites = false;
     }
 
-    changeButtonClasses(state = true) {
+    changeStyles(state = true) {
         if (state) {
             this.favoritesButton.classList.add('text-secondary', 'border-secondary', 'in-fav');
+            this.favoritesIconDefault.style.display = 'none';
+            this.favoritesIconActive.style.display = 'inline';
+            this.favoritesText.textContent = 'В избранном';
         } else {
             this.favoritesButton.classList.remove('text-secondary', 'border-secondary', 'in-fav');
+            this.favoritesIconActive.style.display = 'none';
+            this.favoritesIconDefault.style.display = 'inline';
+            this.favoritesText.textContent = 'В избранное';
         }
+    }
+
+    removePlaceholder() {
+        const placeholder = this.favoritesButton.querySelector('.placeholder');
+        placeholder.remove();
+        const wrapper = this.favoritesButton.querySelector('.product-fav__wrapper');
+        wrapper.style.visibility = 'visible';
     }
 }

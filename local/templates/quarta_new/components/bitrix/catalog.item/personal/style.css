@@ -36,12 +36,6 @@
   z-index: 1;
   color: #808d9a;
 }
-.product-card__image-actions .placeholder {
-  width: 18px;
-  height: 18px;
-  border-radius: 6px;
-  margin-left: 0.5rem;
-}
 .product-card__image-actions img,
 .product-card__image-actions svg {
   margin-left: 0.5rem;
@@ -96,20 +90,6 @@
 .product-card__add .input-group .btn {
   width: auto;
   border-radius: 0.25rem !important;
-}
-.product-card__add.placeholder-glow .placeholder {
-  width: 100%;
-  height: 48px;
-  border-radius: 0.3125rem;
-}
-.product-card .stars.placeholder-glow {
-  display: flex;
-  gap: 2px;
-}
-.product-card .stars.placeholder-glow .placeholder {
-  width: 12px;
-  height: 12px;
-  border-radius: 0.3125em;
 }
 .product-card__tags {
   position: absolute;

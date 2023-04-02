@@ -20,6 +20,8 @@ class CatalogFilter {
 
         this.filterApplied = true;
 
+        this.productsDataApi = new ProductsDataApi();
+
         this.createElements();
         this.hangEvents();
     }
@@ -294,8 +296,20 @@ class CatalogFilter {
         })
     }
 
+    getProductsIds() {
+        const productElements = document.querySelectorAll('.product-card');
+        return Array.from(productElements).map(element => element.dataset.id);
+    }
+
     hangProductCardsEvents() {
-        new ProductCards();
+        const productIds = this.getProductsIds();
+        if (!productIds.length) {
+            return;
+        }
+        this.productsDataApi.getData(productIds)
+            .then(response => {
+                new ProductCards(response);
+            })
     }
 }
 

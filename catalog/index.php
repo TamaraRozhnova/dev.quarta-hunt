@@ -37,7 +37,7 @@ $APPLICATION->IncludeComponent(
 			0 => "",
 			1 => "",
 		),
-		"COMPARE_NAME" => "CATALOG_COMPARE_LIST",
+		"COMPARE_NAME" => COMPARE_LIST_NAME,
 		"COMPARE_OFFERS_FIELD_CODE" => array(
 			0 => "",
 			1 => "",

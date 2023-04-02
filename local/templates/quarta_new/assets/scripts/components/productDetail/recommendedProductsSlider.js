@@ -1,9 +1,7 @@
 class RecommendedProductsSlider {
     constructor() {
         this.recommendedSliderSelector = '.swiper-container_recommended';
-
         this.makeSlider();
-        this.hangRecommendedProductCardsEvents();
     }
 
     makeSlider() {
@@ -19,9 +17,5 @@ class RecommendedProductsSlider {
         }
         const baseSlider = new BaseSlider(this.recommendedSliderSelector, sliderOptions);
         baseSlider.makeSlider();
-    }
-
-    hangRecommendedProductCardsEvents() {
-        new ProductCards();
     }
 }

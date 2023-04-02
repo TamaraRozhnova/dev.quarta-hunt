@@ -1,10 +1,11 @@
 class ProductBasket {
-    constructor() {
+    constructor(basketList) {
         this.productElement = document.querySelector('.product');
         this.productAddElement = this.productElement.querySelector('.product__add');
         this.productId = this.productElement.dataset.id;
+        this.basketList = basketList;
+        this.productAvailable = this.productElement.dataset.available;
         this.productQuantity = this.productElement.dataset.productQuantity;
-        this.productBasket = this.productElement.dataset.productBasket;
 
         this.offers = {};
 
@@ -14,21 +15,51 @@ class ProductBasket {
     }
 
     hangEvents() {
-        this.hangSelectOfferEvent();
-        this.hangAddToBasketButtonEvents();
-        this.hangCounterEvents();
-        this.hangSubscribeToProductEvent();
+        this.removePlaceholders();
+        if (!this.productAvailable) {
+            this.createNewArrivalsButton();
+            return;
+        }
+        if (Object.keys(this.offers).length) {
+            this.hangSelectOfferEvent();
+            return;
+        }
+        const productInBasket = this.basketList[this.productId];
+        if (productInBasket) {
+            this.createCounter(this.productId, this.productQuantity, productInBasket.QUANTITY);
+        } else {
+            this.createAddToBasketButton();
+        }
     }
 
     fillOffersData() {
         const offersOptions = this.productElement.querySelectorAll('.product__trade-offers .select__option');
         offersOptions.forEach(offerOption => {
             const id = offerOption.dataset.id;
+            const offerInBasket = this.basketList[id];
             this.offers[id] = {
                 quantity: +offerOption.dataset.quantity,
-                basket: +offerOption.dataset.basket
+                basket: offerInBasket ? +offerInBasket.QUANTITY : 0
             }
         })
+    }
+
+    removePlaceholders() {
+        const productAddElement = this.productElement.querySelector('.product__add');
+        const placeholder = productAddElement.querySelector('.placeholder');
+        productAddElement.classList.remove('placeholder-glow');
+        if (placeholder) {
+            placeholder.remove();
+        }
+        const selectOffersWrapperElement = this.productElement.querySelector('.product__trade-offers');
+        if (!selectOffersWrapperElement) {
+            return;
+        }
+        selectOffersWrapperElement.classList.remove('placeholder-glow');
+        const selectOffersElement = selectOffersWrapperElement.querySelector('.select');
+        const selectOffersPlaceholder = selectOffersWrapperElement.querySelector('.placeholder');
+        selectOffersElement.style.display = 'inline-block';
+        selectOffersPlaceholder.remove();
     }
 
     hangSubscribeToProductEvent() {
@@ -70,9 +101,6 @@ class ProductBasket {
     }
 
     hangSelectOfferEvent() {
-        if (!Object.keys(this.offers).length) {
-            return;
-        }
         new Select({
             selector: '.product__trade-offers .select',
             onSelect: (id) => this.handleChangeOffer(id)
@@ -81,7 +109,6 @@ class ProductBasket {
 
     handleChangeOffer(offerId) {
         const { quantity, basket } = this.offers[offerId];
-        console.log(this.offers[offerId])
         if (basket) {
             this.removeCounter();
             this.createCounter(offerId, quantity, basket);
@@ -89,6 +116,11 @@ class ProductBasket {
             this.removeAddToBasketButton();
             this.createAddToBasketButton(offerId, quantity);
         }
+    }
+
+    createNewArrivalsButton() {
+        this.productAddElement.insertAdjacentHTML('afterbegin', this.createNewArrivalsButtonHtml());
+        this.hangSubscribeToProductEvent();
     }
 
     createAddToBasketButton(id = this.productId, maxQuantity = this.productQuantity) {
@@ -180,6 +212,14 @@ class ProductBasket {
                 <span class="product-count__add-plus">+</span>
                 <input type="number" value="${value}" class="form-control" />
             </div>`
+        )
+    }
+
+    createNewArrivalsButtonHtml() {
+        return (
+            `<button class="product-subscribe btn btn-primary px-3">
+                  Cообщить о поступлении
+             </button>`
         )
     }
 }
