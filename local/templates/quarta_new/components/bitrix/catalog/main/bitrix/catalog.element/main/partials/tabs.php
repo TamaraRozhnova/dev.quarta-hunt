@@ -30,9 +30,7 @@ $isUserAuth = $user->isAuthorized();
             </button>
             <button class="product-about__tab" data-tab="5">
                 Отзывы
-                <? if ($result['REVIEWS']['COUNT']) { ?>
-                    <span>(<?= $result['REVIEWS']['COUNT'] ?>)</span>
-                <? } ?>
+                <span class="product-about__reviews-count"></span>
             </button>
         </div>
     </div>

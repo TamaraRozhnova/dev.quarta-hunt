@@ -12,6 +12,7 @@ class FavoritesComponent extends CBitrixComponent
 {
     private const DEFAULT_IBLOCK_TYPE = 'userdata';
     private const DEFAULT_IBLOCK_ID = 21;
+    private const DEFAULT_DETAIL_URL = '/catalog/#ELEMENT_ID#/#ELEMENT_CODE#/';
 
 
     /**
@@ -41,6 +42,9 @@ class FavoritesComponent extends CBitrixComponent
         if (!isset($arParams['IBLOCK_ID'])) {
             $arParams['IBLOCK_ID'] = FavoritesComponent::DEFAULT_IBLOCK_ID;
         }
+        if (!isset($arParams['DETAIL_URL'])) {
+            $arParams['DETAIL_URL'] = FavoritesComponent::DEFAULT_DETAIL_URL;
+        }
 
         return $arParams;
     }
@@ -52,13 +56,10 @@ class FavoritesComponent extends CBitrixComponent
     public function makeArResult(): void {
         $favoritesInstance = new Favorites();
         $favoritesCount = $favoritesInstance->getFavoritesIds();
-
         if (!$favoritesCount) {
             return;
         }
-
-        $this->arResult['COUNT'] = NumWordHelper::getNumWord($favoritesCount, ['товар', 'товара', 'товаров']);
-        $this->arResult['ITEMS'] = $favoritesInstance->getFavorites();
+        $this->arResult['ITEMS'] = $favoritesInstance->getFavorites($this->arParams['DETAIL_URL']);
     }
 
 

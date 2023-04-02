@@ -18,7 +18,7 @@ class RecommendedProductsHelper
 
         if (count($productIds)) {
             $filter = ['ID' => $productIds];
-            $recommendedProducts = Product::fetchProducts($filter, $count, $elementUrlTemplate);
+            $recommendedProducts = Product::fetchProducts($filter, $elementUrlTemplate, $count);
         }
 
         $remainProducts = [];
@@ -33,7 +33,7 @@ class RecommendedProductsHelper
                 'SECTION_ID' => $sectionId,
                 'INCLUDE_SUBSECTIONS' => 'Y',
             ];
-            $remainProducts = Product::fetchProducts($filter, $remainCount, $elementUrlTemplate);
+            $remainProducts = Product::fetchProducts($filter, $elementUrlTemplate, $remainCount);
         }
 
         return array_replace($recommendedProducts, $remainProducts);
