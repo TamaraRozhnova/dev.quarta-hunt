@@ -14,6 +14,5 @@ function getPluralString(value, words) {
         default: result += words[2];
             break;
     }
-
     return result;
 }

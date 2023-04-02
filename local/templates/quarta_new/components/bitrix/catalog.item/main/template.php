@@ -94,13 +94,15 @@ $item = $arResult['ITEM'];
         <div class="fs-6 text-dark pb-1"><b>Нет в наличии</b></div>
     <? } ?>
 
-    <div class="stars placeholder-glow">
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-        <div class="placeholder"></div>
-    </div>
+    <? if ($arResult['PARAMS']['HIDE_RATING'] !== 'Y') { ?>
+        <div class="stars placeholder-glow">
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+            <div class="placeholder"></div>
+        </div>
+    <? } ?>
 
     <div class="product-card__add placeholder-glow">
         <div class="placeholder"></div>

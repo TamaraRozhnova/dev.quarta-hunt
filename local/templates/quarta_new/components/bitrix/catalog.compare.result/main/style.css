@@ -1,0 +1,119 @@
+.compare {
+  background-color: #f9f9fa;
+  padding-bottom: 8.75rem;
+}
+.compare .stars {
+  margin-bottom: 0;
+}
+.compare .stars.placeholder-glow {
+  display: flex;
+  gap: 2px;
+}
+.compare .stars .placeholder {
+  width: 12px;
+  height: 12px;
+  border-radius: 0.3125em;
+}
+.compare .checkbox input {
+  border-color: #808d9a;
+  transform: translateY(-0.15rem);
+}
+.compare__divider {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  margin: 1.875rem 0;
+  background-color: #808d9a;
+  z-index: 5;
+  opacity: 0.5;
+}
+.compare__table-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.compare__table-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  top: -1rem;
+  bottom: -1rem;
+  left: 100%;
+  box-shadow: -10px 0 10px #f9f9fa;
+  background: #f9f9fa;
+  z-index: 2;
+}
+.compare__table {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  position: relative;
+  cursor: grab;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.compare__table--active {
+  cursor: grabbing;
+  touch-action: "none";
+}
+.compare__table--active * {
+  pointer-events: none;
+}
+.compare__table::-webkit-scrollbar {
+  display: none;
+}
+.compare__row {
+  display: flex;
+}
+.compare__col {
+  font-size: 1rem;
+  color: #333333;
+  margin: 0 0 1.25rem;
+  padding: 0 2.5rem 0 2.5rem;
+}
+.compare__col--first {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  padding: 0 2.5rem 0 0;
+}
+.compare__column-backdrop {
+  position: absolute;
+  left: -1rem;
+  top: -1rem;
+  bottom: -1rem;
+  background: rgba(249, 249, 250, 0.8);
+  z-index: 2;
+  backdrop-filter: blur(5px);
+  filter: blur(5px);
+}
+.compare__column-backdrop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(90deg, rgb(249, 249, 250) 0%, rgba(249, 249, 250, 0) 100%);
+}
+@media (max-width: 1199.98px) {
+  .compare__col {
+    padding: 0 0.438rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .compare .container {
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 575.98px) {
+  .compare .container {
+    padding: 0 15px;
+  }
+  .compare__column-backdrop {
+    display: none;
+  }
+  .compare__col--first {
+    display: none;
+  }
+}

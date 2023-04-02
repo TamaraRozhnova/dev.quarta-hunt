@@ -27,8 +27,10 @@ class RatingStarsHelper {
 
     insertHtml() {
         const starsElement = this.productElement.querySelector('.stars');
-        starsElement.classList.remove('placeholder-glow');
-        starsElement.innerHTML = this.createStarsHtml();
+        if (starsElement) {
+            starsElement.classList.remove('placeholder-glow');
+            starsElement.innerHTML = this.createStarsHtml();
+        }
     }
 
     createFillStarHtml() {

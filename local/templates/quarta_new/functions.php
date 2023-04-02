@@ -17,7 +17,7 @@ function getUserFullNameOrEmail(): string {
 
 function showBreadcrumb(): bool {
     $notAllowedUrls = ['/catalog/index.php'];
-    $allowedUrls = ['/catalog/', '/news/', '/favorites/'];
+    $allowedUrls = ['/catalog/', '/news/', '/favorites/', '/compare/'];
 
     foreach ($notAllowedUrls as $url) {
         if (CSite::InDir($url)) {
