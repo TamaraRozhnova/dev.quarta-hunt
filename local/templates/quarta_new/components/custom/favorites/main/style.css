@@ -1,0 +1,26 @@
+.favorites {
+  background-color: #f9f9fa;
+  padding-bottom: 8.5rem;
+}
+.favorites__clean-btn {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 0.688rem;
+  text-decoration-line: underline;
+  color: #004989;
+  background-color: unset;
+  border: 0;
+  height: 0.688rem;
+  margin-left: auto;
+}
+@media (max-width: 991.98px) {
+  .favorites .container {
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 575.98px) {
+  .favorites .container {
+    padding: 0 15px;
+  }
+}

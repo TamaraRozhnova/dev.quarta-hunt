@@ -3,7 +3,8 @@ class FavoritesApi {
         this.url = '/ajax/personal/favorites.php';
         this.action = {
             ADD: 'ADD',
-            DELETE: 'DELETE'
+            DELETE: 'DELETE',
+            CLEAR: 'CLEAR'
         }
         this.cookieFavoritesName = 'favorites';
         this.cookieLongevityDays = 365;
@@ -34,6 +35,10 @@ class FavoritesApi {
         Cookies.set(this.cookieFavoritesName, JSON.stringify(currentFavorites), { expires: this.cookieLongevityDays });
     }
 
+    clearCookie() {
+        Cookies.remove(this.cookieFavoritesName);
+    }
+
     async addToFavorites(productId) {
         if (!this.isAuth) {
             this.addProductToCookie(productId);
@@ -61,6 +66,22 @@ class FavoritesApi {
         const response = await Request.fetch(this.url, data);
         if (response) {
             window.favoritesCount--;
+            this.displayFavoritesCount();
+        }
+        return response;
+    }
+
+    async clearFavorites() {
+        if (!this.isAuth) {
+            this.clearCookie();
+            window.favoritesCount = 0;
+            this.displayFavoritesCount();
+            return true;
+        }
+        const data = { action: this.action.CLEAR }
+        const response = await Request.fetch(this.url, data);
+        if (response) {
+            window.favoritesCount = 0;
             this.displayFavoritesCount();
         }
         return response;
