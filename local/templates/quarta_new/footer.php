@@ -24,7 +24,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             "",
                             [
                                 "AREA_FILE_SHOW" => "file",
-                                "PATH" => SITE_TEMPLATE_PATH . "/include/footer/description_phone.php",
+                                "PATH" => "/include/footer/description_phone.php",
                             ],
                             false,
                         );?>
@@ -35,7 +35,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             "",
                             [
                                 "AREA_FILE_SHOW" => "file",
-                                "PATH" => SITE_TEMPLATE_PATH . "/include/footer/main_phone.php",
+                                "PATH" => "/include/footer/main_phone.php",
                             ],
                             false,
                         );?>
@@ -51,7 +51,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             "",
                             [
                                 "AREA_FILE_SHOW" => "file",
-                                "PATH" => SITE_TEMPLATE_PATH . "/include/footer/first_toggle/title.php",
+                                "PATH" => "/include/footer/first_toggle/title.php",
                             ],
                             false,
                         );?>
@@ -64,7 +64,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "",
                                 [
                                     "AREA_FILE_SHOW" => "file",
-                                    "PATH" => SITE_TEMPLATE_PATH . "/include/footer/first_toggle/content.php",
+                                    "PATH" => "/include/footer/first_toggle/content.php",
                                 ],
                                 false,
                             );?>
@@ -82,7 +82,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             "",
                             [
                                 "AREA_FILE_SHOW" => "file",
-                                "PATH" => SITE_TEMPLATE_PATH . "/include/footer/second_toggle/title.php",
+                                "PATH" => "/include/footer/second_toggle/title.php",
                             ],
                             false,
                         );?>
@@ -95,7 +95,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "",
                                 [
                                     "AREA_FILE_SHOW" => "file",
-                                    "PATH" => SITE_TEMPLATE_PATH . "/include/footer/second_toggle/content.php",
+                                    "PATH" => "/include/footer/second_toggle/content.php",
                                 ],
                                 false,
                             );?>
@@ -113,7 +113,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "",
                                 [
                                     "AREA_FILE_SHOW" => "file",
-                                    "PATH" => SITE_TEMPLATE_PATH . "/include/footer/third_toggle/title.php",
+                                    "PATH" => "/include/footer/third_toggle/title.php",
                                 ],
                                 false,
                             );?>
@@ -147,7 +147,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "",
                                 [
                                     "AREA_FILE_SHOW" => "file",
-                                    "PATH" => SITE_TEMPLATE_PATH . "/include/footer/fourth_toggle/title.php",
+                                    "PATH" => "/include/footer/fourth_toggle/title.php",
                                 ],
                                 false,
                             );?>
@@ -194,7 +194,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     "",
                     [
                         "AREA_FILE_SHOW" => "file",
-                        "PATH" => SITE_TEMPLATE_PATH . "/include/footer/socials.php",
+                        "PATH" => "/include/footer/socials.php",
                     ],
                     false,
                 );?>

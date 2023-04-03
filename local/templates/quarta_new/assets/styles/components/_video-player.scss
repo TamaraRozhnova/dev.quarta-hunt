@@ -1,0 +1,44 @@
+@import '../assets/styles/base-imports';
+
+.video-player {
+    position: relative;
+    width: 100%;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    height: 0;
+
+    > .video-js {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.video-player {
+    video {
+        object-fit: cover;
+    }
+
+    .vjs-fullscreen video {
+        object-fit: contain;
+    }
+
+    .vjs-poster {
+        background-size: cover;
+    }
+
+    .vjs-big-play-button {
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        width: 4.75rem;
+        height: 4.75rem;
+        border-radius: 50%;
+        background-color: $primary;
+        line-height: 4.65rem;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+}

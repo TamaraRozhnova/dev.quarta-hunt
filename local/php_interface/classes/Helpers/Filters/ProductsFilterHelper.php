@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers;
+namespace Helpers\Filters;
 
 use Bitrix\Iblock\SectionTable;
 use General\User;

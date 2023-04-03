@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers;
+namespace Helpers\Filters;
 
 /**
  * Класс по работе с фильтром отзывов.
