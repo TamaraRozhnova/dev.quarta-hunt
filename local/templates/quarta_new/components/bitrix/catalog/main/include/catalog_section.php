@@ -14,7 +14,7 @@ $APPLICATION->IncludeComponent(
     "bitrix:catalog.section",
     "main",
     [
-        "AJAX_MODE" => "Y",
+        "AJAX_MODE" => $params["AJAX_MODE"],
         "IBLOCK_TYPE" => $params["IBLOCK_TYPE"],
         "IBLOCK_ID" => $params["IBLOCK_ID"],
         "ELEMENT_SORT_FIELD" => "CATALOG_AVAILABLE",
