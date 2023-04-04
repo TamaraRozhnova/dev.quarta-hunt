@@ -8,7 +8,7 @@ $APPLICATION->IncludeComponent(
     "bitrix:catalog.smart.filter",
     "main",
     array(
-        "AJAX_MODE" => "Y",
+        "AJAX_MODE" => $params["AJAX_MODE"],
         "IBLOCK_TYPE" => $params["IBLOCK_TYPE"],
         "IBLOCK_ID" => $params["IBLOCK_ID"],
         "FILTER_NAME" => $params["FILTER_NAME"],
