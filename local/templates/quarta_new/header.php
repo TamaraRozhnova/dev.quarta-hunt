@@ -91,7 +91,7 @@ $basketItemsCount = $basket->getProductsCount();
                                 "",
                                 [
                                     "AREA_FILE_SHOW" => "file",
-                                    "PATH" => SITE_TEMPLATE_PATH . "/include/header/addresses.php",
+                                    "PATH" => "/include/header/addresses.php",
                                 ],
                                 false,
                             ); ?>
@@ -302,7 +302,7 @@ $basketItemsCount = $basket->getProductsCount();
                     "",
                     [
                         "AREA_FILE_SHOW" => "file",
-                        "PATH" => SITE_TEMPLATE_PATH . "/include/header/contacts.php",
+                        "PATH" => "/include/header/contacts.php",
                     ],
                     false,
                 );?>
@@ -319,7 +319,7 @@ $basketItemsCount = $basket->getProductsCount();
                     "",
                     [
                         "AREA_FILE_SHOW" => "file",
-                        "PATH" => SITE_TEMPLATE_PATH . "/include/header/main_links_mobile.php",
+                        "PATH" => "/include/header/main_links_mobile.php",
                     ],
                     false,
                 );?>

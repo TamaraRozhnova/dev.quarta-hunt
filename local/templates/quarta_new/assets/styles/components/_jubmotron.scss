@@ -1,0 +1,95 @@
+@import '../assets/styles/base-imports';
+
+.jumbotron-vue {
+    background-size: cover;
+    background-position: center;
+
+    h1,
+    h2,
+    h3,
+    p {
+        position: relative;
+        color: $white;
+        z-index: 1;
+    }
+
+    h1,
+    h2 {
+        font-size: 3.75rem;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+
+    &__body {
+        position: relative;
+        padding: 10.625rem 0;
+    }
+
+    &--large &__body {
+        padding: 15rem 0;
+    }
+
+    &--small &__body {
+        padding: 7.5rem 0;
+    }
+
+    &__q {
+        position: absolute;
+        display: flex;
+        align-items: flex-end;
+        height: 100%;
+        top: 50%;
+        left: -180px;
+        transform: translateY(-50%);
+        z-index: 0;
+
+        svg {
+            height: 100%;
+        }
+    }
+
+    @include media-breakpoint-down('lg') {
+        .col-6 {
+            width: 100%;
+        }
+        .col-4 {
+            width: 60%;
+        }
+        .container {
+            max-width: 100%;
+            padding: 0 30px;
+        }
+        &__q {
+            transform: translateX(-30%);
+            top: unset;
+            bottom: 0;
+            left: -12%;
+            height: 80%;
+            width: 100%;
+        }
+        &__body, &--large &__body {
+            padding: 9.375rem 0 10rem;
+        }
+    }
+    @include media-breakpoint-down('md') {
+        h1 {
+            font-size: 2.313rem;
+        }
+        p {
+            font-size: 0.875rem;
+        }
+        &__q {
+            height: fit-content;
+        }
+    }
+    @include media-breakpoint-down('sm') {
+        .col-4 {
+            max-width: 400px;
+            width: auto;
+            flex: 1;
+        }
+        .container {
+            padding: 0 15px;
+        }
+    }
+}

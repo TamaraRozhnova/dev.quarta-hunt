@@ -4,7 +4,6 @@ namespace Helpers;
 
 use CFile;
 use CIBlockElement;
-use General\Section;
 
 /**
  * Класс по работе с видео-обзорами.
@@ -12,9 +11,6 @@ use General\Section;
 class VideoReviewsHelper
 {
     const VIDEO_REVIEWS_IBLOCK_ID = 12;
-
-    const YOUTUBE_VIDEO_EMBED_PATH = '//www.youtube.com/embed/';
-
 
     public static function getVideoReviews(int $sectionId): array
     {
@@ -31,8 +27,7 @@ class VideoReviewsHelper
             $result['NAME'] = $fields['NAME'];
 
             foreach ($videoUrls as $key => $videoUrl) {
-                preg_match('/(?<=youtu\.be\/).*/', $videoUrl, $matches);
-                $videoSrc = $matches[0] ? VideoReviewsHelper::YOUTUBE_VIDEO_EMBED_PATH . $matches[0] : null;
+                $videoSrc = VideoUrlHelper::convertVideoUrl($videoUrl);
                 if (!$videoSrc) {
                     continue;
                 }
