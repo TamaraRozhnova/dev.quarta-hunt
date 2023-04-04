@@ -79,3 +79,5 @@ $arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedPro
 $arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECTION']['ID']);
 
 DiscountsHelper::fillProductWithBonuses($arResult);
+
+$arResult['RATING']['MAX_STARS'] = 5;

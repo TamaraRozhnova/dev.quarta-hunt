@@ -34,9 +34,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         setReviewsCount(ratingsList) {
-            const reviewsCount = ratingsList[this.productId].COUNT;
-            const reviewsCountElements = document.querySelector('.product-about__reviews-count');
-            reviewsCountElements.innerHTML = `(${reviewsCount})`;
+            const reviewsDataForProduct = ratingsList[this.productId];
+            if (reviewsDataForProduct) {
+                const reviewsCount = ratingsList[this.productId].COUNT;
+                const reviewsCountElements = document.querySelector('.product-about__reviews-count');
+                reviewsCountElements.innerHTML = `(${reviewsCount})`;
+            }
+            new RatingStarsHelper({ productId: this.productId, starsSelector: '.stars--reviews-list', ratingsList }, true)
         }
 
         hangTooltipsEvents() {

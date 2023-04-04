@@ -1,12 +1,20 @@
 class RatingStarsHelper {
     constructor(data = {
-        productElement,
+        productElement: null,
+        productId: null,
+        starsSelector: null,
         ratingsList
-    }
+    }, showRatingValue = false
     ) {
-        this.productElement = data.productElement;
-        this.productId = this.productElement.dataset.id;
+        if (data.productElement) {
+            this.productElement = data.productElement;
+            this.productId = this.productElement.dataset.id;
+        } else {
+            this.productId = data.productId;
+        }
+        this.starsSelector = data.starsSelector || '.stars';
         this.ratingsList = data.ratingsList;
+        this.showRatingValue = showRatingValue;
         this.maxStars = 5;
 
         this.defineStars();
@@ -15,18 +23,23 @@ class RatingStarsHelper {
 
     defineStars() {
         const ratingData = this.ratingsList[this.productId];
-        const rating = ratingData ? ratingData.RATING : 0;
-        const roundedRating = Math.round(rating);
-        this.fillStars = Math.floor(rating);
+        this.rating = ratingData ? ratingData.RATING : 0;
+        const roundedRating = Math.round(this.rating);
+        this.fillStars = Math.floor(this.rating);
         this.halfStars = 0;
-        if (roundedRating > rating) {
+        if (roundedRating > this.rating) {
             this.halfStars = 1;
         }
         this.outlineStars = this.maxStars - this.fillStars - this.halfStars;
     }
 
     insertHtml() {
-        const starsElement = this.productElement.querySelector('.stars');
+        let starsElement;
+        if (this.productElement) {
+            starsElement = this.productElement.querySelector(this.starsSelector);
+        } else {
+            starsElement = document.querySelector(this.starsSelector);
+        }
         if (starsElement) {
             starsElement.classList.remove('placeholder-glow');
             starsElement.innerHTML = this.createStarsHtml();
@@ -63,6 +76,12 @@ class RatingStarsHelper {
         )
     }
 
+    createRatingValueHtml() {
+        return (
+            `<div class="stars__count">${this.rating}</div>`
+        )
+    }
+
     createStarsHtml() {
         let html = '';
         for (let i = 0; i < this.fillStars; i++) {
@@ -73,6 +92,9 @@ class RatingStarsHelper {
         }
         for (let i = 0; i < this.outlineStars; i++) {
             html += this.createOutlineStarHtml();
+        }
+        if (this.showRatingValue) {
+            html += this.createRatingValueHtml();
         }
 
         return html;
