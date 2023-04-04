@@ -1,0 +1,79 @@
+@import '../assets/styles/base-imports';
+
+.delivery {
+    h2,
+    h3 {
+        max-width: 75%;
+        line-height: 120%;
+    }
+
+    h2 {
+        font-size: 2.188rem;
+
+        svg {
+            min-height: 60px;
+            height: 60px;
+            min-width: 60px;
+            width: 60px;
+        }
+    }
+
+    h3 {
+        font-size: 1.625rem;
+    }
+
+    p {
+        font-size: 1rem;
+        max-width: 450px;
+    }
+
+    .row {
+        padding: 3.125rem 0;
+    }
+
+    @include media-breakpoint-down('lg') {
+        h2,
+        h3 {
+            max-width: unset;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        .container {
+            max-width: unset;
+            padding: 0 30px;
+        }
+
+        .row {
+            padding: 1.875em 0;
+        }
+    }
+    @include media-breakpoint-down('md') {
+        h2 {
+            display: flex;
+            font-size: 1.438rem;
+
+            svg {
+                min-height: 32px;
+                height: 32px;
+                min-width: 32px;
+                width: 32px;
+                margin-right: 0.875rem !important;
+            }
+        }
+
+        h3 {
+            font-size: 1.125rem;
+        }
+
+        .container {
+            padding: 0 15px;
+        }
+    }
+}

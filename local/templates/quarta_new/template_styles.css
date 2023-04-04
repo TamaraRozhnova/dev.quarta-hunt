@@ -9366,6 +9366,67 @@ input.form-check-input:focus {
   }
 }
 
+.yandex-map {
+  height: 560px;
+  border-radius: 0.875rem;
+  overflow: hidden;
+}
+.yandex-map > div {
+  height: 100%;
+}
+@media (max-width: 767.98px) {
+  .yandex-map [class*=-balloon] {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.09);
+    border-radius: 14px;
+    background-color: #fff;
+  }
+  .yandex-map [class*=-balloon__close] {
+    display: none;
+  }
+  .yandex-map [class*=-balloon__content] {
+    background-color: unset;
+  }
+  .yandex-map [class*=-balloon__close] + [class*=-balloon__content] {
+    margin-right: 0;
+  }
+}
+
+ymaps[class*=-balloon__close-button] {
+  background-image: url("assets/icons/yandex-map-close.svg");
+}
+
+ymaps[class$=-balloon__tail] {
+  background: unset;
+  background-color: #fff;
+  box-shadow: unset;
+}
+
+ymaps[class*=-balloon] {
+  box-shadow: unset;
+}
+
+ymaps[class*=-balloon__content] {
+  border: 0;
+  font-size: 0.75rem;
+  color: #808D9A;
+  padding: 2rem 1.875rem;
+}
+ymaps[class*=-balloon__content] b, ymaps[class*=-balloon__content] span {
+  color: #333333;
+}
+@media (max-width: 575.98px) {
+  ymaps[class*=-balloon__content] {
+    padding: 1.375rem 0.813rem;
+  }
+}
+
+ymaps[class$=-balloon__layout] {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.09);
+  border-radius: 14px;
+  overflow: hidden;
+  transform: translateX(-35%);
+}
+
 .about h3, .about .h3 {
   font-size: 2.188rem;
 }
@@ -9841,5 +9902,70 @@ input.form-check-input:focus {
   .list__pagination {
     margin-bottom: 2.5rem;
     padding-top: 1rem;
+  }
+}
+
+.delivery h2, .delivery .h2,
+.delivery h3,
+.delivery .h3 {
+  max-width: 75%;
+  line-height: 120%;
+}
+.delivery h2, .delivery .h2 {
+  font-size: 2.188rem;
+}
+.delivery h2 svg, .delivery .h2 svg {
+  min-height: 60px;
+  height: 60px;
+  min-width: 60px;
+  width: 60px;
+}
+.delivery h3, .delivery .h3 {
+  font-size: 1.625rem;
+}
+.delivery p {
+  font-size: 1rem;
+  max-width: 450px;
+}
+.delivery .row {
+  padding: 3.125rem 0;
+}
+@media (max-width: 991.98px) {
+  .delivery h2, .delivery .h2,
+  .delivery h3,
+  .delivery .h3 {
+    max-width: unset;
+  }
+  .delivery h2, .delivery .h2 {
+    font-size: 1.875rem;
+  }
+  .delivery h3, .delivery .h3 {
+    font-size: 1.25rem;
+  }
+  .delivery .container {
+    max-width: unset;
+    padding: 0 30px;
+  }
+  .delivery .row {
+    padding: 1.875em 0;
+  }
+}
+@media (max-width: 767.98px) {
+  .delivery h2, .delivery .h2 {
+    display: flex;
+    font-size: 1.438rem;
+  }
+  .delivery h2 svg, .delivery .h2 svg {
+    min-height: 32px;
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+    margin-right: 0.875rem !important;
+  }
+  .delivery h3, .delivery .h3 {
+    font-size: 1.125rem;
+  }
+  .delivery .container {
+    padding: 0 15px;
   }
 }

@@ -1,0 +1,12 @@
+@import '../assets/styles/base-imports';
+
+@include media-breakpoint-down('lg') {
+    #yandex-map {
+        height: 437px;
+    }
+}
+@include media-breakpoint-down('md') {
+    #yandex-map {
+        height: 268px;
+    }
+}
