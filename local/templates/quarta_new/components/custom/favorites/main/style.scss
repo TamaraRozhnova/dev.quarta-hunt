@@ -1,0 +1,31 @@
+@import '../assets/styles/base-imports';
+
+.favorites {
+    background-color: $gray-100;
+    padding-bottom: 8.5rem;
+
+    &__clean-btn {
+        display: block;
+        font-size: 0.75rem;
+        line-height: 0.688rem;
+        text-decoration-line: underline;
+        color: #004989;
+        background-color: unset;
+        border: 0;
+        height: 0.688rem;
+        margin-left: auto;
+    }
+
+    @include media-breakpoint-down('lg') {
+        .container {
+            max-width: 100%;
+            padding: 0 30px;
+        }
+    }
+
+    @include media-breakpoint-down('sm') {
+        .container {
+            padding: 0 15px;
+        }
+    }
+}

@@ -2,10 +2,9 @@
 
 namespace Personal;
 
-use CFile;
 use CIBlockElement;
 use CModule;
-use CPrice;
+use General\Product;
 use _CIBElement;
 
 
@@ -184,23 +183,12 @@ class Favorites
 
     /**
      * Формирует ассоциативный массив товаров с их свойствами
-     * @param int[] $productsId - масиив ID товаров
+     * @param int[] $productIds - масиив ID товаров
      * @return array - возвращает ассоциативный массив свойств товаров
      */
-    private function getProducts(array $productsId): array
+    private function getProducts(array $productIds): array
     {
-        $data = [];
-        $productsResource = CIBlockElement::GetList([], ['IBLOCK_ID' => CATALOG_IBLOCK_ID, 'ID' => $productsId]);
-
-        while ($product = $productsResource->GetNextElement()) {
-            $fields = $product->GetFields();
-            $fields['PROPERTIES'] = $product->GetProperties();
-            $fields['PRICE'] = CPrice::GetBasePrice($fields['ID']);
-            $data[] = $fields;
-        }
-
-        return $data;
+        $filter = ['ID' => $productIds];
+        return Product::fetchProducts($filter);
     }
-
-
 }
