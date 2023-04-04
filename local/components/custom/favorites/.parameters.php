@@ -36,6 +36,12 @@ $arComponentParameters = [
             "VALUES" => $iBlocks,
             "DEFAULT" => "21",
             "REFRESH" => "Y",
+        ],
+        "DETAIL_URL" => [
+            "PARENT" => "SEF_MODE",
+            "NAME" => "Путь до детальной страницы товара",
+            "TYPE" => "TEXT",
+            "DEFAULT" => "/catalog/#ELEMENT_ID#/#ELEMENT_CODE#/"
         ]
     ]
 ];

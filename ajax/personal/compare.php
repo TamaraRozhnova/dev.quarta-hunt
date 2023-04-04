@@ -4,6 +4,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/bitrix/modules/main/include/prolog_be
 
 $_REQUEST["ajax_action"] = "Y";
 
+if ($_GET['action'] === 'CLEAR') {
+    unset($_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS']);
+    echo json_encode(true);
+    exit();
+}
+
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.compare.list",
     "main",

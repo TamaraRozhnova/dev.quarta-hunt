@@ -28,8 +28,15 @@ window.addEventListener('DOMContentLoaded', () => {
                     new ProductCompare(COMPARE);
                     new ProductBasket(BASKET);
                     new RatingStarsHelper({ productElement: this.productElement, ratingsList: RATINGS });
+                    this.setReviewsCount(RATINGS);
                     new ProductCards(response);
                 })
+        }
+
+        setReviewsCount(ratingsList) {
+            const reviewsCount = ratingsList[this.productId].COUNT;
+            const reviewsCountElements = document.querySelector('.product-about__reviews-count');
+            reviewsCountElements.innerHTML = `(${reviewsCount})`;
         }
 
         hangTooltipsEvents() {

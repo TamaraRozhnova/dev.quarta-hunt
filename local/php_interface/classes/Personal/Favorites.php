@@ -54,7 +54,7 @@ class Favorites
     /**
      * @return array - возвращает ассоциативный массив избранных товаров с их свойствами
      */
-    public function getFavorites(): array
+    public function getFavorites(string $elementUrlTemplate = ''): array
     {
         $favoritesIds = $this->getFavoritesIds();
 
@@ -62,7 +62,7 @@ class Favorites
             return [];
         }
 
-        $products = $this->getProducts($favoritesIds);
+        $products = $this->getProducts($favoritesIds, $elementUrlTemplate);
 
         if (!count($products)) {
             return [];
@@ -184,11 +184,12 @@ class Favorites
     /**
      * Формирует ассоциативный массив товаров с их свойствами
      * @param int[] $productIds - масиив ID товаров
+     * @param string $elementUrlTemplate - шаблон ссылок на детальные страницы товаров
      * @return array - возвращает ассоциативный массив свойств товаров
      */
-    private function getProducts(array $productIds): array
+    private function getProducts(array $productIds, string $elementUrlTemplate): array
     {
         $filter = ['ID' => $productIds];
-        return Product::fetchProducts($filter);
+        return Product::fetchProducts($filter, $elementUrlTemplate);
     }
 }

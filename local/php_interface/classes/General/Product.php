@@ -46,7 +46,7 @@ class Product
     }
 
 
-    public static function fetchProducts(array $filter, int $count = 0, string $detailUrlTemplate = ''): array
+    public static function fetchProducts(array $filter, string $detailUrlTemplate = '', int $count = 0): array
     {
         $filterParams = Product::makeFilterParams($filter);
         $countParams = Product::makeCountParams($count);
