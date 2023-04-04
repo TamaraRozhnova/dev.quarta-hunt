@@ -2,11 +2,17 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
+use General\User;
+
 $APPLICATION->SetTitle('Каталог - QUARTA Hunt');
+$APPLICATION->AddChainItem('Каталог', '/catalog/');
+
+$user = new User();
+$priceCode = $user->getUserPriceCode();
 
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	"main", 
+	"main",
 	array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -31,7 +37,7 @@ $APPLICATION->IncludeComponent(
 			0 => "",
 			1 => "",
 		),
-		"COMPARE_NAME" => "CATALOG_COMPARE_LIST",
+		"COMPARE_NAME" => COMPARE_LIST_NAME,
 		"COMPARE_OFFERS_FIELD_CODE" => array(
 			0 => "",
 			1 => "",
@@ -67,7 +73,7 @@ $APPLICATION->IncludeComponent(
 			1 => "",
 		),
 		"DETAIL_OFFERS_PROPERTY_CODE" => array(
-			0 => "",
+			0 => "CML2_ATTRIBUTES",
 			1 => "",
 		),
 		"DETAIL_PROPERTY_CODE" => array(
@@ -117,7 +123,7 @@ $APPLICATION->IncludeComponent(
 			1 => "HIT",
 			2 => "NEW_PRODUCT",
 			3 => "DOUBLE_BONUS",
-
+			4 => "",
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",
@@ -142,12 +148,13 @@ $APPLICATION->IncludeComponent(
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "24",
 		"PARTIAL_PRODUCT_PROPERTIES" => "Y",
-        "PRICE_CODE" => array(BASE_PRICE_CODE, OPT_PRICE_CODE),
+		"PRICE_CODE" => array($priceCode),
 		"PRICE_VAT_INCLUDE" => "Y",
 		"PRICE_VAT_SHOW_VALUE" => "Y",
 		"PRODUCT_DISPLAY_MODE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
-		"PRODUCT_PROPERTIES" => array(),
+		"PRODUCT_PROPERTIES" => array(
+		),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
 		"SECTIONS_SHOW_PARENT_NAME" => "Y",
@@ -168,7 +175,8 @@ $APPLICATION->IncludeComponent(
 		"SHOW_LINK_TO_FORUM" => "Y",
 		"SHOW_OLD_PRICE" => "Y",
 		"SHOW_PRICE_COUNT" => "1",
-		"SHOW_PRODUCT_TAGS" => "Y",
+		"SHOW_PRODUCT_TAGS_IN_SECTIONS" => "Y",
+		"SHOW_PRODUCT_TAGS_IN_RECOMMENDED" => "N",
 		"SHOW_TOP_ELEMENTS" => "N",
 		"SIDEBAR_DETAIL_SHOW" => "Y",
 		"SIDEBAR_PATH" => "",
@@ -242,7 +250,7 @@ $APPLICATION->IncludeComponent(
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",
-			"element" => "#SECTION_ID#/#ELEMENT_ID#/",
+			"element" => "#ELEMENT_ID#/#ELEMENT_CODE#/",
 			"compare" => "compare.php?action=#ACTION_CODE#",
 			"smart_filter" => "#SECTION_CODE_PATH#/filter/#SMART_FILTER_PATH#/apply/",
 		),

@@ -1,35 +1,74 @@
 class ProductCardCompare {
-    constructor(productElement) {
-        this.productElement = productElement;
+    constructor(data = {
+        productElement,
+        compareList
+    }, events = {
+        onDelete
+    }
+    ) {
+        this.productElement = data.productElement;
+        this.productId = this.productElement.dataset.id;
+        this.compareList = data.compareList;
+
+        this.onDelete = events.onDelete;
+
         this.compareApi = new CompareApi();
 
         this.hangEvents();
+        this.defineCompare();
+    }
+
+    defineCompare() {
+        this.removePlaceholder();
+        const inCompare = this.compareList[this.productId];
+        if (inCompare) {
+            this.changeStyles(true);
+        } else {
+            this.changeStyles(false);
+        }
     }
 
     hangEvents() {
-        const productId = this.productElement.dataset.id;
-        const compareIconDefault = this.productElement.querySelector('.product-card__compare--default');
-        const compareIconActive = this.productElement.querySelector('.product-card__compare--active');
+        this.productId = this.productElement.dataset.id;
+        this.compareIconDefault = this.productElement.querySelector('.product-card__compare--default');
+        this.compareIconActive = this.productElement.querySelector('.product-card__compare--active');
 
-        compareIconDefault.addEventListener('click', async () => this.addCompare(compareIconDefault, compareIconActive, productId));
-        compareIconActive.addEventListener('click', async () => this.deleteCompare(compareIconDefault, compareIconActive, productId));
+        this.compareIconDefault.addEventListener('click', async () => this.addCompare());
+        this.compareIconActive.addEventListener('click', async () => this.deleteCompare());
     }
 
-    async addCompare(compareIconDefault, compareIconActive, productId) {
-        const response = await this.compareApi.addToCompare(productId);
+    async addCompare() {
+        const response = await this.compareApi.addToCompare(this.productId);
         if (!response) {
             return;
         }
-        compareIconDefault.style.display = 'none';
-        compareIconActive.style.display = 'inline';
+        this.changeStyles(true);
     }
 
-    async deleteCompare(compareIconDefault, compareIconActive, productId) {
-        const response = await this.compareApi.deleteFromCompare(productId);
+    async deleteCompare() {
+        const response = await this.compareApi.deleteFromCompare(this.productId);
         if (!response) {
             return;
         }
-        compareIconActive.style.display = 'none';
-        compareIconDefault.style.display = 'inline';
+        if (this.onDelete) {
+            this.onDelete(this.productId);
+            return;
+        }
+        this.changeStyles(false);
+    }
+
+    changeStyles(state = true) {
+        if (state) {
+            this.compareIconDefault.style.display = 'none';
+            this.compareIconActive.style.display = 'inline';
+        } else {
+            this.compareIconActive.style.display = 'none';
+            this.compareIconDefault.style.display = 'inline';
+        }
+    }
+
+    removePlaceholder() {
+        const placeholder = this.productElement.querySelector('.placeholder--compare');
+        placeholder.remove();
     }
 }

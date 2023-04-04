@@ -1,7 +1,13 @@
 class ProductCardBasket {
-    constructor(productElement) {
-        this.productElement = productElement;
+    constructor(data = {
+        productElement,
+        basketList
+    }
+    ) {
+        this.productElement = data.productElement;
         this.productId = this.productElement.dataset.id;
+        this.basketList = data.basketList;
+        this.productAvailable = this.productElement.dataset.available;
         this.productQuantity = this.productElement.dataset.productQuantity;
         this.offersQuantity = this.productElement.dataset.offersQuantity;
         this.basketApi = new BasketApi();
@@ -10,17 +16,35 @@ class ProductCardBasket {
     }
 
     hangEvents() {
-        const newArrivalsButton = this.productElement.querySelector('.product-card__availability');
-        if (newArrivalsButton) {
-            newArrivalsButton.addEventListener('click', (event) => {
-                event.stopPropagation();
-                new ProductSubscribeModal(this.productId);
-            });
+        this.removePlaceholder();
+        if (!this.productAvailable) {
+            this.createNewArrivalsButton();
             return;
         }
+        const productInBasket = this.basketList[this.productId];
+        if (productInBasket) {
+            this.createCounter(productInBasket.QUANTITY);
+        } else {
+            this.createAddToBasketButton();
+        }
+    }
 
-        this.hangCounterEvents();
-        this.hangAddToBasketButtonEvents();
+    removePlaceholder() {
+        const basketElement = this.productElement.querySelector('.product-card__add');
+        basketElement.classList.remove('placeholder-glow');
+        const placeholder = basketElement.querySelector('.placeholder');
+        placeholder.remove();
+    }
+
+    hangNewArrivalsButtonEvents() {
+        const newArrivalsButton = this.productElement.querySelector('.product-card__availability');
+        if (!newArrivalsButton) {
+            return;
+        }
+        newArrivalsButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            new ProductSubscribeModal(this.productId);
+        });
     }
 
     hangAddToBasketButtonEvents() {
@@ -204,15 +228,21 @@ class ProductCardBasket {
     }
 
     createAddToBasketButton() {
-        const block = this.productElement.querySelector('.product-card__add--main');
+        const block = this.productElement.querySelector('.product-card__add');
         block.innerHTML = this.getAddToBasketButtonHtml();
         this.hangAddToBasketButtonEvents();
     }
 
     createCounter(quantity = 1) {
-        const block = this.productElement.querySelector('.product-card__add--main');
+        const block = this.productElement.querySelector('.product-card__add');
         block.innerHTML = this.createCounterHtml(quantity);
         this.hangCounterEvents();
+    }
+
+    createNewArrivalsButton() {
+        const block = this.productElement.querySelector('.product-card__add');
+        block.innerHTML = this.createNewArrivalsButtonHtml();
+        this.hangNewArrivalsButtonEvents();
     }
 
     getAddToBasketButtonHtml() {
@@ -230,6 +260,14 @@ class ProductCardBasket {
                 <input type="number" class="form-control" value="${value}" />
                 <span class="btn btn-primary product__add-plus">+</span>
              </span>`
+        )
+    }
+
+    createNewArrivalsButtonHtml() {
+        return (
+            `<button class="btn btn-outline-primary product-card__availability">
+                Cообщить о поступлении
+            </button>`
         )
     }
 }

@@ -1,0 +1,59 @@
+window.addEventListener('DOMContentLoaded', () => {
+    class ProductDetail {
+        constructor() {
+            this.productElement = document.querySelector('.product');
+            this.productId = this.productElement.dataset.id;
+
+            new ProductQuestionForm();
+            new PhotosSlider();
+            new Tabs();
+            new DescriptionBlock();
+            new RecommendedProductsSlider();
+            new VideoReviewsSlider();
+
+            this.hangPersonalProductDataEvents();
+            this.hangShareNetworkEvents();
+            this.hangTooltipsEvents();
+        }
+
+        hangPersonalProductDataEvents() {
+            const recommendedProductElements = document.querySelectorAll('.product-card');
+            const productIds = Array.from(recommendedProductElements).map(element => element.dataset.id);
+            productIds.push(this.productId);
+            const productsDataApi = new ProductsDataApi();
+            productsDataApi.getData(productIds)
+                .then(response => {
+                    const { FAVORITES, COMPARE, BASKET, RATINGS } = response;
+                    new ProductFavorites(FAVORITES);
+                    new ProductCompare(COMPARE);
+                    new ProductBasket(BASKET);
+                    new RatingStarsHelper({ productElement: this.productElement, ratingsList: RATINGS });
+                    new ProductCards(response);
+                })
+        }
+
+        hangTooltipsEvents() {
+            const tooltipContainers = document.querySelectorAll('.product-photos__tags .info');
+            tooltipContainers.forEach(container => {
+                const wrapperElement = container.querySelector('span:first-child');
+                const tooltipElement = container.querySelector('.tooltip');
+                new Tooltip(wrapperElement, tooltipElement)
+            })
+        }
+
+        hangShareNetworkEvents() {
+            const shareNetworkButton = document.querySelector('.product__share-toggle');
+            const shareNetworkPopup = document.querySelector('.product__share-modal');
+            shareNetworkButton.addEventListener('click', () => {
+                shareNetworkPopup.classList.toggle('product__share-modal--show');
+            });
+            window.addEventListener('click', event => {
+                if (!shareNetworkPopup.contains(event.target) && !shareNetworkButton.contains(event.target)) {
+                    shareNetworkPopup.classList.remove('product__share-modal--show');
+                }
+            });
+        }
+    }
+
+    new ProductDetail();
+})

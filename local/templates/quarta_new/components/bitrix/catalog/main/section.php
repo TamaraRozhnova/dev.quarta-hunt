@@ -17,7 +17,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
         [
-            "params" => $arParams,
+            "params" => array_merge($arParams, $filterParams),
             "result" => $arResult,
             "currentSection" => $arCurSection,
             "component" => $component
@@ -69,7 +69,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
             <?
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
                 [
-                    "params" => $arParams,
+                    "params" => array_merge($arParams, $filterParams),
                     "result" => $arResult,
                     "currentSection" => $arCurSection,
                     "component" => $component

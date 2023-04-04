@@ -1,9 +1,14 @@
 class BaseSlider {
-    static breakpointMobile = 580;
+    static breakpointMobile = 576;
+    static breakpointTablet = 992;
 
     constructor(
         swiperSelector = '.swiper',
-        options = {[BaseSlider.breakpointMobile]: {}, default: {}},
+        options = {
+            [BaseSlider.breakpointTablet]: {},
+            [BaseSlider.breakpointMobile]: {},
+            default: {}
+        }
     )
     {
         this.swiperSelector = swiperSelector;
@@ -14,19 +19,27 @@ class BaseSlider {
         return new Swiper(this.swiperSelector, {
             slidesPerView: 1,
             spaceBetween: 20,
-            linesCount: 2,
-            multiLine: false,
             navigation: {
                 nextEl: '.base-slider__next',
                 prevEl: '.base-slider__prev',
             },
             ...this.options.default,
             breakpoints: {
-                [BaseSlider.breakpointMobile]: {
-                    slidesPerView: 2,
-                    ...this.options[BaseSlider.breakpointMobile]
-                },
+                ...this.makeBreakPoints()
             }
         });
+    }
+
+    makeBreakPoints() {
+        const result = {};
+        Object.keys(this.options).forEach(key => {
+            if (key == BaseSlider.breakpointMobile) {
+                result[key] = { slidesPerView: 2 };
+            }
+            if (Object.keys(this.options[key]).length && key !== 'default') {
+                result[key] = { ...this.options[key] };
+            }
+        });
+        return result;
     }
 }

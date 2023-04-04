@@ -75,6 +75,7 @@ $APPLICATION->IncludeComponent(
 			0 => "bottom",
 		),
 		"DISPLAY_MODE" => "extended",
+		"DETAIL_URL" => "/catalog/#ELEMENT_ID#/#ELEMENT_CODE#/",
 		"PRICE_DISPLAY_MODE" => "Y",
 		"SHOW_DISCOUNT_PERCENT" => "Y",
 		"DISCOUNT_PERCENT_POSITION" => "bottom-right",

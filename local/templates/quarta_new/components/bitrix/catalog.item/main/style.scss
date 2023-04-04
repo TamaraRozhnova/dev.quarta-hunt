@@ -44,6 +44,13 @@
         z-index: 1;
         color: $gray-600;
 
+        .placeholder {
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            margin-left: 0.5rem;
+        }
+
         img,
         svg {
             margin-left: 0.5rem;
@@ -109,6 +116,27 @@
             .btn {
                 width: auto;
                 border-radius: $border-radius-sm !important;
+            }
+        }
+
+        &.placeholder-glow {
+            .placeholder {
+                width: 100%;
+                height: 48px;
+                border-radius: 0.3125rem;
+            }
+        }
+    }
+
+    .stars {
+        &.placeholder-glow {
+            display: flex;
+            gap: 2px;
+
+            .placeholder {
+                width: 12px;
+                height: 12px;
+                border-radius: 0.3125em;
             }
         }
     }

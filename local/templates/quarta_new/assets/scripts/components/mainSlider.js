@@ -55,7 +55,7 @@ class MainSlider {
                 slideChangeTransitionEnd: () => this.changeSlideTransitionEnd(),
             },
             breakpoints: {
-                580: {
+                576: {
                     height: this.compact ? 482 : 964,
                 },
                 992: {

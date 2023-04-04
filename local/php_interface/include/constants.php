@@ -4,6 +4,9 @@ const COMPARE_LIST_NAME = 'CATALOG_COMPARE_LIST';
 
 const CATALOG_IBLOCK_ID = 16;
 
+const OPT_PRICE_ID = 3;
+const BASE_PRICE_ID = 1;
+
 const OPT_PRICE_CODE = 'OPT';
 const BASE_PRICE_CODE = 'BASE';
 

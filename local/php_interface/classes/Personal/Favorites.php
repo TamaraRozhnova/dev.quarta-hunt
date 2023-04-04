@@ -194,14 +194,8 @@ class Favorites
 
         while ($product = $productsResource->GetNextElement()) {
             $fields = $product->GetFields();
-            $fields['PROPERTIES'] = $fields->GetProperties();
+            $fields['PROPERTIES'] = $product->GetProperties();
             $fields['PRICE'] = CPrice::GetBasePrice($fields['ID']);
-            foreach ($fields['PROPERTIES']['MORE_PHOTO']['VALUE'] as $value) {
-                $fields['PROPERTIES']['MORE_PHOTO']['SRC'][] = CFile::GetPath($value);
-            }
-            foreach ($fields['PROPERTIES']['FILES']['VALUE'] as $value) {
-                $fields['PROPERTIES']['FILES']['SRC'][] = CFile::GetPath($value);
-            }
             $data[] = $fields;
         }
 

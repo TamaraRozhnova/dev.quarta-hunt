@@ -5,10 +5,14 @@ class Modal {
             modalOpenElementSelector: null,
             modalSelector: '.modal',
             isCreateMode: false,
+            isVideoMode: false,
+            isLarge: false,
             title: null
         }
     )
     {
+        this.isVideoMode = data.isVideoMode;
+        this.isLarge = data.isLarge;
         this.isCreateMode = data.isCreateMode;
         if (this.isCreateMode) {
             this.modalTitle = data.title;
@@ -22,7 +26,6 @@ class Modal {
         this.closeModalElement = this.modalElement.querySelector('.modal__close');
         this.modalContentElement = this.modalElement.querySelector('.modal-content');
         this.modalBodyElement = this.modalElement.querySelector('.modal-body');
-
         this.#hangEvents();
     }
 
@@ -38,6 +41,9 @@ class Modal {
         const modal = document.createElement('div');
         modal.id = this.createRandomId();
         modal.classList.add('modal');
+        if (this.isVideoMode) {
+            modal.classList.add('modal--video-mode');
+        }
         modal.insertAdjacentHTML('afterbegin', this.#createModalHtml());
         document.body.appendChild(modal);
         return modal;
@@ -45,7 +51,7 @@ class Modal {
 
     #createModalHtml() {
         return (
-            `<div class="modal-dialog">
+            `<div class="modal-dialog${this.isLarge ? ' modal-xl' : ''}">
                 <div class="modal__close">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-x" viewBox="0 0 16 16">

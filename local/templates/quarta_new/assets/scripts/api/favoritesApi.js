@@ -10,7 +10,6 @@ class FavoritesApi {
 
         this.headerTopFavoritesBadge = document.querySelector('.header__top-item .favorites-badge');
         this.headerBottomFavoritesBadge = document.querySelector('.header__bottom-item .favorites-badge');
-        this.favoritesCount = window.favoritesCount || 0;
         this.isAuth = window.isAuth;
     }
 
@@ -38,14 +37,14 @@ class FavoritesApi {
     async addToFavorites(productId) {
         if (!this.isAuth) {
             this.addProductToCookie(productId);
-            this.favoritesCount++;
+            window.favoritesCount++;
             this.displayFavoritesCount();
             return true;
         }
         const data = { action: this.action.ADD, id: productId }
         const response = await Request.fetch(this.url, data);
         if (response) {
-            this.favoritesCount++;
+            window.favoritesCount++;
             this.displayFavoritesCount();
         }
         return response;
@@ -54,28 +53,28 @@ class FavoritesApi {
     async deleteFromFavorites(productId) {
         if (!this.isAuth) {
             this.deleteProductFromCookie(productId);
-            this.favoritesCount--;
+            window.favoritesCount--;
             this.displayFavoritesCount();
             return true;
         }
         const data = { action: this.action.DELETE, id: productId }
         const response = await Request.fetch(this.url, data);
         if (response) {
-            this.favoritesCount--;
+            window.favoritesCount--;
             this.displayFavoritesCount();
         }
         return response;
     }
 
     displayFavoritesCount() {
-        if (!this.favoritesCount) {
+        if (!window.favoritesCount) {
             this.headerTopFavoritesBadge.style.display = 'none';
             this.headerBottomFavoritesBadge.style.display = 'none';
             return;
         }
-        this.headerTopFavoritesBadge.textContent = this.favoritesCount;
+        this.headerTopFavoritesBadge.textContent = window.favoritesCount;
         this.headerTopFavoritesBadge.style.display = 'block';
-        this.headerBottomFavoritesBadge.textContent = this.favoritesCount;
+        this.headerBottomFavoritesBadge.textContent = window.favoritesCount;
         this.headerBottomFavoritesBadge.style.display = 'flex';
     }
 }

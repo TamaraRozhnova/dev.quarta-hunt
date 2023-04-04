@@ -30,6 +30,7 @@ class ProductSubscribeModal extends Modal {
         this.setDisableSubmitButton(true);
         this.clearError();
         if (!this.isValidData()) {
+            this.setDisableSubmitButton(false);
             return;
         }
         try {

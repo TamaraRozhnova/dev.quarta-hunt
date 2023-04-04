@@ -86,7 +86,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     Загрузка
                 </div>
             </div>
-
             <div class="products-data products-data--show">
                 <? if (count($arResult['ITEMS']) > 0) { ?>
                     <div class="row">

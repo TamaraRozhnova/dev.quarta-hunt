@@ -21,6 +21,16 @@ class User
     }
 
 
+    public function getById(int $id)
+    {
+        $userResource = CUser::GetByID($id);
+        if ($user = $userResource->Fetch()) {
+            return $user;
+        }
+        return false;
+    }
+
+
     public function getId(): ?string
     {
         return $this->user->GetID();
@@ -40,6 +50,30 @@ class User
         }
 
         return false;
+    }
+
+
+    public function getUserPriceId(): string {
+        if ($this->isWholesaler()) {
+            return OPT_PRICE_ID;
+        }
+        return BASE_PRICE_ID;
+    }
+
+
+    public function getUserPriceCodeId(): string {
+        if ($this->isWholesaler()) {
+            return OPT_PRICE_CODE_ID;
+        }
+        return BASE_PRICE_CODE_ID;
+    }
+
+
+    public function getUserPriceCode(): string {
+        if ($this->isWholesaler()) {
+            return OPT_PRICE_CODE;
+        }
+        return BASE_PRICE_CODE;
     }
 
 }

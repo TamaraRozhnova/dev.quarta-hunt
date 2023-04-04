@@ -45,19 +45,25 @@ class Basket
     /**
      * Получает список ID товаров и их количества в корзине
      * @return array - возвращает ассоциативный массив, где:
-     * ключ — идентификатор товара, значение — ассоциативный массив свойств товара в корзине
+     * ключ — идентификатор товара или ТП, значение — ассоциативный массив свойств товара в корзине
      */
     public function getProductsInBasket(): array
     {
         $result = [];
         foreach ($this->basket as $basketItem) {
             $productId = $basketItem->getProductId();
-            $productData = CCatalogSku::GetProductInfo($basketItem->getProductId());
+            $quantity = $basketItem->getQuantity();
+            $offerId = null;
+            $productData = CCatalogSku::GetProductInfo($productId);
             if (is_array($productData)) {
+                $offerId = $productId;
                 $productId = $productData['ID'];
             }
             $productQuantityAccumulated = $result[$productId]['QUANTITY'] ?? 0;
-            $result[$productId] = ['ID' => $productId, 'QUANTITY' => $productQuantityAccumulated + $basketItem->getQuantity()];
+            $result[$productId] = ['ID' => $productId, 'QUANTITY' => $productQuantityAccumulated + $quantity];
+            if ($offerId) {
+                $result[$offerId] = ['ID' => $offerId, 'QUANTITY' => $quantity];
+            }
         }
         return $result;
     }
@@ -200,10 +206,9 @@ class Basket
                 $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
                 $basketItem->setField('NOTES', serialize($notes));
                 $basketItem->setField('PRICE',  !$isOpt ? $price : $price3);
-                $basketItem->setField('CUSTOM_PRICE',  !$isOpt ? 'N' : 'Y');
                 $this->basket->save();
             } else {
-                $this->createBasketItem($productId, $quantity, ['NOTES' => $notes, 'PRICE' => !$isOpt ? $price : $price3, 'CUSTOM_PRICE' => !$isOpt ? 'N' : 'Y', 'NAME' => $product->getFieldValue('NAME')]);
+                $this->createBasketItem($productId, $quantity, ['NOTES' => $notes, 'PRICE' => !$isOpt ? $price : $price3, 'NAME' => $product->getFieldValue('NAME')]);
             }
             return true;
         } catch (\Exception $e) {
@@ -285,7 +290,7 @@ class Basket
     }
 
 
-    private function createBasketItem(int $productId, int $quantity, array $data): void
+    private function createBasketItem(int $productId, int $quantity, array $data = []): void
     {
         $basketItem = $this->basket->createItem('catalog', $productId);
         $atFields = [
