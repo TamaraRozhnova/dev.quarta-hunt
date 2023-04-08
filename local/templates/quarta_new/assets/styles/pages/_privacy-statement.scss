@@ -1,0 +1,12 @@
+@import '../assets/styles/base-imports';
+
+.privacy-policy {
+    background-color: $gray-100;
+    color: $dark;
+    font-size: 1rem;
+    padding-bottom: 8rem;
+
+    .row {
+        justify-content: center;
+    }
+}

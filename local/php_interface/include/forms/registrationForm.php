@@ -88,7 +88,7 @@
 
 <small class="wholesale__form-consent">
     Нажимая кнопку «Отправить»,
-    <a href="/polozhenie-o-konfidentsialnosti">
+    <a href="/privacy-statement">
         я даю свое согласие на обработку моих персональных данных.
     </a>
 </small>

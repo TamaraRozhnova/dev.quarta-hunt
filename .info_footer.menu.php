@@ -2,42 +2,42 @@
 $aMenuLinks = Array(
 	Array(
 		"Гарантии", 
-		"/warranty", 
+		"/warranty/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Оплата", 
-		"/payment", 
+		"/payment/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Доставка", 
-		"/delivery", 
+		"/delivery/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Контакты", 
-		"/contacts", 
+		"/contacts/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Вакансии", 
-		"/jobs", 
+		"/jobs/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Гарантии", 
-		"/contacts", 
+		"/contacts/",
 		Array(), 
 		Array(), 
 		"" 

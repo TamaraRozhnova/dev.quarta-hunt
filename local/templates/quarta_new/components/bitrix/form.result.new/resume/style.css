@@ -1,0 +1,11 @@
+.resume-form label {
+  font-size: 0.75rem;
+  margin-bottom: 0.3125rem;
+}
+.resume-form .invalid-feedback {
+  font-size: 0.75rem;
+}
+
+.resume-form__success-message {
+  margin-bottom: 0;
+}

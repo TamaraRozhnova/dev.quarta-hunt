@@ -1,0 +1,230 @@
+@import '../assets/styles/base-imports';
+
+.job {
+    background-color: $gray-100;
+    padding-bottom: 8.5rem;
+
+    h2 {
+        font-size: 2.188rem;
+        margin-bottom: 1.875rem;
+    }
+
+    h4 {
+        font-size: 1.625rem;
+        margin-bottom: 2.5rem;
+    }
+
+    &__work-is {
+        &--lg {
+            display: none;
+        }
+    }
+    &__work-is-item {
+        width: 285px;
+        margin-bottom: 2.25rem;
+
+        h4 {
+            display: flex;
+            align-items: center;
+            padding: 0.875rem;
+            background-color: #EEEFF3;
+            border-radius: $border-radius;
+            margin-bottom: 1.25rem;
+        }
+
+        p {
+            font-size: 1rem;
+            max-width: 85%;
+        }
+
+        img.icon {
+            margin-right: 1.25rem;
+            max-height: 2.5rem;
+            width: auto;
+        }
+    }
+
+    &__image {
+        width: 100%;
+
+        img {
+            width: 100%;
+            border-radius: $border-radius-lg;
+        }
+    }
+
+    &__body {
+        font-size: 1rem;
+
+        b {
+            color: $dark;
+        }
+
+        li {
+            margin: 0;
+        }
+    }
+
+    &__responsibilities {
+        ul,
+        ol {
+            padding-left: 1.25rem;
+        }
+
+        li {
+            margin: 1rem 0;
+        }
+    }
+
+    &__requirements {
+        li {
+            display: block;
+            position: relative;
+
+            &::before {
+                content: '-';
+                position: absolute;
+                top: 0;
+                left: -1.2em;
+                left: -1.2ch;
+            }
+        }
+    }
+
+    &__conditions {
+        ul {
+            padding-left: 1.75rem;
+        }
+
+        li {
+            position: relative;
+            display: block;
+            margin: 1.25rem 0 !important;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0.1rem;
+                left: -1.75rem;
+                width: 14px;
+                height: 11px;
+                background-image: url("data:image/svg+xml,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.44713 10.5406C4.55093 10.6827 4.68776 10.7986 4.84629 10.8784C5.00481 10.9583 5.18046 11 5.35868 11C5.5369 11 5.71256 10.9583 5.87108 10.8784C6.02961 10.7986 6.16644 10.6827 6.27024 10.5406L13.6967 0.439337C13.8307 0.255992 13.6967 0 13.4674 0H11.8136C11.4539 0 11.1119 0.169508 10.9003 0.460092L5.36045 8.00146L2.84971 4.58363C2.63813 4.29651 2.2996 4.12354 1.93639 4.12354H0.282552C0.0533414 4.12354 -0.0806586 4.37953 0.0533414 4.56288L4.44713 10.5406Z' fill='%23EB5806'/%3E%3C/svg%3E%0A");
+            }
+        }
+    }
+
+    &__salary {
+        color: $dark;
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 1.875rem 0 7.5rem;
+    }
+
+    &__head-where {
+        font-size: 1rem;
+        margin-bottom: 8.5rem;
+    }
+
+    &__head-img {
+        display: none;
+    }
+    @include media-breakpoint-down('lg') {
+        &__work-is {
+            display: none;
+
+            &--lg {
+                display: block;
+            }
+        }
+
+        &__salary {
+            margin: 0.938rem 0;
+        }
+
+        .card {
+            margin-bottom: 2.5rem;
+
+            .btn {
+                font-size: 0.875rem;
+            }
+
+            &-body {
+                padding: 1.875rem 0.938rem;
+            }
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 30px;
+        }
+
+        &__head-where {
+            grid-area: where;
+            margin-bottom: 0.625rem;
+        }
+
+        &__image {
+            display: none;
+        }
+
+        &__head-img {
+            grid-area: img;
+            display: block;
+            img {
+                width: 100%;
+            }
+        }
+
+        &__head-top {
+            grid-area: head;
+        }
+
+        &__head {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            grid-template-areas: "head img" "where img";
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            margin-bottom: 1.25rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+        }
+    }
+    @include media-breakpoint-down('sm') {
+        &__head {
+            display: block;
+        }
+
+        &__head-where {
+            display: flex;
+            flex-direction: column;
+            span {
+                width: 100%;
+                margin-bottom: 0.625rem;
+            }
+        }
+
+        &__body {
+            font-size: 0.875rem;
+        }
+        .container {
+            padding: 0 15px;
+        }
+
+        h2 {
+            font-size: 1.438rem;
+            margin-bottom: 0.938rem;
+        }
+
+        h4 {
+            font-size: 1.125rem;
+            margin-bottom: 1.688rem;
+        }
+    }
+}

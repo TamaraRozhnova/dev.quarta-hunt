@@ -19,7 +19,6 @@ class Request {
 
 
     static async fetchWithFormData(url, formData) {
-        console.log(formData.get('flaws'))
         const options = {
             method: 'POST',
             body: formData

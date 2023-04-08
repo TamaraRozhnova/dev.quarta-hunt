@@ -1,0 +1,87 @@
+.jobs {
+  background-color: #f9f9fa;
+  padding-bottom: 8.75rem;
+}
+.jobs__item {
+  font-size: 1rem;
+}
+.jobs__item h4 {
+  font-size: 1.625rem;
+}
+.jobs__item .card-body p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+}
+.jobs__item-head {
+  display: flex;
+  flex-direction: column;
+}
+.jobs__item-actions {
+  position: absolute;
+  bottom: 1.875rem;
+  left: 1rem;
+}
+.jobs__item-image {
+  width: 100%;
+}
+.jobs__item-image img {
+  border-radius: 0.875rem;
+  max-width: 100%;
+}
+.jobs__filters {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.563rem;
+}
+@media (max-width: 991.98px) {
+  .jobs__item-tags {
+    display: flex;
+    flex-direction: column;
+  }
+  .jobs__item-actions {
+    position: static;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    bottom: 0;
+    left: 0;
+  }
+  .jobs__item-actions .btn {
+    width: calc(50% - 15px);
+  }
+  .jobs__item h4 {
+    font-size: 1.25rem;
+  }
+  .jobs .container {
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 575.98px) {
+  .jobs .container {
+    padding: 0 15px;
+  }
+  .jobs .card-body {
+    padding: 1.25rem 0.938rem;
+  }
+  .jobs .select {
+    z-index: auto;
+  }
+  .jobs__item-actions .btn {
+    width: 100%;
+    font-size: 0.875rem;
+  }
+  .jobs__item-actions .btn:first-of-type {
+    margin-bottom: 0.375rem;
+  }
+  .jobs__item {
+    font-size: 0.75rem;
+  }
+  .jobs__item h4 {
+    font-size: 1.125rem;
+  }
+  .jobs__item .card-body p {
+    font-size: 0.875rem;
+  }
+}

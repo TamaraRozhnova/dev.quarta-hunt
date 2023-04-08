@@ -58,7 +58,7 @@ class RegistrationForm
     /**
      * @param array $data - ассоциативный массив, где:
      * ключ — input name, значение — input value
-     * @return array|bool - возвращает true, если вопрос ушел успешно, иначе
+     * @return array|bool - возвращает true, если регитсрация прошла успешно, иначе
      * ассоциативный массив с ключом 'errors' и значением - текст ошибки
      */
     public function registerUser(array $data)

@@ -10,9 +10,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <div class="container">
         <h2>Результаты поиска</h2>
 
-        <? if (count($arResult['ITEMS']) > 0) { ?>
+        <? if ($arResult['COUNT'] > 0) { ?>
             <p class="mb-4">
-                Найдено <?= count($arResult['ITEMS']) ?> Товаров по вашему запросу
+                Найдено <?= $arResult['DISPLAY_COUNT'] ?> Товаров по вашему запросу
                 <span class="text-primary"><?= $_GET['q'] ?></span>
             </p>
         <? } else { ?>
@@ -38,6 +38,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     ); ?>
                 </div>
             <? } ?>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <?= $arResult['NAV_STRING'] ?>
+            </div>
         </div>
     </div>
 </div>

@@ -2,14 +2,14 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
+$APPLICATION->SetTitle('Оптовым покупателям - Quarta Hunt');
+
 use General\User;
 
 $user = new User();
 $isWholesaler = $user->isWholesaler();
 
-?>
-
-<div class="wholesale">
+?><div class="wholesale">
     <div class="jumbotron-vue jumbotron-vue--large" style="background-image: url('<?= SITE_TEMPLATE_PATH ?>/assets/images/static/wholesale.jpg')">
         <div class="container">
             <div class="jumbotron-vue__body">
@@ -93,7 +93,7 @@ $isWholesaler = $user->isWholesaler();
 
                     <small class="wholesale__form-consent">
                         Нажимая кнопку «Отправить»,
-                        <a href="/polozhenie-o-konfidentsialnosti">
+                        <a href="/privacy-statement">
                             я даю свое согласие на обработку моих персональных данных.
                         </a>
                     </small>

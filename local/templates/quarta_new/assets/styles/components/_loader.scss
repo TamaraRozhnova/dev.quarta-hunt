@@ -5,6 +5,12 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    min-height: 15rem;
+
+    .spinner-border {
+        width: 2rem;
+        height: 2rem;
+    }
 
     &--show {
         display: flex;

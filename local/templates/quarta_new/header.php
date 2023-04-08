@@ -33,7 +33,7 @@ $basketItemsCount = $basket->getProductsCount();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title><? $APPLICATION->ShowTitle(); ?></title>
+    <title><? $APPLICATION->ShowTitle(false); ?></title>
     <?
     $APPLICATION->ShowHead();
     $asset->addCss(SITE_TEMPLATE_PATH . "/assets/fonts/stylesheet.css");
@@ -158,7 +158,7 @@ $basketItemsCount = $basket->getProductsCount();
                     <form>
                         <div class="input-group search-input">
                             <input type="text" class="form-control border-primary bg-white"
-                                   placeholder="Искать товары..."/>
+                                   placeholder="Искать товары..." value="<?= getSearchString() ?>"/>
                             <button class="btn btn-primary" type="submit">
                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">

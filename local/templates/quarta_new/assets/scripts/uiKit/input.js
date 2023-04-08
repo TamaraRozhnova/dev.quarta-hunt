@@ -61,6 +61,10 @@ class Input {
         return this.inputElement.value;
     }
 
+    getDataAttribute(name) {
+        return this.inputElement.dataset[name];
+    }
+
     setDisabled(value) {
         this.inputElement.disabled = value;
     }

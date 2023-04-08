@@ -36,7 +36,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             <div class="checkbox form-check checkbox--large">
                                 <input id="i_1" type="checkbox" class="form-check-input" required>
                                 <label for="i_1" class="form-check-label">
-                                    <a href="/polozhenie-o-konfidentsialnosti">
+                                    <a href="/privacy-statement">
                                         Я соглашаюсь на обработку персональных данных
                                     </a>
                                 </label>

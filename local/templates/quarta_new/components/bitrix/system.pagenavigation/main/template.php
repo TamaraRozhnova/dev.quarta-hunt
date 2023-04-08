@@ -17,7 +17,7 @@ $nextPage = $totalPages > $currentPage ? $currentPage + 1 : 0;
 
 <div class="pagination">
     <? if ((int)$arResult['nStartPage'] > 1) { ?>
-        <div class="btn btn-sm mx-1" data-id="1">1</div>
+        <div class="btn btn-sm mx-1" data-id="1"></div>
     <? } ?>
 
     <? if ($totalPages > 5 && $currentPage > 3) { ?>

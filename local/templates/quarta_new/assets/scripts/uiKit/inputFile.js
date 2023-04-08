@@ -24,13 +24,18 @@ class InputFile {
         return this.files;
     }
 
+    getDataAttribute(name) {
+        return this.inputFile.dataset[name];
+    }
+
     hangEvents() {
         this.handleLoadFile();
     }
 
     handleLoadFile() {
         this.inputFile.addEventListener('change', (event) => {
-            const files = event.target.files;
+            const files = [...event.target.files];
+            this.inputFile.value = null;
             if (!files) {
                 return;
             }

@@ -15,9 +15,16 @@ function getUserFullNameOrEmail(): string {
     return $USER->GetEmail();
 }
 
+function getSearchString(): string {
+    if (CSite::InDir('/search/')) {
+        return filter_var($_GET['q'], FILTER_SANITIZE_STRING);
+    }
+    return '';
+}
+
 function showBreadcrumb(): bool {
     $notAllowedUrls = ['/catalog/index.php'];
-    $allowedUrls = ['/catalog/', '/news/', '/favorites/', '/compare/'];
+    $allowedUrls = ['/catalog/', '/search/', '/news/', '/favorites/', '/compare/', '/jobs/'];
 
     foreach ($notAllowedUrls as $url) {
         if (CSite::InDir($url)) {

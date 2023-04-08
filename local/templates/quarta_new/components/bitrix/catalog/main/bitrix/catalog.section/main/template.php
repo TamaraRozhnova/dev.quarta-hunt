@@ -73,15 +73,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 </div>
             </div>
 
-            <div class="loading" style="min-height: 15rem">
-                <div
-                    class="spinner-border text-primary"
-                    style="width: 2rem; height: 2rem"
-                    role="status"
-                >
+            <div class="loading">
+                <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Загрузка</span>
                 </div>
-
                 <div class="loading__text">
                     Загрузка
                 </div>
