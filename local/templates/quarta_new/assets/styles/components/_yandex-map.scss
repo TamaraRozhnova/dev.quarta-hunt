@@ -1,0 +1,61 @@
+@import '../assets/styles/base-imports';
+
+.yandex-map {
+    height: 560px;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+
+    & > div {
+        height: 100%;
+    }
+    @include media-breakpoint-down('md') {
+        [class*="-balloon"] {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.09);
+            border-radius: 14px;
+            background-color: #fff;
+        }
+        [class*="-balloon__close"] {
+            display: none;
+        }
+        [class*="-balloon__content"] {
+            background-color: unset;
+        }
+        [class*="-balloon__close"] + [class*="-balloon__content"] {
+            margin-right: 0;
+        }
+    }
+}
+ymaps[class*="-balloon__close-button"] {
+    background-image: url('assets/icons/yandex-map-close.svg');
+}
+
+ymaps[class$="-balloon__tail"] {
+    background: unset;
+    background-color: #fff;
+    box-shadow: unset;
+}
+
+ymaps[class*="-balloon"] {
+    box-shadow: unset;
+}
+
+ymaps[class*="-balloon__content"] {
+    border: 0;
+    font-size: 0.75rem;
+    color: #808D9A;
+    padding: 2rem 1.875rem;
+
+    b, span {
+        color: #333333;
+    }
+    @include media-breakpoint-down('sm') {
+        padding: 1.375rem 0.813rem;
+    }
+}
+
+ymaps[class$="-balloon__layout"] {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.09);
+    border-radius: 14px;
+    overflow: hidden;
+    transform: translateX(-35%);
+}
