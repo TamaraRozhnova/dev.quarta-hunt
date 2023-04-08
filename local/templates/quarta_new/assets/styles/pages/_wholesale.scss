@@ -1,0 +1,283 @@
+@import '../assets/styles/base-imports';
+
+.wholesale {
+    background-color: $white;
+
+    &__bottom {
+        position: relative;
+        z-index: 1;
+    }
+
+    .has-checkmark {
+        position: relative;
+        padding-left: calc(20px + 0.5ch);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0.25em;
+            left: 0;
+            display: inline-block;
+            width: 20px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='16' viewBox='0 0 20 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.46855 15.3318C6.61953 15.5385 6.81856 15.707 7.04914 15.8232C7.27973 15.9394 7.53522 16 7.79445 16C8.05368 16 8.30917 15.9394 8.53975 15.8232C8.77034 15.707 8.96937 15.5385 9.12034 15.3318L19.9224 0.639036C20.1173 0.372352 19.9224 0 19.589 0H17.1834C16.6602 0 16.1627 0.246556 15.855 0.669225L7.79701 11.6385L4.14503 6.6671C3.83728 6.24946 3.34488 5.99788 2.81657 5.99788H0.410985C0.0775875 5.99788 -0.117322 6.37023 0.0775874 6.63691L6.46855 15.3318Z' fill='%23EB5806'/%3E%3C/svg%3E%0A");
+        }
+    }
+
+    .container {
+        font-size: 1rem;
+
+        h2,
+        h3,
+        h4 {
+            max-width: 420px;
+        }
+
+        p {
+            max-width: 540px;
+        }
+
+        figure {
+            width: 100%;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .jumbotron-vue {
+        h2 {
+            max-width: none;
+        }
+    }
+
+    .wholesale__subtitle {
+        color: rgba(255, 255, 255, 0.62);
+    }
+}
+
+@media (max-width: 991px) {
+    .wholesale {
+        &::v-deep {
+            .jumbotron-vue {
+                h1 {
+                    line-height: 3.75rem;
+                }
+            }
+
+            .jumbotron-vue__body {
+                padding: 6rem 0;
+            }
+
+            .jumbotron-vue__q {
+                left: -267px;
+            }
+
+            .wholesale__form-checkbox {
+                label {
+                    color: #808D9A;
+                }
+            }
+        }
+
+        .container {
+            h3 {
+                max-width: 480px;
+                font-size: 20px;
+                line-height: 24px;
+            }
+        }
+    }
+    .wholesale__head {
+        display: flex;
+        flex-direction: column;
+    }
+    .wholesale__head-descr {
+        width: 360px;
+    }
+    .wholesale__form {
+        padding-top: 0 !important;
+        margin-bottom: 0 !important;
+        display: flex;
+        flex-direction: column;
+    }
+    .wholesale__form-item {
+        width: 100%;
+
+        &:not(:last-child) {
+            margin-bottom: 32px;
+        }
+    }
+    .wholesale__form-consent {
+        display: block;
+        max-width: 480px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .wholesale__advantages {
+        padding-top: 0 !important;
+    }
+    .wholesale__advantages-item {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+
+        &--last {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        p {
+            margin-top: 0 !important;
+        }
+    }
+    .wholesale__advantages-img {
+        flex-direction: column;
+
+        .col-6 {
+            &:last-child {
+                max-width: 278px;
+                width: 100%;
+            }
+        }
+    }
+    .wholesale__bottom {
+        .col-6 {
+            width: 80%;
+        }
+    }
+    .wholesale__price-list {
+        flex-direction: column;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+        .col-6 {
+            width: 440px;
+
+            &:first-child {
+                margin-bottom: 40px;
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .wholesale {
+        &::v-deep {
+            .jumbotron-vue {
+                background-position: 50%;
+                padding-top: 50px;
+
+                h1, h2 {
+                    max-width: 400px;
+                    font-size: 37px;
+                    line-height: 37px;
+                }
+            }
+
+            .jumbotron-vue__body {
+                padding: 6rem 0;
+            }
+
+            .jumbotron-vue__q {
+                left: auto;
+                right: 0;
+            }
+        }
+
+        .container {
+            h3 {
+                font-size: 18px;
+                line-height: 22px;
+            }
+
+            .col-6 {
+                width: 100%;
+            }
+        }
+    }
+    .wholesale__form {
+        margin-top: 0 !important;
+    }
+    .wholesale__form-item {
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+
+        &::v-deep {
+            label {
+                font-size: 14px;
+                line-height: 16px;
+            }
+
+            .info {
+                svg {
+                    transform: scale(.8);
+                }
+            }
+        }
+    }
+    .wholesale__line {
+        margin-top: 0 !important;
+    }
+    .wholesale__advantages-item {
+        .col-6 {
+            margin-bottom: 0;
+
+            &:first-child {
+                margin-bottom: 15px;
+            }
+        }
+    }
+    .wholesale__advantages-mark {
+        margin-top: 25px;
+
+        .btn {
+            width: 100%;
+        }
+    }
+    .wholesale__advantages {
+        &::v-deep {
+            .video-10-dimensions {
+                height: 200px;
+            }
+
+            .video-player {
+                .vjs-poster {
+                    background-size: contain;
+                }
+            }
+        }
+    }
+    .wholesale__bottom {
+        .btn {
+            width: 100%;
+        }
+    }
+    .wholesale__price-list {
+        .col-6 {
+
+        }
+
+        .col-5 {
+            width: 100%;
+
+            & > div {
+                &:last-child {
+                    margin-bottom: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .wholesale__head-descr {
+        width: 240px;
+    }
+}

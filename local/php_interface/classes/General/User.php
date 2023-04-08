@@ -21,6 +21,23 @@ class User
     }
 
 
+    /**
+     * Регистрирует пользователя
+     * @param array $fields - ассоциативный массив cо свойствами нового пользователя
+     * @return int|string - возвращает id нового пользователя, иначе строку с ошибкой регистрации
+     */
+    public static function register(array $fields)
+    {
+        $user = new CUser;
+        $userId = $user->Add($fields);
+        if (intval($userId) > 0) {
+            $user->Authorize($userId);
+            return intval($userId);
+        }
+        return $user->LAST_ERROR;
+    }
+
+
     public function getById(int $id)
     {
         $userResource = CUser::GetByID($id);

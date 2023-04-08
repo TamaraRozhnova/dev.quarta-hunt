@@ -6,6 +6,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
 
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
+    'Form\Auth\RegistrationForm' => '/local/php_interface/classes/Form/Auth/RegistrationForm.php',
     'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
     'Form\ProductQuestionForm' => '/local/php_interface/classes/Form/ProductQuestionForm.php',
     'General\User' => '/local/php_interface/classes/General/User.php',

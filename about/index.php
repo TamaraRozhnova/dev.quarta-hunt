@@ -29,15 +29,28 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <? $APPLICATION->IncludeComponent(
-                            "bitrix:main.include",
-                            "",
-                            [
-                                "AREA_FILE_SHOW" => "file",
-                                "PATH" => "/include/about/banner_section/left_text.php",
-                            ],
-                            false
-                        ); ?>
+                        <p>
+                            <? $APPLICATION->IncludeComponent(
+                                "bitrix:main.include",
+                                "",
+                                [
+                                    "AREA_FILE_SHOW" => "file",
+                                    "PATH" => "/include/about/subtitle.php",
+                                ],
+                                false
+                            ); ?>
+                        </p>
+                        <h1>
+                            <? $APPLICATION->IncludeComponent(
+                                "bitrix:main.include",
+                                "",
+                                [
+                                    "AREA_FILE_SHOW" => "file",
+                                    "PATH" => "/include/about/title.php",
+                                ],
+                                false
+                            ); ?>
+                        </h1>
                     </div>
                     <div class="col-4">
                         <p class="fs-6 mt-5">
@@ -46,7 +59,7 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
                                 "",
                                 [
                                     "AREA_FILE_SHOW" => "file",
-                                    "PATH" => "/include/about/banner_section/right_text.php",
+                                    "PATH" => "/include/about/description.php",
                                 ],
                                 false
                             ); ?>
@@ -288,45 +301,49 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
                     </p>
                 </div>
             </div>
-            <? $APPLICATION->IncludeComponent("bitrix:news.detail","about_video", Array(
-                    "IBLOCK_TYPE" => "about",
-                    "IBLOCK_ID" => "15",
-                    "ELEMENT_ID" => "37458",
-                    "ELEMENT_CODE" => "",
-                    "CHECK_DATES" => "Y",
-                    "FIELD_CODE" => Array("ID"),
-                    "PROPERTY_CODE" => Array("VIDEO"),
-                    "DETAIL_URL" => "",
-                    "SET_TITLE" => "N",
-                    "SET_CANONICAL_URL" => "N",
-                    "SET_BROWSER_TITLE" => "N",
-                    "BROWSER_TITLE" => "-",
-                    "SET_META_KEYWORDS" => "N",
-                    "META_KEYWORDS" => "-",
-                    "SET_META_DESCRIPTION" => "N",
-                    "META_DESCRIPTION" => "-",
-                    "SET_STATUS_404" => "N",
-                    "SET_LAST_MODIFIED" => "Y",
-                    "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                    "ADD_SECTIONS_CHAIN" => "N",
-                    "ADD_ELEMENT_CHAIN" => "N",
-                    "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                    "USE_PERMISSIONS" => "N",
-                    "CACHE_TYPE" => "A",
-                    "CACHE_TIME" => "36000000",
-                    "CACHE_GROUPS" => "N",
-                    "PAGER_TITLE" => "Страница",
-                    "PAGER_TEMPLATE" => "",
-                    "SHOW_404" => "N",
-                    "MESSAGE_404" => "",
-                    "STRICT_SECTION_CHECK" => "Y",
-                    "PAGER_BASE_LINK" => "",
-                    "PAGER_PARAMS_NAME" => "arrPager",
-                    "AJAX_OPTION_JUMP" => "N",
-                    "AJAX_OPTION_STYLE" => "Y",
-                    "AJAX_OPTION_HISTORY" => "N"
-                )
-            ); ?>
+            <div class="row">
+                <div class="col-12">
+                    <? $APPLICATION->IncludeComponent("bitrix:news.detail","video", Array(
+                            "IBLOCK_TYPE" => "about",
+                            "IBLOCK_ID" => "15",
+                            "ELEMENT_ID" => "37458",
+                            "ELEMENT_CODE" => "",
+                            "CHECK_DATES" => "Y",
+                            "FIELD_CODE" => Array("ID"),
+                            "PROPERTY_CODE" => Array("VIDEO_LINK"),
+                            "DETAIL_URL" => "",
+                            "SET_TITLE" => "N",
+                            "SET_CANONICAL_URL" => "N",
+                            "SET_BROWSER_TITLE" => "N",
+                            "BROWSER_TITLE" => "-",
+                            "SET_META_KEYWORDS" => "N",
+                            "META_KEYWORDS" => "-",
+                            "SET_META_DESCRIPTION" => "N",
+                            "META_DESCRIPTION" => "-",
+                            "SET_STATUS_404" => "N",
+                            "SET_LAST_MODIFIED" => "Y",
+                            "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                            "ADD_SECTIONS_CHAIN" => "N",
+                            "ADD_ELEMENT_CHAIN" => "N",
+                            "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                            "USE_PERMISSIONS" => "N",
+                            "CACHE_TYPE" => "A",
+                            "CACHE_TIME" => "36000000",
+                            "CACHE_GROUPS" => "N",
+                            "PAGER_TITLE" => "Страница",
+                            "PAGER_TEMPLATE" => "",
+                            "SHOW_404" => "N",
+                            "MESSAGE_404" => "",
+                            "STRICT_SECTION_CHECK" => "Y",
+                            "PAGER_BASE_LINK" => "",
+                            "PAGER_PARAMS_NAME" => "arrPager",
+                            "AJAX_OPTION_JUMP" => "N",
+                            "AJAX_OPTION_STYLE" => "Y",
+                            "AJAX_OPTION_HISTORY" => "N"
+                        )
+                    ); ?>
+                </div>
+            </div>
         </div>
     </section>
 
