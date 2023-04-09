@@ -6,7 +6,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 ?>
 
-<form class="resume-form" data-form-id="<?= $arResult['arForm']['ID'] ?>">
+<form id="form" class="resume-form" data-form-id="<?= $arResult['arForm']['ID'] ?>">
     <div class="input input--full-name mb-3">
         <label for="full-name" class="form-label">
             Фамилия Имя Отчество
