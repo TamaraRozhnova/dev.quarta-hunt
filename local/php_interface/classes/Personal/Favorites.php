@@ -190,6 +190,20 @@ class Favorites
     private function getProducts(array $productIds, string $elementUrlTemplate): array
     {
         $filter = ['ID' => $productIds];
-        return Product::fetchProducts($filter, $elementUrlTemplate);
+        $products = Product::fetchProducts($filter, $elementUrlTemplate);
+        $this->sortProducts($products, $filter['ID']);
+
+        return $products;
+    }
+
+
+    /**
+     * Сортирует ассоциативный массив товаров с их свойствами
+     */
+    private function sortProducts(array &$products, array $productIds): void
+    {
+        uksort($products, function (string $firstId, string $secondId) use ($productIds) {
+            return array_search($firstId, $productIds) < array_search($secondId, $productIds);
+        });
     }
 }
