@@ -3,7 +3,7 @@
 namespace Sprint\Migration;
 
 
-class Version20230409145955 extends Version
+class Version20230409155626 extends Version
 {
     protected $description = "94661 | Страница \"Вакансии\" | Создает Веб-форму для отправки резюме";
 
@@ -61,6 +61,19 @@ class Version20230409145955 extends Version
   ),
   'arMAIL_TEMPLATE' => 
   array (
+  ),
+));
+        $formHelper->saveStatuses($formId, array (
+  0 => 
+  array (
+    'CSS' => 'statusgreen',
+    'C_SORT' => '100',
+    'ACTIVE' => 'Y',
+    'TITLE' => 'DEFAULT',
+    'DESCRIPTION' => 'DEFAULT',
+    'DEFAULT_VALUE' => 'Y',
+    'HANDLER_OUT' => NULL,
+    'HANDLER_IN' => NULL,
   ),
 ));
         $formHelper->saveFields($formId, array (
