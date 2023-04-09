@@ -8188,6 +8188,9 @@ input.form-check-input:focus {
 .header--desktop .header__nav-item:hover {
   color: #004989;
 }
+.header--desktop .header__nav-item--active {
+  color: #004989 !important;
+}
 .header--desktop .header__nav-item--selected {
   background: #eeeff3;
 }
@@ -9116,7 +9119,7 @@ input.form-check-input:focus {
   transform: scale(1);
 }
 .select--medium .select__main {
-  padding: 0.875rem 1rem;
+  padding: 0.875rem 1.8rem 0.875rem 1rem;
   font-size: 1rem;
 }
 .select--expanded .select__main::after {
@@ -9238,6 +9241,11 @@ input.form-check-input:focus {
   justify-content: center;
   align-items: center;
   width: 100%;
+  min-height: 15rem;
+}
+.loading .spinner-border {
+  width: 2rem;
+  height: 2rem;
 }
 .loading--show {
   display: flex;
@@ -10182,4 +10190,13 @@ ymaps[class$=-balloon__layout] {
   .wholesale__head-descr {
     width: 240px;
   }
+}
+.privacy-policy {
+  background-color: #f9f9fa;
+  color: #333333;
+  font-size: 1rem;
+  padding-bottom: 8rem;
+}
+.privacy-policy .row {
+  justify-content: center;
 }

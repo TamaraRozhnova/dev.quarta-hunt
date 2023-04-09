@@ -168,6 +168,10 @@
                     color: $primary;
                 }
 
+                &--active {
+                    color: $primary !important;
+                }
+
                 &--selected {
                     background: $gray-200;
 

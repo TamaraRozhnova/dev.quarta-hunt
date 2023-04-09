@@ -1,0 +1,117 @@
+@import '../assets/styles/base-imports';
+
+.jobs {
+    background-color: $gray-100;
+    padding-bottom: 8.75rem;
+
+    &__item {
+        font-size: 1rem;
+
+        h4 {
+            font-size: 1.625rem;
+        }
+
+        .card-body {
+            p {
+                font-size: 1rem;
+                font-weight: 500;
+                color: $dark;
+            }
+        }
+    }
+
+    &__item-head {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item-actions {
+        position: absolute;
+        bottom: 1.875rem;
+        left: 1rem;
+    }
+
+    &__item-image {
+        width: 100%;
+
+        img {
+            border-radius: $border-radius-lg;
+            max-width: 100%;
+        }
+    }
+
+    &__filters {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 0.563rem;
+    }
+
+    @include media-breakpoint-down('lg') {
+        &__item-tags {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__item-actions {
+            position: static;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            bottom: 0;
+            left: 0;
+
+            .btn {
+                width: calc(50% - 15px);
+            }
+        }
+
+        &__item {
+            h4 {
+                font-size: 1.25rem;
+            }
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 30px;
+        }
+    }
+    @include media-breakpoint-down('sm') {
+        .container {
+            padding: 0 15px;
+        }
+
+        .card-body {
+            padding: 1.25rem 0.938rem;
+        }
+
+        .select {
+            z-index: auto;
+        }
+
+        &__item-actions {
+            .btn {
+                width: 100%;
+                font-size: 0.875rem;
+
+                &:first-of-type {
+                    margin-bottom: 0.375rem;
+                }
+            }
+        }
+
+        &__item {
+            font-size: 0.75rem;
+
+            h4 {
+                font-size: 1.125rem;
+            }
+
+            .card-body {
+                p {
+                    font-size: 0.875rem;
+                }
+            }
+        }
+    }
+}
