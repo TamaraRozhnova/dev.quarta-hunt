@@ -14,6 +14,7 @@ $ElementID = $APPLICATION->IncludeComponent(
         "DISPLAY_PREVIEW_TEXT" => $arParams["DISPLAY_PREVIEW_TEXT"],
         "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
         "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+        "RESUME_FORM_ID" => $arParams["RESUME_FORM_ID"],
         "FIELD_CODE" => $arParams["DETAIL_FIELD_CODE"],
         "PROPERTY_CODE" => $arParams["DETAIL_PROPERTY_CODE"],
         "DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["detail"],
