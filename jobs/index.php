@@ -65,6 +65,7 @@ $APPLICATION->IncludeComponent(
             0 => "ADDRESS",
             1 => "",
         ),
+        "RESUME_FORM_ID" => "2",
         "MEDIA_PROPERTY" => "",
         "MESSAGE_404" => "",
         "META_DESCRIPTION" => "-",
