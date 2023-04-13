@@ -58,3 +58,8 @@ function AddBonusPoints($order_id, $status) {
 		}
 	}
 }
+function num_declension($number, $titles) {	
+    $abs = abs($number);	
+    $cases = array (2, 0, 1, 1, 1, 2);	
+    return $number." ".$titles[ ($abs%100 > 4 && $abs %100 < 20) ? 2 : $cases[min($abs%10, 5)] ];
+}
