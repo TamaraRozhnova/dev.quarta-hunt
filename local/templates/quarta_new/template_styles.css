@@ -10191,6 +10191,10 @@ ymaps[class$=-balloon__layout] {
     width: 240px;
   }
 }
+.warranty__points p {
+  font-size: 16px;
+}
+
 .privacy-policy {
   background-color: #f9f9fa;
   color: #333333;
