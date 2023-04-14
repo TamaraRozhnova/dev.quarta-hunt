@@ -2256,7 +2256,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				);
 			}
 
-			node.appendChild(
+			/*node.appendChild(
 				BX.create('DIV', {
 					props: {className: 'row bx-soa-more'},
 					children: [
@@ -2266,7 +2266,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						})
 					]
 				})
-			);
+			);*/
 		},
 
 		getNewContainer: function(notFluid)
@@ -2501,7 +2501,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				titleNode = section.querySelector('.bx-soa-section-title-container'),
 				editButton, errorContainer;
 
-			BX.unbindAll(titleNode);
+			/*BX.unbindAll(titleNode);
 			if (this.result.SHOW_AUTH)
 			{
 				BX.bind(titleNode, 'click', BX.delegate(function(){
@@ -2514,7 +2514,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				BX.bind(titleNode, 'click', BX.proxy(this.showByClick, this));
 				editButton = titleNode.querySelector('.bx-soa-editstep');
 				editButton && BX.bind(editButton, 'click', BX.proxy(this.showByClick, this));
-			}
+			}*/
 
 			errorContainer = section.querySelector('.alert.alert-danger');
 			this.hasErrorSection[section.id] = errorContainer && errorContainer.style.display != 'none';
@@ -8122,7 +8122,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		createTotalUnit: function(name, value, params)
 		{	
-			console.log(params.free);
 			var onlyFree = true;
 			if(!params.free){
 				onlyFree = false;
