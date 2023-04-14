@@ -1372,6 +1372,7 @@ hr.bxe-light {
 	position: relative;
 	z-index: 0;
 	background-color: transparent;
+	inline-size: auto;
 }
 
 .bx-soa-tooltip.bx-soa-tooltip-static .tooltip-arrow { left: 20px; }
