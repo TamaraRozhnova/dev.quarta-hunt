@@ -529,7 +529,8 @@ else
 			</div>
 			</div>
 		</div>
-	</form>
+	</form> 
+	
 	<div id="bx-soa-saved-files" style="display:none"></div>
 	<div id="bx-soa-soc-auth-services" style="display:none">
 		<?
