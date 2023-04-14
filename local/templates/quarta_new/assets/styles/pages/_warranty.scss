@@ -33,5 +33,9 @@
         background-repeat: no-repeat;
         background-position: 75% bottom;
     }
-
+    .jumbotron-vue__body{
+        img{
+            height: 100%;
+        }
+    }
 }
