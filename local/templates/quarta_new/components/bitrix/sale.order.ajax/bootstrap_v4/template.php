@@ -349,7 +349,7 @@ else
 				</div>
 
 				<!--	DUPLICATE MOBILE ORDER SAVE BLOCK	-->
-				<div id="bx-soa-total-mobile" style="margin-bottom: 6px;"></div>
+				<div id="bx-soa-total-mobile" style="margin-bottom: 6px; display:none"></div>
 
 				<?/* if ($arParams['BASKET_POSITION'] === 'before'): ?>
 					<!--	BASKET ITEMS BLOCK	-->

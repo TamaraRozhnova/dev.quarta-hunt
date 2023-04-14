@@ -8108,9 +8108,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		editMobileTotalBlock: function()
 		{
 			if (this.result.SHOW_AUTH)
-				BX.removeClass(this.mobileTotalBlockNode, 'd-block d-sm-none');
+				BX.removeClass(this.mobileTotalBlockNode, 'd-none d-sm-none');
 			else
-				BX.addClass(this.mobileTotalBlockNode, 'd-block d-sm-none');
+				BX.addClass(this.mobileTotalBlockNode, 'd-none d-sm-none');
 
 			BX.cleanNode(this.mobileTotalBlockNode);
 			this.mobileTotalBlockNode.appendChild(this.totalInfoBlockNode.cloneNode(true));
