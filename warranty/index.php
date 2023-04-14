@@ -7,6 +7,7 @@ $APPLICATION->SetTitle("Гарантии");
 		<div class="container" data-v-108c6e42="">
 			<div class="jumbotron-vue__body" data-v-108c6e42="">
 				<div class="jumbotron-vue__q" data-v-108c6e42="">
+                <img src="/warranty/include/watermark.svg" alt="watermark.svg">
 				</div>
 				<div class="row" data-v-108c6e42="" data-v-28081ec4="">
 					<div class="col-6" data-v-108c6e42="" data-v-28081ec4="">
