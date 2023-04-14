@@ -10218,6 +10218,9 @@ ymaps[class$=-balloon__layout] {
   background-repeat: no-repeat;
   background-position: 75% bottom;
 }
+.warranty .jumbotron-vue__body img {
+  height: 100%;
+}
 
 .privacy-policy {
   background-color: #f9f9fa;
