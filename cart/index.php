@@ -30,6 +30,7 @@ $APPLICATION->IncludeComponent(
 		"AJAX_OPTION_STYLE" => "Y",
 		"AJAX_OPTION_HISTORY" => "N",
 		"PATH_TO_ORDER" => "/cart/purchase/",
+
 		"HIDE_COUPON" => "Y",
 		"QUANTITY_FLOAT" => "N",
 		"PRICE_VAT_SHOW_VALUE" => "Y",
