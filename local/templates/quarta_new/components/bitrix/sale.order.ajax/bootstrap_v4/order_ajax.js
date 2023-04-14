@@ -8402,4 +8402,5 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}, this));
 		}
 	};
+
 })();
