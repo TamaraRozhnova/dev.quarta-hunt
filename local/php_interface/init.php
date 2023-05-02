@@ -1,4 +1,5 @@
 <?php
+define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 
 use \Bitrix\Main\Loader;
 
@@ -62,4 +63,38 @@ function num_declension($number, $titles) {
     $abs = abs($number);	
     $cases = array (2, 0, 1, 1, 1, 2);	
     return $number." ".$titles[ ($abs%100 > 4 && $abs %100 < 20) ? 2 : $cases[min($abs%10, 5)] ];
+}
+
+AddEventHandler("main", "OnBeforeUserLogin", Array("CUserEx", "OnBeforeUserLogin"));
+AddEventHandler("main", "OnBeforeUserRegister", Array("CUserEx", "OnBeforeUserRegister"));
+AddEventHandler("main", "OnBeforeUserRegister", Array("CUserEx", "OnBeforeUserUpdate"));
+class CUserEx{
+    function OnBeforeUserLogin($arFields){
+        $filter = Array("EMAIL" => $arFields["LOGIN"]);
+        $rsUsers = CUser::GetList(($by="LAST_NAME"), ($order="asc"), $filter);
+        if($user = $rsUsers->GetNext())
+        $arFields["LOGIN"] = $user["LOGIN"];
+    }
+    function OnBeforeUserRegister(&$arFields){
+        $arFields["LOGIN"] = $arFields["EMAIL"];
+
+        if ($arFields['UF_TYPE'] == 'wholesale'){
+            $arFields["GROUP_ID"] = [];
+            $arFields["GROUP_ID"][] = 9;
+        };
+    }
+}
+
+function random_number($length = 6){
+	$arr = array(
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+	);
+ 
+	$res = '';
+	for ($i = 0; $i < $length; $i++) {
+		$res .= $arr[random_int(0, count($arr) - 1)];
+	}
+	return $res;
 }
