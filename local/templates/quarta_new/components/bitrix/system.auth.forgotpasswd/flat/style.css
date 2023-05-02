@@ -1,0 +1,43 @@
+.bx-forgot-wrap{
+    background-color: #f9f9fa;
+    padding: 40px 0;
+}
+.bx-forgot-wrap .container{
+    max-width: 885px;
+}
+.bx-forgot-container{
+    font-size: 1rem;
+    margin: 0 -4rem;
+    padding: 4rem;
+    background-color: #fff;
+    border-radius: 0.875rem;
+    display: flex;
+    justify-content: flex-start;
+}
+.bx-forgot{
+    width: 100%;
+    max-width: 450px;
+}
+.bx-forgot .bx-title{
+    margin-bottom: 3.125rem;
+
+}
+.bx-forgot .type{
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    gap: 5px;
+} 
+.bx-forgot button.active{
+    border-color: #004989;
+    background-color: #eeeff3;
+}
+.bx-forgot button{
+    background-color: #f9f9fa;
+    color: #333;
+    white-space: nowrap;
+}
+#form_forgot_phone{
+    display: none;
+}

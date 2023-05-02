@@ -1,0 +1,26 @@
+.bx-authform-wrap{
+    background-color: #f9f9fa;
+    padding: 40px 0;
+}
+.bx-authform-wrap .container{
+    max-width: 885px;
+}
+.bx-authform-container{
+    font-size: 1rem;
+    margin: 0 -4rem;
+    padding: 4rem;
+    background-color: #fff;
+    border-radius: 0.875rem;
+    display: flex;
+    justify-content: center;
+}
+.bx-authform{
+    width: 100%;
+    max-width: 400px;
+}
+.error_message{
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #eb5806;
+}
