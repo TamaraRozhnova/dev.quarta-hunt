@@ -345,7 +345,7 @@ else
 							<?=$arParams['MESS_AUTH_BLOCK_NAME']?>
 						</div>
 					</div>
-					<div class="bx-soa-section-content"></div>
+					<div class="bx-soa-section-content row"></div>
 				</div>
 
 				<!--	DUPLICATE MOBILE ORDER SAVE BLOCK	-->

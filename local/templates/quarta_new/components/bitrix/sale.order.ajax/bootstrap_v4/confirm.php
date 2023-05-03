@@ -8,32 +8,33 @@ use Bitrix\Main\Localization\Loc;
  * @var $APPLICATION CMain
  */
 
-if ($arParams["SET_TITLE"] == "Y")
-{
+if ($arParams["SET_TITLE"] == "Y"){
 	$APPLICATION->SetTitle(Loc::getMessage("SOA_ORDER_COMPLETE"));
 }
 ?>
-
+<div id="bx-soa-order-form">
+<div class="container">
+<div class="bx-soa-section confirm"> 
 <? if (!empty($arResult["ORDER"])): ?>
 
-	<div class="row mb-5">
+	<div class="mb-5">
 		<div class="col">
-			<?=Loc::getMessage("SOA_ORDER_SUC", array(
+			<p><?=Loc::getMessage("SOA_ORDER_SUC", array(
 				"#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"]->toUserTime()->format('d.m.Y H:i'),
 				"#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]
 			))?>
 			<? if (!empty($arResult['ORDER']["PAYMENT_ID"])): ?>
 				<?=Loc::getMessage("SOA_PAYMENT_SUC", array(
 					"#PAYMENT_ID#" => $arResult['PAYMENT'][$arResult['ORDER']["PAYMENT_ID"]]['ACCOUNT_NUMBER']
-				))?>
+				))?></p>
 			<? endif ?>
 		</div>
 	</div>
 
 	<? if ($arParams['NO_PERSONAL'] !== 'Y'): ?>
-		<div class="row mb-5">
+		<div class="mb-3">
 			<div class="col">
-				<?=Loc::getMessage('SOA_ORDER_SUC1', ['#LINK#' => $arParams['PATH_TO_PERSONAL']])?>
+			<p><?=Loc::getMessage('SOA_ORDER_SUC1', ['#LINK#' => $arParams['PATH_TO_PERSONAL']])?></p>
 			</div>
 		</div>
 	<? endif; ?>
@@ -57,16 +58,16 @@ if ($arParams["SET_TITLE"] == "Y")
 						{
 							?>
 
-							<div class="row mb-2">
+							<div class="mb-3">
 								<div class="col">
 									<h3 class="pay_name"><?=Loc::getMessage("SOA_PAY") ?></h3>
 								</div>
 							</div>
-							<div class="row mb-2 align-items-center">
-								<div class="col-auto"><strong><?=$arPaySystem["NAME"] ?></strong></div>
-								<div class="col"><?=CFile::ShowImage($arPaySystem["LOGOTIP"], 100, 100, "border=0\" style=\"width:100px\"", "", false) ?></div>
+							<div class="mb-4 align-items-center payment-info">
+								<span><?=CFile::ShowImage($arPaySystem["LOGOTIP"], 100, 100, "border=0\" style=\"width:100px\"", "", false) ?></span>
+								<span><p><?=$arPaySystem["NAME"] ?></p></span>
 							</div>
-							<div class="row mb-2">
+							<div class="">
 								<div class="col">
 									<? if ($arPaySystem["ACTION_FILE"] <> '' && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
 									<?
@@ -76,10 +77,10 @@ if ($arParams["SET_TITLE"] == "Y")
 									<script>
 										window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
 									</script>
-									<?=Loc::getMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?>
+									<p><?=Loc::getMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?></p>
 									<? if (CSalePdf::isPdfAvailable() && $arPaySystem['IS_AFFORD_PDF']): ?>
 									<br/>
-										<?=Loc::getMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?>
+									<p><?=Loc::getMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?></p>
 									<? endif ?>
 									<? else: ?>
 										<?=$arPaySystem["BUFFERED_OUTPUT"]?>
@@ -119,12 +120,15 @@ if ($arParams["SET_TITLE"] == "Y")
 <? else: ?>
 
 
-	<div class="row mb-2">
+	<div class="mb-2">
 		<div class="col">
 			<div class="alert alert-danger" role="alert"><strong><?=Loc::getMessage("SOA_ERROR_ORDER")?></strong><br />
-				<?=Loc::getMessage("SOA_ERROR_ORDER_LOST", ["#ORDER_ID#" => htmlspecialcharsbx($arResult["ACCOUNT_NUMBER"])])?><br />
-				<?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?></div>
+			<p><?=Loc::getMessage("SOA_ERROR_ORDER_LOST", ["#ORDER_ID#" => htmlspecialcharsbx($arResult["ACCOUNT_NUMBER"])])?><br />
+			<?=Loc::getMessage("SOA_ERROR_ORDER_LOST1")?></p></div>
 		</div>
 	</div>
 
 <? endif ?>
+</div>
+</div>
+</div>
