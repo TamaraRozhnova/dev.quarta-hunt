@@ -2662,19 +2662,19 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 							value: 'N'
 						}
 					}),
-					BX.create('INPUT', {
+					BX.create('A', {
 						props: {
-							type: 'submit',
+							href: '/login/',
 							className: 'btn btn-lg btn-primary',
-							value: BX.message('STOF_ENTER')
+							text: BX.message('STOF_ENTER')
 						},
-						events: {
+						/*events: {
 							click: BX.delegate(function(e){
 								BX('do_authorize').value = 'Y';
 								this.sendRequest('showAuthForm');
 								return BX.PreventDefault(e);
 							}, this)
-						}
+						}*/
 					}),
 					BX.create('A', {
 						props: {
@@ -2712,7 +2712,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			});
 
 			return BX.create('DIV', {
-				props: {className: 'form-group mb-3'},
+				props: {className: 'form-group mb-3', type: 'hidden',},
 				children: [
 					labelHtml,
 					inputNode
@@ -3125,7 +3125,10 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					children: [
 						BX.create('P', {html: this.params.MESS_REGISTRATION_REFERENCE}),
 						BX.create('A', {
-							props: {className: 'btn btn-primary btn-lg'},
+							props: {
+								href:'/registration/',
+								className: 'btn btn-primary btn-lg'
+							},
 							text: BX.message('STOF_DO_REGISTER'),
 							events: {
 								click: BX.delegate(function(e){
