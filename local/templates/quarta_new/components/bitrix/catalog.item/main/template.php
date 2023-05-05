@@ -70,7 +70,11 @@ $item = $arResult['ITEM'];
 
         <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
             <figure>
-                <img src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" alt="<?= $item['NAME'] ?>"/>
+                <? if (!empty($item['PREVIEW_PICTURE']['SRC'])) {?>
+                    <img src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" alt="<?= $item['NAME'] ?>"/>
+                <?} else {?>
+
+                <? } ?>
             </figure>
         </a>
     </div>
