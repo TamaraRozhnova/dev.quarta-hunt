@@ -175,6 +175,9 @@ $isUserAuth = $user->isAuthorized();
     </div>
 
     <div class="product-reviews product__tab" data-tab="5">
-        <? $APPLICATION->IncludeFile($templateFolder . '/partials/reviews.php', ['result' => $result]); ?>
+        <? $APPLICATION->IncludeFile($templateFolder . '/partials/reviews.php', [
+            'result' => $result
+        ], ['SHOW_BORDER' => false]);
+        ?>
     </div>
 </div>
