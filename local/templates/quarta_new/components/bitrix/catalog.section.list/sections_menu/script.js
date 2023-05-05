@@ -40,10 +40,13 @@
                             return;
                         }
                         const subsections = this.sections[sectionId].SUBSECTIONS;
+
+                        const sortedSubsections = Object.values(subsections).sort((a, b) => a.SORT - b.SORT);
+
                         if (!subsections) {
                             return;
                         }
-                        new DropDownMenu({element, sections: subsections, level: this.levelMenu});
+                        new DropDownMenu({element, sections: sortedSubsections, level: this.levelMenu});
                     });
 
                     element.addEventListener('mouseleave', () => {
