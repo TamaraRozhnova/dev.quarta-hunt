@@ -6,3 +6,8 @@ section.news-list h1 {
   font-size: 60px;
   font-weight: 700;
 }
+.bx_catalog_text_ul li.active a {
+	background-color: #eeeff3;
+	border-color: #004989;
+	color: #333333;
+}
