@@ -51,7 +51,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                 1 => "",
                             ),
                             "CURRENT_SECTION_ID" => $arParams["ELEMENT_IBLOCK_SECTION_ID"],
-                            "SECTION_URL" => "/news/#SECTION_ID#/",
+                            "SECTION_URL" => "/news/?SECTION_ID=#SECTION_ID#",
                             "PARENT_URL" => "/news/",
                             "SECTION_USER_FIELDS" => array(
                                 0 => "",
