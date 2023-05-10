@@ -233,12 +233,6 @@
 	display: none;
 }
 
-.bx_catalog_text_ul li.active a {
-	background-color: #eeeff3;
-	border-color: #004989;
-	color: #333333;
-}
-
 @media (max-width: 1399px) {
 	.news-list .news-list-item {
 		max-width: 380px;

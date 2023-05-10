@@ -11,6 +11,23 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
+if (!empty($arResult["VARIABLES"]["ELEMENT_CODE"] )) {
+
+	$rsElementSectionID = Bitrix\Iblock\ElementTable::getList([
+		"select" => [
+			"IBLOCK_SECTION_ID"
+		],
+		"filter" => [
+			"=CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"] 
+		],
+		"cache" => [
+			"tll" => "840000"
+		]
+	])->fetch();
+
+}
+
 ?>
 <?$ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",
@@ -73,6 +90,7 @@ $this->setFrameMode(true);
 		"TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
 		"STRICT_SECTION_CHECK" => $arParams["STRICT_SECTION_CHECK"],
         "RETURN_PATH" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["news"],
+		"ELEMENT_IBLOCK_SECTION_ID" => !empty($rsElementSectionID) ? $rsElementSectionID["IBLOCK_SECTION_ID"] : null 
 	),
 	$component
 );?>
