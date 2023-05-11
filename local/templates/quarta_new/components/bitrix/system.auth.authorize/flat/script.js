@@ -25,13 +25,13 @@ $( document ).ready(function() {
     
     $('.form_auth_phone').on('click', function(e){
     	e.preventDefault();
-    	console.log($('#phone').val().length);
-    	if($('#phone').val() == '' || $('#phone').val().length < 18){
+		let phoneLength = $('#phone').val().replace(/[^0-9]/g,"");
+		
+    	if(phoneLength.length < 11){
     		$('.error_message').text('Введите номер телефона');
     	}else{
     		authPhone();
     	}
-    
     });
     
     $('.more_code_phone').on('click', function(e){
