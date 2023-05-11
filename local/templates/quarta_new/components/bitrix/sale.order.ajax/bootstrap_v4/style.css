@@ -1657,3 +1657,18 @@ hr.bxe-light {
 #bx-soa-auth .bx-soa-reference{
 	display: none;
 }
+
+.important-no-border {
+	border: 1px solid transparent !important;
+}
+
+@media (min-width: 768px) {
+	.bx-soa-pp-item-container.delivery-items .bx-soa-pp-company {
+		width: 25%;
+	}
+}
+@media (max-width: 768px) {
+	.bx-soa-pp-item-container.delivery-items .bx-soa-pp-company {
+		width: 50%;
+	}
+}
