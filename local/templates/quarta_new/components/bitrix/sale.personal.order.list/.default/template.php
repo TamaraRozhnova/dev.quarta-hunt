@@ -31,6 +31,37 @@ Loc::loadMessages(__FILE__);
 		    <a class="btn btn-primary btn-lg px-5 history-order__body-btn" href="/cabinet/orders/?filter_history=Y&?filter_status=F"><?= getMessage('SPOL_F_ORDER');?></a>
 		    <a class="btn btn-primary btn-lg px-5 history-order__body-btn" href="/cabinet/orders/?filter_history=Y&show_canceled=Y&filter_canceled=Y"><?= getMessage('SPOL_C_ORDER');?></a>
 		</div>
+		<?if (!empty($arResult['ERRORS']['NONFATAL']))
+					{
+						foreach($arResult['ERRORS']['NONFATAL'] as $error)
+						{
+							ShowError($error);
+						}
+					}
+					if (!count($arResult['ORDERS'])) 
+					{
+						if ($_REQUEST["filter_history"] == 'Y')
+						{
+							if ($_REQUEST["show_canceled"] == 'Y')
+							{
+								?>
+								<h3><?= Loc::getMessage('SPOL_TPL_EMPTY_CANCELED_ORDER')?></h3>
+								<?
+							}
+							else
+							{
+								?>
+								<h3><?= Loc::getMessage('SPOL_TPL_EMPTY_HISTORY_ORDER_LIST')?></h3>
+								<?
+							}
+						}
+						else
+						{
+							?>
+							<h3><?= Loc::getMessage('SPOL_TPL_EMPTY_ORDER_LIST')?></h3>
+							<?
+						}
+				}?>
 	    <?$paymentChangeData = array();
 		$orderHeaderStatus = null;
 		foreach ($arResult['ORDERS'] as $key => $order){
@@ -45,6 +76,7 @@ Loc::loadMessages(__FILE__);
 					 	<div class="col-2"><?= getMessage('SPOL_STATUS_ORDER');?></div>
 					</div>
 				</div>
+				
 				<div class="history-order__summary">
 					<div class="row">
 						<div class="col-6 history-order__main-item">
@@ -111,11 +143,12 @@ Loc::loadMessages(__FILE__);
 						</div>  
 	                <? } ?>
 					<div class="history-order__body-btns">
-						<a href="/cabinet/reviews" class="btn btn-primary btn-lg px-5 history-order__body-btn">Оставить отзыв</a> 
-						<a href="<?=htmlspecialcharsbx($order["ORDER"]["URL_TO_COPY"])?>" class="btn btn-primary btn-lg px-5 history-order__body-btn">
+						<a href="/" class="btn btn-primary btn-lg px-5 history-order__body-btn">Оставить отзыв</a> 
+						<a href="<?=htmlspecialcharsbx($order["ORDER"]["URL_TO_COPY"])?>" class="btn btn-primary btn-lg px-5 history-order__body-btn sale-order-list-repeat-link">
 							<span ><?= getMessage('SPOL_REPEAT_ORDER');?></span>
 						</a> 
-						<?$showDelimeter = false;
+						<?
+						$showDelimeter = false;
 						foreach ($order['PAYMENT'] as $payment){
 							if ($order['ORDER']['LOCK_CHANGE_PAYSYSTEM'] !== 'Y'){
 								$paymentChangeData[$payment['ACCOUNT_NUMBER']] = array(
