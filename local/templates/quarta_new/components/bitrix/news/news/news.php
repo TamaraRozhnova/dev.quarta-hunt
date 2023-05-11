@@ -21,40 +21,40 @@ $this->setFrameMode(true);
                 </div>
                 <div class="col-12 col-md-9 pb-lg-5 col-lg-8">
                     <?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list", 
-	"newslist",
-	array(
-		"ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
-		"ADD_SECTIONS_CHAIN" => "Y",
-		"CACHE_FILTER" => "N",
-		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
-		"COUNT_ELEMENTS" => "N",
-		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
-		"FILTER_NAME" => "sectionsFilter",
-		"HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
-		"IBLOCK_ID" => "1",
-		"IBLOCK_TYPE" => "news",
-		"SECTION_CODE" => "",
-		"SECTION_FIELDS" => array(
-			0 => "",
-			1 => "",
-		),
-		"CURRENT_SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
-		"SECTION_URL" => "/news/?SECTION_ID=#SECTION_ID#",
-        "PARENT_URL" => "/news/",
-		"SECTION_USER_FIELDS" => array(
-			0 => "",
-			1 => "",
-		),
-		"SHOW_PARENT_NAME" => "Y",
-		"TOP_DEPTH" => "2",
-		"VIEW_MODE" => "TEXT",
-		"COMPONENT_TEMPLATE" => ".default"
-	),
-	false
-);?>
+                        "bitrix:catalog.section.list", 
+                        "newslist",
+                        array(
+                            "ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
+                            "ADD_SECTIONS_CHAIN" => "Y",
+                            "CACHE_FILTER" => "N",
+                            "CACHE_GROUPS" => "Y",
+                            "CACHE_TIME" => "36000000",
+                            "CACHE_TYPE" => "A",
+                            "COUNT_ELEMENTS" => "N",
+                            "COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
+                            "FILTER_NAME" => "sectionsFilter",
+                            "HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
+                            "IBLOCK_ID" => "1",
+                            "IBLOCK_TYPE" => "news",
+                            "SECTION_CODE" => "",
+                            "SECTION_FIELDS" => array(
+                                0 => "",
+                                1 => "",
+                            ),
+                            "CURRENT_SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
+                            "SECTION_URL" => "/news/?SECTION_ID=#SECTION_ID#",
+                            "PARENT_URL" => "/news/",
+                            "SECTION_USER_FIELDS" => array(
+                                0 => "",
+                                1 => "",
+                            ),
+                            "SHOW_PARENT_NAME" => "Y",
+                            "TOP_DEPTH" => "2",
+                            "VIEW_MODE" => "TEXT",
+                            "COMPONENT_TEMPLATE" => ".default"
+                        ),
+                        false
+                    );?>
                 </div>
             </div>
         </div>

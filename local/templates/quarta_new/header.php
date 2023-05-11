@@ -245,6 +245,8 @@ $basketItemsCount = $basket->getProductsCount();
                 "SHOW_PARENT_NAME" => "N",
                 "TOP_DEPTH" => "3",
                 "VIEW_MODE" => "LIST",
+                "ELEMENT_SORT_FIELD" => "SORT",
+                "ELEMENT_SORT_ORDER" => "ASC",
             ],
                 false
             )?>
