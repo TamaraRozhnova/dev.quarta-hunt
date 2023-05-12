@@ -12,7 +12,8 @@ foreach ($arResult['SECTIONS'] as $section) {
     $sectionData =
         [
             'NAME' => $section['NAME'],
-            'LINK' => $section['LIST_PAGE_URL'] . $section['SECTION_PAGE_URL']
+            'LINK' => $section['LIST_PAGE_URL'] . $section['SECTION_PAGE_URL'],
+            'SORT' => $section['SORT']
         ];
 
     switch ($section['DEPTH_LEVEL']) {

@@ -228,17 +228,18 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         <? $APPLICATION->IncludeFile($templateFolder . '/partials/tabs.php', [
             'templateFolder' => $templateFolder,
             'result' => $arResult
-        ]); ?>
+        ], ['SHOW_BORDER' => false]); ?>
+
     </section>
 
     <? $APPLICATION->IncludeFile($templateFolder . '/partials/videoReviews.php', [
         'templateFolder' => $templateFolder,
         'result' => $arResult
-    ]); ?>
+    ], ['SHOW_BORDER' => false]); ?>
 
     <? $APPLICATION->IncludeFile($templateFolder . '/partials/recommendedProducts.php', [
         'templateFolder' => $templateFolder,
         'result' => $arResult,
         'params' => $arParams
-    ]); ?>
+    ], ['SHOW_BORDER' => false]); ?>
 </div>
