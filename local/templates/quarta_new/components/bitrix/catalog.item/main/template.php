@@ -73,7 +73,7 @@ $item = $arResult['ITEM'];
                 <? if (!empty($item['PREVIEW_PICTURE']['SRC'])) {?>
                     <img src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" alt="<?= $item['NAME'] ?>"/>
                 <?} else {?>
-
+                    <img src="<?=$templateFolder?>/images/photo-not-found.jpg" alt="<?= $item['NAME'] ?>"/>
                 <? } ?>
             </figure>
         </a>
