@@ -98,3 +98,26 @@ function random_number($length = 6){
 	}
 	return $res;
 }
+
+\Bitrix\Main\EventManager::getInstance()->addEventHandler("sale", "OnSaleOrderBeforeSaved", array("SaleOrderAjaxEventsO2K","OnSaleOrderBeforeSavedHandler"));
+class SaleOrderAjaxEventsO2K
+{
+    public static function OnSaleOrderBeforeSavedHandler(\Bitrix\Main\Event $event)
+    {
+        $order = $event->getParameter('ENTITY');
+        $basket = $order->getBasket();
+        $basket_items = $basket->getBasketItems();
+
+        foreach ($basket_items as $item) {
+
+            $itemSerialize = unserialize((string)$item->getField('NOTES'));
+            
+            $item->setFields(array(
+                'NOTES' => $itemSerialize['UF_BONUS_POINTS'] . ' б.'
+            ));
+
+            $basket->save();
+        }
+    }
+
+}
