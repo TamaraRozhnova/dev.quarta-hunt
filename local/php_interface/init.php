@@ -104,6 +104,7 @@ class SaleOrderAjaxEventsO2K
 {
     public static function OnSaleOrderBeforeSavedHandler(\Bitrix\Main\Event $event)
     {
+
         $order = $event->getParameter('ENTITY');
         $basket = $order->getBasket();
         $basket_items = $basket->getBasketItems();
