@@ -99,13 +99,17 @@ function random_number($length = 6){
 	return $res;
 }
 
-\Bitrix\Main\EventManager::getInstance()->addEventHandler("sale", "OnSaleOrderBeforeSaved", array("SaleOrderAjaxEventsO2K","OnSaleOrderBeforeSavedHandler"));
+Bitrix\Main\EventManager::getInstance()->addEventHandler("sale", "OnSaleOrderBeforeSaved", array("SaleOrderAjaxEventsO2K","OnSaleOrderBeforeSavedHandler"));
 class SaleOrderAjaxEventsO2K
 {
     public static function OnSaleOrderBeforeSavedHandler(\Bitrix\Main\Event $event)
     {
-
         $order = $event->getParameter('ENTITY');
+
+        if (!$order->isNew()) {
+            return;
+        }
+
         $basket = $order->getBasket();
         $basket_items = $basket->getBasketItems();
 
