@@ -6777,6 +6777,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				textHtml = '',
 				propertyType = property.getType() || '',
 				propertyDesc = property.getDescription() || '',
+				currentDelivery,
 				label;
 
 			if (disabled)
@@ -6801,6 +6802,113 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				});
 				propsItemNode.setAttribute('data-property-id-row', property.getId());
 				propsItemNode.appendChild(label);
+
+				if (property.getSettings().CODE == "ADDRESS") {
+
+					currentDelivery = this.getSelectedDelivery()
+
+					switch (Number(currentDelivery.ID)) {
+						case 3:
+							/** Самовывоз */
+
+							setTimeout(() => {
+
+								/** Ставим бэкграунд */
+								$(`[name='ORDER_PROP_${property.getSettings().ID}']`).css({
+									"background-color": "rgb(238, 238, 238)"
+								})
+
+								/** Запрещаем редактирование */
+								$(`[name='ORDER_PROP_${property.getSettings().ID}']`).attr("readonly", "readonly")
+
+								/** Очищаем */
+								property.getSettings().VALUE = '';
+								$(`[for='soa-property-${property.getSettings().ID}']`)
+									.closest(".bx-soa-customer-field")
+									.find(`[name='ORDER_PROP_${property.getSettings().ID}']`)
+									.val('')
+
+							}, 150);
+
+							
+							break;
+						case 6:
+							/** Почта РФ доставка */
+
+							setTimeout(() => {
+							
+								/** Запрещаем редактирование */
+								$(`[name='ORDER_PROP_${property.getSettings().ID}']`).attr("readonly", "readonly")
+
+								if ($(`[for='soa-property-${property.getSettings().ID}']`).find(".bx-authform-starrequired").length == 0) {
+
+									/** Ставим обязательным */
+									property.getSettings().REQUIRED = "Y";
+
+									$(`[for='soa-property-${property.getSettings().ID}']`).append(
+										`<span class="bx-authform-starrequired">*</span>`
+									)
+
+								}
+
+							}, 150);
+
+							break;
+						case 12:
+							/** Почта СДЭК курьером */
+							
+							setTimeout(() => {
+
+								if ($(`[for='soa-property-${property.getSettings().ID}']`).find(".bx-authform-starrequired").length == 0) {
+
+									/** Ставим обязательным */
+									property.getSettings().REQUIRED = "Y";
+
+									$(`[for='soa-property-${property.getSettings().ID}']`).append(
+										`<span class="bx-authform-starrequired">*</span>`
+									)
+
+									/** Очищаем */
+									property.getSettings().VALUE = '';
+									$(`[for='soa-property-${property.getSettings().ID}']`)
+									.closest(".bx-soa-customer-field")
+									.find(`[name='ORDER_PROP_${property.getSettings().ID}']`)
+									.val('')
+
+								}
+
+							}, 150);
+
+							break;
+						case 13:
+							/** Почта СДЭК самовывоз */
+
+							setTimeout(() => {
+
+							if ($(`[for='soa-property-${property.getSettings().ID}']`).find(".bx-authform-starrequired").length == 0) {
+
+								/** Запрещаем редактирование */
+								$(`[name='ORDER_PROP_${property.getSettings().ID}']`).attr("readonly", "readonly")
+
+								/** Ставим обязательным */
+								property.getSettings().REQUIRED = "Y";
+
+								$(`[for='soa-property-${property.getSettings().ID}']`).append(
+									`<span class="bx-authform-starrequired">*</span>`
+								)
+
+							}
+
+							}, 150);
+
+							break;
+					
+						default:
+							break;
+					}
+
+				}
+
 			}
 
 			switch (propertyType)
@@ -7724,8 +7832,22 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (arProperty.MULTIPLE === 'Y')
 				return errors;
 
-			if (arProperty.REQUIRED === 'Y' && value.length === 0)
-				errors.push(field + ' ' + BX.message('SOA_REQUIRED'));
+			if (arProperty.REQUIRED === 'Y' && value.length === 0) {
+
+				if (arProperty.CODE == "ADDRESS") {
+					let currentDeliveryID = this.getSelectedDelivery()
+					/** Почта РФ или СДЭК самовывоз */
+					if (currentDeliveryID.ID == 6 || currentDeliveryID.ID == 13) {
+						errors.push(field + ' ' + BX.message('SOA_REQUIRED') + '. ' + BX.message('SOA_REQUIRED_PLEASE_ADD_POINT'));
+					} else {
+						errors.push(field + ' ' + BX.message('SOA_REQUIRED'));
+					}
+
+				} else {
+					errors.push(field + ' ' + BX.message('SOA_REQUIRED'));
+				}
+
+			}
 
 			if (value.length)
 			{
