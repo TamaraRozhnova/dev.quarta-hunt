@@ -25,7 +25,7 @@
 }
 
 .arrow_to-up-background {
-    background-color: #D9D9D9;
+    background-color: #004989;
     top: 0;
     bottom: 0;
     position: absolute;
@@ -45,6 +45,7 @@
 }
 .arrow_to-up svg path {
     stroke-width: 2px;
+    transition: .2s all ease-out;
 }
 
 @media (hover: hover) {
@@ -52,6 +53,10 @@
         width: inherit;
         height: inherit;
         scale: 1;
+    }
+
+    .arrow_to-up:hover svg path {
+        stroke: white;
     }
 }
 
