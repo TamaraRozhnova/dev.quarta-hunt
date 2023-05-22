@@ -44,7 +44,7 @@ class MainSlider {
         this.displayImages();
         this.swiper = new Swiper(this.swiperSelector, {
             slidesPerView: 1,
-            direction: 'vertical',
+            direction: 'horizontal',
             height: this.compact ? 455 : 511,
             loop: true,
             navigation: {
