@@ -1,53 +1,46 @@
-<?php
-
-$aMenuLinks = [
-    [
-        "Оптовикам",
-        "/wholesale/",
-        [],
-        [],
-        ""
-    ],
-    [
-        "О компании",
-        "/about/",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Новости",
-        "/news/",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Акции",
-        "/promo/",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Гарантии",
-        "/warranty/",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Контакты",
-        "/contacts/",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Доставка",
-        "/delivery/",
-        [],
-        [],
-        ""
-    ],
-];
+<?
+$aMenuLinks = Array(
+	Array(
+		"Оптовикам", 
+		"/wholesale/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"О компании", 
+		"/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Новости", 
+		"/news/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Гарантии", 
+		"/warranty/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Доставка", 
+		"/delivery/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
