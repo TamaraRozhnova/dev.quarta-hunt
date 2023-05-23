@@ -20,11 +20,6 @@ if (!count($arResult['ITEMS'])) {
                 Каталог товаров
             </a>
         </div>
-        <div class="header-nav-item header-categories__item non-dropmenu">
-            <a href="/promo/">
-                <span>Акции</span>
-            </a>
-        </div>
 
         <? foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
             <div class="header-nav-item header-categories__item" data-id="<?= $id ?>">

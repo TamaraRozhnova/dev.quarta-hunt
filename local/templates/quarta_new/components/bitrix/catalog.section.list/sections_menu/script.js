@@ -4,7 +4,7 @@
             constructor(sections) {
                 this.sections = sections;
                 this.mainElement = document.querySelector('.header-categories');
-                this.mainCatalogElements = document.querySelectorAll('.header-nav-item:not(.non-dropmenu)');
+                this.mainCatalogElements = document.querySelectorAll('.header-nav-item');
                 this.levelMenu = 1;
                 this.initMenuContainerObject();
                 this.hangEvents();
