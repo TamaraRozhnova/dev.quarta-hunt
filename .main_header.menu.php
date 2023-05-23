@@ -4,7 +4,14 @@ $aMenuLinks = Array(
 		"Оптовикам", 
 		"/wholesale/", 
 		Array(), 
+		Array("SET_BACKGROUND"=>"Y"), 
+		"" 
+	),
+	Array(
+		"Акции", 
+		"/promo/", 
 		Array(), 
+		Array("HIGHLIGHT_ORANGE"=>"Y", "SET_BACKGROUND"=>"Y"), 
 		"" 
 	),
 	Array(

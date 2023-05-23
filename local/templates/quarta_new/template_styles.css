@@ -8082,6 +8082,15 @@ input.form-check-input:focus {
 .header--desktop .header__top-row a:hover, .header--desktop .header__top-row a:focus {
   color: #004989;
 }
+
+.header--desktop .header__nav-item--selected.highlight-orange {
+  color: #EB5806;
+  background-color: #f3bd9e59;
+}
+.header--desktop .header__nav-item--selected.highlight-orange:hover {
+  color: #EB5806;
+}
+
 .header--desktop .header__location,
 .header--desktop .header__logo-section {
   min-width: 333px;
