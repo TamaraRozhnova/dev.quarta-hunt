@@ -14,6 +14,42 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const searchInputWrappers = document.querySelectorAll('.header .search-input');
 
+    const headerDesktop = document.querySelector('.header--desktop'),
+          headerDesktopNavItems = headerDesktop.querySelector('.row.header__top-row');
+
+    if (window.innerWidth > 1200) {
+        window.addEventListener('scroll', function() {
+
+            if (window.scrollY > 50) {
+    
+                if (
+                    document.documentElement.scrollTop > headerDesktop.offsetHeight + 50 
+                    && headerDesktop.style.position == 'initial' 
+                    || headerDesktop.style.position == ''
+                ) {
+                    headerDesktopNavItems.style.display = 'none';
+    
+                    headerDesktop.style.transform = 'translateY(-100%)'
+    
+                    setTimeout(() => {
+                        headerDesktop.style.position = 'sticky';
+                        headerDesktop.style.transform = 'translateY(0)'
+                    }, 250);
+                    
+                }
+                
+            } 
+    
+            if (document.documentElement.scrollTop < headerDesktop.offsetHeight - 100) {
+                headerDesktopNavItems.style.display = 'flex'
+                headerDesktop.style.position = 'initial';
+            }
+    
+        })
+    }
+
+
+
     shopsButton.addEventListener('click', (event) => {
         event.stopPropagation();
         shopsWrapper.classList.toggle('header__spot--show');
