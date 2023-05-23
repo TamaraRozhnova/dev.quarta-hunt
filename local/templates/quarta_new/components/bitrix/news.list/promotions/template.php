@@ -48,8 +48,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                    <?= $item['PROPERTIES']['TEXT_COLOR']['VALUE'] !== 'Темный' ? 'promo-card--light' : '' ?>"
                                 >
                                     <figure style="background-image: url(<?= $item['PREVIEW_PICTURE']['SRC'] ?>)"></figure>
-                                    <h3><?= $item['NAME'] ?></h3>
-                                    <p><?= $item['PREVIEW_TEXT'] ?></p>
+                                    <?if ($item['PROPERTIES']['HIDE_NAME_CARD_IN_SLIDER']['VALUE'] != 'Y'):?>
+                                        <h3><?= $item['NAME'] ?></h3>
+                                    <?endif;?>
+                                    <?if (!empty($item['PREVIEW_TEXT'])):?>
+                                        <p><?= $item['PREVIEW_TEXT'] ?></p>
+                                    <?endif;?>
                                 </a>
                             </div>
                         <? } ?>
