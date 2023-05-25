@@ -8,6 +8,8 @@ $newsIblockId = 13;
 $mainBannerNewsId = $arParams['MAIN_BANNER_NEWS_ID'] ?? '';
 $arrivalNewsIds = $arParams['ARRIVAL_NEWS_IDS'] ?? [];
 
+$newArrivalArr = explode(',', $arrivalNewsIds);
+
 if (!empty($mainBannerNewsId) || !empty($arrivalNewsIds)) {
     $newsIds = array_merge($arrivalNewsIds, [$mainBannerNewsId]);
     $newsResource = CIBlockElement::GetList([], ['IBLOCK_ID' => $newsIblockId, 'ID' => $newsIds, 'ACTIVE' => 'Y']);
@@ -20,7 +22,8 @@ if (!empty($mainBannerNewsId) || !empty($arrivalNewsIds)) {
             $arResult['MAIN_BANNER_NEWS'] = $properties;
             $arResult['MAIN_BANNER_NEWS']['BANNER_IMAGE']['SRC'] = $newsImage;
         }
-        if (in_array($fields['ID'], $arrivalNewsIds)) {
+
+        if (in_array($fields['ID'], $newArrivalArr)) {
             $arResult['ARRIVAL_NEWS'][$fields['ID']] = $properties;
             $arResult['ARRIVAL_NEWS'][$fields['ID']]['BANNER_IMAGE']['SRC'] = $newsImage;
         }

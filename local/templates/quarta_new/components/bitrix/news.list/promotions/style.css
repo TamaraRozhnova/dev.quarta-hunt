@@ -172,8 +172,16 @@
 .promo-card--background-image:hover figure {
   transform: scale(1.1);
 }
+
+@media (max-width: 1200px) {
+  .index__new-arrivals-item .promo-card {
+    height: 17.5rem;
+  }
+}
+
 @media (max-width: 991.98px) {
-  .promo-card {
+  .promo-card,
+  .index__new-arrivals-item .promo-card {
     height: 14.5rem;
     padding: 1.25rem;
   }
@@ -189,6 +197,14 @@
     min-height: 14.5rem;
   }
 }
+
+
+@media (max-width: 810px) {
+  .index__new-arrivals-item .promo-card {
+    height: 12.5rem;
+  }
+}
+
 @media (max-width: 650px) {
   .promo-card h3 {
     font-size: 1.125rem;
@@ -197,7 +213,11 @@
     font-size: 0.875rem;
   }
 }
+
 @media (max-width: 767.98px) {
+  .index__new-arrivals-item .promo-card {
+    height: 20.5rem;
+  }
   .promo-card figure img {
     max-width: 50%;
   }
@@ -217,6 +237,15 @@
   .promo-card figure img {
     max-width: 70%;
   }
+  .index__new-arrivals-item .promo-card {
+    height: 16.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .index__new-arrivals-item .promo-card {
+    height: 12.5rem;
+}
 }
 
 @media (max-width: 767.98px) {
