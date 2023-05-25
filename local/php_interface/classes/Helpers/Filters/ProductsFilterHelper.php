@@ -122,6 +122,10 @@ class ProductsFilterHelper
             $this->sortField = 'SCALED_' . $this->priceId;
             $this->sortOrder = 'ASC';
         }
+        if ($_GET['sort'] === 'available_discount') {
+            $this->sortField = 'PROPERTY_SIZE_DISCOUNT';
+            $this->sortOrder = 'DESC';
+        }
     }
 
 
