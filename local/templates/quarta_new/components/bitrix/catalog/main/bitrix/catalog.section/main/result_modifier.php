@@ -9,6 +9,7 @@ use Helpers\DiscountsHelper;
 DiscountsHelper::fillProductsWithBonuses($arResult['ITEMS']);
 
 $arResult['SORT_OPTIONS'] = [
+    'available_discount' => 'по наличию скидок',
     'cheaper' => 'дешевле',
     'expensive' => 'дороже',
 ];
