@@ -2,10 +2,13 @@ class PhotosSlider {
     constructor() {
         this.photosSliderSelector = '.photos-slider .swiper-container';
         this.selectedPhoto = document.querySelector('.product-photos__selected-photo');
-        this.zoomElement = document.querySelector('.product-photos__zoom');
-        this.zoomImageElement = this.zoomElement.querySelector('img');
+        this.detailCardPhotoModal = document.querySelector('#detail-card-modal-photo');
+        this.entityModal = null;
+        this.imageElementSrc = null;
 
         this.makeSlider();
+        this.initModalCardPhoto();
+        this.initModalCardPhotoMobile();
     }
 
     makeSlider() {
@@ -27,7 +30,51 @@ class PhotosSlider {
         this.photosSliderCurrentSlide = 0;
         this.photosSlider.slides[0].classList.add('photos-slider__item--active');
         this.hangPhotosSliderEvents();
-        this.hangZoomEvents();
+    }
+
+    initModalCardPhoto() {
+        this.imageElementSrc = this.photosSlider.slides[0].style.backgroundImage.replace(/(url\(")|("\))/g, '');
+
+        if (typeof this.imageElementSrc != "undefined") {
+            if (this.detailCardPhotoModal.length != 0) {
+                this.detailCardPhotoModal.querySelector('.detail-card-image').src = this.imageElementSrc
+            }
+        }
+
+        if (this.detailCardPhotoModal.length != 0) {
+  
+            this.entityModal = new Modal ({
+                modalOpenElementSelector: '.product-photos__selected-photo',
+                modalSelector: "#detail-card-modal-photo"
+            })
+            
+        }
+    }
+
+    initModalCardPhotoMobile() {
+        if (window.innerWidth <= 575) {
+            
+            this.photosSlider.slides.forEach((slide, index) => {
+
+                if (this.detailCardPhotoModal.length != 0) {
+  
+                    this.entityModal = new Modal ({
+                        modalOpenElementSelector: `.detail-card-open-modal-mobile-${slide.getAttribute('modal-index')}`,
+                        modalSelector: "#detail-card-modal-photo"
+                    })
+                    
+                }
+                
+            })
+        }
+    }
+
+    changeModalCardPhoto() {
+        if (this.detailCardPhotoModal.length != 0) {
+            if (this.detailCardPhotoModal.querySelector('.detail-card-image').length != 0) {
+                this.detailCardPhotoModal.querySelector('.detail-card-image').src = this.imageElementSrc
+            }
+        }
     }
 
     hangPhotosSliderEvents() {
@@ -56,7 +103,10 @@ class PhotosSlider {
             if (this.photosSliderCurrentSlide === index) {
                 const imageSrc = slide.style.backgroundImage;
                 this.selectedPhoto.style.backgroundImage = imageSrc;
-                this.zoomImageElement.src = imageSrc.replace(/(url\(")|("\))/g, '');
+                
+                this.imageElementSrc = imageSrc.replace(/(url\(")|("\))/g, '');
+                this.changeModalCardPhoto()
+                
                 slide.classList.add('photos-slider__item--active');
             } else {
                 slide.classList.remove('photos-slider__item--active');
@@ -64,32 +114,4 @@ class PhotosSlider {
         })
     }
 
-    hangZoomEvents() {
-        this.selectedPhoto.addEventListener('mouseenter', () => this.hangChangeMousePositionEvent());
-        this.selectedPhoto.addEventListener('mouseleave', () => {
-            this.selectedPhoto.removeEventListener('mousemove', () => this.hangChangeMousePositionEvent());
-        });
-    }
-
-    hangChangeMousePositionEvent() {
-        this.selectedPhoto.addEventListener('mousemove', (event) => {
-            const rect = this.selectedPhoto.getBoundingClientRect();
-            const elementX = event.clientX - rect.left;
-            const elementY = event.clientY - rect.top;
-            const isOutside = elementX < 0 || elementX > rect.width || elementY < 0 || elementY > rect.height;
-
-            if (isOutside) {
-                this.zoomElement.classList.remove('product-photos__zoom--show');
-                return;
-            }
-
-            this.zoomElement.classList.add('product-photos__zoom--show');
-            const shiftX = (elementX / (rect?.width ?? 0) - 0.5) * -75;
-            const shiftY = (elementY / (rect?.height ?? 0) - 0.5) * -125;
-
-            this.zoomImageElement.style.transform = `scale(3) translate3d(${shiftX}%,${shiftY}%, 0)`
-            this.zoomElement.style.top = `${elementY}px`;
-            this.zoomElement.style.left = `${elementX}px`;
-        });
-    }
 }

@@ -46,9 +46,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                             <div class="product-photos__selected-photo"
                                  style="background-image: url('<?= $arResult['IMAGES'][0] ?>')">
-                                <div class="product-photos__zoom">
-                                    <img src="<?= $arResult['IMAGES'][0] ?>" alt=""/>
-                                </div>
                                 <div class="product-photos__expander"></div>
                             </div>
                         </figure>
@@ -56,8 +53,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         <div class="photos-slider">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
-                                    <? foreach ($arResult['IMAGES'] as $image) { ?>
-                                        <div class="photos-slider__item swiper-slide"
+                                    <? foreach ($arResult['IMAGES'] as $imageIndex => $image) { ?>
+                                        <div modal-index="<?=$imageIndex?>" 
+                                             class="
+                                                detail-card-open-modal-mobile 
+                                                photos-slider__item swiper-slide
+                                                detail-card-open-modal-mobile-<?=$imageIndex?>"
                                              style="background-image: url('<?= $image ?>')"></div>
                                     <? } ?>
                                 </div>
@@ -66,6 +67,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <div class="photos-slider__next-button"></div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
