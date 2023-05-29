@@ -106,6 +106,8 @@
 }
 
 .basket-checkout-container {
+  position: sticky;
+  top: 10px;
   display: block;
   margin-bottom: 20px;
   padding: 40px 30px;
