@@ -75,7 +75,7 @@ $APPLICATION->SetTitle("Блог");?>
 		"PAGER_SHOW_ALL" => "N",
 		"PAGER_SHOW_ALWAYS" => "N",
 		"PAGER_TEMPLATE" => "articles",
-		"PAGER_TITLE" => "Новости",
+		"PAGER_TITLE" => "Блог",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"SEF_FOLDER" => "/news/",
 		"SEF_MODE" => "Y",
