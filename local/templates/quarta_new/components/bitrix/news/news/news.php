@@ -11,6 +11,8 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
+
 ?>
 <section class="news-list">
     <div class="news-list__title-wrapper">
@@ -41,8 +43,8 @@ $this->setFrameMode(true);
                                 0 => "",
                                 1 => "",
                             ),
-                            "CURRENT_SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
-                            "SECTION_URL" => "/news/?SECTION_ID=#SECTION_ID#",
+                            "CURRENT_SECTION_CODE" => $arResult["VARIABLES"]["CODE"],
+                            "SECTION_URL" => "",
                             "PARENT_URL" => "/news/",
                             "SECTION_USER_FIELDS" => array(
                                 0 => "",
