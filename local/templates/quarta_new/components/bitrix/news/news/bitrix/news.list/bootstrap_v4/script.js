@@ -1,5 +1,56 @@
 (function (window)
 {
+
+		document.addEventListener('DOMContentLoaded', function(){
+
+			let targetContainer = ".news-list",
+				targetChildContainer = ".row.news-list > .col",
+				targetItem = `${targetContainer} ${targetChildContainer} > div`;
+
+			let currentColWrapper = document.querySelector(`${targetContainer} ${targetChildContainer}`);
+
+
+			document.addEventListener("click", function(event) {
+
+				if (event.target.closest(".load_more")) {
+
+					let url = event.target.closest(".load_more").getAttribute('data-url');
+
+					if (url !== undefined) {
+	
+						fetch(url).then(function (response) {
+							return response.text();
+						}).then(function (html) {
+
+							let oldPagination = document.querySelector('.load_more')
+
+							oldPagination.closest('.list__pagination').remove()
+
+							let parser = new DOMParser(),
+								 doc = parser.parseFromString(html, 'text/html');
+	
+							let elements = doc.querySelectorAll(targetItem)
+								pagination = doc.querySelector(`${targetContainer} .load_more`)
+		
+							for (var i = 0; i < elements.length; i++) {
+								currentColWrapper.appendChild(elements[i])
+							}
+	
+	
+						}).catch(function (err) {
+							console.warn('Something went wrong.', err);
+						});
+	
+					}
+
+				}
+
+			})
+
+		});
+
+
+
 	if (!!window.JCNewsSlider)
 	{
 		return;
