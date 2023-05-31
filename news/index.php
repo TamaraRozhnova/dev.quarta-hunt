@@ -1,7 +1,9 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Новости");
-?><?$APPLICATION->IncludeComponent(
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+$APPLICATION->SetTitle("Блог");?>
+
+
+<?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"news",
 	array(
@@ -66,13 +68,13 @@ $APPLICATION->SetTitle("Новости");
 		"MESSAGE_404" => "",
 		"META_DESCRIPTION" => "-",
 		"META_KEYWORDS" => "-",
-		"NEWS_COUNT" => "11",
+		"NEWS_COUNT" => "25",
 		"PAGER_BASE_LINK_ENABLE" => "N",
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
 		"PAGER_SHOW_ALL" => "N",
 		"PAGER_SHOW_ALWAYS" => "N",
-		"PAGER_TEMPLATE" => ".default",
+		"PAGER_TEMPLATE" => "articles",
 		"PAGER_TITLE" => "Новости",
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"SEF_FOLDER" => "/news/",
@@ -98,9 +100,12 @@ $APPLICATION->SetTitle("Новости");
 		"USE_SHARE" => "N",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "",
-			"section" => "",
-			"detail" => "#ELEMENT_CODE#/",
+			"section" => "#CODE#/",
+			"detail" => "#SECTION_CODE#/#ELEMENT_CODE#/",
 		)
 	),
 	false
-);?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+);?>
+
+
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

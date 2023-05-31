@@ -11,6 +11,7 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
+
 ?>
 <section class="news-list">
     <div class="news-list__title-wrapper">
@@ -21,40 +22,40 @@ $this->setFrameMode(true);
                 </div>
                 <div class="col-12 col-md-9 pb-lg-5 col-lg-8">
                     <? $APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list", 
-	"newslist", 
-	array(
-		"ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
-		"ADD_SECTIONS_CHAIN" => "Y",
-		"CACHE_FILTER" => "N",
-		"CACHE_GROUPS" => "Y",
-		"CACHE_TIME" => "36000000",
-		"CACHE_TYPE" => "A",
-		"COUNT_ELEMENTS" => "N",
-		"COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
-		"FILTER_NAME" => "sectionsFilter",
-		"HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
-		"IBLOCK_ID" => "1",
-		"IBLOCK_TYPE" => "news",
-		"SECTION_CODE" => "",
-		"SECTION_FIELDS" => array(
-			0 => "",
-			1 => "",
-		),
-		"CURRENT_SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
-		"SECTION_URL" => "/news/?SECTION_ID=#SECTION_ID#",
-        "PARENT_URL" => "/news/",
-		"SECTION_USER_FIELDS" => array(
-			0 => "",
-			1 => "",
-		),
-		"SHOW_PARENT_NAME" => "Y",
-		"TOP_DEPTH" => "2",
-		"VIEW_MODE" => "TEXT",
-		"COMPONENT_TEMPLATE" => "newslist"
-	),
-	false
-); ?>
+                        "bitrix:catalog.section.list", 
+                        "newslist", 
+                        array(
+                            "ADDITIONAL_COUNT_ELEMENTS_FILTER" => "additionalCountFilter",
+                            "ADD_SECTIONS_CHAIN" => "Y",
+                            "CACHE_FILTER" => "N",
+                            "CACHE_GROUPS" => "Y",
+                            "CACHE_TIME" => "36000000",
+                            "CACHE_TYPE" => "A",
+                            "COUNT_ELEMENTS" => "N",
+                            "COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
+                            "FILTER_NAME" => "sectionsFilter",
+                            "HIDE_SECTIONS_WITH_ZERO_COUNT_ELEMENTS" => "N",
+                            "IBLOCK_ID" => "1",
+                            "IBLOCK_TYPE" => "news",
+                            "SECTION_CODE" => "",
+                            "SECTION_FIELDS" => array(
+                                0 => "",
+                                1 => "",
+                            ),
+                            "CURRENT_SECTION_CODE" => $arResult["VARIABLES"]["CODE"],
+                            "SECTION_URL" => "",
+                            "PARENT_URL" => "/news/",
+                            "SECTION_USER_FIELDS" => array(
+                                0 => "",
+                                1 => "",
+                            ),
+                            "SHOW_PARENT_NAME" => "Y",
+                            "TOP_DEPTH" => "2",
+                            "VIEW_MODE" => "TEXT",
+                            "COMPONENT_TEMPLATE" => "newslist"
+                        ),
+                        false
+                    ); ?>
                 </div>
             </div>
         </div>
@@ -143,8 +144,7 @@ $this->setFrameMode(true);
             "ADD_SECTIONS_CHAIN" => $arParams["ADD_SECTIONS_CHAIN"],
             "HIDE_LINK_WHEN_NO_DETAIL" => $arParams["HIDE_LINK_WHEN_NO_DETAIL"],
 
-            "PARENT_SECTION" => $_REQUEST['SECTION_ID'],
-            "PARENT_SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
+            "PARENT_SECTION_CODE" => $arResult["VARIABLES"]["CODE"],
             "INCLUDE_SUBSECTIONS" => "Y",
 
             "DISPLAY_DATE" => $arParams["DISPLAY_DATE"],

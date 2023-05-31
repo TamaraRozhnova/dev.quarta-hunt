@@ -1,39 +1,39 @@
-<?php
-
-$aMenuLinks = [
-    [
-        "Каталог",
-        "/catalog",
-        [],
-        [],
-        ""
-    ],
-    [
-        "О компании",
-        "/about",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Новости",
-        "/news",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Акции",
-        "/promo",
-        [],
-        [],
-        ""
-    ],
-    [
-        "Оптовикам",
-        "/wholesale",
-        [],
-        [],
-        ""
-    ],
-];
+<?
+$aMenuLinks = Array(
+	Array(
+		"Каталог", 
+		"/catalog", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"О компании", 
+		"/about", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Блог", 
+		"/news", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Акции", 
+		"/promo", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Оптовикам", 
+		"/wholesale", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
