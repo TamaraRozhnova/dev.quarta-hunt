@@ -44,7 +44,7 @@ $this->setFrameMode(true);
                             ),
                             "CURRENT_SECTION_CODE" => $arResult["VARIABLES"]["CODE"],
                             "SECTION_URL" => "",
-                            "PARENT_URL" => "/news/",
+                            "PARENT_URL" => "/blog/",
                             "SECTION_USER_FIELDS" => array(
                                 0 => "",
                                 1 => "",

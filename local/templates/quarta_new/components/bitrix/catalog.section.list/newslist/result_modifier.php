@@ -9,6 +9,24 @@ $arDefaultParams = array(
 	'HIDE_SECTION_NAME' => 'N'
 );
 
+$arFilter = array(
+	'IBLOCK_ID' => $arParams['IBLOCK_ID'], 
+	'ACTIVE' => 'Y',
+	'=UF_HIDE_IN_SECTION' => 1
+);
+$arSelect = array('ID', 'UF_HIDE_IN_SECTION');
+$rsSections = CIBlockSection::GetList(
+	array(), $arFilter, false, $arSelect,false
+);
+
+while ($newRes = $rsSections->fetch()) {
+	foreach ($arResult['SECTIONS'] as $arSectionIndex => $arSection) {
+		if ($arSection['ID'] == $newRes['ID']) {
+			unset($arResult['SECTIONS'][$arSectionIndex]);
+		}
+	}
+}
+
 $arParams = array_merge($arDefaultParams, $arParams);
 
 if (!in_array($arParams['VIEW_MODE'], $arViewModeList))

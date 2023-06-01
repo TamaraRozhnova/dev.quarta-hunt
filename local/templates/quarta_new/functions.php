@@ -24,7 +24,7 @@ function getSearchString(): string {
 
 function showBreadcrumb(): bool {
     $notAllowedUrls = ['/catalog/index.php'];
-    $allowedUrls = ['/catalog/', '/search/', '/news/', '/favorites/', '/compare/', '/jobs/'];
+    $allowedUrls = ['/catalog/', '/search/', '/blog/', '/favorites/', '/compare/', '/jobs/'];
 
     foreach ($notAllowedUrls as $url) {
         if (CSite::InDir($url)) {

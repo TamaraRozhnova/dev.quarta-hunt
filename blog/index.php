@@ -77,7 +77,7 @@ $APPLICATION->SetTitle("Блог");?>
 		"PAGER_TEMPLATE" => "articles",
 		"PAGER_TITLE" => "Блог",
 		"PREVIEW_TRUNCATE_LEN" => "",
-		"SEF_FOLDER" => "/news/",
+		"SEF_FOLDER" => "/blog/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "Y",
 		"SET_STATUS_404" => "N",
