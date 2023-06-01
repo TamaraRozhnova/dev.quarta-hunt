@@ -1,0 +1,14 @@
+a.sharing-element {
+    display: flex;
+}
+@media (hover: hover) {
+    a.sharing-element:nth-child(1):hover svg rect,
+    a.sharing-element:nth-child(2):hover svg rect,
+    a.sharing-element:nth-child(3):hover svg g path {
+        fill: #EB5806;
+    }
+}
+.sharing-elements {
+    display: flex;
+    gap: 12px;
+}

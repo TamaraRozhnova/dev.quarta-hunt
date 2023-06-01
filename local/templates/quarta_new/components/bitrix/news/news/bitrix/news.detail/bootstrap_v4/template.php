@@ -148,6 +148,13 @@ while ($ar_result = $resAllSections->GetNext()) {
                                 <? endif; ?>
                                 <div class="preview-text"><? echo $arResult["PREVIEW_TEXT"]; ?></div>
                             </div>
+                            <div class="included__sharing">
+                                <?$APPLICATION->IncludeFile(
+                                    '/include/articles/sharing.php', 
+                                    false, 
+                                    ['SHOW_BORDER' => false]);
+                                ?>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-5 news-detail-img">
