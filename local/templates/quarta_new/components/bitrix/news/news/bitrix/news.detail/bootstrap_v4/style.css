@@ -30,6 +30,9 @@
     display: inline-block;
   }
 }
+.included__sharing {
+  margin-top: 45px;
+}
 .news-detail__header-wrapper {
   display: flex;
   position: relative;
