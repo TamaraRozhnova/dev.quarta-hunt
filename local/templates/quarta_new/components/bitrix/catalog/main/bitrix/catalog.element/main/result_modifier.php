@@ -45,12 +45,16 @@ $arResult['PRICES_LIST'] = DiscountsHelper::getCorrectPrices($arResult);
 
 foreach ($arResult['PROPERTIES']['FILES']['VALUE'] as $fileId) {
     $fileResource = CFile::GetByID($fileId);
+
     if ($file = $fileResource->GetNext()) {
-        $arResult['FILES'][] = [
-            'NAME' => $file['ORIGINAL_NAME'],
-            'SIZE' => FileSizeHelper::getFormattedSize($file['FILE_SIZE']),
-            'SRC' => $file['SRC']
-        ];
+        /** Выводим только PDF */
+        if ($file['CONTENT_TYPE'] != 'text/plain') {
+            $arResult['FILES'][] = [
+                'NAME' => $file['ORIGINAL_NAME'],
+                'SIZE' => FileSizeHelper::getFormattedSize($file['FILE_SIZE']),
+                'SRC' => $file['SRC']
+            ];
+        }
     }
 }
 
@@ -81,3 +85,44 @@ $arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECT
 DiscountsHelper::fillProductWithBonuses($arResult);
 
 $arResult['RATING']['MAX_STARS'] = 5;
+
+/** Получаем склады*/
+
+use Bitrix\Catalog\StoreTable,
+    Bitrix\Catalog\StoreProductTable;
+
+$rsStoreElement = StoreProductTable::getList(array(
+    'filter' => array('PRODUCT_ID' => $arResult['ID']),
+    'select' => array('ID', 'AMOUNT', 'STORE_ID')
+))->fetchAll();
+
+if (!empty($rsStoreElement)) {
+
+    foreach ($rsStoreElement as $arStoreElement) {
+
+        $arStoreElementIDS[$arStoreElement['STORE_ID']] = $arStoreElement['STORE_ID'];
+
+        $arStoreElementAmount[$arStoreElement['STORE_ID']] = $arStoreElement['AMOUNT'];
+
+    }
+
+    $arResult['STORES_ELEMENT'] = $rsStore = StoreTable::getList(array(
+        'filter' => array('=ID' => $arStoreElementIDS),
+        'select' => array('ID', 'TITLE', 'ADDRESS', 'SCHEDULE', '*')
+    ))->fetchAll();
+
+    if (!empty($arStoreElementAmount)) {
+        foreach ($arStoreElementAmount as $arStoreAmountKey => $arStoreAmount) {
+            foreach ($arResult['STORES_ELEMENT'] as $arStoreElementIndex => $arStoreElement) {
+
+                if ($arStoreAmountKey == $arStoreElement['ID']) {
+                    $arResult['STORES_ELEMENT'][$arStoreElementIndex]['AMOUNT'] = $arStoreAmount;
+                }
+
+            }
+            
+        }
+    }
+
+}
+
