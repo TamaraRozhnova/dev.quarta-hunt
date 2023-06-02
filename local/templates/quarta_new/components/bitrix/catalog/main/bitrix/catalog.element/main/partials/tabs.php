@@ -17,9 +17,11 @@ $isUserAuth = $user->isAuthorized();
             <button class="product-about__tab product-about__tab--selected" data-tab="1">
                 Описание и характеристики
             </button>
-<!--            <button class="product-about__tab" data-tab="2">-->
-<!--                Посмотреть наличие-->
-<!--            </button>-->
+            <? if (!empty($result['STORES_ELEMENT'])) { ?>
+                <button class="product-about__tab" data-tab="2">
+                    Посмотреть наличие
+                </button>
+            <? } ?>
             <? if (!empty($result['FILES'])) { ?>
                 <button class="product-about__tab" data-tab="3">
                     Инструкции
@@ -65,44 +67,62 @@ $isUserAuth = $user->isAuthorized();
         </div>
     </div>
 
-<!--    <div v-if="availability" class="product-availability product__tab pb-5" data-tab="2">-->
-<!--        <div class="container">-->
-<!--            <h3>Наличие товара</h3>-->
-<!--        </div>-->
-<!--        <div class="product-availability__wr">-->
-<!--            <div class="container">-->
-<!--                <div class="row product-availability__header">-->
-<!--                    <div class="col-5 product-availability__cell">Адрес</div>-->
-<!--                    <div class="col-2 product-availability__cell">Режим работы</div>-->
-<!--                    <div class="col-3 product-availability__cell">Наличие</div>-->
-<!--                    <div class="col"></div>-->
-<!--                </div>-->
-<!---->
-<!--                <div-->
-<!--                        v-for="store of availability.stores"-->
-<!--                        :key="store.id"-->
-<!--                        class="row product-availability__spot"-->
-<!--                >-->
-<!--                    <div class="col-5 product-availability__cell">-->
-<!--                        <div class="product-availability__address">-->
-<!--                            <LocationIcon class="icon"/>-->
-<!--                            <span v-html="store.title"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-2 product-availability__cell">-->
-<!--                        <span><span class="product-availability__cell-show-on-md">Режим работы:</span> {{ store.schedule }}</span>-->
-<!--                    </div>-->
-<!--                    <div class="col-3 product-availability__cell">-->
-<!--                        <ProductAvailabilityBageVue :avaible="!!store.amount"/>-->
-<!--                    </div>-->
-<!--                    <div class="col-2 product-availability__cell">-->
-<!--                        <button class="btn" :disabled="!store.amount">Выбрать</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <hr/>-->
-<!--    </div>-->
+    <?if (!empty($result['STORES_ELEMENT'])):?>
+        <div class="product-availability product__tab pb-5" data-tab="2">
+            <div class="container">
+                <h3>Наличие товара</h3>
+            </div>
+            <div class="product-availability__wr">
+                <div class="container">
+                    <div class="row product-availability__header">
+                        <div class="col-5 product-availability__cell">Адрес</div>
+                        <div class="col-2 product-availability__cell">Режим работы</div>
+                        <div class="col-3 product-availability__cell">Наличие</div>
+                        <div class="col"></div>
+                    </div>
+
+                    <?foreach ($result['STORES_ELEMENT'] as $arStore):?>
+                        <div class="row product-availability__spot">
+                            <div class="col-5 product-availability__cell">
+                                <div class="product-availability__address">
+                                
+                                    <svg data-v-2da56cde="" width="10" height="14" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon">
+                                        <path data-v-2da56cde="" d="M5 0C2.24 0 0 2.016 0 4.5c0 4 5 9.5 5 9.5s5-5.5 5-9.5C10 2.016 7.76 0 5 0zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor">
+                                        </path>
+                                    </svg>
+                                    <span><?=$arStore['TITLE']?> (<?=$arStore['ADDRESS']?>)</span>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-2 product-availability__cell">
+                                <span>
+                                    <span class="product-availability__cell-show-on-md">Режим работы:</span> 
+                                    <?=$arStore['SCHEDULE']?>
+                                </span>
+                            </div>
+                            <div class="col-3 product-availability__cell">
+                                <div class="product-availability-bage">
+                                    <?if ($arStore['AMOUNT'] > 0):?>
+                                        <span class="available">В наличии</span>
+                                    <?else:?>
+                                        <span>Нет в наличии</span>
+                                    <?endif;?>
+                                </div>
+                            </div>
+                            <div class="col-2 product-availability__cell">
+                                <?if ($arStore['AMOUNT'] > 0):?>
+                                    <button class="btn">Выбрать</button>
+                                <?else:?>
+                                    <button class="btn" disabled>Выбрать</button>
+                                <?endif;?>
+                            </div>
+                        </div>
+                    <?endforeach;?>
+                </div>
+            </div>
+            <hr/>
+        </div>
+    <?endif;?>
 
     <? if (!empty($result['FILES'])) { ?>
         <div class="product-instructions container product__tab" data-tab="3">

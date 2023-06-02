@@ -24,6 +24,29 @@
   height: 12px;
   border-radius: 0.3125em;
 }
+
+.product-availability-bage span {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #808d9a;
+}
+.product-availability-bage span::before {
+  content: "";
+  display: inline-block;
+  width: 0.3125rem;
+  height: 0.3125rem;
+  margin-right: 0.3125rem;
+  background-color: currentColor;
+  border-radius: 50%;
+  color: #808d9a;
+}
+.product-availability-bage span.available::before {
+  color: #eb5806;
+}
+.product-availability-bage span.available {
+  color: #eb5806;
+}
 .product__article {
   line-height: 0.6875rem;
 }
