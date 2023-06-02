@@ -126,6 +126,10 @@ class ProductsFilterHelper
             $this->sortField = 'PROPERTY_SIZE_DISCOUNT';
             $this->sortOrder = 'DESC';
         }
+        if ($_GET['sort'] === 'relevante') {
+            $this->sortField = 'CATALOG_AVAILABLE';
+            $this->sortOrder = 'DESC';
+        }
     }
 
 
