@@ -15,6 +15,10 @@ class OrderId
         return OrderId::getSectionProductId($orderId);
     }
 
+    public static function getOrderBasket($orderId, $orderField = '') {
+        return OrderId::getProductIdBasket($orderId, $orderField);
+    }
+
     private static function getSectionProductId($orderId) {
         $clothes = false;
         $shoes = false;
@@ -80,7 +84,7 @@ class OrderId
         return $sectionsID;
     }
 
-    private static function getProductIdBasket($orderId) {
+    private static function getProductIdBasket($orderId, $orderField = '') {
         if (!CModule::IncludeModule('sale')) {
             return;
         }
@@ -90,11 +94,24 @@ class OrderId
         foreach ($basket as $basketItem) {
             if (CModule::IncludeModule("catalog")) {
                 $mxResult = CCatalogSku::GetProductInfo($basketItem->getProductId());
+
                 if (is_array($mxResult)) {
                     $res[] = $mxResult['ID'];
                 }
             }
-            $res[] = $basketItem->getProductId();
+            
+            if (!empty($orderField)) {
+
+                $orderIdCurr = $basketItem->getProductId();
+                $orderFieldCurr = $basketItem->getField($orderField);
+
+                $res[$orderIdCurr]['ID'] = $orderIdCurr;
+                $res[$orderIdCurr][$orderField] = $orderFieldCurr;
+
+            } else {
+                $res[] = $basketItem->getProductId();
+            }
+
         }
         return $res;
     }
