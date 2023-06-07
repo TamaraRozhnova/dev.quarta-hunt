@@ -143,7 +143,7 @@ Loc::loadMessages(__FILE__);
 						</div>  
 	                <? } ?>
 					<div class="history-order__body-btns">
-						<a href="/" class="btn btn-primary btn-lg px-5 history-order__body-btn">Оставить отзыв</a> 
+						<a href="/cabinet/reviews/?order_id=<?= $order['ORDER']['ACCOUNT_NUMBER'];?>" class="btn btn-primary btn-lg px-5 history-order__body-btn">Оставить отзыв</a> 
 						<a href="<?=htmlspecialcharsbx($order["ORDER"]["URL_TO_COPY"])?>" class="btn btn-primary btn-lg px-5 history-order__body-btn sale-order-list-repeat-link">
 							<span ><?= getMessage('SPOL_REPEAT_ORDER');?></span>
 						</a> 
