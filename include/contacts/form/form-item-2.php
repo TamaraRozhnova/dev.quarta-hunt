@@ -1,0 +1,1 @@
+Пишите на почту <a href="mailto:shop@quarta-hunt.ru">shop@quarta-hunt.ru</a>

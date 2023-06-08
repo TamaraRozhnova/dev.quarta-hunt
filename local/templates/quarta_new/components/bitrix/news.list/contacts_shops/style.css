@@ -1,0 +1,143 @@
+@media (max-width: 991.98px) {
+  #yandex-map {
+    height: 437px;
+  }
+}
+@media (max-width: 767.98px) {
+  #yandex-map {
+    height: 268px;
+  }
+}
+
+.shop-info__wrapper:not(.active) {
+  display: none;
+}
+.shop-info__wrapper {
+  padding: 3.125rem 0;
+}
+.shop-info__wrapper svg {
+  min-width: max-content;
+}
+.contacts__shop-description p b {
+  color: #333;
+}
+.contacts {
+  font-size: 1rem
+}
+
+.contacts h2 {
+  font-size: 2.188rem
+}
+
+.contacts h3 {
+  font-size: 1.625rem
+}
+
+.contacts h2,.contacts h3 {
+  max-width: 75%
+}
+
+.contacts__shop-description,.contacts p {
+  max-width: 450px
+}
+
+.contacts__shop-description b,.contacts p b {
+  color: #333
+}
+
+.contacts svg {
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content
+}
+
+.contacts .container {
+  padding-top: 3.125rem;
+  padding-bottom: 3.125rem
+}
+
+.contacts .container>.row {
+  padding: 3.125rem 0
+}
+
+.contacts ul.checklist {
+  padding-left: 0
+}
+
+.contacts ul.checklist li {
+  padding-left: calc(15px + 1.5ch);
+  position: relative;
+  display: block
+}
+
+.contacts ul.checklist li:before {
+  content: "";
+  width: 15px;
+  height: 12px;
+  position: absolute;
+  top: .25em;
+  left: 0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='15' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.657 11.499c.11.155.252.281.418.368a1.155 1.155 0 001.492-.368L14.344.479c.14-.2 0-.479-.24-.479h-1.732c-.377 0-.735.185-.956.502L5.614 8.729 2.984 5a1.173 1.173 0 00-.956-.502H.296c-.24 0-.38.28-.24.48l4.601 6.52z' fill='%23EB5806'/%3E%3C/svg%3E")
+}
+
+@media(max-width: 991.98px) {
+  .contacts__shop-description,.contacts h2,.contacts h3,.contacts p {
+      max-width:unset
+  }
+
+  .contacts h2 {
+      font-size: 1.875rem;
+      margin-bottom: 2.5rem
+  }
+
+  .contacts h3 {
+      font-size: 1.25rem
+  }
+
+  .contacts .container {
+      max-width: 100%;
+      padding: 0 30px;
+      padding-bottom: 0!important
+  }
+
+  .contacts .yandex-map {
+      height: 437px
+  }
+}
+
+@media(max-width: 575.98px) {
+  .contacts h2 {
+      font-size:1.438rem
+  }
+
+  .contacts h3 {
+      font-size: 1.125rem
+  }
+
+  .contacts h6,.contacts p,.contacts ul.checklist li {
+      font-size: .875rem
+  }
+
+  .contacts .container {
+      padding: 0 15px
+  }
+
+  .contacts .jumbotron-vue {
+      background-position: 63% 50%
+  }
+
+  .contacts ul.checklist li {
+      padding-left: 35px
+  }
+
+  .contacts ul.checklist li:before {
+      width: 20px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-size: 100% 100%
+  }
+
+  .contacts .yandex-map {
+      height: 268px
+  }
+}
