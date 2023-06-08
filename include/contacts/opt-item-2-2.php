@@ -1,0 +1,1 @@
+<a href="mailto:moscow@quarta-hunt.ru">moscow@quarta-hunt.ru</a>
