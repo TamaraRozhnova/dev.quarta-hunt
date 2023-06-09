@@ -23,6 +23,13 @@
 #bx-soa-order .bx-soa-sidebar {
 	padding: 1.625rem;
 }
+@media (min-width: 768px) {
+	#bx-soa-order .bx-soa-sidebar {
+		position: sticky;
+		top: 150px;
+		margin-bottom: 0;
+	}
+}
 .bx-soa-section-title-count {
 	position: relative;
 	display: inline-block;
