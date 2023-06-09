@@ -3,14 +3,34 @@ window.addEventListener('DOMContentLoaded', () => {
         constructor() {
             this.selectorShopElement = document.querySelector('.select--shop');
             this.shopInfoWrappers = document.querySelectorAll(".shop-info__wrapper.row")
+            this.shopMaps = document.querySelector('.shop-maps')
 
             if (!this.selectorShopElement) {
                 return;
             }
             
             this.createElements();
-            this.yandexMap = new YandexMap('shop-map', shops);
 
+        }
+
+        createElement(htmlStr) {
+            let frag = document.createDocumentFragment(),
+                temp = document.createElement('div');
+            temp.innerHTML = htmlStr;
+            while (temp.firstChild) {
+                frag.appendChild(temp.firstChild);
+            }
+            return frag;
+        }
+
+        deactiveElements() {
+            if (this.shopMaps.querySelectorAll('div[data-id]').length != 0) {
+
+                this.shopMaps.querySelectorAll('div[data-id]').forEach( (map) => {
+                    map.classList.remove('active')
+                })
+
+            }
         }
 
         createElements() {
@@ -23,11 +43,41 @@ window.addEventListener('DOMContentLoaded', () => {
                         shopInfo.classList.remove('active')
 
                         if (shop.ID == shopInfo.getAttribute('data-id')) {
+
+                            let currentShopID = shopInfo.getAttribute('data-id')
+
+                            if (typeof shop.PROPERTIES != 'undefined') {
+
+                                if (typeof shop.PROPERTIES.IFRAME_YA_MAP != 'undefined') {
+
+                                    if (this.shopMaps.querySelector(`div[data-id = "${currentShopID}"]`) == null) {
+
+                                        this.deactiveElements()
+
+                                        let newMap = this.createElement(
+                                            `
+                                            <div data-id = '${currentShopID}' class = 'shop-map active'>
+                                                ${shop.PROPERTIES.IFRAME_YA_MAP['~VALUE']}
+                                            </div>
+                                            `
+                                        );
+
+                                        this.shopMaps.append(newMap)
+
+                                    } else {
+                                        
+                                        this.deactiveElements()
+
+                                        this.shopMaps.querySelector(`div[data-id = "${currentShopID}"]`).classList.add('active')
+                                        
+                                    }
+
+                                }
+
+                            }
                             shopInfo.classList.add('active')
                         }
                     })
-
-                    this.yandexMap.setLocation(shop);
                 }
             });
         }

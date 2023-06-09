@@ -100,10 +100,20 @@ if (!count($arResult['ITEMS'])) {
                         </div>
                     </div>
                 <?endforeach;?>
-                    
-                <div id="yandex-map" class="yandex-map mb-lg-5">
-                    <div id="shop-map"></div>
+
+                <div class = "shop-maps">
+                    <?foreach ($arResult['ITEMS'] as $arMapIndex => $arMap):?>
+
+                        <?if ($arMapIndex >= 1):?>
+                            <?break?>
+                        <?endif?>
+
+                        <div data-id = <?=$arMap['ID']?> class = "shop-map active">
+                            <?=$arMap['PROPERTIES']['IFRAME_YA_MAP']['~VALUE']?>
+                        </div>  
+                    <?endforeach;?>                       
                 </div>
+
             </div>
         </div>
     </div>
