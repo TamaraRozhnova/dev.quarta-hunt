@@ -1,0 +1,27 @@
+.search {
+  background: #f9f9fa;
+  padding-bottom: 8.75rem;
+}
+.search h2 {
+  font-size: 2.188rem;
+  margin-bottom: 1.875rem;
+}
+@media (max-width: 991.98px) {
+  .search h2 {
+    font-size: 1.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .search .container {
+    max-width: 100%;
+    padding: 0 30px;
+  }
+}
+@media (max-width: 575.98px) {
+  .search h2 {
+    font-size: 1.438rem;
+    margin-bottom: 0.688rem;
+  }
+  .search .container {
+    padding: 0 15px;
+  }
+}
