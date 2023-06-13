@@ -1,0 +1,23 @@
+.warranty-form {
+    .invalid-feedback {
+        font-size: 0.75rem;
+    }
+    .input--required{
+        label{
+            &::after{
+                content: "*";
+                color: #eb5806;
+                font-size: 1.2em;
+            }
+        }
+    }
+    .textarea{
+         label {
+            font-size: 1rem;
+        }
+    }
+}
+
+.warranty-form__success-message {
+    margin-bottom: 0;
+}

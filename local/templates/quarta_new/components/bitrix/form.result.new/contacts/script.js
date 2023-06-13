@@ -1,8 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
-    class WarrantyForm {
+    class ContactsForm {
         constructor() {
-            this.ajaxUrl = '/ajax/form/warrantyForm.php'
-            this.formSelector = '.warranty-form';
+            this.ajaxUrl = '/ajax/form/contactsForm.php'
+            this.formSelector = '.contacts-form';
             this.form = document.querySelector(this.formSelector);
 
             this.createControls();
@@ -46,12 +46,12 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         scrollToSuccessElement() {
-            const successBlock = document.querySelector('.warranty-form__success-message');
+            const successBlock = document.querySelector('.contacts-form__success-message');
             successBlock.scrollIntoView({ block: 'center', inline: 'center' });
         }
 
         createSuccessHtml() {
-            return `<p class="warranty-form__success-message success-message">Заявка успешно отправлена!</p>`
+            return `<p class="contacts-form__success-message success-message">Заявка успешно отправлена!</p>`
         }
 
         showError(errorText) {
@@ -72,10 +72,9 @@ window.addEventListener('DOMContentLoaded', () => {
         isValidData() {
             let isError = false;
             Object.keys(this.requiredInputs).forEach(key => {
-                if (key === 'warranty') {
+                if (key === 'contacts') {
                     return;
                 }
-                
                 if (!this.requiredInputs[key].isValidValue()) {
                     this.requiredInputs[key].setError();
                     isError = true;
@@ -93,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!value) {
                     return;
                 }
-                if (key === 'warranty') {
+                if (key === 'contacts') {
                     value = value[0];
                 }
                 formData.append(fieldId, value);
@@ -120,38 +119,16 @@ window.addEventListener('DOMContentLoaded', () => {
                 mask: '+7 (###) ###-##-##',
                 errorMessage: 'Телефон должен быть в указанном формате'
             });
-            this.inputAddress = new Input({
-                wrapperSelector: `${this.formSelector} .input--address`,
-                required: true,
-                errorMessage: 'Поле обязательно к заполнению'
-            });
-            this.inputProductName = new Input({
-                wrapperSelector: `${this.formSelector} .input--product-name`,
-            });
-            this.inputComplect = new Input({
-                wrapperSelector: `${this.formSelector} .input--complect`,
-            });
             this.inputLetter = new Input({
                 wrapperSelector: `${this.formSelector} .textarea--letter`,
                 inputSelector: '#letter'
             });
             
-            this.inputFile = new InputFile({
-                wrapperSelector: '.input--warranty',
-                maxFiles: 1,
-                maxSize: 5242880,
-                showAddedFiles: true,
-            });
-
             this.inputs = {
                 fullName: this.inputFullName,
                 email: this.inputEmail,
                 phone: this.inputPhone,
-                address: this.inputAddress,
-                product: this.inputProductName,
-                complect: this.inputComplect,
                 letter: this.inputLetter,
-                file: this.inputFile
             }
 
             this.requiredInputs = [];
@@ -169,5 +146,5 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    new WarrantyForm();
+    new ContactsForm();
 })

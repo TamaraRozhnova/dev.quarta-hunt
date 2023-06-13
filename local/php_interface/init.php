@@ -380,3 +380,70 @@ class RulesBasket
         }
     }
 }
+
+\Bitrix\Main\EventManager::getInstance()->addEventHandler('sale', 'OnSalePaymentEntitySaved', 'changeOrderStatus');
+
+function changeOrderStatus(\Bitrix\Main\Event $event)
+{
+    $arPickup = DELIVERY_PICKUP_ID;
+
+    $arPayments = PANYWAY_ID;
+    $arDeliveries = [
+        DELIVERY_RF_POST,
+        DELIVERY_RF_COURIER,
+        DELIVERY_SDEK_COURIER,
+        DELIVERY_SDEK_PICKUP
+    ];
+
+    $entity = $event->getParameter("ENTITY");
+    $orderId = $entity->getField('ORDER_ID');
+
+    $order = \Bitrix\Sale\Order::load($orderId);
+    $shipmentCollection = $order->getShipmentCollection();
+
+    $arOrder = $shipmentCollection->getOrder()->getFields()->getValues();
+
+    if (!empty($arOrder)) {
+        $deliveryId = $arOrder['DELIVERY_ID'];
+        $payed = $arOrder['PAYED'] == 'Y' ? true : false;
+
+        $payedSystem = $arOrder['PAY_SYSTEM_ID'];
+
+        /** Если заказ оплачен, 
+         * платежная система равна "Panyway" 
+         * и доставки - Курьером», «Почтой», «Сдэк */
+        if (
+            $payed
+            &&
+            $payedSystem == $arPayments
+            &&
+            in_array($deliveryId,$arDeliveries) 
+        ) {
+            $statusId = 'P';
+        }
+
+        /** Если заказ оплачен, 
+         * платежная система равна "Panyway" 
+         * и доставки - Самовывоз */
+        if (
+            $payed
+            &&
+            $payedSystem == $arPayments
+            &&
+            $deliveryId == $arPickup
+        ) {
+            $statusId = 'PP';
+        }
+
+        $statusList = \Bitrix\Sale\Internals\StatusTable::getList([
+            'filter' => ['ID' => $statusId],
+            'select' => ['ID']
+        ]);
+    
+        if ($status = $statusList->fetch()) {
+            $order->setField('STATUS_ID', $statusId);
+            $order->save();
+        }
+    }
+
+}
