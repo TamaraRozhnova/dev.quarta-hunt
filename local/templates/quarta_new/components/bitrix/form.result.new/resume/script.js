@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.inputEmail = new Input({
                 wrapperSelector: `${this.formSelector} .input--email`,
                 required: true,
-                validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+                validMask: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                 errorMessage: 'Введите email в корректном формате'
             });
             this.inputPhone = new Input({
