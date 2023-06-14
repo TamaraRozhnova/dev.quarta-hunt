@@ -131,6 +131,41 @@ if (empty($availablePages)){
 						</a> 
 					</div>
 				</div>
+
+				<div class="cabinet-section">
+					<div class="cabinet-section__header">
+						<span>
+							<svg  width="15" height="11" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon">
+								<path d="M11.59 9.969c-.27 0-.53-.109-.722-.302a1.036 1.036 0 010-1.459 1.019 1.019 0 011.446 0 1.036 1.036 0 010 1.459 1.018 1.018 0 01-.723.302zm1.024-6.188L13.95 5.5h-3.04V3.781h1.704zM3.409 9.97a1.02 1.02 0 01-.723-.302 1.036 1.036 0 010-1.459 1.018 1.018 0 011.446 0 1.036 1.036 0 010 1.459 1.018 1.018 0 01-.723.302zm9.546-7.219h-2.046V0H1.364C.607 0 0 .612 0 1.375v7.563h1.364c0 .547.215 1.071.599 1.458a2.037 2.037 0 002.892 0c.384-.387.6-.911.6-1.459h4.09c0 .548.216 1.072.6 1.459a2.037 2.037 0 002.892 0c.384-.387.6-.911.6-1.459H15V5.5l-2.046-2.75z" fill="#808d9a"></path>
+							</svg>
+							<h6><?= getMessage('SPS_ADDRESSES_DELIVERY');?></h6> 
+						</span>
+
+						<a href="<?= $arParams['SEF_FOLDER'].$arParams['PATH_TO_ADDRESSES']?>" class="btn btn-light bg-gray-200 cabinet__button" >
+							<?= 
+							!empty($arResult['USER_ADDRESS'])
+								? getMessage('SPS_CHANGE')
+								: getMessage('SPS_ADD')
+							?>
+						</a>
+
+					</div> 
+					<div class="cabinet-section__content"> 
+						<?if (!empty($arResult['USER_ADDRESS'])):?>
+							<p class="text-dark" style="margin: initial">
+								<?=$arResult['USER_ADDRESS']['PERSONAL_STREET']?>,
+								<?=$arResult['USER_ADDRESS']['PERSONAL_MAILBOX']?>.
+								<?=$arResult['USER_ADDRESS']['PERSONAL_CITY']?>;
+								<?=$arResult['USER_ADDRESS']['PERSONAL_ZIP']?>
+							</p>
+						<?else:?>
+							<p class="text-dark" style="margin: initial">
+								Укажите ваш адрес для доставки курьером или определения ближайщего пункта CДЭК
+							</p>
+						<?endif;?>
+					</div>
+				</div>
+
 				</div>
 				<div class="sale-personal-section-half">
 				<div class="cabinet-section">

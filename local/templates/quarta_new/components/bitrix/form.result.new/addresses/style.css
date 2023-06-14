@@ -1,0 +1,73 @@
+.address {
+  background: #f9f9fa
+}
+
+.address h2 .icon {
+  transform: scale(1.75);
+  margin: 0 1rem;
+  color: #808d9a
+}
+.address h2 {
+  margin-bottom: 1.5rem;
+}
+
+.address__card {
+  padding: 2.5rem 1.875rem;
+  margin-bottom: 8.4375rem;
+  background-color: #fff;
+  border-radius: .875rem
+}
+
+.address .input label {
+  font-size: 1rem
+}
+
+@media(max-width: 991px) {
+  .address .container {
+      max-width:100%
+  }
+
+  .address .col-8 {
+      padding: 0;
+      width: 100%
+  }
+}
+
+@media(max-width: 767px) {
+  .address .address__card {
+      padding:17px 0 20px
+  }
+
+  .address .address__card h2 {
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 14px;
+      line-height: 18px;
+      padding-bottom: 17px;
+      border-bottom: 1px solid #eeeff3
+  }
+
+  .address .address__card h2 .icon {
+      transform: scale(1.2) translateY(-.05rem);
+      margin: 0 10px 0 0
+  }
+
+  .address .address__card .address__btn {
+      width: 100%
+  }
+
+  .address .address__card form {
+      padding-left: 15px;
+      padding-right: 15px
+  }
+
+  .address .address__card .btn {
+      padding-top: 12px;
+      padding-bottom: 12px
+  }
+
+  .address .address__card .btn,.address .address__card .form-label {
+      font-size: 14px;
+      line-height: 18px
+  }
+}
