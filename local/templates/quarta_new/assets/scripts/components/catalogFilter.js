@@ -106,10 +106,9 @@ class CatalogFilter {
 
     hangFiltersClearEvent() {
         this.clearFilterButton.addEventListener('click', () => {
-            if (this.filterApplied) {
-                this.resetControls();
-                this.handleChangeFilters();
-            }
+            this.resetControls();
+            this.mobileFilterCloseButton.click()
+            this.handleChangeFilters();
         });
     }
 
@@ -176,6 +175,9 @@ class CatalogFilter {
         if (state) {
             this.mainFilters.style.pointerEvents = 'none';
             this.extraFilters.style.pointerEvents = 'none';
+
+            this.mobileFilterCloseButton.style.pointerEvents = 'all';
+
             this.loader.classList.add('loading--show');
             this.productsDataBlock.classList.remove('products-data--show');
             return;
