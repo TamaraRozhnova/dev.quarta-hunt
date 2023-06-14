@@ -22,6 +22,29 @@ function getSearchString(): string {
     return '';
 }
 
+function refreshPage() {
+    header('Location: '.$_SERVER['REQUEST_URI']);
+}
+
+function checkRequestLogout() {
+    global $USER;
+    if (
+        $_GET['logout'] == 'yes'
+        &&
+        !empty($USER->GetId())
+    ) {
+        runLogout();
+    }
+    
+}
+
+function runLogout() {
+    global $USER;
+    $USER->Logout();
+
+    refreshPage();
+}
+
 function showBreadcrumb(): bool {
     $notAllowedUrls = ['/catalog/index.php'];
     $allowedUrls = [
