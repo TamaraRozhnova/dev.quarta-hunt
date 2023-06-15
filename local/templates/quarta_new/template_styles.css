@@ -10252,3 +10252,97 @@ ymaps[class$=-balloon__layout] {
 .oferta .row {
   justify-content: center
 }
+
+/* PAYMENT */
+.payment {
+  background-color: #fff;
+  font-size: 1rem
+}
+
+.payment .row {
+  padding-top: 6rem;
+  padding-bottom: 6rem
+}
+
+.payment p {
+  max-width: 610px
+}
+
+.payment h2 {
+  font-size: 1.625rem
+}
+
+.payment__imgs img {
+  display: inline-block;
+  margin-bottom: 16px;
+  margin-right: 16px
+}
+
+@media(max-width: 991.98px) {
+  .payment h2 {
+      font-size:1.25rem
+  }
+
+  .payment .row {
+      padding: 2.5rem 0
+  }
+
+  .payment .container {
+      max-width: 100%;
+      padding: 0 30px!important
+  }
+
+  .payment .table>:not(caption)>*>* {
+      padding: 1.188rem .938rem 1.125rem;
+      width: 50%!important
+  }
+
+  .payment__requisites h3 {
+      padding: 0 30px
+  }
+
+  .payment__requisites .container,.payment__section {
+      padding: 0!important
+  }
+}
+
+@media(max-width: 575.98px) {
+  .payment h2 {
+      font-size:1.125rem;
+      margin-bottom: 1.875rem!important
+  }
+
+  .payment .container {
+      padding: 0 15px!important
+  }
+
+  .payment .table tr td {
+      line-height: 18px;
+      font-size: .875rem;
+      color: #333
+  }
+
+  .payment .table tr td:first-child {
+      font-weight: 500
+  }
+
+  .payment__imgs--centred {
+      text-align: center
+  }
+
+  .payment__imgs--centred img {
+      margin-right: 15px
+  }
+
+  .payment__flex-item {
+      width: 100%
+  }
+
+  .payment__requisites h3 {
+      padding: 0 15px
+  }
+
+  .payment__requisites .container {
+      padding: 0!important
+  }
+}
