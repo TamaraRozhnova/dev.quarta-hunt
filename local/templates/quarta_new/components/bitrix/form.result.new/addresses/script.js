@@ -1,8 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
-    class WarrantyForm {
+    class AddressesForm {
         constructor() {
-            this.ajaxUrl = '/ajax/form/warrantyForm.php'
-            this.formSelector = '.warranty-form';
+            this.ajaxUrl = '/ajax/form/addressesForm.php'
+            this.formSelector = '.addresses-form';
             this.form = document.querySelector(this.formSelector);
 
             this.createControls();
@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!response) {
                     throw new Error();
                 }
-                this.showSuccess();
+                window.location.href = "/cabinet/";
             } catch (e) {
                 this.showError('Ошибка запроса, попробуйте позже');
             } finally {
@@ -46,12 +46,12 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         scrollToSuccessElement() {
-            const successBlock = document.querySelector('.warranty-form__success-message');
+            const successBlock = document.querySelector('.addresses-form__success-message');
             successBlock.scrollIntoView({ block: 'center', inline: 'center' });
         }
 
         createSuccessHtml() {
-            return `<p class="warranty-form__success-message success-message">Заявка успешно отправлена!</p>`
+            return `<p class="addresses-form__success-message success-message">Успешно!</p>`
         }
 
         showError(errorText) {
@@ -72,10 +72,9 @@ window.addEventListener('DOMContentLoaded', () => {
         isValidData() {
             let isError = false;
             Object.keys(this.requiredInputs).forEach(key => {
-                if (key === 'warranty') {
+                if (key === 'addresses') {
                     return;
                 }
-                
                 if (!this.requiredInputs[key].isValidValue()) {
                     this.requiredInputs[key].setError();
                     isError = true;
@@ -93,7 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!value) {
                     return;
                 }
-                if (key === 'warranty') {
+                if (key === 'contacts') {
                     value = value[0];
                 }
                 formData.append(fieldId, value);
@@ -102,56 +101,42 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         createControls() {
-            this.inputFullName = new Input({
-                wrapperSelector: `${this.formSelector} .input--full-name`,
+            this.inputCity = new Input({
+                wrapperSelector: `${this.formSelector} .input--city`,
                 required: true,
                 errorMessage: 'Поле обязательно к заполнению'
-            });
-            this.inputEmail = new Input({
-                wrapperSelector: `${this.formSelector} .input--email`,
-                required: true,
-                validMask: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                errorMessage: 'Введите email в корректном формате'
-            });
-            this.inputPhone = new Input({
-                wrapperSelector: `${this.formSelector} .input--phone`,
-                required: true,
-                validMask: /^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/,
-                mask: '+7 (###) ###-##-##',
-                errorMessage: 'Телефон должен быть в указанном формате'
-            });
-            this.inputAddress = new Input({
-                wrapperSelector: `${this.formSelector} .input--address`,
-                required: true,
-                errorMessage: 'Поле обязательно к заполнению'
-            });
-            this.inputProductName = new Input({
-                wrapperSelector: `${this.formSelector} .input--product-name`,
-            });
-            this.inputComplect = new Input({
-                wrapperSelector: `${this.formSelector} .input--complect`,
-            });
-            this.inputLetter = new Input({
-                wrapperSelector: `${this.formSelector} .textarea--letter`,
-                inputSelector: '#letter'
-            });
-            
-            this.inputFile = new InputFile({
-                wrapperSelector: '.input--warranty',
-                maxFiles: 1,
-                maxSize: 5242880,
-                showAddedFiles: true,
             });
 
+            this.inputStreet = new Input({
+                wrapperSelector: `${this.formSelector} .input--street`,
+                required: true,
+                errorMessage: 'Поле обязательно к заполнению'
+            });
+
+            this.inputHome = new Input({
+                wrapperSelector: `${this.formSelector} .input--home`,
+                required: true,
+                errorMessage: 'Поле обязательно к заполнению'
+            });
+            
+            this.inputNumberHome = new Input({
+                wrapperSelector: `${this.formSelector} .input--number_home`,
+                required: true,
+                errorMessage: 'Поле обязательно к заполнению'
+            });
+
+            this.inputPersonalZip = new Input({
+                wrapperSelector: `${this.formSelector} .input--zip`,
+                required: true,
+                errorMessage: 'Поле обязательно к заполнению'
+            });
+            
             this.inputs = {
-                fullName: this.inputFullName,
-                email: this.inputEmail,
-                phone: this.inputPhone,
-                address: this.inputAddress,
-                product: this.inputProductName,
-                complect: this.inputComplect,
-                letter: this.inputLetter,
-                file: this.inputFile
+                city: this.inputCity,
+                street: this.inputStreet,
+                home: this.inputHome,
+                numberHome: this.inputNumberHome,
+                zip: this.inputPersonalZip
             }
 
             this.requiredInputs = [];
@@ -169,5 +154,5 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    new WarrantyForm();
+    new AddressesForm();
 })

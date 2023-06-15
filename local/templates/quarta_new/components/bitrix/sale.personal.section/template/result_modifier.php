@@ -63,3 +63,24 @@ while($order = $ordersData -> fetch()){
 
     $arResult['ORDERS'][] = $order;
 }
+
+$rsUser = CUser::GetByID(
+    $USER->GetId()
+)->fetch();
+
+if (!empty($rsUser)) {
+    if (!empty($rsUser['PERSONAL_CITY'])) {
+        $arResult['USER_ADDRESS']['PERSONAL_CITY'] = $rsUser['PERSONAL_CITY'];
+    }
+    if (!empty($rsUser['PERSONAL_STREET'])) {
+        $arResult['USER_ADDRESS']['PERSONAL_STREET'] = $rsUser['PERSONAL_STREET'];
+    }
+    if (!empty($rsUser['PERSONAL_MAILBOX'])) {
+        $arResult['USER_ADDRESS']['PERSONAL_MAILBOX'] = $rsUser['PERSONAL_MAILBOX'];
+    }
+    if (!empty($rsUser['PERSONAL_ZIP'])) {
+        $arResult['USER_ADDRESS']['PERSONAL_ZIP'] = $rsUser['PERSONAL_ZIP'];
+    }
+}
+
+

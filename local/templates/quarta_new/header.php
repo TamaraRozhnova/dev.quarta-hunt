@@ -448,3 +448,4 @@ $basketItemsCount = $basket->getProductsCount();
             </div>
         <? } ?>
 
+        <? checkRequestLogout() ?>
