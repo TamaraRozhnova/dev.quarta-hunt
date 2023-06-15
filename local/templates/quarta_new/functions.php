@@ -54,6 +54,7 @@ function showBreadcrumb(): bool {
         '/favorites/', 
         '/compare/', 
         '/jobs/',
+        '/about/oferta/',
         '/cabinet/reviews/',
         '/cabinet/addresses/'
     ];

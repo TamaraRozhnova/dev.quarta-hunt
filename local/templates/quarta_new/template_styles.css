@@ -10240,3 +10240,15 @@ ymaps[class$=-balloon__layout] {
 .privacy-policy .row {
   justify-content: center;
 }
+
+/* OFERTA */
+.oferta {
+  background-color: #f9f9fa;
+  color: #333;
+  font-size: 1rem;
+  padding-bottom: 8rem
+}
+
+.oferta .row {
+  justify-content: center
+}
