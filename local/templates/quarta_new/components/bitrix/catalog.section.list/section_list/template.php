@@ -21,9 +21,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                         <img src="<?= $section['PICTURE']['SRC'] ?>" alt="<?= $section['NAME'] ?>"/>
                                     </figure>
 
-                                    <div class="category-card__title">
+                                    <h2 class="category-card__title">
                                         <?= $section['NAME'] ?>
-                                    </div>
+                                    </h2>
                                 </div>
                             </a>
                         </div>
