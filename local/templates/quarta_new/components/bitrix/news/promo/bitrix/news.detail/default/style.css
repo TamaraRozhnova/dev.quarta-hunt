@@ -19,7 +19,7 @@ div.promo-detail__top-wrapper > div {
   height: 100%;
   width: 50%;
 }
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   div.promo-detail__top-wrapper {
     flex-direction: column;
   }
@@ -32,12 +32,15 @@ div.promo-detail .detail_picture__element {
   background-size: cover;
   background-position: center;
 }
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   div.promo-detail .detail_picture__element {
     height: 20rem;
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+  }
+  div.promo-detail .detail_title__body .col-md-4 {
     width: 100%;
   }
 }
@@ -58,7 +61,7 @@ div.promo-detail .detail_title__body .promo-date-time {
 div.promo-detail .detail_title__body .promo-detail__title-top-inner {
   display: none;
 }
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   div.promo-detail .detail_title__body .promo-detail__title-top-inner {
     display: block;
     position: relative;
@@ -70,7 +73,7 @@ div.promo-detail .promo-detail__body-wrapper {
   padding: 6.25rem 0 8.5rem;
   font-size: 1rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 767.98px) {
   div.promo-detail .promo-detail__body-wrapper {
     padding: 40px 0;
   }
