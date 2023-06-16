@@ -10354,3 +10354,11 @@ ymaps[class$=-balloon__layout] {
 .unset-margin {
   margin: 0;
 }
+.position-text-center {
+  text-align: center;
+}
+.block-quote {
+  background: #d3d3d3; 
+  border-left: 2px solid #010101; 
+  padding: 10px 20px;
+}
