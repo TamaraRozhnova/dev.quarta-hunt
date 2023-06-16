@@ -199,17 +199,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     false,
                 );?>
             </div>
-            <div class="col-12 d-block d-lg-none">
-                <hr class="mt-5"/>
-            </div>
-            <div class="col-12 col-lg-4 footer__made-by">
-                <a href="https://serenity.agency/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                >
-                    <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/made-in-serenity.svg" alt="Сделано в Serenity"/>
-                </a>
-            </div>
+
         </div>
     </div>
 
