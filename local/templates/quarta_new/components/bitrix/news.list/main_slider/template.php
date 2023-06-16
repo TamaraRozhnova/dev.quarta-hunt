@@ -134,7 +134,6 @@ $isCompactSlider = $arParams['COMPACT'] === 'Y';
                                         stroke="white"
                                         stroke-dasharray="0 62.831853072"
                                         stroke-dashoffset="15.707963268"
-                                        ref="circle"
                                 />
                             </svg>
                         </div>
