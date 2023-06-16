@@ -10346,3 +10346,11 @@ ymaps[class$=-balloon__layout] {
       padding: 0!important
   }
 }
+
+.hidden-on-page {
+  visibility: hidden;
+  content-visibility: hidden;
+}
+.unset-margin {
+  margin: 0;
+}
