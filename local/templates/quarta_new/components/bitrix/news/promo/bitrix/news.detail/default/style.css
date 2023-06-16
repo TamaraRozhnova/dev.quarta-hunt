@@ -88,6 +88,9 @@ div.promo-detail a {
   div.promo-detail a.btn {
     width: 100%;
   }
+  div.promo-detail .container {
+    padding: 0 0.75rem;
+  }
 }
 
 div.promo-detail img.detail_picture {
