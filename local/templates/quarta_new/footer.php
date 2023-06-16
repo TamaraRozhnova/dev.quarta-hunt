@@ -45,7 +45,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
             <div class="col-12 col-lg-3">
                 <div class="footer-collapse">
-                    <header>
+                    <div class="footer-collapse-header">
                         <?$APPLICATION->IncludeComponent(
                             "bitrix:main.include",
                             "",
@@ -55,7 +55,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             ],
                             false,
                         );?>
-                    </header>
+                    </div>
 
                     <div class="footer-collapse__content">
                         <div class="row">
@@ -76,7 +76,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
             <div class="col-12 col-lg-3">
                 <div class="footer-collapse">
-                    <header>
+                    <div class="footer-collapse-header">
                         <?$APPLICATION->IncludeComponent(
                             "bitrix:main.include",
                             "",
@@ -86,7 +86,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             ],
                             false,
                         );?>
-                    </header>
+                    </div>
 
                     <div class="footer-collapse__content">
                         <div class="row">
@@ -107,7 +107,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                 <div class="footer__nav">
                     <div class="footer-collapse">
-                        <header>
+                        <div class="footer-collapse-header">
                             <?$APPLICATION->IncludeComponent(
                                 "bitrix:main.include",
                                 "",
@@ -117,7 +117,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 ],
                                 false,
                             );?>
-                        </header>
+                        </div>
 
                         <div class="footer-collapse__content">
                             <?$APPLICATION->IncludeComponent("bitrix:menu",
@@ -141,7 +141,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             <div class="col-12 col-lg-auto">
                 <div class="footer__nav">
                     <div class="footer-collapse">
-                        <header>
+                        <div class="footer-collapse-header">
                             <?$APPLICATION->IncludeComponent(
                                 "bitrix:main.include",
                                 "",
@@ -151,7 +151,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 ],
                                 false,
                             );?>
-                        </header>
+                        </div>
 
                         <div class="footer-collapse__content">
                             <?$APPLICATION->IncludeComponent("bitrix:menu",

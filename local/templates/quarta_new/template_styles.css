@@ -8560,13 +8560,13 @@ input.form-check-input:focus {
   display: none;
 }
 @media (max-width: 991.98px) {
-  .footer-collapse header h6, .footer-collapse header .h6 {
+  .footer-collapse .footer-collapse-header h6, .footer-collapse .footer-collapse-header .h6 {
     position: relative;
     border-bottom: rgba(255, 255, 255, 0.49) 1px solid;
     padding: 1.25rem 0;
     margin-bottom: 0;
   }
-  .footer-collapse header h6::after, .footer-collapse header .h6::after {
+  .footer-collapse .footer-collapse-header h6::after, .footer-collapse .footer-collapse-header .h6::after {
     content: "";
     position: absolute;
     display: block;
@@ -8589,7 +8589,7 @@ input.form-check-input:focus {
     display: none;
     padding: 1.25rem 0 0;
   }
-  .footer-collapse--expanded header h6::after, .footer-collapse--expanded header .h6::after {
+  .footer-collapse--expanded .footer-collapse-header h6::after, .footer-collapse--expanded .footer-collapse-header .h6::after {
     transform: rotate(90deg);
   }
   .footer-collapse--expanded .footer-collapse__content {
