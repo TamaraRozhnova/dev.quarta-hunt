@@ -10237,6 +10237,7 @@ ymaps[class$=-balloon__layout] {
 /* WARRANTY */
 .warranty .jumbotron-vue__q img {
   height: 100%;
+  width: 100%;
 }
 .warranty .big-icon {
   min-width: 60px
@@ -10258,17 +10259,17 @@ ymaps[class$=-balloon__layout] {
   max-width: 100%
 }
 
-.warranty ul {
+.warranty ul.checklist {
   padding-left: 0
 }
 
-.warranty ul li {
+.warranty ul.checklist li {
   padding-left: calc(15px + 1.5ch);
   position: relative;
   display: block
 }
 
-.warranty ul li:before {
+.warranty ul.checklist li:before {
   content: "";
   width: 15px;
   height: 12px;
