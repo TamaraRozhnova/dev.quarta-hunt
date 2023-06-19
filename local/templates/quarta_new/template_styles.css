@@ -8084,7 +8084,7 @@ input.form-check-input:focus {
 }
 
 .header--desktop .header__nav-item--selected.highlight-orange {
-  color: #EB5806;
+  color: #EB5806 !important;
   background-color: #f3bd9e59;
 }
 .header--desktop .header__nav-item--selected.highlight-orange:hover {
