@@ -34,6 +34,7 @@
   line-height: 3.75rem;
   font-weight: 700;
   z-index: 2;
+  color: white;
 }
 .main-slider__text {
   position: relative;

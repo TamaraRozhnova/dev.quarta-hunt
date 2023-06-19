@@ -56,9 +56,9 @@ $isCompactSlider = $arParams['COMPACT'] === 'Y';
                                 <div class="main-slider__subtitle">
                                     <?= $item['FIELDS']['PREVIEW_TEXT'] ?>
                                 </div>
-                                <div class="main-slider__title">
+                                <h2 class="main-slider__title">
                                     <?= $item['FIELDS']['NAME'] ?>
-                                </div>
+                                </h2>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="main-slider__text">
