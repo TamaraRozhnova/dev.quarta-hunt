@@ -118,7 +118,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         <textarea
             id="letter"
             rows="3"
-            class="form-control"
+            class="form-control textarea"
             placeholder="Комментарии"
             data-field-id="form_<?= $arResult['CONTROLS'][7]['FIELD_TYPE'] . '_' . $arResult['CONTROLS'][7]['ID'] ?>"
         ></textarea>

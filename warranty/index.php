@@ -33,7 +33,7 @@ $APPLICATION->SetTitle("Гарантии");
 			<div class="warranty__points row py-lg-5" data-v-28081ec4="">
 				<div class="col-12 col-lg-6" data-v-28081ec4="">
 					<div class="d-flex" data-v-28081ec4="">
-                        <img src="/warranty/include/link.svg" alt="link.svg">
+                        <img class="big-icon" src="/warranty/include/link.svg" alt="link.svg">
 						<div class="ps-3 ps-sm-4 ps-lg-5" data-v-28081ec4="">
 							<h6 data-v-28081ec4="">
 							<?$APPLICATION->IncludeComponent(
@@ -70,7 +70,7 @@ $APPLICATION->SetTitle("Гарантии");
 			<div class="warranty__points row py-lg-5" data-v-28081ec4="">
 				<div class="col-12 col-lg-6" data-v-28081ec4="">
 					<div class="d-flex" data-v-28081ec4="">
-                    <img src="/warranty/include/srok.svg" alt="srok.svg">
+                    <img class="big-icon" src="/warranty/include/srok.svg" alt="srok.svg">
 						<div class="ps-3 ps-sm-4 ps-lg-5" data-v-28081ec4="">
 							<h6 data-v-28081ec4="">
 							<?$APPLICATION->IncludeComponent(
@@ -120,7 +120,7 @@ $APPLICATION->SetTitle("Гарантии");
 			<div class="warranty__points row py-lg-5" data-v-28081ec4="">
 				<div class="col-12 col-lg-6" data-v-28081ec4="">
 					<div class="d-flex" data-v-28081ec4="">
-                    <img src="/warranty/include/obmen.svg" alt="obmen.svg">
+                    <img class="big-icon" src="/warranty/include/obmen.svg" alt="obmen.svg">
 						<div class="ps-3 ps-sm-4 ps-lg-5 pt-sm-4 w-100" data-v-28081ec4="">
 							<h6 data-v-28081ec4="">
 							<?$APPLICATION->IncludeComponent(
