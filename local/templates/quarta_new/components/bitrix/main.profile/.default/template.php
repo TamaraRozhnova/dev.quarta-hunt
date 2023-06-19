@@ -70,7 +70,7 @@ CJSCore::Init(['masked_input', 'jquery']);
 					</div>
 				</div>
 			</div>
-			<input class="btn btn-primary px-5" type="submit" name="save" value="<?=GetMessage("SAVE");?>">
+			<input class="btn btn-primary " type="submit" name="save" value="<?=GetMessage("SAVE");?>">
 		</form>
 		</div>
 		</div>

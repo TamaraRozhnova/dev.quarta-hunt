@@ -1,6 +1,5 @@
 
 .personal-order{
-	padding: 5.625rem 0;
     background-color: #f9f9fa;
 }
 .sale-order-list-container{
@@ -81,6 +80,9 @@
 .main-profile-orders__filter{
 	margin-bottom: 1.875rem;
 }
+.main-profile-orders__filter .history-order__body-btn:first-child {
+	margin-left: initial;
+}
 .personal-order h2 svg{
     transform: scale(1.5) translateY(-0.15rem);
     margin: 0 0.75rem 0 0;
@@ -118,7 +120,17 @@
 #payanyway-payment-form{
 	margin-bottom: 0;
 }
+
+@media (max-width: 971px) {
+	.personal-order h2 svg {
+		transform: none;
+	}
+}
+
 @media screen and (max-width: 768px) {
+	.history-order__column > span > b{
+		font-size: 14px;
+	}
 	.history-order__item-mob {
 		display: block;
 		padding-top: 6px;
@@ -184,6 +196,12 @@
 	}
 	.sale-order-list-inner-row{
 		width: 100%;
+	}
+	.history-order__body {
+		padding: 14px 15px;
+	}
+	.history-order__body h6 {
+		font-size: 14px;
 	}
 	.history-order__body-btns {
 		flex-wrap: wrap;

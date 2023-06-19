@@ -27,7 +27,6 @@ div.bx-auth-profile div.bx-auth-secure-icon {background-image:url(images/sec.png
 div.bx-auth-profile div.bx-auth-secure-unlock {background-image:url(images/sec-unlocked.png);}
 
 .bx-auth-profile{
-    padding: 5.625rem 0;
     background-color: #f9f9fa;
 }
 .bx-auth-profile form{
@@ -36,11 +35,7 @@ div.bx-auth-profile div.bx-auth-secure-unlock {background-image:url(images/sec-u
     background-color: #fff;
     border-radius: 0.875rem;
 }
-.bx-auth-profile h2 svg {
-    transform: scale(1.75) translateY(-0.05rem);
-    margin: 0 1rem;
-    color: #808d9a;
-}
+
 .bx-auth-profile p{
 	margin-bottom: 0;
 	font-size: 1rem;
@@ -53,5 +48,62 @@ div.bx-auth-profile div.bx-auth-secure-unlock {background-image:url(images/sec-u
 	.bx-auth-profile .col-8 {
 		padding: 0;
 		width: 100%;
+	}
+}
+
+.starrequired {
+	color: #eb5806;
+}
+.bx-auth-profile h2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.bx-auth-profile h2 svg {
+    transform: scale(1.75) translateY(-0.05rem);
+    margin: 0 1rem;
+    color: #808d9a;
+}
+.bx-auth-profile form .btn.btn-primary {
+	width: 66.66%;
+}
+@media (max-width: 991px) {
+	.bx-auth-profile form .btn.btn-primary {
+		width: 100%;
+	}
+	.bx-auth-profile > .container {
+		max-width: 100%;
+	}
+	.bx-auth-profile > .container > .row > .col-8 {
+		width: 100%;
+	}
+}
+@media (max-width: 767px) {
+	.bx-auth-profile h2 {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        line-height: 18px;
+        padding-bottom: 17px;
+        border-bottom: 1px solid #eeeff3;
+	}
+	.bx-auth-profile h2 svg {
+		transform: scale(1.2) translateY(-0.05rem);
+        margin: 0 10px 0 0;
+	}
+    .bx-auth-profile form {
+        padding: 17px 0 20px;
+    }
+	.bx-auth-profile form .profile-block-shown,
+	.bx-auth-profile form .btn.btn-primary {
+        padding-left: 15px;
+        padding-right: 15px;
+	}
+
+	.bx-auth-profile form .btn.btn-primary {
+		width: calc(100% - 30px) !important;
+		margin: 0 15px;
+		font-size: 14px;
+    	line-height: 18px;
 	}
 }
