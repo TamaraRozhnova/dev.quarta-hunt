@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
             new DescriptionBlock();
             new RecommendedProductsSlider();
             new VideoReviewsSlider();
-
+            new AvailableBlock();
             this.hangPersonalProductDataEvents();
             this.hangShareNetworkEvents();
             this.hangTooltipsEvents();
