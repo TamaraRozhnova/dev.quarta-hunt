@@ -74,9 +74,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <div class="col-12 col-md-6">
                     <div class="row align-items-center mb-3 mb-sm-2">
                         <div class="col-8">
-                            <div class="product__article">
+                            <p class="product__article">
                                 Артикул: <?= $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'] ?>
-                            </div>
+                            </p>
                         </div>
                         <div class="col-4">
                             <div class="product__share">
@@ -108,9 +108,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </div>
                     </div>
 
-                    <div class="product__title">
+                    <h1 class="product__title">
                         <?= $arResult['NAME'] ?>
-                    </div>
+                    </h1>
 
                     <div class="stars placeholder-glow">
                         <div class="placeholder"></div>

@@ -48,6 +48,7 @@
   color: #eb5806;
 }
 .product__article {
+  margin-bottom: 0;
   line-height: 0.6875rem;
 }
 .product__title {
