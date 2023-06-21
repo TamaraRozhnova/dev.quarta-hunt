@@ -10,7 +10,6 @@ window.addEventListener('DOMContentLoaded', () => {
             new DescriptionBlock();
             new RecommendedProductsSlider();
             new VideoReviewsSlider();
-            new AvailableBlock();
             this.hangPersonalProductDataEvents();
             this.hangShareNetworkEvents();
             this.hangTooltipsEvents();
@@ -30,6 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     new RatingStarsHelper({ productElement: this.productElement, ratingsList: RATINGS });
                     this.setReviewsCount(RATINGS);
                     new ProductCards(response);
+                    new AvailableBlock(response);
                 })
         }
 
