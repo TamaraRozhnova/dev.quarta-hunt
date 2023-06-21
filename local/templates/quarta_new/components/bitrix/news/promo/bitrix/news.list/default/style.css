@@ -39,3 +39,29 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+@media (max-width: 991px) {
+  section.promo-list .promo-list__title-wrapper h1 {
+    padding: 9.375rem 0 10rem;
+  }
+}
+@media (max-width: 767px) {
+  section.promo-list .promo-list__title-wrapper h1 {
+    font-size: 2.313rem;
+  }
+}
+@media (max-width: 575px) {
+  section.promo-list .container .promo__item .col-12.col-md-6:not(.promo__item-body) {
+    margin-bottom: 1.875rem;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  section.promo-list .container {
+    padding: 0 15px;
+  }
+  section.promo-list .container .promo__item {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+}

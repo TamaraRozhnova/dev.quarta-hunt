@@ -10,7 +10,7 @@ if (!$arResult['VIDEO_LINK']) {
 
 ?>
 
-<div size="large" class="video-player">
+<div class="video-player">
     <iframe class="video-js" src="<?= $arResult['VIDEO_LINK'] ?>"></iframe>
 </div>
 

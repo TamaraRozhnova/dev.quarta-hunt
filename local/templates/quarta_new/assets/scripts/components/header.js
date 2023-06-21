@@ -21,6 +21,10 @@ window.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', function() {
 
             if (window.scrollY > 50) {
+
+                if (document.querySelector('.modal-overlay') != null) {
+                    return false;
+                }
     
                 if (
                     document.documentElement.scrollTop > headerDesktop.offsetHeight + 50 
@@ -33,7 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
                     setTimeout(() => {
                         headerDesktop.style.position = 'sticky';
-                        headerDesktop.style.transform = 'translateY(0)'
+                        headerDesktop.style.transform = 'initial'
                     }, 250);
                     
                 }

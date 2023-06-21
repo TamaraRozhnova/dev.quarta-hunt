@@ -1,7 +1,14 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
+/** Если пользователь не авторизован - редиректим на страницу логина */
+if (!\Bitrix\Main\Engine\CurrentUser::get()->getId()) {
+	LocalRedirect('/login/');
+}
+
 $APPLICATION->SetTitle("Корзина");
-?><?$APPLICATION->IncludeComponent(
+?>
+
+<?$APPLICATION->IncludeComponent(
 	"bitrix:sale.order.ajax", 
 	"bootstrap_v4", 
 	array(

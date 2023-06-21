@@ -108,7 +108,7 @@ new BX.PhoneAuth({
 	<a class="btn active" href="/registration/">
 	  Розничный покупатель
 	</a> 
-	<a class="btn" href="/registration/whosale.php">
+	<a class="btn" href="/registration/wholesale/">
 	  Оптовый клиент
 	</a>
 </div>
@@ -251,13 +251,22 @@ $arResult["SHOW_FIELDS"] = array(
 /* CAPTCHA */
 if ($arResult["USE_CAPTCHA"] == "Y") {
     ?>
-		<div>
-			<b><?=GetMessage("REGISTER_CAPTCHA_TITLE")?></b><br>
-			<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" /><br>
-			<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" /><br>
+		<div class="register-capthca-auth mb-4">
+			<label for="" class="form-label">
+				<?=GetMessage("REGISTER_CAPTCHA_TITLE")?>
+			</label>
+
+			<div class="mb-4">
+				<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+				<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" />
+			</div>
 			
-			<?=GetMessage("REGISTER_CAPTCHA_PROMT")?>:<span class="starrequired">*</span><br>
-			<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
+			<div class="input mb-4 input--lg">
+				<label for="" class="form-label">
+					<?=GetMessage("REGISTER_CAPTCHA_PROMT")?>:<span class="starrequired">*</span>
+				</label>
+				<input class="form-control" type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
+			</div>
 		</div>
 	<?
 }

@@ -52,7 +52,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 					{{/SHOW_LOADING}}
 					<div class="basket-items-list-item-removed-container">
 						<div>
-							<?=Loc::getMessage('SBB_GOOD_CAP')?> <strong>{{NAME}}</strong> <?=Loc::getMessage('SBB_BASKET_ITEM_DELETED')?>.
+							<?=Loc::getMessage('SBB_GOOD_CAP')?> <strong>{{{NAME}}}</strong> <?=Loc::getMessage('SBB_BASKET_ITEM_DELETED')?>.
 						</div>
 						<div class="basket-items-list-item-removed-block">
 							<a href="javascript:void(0)" data-entity="basket-item-restore-button">
@@ -76,14 +76,14 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
 								<a href="{{DETAIL_PAGE_URL}}" class="basket-item-image-link">
 							{{/DETAIL_PAGE_URL}}
 
-							<img class="basket-item-image" alt="{{NAME}}"
+							<img class="basket-item-image" alt="{{{NAME}}}"
 								src="{{{IMAGE_URL}}}{{^IMAGE_URL}}<?=$templateFolder?>/images/no_photo.png{{/IMAGE_URL}}">
 
 							{{#SHOW_LABEL}}
 								<div class="basket-item-label-text basket-item-label-big <?=$labelPositionClass?>">
 									{{#LABEL_VALUES}}
 										<div{{#HIDE_MOBILE}} class="d-none d-sm-block"{{/HIDE_MOBILE}}>
-											<span title="{{NAME}}">{{NAME}}</span>
+											<span title="{{{NAME}}}">{{{NAME}}}</span>
 										</div>
 									{{/LABEL_VALUES}}
 								</div>
@@ -134,7 +134,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                             <a href="{{DETAIL_PAGE_URL}}" class="basket-item-info-name-link">
                                 {{/DETAIL_PAGE_URL}}
 
-                                <span data-entity="basket-item-name">{{NAME}}</span>
+                                <span data-entity="basket-item-name">{{{NAME}}}</span>
 
                                 {{#DETAIL_PAGE_URL}}
                             </a>
@@ -182,7 +182,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                                 {{#PROPS}}
                                                 <div class="basket-item-property<?=(!isset($mobileColumns['PROPS']) ? ' d-none d-sm-block' : '')?>">
                                                     <div class="basket-item-property-name">
-                                                        {{{NAME}}}
+                                                        {{{{NAME}}}}
                                                     </div>
                                                     <div class="basket-item-property-value"
                                                          data-entity="basket-item-property-value" data-property-code="{{CODE}}">
@@ -200,17 +200,17 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             {{#IS_IMAGE}}
                                             <div class="basket-item-property basket-item-property-scu-image"
                                                  data-entity="basket-item-sku-block">
-                                                <div class="basket-item-property-name">{{NAME}}</div>
+                                                <div class="basket-item-property-name">{{{NAME}}}</div>
                                                 <div class="basket-item-property-value">
                                                     <ul class="basket-item-scu-list">
                                                         {{#SKU_VALUES_LIST}}
                                                         <li class="basket-item-scu-item{{#SELECTED}} selected{{/SELECTED}}
                                                                             {{#NOT_AVAILABLE_OFFER}} not-available{{/NOT_AVAILABLE_OFFER}}"
-                                                            title="{{NAME}}"
+                                                            title="{{{NAME}}}"
                                                             data-entity="basket-item-sku-field"
                                                             data-initial="{{#SELECTED}}true{{/SELECTED}}{{^SELECTED}}false{{/SELECTED}}"
                                                             data-value-id="{{VALUE_ID}}"
-                                                            data-sku-name="{{NAME}}"
+                                                            data-sku-name="{{{NAME}}}"
                                                             data-property="{{PROP_CODE}}">
                                                                                     <span class="basket-item-scu-item-inner"
                                                                                           style="background-image: url({{PICT}});"></span>
@@ -224,19 +224,19 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             {{^IS_IMAGE}}
                                             <div class="basket-item-property basket-item-property-scu-text"
                                                  data-entity="basket-item-sku-block">
-                                                <div class="basket-item-property-name">{{NAME}}</div>
+                                                <div class="basket-item-property-name">{{{NAME}}}</div>
                                                 <div class="basket-item-property-value">
                                                     <ul class="basket-item-scu-list">
                                                         {{#SKU_VALUES_LIST}}
                                                         <li class="basket-item-scu-item{{#SELECTED}} selected{{/SELECTED}}
                                                                             {{#NOT_AVAILABLE_OFFER}} not-available{{/NOT_AVAILABLE_OFFER}}"
-                                                            title="{{NAME}}"
+                                                            title="{{{NAME}}}"
                                                             data-entity="basket-item-sku-field"
                                                             data-initial="{{#SELECTED}}true{{/SELECTED}}{{^SELECTED}}false{{/SELECTED}}"
                                                             data-value-id="{{VALUE_ID}}"
-                                                            data-sku-name="{{NAME}}"
+                                                            data-sku-name="{{{NAME}}}"
                                                             data-property="{{PROP_CODE}}">
-                                                            <span class="basket-item-scu-item-inner">{{NAME}}</span>
+                                                            <span class="basket-item-scu-item-inner">{{{NAME}}}</span>
                                                         </li>
                                                         {{/SKU_VALUES_LIST}}
                                                     </ul>
@@ -274,7 +274,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             <div class="basket-item-property-custom basket-item-property-custom-photo
                                                             {{#HIDE_MOBILE}}d-none d-sm-block{{/HIDE_MOBILE}}"
                                                  data-entity="basket-item-property">
-                                                <div class="basket-item-property-custom-name">{{NAME}}</div>
+                                                <div class="basket-item-property-custom-name">{{{NAME}}}</div>
                                                 <div class="basket-item-property-custom-value">
                                                     {{#VALUE}}
                                                     <span>
@@ -291,7 +291,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             <div class="basket-item-property-custom basket-item-property-custom-text
                                                             {{#HIDE_MOBILE}}d-none d-sm-block{{/HIDE_MOBILE}}"
                                                  data-entity="basket-item-property">
-                                                <div class="basket-item-property-custom-name">{{NAME}}</div>
+                                                <div class="basket-item-property-custom-name">{{{NAME}}}</div>
                                                 <div class="basket-item-property-custom-value"
                                                      data-column-property-code="{{CODE}}"
                                                      data-entity="basket-item-property-column-value">
@@ -304,7 +304,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             <div class="basket-item-property-custom basket-item-property-custom-text
                                                             {{#HIDE_MOBILE}}d-none d-sm-block{{/HIDE_MOBILE}}"
                                                  data-entity="basket-item-property">
-                                                <div class="basket-item-property-custom-name">{{NAME}}</div>
+                                                <div class="basket-item-property-custom-name">{{{NAME}}}</div>
                                                 <div class="basket-item-property-custom-value"
                                                      data-column-property-code="{{CODE}}"
                                                      data-entity="basket-item-property-column-value">

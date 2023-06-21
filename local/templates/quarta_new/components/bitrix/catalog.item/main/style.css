@@ -57,6 +57,7 @@
 }
 .product-card__title {
   max-width: 90%;
+  font-weight: 400;
   /* height: 2.6rem; */
   height: 100%;
   display: block;

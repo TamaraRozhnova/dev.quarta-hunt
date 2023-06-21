@@ -74,9 +74,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <div class="col-12 col-md-6">
                     <div class="row align-items-center mb-3 mb-sm-2">
                         <div class="col-8">
-                            <div class="product__article">
+                            <p class="product__article">
                                 Артикул: <?= $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'] ?>
-                            </div>
+                            </p>
                         </div>
                         <div class="col-4">
                             <div class="product__share">
@@ -108,9 +108,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </div>
                     </div>
 
-                    <div class="product__title">
+                    <h1 class="product__title">
                         <?= $arResult['NAME'] ?>
-                    </div>
+                    </h1>
 
                     <div class="stars placeholder-glow">
                         <div class="placeholder"></div>
@@ -137,7 +137,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             <span class="product__availability-in-stock">
                                 В наличии
                             </span>
-                            <!--                            <a>Посмотреть наличие</a>-->
+                            <a href="" data-available-index="1" class="available-window-open available-window-open-1">Посмотреть наличие</a>
                         <? } else { ?>
                             <span class="me-2">Нет в наличии</span>
                         <? } ?>
@@ -211,17 +211,18 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/delivery.svg" alt="Доставка"/>
                             </div>
                             Доставка по Москве: <span class="text-dark">с 11.03</span><br/>
-                            <!--                            <a href="#">Узнать стоимость</a>-->
+                            <a href="#">Узнать стоимость</a>
                         </div>
-                        <!--                        <div class="product__delivery-option">-->
-                        <!--                            <div class="product__delivery-icon">-->
-                        <!--                                <img src="-->
-                        <? //= SITE_TEMPLATE_PATH ?><!--/assets/icons/location.svg" alt="Местоположение"/>-->
-                        <!--                            </div>-->
-                        <!--                            Доступно к самовывозу:-->
-                        <!--                            <span class="text-dark">бесплатно</span><br/>-->
-                        <!--                            <a>{{ availableCount }}</a>-->
-                        <!--                        </div>-->
+                            <div class="product__delivery-option">
+                                <div class="product__delivery-icon">
+                                    <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/location.svg" alt="Местоположение"/>
+                                </div>
+                                Доступно к самовывозу:
+                                <span class="text-dark">бесплатно</span><br/>
+                                <a class="available-window-open available-window-open-2" data-available-index="2" href="">
+                                    <?=$arResult['COUNT_DISPLAY_STORES_ELEMENT']?>
+                                </a>
+                            </div> 
                     </div>
                 </div>
             </div>
@@ -245,6 +246,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         'params' => $arParams
     ], ['SHOW_BORDER' => false]); ?>
 </div>
+
+<? $APPLICATION->IncludeFile($templateFolder . '/partials/availableWindow.php', [
+        'templateFolder' => $templateFolder,
+        'result' => $arResult,
+        'params' => $arParams
+    ], ['SHOW_BORDER' => false]); ?>
 
 <div id="detail-card-modal-photo" class="modal">
     <div class="modal__close">

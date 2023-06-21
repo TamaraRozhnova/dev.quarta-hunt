@@ -3665,7 +3665,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		createBasketItemContent: function(data)
 		{
 			var itemName = data.NAME || '',
-				titleHtml = this.htmlspecialcharsEx(itemName),
+				titleHtml = itemName,
 				props = data.PROPS || [],
 				propsNodes = [];
 

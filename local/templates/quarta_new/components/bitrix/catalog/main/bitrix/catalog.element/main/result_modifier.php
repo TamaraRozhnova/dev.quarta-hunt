@@ -8,6 +8,9 @@ use Helpers\DiscountsHelper;
 use Helpers\FileSizeHelper;
 use Helpers\RecommendedProductsHelper;
 use Helpers\VideoReviewsHelper;
+use Bitrix\Main\Grid\Declension;
+
+$shopsMeasory = new Declension('магазин', 'магазина', 'магазинов');
 
 $bannedProps = [
     'CML2_ARTICLE',
@@ -112,16 +115,27 @@ if (!empty($rsStoreElement)) {
     ))->fetchAll();
 
     if (!empty($arStoreElementAmount)) {
+
+        $arResult['COUNT_STORES_ELEMENT'] = 0;
+
         foreach ($arStoreElementAmount as $arStoreAmountKey => $arStoreAmount) {
             foreach ($arResult['STORES_ELEMENT'] as $arStoreElementIndex => $arStoreElement) {
 
                 if ($arStoreAmountKey == $arStoreElement['ID']) {
                     $arResult['STORES_ELEMENT'][$arStoreElementIndex]['AMOUNT'] = $arStoreAmount;
+
+                    if ($arStoreAmount > 0) {
+                        $arResult['COUNT_STORES_ELEMENT'] = $arResult['COUNT_STORES_ELEMENT'] + 1;
+                    }
+
                 }
 
             }
             
         }
+
+        $arResult['COUNT_DISPLAY_STORES_ELEMENT'] = $arResult['COUNT_STORES_ELEMENT'] . " " . $shopsMeasory->get($arResult['COUNT_STORES_ELEMENT']);
+
     }
 
 }

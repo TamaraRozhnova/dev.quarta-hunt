@@ -67,7 +67,7 @@ if ($customPagesList){
 if (empty($availablePages)){
 	ShowError(Loc::getMessage("SPS_ERROR_NOT_CHOSEN_ELEMENT"));
 }else{ ?>
-	<div class="personal-wrap">
+	<div class="personal-wrap cabinet-page">
 		<div class="container">
 			<h2>Личный кабинет</h2>
 			<div class="sale-personal-section-index">
@@ -94,7 +94,15 @@ if (empty($availablePages)){
 							</svg> 
 							<h6 ><?= getMessage('SPS_PERSONAL_PAGE_NAME');?></h6>
 						</span>
-						<a  href="<?= $arResult['PATH_TO_PRIVATE'];?>" class="btn btn-light bg-gray-200 cabinet__button"><?= getMessage('SPS_CHANGE');?></a>
+						<a href="<?= $arResult['PATH_TO_PRIVATE'];?>" class="btn btn-light bg-gray-200 cabinet__button">
+							<span><?= getMessage('SPS_CHANGE');?></span>
+							<span class="cabinet-mobile-button">
+								<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M-3.82963e-07 1.23883L3.61719 5L-5.41509e-08 8.76117L1.19141 10L6 5L1.19141 -5.2078e-08L-3.82963e-07 1.23883Z" fill="#333333"></path>
+								</svg>
+							</span>
+							
+						</a>
 					</div> 
 					<div class="cabinet-section__content"> 
 						<p class="text-dark"><?= $arResult['USER']['FIRST_NAME'].' '.$arResult['USER']['LAST_NAME'];?></p> 
@@ -110,7 +118,14 @@ if (empty($availablePages)){
 							</svg> 
 							<h6><?= getMessage('SPS_ORDER_PAGE_HISTORY');?></h6> 
 						</span>
-						<a href="<?= $arResult['PATH_TO_ORDERS'];?>" class="btn btn-light bg-gray-200 cabinet__button" ><?= getMessage('SPS_MORE');?></a>
+						<a href="<?= $arResult['PATH_TO_ORDERS'];?>" class="btn btn-light bg-gray-200 cabinet__button" >
+							<span><?= getMessage('SPS_MORE');?></span>
+							<span class="cabinet-mobile-button">
+								<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M-3.82963e-07 1.23883L3.61719 5L-5.41509e-08 8.76117L1.19141 10L6 5L1.19141 -5.2078e-08L-3.82963e-07 1.23883Z" fill="#333333"></path>
+								</svg>
+							</span>
+						</a>
 					</div> 
 					<div class="cabinet-section__content"> 
 						<? foreach ($arResult['ORDERS'] as $order) {?>
@@ -142,11 +157,18 @@ if (empty($availablePages)){
 						</span>
 
 						<a href="<?= $arParams['SEF_FOLDER'].$arParams['PATH_TO_ADDRESSES']?>" class="btn btn-light bg-gray-200 cabinet__button" >
-							<?= 
-							!empty($arResult['USER_ADDRESS'])
-								? getMessage('SPS_CHANGE')
-								: getMessage('SPS_ADD')
-							?>
+							<span>
+								<?= 
+								!empty($arResult['USER_ADDRESS'])
+									? getMessage('SPS_CHANGE')
+									: getMessage('SPS_ADD')
+								?>
+							</span>
+							<span class="cabinet-mobile-button">
+								<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M-3.82963e-07 1.23883L3.61719 5L-5.41509e-08 8.76117L1.19141 10L6 5L1.19141 -5.2078e-08L-3.82963e-07 1.23883Z" fill="#333333"></path>
+								</svg>
+							</span>
 						</a>
 
 					</div> 

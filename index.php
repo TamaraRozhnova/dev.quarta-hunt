@@ -2,9 +2,13 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
-$APPLICATION->SetTitle('Главная - Quarta Hunt');
+$APPLICATION->SetTitle('Главная - Quarta Hunt');?>
 
-$APPLICATION->IncludeComponent("bitrix:news.list", "main_slider", [
+<h1 class="hidden-on-page unset-margin">
+    <?=$APPLICATION->ShowTitle();?>
+</h1>
+
+<?$APPLICATION->IncludeComponent("bitrix:news.list", "main_slider", [
     "ACTIVE_DATE_FORMAT" => "d.m.Y",
     "ADD_SECTIONS_CHAIN" => "N",
     "AJAX_MODE" => "N",

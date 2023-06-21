@@ -80,8 +80,8 @@ $item = $arResult['ITEM'];
     </div>
 
     <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
-        <div class="product-card__article">Артикул: <?= $item['PROPERTIES']['CML2_ARTICLE']['VALUE'] ?></div>
-        <div class="product-card__title"><?= $item['NAME'] ?></div>
+        <p class="product-card__article">Артикул: <?= $item['PROPERTIES']['CML2_ARTICLE']['VALUE'] ?></p>
+        <h2 class="product-card__title"><?= $item['NAME'] ?></h2>
     </a>
 
     <? if ($item['AVAILABLE']) { ?>
