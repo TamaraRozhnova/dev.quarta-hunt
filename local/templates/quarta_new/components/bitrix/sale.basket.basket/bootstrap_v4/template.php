@@ -25,7 +25,7 @@ use Bitrix\Main\Localization\Loc;
                 $basketCount = $basket->getProductsCount(); ?>
                 <span class="basket__product-count">(<?= \Helpers\NumWordHelper::getNumWord($basketCount, ['товар', 'товара', 'товаров'], true)?>)</span>
             </div>
-            <div class="col-6 col-md-3"><? if ($basketCount > 0): ?><a href="javascript:void(0)" class="btn basket__btn-clear">Очистить корзину х</a><? endif; ?></div>
+            <div class="col-6 col-md-3"><? if ($basketCount > 0): ?><a href="javascript:void(0)" class="btn basket__btn-clear">Очистить корзину</a><? endif; ?></div>
             <div class="col-6 col-md-3"><a href="/catalog/" class="basket__next-link">Продолжить покупки</a></div>
         </div>
         <?php
