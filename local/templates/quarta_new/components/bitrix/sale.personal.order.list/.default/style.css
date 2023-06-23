@@ -1,6 +1,7 @@
 
 .personal-order{
     background-color: #f9f9fa;
+	padding-bottom: 8.75rem;
 }
 .sale-order-list-container{
 	background-color: #fff;
@@ -8,8 +9,8 @@
     margin-bottom: 1.875rem;
 	padding: 1.625rem;
 }
-.history-order{
-	margin-bottom: 1.875rem;
+.history-order:not(:first-child){
+	margin-top: 1.875rem;
 }
 .history-order__header{
     padding: 1.25rem 1.875rem;
