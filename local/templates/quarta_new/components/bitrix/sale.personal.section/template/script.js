@@ -66,7 +66,11 @@ function ajaxSave(data, editNode){
         success: function (result) {
             removeAllHint(editNode);
             if (result.success) {
-
+                $(node).find(':input').each(function(i,e) {
+                    if ($(e).attr('id') !== 'old-password') {
+                        $(e).val('').change()
+                    }
+                })
             } else {
                 if (result.message !== undefined) {
                     createHint(editNode, message.ERROR_UNDEFINED_EVENT);
