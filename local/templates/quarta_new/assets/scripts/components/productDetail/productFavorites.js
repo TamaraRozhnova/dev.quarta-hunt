@@ -8,6 +8,13 @@ class ProductFavorites {
         this.favoritesButton = this.productElement.querySelector('.product-fav');
         this.favoritesText = this.favoritesButton.querySelector('.product-fav__text');
 
+        /** Модальное окно */
+        this.favoritesAvailableWindow = document.querySelector('.available-window__wrapper');
+        this.favoritesAvailableActions = this.favoritesAvailableWindow.querySelector('.product-card__image-actions')
+
+        this.favoritesAvailableFavoriteDefault = this.favoritesAvailableActions.querySelector('.product-card__fav--default')
+        this.favoritesAvailableFavoriteActive = this.favoritesAvailableActions.querySelector('.product-card__fav--active')
+
         this.hangEvents();
         this.defineFavorites();
     }
@@ -30,7 +37,7 @@ class ProductFavorites {
 
     async changeFavorites() {
         this.favoritesButton.style.pointerEvents = 'none';
-        if (this.inFavorites) {
+        if (this.inFavorites || this.compareButton.classList.contains('in-fav')) {
             await this.deleteFavorites();
         } else {
             await this.addFavorites();
@@ -62,11 +69,25 @@ class ProductFavorites {
             this.favoritesIconDefault.style.display = 'none';
             this.favoritesIconActive.style.display = 'inline';
             this.favoritesText.textContent = 'В избранном';
+
+            /** Смена стилей для модального окна */
+            if (this.favoritesAvailableWindow != null) {
+                this.favoritesAvailableFavoriteDefault.style.display = 'none';
+                this.favoritesAvailableFavoriteActive.style.display = 'inline';
+            } 
+
         } else {
             this.favoritesButton.classList.remove('text-secondary', 'border-secondary', 'in-fav');
             this.favoritesIconActive.style.display = 'none';
             this.favoritesIconDefault.style.display = 'inline';
             this.favoritesText.textContent = 'В избранное';
+
+            /** Смена стилей для модального окна */
+            if (this.favoritesAvailableWindow != null) {
+                this.favoritesAvailableFavoriteDefault.style.display = 'inline';
+                this.favoritesAvailableFavoriteActive.style.display = 'none';
+            } 
+
         }
     }
 

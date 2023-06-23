@@ -7,6 +7,12 @@ class ProductCompare {
         this.compareApi = new CompareApi();
         this.compareButton = this.productElement.querySelector('.product-compare');
 
+        this.compareAvailableWindow = document.querySelector('.available-window__wrapper');
+        this.compareAvailableActions = this.compareAvailableWindow.querySelector('.product-card__image-actions')
+
+        this.compareAvailableFavoriteDefault = this.compareAvailableActions.querySelector('.product-card__compare--default')
+        this.compareAvailableFavoriteActive = this.compareAvailableActions.querySelector('.product-card__compare--active')
+
         this.hangEvents();
         this.defineCompare();
     }
@@ -29,12 +35,15 @@ class ProductCompare {
 
     async changeCompare() {
         this.compareButton.style.pointerEvents = 'none';
-        if (this.inCompare) {
+
+        if (this.inCompare || this.compareButton.classList.contains('in-compare')) {
             await this.deleteCompare();
         } else {
             await this.addCompare();
         }
+
         this.compareButton.style.pointerEvents = 'all';
+
     }
 
     async addCompare() {
@@ -56,14 +65,29 @@ class ProductCompare {
     }
 
     changeStyles(state = true) {
+
         if (state) {
             this.compareButton.classList.add('text-secondary', 'border-secondary', 'in-compare');
             this.compareIconDefault.style.display = 'none';
             this.compareIconActive.style.display = 'inline';
+
+            /** Смена стилей для модального окна */
+            if (this.compareAvailableWindow != null) {
+                this.compareAvailableFavoriteDefault.style.display = 'none';
+                this.compareAvailableFavoriteActive.style.display = 'inline';
+            } 
+
         } else {
             this.compareButton.classList.remove('text-secondary', 'border-secondary', 'in-compare');
             this.compareIconActive.style.display = 'none';
             this.compareIconDefault.style.display = 'inline';
+
+            /** Смена стилей для модального окна */
+            if (this.compareAvailableWindow != null) {
+                this.compareAvailableFavoriteDefault.style.display = 'inline';
+                this.compareAvailableFavoriteActive.style.display = 'none';
+            } 
+
         }
     }
 
