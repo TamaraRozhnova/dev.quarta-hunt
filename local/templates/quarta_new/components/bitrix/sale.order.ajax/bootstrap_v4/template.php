@@ -471,7 +471,7 @@ else
 					<div class="btn-agree">
 						<p>
             				<?= getMessage('SOA_BTN_ORDER')?>
-            				<a href="/polozhenie-o-konfidentsialnosti">
+            				<a href="/privacy-statement/">
              					<?= getMessage('SOA_BTN_ORDER_AGREE');?>
 							</a>
 						</p>
