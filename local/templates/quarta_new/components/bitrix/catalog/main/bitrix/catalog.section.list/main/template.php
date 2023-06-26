@@ -22,12 +22,12 @@ if (!count($arResult['SECTIONS'])) {
                             <figure class="category-card__image">
                                 <img src="<?= $section['PICTURE']['SRC'] ?>" alt="<?= $section['NAME'] ?>"/>
                             </figure>
-                            <div class="category-card__title">
+                            <h2 class="category-card__title">
                                 <?= $section['NAME'] ?>
-                            </div>
-                            <div class="category-card__count">
+                            </h2>
+                            <p class="category-card__count">
                                 <?= $section['ELEMENT_CNT_TITLE'] ?>
-                            </div>
+                            </p>
                         </div>
                     </a>
                 </div>
