@@ -48,6 +48,7 @@ $compareList = $_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS'];
                         "AJAX_OPTION_JUMP" => "Y",
                         "AJAX_OPTION_STYLE" => "Y",
                         "AJAX_OPTION_HISTORY" => "Y",
+                        "ON_COMPARE_PAGE" => "Y"
                     )
                 );
             } ?>

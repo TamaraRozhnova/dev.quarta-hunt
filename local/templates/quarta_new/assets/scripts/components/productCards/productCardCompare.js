@@ -33,6 +33,10 @@ class ProductCardCompare {
         this.compareIconDefault = this.productElement.querySelector('.product-card__compare--default');
         this.compareIconActive = this.productElement.querySelector('.product-card__compare--active');
 
+        if (this.productElement.querySelector('.product-card__remove-compare') != null) {
+            this.productElement.querySelector('.product-card__remove-compare').addEventListener('click', async () => this.deleteCompare())
+        }
+
         this.compareIconDefault.addEventListener('click', async () => this.addCompare());
         this.compareIconActive.addEventListener('click', async () => this.deleteCompare());
     }
