@@ -7,8 +7,7 @@ $APPLICATION->SetTitle('Доставка');
 ?>
 
 <div class="delivery">
-    <div class="jumbotron-vue"
-         style="background-image: url('<?= SITE_TEMPLATE_PATH ?>/assets/images/static/delivery.jpg');">
+    <div class="jumbotron-vue delivery-jumotron-image">
         <div class="container">
             <div class="jumbotron-vue__body">
                 <div class="jumbotron-vue__q">

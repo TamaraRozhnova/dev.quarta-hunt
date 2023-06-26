@@ -10546,3 +10546,21 @@ ymaps[class$=-balloon__layout] {
     font-size: 0.875rem;
   }
 }
+
+.about-jumotron-image {
+  background-image: url(assets/images/static/about.jpg);
+}
+.about-wide-promoution-image {
+  background-image: url(assets/images/static/about-wide-02.jpg);
+}
+
+.wholesale-jumotron-image {
+  background-image: url(assets/images/static/wholesale.jpg);
+}
+.wholesale-jumotron-small-image {
+  background-image: url(assets/images/static/wholesale-bottom.jpg);
+}
+
+.delivery-jumotron-image {
+  background-image: url(assets/images/static/delivery.jpg);
+}

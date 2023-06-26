@@ -7,7 +7,7 @@ $APPLICATION->SetTitle('О компании');
 ?>
 
 <div class="about">
-    <div class="jumbotron-vue jumbotron-vue--large" style="background-image: url('<?= SITE_TEMPLATE_PATH ?>/assets/images/static/about.jpg')">
+    <div class="jumbotron-vue jumbotron-vue--large about-jumotron-image">
         <div class="container">
             <div class="jumbotron-vue__body">
                 <div class="jumbotron-vue__q">
@@ -184,7 +184,7 @@ $APPLICATION->SetTitle('О компании');
     <section class="about__section">
         <div class="wide-promotion__wrapper bg-gray-100">
             <div class="wide-promotion wide-promotion--large">
-                <div class="wide-promotion__image" style="background-image: url('<?= SITE_TEMPLATE_PATH ?>/assets/images/static/about-wide-02.jpg');"></div>
+                <div class="wide-promotion__image about-wide-promoution-image"></div>
                 <div class="wide-promotion__content-backdrop"></div>
                 <div class="wide-promotion__body">
                     <div class="container">
