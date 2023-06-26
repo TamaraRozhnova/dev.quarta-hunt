@@ -118,6 +118,8 @@
   color: #212529;
   font-size: 1.625rem;
   font-weight: 500;
+  margin-bottom: 0;
+  line-height: initial;
 }
 .category-card--compact .category-card__title {
   margin-top: 2.5rem;

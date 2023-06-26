@@ -10,7 +10,7 @@ $user = new User();
 $isWholesaler = $user->isWholesaler();
 
 ?><div class="wholesale">
-    <div class="jumbotron-vue jumbotron-vue--large" style="background-image: url('<?= SITE_TEMPLATE_PATH ?>/assets/images/static/wholesale.jpg')">
+    <div class="jumbotron-vue jumbotron-vue--large wholesale-jumotron-image">
         <div class="container">
             <div class="jumbotron-vue__body">
                 <div class="jumbotron-vue__q">
@@ -407,7 +407,7 @@ $isWholesaler = $user->isWholesaler();
     </div>
 
     <? if (!$isWholesaler) { ?>
-        <div class="jumbotron-vue jumbotron-vue--small" style="background-image: url('<?= SITE_TEMPLATE_PATH ?>/assets/images/static/wholesale-bottom.jpg')">
+        <div class="jumbotron-vue jumbotron-vue--small wholesale-jumotron-small-image">
             <div class="container">
                 <div class="jumbotron-vue__body">
                     <div class="jumbotron-vue__q">

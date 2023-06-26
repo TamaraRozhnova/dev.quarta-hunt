@@ -95,6 +95,33 @@
   right: 0;
   background-image: linear-gradient(90deg, rgb(249, 249, 250) 0%, rgba(249, 249, 250, 0) 100%);
 }
+.product-card__add-wrapper .product-card__add {
+  max-width: 100%;
+  width: 100%;
+}
+.product-card__add-wrapper {
+  display: flex;
+  align-items: center;
+}
+.product-card__remove-compare {
+  max-width: 47px;
+  height: 48px;
+  width: 100%;
+}
+
+.product-card__remove-compare > button {
+  max-width: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+}
+
+.product-card__add-wrapper .input-group .btn {
+  z-index: 1;
+}
+
 @media (max-width: 1199.98px) {
   .compare__col {
     padding: 0 0.438rem;
