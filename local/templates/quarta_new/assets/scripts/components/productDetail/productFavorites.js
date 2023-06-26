@@ -8,9 +8,10 @@ class ProductFavorites {
         this.favoritesButton = this.productElement.querySelector('.product-fav');
         this.favoritesText = this.favoritesButton.querySelector('.product-fav__text');
 
-        /** Модальное окно */
         this.favoritesAvailableWindow = document.querySelector('.available-window__wrapper');
         this.favoritesAvailableActions = this.favoritesAvailableWindow.querySelector('.product-card__image-actions')
+
+        this.favoritesAvailableFavoriteButton = this.favoritesAvailableWindow.querySelectorAll('.product-card__fav')
 
         this.favoritesAvailableFavoriteDefault = this.favoritesAvailableActions.querySelector('.product-card__fav--default')
         this.favoritesAvailableFavoriteActive = this.favoritesAvailableActions.querySelector('.product-card__fav--active')
@@ -32,12 +33,18 @@ class ProductFavorites {
     hangEvents() {
         this.favoritesIconDefault = this.favoritesButton.querySelector('.product-fav__default');
         this.favoritesIconActive = this.favoritesButton.querySelector('.product-fav__active');
+
         this.favoritesButton.addEventListener('click', async() => this.changeFavorites())
+
+        this.favoritesAvailableFavoriteButton.forEach( (btnFav) => {
+            btnFav.addEventListener('click', async() => this.changeFavorites())
+        })
+
     }
 
     async changeFavorites() {
         this.favoritesButton.style.pointerEvents = 'none';
-        if (this.inFavorites || this.compareButton.classList.contains('in-fav')) {
+        if (this.inFavorites) {
             await this.deleteFavorites();
         } else {
             await this.addFavorites();

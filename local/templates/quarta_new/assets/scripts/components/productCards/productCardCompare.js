@@ -12,22 +12,6 @@ class ProductCardCompare {
 
         this.onDelete = events.onDelete;
 
-        /** Детальная карточка товара */
-        if (document.querySelector('.product') != null) {
-
-            this.productDetailElement = document.querySelector('.product');
-
-            if (this.productId == this.productDetailElement.dataset.id) {
-
-                this.productDetailElementCompareButton = this.productDetailElement.querySelector('.product-compare');
-
-                this.productDetailElementCompareIconDefault = this.productDetailElementCompareButton.querySelector('.product-compare__default');
-                this.productDetailElementCompareIconActive = this.productDetailElementCompareButton.querySelector('.product-compare__active');
-
-            }
-
-        }
-
         this.compareApi = new CompareApi();
 
         this.hangEvents();
@@ -78,35 +62,9 @@ class ProductCardCompare {
         if (state) {
             this.compareIconDefault.style.display = 'none';
             this.compareIconActive.style.display = 'inline';
-
-            /** Смена стилей для детальной страницы */
-            if (document.querySelector('.product') != null != null) {
-
-                if (this.productId == this.productDetailElement.dataset.id) { 
-
-                    this.productDetailElementCompareButton.classList.add('text-secondary', 'border-secondary', 'in-compare');
-                    this.productDetailElementCompareIconDefault.style.display = 'none';
-                    this.productDetailElementCompareIconActive.style.display = 'inline';
-
-                }
-            }
-
         } else {
             this.compareIconActive.style.display = 'none';
             this.compareIconDefault.style.display = 'inline';
-
-            /** Смена стилей для детальной страницы */
-            if (document.querySelector('.product') != null != null) {
-
-                if (this.productId == this.productDetailElement.dataset.id) { 
-
-                    this.productDetailElementCompareButton.classList.remove('text-secondary', 'border-secondary', 'in-compare');
-                    this.productDetailElementCompareIconDefault.style.display = 'inline';
-                    this.productDetailElementCompareIconActive.style.display = 'none';
-
-                }
-            }
-
         }
     }
 
