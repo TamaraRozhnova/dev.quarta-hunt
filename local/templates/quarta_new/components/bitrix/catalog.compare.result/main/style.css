@@ -118,6 +118,10 @@
   height: 48px;
 }
 
+.product-card__add-wrapper .input-group .btn {
+  z-index: 1;
+}
+
 @media (max-width: 1199.98px) {
   .compare__col {
     padding: 0 0.438rem;
@@ -127,12 +131,6 @@
   .compare .container {
     max-width: 100%;
     padding: 0 30px;
-  }
-}
-@media (max-width: 767px) {
-  .product-card__remove-compare > button,
-  .product-card__remove-compare {
-
   }
 }
 @media (max-width: 575.98px) {
