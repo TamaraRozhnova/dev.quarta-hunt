@@ -144,3 +144,9 @@
     display: none;
   }
 }
+@media (max-width: 360px) {
+  .product-card__remove-compare,
+  .product-card__remove-compare > button {
+    max-width: 24px;
+  }
+}
