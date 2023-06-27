@@ -140,7 +140,7 @@ $arResult["SHOW_FIELDS"] = array(
 					<span class="starrequired">*</span>
 				<?endif?>
 			</label>
-			<input type="text" id="phone" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="+7 (___) ___-__-__" />
+			<input autocomplete="off" type="text" id="phone" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="+7 (___) ___-__-__" />
 		</div>
 		<?break;
 		case "NAME":?>
