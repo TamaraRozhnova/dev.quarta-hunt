@@ -203,7 +203,7 @@ $arResult["SHOW_FIELDS"] = array(
 						<span class="starrequired">*</span>
 					<?endif?>
 				</label>
-				<input type="text" id="phone" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="+7 (___) ___-__-__" />
+				<input autocomplete="off" type="text" id="phone" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="+7 (___) ___-__-__" />
 			</div>
 			<?break;
 		case "EMAIL":?>
@@ -348,11 +348,29 @@ if ($arResult["USE_CAPTCHA"] == "Y") {
 <script>
 	if ( document.getElementById("phone") ) {
 		BX.ready(function() {
-	        var result = new BX.MaskedInput({
+	        var phoneInput = new BX.MaskedInput({
 	            mask: '+7 (999) 999-99-99', // устанавливаем маску
 	            input: BX('phone'),
 	            placeholder: '_' // символ замены +7 ___ ___ __ __
 	        });
+			phoneInput.setValue('')
+
+			document.getElementById("phone").addEventListener('paste', (event) => {
+
+				clipboardData = event.clipboardData || window.clipboardData;
+				pastedData = clipboardData.getData('Text');
+
+				if (pastedData.match(/\d+/g) != null) {
+					let modifyResult = pastedData.match(/\d+/g).join('');
+
+					if (modifyResult.length == 11) {
+						phoneInput.setValue(modifyResult.substring(1))
+					}
+
+				}
+
+
+			})
 	    });
 	}
 	if ($('#promo').prop('checked') == true) {
