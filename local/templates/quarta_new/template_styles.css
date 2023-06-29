@@ -10564,3 +10564,7 @@ ymaps[class$=-balloon__layout] {
 .delivery-jumotron-image {
   background-image: url(assets/images/static/delivery.jpg);
 }
+
+.swiper-container_recommended .swiper-slide {
+  height: auto;
+}
