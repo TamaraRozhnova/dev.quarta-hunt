@@ -47,6 +47,7 @@ $basketItemsCount = $basket->getProductsCount();
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/inputMask.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/sharer.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/useGesture.js");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/fslightbox.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/build/main.js");
     ?>
 

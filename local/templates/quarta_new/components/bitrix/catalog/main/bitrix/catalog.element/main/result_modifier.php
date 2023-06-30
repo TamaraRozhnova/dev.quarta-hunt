@@ -61,10 +61,27 @@ foreach ($arResult['PROPERTIES']['FILES']['VALUE'] as $fileId) {
     }
 }
 
-$arResult['IMAGES'][] = $arResult['DETAIL_PICTURE']['SRC'];
+if (!empty($arResult['DETAIL_PICTURE']['SRC'])) {
+    $arResult['IMAGES'][] = $arResult['DETAIL_PICTURE']['SRC'];
+}
 
-foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $value) {
-    $arResult['IMAGES'][] = CFile::GetPath($value);
+if (!empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
+
+    foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $value) {
+        $arResult['IMAGES'][] = CFile::GetPath($value);
+    }    
+
+}
+
+/** Если отсутствуют фото, ставим "Фото на фотосессии" */
+
+if (
+    empty($arResult['DETAIL_PICTURE']['SRC'])
+    &&
+    empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])
+) {
+    $arResult['HIDE_MODAL'] = 'Y';
+    $arResult['IMAGES'][] = "/upload/cards/photo-not-found.jpg";
 }
 
 foreach ($arResult['PROPERTIES'] as $key => $prop) {
