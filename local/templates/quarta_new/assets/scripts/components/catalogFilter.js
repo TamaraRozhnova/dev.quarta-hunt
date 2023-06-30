@@ -20,6 +20,10 @@ class CatalogFilter {
 
         this.filterApplied = true;
 
+        this.filterParams = {
+            'FILTER_ITEMS': {}
+        };
+
         this.productsDataApi = new ProductsDataApi();
 
         this.createElements();
@@ -46,9 +50,14 @@ class CatalogFilter {
         });
     }
 
+    /** Кнопка применить */
     hangOpenCloseFilterEvent() {
         this.mobileFilterCloseButton.addEventListener('click', () => {
             this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
+
+            this.handleChangeFilters(this.filterParams);
+            // this.setBadges();
+
         });
     }
 
@@ -126,11 +135,21 @@ class CatalogFilter {
         });
     }
 
+    /** Чекбоксы */
     hangChangeCheckboxEvent(checkbox) {
         checkbox.addEventListener('change', () => {
             const id = checkbox.id;
             const valueForUrl = checkbox.checked ? 'Y' : '';
-            this.handleChangeFilters({[id]: valueForUrl});
+
+            // this.filterParams = {[id]: valueForUrl}
+
+            this.filterParams['MULTI_OBJECT'] = 'Y'
+            
+            this.filterParams['FILTER_ITEMS'][id] = valueForUrl
+
+            console.log(this.filterParams)
+            // this.handleChangeFilters(this.filterParams);
+            // this.handleChangeFilters({[id]: valueForUrl});
             this.setBadges();
         })
     }
@@ -166,6 +185,7 @@ class CatalogFilter {
         this.selectorCount.resetValue();
         this.inputMinPrice.clear();
         this.inputMaxPrice.clear();
+        this.filterParams.FILTER_ITEMS = {};
         const newActiveCountElement = this.extraFilters.querySelector(`#list-count li:first-of-type`);
         this.changeProductsCountClasses(newActiveCountElement);
         this.setBadges();
@@ -214,13 +234,29 @@ class CatalogFilter {
             urlParams.set('PAGEN_1', '1');
         }
 
-        Object.keys(params).forEach(key => {
-            if (params[key]) {
-                urlParams.set(key, params[key]);
-            } else {
-                urlParams.delete(key);
-            }
-        })
+        if (params.MULTI_OBJECT == 'Y') {
+            if (params.FILTER_ITEMS) {
+
+                Object.keys(params.FILTER_ITEMS).forEach(key => {
+                    if (params.FILTER_ITEMS[key]) {
+                        urlParams.set(key, params.FILTER_ITEMS[key]);
+                    } else {
+                        urlParams.delete(key);
+                    }
+                })
+
+            } 
+        } else {
+            Object.keys(params).forEach(key => {
+                if (params[key]) {
+                    urlParams.set(key, params[key]);
+                } else {
+                    urlParams.delete(key);
+                }
+            })
+        }
+
+
         urlParams.set('set_filter', 'Y');
         return `${url.origin}${url.pathname}?${urlParams.toString()}`;
     }
