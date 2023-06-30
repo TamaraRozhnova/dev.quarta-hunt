@@ -138,7 +138,7 @@ $isUserAuth = $user->isAuthorized();
                                 </div>
                                 <a href="<?= $file['SRC'] ?>" class="product-instructions__file-name" nofollow
                                    target="_blank">
-                                    <?= $file['NAME'] ?>
+                                    Инструкция
                                 </a>
                                 <div class="product-instructions__file-size">
                                     <?= $file['SIZE'] ?>
