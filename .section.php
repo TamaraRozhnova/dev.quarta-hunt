@@ -2,7 +2,7 @@
 
 $sSectionName = "Главная";
 $arDirProperties = [
-   "description" => "Мы предлагаем широкий ассортимент качественной одежды по адекватным ценам.",
-   "keywords" => "женская одежда, мужская одежда, спортивная одежда, тапочки",
+   "description" => "",
+   "keywords" => "",
    "robots" => "index, follow"
 ];
