@@ -25,7 +25,9 @@ $basketItemsCount = $basket->getProductsCount();
 ?>
 
 <!doctype html>
-<html lang="ru">
+<html 
+    lang="ru"
+    class="<?=$APPLICATION->ShowProperty('not-found-page')?>">
 
 <head>
     <meta charset="UTF-8">

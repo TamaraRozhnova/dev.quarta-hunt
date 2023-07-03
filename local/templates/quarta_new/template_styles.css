@@ -10568,3 +10568,45 @@ ymaps[class$=-balloon__layout] {
 .swiper-container_recommended .swiper-slide {
   height: auto;
 }
+
+/* 404 PAGE */
+.not-found__wrapper {
+  background-image: url(/upload/404/404.jpg);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: top;
+  height: 100%;
+}
+.not-found-page header {
+  display: none;
+}
+.not-found-page {
+  height: 100%;
+}
+.not-found-page body,
+.not-found-page body > .wrapper,
+.not-found-page body main {
+  height: inherit;
+}
+.error-message__wrapper {
+  margin-top: 3.875rem;
+}
+.error-message-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 3.875rem - 29px);
+}
+.error-message {
+  margin: 0 auto;
+  max-width: 495px;
+  text-align: center;
+  transform: translateY(-60%);
+}
+.error-message > *:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
