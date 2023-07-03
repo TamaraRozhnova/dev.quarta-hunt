@@ -10592,6 +10592,9 @@ ymaps[class$=-balloon__layout] {
 .not-found-page body main {
   height: inherit;
 }
+.not-found-page body #bx-panel {
+  display: none !important;
+}
 .error-message__wrapper {
   margin-top: 3.875rem;
 }
