@@ -1,14 +1,19 @@
+
 class PhotosSlider {
     constructor() {
         this.photosSliderSelector = '.photos-slider .swiper-container';
         this.selectedPhoto = document.querySelector('.product-photos__selected-photo');
-        this.detailCardPhotoModal = document.querySelector('#detail-card-modal-photo');
-        this.entityModal = null;
+        this.photosSliderElements = document.querySelectorAll('.photos-slider__item');
+
         this.imageElementSrc = null;
 
         this.makeSlider();
-        this.initModalCardPhoto();
-        this.initModalCardPhotoMobile();
+
+        if (document.querySelector('[data-hide]') == null) {
+            this.hangSelectedPhotoEvent();
+            this.hangPhotosInSlider()
+        }
+
     }
 
     makeSlider() {
@@ -32,49 +37,22 @@ class PhotosSlider {
         this.hangPhotosSliderEvents();
     }
 
-    initModalCardPhoto() {
-        this.imageElementSrc = this.photosSlider.slides[0].style.backgroundImage.replace(/(url\(")|("\))/g, '');
-
-        if (typeof this.imageElementSrc != "undefined") {
-            if (this.detailCardPhotoModal.length != 0) {
-                this.detailCardPhotoModal.querySelector('.detail-card-image').src = this.imageElementSrc
-            }
-        }
-
-        if (this.detailCardPhotoModal.length != 0) {
-  
-            this.entityModal = new Modal ({
-                modalOpenElementSelector: '.product-photos__selected-photo',
-                modalSelector: "#detail-card-modal-photo"
+    hangPhotosInSlider() {
+        this.photosSliderElements.forEach( (photo) => {
+            photo.addEventListener('click' , () => {
+                this.selectedPhoto.setAttribute('data-modal-index', photo.dataset.modalIndex)
             })
-            
-        }
+        })
     }
 
-    initModalCardPhotoMobile() {
-        if (window.innerWidth <= 575) {
-            
-            this.photosSlider.slides.forEach((slide, index) => {
+    hangSelectedPhotoEvent() {
+        this.selectedPhoto.addEventListener('click', (event) => {
+            const selectedModalIndex = event.target.dataset.modalIndex
+            const sliderPhotoSelected = document.querySelector(`.photos-slider__item[data-modal-index="${selectedModalIndex}"]`)
 
-                if (this.detailCardPhotoModal.length != 0) {
-  
-                    this.entityModal = new Modal ({
-                        modalOpenElementSelector: `.detail-card-open-modal-mobile-${slide.getAttribute('modal-index')}`,
-                        modalSelector: "#detail-card-modal-photo"
-                    })
-                    
-                }
-                
-            })
-        }
-    }
+            sliderPhotoSelected.click()
 
-    changeModalCardPhoto() {
-        if (this.detailCardPhotoModal.length != 0) {
-            if (this.detailCardPhotoModal.querySelector('.detail-card-image').length != 0) {
-                this.detailCardPhotoModal.querySelector('.detail-card-image').src = this.imageElementSrc
-            }
-        }
+        })
     }
 
     hangPhotosSliderEvents() {
@@ -87,6 +65,7 @@ class PhotosSlider {
                 this.photosSliderCurrentSlide += 1
             }
             this.photosSlider.slideTo(this.photosSliderCurrentSlide);
+            this.selectedPhoto.setAttribute('data-modal-index', this.photosSliderCurrentSlide)
             this.handleChangeSlide();
         });
         this.photosSlider.slides.forEach((slide, index) => {
@@ -105,7 +84,6 @@ class PhotosSlider {
                 this.selectedPhoto.style.backgroundImage = imageSrc;
                 
                 this.imageElementSrc = imageSrc.replace(/(url\(")|("\))/g, '');
-                this.changeModalCardPhoto()
                 
                 slide.classList.add('photos-slider__item--active');
             } else {

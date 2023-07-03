@@ -139,6 +139,54 @@
 .category .category__filter-wrap .filters .filters__accept-wrap {
   display: none;
 }
+.filters__accept-on-item-wrapper {
+  position: absolute;
+  display: none;
+  left: 350px;
+  z-index: 3;
+  max-width: fit-content !important;
+}
+
+.filters__btn-apply,
+.filters__accept-on-item {
+  position: relative;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #004989;
+  color: #fff;
+  border: none;
+  outline: none;
+}
+.filters-section-btns {
+  display: none;
+}
+.filters__btn-apply {
+  font-weight: 500 !important;
+  padding: 0.8125rem 1.5rem !important;
+  width: 100%;
+}
+
+.filters__accept-on-item {
+  width: fit-content;
+  border-radius: 6px;
+  min-height: 48px;
+  padding: 0.8125rem 1.5rem;
+}
+.filters__accept-on-item::before {
+  content: "";
+  width: 19px;
+  height: 19px;
+  background-color: #004989;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transform: rotate(45deg);
+  left: -7px;
+  border-radius: 4px;
+}
 
 @media (max-width: 991px) {
   .category .category__filter-wrap {

@@ -25,7 +25,9 @@ $basketItemsCount = $basket->getProductsCount();
 ?>
 
 <!doctype html>
-<html lang="ru">
+<html 
+    lang="ru"
+    class="<?=$APPLICATION->ShowProperty('not-found-page')?>">
 
 <head>
     <meta charset="UTF-8">
@@ -47,6 +49,7 @@ $basketItemsCount = $basket->getProductsCount();
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/inputMask.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/sharer.min.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/useGesture.js");
+    $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/fslightbox.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/build/main.js");
     ?>
 
