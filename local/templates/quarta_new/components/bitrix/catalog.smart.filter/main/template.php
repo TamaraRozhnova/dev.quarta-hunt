@@ -114,10 +114,25 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
         </span>
 
+        <div class="filters-section-btns">
+            <div class="filters-section-btn-apply">
+                <button type="button" class="btn btn-primary filters__btn-apply">
+                    Применить
+                </button>
+            </div>
+        </div>
+
         <div class="filters__accept-wrap">
             <button type="button" class="filters__accept-btn">
                 Применить
             </button>
         </div>
+
     </form>
+</div>
+
+<div class="filters__accept-on-item-wrapper">
+    <button type="button" class="filters__accept-on-item">
+        Применить
+    </button>
 </div>

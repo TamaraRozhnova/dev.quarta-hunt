@@ -7,8 +7,15 @@ class CatalogFilter {
         this.filterSections = this.mainFilters.querySelectorAll('.filters-section');
         this.filterCheckboxes = this.mainFilters.querySelectorAll('.filters-item input[type="checkbox"]');
 
+        /** Кнопки Применить для фильтра */
+        this.filterBtnOnCheckBox = document.querySelector('.filters__accept-on-item-wrapper');
+        this.filterBtnApplyFilter = document.querySelector('.filters__btn-apply');
         this.mobileFilterOpenButton = document.querySelector('.filters-sort__btn');
         this.mobileFilterCloseButton = document.querySelector('.filters__accept-btn');
+        this.filterChangeButton = document.querySelector('.filters__accept-on-item');
+        this.filterBtnApplyFilterWrapper = document.querySelector('.filters-section-btns');
+
+
         this.loader = document.querySelector('.loading');
         this.categoryHeaderContainer = document.querySelector('.category__header');
 
@@ -50,15 +57,30 @@ class CatalogFilter {
         });
     }
 
+    hangCloseAllApplyBnts() {
+        if (window.innerWidth >= 991) {
+            this.filterBtnOnCheckBox.style.display = 'none'
+            this.filterBtnApplyFilterWrapper.style.display = 'none'
+        }
+    }
+
     /** Кнопка применить */
     hangOpenCloseFilterEvent() {
         this.mobileFilterCloseButton.addEventListener('click', () => {
             this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
-
-            this.handleChangeFilters(this.filterParams);
-            // this.setBadges();
-
+            this.handleChangeFilters(this.filterParams)
         });
+
+        this.filterChangeButton.addEventListener('click', () => {
+            this.hangCloseAllApplyBnts()
+            this.handleChangeFilters(this.filterParams)
+        });
+
+        this.filterBtnApplyFilter.addEventListener('click', () => {
+            this.hangCloseAllApplyBnts()
+            this.handleChangeFilters(this.filterParams)
+        });
+
     }
 
     hangPaginationEvents() {
@@ -116,7 +138,12 @@ class CatalogFilter {
     hangFiltersClearEvent() {
         this.clearFilterButton.addEventListener('click', () => {
             this.resetControls();
-            this.mobileFilterCloseButton.click()
+            this.hangCloseAllApplyBnts()
+
+            if (document.documentElement.clientWidth <= 991) {
+                this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
+            }
+
             this.handleChangeFilters();
         });
     }
@@ -141,16 +168,41 @@ class CatalogFilter {
             const id = checkbox.id;
             const valueForUrl = checkbox.checked ? 'Y' : '';
 
-            // this.filterParams = {[id]: valueForUrl}
-
             this.filterParams['MULTI_OBJECT'] = 'Y'
             
             this.filterParams['FILTER_ITEMS'][id] = valueForUrl
-
-            console.log(this.filterParams)
-            // this.handleChangeFilters(this.filterParams);
-            // this.handleChangeFilters({[id]: valueForUrl});
             this.setBadges();
+
+            if (window.innerWidth >= 991) {
+
+                let bodyRect = document.body.getBoundingClientRect(),
+                    elemRect = checkbox.getBoundingClientRect(),
+                    offsetTop   = elemRect.top - bodyRect.top,
+                    offsetLeft  = elemRect.left - bodyRect.left;
+
+                let checkboxWrapper = checkbox.closest('.filters-item'),
+                    checkboxFormWrapper = checkboxWrapper.closest('.filters-section')
+ 
+
+                let filtersLeftRigtPadding = window.getComputedStyle(checkboxFormWrapper, null).getPropertyValue('padding-left'),
+                    filtersLeftRigtPaddingModify = Number(filtersLeftRigtPadding.replace('px', ''))
+
+                this.filterBtnOnCheckBox.style.display = 'block'
+                this.filterBtnApplyFilterWrapper.style.display = 'block'
+                this.filterBtnOnCheckBox.style.top = `${offsetTop - checkboxWrapper.offsetHeight}px`
+                this.filterBtnOnCheckBox.style.left = `${offsetLeft + checkboxWrapper.offsetWidth + filtersLeftRigtPaddingModify / 2}px`
+
+                for (let key of Object.keys(this.filterParams['FILTER_ITEMS'])) {
+                    if (this.filterParams['FILTER_ITEMS'][key] == "Y")
+                        return false
+
+                }
+
+                this.hangCloseAllApplyBnts()
+
+            }
+
+
         })
     }
 
@@ -197,6 +249,7 @@ class CatalogFilter {
             this.extraFilters.style.pointerEvents = 'none';
 
             this.mobileFilterCloseButton.style.pointerEvents = 'all';
+            this.filterChangeButton.style.pointerEvents = 'all';
 
             this.loader.classList.add('loading--show');
             this.productsDataBlock.classList.remove('products-data--show');
