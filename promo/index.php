@@ -49,7 +49,7 @@ $APPLICATION->SetTitle("Акции");
 			1 => "",
 		),
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => "23",
+		"IBLOCK_ID" => "37",
 		"IBLOCK_TYPE" => "1c_catalog",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
