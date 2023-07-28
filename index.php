@@ -280,6 +280,14 @@ $APPLICATION->IncludeComponent(
 	false
 );
 
+// 
+$APPLICATION->IncludeComponent(
+	"custom:products.promotion.main",
+	"",
+Array()
+);
+// 
+
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"news_slider", 
@@ -326,7 +334,7 @@ $APPLICATION->IncludeComponent(
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "1",
-		"IBLOCK_TYPE" => "news",
+		"IBLOCK_TYPE" => "",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
 		"INCLUDE_SUBSECTIONS" => "N",
 		"MESSAGE_404" => "",
