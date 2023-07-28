@@ -1,6 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true) die();
 
 use \Bitrix\Main\Loader;
+use General\User;
 
 if (!Loader::includeModule('iblock'))
     throw new Bitrix\Main\SystemException('Module iblock is not initialized');
@@ -216,6 +217,8 @@ if (!empty($rsMarketingBlockTitlesDesc)) {
 
 }
 
+$user = new User();
+$priceCode = $user->getUserPriceCode();
 
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.section",
@@ -289,7 +292,7 @@ $APPLICATION->IncludeComponent(
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "4",
 		"PARTIAL_PRODUCT_PROPERTIES" => "N",
-		"PRICE_CODE" => array("BASE", "OPT_SMALL", "OPT"),
+		"PRICE_CODE" => $priceCode,
 		"PRICE_VAT_INCLUDE" => "Y",
 		"PRODUCT_BLOCKS_ORDER" => "price,props,sku,quantityLimit,quantity,buttons",
 		"PRODUCT_DISPLAY_MODE" => "N",
@@ -335,8 +338,7 @@ $APPLICATION->IncludeComponent(
             "OTHER_DATA_PROMO" => $arResult['DATA_SECTION_PROMO']['MB_PROMO'],
             "OTHER_DATA_SECTION_CATALOG" => $arResult['DATA_SECTION_PROMO']['MB_SECTION_CATALOG'],
 			"OTHER_DATA_SLIDER" => $arResult['DATA_SLIDER']
-        ]
-        
+		],
 	)
 );
 
