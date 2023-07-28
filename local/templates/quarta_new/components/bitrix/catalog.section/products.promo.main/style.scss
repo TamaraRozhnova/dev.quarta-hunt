@@ -1,0 +1,34 @@
+@import '../assets/styles/base-imports';
+
+.search {
+    background: $gray-100;
+    padding-bottom: 8.75rem;
+
+    h2 {
+        font-size: 2.188rem;
+        margin-bottom: 1.875rem;
+    }
+
+    @include media-breakpoint-down('lg') {
+        h2 {
+            font-size: 1.875rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 0 30px;
+        }
+    }
+
+    @include media-breakpoint-down('sm') {
+        h2 {
+            font-size: 1.438rem;
+            margin-bottom: 0.688rem;
+        }
+
+        .container {
+            padding: 0 15px;
+        }
+    }
+}
