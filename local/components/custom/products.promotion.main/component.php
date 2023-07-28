@@ -163,13 +163,22 @@ if (!empty($rsMarketingBlockSectionCatalog)) {
             $tmpPicture = CFile::GetPath($arSection['MB_SECTION_CATALOG_DETAIL_PICTURE']);
         }
 
+		$tmpSectionUrlSect = CIBlockSection::GetNavChain($arSection['MB_SECTION_CATALOG_IBLOCK_ID'], $arSection['MB_SECTION_CATALOG_ID'], false);
+
+		if (!empty($tmpSectionUrlSect)) {
+			while ($res = $tmpSectionUrlSect->GetNext()) {
+				$arResult['DATA_SECTION_PROMO']['MB_SECTION_CATALOG']['URL'] = $res['SECTION_PAGE_URL'];
+			}
+		}
+		
         $arResult['DATA_SECTION_PROMO']['MB_SECTION_CATALOG']['PICTURE'] = $tmpPicture;
-        $arResult['DATA_SECTION_PROMO']['MB_SECTION_CATALOG']['URL'] = '/catalog/' . $arSection['MB_SECTION_CATALOG_CODE'] . '/';
+
 
     }
 
     unset($tmpPicture);
 }
+
 
 /** Заголовки и описания */
 $rsMarketingBlockTitlesDesc = Bitrix\Iblock\Elements\ElementMarketingBlockTable::getList([
