@@ -1,7 +1,25 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Акции");
-?><?$APPLICATION->IncludeComponent(
+
+if (!empty($_GET['type'])) {
+	switch ($_GET['type']) {
+		case 'ended':
+			$GLOBALS['arrFilterPromo'] = [
+				"<=DATE_ACTIVE_TO" => date('d.m.Y H:i:s'),
+			];
+			break;
+		
+		default:
+
+			break;
+	}
+} else {
+	$GLOBALS['arrFilterPromo'] = [
+		">=DATE_ACTIVE_TO" => date('d.m.Y H:i:s')
+	];
+}
+
+$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"promo", 
 	array(
@@ -43,7 +61,7 @@ $APPLICATION->SetTitle("Акции");
 			0 => "DATE_ACTIVE_TO",
 			1 => "",
 		),
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilterPromo",
 		"FILTER_PROPERTY_CODE" => array(
 			0 => "",
 			1 => "",
