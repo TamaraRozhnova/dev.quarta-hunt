@@ -334,7 +334,7 @@ if ($arResult["USE_CAPTCHA"] == "Y") {
 </div>
 <small >
     Нажимая кнопку «Зарегистрироваться»,
-    <a href="/polozhenie-o-konfidentsialnosti" >
+    <a href="/privacy-statement/" >
       я даю свое согласие на обработку моих персональных данных.
     </a>
 </small>

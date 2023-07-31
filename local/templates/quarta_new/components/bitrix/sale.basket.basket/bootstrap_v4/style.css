@@ -2410,6 +2410,10 @@ body.bx-theme-yellow .catalog-block-header {
   border-color: #f4b236;
 }
 
+.bx-sbb-empty-cart-container {
+  padding-bottom: 24px;
+}
+
 @media (max-width: 980px) {
   .basket-wrapper .basket-title {
     margin-bottom: 1.25rem;
