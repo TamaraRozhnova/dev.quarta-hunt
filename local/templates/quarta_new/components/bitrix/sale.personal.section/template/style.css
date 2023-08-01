@@ -2,7 +2,8 @@
 	padding: 5.625rem 0;
     background-color: #f9f9fa;
 }
-.personal-wrap h2{
+.personal-wrap h2,
+.personal-wrap h1{
     margin-bottom: 1.625rem;
 }
 .cabinet-section{
@@ -126,7 +127,8 @@
 }
 
 @media (max-width: 576px) {
-    .personal-wrap.cabinet-page h2 {
+    .personal-wrap.cabinet-page h2,
+    .personal-wrap.cabinet-page h1 {
         padding: 0 18px;
     }
     .personal-wrap.cabinet-page .container {

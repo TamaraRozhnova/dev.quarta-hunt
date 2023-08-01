@@ -69,7 +69,9 @@ if (empty($availablePages)){
 }else{ ?>
 	<div class="personal-wrap cabinet-page">
 		<div class="container">
-			<h2>Личный кабинет</h2>
+			<h1 class = "small-h2">
+				<?=$APPLICATION->ShowTitle()?>
+			</h2>
 			<div class="sale-personal-section-index">
 				<? /*<div class="sale-personal-section-row-flex">
 					<? foreach ($availablePages as $blockElement) { ?>
