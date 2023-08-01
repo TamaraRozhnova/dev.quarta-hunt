@@ -77,7 +77,14 @@
                                     : $result['NAME']?>
                             </div>
 
-                            <div data-v-12733a7a="" itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer" class="price price--small">
+                            <div itemprop="description" class="hidden-on-page unset-margin">
+                                <?=
+                                !empty($result['PREVIEW_TEXT']) 
+                                    ? $result['PREVIEW_TEXT'] 
+                                    : $result['PREVIEW_TEXT']?>
+                            </div>
+
+                            <div itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer" class="price price--small">
                                 <meta itemprop="priceCurrency" content="RUB" /> 
                                 <span itemprop="price" class="price__current"> 
                                     <?=$result['PRICES_LIST']['PRICE']?> ₽
