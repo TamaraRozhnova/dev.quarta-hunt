@@ -62,7 +62,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                             "VIEW_MODE" => "TEXT",
                             "COMPONENT_TEMPLATE" => ".default"
                         ),
-                        false
+                        $component
                     ); ?>
                 </div>
             </div>
@@ -151,7 +151,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                             <div class="included__sharing">
                                 <?$APPLICATION->IncludeFile(
                                     '/include/articles/sharing.php', 
-                                    false, 
+                                    ['component' => $component], 
                                     ['SHOW_BORDER' => false]);
                                 ?>
                             </div>
