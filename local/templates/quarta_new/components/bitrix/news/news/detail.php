@@ -10,7 +10,38 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-$this->setFrameMode(true);?>
+$this->setFrameMode(true);
+
+/**
+ * Проверка на существование элемента
+ */
+
+ $rsElement = Bitrix\Iblock\ElementTable::getList([
+    "select" => [
+        "NAME", "CODE"
+    ],
+    "filter" => [
+        "IBLOCK_ID" => $arParams['IBLOCK_ID'],
+        "CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"]
+    ]
+])->fetch();
+
+if (empty($rsElement)) {
+
+    if (!defined("ERROR_404")) {
+        define("ERROR_404", "Y");
+    }
+
+    \CHTTP::setStatus("404 Not Found");
+
+    if ($APPLICATION->RestartWorkarea())
+    {
+        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
+        die();
+    }
+}?>
+
+
 
 <?$ElementID = $APPLICATION->IncludeComponent(
 	"bitrix:news.detail",

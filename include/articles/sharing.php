@@ -65,7 +65,7 @@ $APPLICATION->IncludeComponent(
 		"STRICT_SECTION_CHECK" => "N",
 		"COMPONENT_TEMPLATE" => "services.sharing"
 	),
-	false
+	$component
 );
 
 ?>

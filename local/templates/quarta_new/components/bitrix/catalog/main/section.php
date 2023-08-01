@@ -8,6 +8,36 @@ use Helpers\Filters\ProductsFilterHelper;
 
 $sectionId = $arResult['VARIABLES']['SECTION_ID'];
 
+/**
+ * Проверка на существование раздела
+ */
+
+ $rsSection = Bitrix\Iblock\SectionTable::getList([
+    "select" => [
+        "NAME", "CODE"
+    ],
+    "filter" => [
+        "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+        "ID" => $sectionId
+    ]
+])->fetch();
+
+if (empty($rsSection)) {
+
+    if (!defined("ERROR_404")) {
+        define("ERROR_404", "Y");
+    }
+
+    \CHTTP::setStatus("404 Not Found");
+
+    if ($APPLICATION->RestartWorkarea())
+    {
+        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
+        die();
+    }
+}
+   
+
 $filterHelperInstance = new ProductsFilterHelper($sectionId);
 $filterParams = $filterHelperInstance->getFilters();
 
