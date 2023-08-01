@@ -5,9 +5,13 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 use General\User;
 
 $APPLICATION->SetTitle('Каталог - QUARTA Hunt');
-$APPLICATION->AddChainItem('Каталог', '/catalog/');
+$APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
-$user = new User();
+<h1 class="hidden-on-page unset-margin">
+	<?=$APPLICATION->ShowTitle()?>
+</h1>
+
+<? $user = new User();
 $priceCode = $user->getUserPriceCode();
 
 $APPLICATION->IncludeComponent(
