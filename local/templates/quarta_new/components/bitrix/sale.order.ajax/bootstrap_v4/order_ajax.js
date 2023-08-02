@@ -8248,7 +8248,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		createTotalUnit: function(name, value, params)
 		{	
 			var onlyFree = true;
-			if(!params.free){
+			if(!params?.free){
 				onlyFree = false;
 			}
 			var totalValue, className = 'bx-soa-cart-total-line '+ onlyFree;
