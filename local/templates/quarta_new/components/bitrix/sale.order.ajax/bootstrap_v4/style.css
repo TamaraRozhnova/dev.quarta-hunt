@@ -1668,6 +1668,10 @@ hr.bxe-light {
 .important-no-border {
 	border: 1px solid transparent !important;
 }
+.important-no-border .bx-soa-section-title-count {
+	background-color: initial !important;
+	border: initial !important;
+}
 
 @media (min-width: 768px) {
 	.bx-soa-pp-item-container.delivery-items .bx-soa-pp-company {
