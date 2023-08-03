@@ -34,8 +34,8 @@ $rsMarketingBlockSlider = Bitrix\Iblock\Elements\ElementMarketingBlockSliderTabl
         "PREVIEW_PICTURE",
         "MB_PRODUCTS_IN_SLIDER_" => "MB_PRODUCTS_IN_SLIDER.ELEMENT",
 		"PRODUCT_PRICE" => "PRICE.PRICE",
-		"PRODUCT_FULL_PRICE" => "PRICE",
 		"SECTION_PICTURE" => "SECTION.PICTURE",
+		"PICTURE_PRODUCT_IN_SLIDER" => "MB_PRODUCTS_IN_SLIDER.ELEMENT.DOP_IMAGE_MB.VALUE"
     ],
 	"filter" => [
 		"ACTIVE" => "Y",
@@ -62,7 +62,6 @@ $rsMarketingBlockSlider = Bitrix\Iblock\Elements\ElementMarketingBlockSliderTabl
         "ttl" => 12800000
     ]
 ])->fetchAll();
-
 
 if (!empty($rsMarketingBlockSlider)) {
 
@@ -100,7 +99,14 @@ if (!empty($rsMarketingBlockSlider)) {
 		$tmpPrice = (int) $arSlider['PRODUCT_PRICE'];
 
         $arResult['DATA_SLIDER'][$arSliderIndex]["SECTION_PICTURE"] = CFile::GetPath($arSlider['SECTION_PICTURE']);
-		$arResult['DATA_SLIDER'][$arSliderIndex]["PREVIEW_PICTURE"] = CFile::GetPath($arSlider['MB_PRODUCTS_IN_SLIDER_PREVIEW_PICTURE']);
+
+		if (!empty($arSlider['PICTURE_PRODUCT_IN_SLIDER'])) {
+			$tmpPictureProduct = CFile::GetPath($arSlider['PICTURE_PRODUCT_IN_SLIDER']);
+		} else if (!empty($arSlider['MB_PRODUCTS_IN_SLIDER_PREVIEW_PICTURE'])) {
+			$tmpPictureProduct = CFile::GetPath($arSlider['MB_PRODUCTS_IN_SLIDER_PREVIEW_PICTURE']);
+		}
+
+		$arResult['DATA_SLIDER'][$arSliderIndex]["PREVIEW_PICTURE"] = $tmpPictureProduct;
 
 		$arResult['DATA_SLIDER'][$arSliderIndex]["PREVIEW_TEXT"] = $arSlider['PREVIEW_TEXT'];
 		
@@ -110,7 +116,6 @@ if (!empty($rsMarketingBlockSlider)) {
 		$arResult['DATA_SLIDER'][$arSliderIndex]["PRODUCT_PRICE"] = str_replace('.',' ', CCurrencyLang::CurrencyFormat($tmpPrice, 'RUB'));
 
 		$previousID = $arSlider['ID'];
-
 
     }
 
