@@ -280,13 +280,11 @@ $APPLICATION->IncludeComponent(
 	false
 );
 
-// 
 $APPLICATION->IncludeComponent(
 	"custom:products.promotion.main",
 	"",
 Array()
 );
-// 
 
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 

@@ -187,6 +187,10 @@
     background-size: cover,0 0
 }
 
+.promo-grid .product-card > a {
+    height: 100%;
+}
+
 @media screen and (min-width: 2048px) {
     .wide-promotion {
         overflow:hidden
