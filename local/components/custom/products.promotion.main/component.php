@@ -9,6 +9,20 @@ if (!Loader::includeModule('iblock'))
 if (!Loader::includeModule('currency'))
     throw new Bitrix\Main\SystemException('Module iblock is not initialized');
 
+/** Тип цены пользователя */
+$user = new User();
+$priceCode = $user->getUserPriceCode();
+
+
+/** Тип цены пользователя для слайдера */
+$rsTypesPrices = \Bitrix\Catalog\GroupTable::getList([
+	"select" => ["ID"],
+	"filter" => [
+		"NAME" => $priceCode
+	]
+])->fetch();
+
+
 /** Слайдер */
 $rsMarketingBlockSlider = Bitrix\Iblock\Elements\ElementMarketingBlockSliderTable::getList([
     "select" => [
@@ -20,13 +34,21 @@ $rsMarketingBlockSlider = Bitrix\Iblock\Elements\ElementMarketingBlockSliderTabl
         "PREVIEW_PICTURE",
         "MB_PRODUCTS_IN_SLIDER_" => "MB_PRODUCTS_IN_SLIDER.ELEMENT",
 		"PRODUCT_PRICE" => "PRICE.PRICE",
+		"PRODUCT_FULL_PRICE" => "PRICE",
 		"SECTION_PICTURE" => "SECTION.PICTURE",
     ],
+	"filter" => [
+		"ACTIVE" => "Y",
+		"SECTION.ACTIVE" => "Y",
+		"PRICE.CATALOG_GROUP_ID" => $rsTypesPrices['ID']
+	],
 	"runtime" => [
         new \Bitrix\Main\Entity\ReferenceField(
             'PRICE',
             '\Bitrix\Catalog\PriceTable',
-            ['=this.MB_PRODUCTS_IN_SLIDER.ELEMENT.ID' => 'ref.PRODUCT_ID']
+            [
+				'=this.MB_PRODUCTS_IN_SLIDER.ELEMENT.ID' => 'ref.PRODUCT_ID',
+			]
 		),
 		new \Bitrix\Main\Entity\ReferenceField(
             'SECTION',
@@ -40,7 +62,6 @@ $rsMarketingBlockSlider = Bitrix\Iblock\Elements\ElementMarketingBlockSliderTabl
         "ttl" => 12800000
     ]
 ])->fetchAll();
-
 
 
 if (!empty($rsMarketingBlockSlider)) {
@@ -224,9 +245,6 @@ if (!empty($rsMarketingBlockTitlesDesc)) {
     unset($tmpTitleDesc);
 
 }
-
-$user = new User();
-$priceCode = $user->getUserPriceCode();
 
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog.section",
