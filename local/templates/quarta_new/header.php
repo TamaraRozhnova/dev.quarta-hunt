@@ -34,7 +34,7 @@ $basketItemsCount = $basket->getProductsCount();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="robots" content="noindex, nofollow"/>
+    <!-- <meta name="robots" content="noindex, nofollow"/> -->
 
     <title><? $APPLICATION->ShowTitle(false); ?></title>
     <?
@@ -65,6 +65,11 @@ $basketItemsCount = $basket->getProductsCount();
 <? $APPLICATION->ShowPanel(); ?>
 
 <div class="wrapper">
+
+    <div class= "teh-obs">
+        <h3>Сайт находится на техническом обслуживании. Возможны сбои в работе</h3>
+    </div>
+
     <header class="header header--desktop">
         <? $APPLICATION->IncludeComponent("bitrix:highloadblock.list", "location_modal", ["BLOCK_ID" => "12"]) ?>
         <div class="container">

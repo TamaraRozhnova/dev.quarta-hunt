@@ -10495,10 +10495,16 @@ h1.small-h2 {
 .hidden-on-page {
   visibility: hidden;
   content-visibility: hidden;
+
+  height: 0;
+  width: 0;
+  opacity: 0;
 }
 .unset-margin {
   margin: 0;
 }
+
+
 .position-text-center {
   text-align: center;
 }
@@ -10626,4 +10632,23 @@ h1.small-h2 {
 }
 .error-message > *:not(:last-child) {
   margin-bottom: 1.5rem;
+}
+
+
+
+.teh-obs {
+  background-color: yellow;
+}
+.teh-obs h3 {
+  margin: 0;
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  padding: 3px 0;
+}
+
+@media (max-width: 500px) {
+  .teh-obs h3 {
+    font-size: 16px;
+  }
 }

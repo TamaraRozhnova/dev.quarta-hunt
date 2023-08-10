@@ -1,6 +1,7 @@
 <? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Sale;
 
 /**
  * @var array $arParams
@@ -11,6 +12,65 @@ use Bitrix\Main\Localization\Loc;
 if ($arParams["SET_TITLE"] == "Y"){
 	$APPLICATION->SetTitle(Loc::getMessage("SOA_ORDER_COMPLETE"));
 }
+
+/**
+ * Получаем заказ, корзину пользователя
+ * Проверяем каждый товар на 
+ * принадлежность к разделам "Обувь" и "Одежда"
+ * 
+ * В случае если принадлежит - убираем кнопку оплаты
+ */
+
+if (!empty($arResult['ORDER_ID'])) {
+	$rsBasket = Sale\Order::load($arResult['ORDER_ID'])->getBasket()->getBasketItems();
+
+	foreach ($rsBasket as $arProductIndex => $arProduct) { 
+
+		$rsSectionsEl = CIBlockElement::GetElementGroups($arProduct->getProductId(), true)->fetch();
+
+		$rsPath = CIBlockSection::GetNavChain(false, $rsSectionsEl['ID']); 
+
+		while ($arPath = $rsPath->GetNext()) {
+			$sectionIds[$arPath['ID']] = $arPath['ID']; 
+		}
+		
+	}
+
+	if (!empty($sectionIds)) {
+
+		$entSections = \Bitrix\Iblock\Model\Section::compileEntityByIblock(CATALOG_IBLOCK_ID);
+
+		$rsSections = $entSections::getList(array(
+			"filter" => array(
+				"IBLOCK_ID" => CATALOG_IBLOCK_ID, 
+				"ACTIVE" => "Y",
+				"GLOBAL_ACTIVE" => "Y",
+				"ID" => $sectionIds
+			),
+			"select" => array("NAME", "CODE"),
+		))->fetchAll();
+
+		if (!empty($rsSections)) {
+			foreach ($rsSections as $arSection) {
+
+				if (
+					$arSection['CODE'] == 'odezhda'
+					||
+					$arSection['CODE'] == 'obuv'
+				) {
+					$arResult['HIDE_BUTTON_PAYMENT'] = 'Y';
+					break;
+				}
+
+				continue;
+
+			}
+		}
+
+	}
+
+}
+
 ?>
 <div id="bx-soa-order-form">
 <div class="container">
@@ -83,12 +143,18 @@ if ($arParams["SET_TITLE"] == "Y"){
 									<p><?=Loc::getMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?></p>
 									<? endif ?>
 									<? else: ?>
-										<?=$arPaySystem["BUFFERED_OUTPUT"]?>
+
+										<? if ($arResult['HIDE_BUTTON_PAYMENT'] != 'Y'): ?>
+											<?=$arPaySystem["BUFFERED_OUTPUT"]?>
+										<? else: ?>
+											<p class = "text-color-orange">
+												<?= Loc::getMessage("CAN_PAY_LATER"); ?>
+											</p>
+										<? endif; ?>
+										
 									<? endif ?>
 								</div>
 							</div>
-
-
 
 							<?
 						}
