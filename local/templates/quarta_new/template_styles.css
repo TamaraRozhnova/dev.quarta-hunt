@@ -10330,6 +10330,9 @@ ymaps[class$=-balloon__layout] {
   .warranty .btn-primary {
       width:100%
   }
+  .contacts .jumbotron-vue__q {
+    height: 80%;
+  }
 }
 
 @media(max-width: 575.98px) {
