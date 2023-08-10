@@ -2,7 +2,7 @@
 define("NEED_AUTH", true);
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("");
+$APPLICATION->SetTitle("Личный кабинет");
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:sale.personal.section", 

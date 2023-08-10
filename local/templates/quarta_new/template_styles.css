@@ -10372,6 +10372,20 @@ ymaps[class$=-balloon__layout] {
   justify-content: center;
 }
 
+h1.small-h2 {
+  font-size: calc(1.34375rem + 1.125vw);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+@media (min-width: 1200px) {
+  h1.small-h2 {
+    font-size: 2.1875rem;
+  }
+}
+
+
+
 /* OFERTA */
 .oferta {
   background-color: #f9f9fa;
@@ -10481,10 +10495,16 @@ ymaps[class$=-balloon__layout] {
 .hidden-on-page {
   visibility: hidden;
   content-visibility: hidden;
+
+  height: 0;
+  width: 0;
+  opacity: 0;
 }
 .unset-margin {
   margin: 0;
 }
+
+
 .position-text-center {
   text-align: center;
 }
@@ -10612,4 +10632,23 @@ ymaps[class$=-balloon__layout] {
 }
 .error-message > *:not(:last-child) {
   margin-bottom: 1.5rem;
+}
+
+
+
+.teh-obs {
+  background-color: yellow;
+}
+.teh-obs h3 {
+  margin: 0;
+  font-size: 19px;
+  display: flex;
+  justify-content: center;
+  padding: 3px 0;
+}
+
+@media (max-width: 500px) {
+  .teh-obs h3 {
+    font-size: 16px;
+  }
 }

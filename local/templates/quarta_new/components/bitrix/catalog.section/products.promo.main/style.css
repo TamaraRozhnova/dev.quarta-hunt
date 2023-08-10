@@ -1,0 +1,336 @@
+.promo-grid {
+    padding: 3rem 0;
+    background-color: #f9f9fa
+}
+
+.promo-grid .row {
+    margin-bottom: 20px
+}
+
+.promo-product-slide__image {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start
+}
+
+.promo-product-slide__actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end
+}
+
+.promo-product-slide__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-weight: 500
+}
+
+.promo-product-slide__price-new {
+    font-size: 1.625rem;
+    color: #212529
+}
+
+.promo-product-slide__price-old {
+    font-size: 1.125rem;
+    text-decoration: line-through
+}
+
+.promo-product-slide__image {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.promo-product-slide__price {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-weight: 500;
+}
+
+.promo-product-slide__price-new {
+    font-size: 1.625rem;
+    color: #212529;
+}
+
+@media(max-width: 1199.98px) {
+    .promo-product-slide__title {
+        font-size:20px;
+        line-height: 24px
+    }
+
+    .promo-product-slide__image {
+        justify-content: center
+    }
+
+    .promo-product-slide__price-new {
+        font-size: 1.25rem
+    }
+
+    .promo-product-slide__price-old {
+        font-size: 1rem
+    }
+}
+
+@media(max-width: 1199.98px) {
+    .promo-product-slide__top {
+        flex-direction:column-reverse !important
+    }
+
+    .promo-product-slide__top .col-6 {
+        width: 100%
+    }
+
+    .promo-product-slide__top p {
+        font-size: 16px;
+        line-height: 21px
+    }
+}
+
+@media(max-width: 991.98px) {
+    .promo-grid .container {
+        max-width:100%;
+        padding: 0 30px
+    }
+}
+
+
+@media(max-width: 767.98px) {
+    .promo-product-slide__price {
+        align-items:flex-start;
+        margin-bottom: 10px
+    }
+
+    .promo-product-slide__price-new {
+        font-size: 1.125rem
+    }
+
+    .promo-product-slide__price-old {
+        font-size: .875rem
+    }
+}
+
+
+@media(max-width: 767.98px) {
+    .promo-product-slide__bottom {
+        flex-direction:column-reverse
+    }
+}
+
+@media(max-width: 767.98px) {
+    .promo-grid__banner:not(:last-of-type) {
+        margin-bottom:1.875rem;
+        height: 22rem
+    }
+
+    .promo-grid__banner:not(:first-of-type) {
+        margin-top: 1.875rem
+    }
+
+    .promo-grid .row:not(:last-of-type) {
+        margin-bottom: 1.875rem
+    }
+}
+
+@media(max-width: 575.98px) {
+    .promo-grid .container {
+        padding:0 15px
+    }
+}
+
+/* SLIDER */
+.wide-promotion {
+    max-width: 2048px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    height: 28.125rem;
+    overflow: hidden
+}
+
+.wide-promotion figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 255px;
+    height: 200px;
+    margin: 0 0 1rem;
+}
+
+.wide-promotion figure img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.wide-promotion h3 {
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+}
+
+.wide-promotion p {
+    font-size: 1rem;
+}
+
+.wide-promotion--large {
+    height: 45rem
+}
+
+.wide-promotion--reverse {
+    flex-direction: row-reverse
+}
+
+.wide-promotion--with-mobile .wide-promotion__image {
+    background-size: cover,0 0
+}
+
+.promo-grid .product-card > a {
+    height: 100%;
+}
+
+@media screen and (min-width: 2048px) {
+    .wide-promotion {
+        overflow:hidden
+    }
+}
+
+.wide-promotion__image {
+    width: 44.625%;
+    height: 100%;
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+.wide-promotion--reverse .wide-promotion__image {
+    width: 50%
+}
+
+.wide-promotion__content-backdrop {
+    position: relative;
+    width: 55.375%;
+    height: 100%
+}
+
+.wide-promotion__body {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
+@media(max-width: 1199.98px) {
+    .wide-promotion figure {
+        width:300px;
+        height: 140px
+    }
+}
+
+@media(max-width: 991.98px) {
+    .wide-promotion {
+        height:26.438rem
+    }
+
+    .wide-promotion--reverse .wide-promotion__image,.wide-promotion__content-backdrop,.wide-promotion__image {
+        width: 50%;
+    }
+
+    .wide-promotion__body .container {
+        max-width: 100%;
+        padding: 0 30px
+    }
+
+    .wide-promotion__body .row>[class*=col-]:last-of-type {
+        padding-left: 2.75rem
+    }
+}
+
+@media(max-width: 767.98px) {
+
+
+    
+    .wide-promotion {
+        flex-direction:column;
+        height: auto
+    }
+
+    .wide-promotion__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 20rem
+    }
+
+    .wide-promotion__content-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: unset
+    }
+
+    .wide-promotion--reverse .wide-promotion__image,.wide-promotion__content-backdrop,.wide-promotion__image {
+        width: 100%
+    }
+
+    .wide-promotion__body {
+        position: static
+    }
+
+    .wide-promotion__body .row {
+        flex-direction: column
+    }
+
+    .wide-promotion__body .row>[class*=col-] {
+        position: relative;
+        width: 100%
+    }
+
+    .wide-promotion__body .row>[class*=col-]:first-of-type {
+        height: 20rem
+    }
+
+    .wide-promotion__body .row>[class*=col-]:last-of-type {
+        padding-bottom: 2.5rem;
+        padding-left: 0
+    }
+
+    .wide-promotion__body .row>.pt-4[class*=col-]:last-of-type {
+        height: 28rem
+    }
+
+    .wide-promotion__body .row .promo-wide-image-text {
+        position: static;
+        min-height: 20rem;
+        padding: 1.875rem 0
+    }
+
+    .wide-promotion__body .row .base-slider {
+        max-width: 320px;
+        margin: 0 auto
+    }
+
+    .promo-product-slide .row>[class*=col-] {
+        height: auto !important;
+        padding-bottom: initial !important;
+    }
+
+    .promo-product-slide__bottom {
+        flex-direction: column-reverse !important;
+    }
+
+}
+
+@media(max-width: 500px) {
+    .wide-promotion--with-mobile .wide-promotion__image {
+        background-size:cover,0 0
+    }
+}

@@ -163,7 +163,15 @@ Loc::loadMessages(__FILE__);
 							}?>
 							<div class="sale-order-list-inner-row">
 								<div class="sale-order-list-inner-row-body">
-									<?if ($payment['PAID'] === 'N' && $payment['IS_CASH'] !== 'Y' && $payment['ACTION_FILE'] !== 'cash'){?>
+									<?if (
+										$payment['PAID'] === 'N' 
+										&& 
+										$payment['IS_CASH'] !== 'Y' 
+										&& 
+										$payment['ACTION_FILE'] !== 'cash'
+										&&
+										$order['HIDE_BUTTON_PAYMENT'] != 'Y'
+									) { ?>
 										<div class="sale-order-list-button-container">
 											<a class="sale-order-list-button ajax_reload btn btn-secondary btn-lg px-5 history-order__body-btn text-white" href="<?=htmlspecialcharsbx($payment['PSA_ACTION_FILE'])?>">
 												<?=Loc::getMessage('SPOL_TPL_PAY')?>

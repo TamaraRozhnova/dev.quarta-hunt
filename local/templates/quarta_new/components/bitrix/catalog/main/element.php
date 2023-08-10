@@ -4,6 +4,35 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+/**
+ * Проверка на существование элемента
+ */
+
+ $rsElement = Bitrix\Iblock\ElementTable::getList([
+    "select" => [
+        "NAME", "CODE"
+    ],
+    "filter" => [
+        "IBLOCK_ID" => $arParams['IBLOCK_ID'],
+        "CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"]
+    ]
+])->fetch();
+
+if (empty($rsElement)) {
+
+    if (!defined("ERROR_404")) {
+        define("ERROR_404", "Y");
+    }
+
+    \CHTTP::setStatus("404 Not Found");
+
+    if ($APPLICATION->RestartWorkarea())
+    {
+        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
+        die();
+    }
+}
+
 $ElementID = $APPLICATION->IncludeComponent(
     "bitrix:catalog.element",
     "main",

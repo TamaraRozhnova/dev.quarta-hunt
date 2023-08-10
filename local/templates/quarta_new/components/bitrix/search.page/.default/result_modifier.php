@@ -1,5 +1,11 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
+use General\User;
+
+/** Тип цены пользователя */
+$user = new User();
+$priceCode = $user->getUserPriceCode();
+
 if (!empty($arResult['SEARCH'])) {
 
 	foreach ($arResult['SEARCH'] as $arSearch) {
@@ -92,7 +98,7 @@ if (!empty($arResult['SEARCH'])) {
 			"PAGER_TITLE" => "Товары",
 			"PAGE_ELEMENT_COUNT" => "10",
 			"PARTIAL_PRODUCT_PROPERTIES" => "N",
-			"PRICE_CODE" => array('BASE'),
+			"PRICE_CODE" => [$priceCode],
 			"PRICE_VAT_INCLUDE" => "Y",
 			"PRODUCT_BLOCKS_ORDER" => "price,props,sku,quantityLimit,quantity,buttons,compare",
 			"PRODUCT_DISPLAY_MODE" => "Y",

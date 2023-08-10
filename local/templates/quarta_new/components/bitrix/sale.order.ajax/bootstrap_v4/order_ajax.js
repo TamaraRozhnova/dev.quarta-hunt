@@ -81,6 +81,22 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			this.initializePrimaryFields();
 
 			this.result = parameters.result || {};
+
+			// 
+			// console.log('debug')
+			this.debugMode = false;
+
+			if (parameters.result?.DEBUG_IP == '84.53.229.149') {
+				this.debugMode = true;
+			}
+			// 
+
+			this.licenseNeed = parameters.result.LICENSE_NEED
+			this.deliveryIds = parameters.result.DELIVERY_IDS
+			this.paysSystem = parameters.result.PAY_SYSTEMS
+			this.userBonusPoints = parameters.result.USER_POINTS
+			this.applyBonus = null;
+
 			this.prepareLocations(parameters.locations);
 			this.params = parameters.params || {};
 			this.signedParamsString = parameters.signedParamsString || '';
@@ -215,6 +231,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 			else
 			{
+
 				BX.ajax({
 					method: 'POST',
 					dataType: 'json',
@@ -310,6 +327,55 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		 */
 		refreshOrder: function(result)
 		{
+
+			const resultOrder = result.order
+			let tmpResultPays = [];
+
+			if (
+				this.licenseNeed == 'Y'
+				&&
+				this.paysSystem 
+				&&
+				this.deliveryIds
+			) {
+
+				if (resultOrder?.DELIVERY) {
+
+					for (let key of Object.keys(resultOrder.DELIVERY)) {
+
+						if (key != this.deliveryIds.DELIVERY_PICKUP_ID) {
+							delete result.order.DELIVERY[key]
+						}
+
+					}
+
+				}
+
+				if (resultOrder?.PAY_SYSTEM) {
+
+					resultOrder.PAY_SYSTEM.forEach( (element, index) => {
+						
+						if (
+							element?.PAY_SYSTEM_ID == this.paysSystem.CASH_PERSONALLY_ID
+							||
+							element?.PAY_SYSTEM_ID == this.paysSystem.DEBET_CARD_PERSONALLY_ID
+						) {
+							tmpResultPays[index] = result.order.PAY_SYSTEM[index]
+						}
+
+
+					})
+
+					tmpResultPays = tmpResultPays.filter(value => JSON.stringify(value) !== '{}');
+
+					delete result.order.PAY_SYSTEM
+
+					result.order.PAY_SYSTEM = tmpResultPays
+
+				}
+
+			}
+
 			if (result.error)
 			{
 				this.showError(this.mainErrorsNode, result.error);
@@ -2449,6 +2515,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		 */
 		editOrder: function()
 		{
+
+			let timer;
+
 			if (!this.orderBlockNode || !this.result)
 				return;
 
@@ -2477,11 +2546,33 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				}
 			}
 
+			if (this.licenseNeed == 'Y') {
+				let selectedDelivery = this.getSelectedDelivery()
+
+				clearTimeout(timer)
+
+				if (selectedDelivery.ID !== "3") {
+					timer = setTimeout(() => {
+						document.querySelector('#ID_DELIVERY_ID_3').click()
+					}, 350);
+
+				} else if (this.result.DELIVERY.length > 1) {
+
+					timer = setTimeout(() => {
+						this.sendRequest('refreshOrderAjax')
+					}, 350);
+
+				}
+
+			}
+
 			this.editTotalBlock();
 			this.totalBlockFixFont();
 
 			this.showErrors(this.result.ERROR, false);
 			this.showWarnings();
+
+
 		},
 
 		/**
@@ -3291,6 +3382,15 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			var node = !!activeNodeMode ? this.basketBlockNode : this.basketHiddenBlockNode,
 				basketContent, basketTable;
 
+			if (this.debugMode) {
+
+				if (!BX("bx-soa-coupon-bonus-block_id")) {
+					this.handleClickChoice();
+					this.setBlockBonusesCoupons();
+				}
+				
+			}
+
 			if (this.initialized.basket)
 			{
 				this.basketHiddenBlockNode.appendChild(BX.lastChild(node));
@@ -3340,6 +3440,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 
 			this.alignBasketColumns();
+
 		},
 
 		editFadeBasketBlock: function(activeNodeMode)
@@ -4072,6 +4173,344 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			});
 		},
 
+		refreshBlockBonusesCoupons: function() {
+			if (this.debugMode) {
+
+			}
+		},
+
+		handleClickChoice: function() {
+			document.addEventListener('click', (event) => {
+				if (event.target.classList.contains('bx-soa-coupon-bonus-block-choice-item')) {
+
+					this.unsetActiveBonusBlockChoice()
+
+					event.target.classList.add('active')
+
+					switch (event.target.getAttribute('id')) {
+						case 'BONUS':
+							this.hideBlockChoiceBonusesCoupons('bx-soa-coupon_id')
+							this.showBlockChoiceBonusesCoupons('bx-soa-bonus-block-wrapper_id')
+							break;
+						case 'COUPONS':
+							this.hideBlockChoiceBonusesCoupons('bx-soa-bonus-block-wrapper_id')
+							this.showBlockChoiceBonusesCoupons('bx-soa-coupon_id')
+							break;
+					
+						default:
+							break;
+					}
+				}
+			})
+		},
+
+		showBlockChoiceBonusesCoupons: function(id) {
+			BX.show(
+				BX(id)
+			)
+		},
+
+		hideBlockChoiceBonusesCoupons: function(id) {
+			BX.hide(
+				BX(id)
+			)
+		},
+
+		setBlockBonusesCoupons: function() {
+			if (this.debugMode) {
+
+				const bonusBlock = this.getBonusesBlock()
+				
+				const blockChoiceAction = BX.create('DIV', {
+					props: {
+						className: 'bx-soa-coupon-bonus-block-choice',
+					},
+					children: [
+						BX.create('SPAN', {
+							props: {
+								className: 'bx-soa-coupon-bonus-block-choice-item active', id: 'BONUS'
+							},
+							text: "Бонусные баллы",
+						}),
+						BX.create('SPAN', {
+							props: {
+								className: 'bx-soa-coupon-bonus-block-choice-item', id: 'COUPONS'
+							},
+							text: "Промокод",
+						}),
+					]
+				})
+
+				const blockBonusesCoupons = BX.create('DIV', {
+					props: {
+						className: 'bx-soa-coupon-bonus-block',
+						id: 'bx-soa-coupon-bonus-block_id'
+					},
+					children: [
+						blockChoiceAction,
+						bonusBlock,
+					]
+				})
+		
+				BX.append(
+					blockBonusesCoupons,
+					BX('bx-soa-paysystem')
+				)
+
+				this.initSliderBonusTrack();
+
+			}
+		},
+
+		unsetActiveBonusBlockChoice: function() {
+			document.querySelectorAll('.bx-soa-coupon-bonus-block-choice-item').forEach( (item) => {
+				item.classList.remove('active')
+			})
+		},
+
+		unsetActiveBonusBlock: function() {
+			document.querySelectorAll('#bx-soa-coupon_id,#bx-soa-bonus-block-wrapper_id').forEach( (item) => {
+				item.classList.remove('active')
+			})
+		},
+
+		initSliderBonusTrack: function() {
+			if (this.debugMode) {
+
+			const rangeInputs = document.querySelectorAll('.bx-bonus-slider-track input[type="range"]')
+			const numberInput = document.querySelector('.bx-bonus-slider-track input[type="text"]')
+
+			const resultTotalPrice = (this.result.TOTAL.ORDER_TOTAL_PRICE / 2).toFixed(0); 
+			
+			let isRTL = document.documentElement.dir === 'rtl'
+	
+			function handleInputChange(e) {
+				let target = e.target
+				if (e.target.type !== 'range') {
+					target = document.getElementById('range')
+				} 
+				let min = target.min
+				let max = target.max
+				let val = target.value
+
+				if (Number(val) > Number(resultTotalPrice)) {
+					target.value = resultTotalPrice
+					val = resultTotalPrice
+				}
+
+				let percentage = (val - min) * 100 / (max - min)
+
+				if (isRTL) {
+					percentage = (max - val) 
+				}
+				
+				target.style.backgroundSize = percentage + '% 100%'
+			}
+	
+			rangeInputs.forEach(input => {
+				input.addEventListener('input', handleInputChange)
+			})
+	
+			numberInput.addEventListener('input', handleInputChange)
+	
+			function callback(mutationList, observer) {  
+				mutationList.forEach(function(mutation) {
+					if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
+						isRTL = mutation.target.dir === 'rtl'
+					}
+				})
+			}
+	
+			const observer = new MutationObserver(callback)
+			observer.observe(document.documentElement, {attributes: true})
+
+			}
+		},
+
+		getSliderBonusTrack: function() {
+
+			if (this.debugMode) {
+
+			if (!this.userBonusPoints) {
+				return false;
+			}
+
+			const resultTotalPrice = (this.result.TOTAL.ORDER_TOTAL_PRICE / 2).toFixed(0); 
+
+			const sliderTrack = BX.create('DIV', {
+				props: {className: 'bx-bonus-slider-track'},
+				children: [
+					BX.create('DIV', {
+						props: {
+							className: "bx-bonus-slider-track-input-with-btn"
+						},
+						children: [
+							BX.create('INPUT', {
+								props: {
+								  className: 'form-control bx-soa-customer-input bx-ios-fix',
+								  type: "text",
+								  value: 0,
+								  min: 0,
+								  max: this.userBonusPoints,
+								  id: "rangenumber",
+								  readOnly: true
+								},
+								events: {
+								  input: function() {
+									this.applyBonus = document.getElementById('range').value = this.value;
+								  }
+								}
+							}),
+							BX.create('A', {
+								props: {
+								  className: 'btn btn-primary selected', id: "btn-choice-apply"
+								},
+								text: "Применить",	
+								events: {
+									click: (event) => {
+										BX.hide(BX(event.target.getAttribute('id')))
+										BX.show(BX("btn-choice-reset"))
+									}
+								}
+							}),
+							BX.create('A', {
+								props: {
+								  className: 'btn btn-primary', id: "btn-choice-reset"
+								},
+								text: "Сбросить",	
+								events: {
+									click: (event) => {
+										BX.hide(BX(event.target.getAttribute('id')))
+										BX.show(BX("btn-choice-apply"))
+									}
+								}
+							}),
+						]
+					}),
+					
+				  BX.create('INPUT', {
+					props: {
+					  type: "range",
+					  value: 0,
+					  min: 0,
+					  max: this.userBonusPoints,
+					  id: "range"
+					},
+					events: {
+					  input: function() {
+						
+						if (Number(this.value) > Number(resultTotalPrice)) {
+							document.getElementById('rangenumber').value = resultTotalPrice
+						} else {
+							document.getElementById('rangenumber').value = this.value;
+						}
+						
+					  }
+					}
+				  }),
+
+				]
+			  });
+
+			return sliderTrack;
+
+			}
+		},
+
+		getBonusesBlock: function() {
+			if (this.debugMode) {
+
+				const sliderTrack = this.getSliderBonusTrack()
+
+				const bonusBlock = BX.create('DIV', {
+					props: {className: 'bx-soa-bonus-block'},
+					children: [
+						BX.create('DIV', {
+							props: {className: 'bx-soa-bonus-user-information'},
+							children: [
+								BX.create('SPAN', {
+									text: `Доступно ${this.userBonusPoints} баллов.`
+								}),
+								BX.create('SPAN', {
+									props: {
+										className: 'color-grey'
+									},
+									text: 'Оплачивайте ими до 50% от стоимости покупки'
+								})
+							]
+						}),
+						BX.create('DIV', {
+							props: {className: 'bx-soa-bonus-label bx-soa-bonus-user-information-label'},
+							children: [
+								BX.create('LABEL', {
+									text: "Сумма"
+								})
+							]
+						}),
+						sliderTrack
+					]
+				})
+
+				const bonusBlockWithLabel = BX.create('DIV', {
+					props: {className: 'bx-block-coupon-bonus-item bx-soa-bonus-block-wrapper active', id: 'bx-soa-bonus-block-wrapper_id'},
+					children: [
+						bonusBlock
+					]
+				})
+
+				return bonusBlockWithLabel 
+
+			}
+		},
+
+		getBlockCoupons: function() 
+		{
+			if (this.debugMode) {
+			var couponsList = this.getCouponsList(true),
+			couponsLabel = this.getCouponsLabel(true),
+			couponsBlockWithLabel,
+			couponsBlock = BX.create('DIV', {
+				props: {className: 'bx-soa-coupon-block'},
+				children: [
+					BX.create('DIV', {
+						props: {className: 'bx-soa-coupon-input'},
+						children: [
+							BX.create('INPUT', {
+								props: {
+									className: 'form-control bx-soa-customer-input bx-ios-fix',
+									type: 'text'
+								},
+								events: {
+									change: BX.delegate(function(event){
+										var newCoupon = BX.getEventTarget(event);
+										if (newCoupon && newCoupon.value)
+										{
+											this.sendRequest('enterCoupon', newCoupon.value);
+											newCoupon.value = '';
+										}
+									}, this)
+								}
+							})
+						]
+					}),
+					BX.create('SPAN', {props: {className: 'bx-soa-coupon-item'}, children: couponsList})
+				]
+			});
+
+			couponsBlockWithLabel = BX.create('DIV', {
+				props: {className: 'bx-soa-coupon-wrapper'},
+				children: [
+					couponsLabel,
+					couponsBlock
+				]
+			})
+
+			return couponsBlockWithLabel;
+
+			}
+
+		},
+
 		editCoupons: function(basketItemsNode)
 		{
 			var couponsList = this.getCouponsList(true),
@@ -4104,15 +4543,36 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					]
 				});
 
-			basketItemsNode.appendChild(
-				BX.create('DIV', {
-					props: {className: 'bx-soa-coupon'},
-					children: [
-						couponsLabel,
-						couponsBlock
-					]
-				})
-			);
+			if (!this.debugMode) {
+				basketItemsNode.appendChild(
+					BX.create('DIV', {
+						props: {className: 'bx-soa-coupon'},
+						children: [
+							couponsLabel,
+							couponsBlock
+						]
+					})
+				);
+			} else {
+
+				setTimeout(() => {
+					if (!BX("bx-soa-coupon_id")) {
+						BX.append(
+							BX.create('DIV', {
+								props: {className: 'bx-block-coupon-bonus-item bx-soa-coupon bx-soa-coupon-block-wrapper', id: 'bx-soa-coupon_id'},
+								children: [
+									couponsLabel,
+									couponsBlock
+								]
+							}),
+							BX('bx-soa-coupon-bonus-block_id')
+						)
+					}
+				}, 250);
+
+				
+			}
+
 		},
 
 		editCouponsFade: function(basketItemsNode)
@@ -8248,7 +8708,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		createTotalUnit: function(name, value, params)
 		{	
 			var onlyFree = true;
-			if(!params.free){
+			if(!params?.free){
 				onlyFree = false;
 			}
 			var totalValue, className = 'bx-soa-cart-total-line '+ onlyFree;

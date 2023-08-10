@@ -75,6 +75,7 @@
 }
 .product-card a {
   text-decoration: none;
+  height: 100%;
 }
 .product-card__add {
   display: flex;

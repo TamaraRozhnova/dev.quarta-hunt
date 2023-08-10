@@ -1,7 +1,25 @@
-<?
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Акции");
-?><?$APPLICATION->IncludeComponent(
+
+if (!empty($_GET['type'])) {
+	switch ($_GET['type']) {
+		case 'ended':
+			$GLOBALS['arrFilterPromo'] = [
+				"<=DATE_ACTIVE_TO" => date('d.m.Y H:i:s'),
+			];
+			break;
+		
+		default:
+
+			break;
+	}
+} else {
+	$GLOBALS['arrFilterPromo'] = [
+		">=DATE_ACTIVE_TO" => date('d.m.Y H:i:s')
+	];
+}
+
+$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"promo", 
 	array(
@@ -43,13 +61,13 @@ $APPLICATION->SetTitle("Акции");
 			0 => "DATE_ACTIVE_TO",
 			1 => "",
 		),
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilterPromo",
 		"FILTER_PROPERTY_CODE" => array(
 			0 => "",
 			1 => "",
 		),
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => "23",
+		"IBLOCK_ID" => "37",
 		"IBLOCK_TYPE" => "1c_catalog",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
@@ -76,14 +94,14 @@ $APPLICATION->SetTitle("Акции");
 		"SEF_FOLDER" => "/promo/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
-		"SET_STATUS_404" => "N",
+		"SET_STATUS_404" => "Y",
 		"SET_TITLE" => "Y",
-		"SHOW_404" => "N",
+		"SHOW_404" => "Y",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "SORT",
 		"SORT_ORDER1" => "DESC",
 		"SORT_ORDER2" => "ASC",
-		"STRICT_SECTION_CHECK" => "N",
+		"STRICT_SECTION_CHECK" => "Y",
 		"USE_CATEGORIES" => "N",
 		"USE_FILTER" => "Y",
 		"USE_PERMISSIONS" => "N",

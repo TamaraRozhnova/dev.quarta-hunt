@@ -62,14 +62,14 @@ while ($ar_result = $resAllSections->GetNext()) {
                             "VIEW_MODE" => "TEXT",
                             "COMPONENT_TEMPLATE" => ".default"
                         ),
-                        false
+                        $component
                     ); ?>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="mb-3" id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
+    <div class="mb-3 news-detail-background-wrapper" id="<? echo $this->GetEditAreaId($arResult['ID']) ?>">
 
         <? if ($arParams["DISPLAY_PICTURE"] != "N"): ?>
             <? if ($arResult["VIDEO"]) {
@@ -151,7 +151,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                             <div class="included__sharing">
                                 <?$APPLICATION->IncludeFile(
                                     '/include/articles/sharing.php', 
-                                    false, 
+                                    ['component' => $component], 
                                     ['SHOW_BORDER' => false]);
                                 ?>
                             </div>
@@ -174,16 +174,21 @@ while ($ar_result = $resAllSections->GetNext()) {
         <div class="news-detail-body">
 
             <div class="news-detail-content container">
-                <? if ($arResult["NAV_RESULT"]): ?>
-                    <? if ($arParams["DISPLAY_TOP_PAGER"]): ?><?= $arResult["NAV_STRING"] ?><br/><? endif; ?>
-                    <? echo $arResult["NAV_TEXT"]; ?>
-                    <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?><br/><?= $arResult["NAV_STRING"] ?><? endif; ?>
-                <? elseif ($arResult["DETAIL_TEXT"] <> ''): ?>
-                    <? echo $arResult["DETAIL_TEXT"]; ?>
-                <? else: ?>
-                    <? echo $arResult["PREVIEW_TEXT"]; ?>
-                <? endif ?>
-                <p><a class="btn btn-light px-4 bg-gray-200" href="<?=$arParams["RETURN_PATH"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <? if ($arResult["NAV_RESULT"]): ?>
+                        <? if ($arParams["DISPLAY_TOP_PAGER"]): ?><?= $arResult["NAV_STRING"] ?><br/><? endif; ?>
+                        <? echo $arResult["NAV_TEXT"]; ?>
+                        <? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?><br/><?= $arResult["NAV_STRING"] ?><? endif; ?>
+                        <? elseif ($arResult["DETAIL_TEXT"] <> ''): ?>
+                            <? echo $arResult["DETAIL_TEXT"]; ?>
+                        <? else: ?>
+                            <? echo $arResult["PREVIEW_TEXT"]; ?>
+                        <? endif ?>
+                        <p><a class="btn btn-light px-4 bg-gray-200" href="<?=$arParams["RETURN_PATH"]?>"><?=GetMessage("T_NEWS_DETAIL_BACK")?></a></p>
+                    </div>
+                </div>
+
             </div>
 
         </div>

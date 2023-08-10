@@ -68,6 +68,7 @@ function num_declension($number, $titles) {
 AddEventHandler("main", "OnBeforeUserLogin", Array("CUserEx", "OnBeforeUserLogin"));
 AddEventHandler("main", "OnBeforeUserRegister", Array("CUserEx", "OnBeforeUserRegister"));
 AddEventHandler("main", "OnBeforeUserRegister", Array("CUserEx", "OnBeforeUserUpdate"));
+AddEventHandler("main", "OnAfterUserRegister", Array("CUserEx", "OnAfterUserRegister"));
 class CUserEx{
     function OnBeforeUserLogin($arFields){
         $filter = Array("EMAIL" => $arFields["LOGIN"]);
@@ -82,6 +83,42 @@ class CUserEx{
             $arFields["GROUP_ID"] = [];
             $arFields["GROUP_ID"][] = 9;
         };
+    }
+    function onAfterUserRegister(&$arFields) {
+
+        if ($arFields["USER_ID"] > 0) {
+
+            Loader::includeModule("catalog");
+            Loader::includeModule("sale");
+
+            $discountID = 42;
+
+            $COUPON = CatalogGenerateCoupon();
+            $addDb = \Bitrix\Sale\Internals\DiscountCouponTable::add(array(
+                'DISCOUNT_ID' => $discountID,
+                'COUPON'      => $COUPON,
+                'TYPE'        => \Bitrix\Sale\Internals\DiscountCouponTable::TYPE_ONE_ORDER,
+                'MAX_USE'     => 1,
+                'USER_ID'     => $arFields["USER_ID"],
+                'DESCRIPTION' => ''
+            ));
+
+            if (!$addDb->isSuccess()) {
+                echo $addDb->getErrorMessages();
+            } else {
+
+                \Bitrix\Main\Mail\Event::send(array(
+                    "EVENT_NAME" => "NEW_USER_COUPON", 
+                    "LID" => "s1", 
+                    "C_FIELDS" => array( 
+                        "EMAIL" => "doubleboys@yandex.ru", 
+                        "USER_ID" => $arFields["USER_ID"] 
+                    ), 
+                ));
+
+            }
+  
+        }
     }
 }
 

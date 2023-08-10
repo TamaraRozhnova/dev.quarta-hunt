@@ -16,7 +16,7 @@ if (!count($arResult['ITEMS'])) {
                 <div class="swiper-wrapper">
                     <? foreach ($arResult['ITEMS'] as $item) { ?>
                         <div class="swiper-slide">
-                            <a href="/news/<?= $item['CODE'] ?>" class="news-slide">
+                            <a href="<?=$item['DETAIL_PAGE_URL']?>" class="news-slide">
                                 <div class="news-slide__background
                                 <?= !empty($item['PROPERTIES']['MOB_IMAGE_PREVIEW']['SRC']) ? 'news-slide__background--multiple' : '' ?>"
                                      style="background-image: url(<?= $item['PREVIEW_PICTURE']['SRC'] ?>)
@@ -33,7 +33,7 @@ if (!count($arResult['ITEMS'])) {
                     <div class="swiper-slide">
                         <div class="news-slider__more">
                             <h2>Еще новости</h2>
-                            <a href="/news" class="btn btn-outline-light px-4">
+                            <a href="/blog/" class="btn btn-outline-light px-4">
                                 Смотреть
                             </a>
                         </div>
