@@ -10637,7 +10637,11 @@ h1.small-h2 {
 
 
 .teh-obs {
-  background-color: yellow;
+  background: -webkit-gradient(linear, left top, right top, from(#FFFF00), color-stop(#FFD700), color-stop(#FFFF00), to(#FFD700));
+  background: linear-gradient(to right, #FFFF00, #FFD700, #FFFF00, #FFD700);
+  background-size: 400% 400%;
+  -webkit-animation: gradient-example-5 10s ease infinite;
+          animation: gradient-example-5 10s ease infinite;
 }
 .teh-obs h3 {
   margin: 0;
@@ -10648,7 +10652,34 @@ h1.small-h2 {
 }
 
 @media (max-width: 500px) {
+  .teh-obs {
+    padding: 0 14px;
+  }
   .teh-obs h3 {
     font-size: 16px;
+  }
+}
+
+@-webkit-keyframes gradient-example-5 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradient-example-5 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
