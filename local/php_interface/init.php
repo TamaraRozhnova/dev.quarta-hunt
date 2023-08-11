@@ -111,8 +111,9 @@ class CUserEx{
                     "EVENT_NAME" => "NEW_USER_COUPON", 
                     "LID" => "s1", 
                     "C_FIELDS" => array( 
-                        "EMAIL" => "doubleboys@yandex.ru", 
-                        "USER_ID" => $arFields["USER_ID"] 
+                        "EMAIL" => $arFields["EMAIL"], 
+                        "USER_ID" => $arFields["USER_ID"],
+                        "PROMO_CODE" => $COUPON,
                     ), 
                 ));
 
