@@ -2,7 +2,7 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
-$APPLICATION->SetTitle('Главная - Quarta Hunt');?>
+$APPLICATION->SetTitle("Главная — QUARTA. Оружейный Квартал.");?>
 
 <h1 class="hidden-on-page unset-margin">
     <?=$APPLICATION->ShowTitle();?>
