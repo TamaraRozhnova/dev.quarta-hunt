@@ -4,6 +4,7 @@ define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 use \Bitrix\Main\Loader;
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
+include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
@@ -24,6 +25,10 @@ Loader::registerAutoLoadClasses(null, [
     'Helpers\VideoReviewsHelper' => '/local/php_interface/classes/Helpers/VideoReviewsHelper.php',
     'Helpers\VideoUrlHelper' => '/local/php_interface/classes/Helpers/VideoUrlHelper.php',
     'Helpers\WorkProsHelper' => '/local/php_interface/classes/Helpers/WorkProsHelper.php',
+
+    'SearchSphinx\ProductTable' => '/local/php_interface/classes/Search/SearchProducts.php',
+    'SearchSphinx\BlogTable' => '/local/php_interface/classes/Search/SearchBlog.php',
+
     'OrderId' => '/local/php_interface/classes/OrderId.php',
     'Personal\Favorites' => '/local/php_interface/classes/Personal/Favorites.php',
     'Personal\Basket' => '/local/php_interface/classes/Personal/Basket.php',

@@ -1,0 +1,10 @@
+.pagination {
+  margin-top: 3.125rem;
+}
+.pagination .btn {
+  font-size: 0.75rem;
+}
+.pagination .btn:not(.btn-primary) {
+  background-color: #fff;
+  color: #333333;
+}
