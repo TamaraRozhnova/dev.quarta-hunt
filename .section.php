@@ -1,8 +1,8 @@
-<?php
-
-$sSectionName = "Главная";
-$arDirProperties = [
+<?
+$sSectionName = "Главная - Quarta Hunt";
+$arDirProperties = Array(
    "description" => "Товары для охоты, стрельбы и активного отдыха в Quarta «Оружейный квартал»",
    "keywords" => "Товары для охоты, стрельбы и активного отдыха в Quarta «Оружейный квартал»",
-   "robots" => "index, follow"
-];
+   "ROBOTS" => "index, follow"
+);
+?>
