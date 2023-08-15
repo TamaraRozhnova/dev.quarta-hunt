@@ -4,16 +4,18 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 
 use General\User;
 
-$APPLICATION->SetTitle('Каталог - QUARTA Hunt');
+$APPLICATION->SetTitle("Каталог - QUARTA Hunt");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
 <h1 class="hidden-on-page unset-margin">
-	<?=$APPLICATION->ShowTitle()?>
+<?=$APPLICATION->ShowTitle()?> 
 </h1>
 
 <? $user = new User();
 $priceCode = $user->getUserPriceCode();
+?>
 
+<?
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
 	"main",
@@ -158,6 +160,7 @@ $APPLICATION->IncludeComponent(
 		"PRODUCT_DISPLAY_MODE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
 		"PRODUCT_PROPERTIES" => array(
+			0 => 'CML2_ARTICLE'
 		),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
@@ -265,6 +268,6 @@ $APPLICATION->IncludeComponent(
 		)
 	),
 	false
-);
+);?>
 
-require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
+<? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
