@@ -4,6 +4,8 @@
 
 require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/header.php');
 $APPLICATION->SetTitle('Holosun');
+
+CJSCore::Init(['jquery']);
 ?>
 
 <?php $APPLICATION->IncludeComponent(
@@ -60,8 +62,8 @@ $APPLICATION->SetTitle('Holosun');
 		"AJAX_OPTION_STYLE" => "Y",
 		"AJAX_OPTION_HISTORY" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
-		"CACHE_TYPE" => "A",
-		"CACHE_TIME" => "36000000",
+		"CACHE_TYPE" => "N",
+		"CACHE_TIME" => "3600",
 		"CACHE_GROUPS" => "Y",
 		"SET_TITLE" => "Y",
 		"SET_CANONICAL_URL" => "N",

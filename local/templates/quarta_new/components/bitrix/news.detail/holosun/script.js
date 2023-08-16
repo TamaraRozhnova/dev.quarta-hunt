@@ -2,9 +2,22 @@ $(document).ready(function() {
 
 
     /*slider init */
-    new Swiper('.swiper', {
+    new Swiper('.compact-swiper ', {
+        speed: 400,
+        spaceBetween: 0,
+        navigation: {
+            nextEl: '.base-slider__next',
+            prevEl: '.base-slider__prev',
+        },
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });
+
+    new Swiper('.holosun-ruler-swiper', {
         speed: 400,
         spaceBetween: 40,
+        centeredSlides: true,
         navigation: {
             nextEl: '.base-slider__next',
             prevEl: '.base-slider__prev',
