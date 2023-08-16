@@ -5,7 +5,7 @@ global $USER;
 if (!$USER->IsAuthorized()) {
 
 	$filter = ['PERSONAL_PHONE' => $_REQUEST['userPhone']];
-	$select = ['SELECT' => ['UF_BONUS_POINTS', 'UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
+	$select = ['SELECT' => ['UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
 
 	$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, $select);
 
@@ -53,7 +53,7 @@ if (!$USER->IsAuthorized()) {
 
 
 	//$filter = ['PERSONAL_PHONE' => '+7 (999) 111-11-11', 'WORK_PHONE' => $_REQUEST['userPhone']];
-	//$select = ['SELECT' => ['UF_BONUS_POINTS', 'UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
+	//$select = ['SELECT' => ['UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
 	//$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, $select);
 	//$user = $rsUsers->GetNext();
 	//$u = new CUser();

@@ -60,8 +60,7 @@ $arFields = Array(
 	"~CHECKWORD_TIME" 	=> $DB->CurrentTimeFunction(),
 	"CONFIRM_CODE" 		=> $bConfirmReq ? randString(8): "",
 	"UF_TYPE"			=> $type,
-	"UF_PROMO"			=> $promo,
-	"UF_BONUS_POINTS"	=> 0,
+	"UF_PROMO"			=> $promo,	
 	"USER_TYPE"			=> $type === "wholesale" ? "Оптовый" : "Розничный",
 );
 

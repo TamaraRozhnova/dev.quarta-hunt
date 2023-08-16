@@ -663,8 +663,7 @@
     font-size: 1.625rem;
 }
 .bx-soa-cart-total-line.bx-soa-cart-total-line-highlighted {
-	border-color: transparent;
-	background-color: #d4ffb8;
+	
 }
 
 .bx-soa-cart-total-line-highlighted + .bx-soa-cart-total-line { border-top: none; }
@@ -1900,4 +1899,16 @@ hr.bxe-light {
 	color: #808D9A;
 	margin: 0 0 4px 0;
 	display: block;
+}
+
+#bonus_pay_sum .bx-soa-cart-t, #bonus_pay_sum .bx-soa-cart-d, #bonus_add_sum .bx-soa-cart-t, #bonus_add_sum .bx-soa-cart-d {
+	background-color: #f9f9fa;
+}
+
+#bonus_payment_block {
+	width: 0;
+	height: 0;
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
 }

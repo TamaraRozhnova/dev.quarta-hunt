@@ -96,18 +96,7 @@ if (!$opt) {
 
 	$db = 1;
 
-	if (in_array($arResult['IBLOCK_SECTION_ID'], $sids)) {
-		$arResult['ITEM_PRICES'][0]['UF_BONUS_POINTS'] = $db * ceil(0.03 * $arResult['ITEM_PRICES'][0]['PRICE']);
-		$arResult['PRICES']['BASE']['UF_BONUS_POINTS'] = $db * ceil(0.03 * $arResult['ITEM_PRICES'][0]['PRICE']);
-	} else {
-		$arResult['ITEM_PRICES'][0]['UF_BONUS_POINTS'] = 0;
-		$arResult['PRICES']['BASE']['UF_BONUS_POINTS'] = 0;
-	}
-
 	$arResult['PRESENT'] = !empty(DiscountsHelper::getGiftIds($arResult['ID']));
-} else {
-	$arResult['ITEM_PRICES'][0]['UF_BONUS_POINTS'] = 0;
-	$arResult['PRICES']['BASE']['UF_BONUS_POINTS'] = 0;
 }
 
 //$arResult['SIDS'] = $sids;

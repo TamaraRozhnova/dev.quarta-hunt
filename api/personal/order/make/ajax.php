@@ -173,20 +173,7 @@ if ($USER && $USER->isAuthorized()) {
 
 
 	// basket
-	$basket = \Bitrix\Sale\Basket::loadItemsForFUser(\Bitrix\Sale\Fuser::getId(), \Bitrix\Main\Context::getCurrent()->getSite());
-
-	// clear notes
-	$basket_items = $basket->getBasketItems();
-
-	foreach ($basket_items as $basket_item) {
-		$notes = unserialize($basket_item->getField('NOTES'));
-		$id = $notes['ID'];
-		if ($id === '0') 
-			$notes = 'bonus: ' . intval($notes['UF_BONUS_POINTS']);
-		else
-			$notes = 'nobonus';
-		$basket_item->setFieldNoDemand('NOTES', $notes);
-	}
+	$basket = \Bitrix\Sale\Basket::loadItemsForFUser(\Bitrix\Sale\Fuser::getId(), \Bitrix\Main\Context::getCurrent()->getSite());	
 
 	// order
 	$order = \Bitrix\Sale\Order::create(SITE_ID, $USER->GetID());

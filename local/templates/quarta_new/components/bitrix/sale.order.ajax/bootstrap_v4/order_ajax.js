@@ -86,7 +86,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			// console.log('debug')
 			this.debugMode = false;
 
-			if (parameters.result?.DEBUG_IP == '84.53.229.149') {
+			if (parameters.result?.DEBUG_IP == '127.0.0.1') {
 				this.debugMode = true;
 			}
 			// 
@@ -3382,13 +3382,13 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			var node = !!activeNodeMode ? this.basketBlockNode : this.basketHiddenBlockNode,
 				basketContent, basketTable;
 
-			if (this.debugMode) {
-
-				if (!BX("bx-soa-coupon-bonus-block_id")) {
-					this.handleClickChoice();
-					this.setBlockBonusesCoupons();
-				}
-				
+			if (this.debugMode) {				
+				this.handleClickChoice();
+				$('#bx-soa-coupon-bonus-block_id').remove();
+				this.setBlockBonusesCoupons();
+				setTimeout(() => {
+					$('#range').val(this.result.LOGICTIM_BONUS?.PAY_BONUS).css('background-size', this.result.LOGICTIM_BONUS?.PAY_BONUS/this.result.LOGICTIM_BONUS?.MAX_BONUS*100+'%');
+				}, 100);
 			}
 
 			if (this.initialized.basket)
@@ -4280,7 +4280,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			const rangeInputs = document.querySelectorAll('.bx-bonus-slider-track input[type="range"]')
 			const numberInput = document.querySelector('.bx-bonus-slider-track input[type="text"]')
 
-			const resultTotalPrice = (this.result.TOTAL.ORDER_TOTAL_PRICE / 2).toFixed(0); 
+			const resultTotalPrice = this.result.LOGICTIM_BONUS?.MAX_BONUS;
 			
 			let isRTL = document.documentElement.dir === 'rtl'
 	
@@ -4329,13 +4329,15 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		getSliderBonusTrack: function() {
 
+			console.log(this.result.LOGICTIM_BONUS);
+
 			if (this.debugMode) {
 
 			if (!this.userBonusPoints) {
 				return false;
 			}
 
-			const resultTotalPrice = (this.result.TOTAL.ORDER_TOTAL_PRICE / 2).toFixed(0); 
+			const resultTotalPrice = this.result.LOGICTIM_BONUS?.MAX_BONUS; 
 
 			const sliderTrack = BX.create('DIV', {
 				props: {className: 'bx-bonus-slider-track'},
@@ -4349,10 +4351,10 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								props: {
 								  className: 'form-control bx-soa-customer-input bx-ios-fix',
 								  type: "text",
-								  value: 0,
+								  value: this.result.LOGICTIM_BONUS?.PAY_BONUS,
 								  min: 0,
-								  max: this.userBonusPoints,
-								  id: "rangenumber",
+								  max: this.result.LOGICTIM_BONUS?.MAX_BONUS,
+								  id: "paybonus_input",
 								  readOnly: true
 								},
 								events: {
@@ -4370,6 +4372,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 									click: (event) => {
 										BX.hide(BX(event.target.getAttribute('id')))
 										BX.show(BX("btn-choice-reset"))
+										useBonus();
 									}
 								}
 							}),
@@ -4382,6 +4385,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 									click: (event) => {
 										BX.hide(BX(event.target.getAttribute('id')))
 										BX.show(BX("btn-choice-apply"))
+										$('#paybonus_input').val(0);
+										$('#range').val(0).css('background-size', '0% 100%').trigger('change');
+										useBonus();
 									}
 								}
 							}),
@@ -4393,16 +4399,16 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					  type: "range",
 					  value: 0,
 					  min: 0,
-					  max: this.userBonusPoints,
+					  max: this.result.LOGICTIM_BONUS?.MAX_BONUS,
 					  id: "range"
 					},
 					events: {
 					  input: function() {
 						
 						if (Number(this.value) > Number(resultTotalPrice)) {
-							document.getElementById('rangenumber').value = resultTotalPrice
+							document.getElementById('paybonus_input').value = resultTotalPrice
 						} else {
-							document.getElementById('rangenumber').value = this.value;
+							document.getElementById('paybonus_input').value = this.value;
 						}
 						
 					  }
@@ -4431,11 +4437,12 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								BX.create('SPAN', {
 									text: `Доступно ${this.userBonusPoints} баллов.`
 								}),
+								BX.create('BR', {}),
 								BX.create('SPAN', {
 									props: {
 										className: 'color-grey'
 									},
-									text: 'Оплачивайте ими до 50% от стоимости покупки'
+									text: `На этот заказ Вы можете потратить до ${this.result.LOGICTIM_BONUS?.MAX_BONUS} бонусов`
 								})
 							]
 						}),

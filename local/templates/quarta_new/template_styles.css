@@ -10686,3 +10686,13 @@ h1.small-h2 {
     background-position: 0% 50%;
   }
 }
+
+.bonus.bonus_item_cart {
+  color: #808d9a;
+  font-size: 12px;
+}
+
+.lt_cart_bonus_all {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;  
+}

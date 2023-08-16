@@ -111,8 +111,7 @@ class RegistrationForm
             'CHECKWORD' => md5(CMain::GetServerUniqID().uniqid()),
             '~CHECKWORD_TIME' => $this->DB->CurrentTimeFunction(),
             'UF_TYPE' => 'wholesale',
-            'UF_PROMO' => $this->promo,
-            'UF_BONUS_POINTS' => 0,
+            'UF_PROMO' => $this->promo,            
             'USER_TYPE'	=> 'Оптовый',
         ];
     }

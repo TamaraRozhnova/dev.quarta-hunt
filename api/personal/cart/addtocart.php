@@ -143,8 +143,7 @@ if (!empty($_REQUEST['PRODUCT_ID']) && isset($_REQUEST['QUANTITY'])) {
 							'ID' => $base_pr['ID'],
 							'PRICE_1_DISCOUNT' => $base_pr['PRICE_1_DISCOUNT'],
 							'PRICE_1_TOTAL' => $base_pr['PRICE_1_TOTAL'],
-							'DISCOUNT_PERSENT' => $discount,
-							'UF_BONUS_POINTS' => 0, //$bonus_system_active ? 0.03 * $base_pr['PRICE_1_TOTAL'] : 0,
+							'DISCOUNT_PERSENT' => $discount,							
 							'UF_BONUS_SYSTEM_ACTIVE' => $bonus_system_active,
 						];
 
@@ -186,8 +185,7 @@ if (!empty($_REQUEST['PRODUCT_ID']) && isset($_REQUEST['QUANTITY'])) {
 								'ID' => $base_pr['ID'],
 								'PRICE_1_DISCOUNT' => $k_pr['PRICE_1_DISCOUNT'],
 								'PRICE_1_TOTAL' => $k_pr['PRICE_1_TOTAL'],
-								'DISCOUNT_PERSENT' => $discount,
-								'UF_BONUS_POINTS' => 0, //$bonus_system_active ? 0.03 * $k_pr['PRICE_1_TOTAL'] : 0,
+								'DISCOUNT_PERSENT' => $discount,								
 								'UF_BONUS_SYSTEM_ACTIVE' => $bonus_system_active,
 							];
 
@@ -263,8 +261,7 @@ if (!empty($_REQUEST['PRODUCT_ID']) && isset($_REQUEST['QUANTITY'])) {
 				'ID' => '0',
 				'PRICE_1_DISCOUNT' => 0,
 				'PRICE_1_TOTAL' => !$opt ? $base_pr['PRICE_1'] : $base_pr['PRICE_3'],
-				'DISCOUNT_PERSENT' => 0,
-				'UF_BONUS_POINTS' => !$opt && $bonus_system_active ? $db * ceil(0.03 * $base_pr['PRICE_1'] * intval($_REQUEST['QUANTITY'])) : 0,
+				'DISCOUNT_PERSENT' => 0,				
 				'UF_BONUS_SYSTEM_ACTIVE' => $bonus_system_active,
 				'MAIN_PRODUCT_ID' => !empty($_REQUEST['MAIN_PRODUCT_ID']) ? $_REQUEST['MAIN_PRODUCT_ID'] : 0,
 				'SKU_ID' => !empty($_REQUEST['MAIN_PRODUCT_ID']) ? $_REQUEST['PRODUCT_ID'] : 0,
@@ -325,8 +322,7 @@ if (!empty($_REQUEST['PRODUCT_ID']) && isset($_REQUEST['QUANTITY'])) {
 								'ID' => '0',
 								'PRICE_1_DISCOUNT' => 0,
 								'PRICE_1_TOTAL' => 0,
-								'DISCOUNT_PERSENT' => 0,
-								'UF_BONUS_POINTS' => 0,
+								'DISCOUNT_PERSENT' => 0,								
 								'UF_BONUS_SYSTEM_ACTIVE' => false,
 							];
 
