@@ -119,7 +119,7 @@ if (0 < $arResult["SECTIONS_COUNT"])
 				$this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams);
 
 				?><li id="<? echo $this->GetEditAreaId($arSection['ID']); ?>" class="<?=$arParams['CURRENT_SECTION_CODE'] === $arSection['CODE'] ? 'active' : ''?>">
-                <a class="btn" href="<?=$arParams['CURRENT_SECTION_CODE'] === $arSection['CODE'] ? $arParams['PARENT_URL'] : $arSection['SECTION_PAGE_URL']; ?>"><? echo $arSection['NAME']; ?></a>
+                <a class="btn" href="<?= $arSection['SECTION_PAGE_URL'] ?>"><? echo $arSection['NAME']; ?></a>
                 <?
 				if ($arParams["COUNT_ELEMENTS"] && $arSection['ELEMENT_CNT'] !== null)
 				{

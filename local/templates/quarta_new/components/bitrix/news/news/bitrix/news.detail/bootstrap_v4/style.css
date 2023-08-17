@@ -304,6 +304,7 @@
   }
   .news-detail .news-detail-content img {
       max-width: 100%;
+      height: auto;
   }
 }
 
