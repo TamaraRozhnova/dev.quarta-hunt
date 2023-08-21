@@ -88,6 +88,10 @@
   .promo-wide-light__image {
     padding: 0.625rem;
   }
+  .promo .base-slider.promo__slider {
+    margin-bottom: 20px;
+    padding-bottom: 0;
+  }
 }
 
 .promo-card {

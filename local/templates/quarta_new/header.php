@@ -51,6 +51,8 @@ $basketItemsCount = $basket->getProductsCount();
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/useGesture.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/fslightbox.js");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/build/main.js");
+    $APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>',true);
+    $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" type="text/javascript"></script>',true);
     ?>
 
     <script>

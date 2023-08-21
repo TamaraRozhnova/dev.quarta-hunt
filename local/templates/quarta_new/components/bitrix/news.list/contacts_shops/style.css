@@ -154,4 +154,8 @@
   .shop-maps iframe {
       height: 500px
   }
+
+  .contacts .bg-gray-100 .mb-4 {
+      margin-bottom: 1rem !important;
+  }
 }

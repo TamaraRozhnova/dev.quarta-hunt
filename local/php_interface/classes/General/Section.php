@@ -91,7 +91,7 @@ class Section
         ];
 
         $subsections = [];
-        $subsectionsResource = CIBlockSection::GetList([], $filter);
+        $subsectionsResource = CIBlockSection::GetList(["SORT"=>"ASC"], $filter);
         $subsectionsResource->SetUrlTemplates(false, $sectionUrlTemplate);
         while ($subsection = $subsectionsResource->GetNext()) {
             $subsections[] = $subsection;

@@ -2,6 +2,12 @@
 
 namespace Personal;
 
+use Bitrix\Iblock\ElementTable;
+use Bitrix\Iblock\Iblock;
+use Bitrix\Iblock\PropertyTable;
+use Bitrix\Main\ArgumentOutOfRangeException;
+use Bitrix\Main\Diag\Debug;
+use Bitrix\Main\ObjectNotFoundException;
 use Bitrix\Sale\Basket as BitrixBasket;
 use Bitrix\Sale\BasketBase;
 use Bitrix\Sale\BasketItem;
@@ -9,9 +15,11 @@ use Bitrix\Sale\BasketItemBase;
 use Bitrix\Main\Context;
 use Bitrix\Currency\CurrencyManager;
 use Bitrix\Sale\Fuser;
+use Bitrix\Sale\ProductTable;
 use CCatalogSku;
 use CIBlockElement;
 use CModule;
+use Exception;
 use General\Product;
 use General\Section;
 use General\User;
@@ -31,6 +39,8 @@ class Basket
     {
         CModule::IncludeModule('sale');
         CModule::IncludeModule('catalog');
+        CModule::IncludeModule('iblock');
+
         $this->basket = BitrixBasket::loadItemsForFUser(Fuser::getId(), Context::getCurrent()->getSite());
         $this->user = new User();
     }
@@ -105,6 +115,16 @@ class Basket
         return $result;
     }
 
+    /**
+     * Получает список доступных для покупки торговых предложений по id товара
+     * @return array|bool - возвращает ассоциативный массив, где:
+     * ключ — идентификатор товара, значение — ассоциативный массив свойств торговых предложений
+     */
+    private function getAvailableOffers(int $productId): ?array
+    {
+        $selectFields = ['NAME', 'QUANTITY', 'PROPERTY_CML2_ATTRIBUTES'];
+        return CCatalogSKU::getOffersList($productId, CATALOG_IBLOCK_ID, ['AVAILABLE' => 'Y'], $selectFields);
+    }
 
     /**
      * Получает список доступных для удаления из корзины торговых предложений и их количества по id товара
@@ -141,7 +161,6 @@ class Basket
         return $result;
     }
 
-
     /**
      * Устанавливает определенное количество товара в корзину
      * @return int - возвращает новое установленное количество товара в корзине
@@ -176,82 +195,10 @@ class Basket
             }
             $this->basket->save();
             return $resultQuantity;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $currentQuantityInBasket ?? 0;
         }
     }
-
-
-    public function addProductToBasket(int $productId, int $quantity = 1): bool
-    {
-        try {
-            if (!$this->isProductAvailable($productId, $quantity)) {
-                return false;
-            }
-
-            $basketItem = $this->getBasketItem($productId);
-
-            $isOpt = $this->user->isWholesaler();
-            $product = new Product($productId);
-            $bonus_system_active = $product->inBonusSection();
-            $doubleBonus = $product->inDoubleBonusSection();
-            $price = $product->getFieldValue('PRICE_1');
-            $price3 = $product->getFieldValue('PRICE_3');
-
-            $notes = [
-                'UF_BONUS_POINTS' => !$isOpt && $bonus_system_active ? $doubleBonus * ceil(0.03 * $price * intval($quantity)) : 0,
-            ];
-
-            if ($basketItem) {
-                $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
-                $basketItem->setField('NOTES', serialize($notes));
-                $basketItem->setField('PRICE',  !$isOpt ? $price : $price3);
-                $this->basket->save();
-            } else {
-                $this->createBasketItem($productId, $quantity, ['NOTES' => $notes, 'PRICE' => !$isOpt ? $price : $price3, 'NAME' => $product->getFieldValue('NAME')]);
-            }
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-
-    public function deleteProductFromBasket(int $productId, int $quantity = 1): bool
-    {
-        try {
-            $basketItem = $this->getBasketItem($productId);
-            if (!$basketItem) {
-                return false;
-            }
-            $currentQuantity = $basketItem->getQuantity();
-            if ($currentQuantity > $quantity) {
-                $basketItem->setField('QUANTITY', $currentQuantity - $quantity);
-            } else {
-                $basketItem->delete();
-            }
-            $this->basket->save();
-            return true;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-    /**
-     * @throws \Bitrix\Main\ArgumentOutOfRangeException
-     * @throws \Bitrix\Main\ObjectNotFoundException
-     */
-    public function deleteAllProductFromBasket(): bool
-    {
-        /** @var BasketItem $basketItem */
-        foreach($this->basket as $basketItem) {
-            $basketItem->delete();
-        }
-        $this->basket->save();
-
-        return true;
-    }
-
 
     private function getBasketItem(int $productId): ?BasketItemBase
     {
@@ -262,33 +209,6 @@ class Basket
         }
         return null;
     }
-
-
-    private function isProductAvailable(int $productId, int $quantity): bool
-    {
-        $basketItem = $this->getBasketItem($productId);
-        $element = CIBlockElement::GetList([], ['ID' => $productId], ['QUANTITY'])->GetNext();
-        $availableQuantity = $element['QUANTITY'];
-
-        if (!$availableQuantity) {
-            return false;
-        }
-        if ($basketItem && $availableQuantity < $basketItem->getQuantity() + $quantity) {
-            return false;
-        }
-        if (!$basketItem && $availableQuantity < $quantity) {
-            return false;
-        }
-
-        return true;
-    }
-
-
-    public function getCopyOfBasket(): BasketBase
-    {
-        return $this->basket->copy();
-    }
-
 
     private function createBasketItem(int $productId, int $quantity, array $data = []): void
     {
@@ -314,19 +234,152 @@ class Basket
         }
 
         $basketItem->setFields($atFields);
+
+        /* свойства корзины на добавление из каталога */
+        $basketItem->save();
+
+        $basketAddProperties = ['CML2_ARTICLE'];
+
+        $iblockId = ElementTable::query()
+            ->addSelect('IBLOCK_ID')
+            ->where('ID', $productId)
+            ->fetch()['IBLOCK_ID'] ?? false;
+
+        $iblockDataClass = Iblock::wakeUp($iblockId)->getEntityDataClass();
+        $elementPropertyData = $iblockDataClass::getByPrimary($productId, [
+            'select' => ['CML2_ARTICLE_' => 'CML2_ARTICLE']
+        ])->fetchAll();
+
+        $basketPropertyCollection = $basketItem->getPropertyCollection();
+        $basketPropertyCollection->getPropertyValues();
+        $propertyList = [];
+        foreach ($basketAddProperties as $property) {
+            $propertyDescription = $this->getPropertyDescrption($property, $iblockId);
+            $propertyList[] = [
+                'NAME' => $propertyDescription['NAME'],
+                'CODE' => $property,
+                'VALUE' => current($elementPropertyData)[$property . '_VALUE'],
+                'SORT' => 100,
+            ];
+        }
+        $basketPropertyCollection->redefine($propertyList);
+        $basketPropertyCollection->save();
+        /* ---  */
+
+
         $this->basket->save();
     }
 
+    /**
+     * Получаем свойства каталога для корзины
+     * @param $propertyCode
+     * @return array
+     */
+    private function getPropertyDescrption($propertyCode, $iblock)
+    {
+        return PropertyTable::query()
+            ->addSelect('ID')
+            ->addSelect('NAME')
+            ->where('CODE', $propertyCode)
+            ->where('IBLOCK_ID', $iblock)
+            ->fetch();
+    }
+
+    public function addProductToBasket(int $productId, int $quantity = 1): bool
+    {
+        try {
+            if (!$this->isProductAvailable($productId, $quantity)) {
+                return false;
+            }
+
+            $basketItem = $this->getBasketItem($productId);
+
+            $isOpt = $this->user->isWholesaler();
+            $product = new Product($productId);
+            $bonus_system_active = $product->inBonusSection();
+            $doubleBonus = $product->inDoubleBonusSection();
+            $price = $product->getFieldValue('PRICE_1');
+            $price3 = $product->getFieldValue('PRICE_3');
+
+            $notes = [
+                'UF_BONUS_POINTS' => !$isOpt && $bonus_system_active ? $doubleBonus * ceil(0.03 * $price * intval($quantity)) : 0,
+            ];
+
+            if ($basketItem) {
+                $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
+                $basketItem->setField('NOTES', serialize($notes));
+                $basketItem->setField('PRICE', !$isOpt ? $price : $price3);
+                $this->basket->save();
+            } else {
+                $this->createBasketItem($productId, $quantity, [
+                    'NOTES' => $notes,
+                    'PRICE' => !$isOpt ? $price : $price3,
+                    'NAME' => $product->getFieldValue('NAME')
+                ]);
+            }
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    private function isProductAvailable(int $productId, int $quantity): bool
+    {
+        $basketItem = $this->getBasketItem($productId);
+        $element = CIBlockElement::GetList([], ['ID' => $productId], ['QUANTITY'])->GetNext();
+        $availableQuantity = $element['QUANTITY'];
+
+        if (!$availableQuantity) {
+            return false;
+        }
+        if ($basketItem && $availableQuantity < $basketItem->getQuantity() + $quantity) {
+            return false;
+        }
+        if (!$basketItem && $availableQuantity < $quantity) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function deleteProductFromBasket(int $productId, int $quantity = 1): bool
+    {
+        try {
+            $basketItem = $this->getBasketItem($productId);
+            if (!$basketItem) {
+                return false;
+            }
+            $currentQuantity = $basketItem->getQuantity();
+            if ($currentQuantity > $quantity) {
+                $basketItem->setField('QUANTITY', $currentQuantity - $quantity);
+            } else {
+                $basketItem->delete();
+            }
+            $this->basket->save();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 
     /**
-     * Получает список доступных для покупки торговых предложений по id товара
-     * @return array|bool - возвращает ассоциативный массив, где:
-     * ключ — идентификатор товара, значение — ассоциативный массив свойств торговых предложений
+     * @throws ArgumentOutOfRangeException
+     * @throws ObjectNotFoundException
      */
-    private function getAvailableOffers(int $productId): ?array
+    public function deleteAllProductFromBasket(): bool
     {
-        $selectFields = ['NAME', 'QUANTITY', 'PROPERTY_CML2_ATTRIBUTES'];
-        return CCatalogSKU::getOffersList($productId, CATALOG_IBLOCK_ID, ['AVAILABLE' => 'Y'], $selectFields);
+        /** @var BasketItem $basketItem */
+        foreach ($this->basket as $basketItem) {
+            $basketItem->delete();
+        }
+        $this->basket->save();
+
+        return true;
+    }
+
+    public function getCopyOfBasket(): BasketBase
+    {
+        return $this->basket->copy();
     }
 
 }

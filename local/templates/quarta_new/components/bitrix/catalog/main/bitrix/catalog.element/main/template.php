@@ -181,7 +181,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             <div class="placeholder"></div>
                         <? } ?>
 
-                        <button class="product-fav btn bg-white mx-1 placeholder-glow">
+                        <button onclick="ym(30377432,'reachGoal','product-card__fav--default')" class="product-fav btn bg-white mx-1 placeholder-glow">
                             <span class="placeholder"></span>
                             <span class="product-fav__wrapper">
                                 <svg class="product-fav__active" width="20" height="18" viewBox="0 0 20 18" fill="none"
