@@ -86,7 +86,7 @@
   padding-top: 100%;
   transform: translate3d(33%, -33%, 0) scale(0.95);
   transition: all 0.3s ease-in-out;
-  background-image: url("../../../../../../assets/images/category-card-bg.svg");
+  /*background-image: url("../../../../../../assets/images/category-card-bg.svg");*/
   background-size: contain;
   background-position: top;
   background-repeat: no-repeat;
