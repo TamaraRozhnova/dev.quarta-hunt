@@ -56,6 +56,7 @@ class BlogTable extends SphinxDataManager
             new Main\Entity\StringField('name'),
             new Main\Entity\StringField('preview_text'),
             new Main\Entity\StringField('iblock_code'),
+            new Main\Entity\StringField('searchable_content'),
         ];
 
     }
