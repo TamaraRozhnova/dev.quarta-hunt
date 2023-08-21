@@ -100,6 +100,7 @@ if (!empty($arResult['ORDER_ID'])) {
 	<? endif; ?>
 
 	<?
+
 	if ($arResult["ORDER"]["IS_ALLOW_PAY"] === 'Y')
 	{
 		if (!empty($arResult["PAYMENT"]))
@@ -127,34 +128,42 @@ if (!empty($arResult['ORDER_ID'])) {
 								<span><?=CFile::ShowImage($arPaySystem["LOGOTIP"], 100, 100, "border=0\" style=\"width:100px\"", "", false) ?></span>
 								<span><p><?=$arPaySystem["NAME"] ?></p></span>
 							</div>
-							<div class="">
-								<div class="col">
-									<? if ($arPaySystem["ACTION_FILE"] <> '' && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
-									<?
-										$orderAccountNumber = urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]));
-										$paymentAccountNumber = $payment["ACCOUNT_NUMBER"];
-									?>
-									<script>
-										window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
-									</script>
-									<p><?=Loc::getMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?></p>
-									<? if (CSalePdf::isPdfAvailable() && $arPaySystem['IS_AFFORD_PDF']): ?>
-									<br/>
-									<p><?=Loc::getMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?></p>
-									<? endif ?>
-									<? else: ?>
-
-										<? if ($arResult['HIDE_BUTTON_PAYMENT'] != 'Y'): ?>
-											<?=$arPaySystem["BUFFERED_OUTPUT"]?>
+							<?php 
+							/** 
+							 * Если заказ оформлен от юр.лица
+							 * Закрываем ссылку на оплату
+							 */
+							?>
+							<? if ($arResult['ORDER']['PERSON_TYPE_ID'] != 2): ?>
+								<div class="">
+									<div class="col">
+										<? if ($arPaySystem["ACTION_FILE"] <> '' && $arPaySystem["NEW_WINDOW"] == "Y" && $arPaySystem["IS_CASH"] != "Y"): ?>
+										<?
+											$orderAccountNumber = urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]));
+											$paymentAccountNumber = $payment["ACCOUNT_NUMBER"];
+										?>
+										<script>
+											window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=$orderAccountNumber?>&PAYMENT_ID=<?=$paymentAccountNumber?>');
+										</script>
+										<p><?=Loc::getMessage("SOA_PAY_LINK", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&PAYMENT_ID=".$paymentAccountNumber))?></p>
+										<? if (CSalePdf::isPdfAvailable() && $arPaySystem['IS_AFFORD_PDF']): ?>
+										<br/>
+										<p><?=Loc::getMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?></p>
+										<? endif ?>
 										<? else: ?>
-											<p class = "text-color-orange">
-												<?= Loc::getMessage("CAN_PAY_LATER"); ?>
-											</p>
-										<? endif; ?>
-										
-									<? endif ?>
+
+											<? if ($arResult['HIDE_BUTTON_PAYMENT'] != 'Y'): ?>
+												<?=$arPaySystem["BUFFERED_OUTPUT"]?>
+											<? else: ?>
+												<p class = "text-color-orange">
+													<?= Loc::getMessage("CAN_PAY_LATER"); ?>
+												</p>
+											<? endif; ?>
+											
+										<? endif ?>
+									</div>
 								</div>
-							</div>
+							<? endif; ?>
 
 							<?
 						}

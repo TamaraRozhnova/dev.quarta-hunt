@@ -7,6 +7,12 @@ if (!empty($arResult['ORDERS'])) {
     $entSections = \Bitrix\Iblock\Model\Section::compileEntityByIblock(CATALOG_IBLOCK_ID);
 
     foreach ($arResult['ORDERS'] as $arOrderIndex => $arOrder) {
+
+        if ($arOrder['ORDER']['PERSON_TYPE_ID'] == 2) {
+            $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'Y';
+            continue;
+        }
+
         if (!empty($arOrder['BASKET_ITEMS'])) {
             foreach ($arOrder['BASKET_ITEMS'] as $arBasketItem) {
                 
