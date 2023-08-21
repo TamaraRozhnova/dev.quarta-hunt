@@ -42,10 +42,13 @@
 }
 @media (max-width: 575.98px) {
   .advantages {
-    padding-bottom: 2.5rem;
+    padding-bottom: 0;
   }
   .advantages [class*=col-] {
     margin-bottom: 0.625rem;
+  }
+  .advantages [class*=col-]:last-child {
+    margin-bottom: 0;
   }
   .advantages h4 {
     font-size: 1.125rem;
