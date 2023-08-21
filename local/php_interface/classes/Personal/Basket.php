@@ -295,24 +295,16 @@ class Basket
             $basketItem = $this->getBasketItem($productId);
 
             $isOpt = $this->user->isWholesaler();
-            $product = new Product($productId);
-            $bonus_system_active = $product->inBonusSection();
-            $doubleBonus = $product->inDoubleBonusSection();
+            $product = new Product($productId);            
             $price = $product->getFieldValue('PRICE_1');
             $price3 = $product->getFieldValue('PRICE_3');
 
-            $notes = [
-                'UF_BONUS_POINTS' => !$isOpt && $bonus_system_active ? $doubleBonus * ceil(0.03 * $price * intval($quantity)) : 0,
-            ];
-
             if ($basketItem) {
-                $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
-                $basketItem->setField('NOTES', serialize($notes));
+                $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);                
                 $basketItem->setField('PRICE', !$isOpt ? $price : $price3);
                 $this->basket->save();
             } else {
-                $this->createBasketItem($productId, $quantity, [
-                    'NOTES' => $notes,
+                $this->createBasketItem($productId, $quantity, [                    
                     'PRICE' => !$isOpt ? $price : $price3,
                     'NAME' => $product->getFieldValue('NAME')
                 ]);

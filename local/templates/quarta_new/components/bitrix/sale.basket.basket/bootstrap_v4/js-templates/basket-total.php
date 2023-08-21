@@ -54,15 +54,6 @@ use Bitrix\Main\Localization\Loc;
                     </div>
                 </div>
 
-				<div class="basket-checkout-block basket-checkout-block-total">
-					<div class="basket-checkout-block-total-inner">
-						<div class="basket-checkout-block-total-description">
-                            <div class="basket-checkout-block-total-description__title">Баллы за покупку</div>
-                            <div class="basket-checkout-block-total-description__text">+{{{SUM_BONUSES}}} б.</div>
-						</div>
-					</div>
-				</div>
-
                 <div class="basket-checkout-block-total__separator"></div>
 
                 <div class="basket-checkout-block-total__description">

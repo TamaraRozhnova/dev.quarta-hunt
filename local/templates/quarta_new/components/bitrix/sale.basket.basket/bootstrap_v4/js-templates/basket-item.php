@@ -342,10 +342,7 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                         {{{PRICE_FORMATED}}}
                                     </span>
                                 </div>
-
-                                <div class="basket-item-bonuses">
-                                    {{{BONUS}}}
-                                </div>
+                                
                                 {{#SHOW_LOADING}}
                                     <div class="basket-items-list-item-overlay"></div>
                                 {{/SHOW_LOADING}}
@@ -401,10 +398,6 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                 {{#SHOW_LOADING}}
                                     <div class="basket-items-list-item-overlay"></div>
                                 {{/SHOW_LOADING}}
-
-                                <div class="basket-item-bonuses">
-                                    {{{SUMM_BONUS}}}
-                                </div>
                             </div>
                         </div>
                         <?

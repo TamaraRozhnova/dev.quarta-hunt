@@ -18,8 +18,6 @@ $mobileColumns = array_fill_keys($mobileColumns, true);
 
 $result['BASKET_ITEM_RENDER_DATA'] = array();
 
-$sumBonuses = 0;
-
 foreach ($this->basketItems as $row)
 {
 	$rowData = array(
@@ -233,13 +231,7 @@ foreach ($this->basketItems as $row)
 				continue;
 			}
 
-            $notes = unserialize($row['~NOTES']);
-            $rowData['BONUS'] = $notes['UF_BONUS_POINTS'];
-            if (is_numeric($rowData['BONUS'])) {
-                $sumBonuses += (int)$rowData['BONUS'] * $rowData['QUANTITY'];
-                $rowData['SUMM_BONUS'] = '+' . CurrencyFormatNumber((int)$rowData['BONUS'] * $rowData['QUANTITY'], 'RUB') . ' на счет';
-                $rowData['BONUS'] = '+' . CurrencyFormatNumber($rowData['BONUS'], 'RUB') . ' на счет';
-            }
+            $notes = unserialize($row['~NOTES']);            
 
             if ($value['id'] === 'PROPERTY_CML2_ARTICLE_VALUE') {
                 $rowData['ARTICLE_TITLE'] = $value['name'];
@@ -413,8 +405,7 @@ $totalData = array(
 	'PRICE' => $result['allSum'],
 	'PRICE_FORMATED' => $result['allSum_FORMATED'],
 	'PRICE_WITHOUT_DISCOUNT_FORMATED' => $result['PRICE_WITHOUT_DISCOUNT'],
-	'CURRENCY' => $result['CURRENCY'],
-    'SUM_BONUSES' => $sumBonuses,
+	'CURRENCY' => $result['CURRENCY'],    
 );
 
 $basket = new \Personal\Basket();

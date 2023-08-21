@@ -35,7 +35,7 @@ Loader::registerAutoLoadClasses(null, [
     'Personal\Basket' => '/local/php_interface/classes/Personal/Basket.php',
 ]);
 
-\Bitrix\Main\EventManager::getInstance()->addEventHandler('sale', 'OnSaleStatusOrder', 'AddBonusPoints');
+//\Bitrix\Main\EventManager::getInstance()->addEventHandler('sale', 'OnSaleStatusOrder', 'AddBonusPoints');
 
 include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 
@@ -143,7 +143,7 @@ function random_number($length = 6){
 	return $res;
 }
 
-Bitrix\Main\EventManager::getInstance()->addEventHandler("sale", "OnSaleOrderBeforeSaved", array("SaleOrderAjaxEventsO2K","OnSaleOrderBeforeSavedHandler"));
+//Bitrix\Main\EventManager::getInstance()->addEventHandler("sale", "OnSaleOrderBeforeSaved", array("SaleOrderAjaxEventsO2K","OnSaleOrderBeforeSavedHandler"));
 class SaleOrderAjaxEventsO2K
 {
     public static function OnSaleOrderBeforeSavedHandler(\Bitrix\Main\Event $event)
@@ -489,5 +489,4 @@ function changeOrderStatus(\Bitrix\Main\Event $event)
             $order->save();
         }
     }
-
 }
