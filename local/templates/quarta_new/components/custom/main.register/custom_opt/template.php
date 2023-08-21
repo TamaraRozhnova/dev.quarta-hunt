@@ -274,7 +274,7 @@ $arResult["SHOW_FIELDS"] = array(
 	<?foreach ($arResult["USER_PROPERTIES"]["DATA"] as $FIELD_NAME => $arUserField): 
 		$UF_TYPE = false;
 		if($arUserField['FIELD_NAME'] == 'UF_TYPE'){
-			$arUserField['VALUE'] = 'retail';
+			$arUserField['VALUE'] = 'wholesale';
 			$UF_TYPE = true;
 		}?>	
 		<div <?= ($UF_TYPE = true)? 'style="display:none"':'' ?>>
