@@ -1,0 +1,66 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e6c358efc07ab80fd144638522cce857",
+    "packages": [
+        {
+            "name": "olegpro/bitrix-sphinx",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/olegpro/bitrix-sphinx.git",
+                "reference": "8196fb757923ac2e957f75b3e836707405e932db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/olegpro/bitrix-sphinx/zipball/8196fb757923ac2e957f75b3e836707405e932db",
+                "reference": "8196fb757923ac2e957f75b3e836707405e932db",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Olegpro\\BitrixSphinx\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oleg Maksimenko",
+                    "email": "oleg.39style@gmail.com",
+                    "homepage": "https://www.olegpro.ru"
+                }
+            ],
+            "description": "Пакет добавляет в 1С-Битрикс возможность работать с индексами sphinx, через ORM D7",
+            "keywords": [
+                "bitrix",
+                "orm",
+                "sphinx"
+            ],
+            "support": {
+                "email": "oleg.39style@gmail.com",
+                "issues": "https://github.com/olegpro/bitrix-sphinx/issues",
+                "source": "https://github.com/olegpro/bitrix-sphinx/"
+            },
+            "time": "2021-06-27T15:12:17+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

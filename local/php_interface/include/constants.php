@@ -2,7 +2,7 @@
 
 const COMPARE_LIST_NAME = 'CATALOG_COMPARE_LIST';
 
-const CATALOG_IBLOCK_ID = 16;
+const CATALOG_IBLOCK_ID = 16; // Идентификатор инфоблока каталога
 const CATALOG_IBLOCK_CODE = "catalog1c_main"; // Символьный код инфоблока каталога
 
 const OPT_PRICE_ID = 3;
@@ -13,7 +13,6 @@ const BASE_PRICE_CODE = 'BASE';
 
 const OPT_PRICE_CODE_ID = 'PRICE_3';
 const BASE_PRICE_CODE_ID = 'PRICE_1';
-
 
 const PANYWAY_ID = 4; // Идентификатор платежной системы Банковская карта PANYWAY
 const BANK_TRANSFER_ID = 8; // Идентификатор платежной системы перевод БК
