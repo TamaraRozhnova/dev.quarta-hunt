@@ -82,6 +82,10 @@ $arResult['JS_DATA']['DELIVERY_IDS']["DELIVERY_PICKUP_ID"] = DELIVERY_PICKUP_ID;
 $component = $this->__component;
 $component::scaleImages($arResult['JS_DATA'], $arParams['SERVICES_IMAGES_SCALING']);
 
-// print_r('<pre>');
-// print_r($arResult);
-// print_r('</pre>');
+global $USER;
+$arGroups = CUser::GetUserGroup($USER->GetId());
+$isUserOpt = array_search(OPT_GROUP_ID, $arGroups);
+
+if ($isUserOpt !== false) {
+    $arResult['JS_DATA']['IS_USER_OPT'] = true;
+}

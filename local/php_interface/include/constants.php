@@ -8,6 +8,8 @@ const CATALOG_IBLOCK_CODE = "catalog1c_main"; // Символьный код и�
 const OPT_PRICE_ID = 3;
 const BASE_PRICE_ID = 1;
 
+const OPT_GROUP_ID = 9;
+
 const OPT_PRICE_CODE = 'OPT';
 const BASE_PRICE_CODE = 'BASE';
 

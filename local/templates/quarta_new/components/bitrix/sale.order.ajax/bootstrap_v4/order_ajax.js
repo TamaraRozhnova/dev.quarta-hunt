@@ -82,20 +82,17 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			this.result = parameters.result || {};
 
-			// 
-			// console.log('debug')
-			this.debugMode = false;
-
-			if (parameters.result?.DEBUG_IP == '127.0.0.1') {
-				this.debugMode = true;
-			}
-			// 
+			// if (parameters.result?.DEBUG_IP == '127.0.0.1') {
+			// 	this.debugMode = true;
+			// }			
 
 			this.licenseNeed = parameters.result.LICENSE_NEED
 			this.deliveryIds = parameters.result.DELIVERY_IDS
 			this.paysSystem = parameters.result.PAY_SYSTEMS
 			this.userBonusPoints = parameters.result.USER_POINTS
 			this.applyBonus = null;
+
+			this.isUserOpt = parameters.result.IS_USER_OPT;
 
 			this.prepareLocations(parameters.locations);
 			this.params = parameters.params || {};
@@ -3382,14 +3379,14 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			var node = !!activeNodeMode ? this.basketBlockNode : this.basketHiddenBlockNode,
 				basketContent, basketTable;
 
-			if (this.debugMode) {				
+			if (!this.isUserOpt) {
 				this.handleClickChoice();
 				$('#bx-soa-coupon-bonus-block_id').remove();
 				this.setBlockBonusesCoupons();
 				setTimeout(() => {
 					$('#range').val(this.result.LOGICTIM_BONUS?.PAY_BONUS).css('background-size', this.result.LOGICTIM_BONUS?.PAY_BONUS/this.result.LOGICTIM_BONUS?.MAX_BONUS*100+'%');
-				}, 100);
-			}
+				}, 100);			
+			}			
 
 			if (this.initialized.basket)
 			{
@@ -4173,12 +4170,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			});
 		},
 
-		refreshBlockBonusesCoupons: function() {
-			if (this.debugMode) {
-
-			}
-		},
-
 		handleClickChoice: function() {
 			document.addEventListener('click', (event) => {
 				if (event.target.classList.contains('bx-soa-coupon-bonus-block-choice-item')) {
@@ -4217,49 +4208,45 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		},
 
 		setBlockBonusesCoupons: function() {
-			if (this.debugMode) {
+			const bonusBlock = this.getBonusesBlock()
+			
+			const blockChoiceAction = BX.create('DIV', {
+				props: {
+					className: 'bx-soa-coupon-bonus-block-choice',
+				},
+				children: [
+					BX.create('SPAN', {
+						props: {
+							className: 'bx-soa-coupon-bonus-block-choice-item active', id: 'BONUS'
+						},
+						text: "Бонусные баллы",
+					}),
+					BX.create('SPAN', {
+						props: {
+							className: 'bx-soa-coupon-bonus-block-choice-item', id: 'COUPONS'
+						},
+						text: "Промокод",
+					}),
+				]
+			})
 
-				const bonusBlock = this.getBonusesBlock()
-				
-				const blockChoiceAction = BX.create('DIV', {
-					props: {
-						className: 'bx-soa-coupon-bonus-block-choice',
-					},
-					children: [
-						BX.create('SPAN', {
-							props: {
-								className: 'bx-soa-coupon-bonus-block-choice-item active', id: 'BONUS'
-							},
-							text: "Бонусные баллы",
-						}),
-						BX.create('SPAN', {
-							props: {
-								className: 'bx-soa-coupon-bonus-block-choice-item', id: 'COUPONS'
-							},
-							text: "Промокод",
-						}),
-					]
-				})
+			const blockBonusesCoupons = BX.create('DIV', {
+				props: {
+					className: 'bx-soa-coupon-bonus-block',
+					id: 'bx-soa-coupon-bonus-block_id'
+				},
+				children: [
+					blockChoiceAction,
+					bonusBlock,
+				]
+			})
+	
+			BX.append(
+				blockBonusesCoupons,
+				BX('bx-soa-paysystem')
+			)
 
-				const blockBonusesCoupons = BX.create('DIV', {
-					props: {
-						className: 'bx-soa-coupon-bonus-block',
-						id: 'bx-soa-coupon-bonus-block_id'
-					},
-					children: [
-						blockChoiceAction,
-						bonusBlock,
-					]
-				})
-		
-				BX.append(
-					blockBonusesCoupons,
-					BX('bx-soa-paysystem')
-				)
-
-				this.initSliderBonusTrack();
-
-			}
+			this.initSliderBonusTrack();
 		},
 
 		unsetActiveBonusBlockChoice: function() {
@@ -4275,8 +4262,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		},
 
 		initSliderBonusTrack: function() {
-			if (this.debugMode) {
-
 			const rangeInputs = document.querySelectorAll('.bx-bonus-slider-track input[type="range"]')
 			const numberInput = document.querySelector('.bx-bonus-slider-track input[type="text"]')
 
@@ -4323,16 +4308,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 	
 			const observer = new MutationObserver(callback)
 			observer.observe(document.documentElement, {attributes: true})
-
-			}
 		},
 
 		getSliderBonusTrack: function() {
-
-			console.log(this.result.LOGICTIM_BONUS);
-
-			if (this.debugMode) {
-
 			if (!this.userBonusPoints) {
 				return false;
 			}
@@ -4419,60 +4397,52 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			  });
 
 			return sliderTrack;
-
-			}
 		},
 
 		getBonusesBlock: function() {
-			if (this.debugMode) {
+			const sliderTrack = this.getSliderBonusTrack()
 
-				const sliderTrack = this.getSliderBonusTrack()
+			const bonusBlock = BX.create('DIV', {
+				props: {className: 'bx-soa-bonus-block'},
+				children: [
+					BX.create('DIV', {
+						props: {className: 'bx-soa-bonus-user-information'},
+						children: [
+							BX.create('SPAN', {
+								text: `Доступно ${this.userBonusPoints} баллов.`
+							}),
+							BX.create('BR', {}),
+							BX.create('SPAN', {
+								props: {
+									className: 'color-grey'
+								},
+								text: `На этот заказ Вы можете потратить до ${this.result.LOGICTIM_BONUS?.MAX_BONUS} бонусов`
+							})
+						]
+					}),
+					BX.create('DIV', {
+						props: {className: 'bx-soa-bonus-label bx-soa-bonus-user-information-label'},
+						children: [
+							BX.create('LABEL', {
+								text: "Сумма"
+							})
+						]
+					}),
+					sliderTrack
+				]
+			})
 
-				const bonusBlock = BX.create('DIV', {
-					props: {className: 'bx-soa-bonus-block'},
-					children: [
-						BX.create('DIV', {
-							props: {className: 'bx-soa-bonus-user-information'},
-							children: [
-								BX.create('SPAN', {
-									text: `Доступно ${this.userBonusPoints} баллов.`
-								}),
-								BX.create('BR', {}),
-								BX.create('SPAN', {
-									props: {
-										className: 'color-grey'
-									},
-									text: `На этот заказ Вы можете потратить до ${this.result.LOGICTIM_BONUS?.MAX_BONUS} бонусов`
-								})
-							]
-						}),
-						BX.create('DIV', {
-							props: {className: 'bx-soa-bonus-label bx-soa-bonus-user-information-label'},
-							children: [
-								BX.create('LABEL', {
-									text: "Сумма"
-								})
-							]
-						}),
-						sliderTrack
-					]
-				})
+			const bonusBlockWithLabel = BX.create('DIV', {
+				props: {className: 'bx-block-coupon-bonus-item bx-soa-bonus-block-wrapper active', id: 'bx-soa-bonus-block-wrapper_id'},
+				children: [
+					bonusBlock
+				]
+			})
 
-				const bonusBlockWithLabel = BX.create('DIV', {
-					props: {className: 'bx-block-coupon-bonus-item bx-soa-bonus-block-wrapper active', id: 'bx-soa-bonus-block-wrapper_id'},
-					children: [
-						bonusBlock
-					]
-				})
-
-				return bonusBlockWithLabel 
-
-			}
+			return bonusBlockWithLabel
 		},
 
-		getBlockCoupons: function() 
-		{
-			if (this.debugMode) {
+		getBlockCoupons: function() {			
 			var couponsList = this.getCouponsList(true),
 			couponsLabel = this.getCouponsLabel(true),
 			couponsBlockWithLabel,
@@ -4513,9 +4483,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			})
 
 			return couponsBlockWithLabel;
-
-			}
-
 		},
 
 		editCoupons: function(basketItemsNode)
@@ -4550,36 +4517,32 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					]
 				});
 
-			if (!this.debugMode) {
-				basketItemsNode.appendChild(
-					BX.create('DIV', {
-						props: {className: 'bx-soa-coupon'},
-						children: [
-							couponsLabel,
-							couponsBlock
-						]
-					})
-				);
-			} else {
-
-				setTimeout(() => {
-					if (!BX("bx-soa-coupon_id")) {
-						BX.append(
-							BX.create('DIV', {
-								props: {className: 'bx-block-coupon-bonus-item bx-soa-coupon bx-soa-coupon-block-wrapper', id: 'bx-soa-coupon_id'},
-								children: [
-									couponsLabel,
-									couponsBlock
-								]
-							}),
-							BX('bx-soa-coupon-bonus-block_id')
-						)
-					}
-				}, 250);
-
-				
-			}
-
+				if(this.isUserOpt) {
+					basketItemsNode.appendChild(
+						BX.create('DIV', {
+							props: {className: 'bx-soa-coupon'},
+							children: [
+								couponsLabel,
+								couponsBlock
+							]
+						})
+					);
+				} else {
+					setTimeout(() => {
+						if (!BX("bx-soa-coupon_id")) {
+							BX.append(
+								BX.create('DIV', {
+									props: {className: 'bx-block-coupon-bonus-item bx-soa-coupon bx-soa-coupon-block-wrapper', id: 'bx-soa-coupon_id'},
+									children: [
+										couponsLabel,
+										couponsBlock
+									]
+								}),
+								BX('bx-soa-coupon-bonus-block_id')
+							)
+						}
+					}, 250);
+				}
 		},
 
 		editCouponsFade: function(basketItemsNode)
