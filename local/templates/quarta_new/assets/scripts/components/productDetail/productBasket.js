@@ -199,7 +199,7 @@ class ProductBasket {
 
     createAddToBasketButtonHtml() {
         return (
-            `<button class="product-basket btn btn-primary px-5">
+            `<button onclick="ym(30377432,'reachGoal','product-card__add-basket')" class="product-basket btn btn-primary px-5 product-card__add-basket">
                 В корзину
             </button>`
         )

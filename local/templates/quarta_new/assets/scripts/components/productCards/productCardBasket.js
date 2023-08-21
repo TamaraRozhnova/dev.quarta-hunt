@@ -247,7 +247,7 @@ class ProductCardBasket {
 
     getAddToBasketButtonHtml() {
         return (
-            `<button class="btn btn-primary product-card__button product-card__add-basket">
+            `<button onclick="ym(30377432,'reachGoal','product-card__add-basket')" class="btn btn-primary product-card__button product-card__add-basket">
                  В корзину
              </button>`
         )

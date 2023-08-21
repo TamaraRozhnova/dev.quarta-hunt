@@ -23,7 +23,7 @@
   padding: 3.125rem 0;
 }
 .shop-info__wrapper svg {
-  min-width: max-content;
+  /*min-width: max-content;*/
 }
 .contacts__shop-description p b {
   color: #333;
@@ -53,9 +53,11 @@
 }
 
 .contacts svg {
-  min-width: -webkit-max-content;
-  min-width: -moz-max-content;
-  min-width: max-content
+  /*min-width: -webkit-max-content;*/
+  /*min-width: -moz-max-content;*/
+  /*min-width: max-content;*/
+  width: 16px;
+  flex-shrink: 0;
 }
 
 .contacts .container {
@@ -151,5 +153,9 @@
   .contacts .shop-maps,
   .shop-maps iframe {
       height: 500px
+  }
+
+  .contacts .bg-gray-100 .mb-4 {
+      margin-bottom: 1rem !important;
   }
 }

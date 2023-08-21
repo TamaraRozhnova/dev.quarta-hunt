@@ -241,8 +241,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["register_submit_button"] 
 			unset($arEventFields["PASSWORD"]);
 			unset($arEventFields["CONFIRM_PASSWORD"]);
 
+			if (!empty($arEventFields['UF_TYPE'])) {
+
+				$tmpMeasoryTypesUser = [
+					'retail' => 'Розничный',
+					'wholesale' => 'Оптовый'
+				];
+
+				$arEventFields['USER_TYPE'] = $tmpMeasoryTypesUser[$arEventFields['UF_TYPE']];
+
+			}
+
 			$event = new CEvent;
 			$event->SendImmediate("NEW_USER", SITE_ID, $arEventFields);
+			$event->SendImmediate("USER_INFO", SITE_ID, $arEventFields);
 			if($bConfirmReq)
 				$event->SendImmediate("NEW_USER_CONFIRM", SITE_ID, $arEventFields);
 		}

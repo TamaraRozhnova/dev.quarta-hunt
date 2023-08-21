@@ -1,12 +1,13 @@
 $( document ).ready(function() {
     if ( document.getElementById("phone") ) {
-    	BX.ready(function() {
-            var result = new BX.MaskedInput({
-                mask: '+7 (999) 999-99-99', // устанавливаем маску
-                input: BX('phone'),
-                placeholder: '_' // символ замены +7 ___ ___ __ __
-            });
-        });
+    	// BX.ready(function() {
+        //     var result = new BX.MaskedInput({
+        //         mask: '+7 (999) 999-99-99', // устанавливаем маску
+        //         input: BX('phone'),
+        //         placeholder: '_' // символ замены +7 ___ ___ __ __
+        //     });
+        // });
+		$('#phone').inputmask({"mask": "+7 (999) 999-99-99"});
     }
     $('.auth_email_form').on('click', function(){
     	$("#form_auth_phone").hide();

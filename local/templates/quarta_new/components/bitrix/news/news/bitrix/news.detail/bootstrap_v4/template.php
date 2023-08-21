@@ -52,7 +52,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                             ),
                             "CURRENT_SECTION_CODE" => $arParams["ELEMENT_IBLOCK_SECTION_CODE"],
                             "SECTION_URL" => "",
-                            "PARENT_URL" => "/news/",
+                            "PARENT_URL" => "/blog/",
                             "SECTION_USER_FIELDS" => array(
                                 0 => "",
                                 1 => "",
