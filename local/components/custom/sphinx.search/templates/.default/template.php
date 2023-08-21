@@ -19,7 +19,7 @@
             <p class="mb-4">
                 <? if ($arResult['COUNT_SEARCH'] > 0): ?>
                     Найдено <?=$arResult['COUNT_SEARCH']?>  совпадений по вашему запросу
-                    <span class="text-primary"><?= $_GET['q'] ?></span>
+                    <span class="text-primary"><?= $arResult['SEARCH_TEXT'] ?></span>
                 <? else: ?>
                     <span>Простите, по вашему запросу товаров сейчас нет.</span>
                         <br>

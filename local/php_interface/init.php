@@ -28,6 +28,7 @@ Loader::registerAutoLoadClasses(null, [
 
     'SearchSphinx\ProductTable' => '/local/php_interface/classes/Search/SearchProducts.php',
     'SearchSphinx\BlogTable' => '/local/php_interface/classes/Search/SearchBlog.php',
+    'Helpers\Translit' => '/local/php_interface/classes/Helpers/TranslitHelper.php',
 
     'OrderId' => '/local/php_interface/classes/OrderId.php',
     'Personal\Favorites' => '/local/php_interface/classes/Personal/Favorites.php',
