@@ -1,0 +1,74 @@
+.youtube-promotion .backdrop {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-position: -14.5625rem;
+    background-image: url("data:image/svg+xml,%3Csvg width='466' height='450' viewBox='0 0 466 450' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M453.954 225C453.954 100.938 352.122 0 226.96 0C101.798 0 0 100.972 0 225C0 349.028 101.833 450 226.995 450C248.559 450 269.881 447.015 290.406 441.08L315.397 433.875L265.346 368.927L254.581 370.917C245.547 372.598 236.271 373.422 226.995 373.422C144.407 373.422 77.2225 306.828 77.2225 224.966C77.2225 143.104 144.407 76.5096 226.995 76.5096C309.582 76.5096 376.767 143.104 376.767 224.966C376.767 259.652 364.34 293.207 342.223 319.693H258.389L360.845 447.804L361.294 447.873L362.991 449.966H466L401.273 369.065C435.056 328.923 453.954 278.008 453.954 225Z' fill='white' fill-opacity='0.05'/%3E%3C/svg%3E%0A");
+}
+.youtube-promotion .play-button {
+    position: relative;
+    transform: translateX(-50%);
+    z-index: 1;
+    transition: transform 0.3s;
+}
+.youtube-promotion .play-button:hover {
+    transform: translateX(-50%) scale(1.2);
+}
+.youtube-promotion .btn {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    font-weight: 500;
+}
+.youtube-promotion h3, .youtube-promotion p {
+    color: #fff;
+}
+.youtube-promotion__content h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+@media (max-width: 992px) {
+    .youtube-promotion  h3 {
+        font-size: 1.25rem;
+    }
+    .youtube-promotion .backdrop {
+        background-position: -7.125rem bottom;
+        background-size: contain;
+    }
+    .youtube-promotion .play-button {
+        transform: translateX(-50%) scale(0.5);
+    }
+    .youtube-promotion .play-button:hover {
+        transform: translateX(-50%) scale(0.6);
+    }
+}
+@media (max-width: 768px) {
+    .youtube-promotion__preview, .youtube-promotion .wide-promotion__image {
+        height: 12.5rem !important;
+    }
+    .youtube-promotion__content {
+        padding-top: 2.5rem;
+        min-height: 13.875rem;
+    }
+    .youtube-promotion__content h3 {
+        font-size: 1.125rem;
+    }
+    .youtube-promotion__content .btn {
+        font-size: 0.875rem;
+    }
+    .youtube-promotion .backdrop {
+        background-size: 13.875rem;
+        background-position: -10% 100%;
+    }
+    .youtube-promotion .play-button {
+        position: absolute;
+        left: 50%;
+        top: 6.25rem;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
