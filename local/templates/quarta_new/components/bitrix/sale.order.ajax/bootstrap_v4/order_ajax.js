@@ -3379,10 +3379,14 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			var node = !!activeNodeMode ? this.basketBlockNode : this.basketHiddenBlockNode,
 				basketContent, basketTable;
 
+
 			if (!this.isUserOpt) {
 				this.handleClickChoice();
 				$('#bx-soa-coupon-bonus-block_id').remove();
+
+				console.log('near setBlockBonusesCoupons')
 				this.setBlockBonusesCoupons();
+
 				setTimeout(() => {
 					$('#range').val(this.result.LOGICTIM_BONUS?.PAY_BONUS).css('background-size', this.result.LOGICTIM_BONUS?.PAY_BONUS/this.result.LOGICTIM_BONUS?.MAX_BONUS*100+'%');
 				}, 100);			
@@ -4209,6 +4213,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		setBlockBonusesCoupons: function() {
 			const bonusBlock = this.getBonusesBlock()
+
+			console.log(bonusBlock)
 			
 			const blockChoiceAction = BX.create('DIV', {
 				props: {
@@ -4295,8 +4301,11 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			rangeInputs.forEach(input => {
 				input.addEventListener('input', handleInputChange)
 			})
-	
-			numberInput.addEventListener('input', handleInputChange)
+			
+			if (numberInput !== null) {
+				numberInput.addEventListener('input', handleInputChange)
+			}
+			
 	
 			function callback(mutationList, observer) {  
 				mutationList.forEach(function(mutation) {
@@ -4311,8 +4320,17 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		},
 
 		getSliderBonusTrack: function() {
-			if (!this.userBonusPoints) {
-				return false;
+
+			if (Number(this.userBonusPoints) == 0) {
+				this.userBonusPoints = 0
+			}
+
+			if (Number(this.result.LOGICTIM_BONUS?.MAX_BONUS) == 0) {
+				this.result.LOGICTIM_BONUS.MAX_BONUS = 0
+			}
+
+			if (Number(this.result.LOGICTIM_BONUS?.PAY_BONUS) == 0) {
+				this.result.LOGICTIM_BONUS.PAY_BONUS = 0
 			}
 
 			const resultTotalPrice = this.result.LOGICTIM_BONUS?.MAX_BONUS; 
@@ -4348,9 +4366,13 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								text: "Применить",	
 								events: {
 									click: (event) => {
-										BX.hide(BX(event.target.getAttribute('id')))
-										BX.show(BX("btn-choice-reset"))
-										useBonus();
+
+										if (Number($('#paybonus_input').val() != 0)) {
+											BX.hide(BX(event.target.getAttribute('id')))
+											BX.show(BX("btn-choice-reset"))
+											useBonus();
+										}
+
 									}
 								}
 							}),
@@ -4402,6 +4424,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		getBonusesBlock: function() {
 			const sliderTrack = this.getSliderBonusTrack()
 
+			console.log(sliderTrack)
+
 			const bonusBlock = BX.create('DIV', {
 				props: {className: 'bx-soa-bonus-block'},
 				children: [
@@ -4409,7 +4433,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						props: {className: 'bx-soa-bonus-user-information'},
 						children: [
 							BX.create('SPAN', {
-								text: `Доступно ${this.userBonusPoints} баллов.`
+								text: `Доступно ${Number(this.userBonusPoints)} баллов.`
 							}),
 							BX.create('BR', {}),
 							BX.create('SPAN', {

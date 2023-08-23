@@ -55,6 +55,7 @@ function authPhone(){
         url: '/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php',
 		dataType: 'json',
 		onsuccess: function(data){
+			console.log(data)
 			if(data.error == false){
 				$('.bx-authform-formgroup-container.code').show();
 				$('.bx-authform-formgroup-container.phone').hide();
@@ -63,6 +64,7 @@ function authPhone(){
 				$('.more_code_phone').show();
 
 				if(data.user){
+					console.log(data.user)
 					window.location.reload();
 				}
 			}else{

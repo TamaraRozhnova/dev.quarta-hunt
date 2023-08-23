@@ -4,7 +4,7 @@ global $USER;
 
 if (!$USER->IsAuthorized()) {
 
-	$filter = ['PERSONAL_PHONE' => $_REQUEST['userPhone']];
+	$filter = ['PERSONAL_PHONE' => $_REQUEST['userPhone'], 'ACTIVE' => 'Y'];
 	$select = ['SELECT' => ['UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
 
 	$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, $select);

@@ -108,9 +108,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["register_submit_button"] 
 	// check emptiness of required fields
 	foreach ($arResult["SHOW_FIELDS"] as $key)
 	{
+
 		if ($key != "PERSONAL_PHOTO" && $key != "WORK_LOGO")
 		{
 			$arResult["VALUES"][$key] = $_REQUEST["REGISTER"][$key];
+
+			if (
+				in_array($key, $arResult["REQUIRED_FIELDS"])
+				&&
+				$key == 'PERSONAL_PHONE'
+			) {
+
+				$numbersOnly = preg_replace('/\D/', '', $_REQUEST["REGISTER"][$key]);
+
+				if (strlen($numbersOnly) != 11) {
+					$arResult["ERRORS"][$key] = GetMessage("REGISTER_FIELD_REQUIRED");
+				}
+
+			}
+
 			if (in_array($key, $arResult["REQUIRED_FIELDS"]) && trim($arResult["VALUES"][$key]) == '')
 				$arResult["ERRORS"][$key] = GetMessage("REGISTER_FIELD_REQUIRED");
 		}
@@ -121,6 +137,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["register_submit_button"] 
 			if (in_array($key, $arResult["REQUIRED_FIELDS"]) && !is_uploaded_file($_FILES["REGISTER_FILES_".$key]["tmp_name"]))
 				$arResult["ERRORS"][$key] = GetMessage("REGISTER_FIELD_REQUIRED");
 		}
+
+
+
 	}
 
 	if(isset($_REQUEST["REGISTER"]["TIME_ZONE"]))
