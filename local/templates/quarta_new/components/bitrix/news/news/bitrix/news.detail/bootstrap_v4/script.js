@@ -196,3 +196,70 @@
 	};
 }
 )(window);
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+	const scrollToTarget = (offsetPosition) => {
+		window.scrollBy({
+			top: offsetPosition,
+			behavior: 'smooth'
+		});
+	}
+
+	const anchorLinks = document.querySelectorAll('a[href^="#"]')
+
+	let scrollTarget,
+		anchorWindow,
+		topOffset,
+		offsetPosition,
+		elementPosition,
+		headerTarget
+
+	if (window.screen.width > 1200) {
+		headerTarget = document.querySelector('.header.header--desktop')
+	} else {
+		headerTarget = document.querySelector('.header.header--mobile')
+	}
+
+	if (anchorLinks.length > 0) {
+		anchorLinks.forEach( (anchor) => {
+			anchor.addEventListener('click', (event) => {
+				event.preventDefault();
+
+				if (anchor.getAttribute("href")[0] = '#') {
+					anchorWindow = anchor.getAttribute("href").substring(1)
+				} else {
+					anchorWindow = anchor.getAttribute("href")
+				}
+
+				scrollTarget = document.querySelector(`a[name="${anchorWindow}"]`);
+				topOffset = document.querySelector(`a[name="${anchorWindow}"]`).offsetHeight;
+				elementPosition = scrollTarget.getBoundingClientRect().top;
+				offsetPosition = elementPosition - topOffset - headerTarget.offsetHeight;
+
+				scrollToTarget(offsetPosition)
+
+			})
+		})
+	}
+
+	if (window.location.hash) {
+
+		anchorWindow = window.location.hash
+
+		if (anchorWindow[0] == '#') {
+			anchorWindow = anchorWindow.substring(1)
+		}
+
+        scrollTarget = document.querySelector(`a[name="${anchorWindow}"]`);
+        topOffset = document.querySelector(`a[name="${anchorWindow}"]`).offsetHeight;
+        elementPosition = scrollTarget.getBoundingClientRect().top;
+        offsetPosition = elementPosition - topOffset - headerTarget.offsetHeight;
+
+		scrollToTarget(offsetPosition)
+	}
+
+})
+
