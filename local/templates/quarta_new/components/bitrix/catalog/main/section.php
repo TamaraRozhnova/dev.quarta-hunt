@@ -18,7 +18,8 @@ $sectionId = $arResult['VARIABLES']['SECTION_ID'];
     ],
     "filter" => [
         "IBLOCK_ID" => $arParams["IBLOCK_ID"],
-        "ID" => $sectionId
+        "ID" => $sectionId,
+        "ACTIVE" => 'Y'
     ]
 ])->fetch();
 

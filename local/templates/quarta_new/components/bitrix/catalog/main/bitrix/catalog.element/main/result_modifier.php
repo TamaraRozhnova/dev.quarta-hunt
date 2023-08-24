@@ -26,7 +26,8 @@ $bannedProps = [
     'HIT',
     'PRESENT',
     'DOUBLE_BONUS',
-    'DOP_IMAGE_MB'
+    'DOP_IMAGE_MB',
+    'SIZE_DISCOUNT'
 ];
 
 $arResult['FILES'] = [];

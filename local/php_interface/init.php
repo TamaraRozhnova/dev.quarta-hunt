@@ -1,6 +1,9 @@
 <?php
 define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 
+COption::SetOptionString("main", "check_agents", "N"); 
+COption::SetOptionString("main", "agents_use_crontab", "N"); 
+
 use \Bitrix\Main\Loader;
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
