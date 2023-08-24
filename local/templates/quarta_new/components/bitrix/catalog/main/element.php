@@ -14,7 +14,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     ],
     "filter" => [
         "IBLOCK_ID" => $arParams['IBLOCK_ID'],
-        "CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"]
+        "CODE" => $arResult["VARIABLES"]["ELEMENT_CODE"],
+        "ACTIVE" => 'Y'
     ]
 ])->fetch();
 
