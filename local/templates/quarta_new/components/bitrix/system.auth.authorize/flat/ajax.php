@@ -1,77 +1,196 @@
-<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
-global $USER;
+use \Bitrix\Main\Loader,
+	\Targetsms\Sms\Sender,
+	\Bitrix\Main\Engine\CurrentUser,
+	\Bitrix\Main\UserTable;
 
-if (!$USER->IsAuthorized()) {
+	Loader::includeModule('targetsms.sms');
 
-	$filter = ['PERSONAL_PHONE' => $_REQUEST['userPhone'], 'ACTIVE' => 'Y'];
-	$select = ['SELECT' => ['UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
 
-	$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, $select);
+const TYPES_USER = [
+	'retail' => 'Розничный',
+	'wholesale' => 'Оптовый'
+];
 
-	if ($user = $rsUsers->GetNext()) {
-        
-		if (empty($_REQUEST['userCode'])) {
-			\Bitrix\Main\Loader::includeModule('targetsms.sms');
+$currentUser = CurrentUser::get();
+
+if (!$currentUser->getId()) {
+
+	$defaultParamsUsers = [
+		'select' => [
+			'ID',
+			'NAME',
+			'LAST_NAME',
+			'EMAIL',
+			'PERSONAL_PHONE',
+			'UF_TYPE', 
+			'UF_PROMO', 
+			'UF_SMS_CODE'
+		],
+		'filter' => [
+			'PERSONAL_PHONE' => $_REQUEST['USER']['PERSONAL_PHONE'], 
+			'ACTIVE' => 'Y'
+		]
+	];
+
+	if ($_REQUEST['USER_SELECTED'] == 'Y') {
+		$defaultParamsUsers['filter'] = array_merge(
+			$defaultParamsUsers['filter'],
+			[
+				'ID' => $_REQUEST['USER']['ID'],
+				'PERSONAL_PHONE' => $_REQUEST['USER']['PERSONAL_PHONE'],
+			]
+		);
+	}
+
+	$rsUsers = UserTable::getList(
+		$defaultParamsUsers
+	)->fetchAll();
 	
-			$sms = new \Targetsms\Sms\Sender();
+	if (count($rsUsers) > 1) {
 	
-			$phone = $user['PERSONAL_PHONE'];
-			$message = rand(1111, 9999);
+		/**
+		 * У пользователя несколько аккаунтов
+		 * открываем ему модальное окно с выбором аккаунта
+		 */
+
+		foreach($rsUsers as $arUserIndex => $arUser) {
+			$arAjaxParams['USERS'][$arUserIndex] = $arUser;
+
+			$arAjaxParams['USERS'][$arUserIndex]['NAME_DISPLAY'] = implode(
+				' ', 
+				[
+					$arUser['NAME'], 
+					$arUser['LAST_NAME']
+				]
+			);
+
+			$arAjaxParams['USERS'][$arUserIndex]['TYPE_DISPLAY'] = implode(
+				' ',
+				[
+					TYPES_USER[$arUser['UF_TYPE']],
+					'покупатель'
+				]
+			);
+
+			$arAjaxParams['MULTI_USER'] = 'Y';
+
+		}
+
+		ob_end_clean();
+
+		header('Content-Type: application/json; charset=utf-8');
+
+		echo Bitrix\Main\Web\Json::encode($arAjaxParams);
+
 	
-			$u = new CUser();
-			$u->Update($user['ID'], ['UF_SMS_CODE' => $message]);
+	} else {
+
+		/** 
+		 * Аккаунт один или пользователь 
+		 * выбран через модальное окно 
+		 * */
+		
+
+		//  $userCode = 
+
+		$currentUser = reset($rsUsers);
+
+		if (empty($_REQUEST['USER']['userCode'])) {
+		
+			$smsObj = new Sender();
+			$userObj = new CUser();
 	
-			$resp = $sms->sendSms($phone, $message, '', 'quarta-hunt', 'quartahunt-login');
+			$smsCode = rand(1111, 9999);
+
+			if ($_REQUEST['USER_SELECTED'] == 'Y') {
+
+				$userObj->Update($_REQUEST['USER']['ID'], [
+					'UF_SMS_CODE' => $smsCode
+				]);
+
+			} else {
+
+				$userObj->Update($currentUser['ID'], [
+					'UF_SMS_CODE' => $smsCode
+				]);
+
+			}
+
+			$rsSendSms = $smsObj->sendSms(
+				$_REQUEST['USER']['PERSONAL_PHONE'], 
+				$smsCode, 
+				'', 
+				'quarta-hunt', 
+				'quartahunt-login'
+			);
 	
-			if (!$resp->error) {
+			if (!$rsSendSms->error) {
 				$result['error'] = false;
 				$result['message'] = 'Сообщение с кодом авторизации успешно отправлено';
-			} else {
-				$result['error'] = true;
-				$result['message'] = 'Ошибка отправки кода авторизации';
-			}
+			}  else {
+				 $result['error'] = true;
+				 $result['message'] = 'Ошибка отправки кода авторизации';
+			 }
+
+			ob_end_clean();
+
+			header('Content-Type: application/json; charset=utf-8');
+
+			echo Bitrix\Main\Web\Json::encode($result);
+
 		} else {
-			if ($user['UF_SMS_CODE'] === $_REQUEST['userCode']) {
-				$USER->Authorize($user['ID']);
+
+			$smsVerify = $currentUser['UF_SMS_CODE'] === $_REQUEST['USER']['userCode'];
+
+			if ($_REQUEST['USER_SELECTED'] == 'Y') {
+				$smsVerify = $currentUser['UF_SMS_CODE'] === $_REQUEST['USER']['userCode'];
+			}
+
+			if ($smsVerify) {
+
+				$USER->Authorize($currentUser['ID']);
 				$result['error'] = false;
 				$result['message'] = 'Вы успешно авторизовались';
-				$result['user'] = ['ID' => $USER->GetID(), 'LOGIN' => $USER->GetLogin(), 'EMAIL' => $USER->GetEmail(), 'FIRST_NAME' => $USER->GetFirstName(), 'LAST_NAME' => $USER->GetLastName()];
+				$result['user'] = [
+					'ID' => $USER->GetID(), 
+					'LOGIN' => $USER->GetLogin(), 
+					'EMAIL' => $USER->GetEmail(), 
+					'FIRST_NAME' => $USER->GetFirstName(), 
+					'LAST_NAME' => $USER->GetLastName()
+				];
 			} else {
 				$result['error'] = true;
 				$result['message'] = 'Неверный код';
 			}
+
+			ob_end_clean();
+
+			header('Content-Type: application/json; charset=utf-8');
+
+			echo Bitrix\Main\Web\Json::encode($result);
+
 		}
 
-	} else {
-		$result['error'] = true;
-		$result['message'] = 'Такого номера не существует';
-		$result['phone'] = $_REQUEST['userPhone'];
 	}
 
 } else {
 
-
-	//$filter = ['PERSONAL_PHONE' => '+7 (999) 111-11-11', 'WORK_PHONE' => $_REQUEST['userPhone']];
-	//$select = ['SELECT' => ['UF_TYPE', 'UF_PROMO', 'UF_SMS_CODE']];
-	//$rsUsers = CUser::GetList(($by="id"), ($order="desc"), $filter, $select);
-	//$user = $rsUsers->GetNext();
-	//$u = new CUser();
-	//$u->Update($user['ID'], ['UF_SMS_CODE' => '1111']);
-	//$result['u'] = $user;
-
-
 	$result['error'] = true;
     $result['message'] = 'Вы уже авторизованы';
-    $result['user'] = ['ID' => $USER->GetID(), 'LOGIN' => $USER->GetLogin(), 'EMAIL' => $USER->GetEmail(), 'FIRST_NAME' => $USER->GetFirstName(), 'LAST_NAME' => $USER->GetLastName()];
+    $result['user'] = [
+		'ID' => $USER->GetID(), 
+		'LOGIN' => $USER->GetLogin(), 
+		'EMAIL' => $USER->GetEmail(), 
+		'FIRST_NAME' => $USER->GetFirstName(), 
+		'LAST_NAME' => $USER->GetLastName()
+	];
+
+	ob_end_clean();
+
+	header('Content-Type: application/json; charset=utf-8');
+
+	echo Bitrix\Main\Web\Json::encode($result);
 
 }
-
-ob_end_clean();
-
-header('Content-Type: application/json; charset=utf-8');
-
-echo json_encode($result);
-
-die();
-?>

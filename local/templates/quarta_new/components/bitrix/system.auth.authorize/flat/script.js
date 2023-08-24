@@ -45,31 +45,158 @@ $( document ).ready(function() {
     	authPhone();
     });
 });
-function authPhone(){
+
+let objModal = '',
+	userSelected = null,
+	userData;
+
+function initModalMultiUser(data) {
+
+	if (data.USERS) {
+
+		let hmtlModalListAccounts = '';
+		const multiAccountsWindow = document.querySelector('#multi-accounts-window');
+		const multiAccountsWindowList = multiAccountsWindow.querySelector('.multi-accounts-content-list');
+
+		data.USERS.forEach( (element, index) => {
+
+			hmtlModalListAccounts += `
+				<div data-index = "${index}" class="multi-accounts-content-item">
+					<div class="multi-accounts-content-item-name-type">
+						<span class = "multi-accounts-content-item-name">
+							${element?.NAME_DISPLAY}
+						</span>
+						<span class = "multi-accounts-content-item-type">
+							${element?.TYPE_DISPLAY}
+						</span>
+					</div>
+					<span class = "multi-accounts-content-item-email">
+						${element?.EMAIL}
+					</span>
+				</div>
+			`
+		});
+
+		if (
+			hmtlModalListAccounts != '' 
+			&&
+			hmtlModalListAccounts != null 
+		) {
+			multiAccountsWindowList.innerHTML = hmtlModalListAccounts
+		}
+
+		handleMultiAccounts(data.USERS)
+	
+		objModal = new Modal({
+			modalSelector: "#multi-accounts-window"
+		})
+
+		objModal.open()
+
+	}
+
+}
+
+function handleMultiAccounts(data) {
+	document.addEventListener('click', (event) => {
+		if (event.target.closest('.multi-accounts-content-item') != null) {
+			let currentItem = event.target.closest('.multi-accounts-content-item')
+			let currentItemData = data[currentItem.dataset.index]
+			let dataSend = {
+				USER: currentItemData,
+				USER_SELECTED: 'Y'
+			}
+
+			userData = dataSend
+			userSelected = 'Y';
+
+			authPhone(dataSend)
+
+		}
+	})
+}
+
+function authPhone(data = null){
+
+	let dataSend;
+
+	if (
+		data != null
+		&&
+		data?.USER_SELECTED
+		||
+		userSelected == 'Y'
+	) {
+
+		if (userData?.USER) {
+			userData.USER.userCode = $('input[name="CODE"]').val()
+			dataSend = userData
+		} else if (data?.USER) {
+			data.USER.userCode = $('input[name="CODE"]').val()
+			dataSend = data
+		}
+		
+	} else {
+		dataSend = {
+			USER: {
+				PERSONAL_PHONE: $('input[name="USER_PHONE"]').val(),
+				userCode: $('input[name="CODE"]').val()
+			}
+		}
+	}
+
 	BX.ajax({
         method: 'POST',
-		data: {
-			userPhone: $('input[name="USER_PHONE"]').val(),
-			userCode: $('input[name="CODE"]').val()
-		},
+		data: dataSend,
         url: '/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php',
 		dataType: 'json',
 		onsuccess: function(data){
-			console.log(data)
-			if(data.error == false){
-				$('.bx-authform-formgroup-container.code').show();
-				$('.bx-authform-formgroup-container.phone').hide();
-				$('.form_auth_phone').hide();
-				$('.login_auth_phone').show();
-				$('.more_code_phone').show();
 
-				if(data.user){
-					console.log(data.user)
-					window.location.reload();
+			console.log(data)
+
+			if (data?.MULTI_USER == 'Y') {
+
+				/**
+				 * Несколько аккаунтов
+				 */
+
+				initModalMultiUser(data)
+
+			} else {
+
+				if (typeof objModal != undefined && objModal != null && objModal != '') {
+					objModal.close()
 				}
-			}else{
-				$('.error_message').text(data.message);
+
+				if(data.error == false){
+					$('.bx-authform-formgroup-container.code').show();
+					$('.bx-authform-formgroup-container.phone').hide();
+					$('.form_auth_phone').hide();
+					$('.login_auth_phone').show();
+					$('.more_code_phone').show();
+	
+					if(data.user){
+
+						const urlParams = new URLSearchParams(window.location.search);
+						if (urlParams.has("logout") && urlParams.get("logout") === "yes") {
+
+							urlParams.delete("logout");
+							const newUrl = window.location.origin + window.location.pathname + "?" + urlParams.toString();
+
+							window.location.href = newUrl;
+
+						} else {
+							window.location.reload();
+						}
+
+					}
+
+				} else {
+					$('.error_message').text(data.message);
+				}
+
 			}
+
 		}
     });
 }
