@@ -10532,6 +10532,7 @@ h1.small-h2 {
 .registration-wrap{
   background-color: #F9F9FA;
   padding: 40px 0;
+  overflow: hidden;
 }
 .bx-auth-reg{
   position: relative;
