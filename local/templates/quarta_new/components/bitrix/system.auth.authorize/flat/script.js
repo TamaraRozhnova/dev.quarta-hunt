@@ -1,14 +1,26 @@
 $( document ).ready(function() {
     if ( document.getElementById("phone") ) {
-    	// BX.ready(function() {
-        //     var result = new BX.MaskedInput({
-        //         mask: '+7 (999) 999-99-99', // устанавливаем маску
-        //         input: BX('phone'),
-        //         placeholder: '_' // символ замены +7 ___ ___ __ __
-        //     });
-        // });
 		$('#phone').inputmask({"mask": "+7 (999) 999-99-99"});
     }
+
+    const phoneInput = document.querySelector('#phone');
+
+    phoneInput.addEventListener('paste', (event) => {
+        clipboardData = event.clipboardData || window.clipboardData;
+
+        pastedData = clipboardData.getData('Text');
+
+        if (pastedData.match(/\d+/g) != null) {
+            let modifyResult = pastedData.match(/\d+/g).join('');
+
+            if (modifyResult.length == 11) {
+                phoneInput.value = modifyResult.substring(1)
+            }
+
+        }
+
+    })
+
     $('.auth_email_form').on('click', function(){
     	$("#form_auth_phone").hide();
     	$(".auth_email_form").hide();
