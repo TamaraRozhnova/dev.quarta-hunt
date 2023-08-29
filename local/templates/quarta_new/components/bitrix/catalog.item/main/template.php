@@ -20,7 +20,7 @@ $item = $arResult['ITEM'];
 >
     <div class="product-card__image">
 
-        <? if ($arResult['PARAMS']['SHOW_PRODUCT_TAGS'] === 'Y') { ?>
+        <? if ($arResult['PARAMS']['SHOW_PRODUCT_TAGS_IN_SECTIONS'] === 'Y') { ?>
             <div class="product-card__tags">
                 <? if ($item['PROPERTIES']['HIT']['VALUE']) { ?>
                     <div class="product-card__tag">Хит</div>
@@ -35,7 +35,7 @@ $item = $arResult['ITEM'];
                         </span>
                         <span class="tooltip">При покупке на сумму 5 000 ₽ подарок</span>
                     </span>
-                <? } ?>
+                <? } ?>                
                 <? if ($item['PROPERTIES']['DOUBLE_BONUS']['VALUE']) { ?>
                     <span class="info">
                         <span>

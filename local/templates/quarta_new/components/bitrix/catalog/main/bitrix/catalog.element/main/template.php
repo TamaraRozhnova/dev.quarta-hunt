@@ -154,6 +154,18 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         <? } ?>
                     </div>
 
+                    <? $APPLICATION->IncludeComponent(
+                        "logictim:bonus.catalog",
+                        "element",
+                        Array(
+                            "COMPONENT_TEMPLATE" => "element",
+                            "COMPOSITE_FRAME_MODE" => "A",
+                            "COMPOSITE_FRAME_TYPE" => "AUTO",
+                            "ITEMS" => array("ITEMS"=>$arResult)
+                        )
+                    );?>
+                    <div class="product__bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
+
                     <? if (!empty($arResult['OFFERS'])) { ?>
                         <div class="select__wrapper product__trade-offers placeholder-glow">
                             <div class="placeholder"></div>
