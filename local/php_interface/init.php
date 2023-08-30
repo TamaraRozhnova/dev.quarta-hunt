@@ -298,15 +298,15 @@ class SaleOrderAjaxEventsO2K
 
                         "PERSON_TYPE_ID" => $arValues['PERSON_TYPE_ID'],
     
-                        "BANK_INN" => "BANK_INN",
-                        "BANK_KPP" => "BANK_KPP",
-                        "BANK_ORGN" => "BANK_ORGN",
-                        "BANK_PAYMENT_ACCOUNT" => "BANK_PAYMENT_ACCOUNT",
-                        "BANK_NAME" => "BANK_NAME",
-                        "BANK_BIK" => "BANK_BIK",
-                        "BANK_CORRESCPONDENT_ACCOUNT" => "BANK_CORRESCPONDENT_ACCOUNT",
-                        "BANK_PHONE" => "BANK_PHONE",
-                        "BANK_CEO" => "BANK_CEO",
+                        "BANK_INN" => $arPropsValues['INN'],
+                        "BANK_KPP" => $arPropsValues['KPP'],
+                        "BANK_ORGN" => $arPropsValues['OGRN'],
+                        "BANK_PAYMENT_ACCOUNT" => $arPropsValues['RAS_SCHET'],
+                        "BANK_NAME" => $arPropsValues['BANK'],
+                        "BANK_BIK" => $arPropsValues['BIK'],
+                        "BANK_CORRESCPONDENT_ACCOUNT" => $arPropsValues['KORR_SCHET'],
+                        "BANK_PHONE" => $arPropsValues['PHONE_COMPANY'],
+                        "BANK_CEO" => $arPropsValues['GEN_DIRECTOR'],
                     ];
     
                     break;

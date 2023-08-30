@@ -153,6 +153,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			this.options.totalPriceChanged = false;
 
+			this.phonesInput = {};
+
 			if (!this.result.IS_AUTHORIZED || typeof this.result.LAST_ORDER_DATA.FAIL !== 'undefined')
 				this.initFirstSection();
 
@@ -173,6 +175,24 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				this.initUserConsent();
 			}
 		},
+
+		initPhoneMask: function() {
+			const phonesOnPage = document.querySelectorAll('.phone-mask-number')
+
+			if (phonesOnPage.length > 0) {
+				phonesOnPage.forEach( (phone, index) => {
+
+					let phoneInput = $(phone).find(':input')
+
+					this.phonesInput[phone.dataset.code] = $(phoneInput).inputmask({"mask": "+7 (999) 999-99-99"});
+
+					$(phoneInput).val('')
+					
+				})
+			}
+
+		},
+
 
 		/**
 		 * Send ajax request with order data and executes callback by action
@@ -3384,7 +3404,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				this.handleClickChoice();
 				$('#bx-soa-coupon-bonus-block_id').remove();
 
-				console.log('near setBlockBonusesCoupons')
 				this.setBlockBonusesCoupons();
 
 				setTimeout(() => {
@@ -4214,8 +4233,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		setBlockBonusesCoupons: function() {
 			const bonusBlock = this.getBonusesBlock()
 
-			console.log(bonusBlock)
-			
 			const blockChoiceAction = BX.create('DIV', {
 				props: {
 					className: 'bx-soa-coupon-bonus-block-choice',
@@ -4423,8 +4440,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		getBonusesBlock: function() {
 			const sliderTrack = this.getSliderBonusTrack()
-
-			console.log(sliderTrack)
 
 			const bonusBlock = BX.create('DIV', {
 				props: {className: 'bx-soa-bonus-block'},
@@ -7121,6 +7136,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					else
 						BX.removeClass(this.propsBlockNode, 'bx-step-error');
 				}
+
+				this.initPhoneMask()
+
 			}
 		},
 
@@ -7256,6 +7274,16 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				});
 				propsItemNode.setAttribute('data-property-id-row', property.getId());
 				propsItemNode.appendChild(label);
+
+				if (property.getSettings().CODE.indexOf('PHONE') !== -1) {
+
+					if (property.getSettings()?.REQUIRED == 'Y') {
+						propsItemNode.classList.add('phone-mask-number-required')
+					}
+
+					propsItemNode.dataset.code = property.getSettings().CODE
+					propsItemNode.classList.add('phone-mask-number')
+				}
 
 				if (property.getSettings().CODE == "ADDRESS") {
 
@@ -8030,9 +8058,22 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			for (i = 0; i < data.inputs.length; i++)
 			{
+
 				inputErrors = data.func(data.inputs[i], !!fieldName);
+
 				if (inputErrors.length)
 					propErrors[i] = inputErrors.join('<br>');
+
+				if ($(data.inputs[i]).closest('.phone-mask-number-required').length == 1) {
+
+					let currentPhoneDataCode = $(data.inputs[i]).closest('.phone-mask-number').attr('data-code'),
+						currentPhoneValue = this.phonesInput[currentPhoneDataCode][0]['inputmask'].unmaskedvalue()
+
+					if (currentPhoneValue.length != 10) {
+						propErrors[i] = inputErrors.join('<br>');
+					}
+
+				}
 			}
 
 			this.showValidationResult(data.inputs, propErrors);
