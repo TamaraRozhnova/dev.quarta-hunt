@@ -293,7 +293,7 @@ class SaleOrderAjaxEventsO2K
                         "EMAIL" => $arPropsValues['EMAIL'],
                         "ORDER_ZIP" => $arPropsValues['ZIP'],
                         "ORDER_CITY" => $arPropsValues['CITY'],
-                        "ORDER_ADDRESS" => $arPropsValues['ADDRESS'],
+                        // "ORDER_ADDRESS" => $arPropsValues['ADDRESS'],
                         "ORDER_PRICE" => $arValues['PRICE'],
     
                         "ORDER_LIST" => $htmlOrderList($arProducts),
@@ -324,6 +324,7 @@ class SaleOrderAjaxEventsO2K
                         "ORDER_DATE" => $arValues['DATE_STATUS']->toString(),
                         "ORDER_FIO" => $arPropsValues['FIO'],
                         "ORDER_PHONE" => $arPropsValues['PHONE'],
+                        "ORDER_CITY" => $arPropsValues['CITY'],
                         "ORDER_EMAIL" => $arPropsValues['EMAIL'],
                         "EMAIL" => $arPropsValues['EMAIL'],
                         "ORDER_ADDRESS" => $arPropsValues['ADDRESS'],
@@ -337,7 +338,6 @@ class SaleOrderAjaxEventsO2K
                     break;
                 
                 default:
-                    // $typeEvent = 'SALE_NEW_ORDER';
                     break;
             }
 
@@ -357,6 +357,9 @@ class SaleOrderAjaxEventsO2K
             switch ($arFields['PERSON_TYPE_ID']) {
                 case 2:
                     $arFields['EVENT_NAME'] = 'SALE_NEW_ORDER_WHOLESALE';
+                    break;
+                case 1:
+                    $arFields['EVENT_NAME'] = 'SALE_NEW_ORDER_RETAIL';
                     break;
                 
                 default:
