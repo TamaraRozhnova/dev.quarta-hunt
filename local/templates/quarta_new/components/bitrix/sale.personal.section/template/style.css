@@ -83,6 +83,21 @@
 .btn.cabinet__button .cabinet-mobile-button svg {
     margin: 0 auto;
 }
+.cabinet-btn-exit {
+    font-size: 0.75rem;
+    transition: all 0.3s ease-in-out;
+    color: #808d9a;
+    background: #eeeff3;
+    display: none;
+    padding: 6px 12px;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
+@media (max-width: 1200px) {
+    .cabinet-btn-exit {
+        display: inline-block;
+    }
+}
 @media (max-width: 991px) {
     .btn.cabinet__button {
         display: flex;

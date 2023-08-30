@@ -109,6 +109,11 @@ if (empty($availablePages)){
 					<div class="cabinet-section__content"> 
 						<p class="text-dark"><?= $arResult['USER']['FIRST_NAME'].' '.$arResult['USER']['LAST_NAME'];?></p> 
 						<p class="text-dark"><?= $arResult['USER']['EMAIL'];?><br > тел.: <?= $arResult['USER']['PERSONAL_PHONE'];?><br ></p>
+						<p>
+							<a href="/cabinet/?logout=yes" class="cabinet-btn-exit">
+								Выход
+							</a>
+						</p>
 					</div>
 				</div>
 				<div class="cabinet-section">
