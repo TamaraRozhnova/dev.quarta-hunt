@@ -235,12 +235,17 @@ class SaleOrderAjaxEventsO2K
 
             $htmlContent = '';
 
+            $iterator = 0;
+
             foreach ($products as $productIndex => $product) { 
+
+                $iterator++;
+
                 $htmlContent .= 
                 '
                     <tr style = "background: transparent;padding: 15px;" class = "qhm-table-content">
                         <td style = "background: transparent;padding: 15px; font-size: 14px">
-                            ' . $productIndex . '
+                            ' . $iterator . '
                         </td>
                         <td style = "background: transparent;padding: 15px; font-size: 14px">
                             ' . $product['CML2_ARTICLE'] . '
@@ -310,9 +315,29 @@ class SaleOrderAjaxEventsO2K
                     ];
     
                     break;
+                case 1:
+                    $typeEvent = 'SALE_NEW_ORDER_RETAIL';
+    
+                    $arCFields = [
+                        "USER_ID" => $arValues['USER_ID'],
+                        "ORDER_ID" => $arValues['ID'],
+                        "ORDER_DATE" => $arValues['DATE_STATUS']->toString(),
+                        "ORDER_FIO" => $arPropsValues['FIO'],
+                        "ORDER_PHONE" => $arPropsValues['PHONE'],
+                        "ORDER_EMAIL" => $arPropsValues['EMAIL'],
+                        "EMAIL" => $arPropsValues['EMAIL'],
+                        "ORDER_ADDRESS" => $arPropsValues['ADDRESS'],
+                        "ORDER_PRICE" => $arValues['PRICE'],
+                        "ORDER_LIST" => $htmlOrderList($arProducts),
+                        "SALE_EMAIL" => 'sale@quarta-hunt.ru',
+                        "PERSON_TYPE_ID" => $arValues['PERSON_TYPE_ID'],
+    
+                    ];
+    
+                    break;
                 
                 default:
-                    $typeEvent = 'SALE_NEW_ORDER';
+                    // $typeEvent = 'SALE_NEW_ORDER';
                     break;
             }
 
