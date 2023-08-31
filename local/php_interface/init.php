@@ -155,6 +155,7 @@ Bitrix\Main\EventManager::getInstance()->addEventHandler(
         )
     );
 
+/*
 Bitrix\Main\EventManager::getInstance()->addEventHandler(
     "main", 
     "OnBeforeEventSend", 
@@ -163,6 +164,7 @@ Bitrix\Main\EventManager::getInstance()->addEventHandler(
         "eventSend"
         )
     );
+*/
 
 class SaleOrderAjaxEventsO2K
 {
