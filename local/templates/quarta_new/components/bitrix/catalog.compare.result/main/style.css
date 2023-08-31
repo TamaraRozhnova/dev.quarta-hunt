@@ -140,9 +140,27 @@
   .compare__column-backdrop {
     display: none;
   }
+
+  /*  */
   .compare__col--first {
-    display: none;
+    display: block !important;
+    width: 100% !important;
   }
+  .compare__row {
+    flex-wrap: wrap;
+  }
+  .compare__row.compare__prop > .compare__col--first {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    color: var(---, #808D9A);
+    margin: 0 0 15px 0;
+  }
+  .compare__row.compare__prop > .compare__col.compare__col--main {
+    margin: 0 0 15px 0;
+  }
+  /*  */
 }
 @media (max-width: 360px) {
   .product-card__remove-compare,
