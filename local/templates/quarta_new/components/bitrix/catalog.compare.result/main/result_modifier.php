@@ -23,7 +23,8 @@ $bannedProps = [
     'NEW_PRODUCT',
     'HIT',
     'PRESENT',
-    'DOUBLE_BONUS'
+    'DOUBLE_BONUS',
+    'SIZE_DISCOUNT'
 ];
 
 $productIds = [];
