@@ -155,6 +155,7 @@ Bitrix\Main\EventManager::getInstance()->addEventHandler(
         )
     );
 
+/*
 Bitrix\Main\EventManager::getInstance()->addEventHandler(
     "main", 
     "OnBeforeEventSend", 
@@ -163,6 +164,7 @@ Bitrix\Main\EventManager::getInstance()->addEventHandler(
         "eventSend"
         )
     );
+*/
 
 class SaleOrderAjaxEventsO2K
 {
@@ -170,6 +172,11 @@ class SaleOrderAjaxEventsO2K
     public function eventNewOrder(\Bitrix\Main\Event $event)
     {
         $entity = $event->getParameter("ENTITY");  
+
+        if (!$entity->isNew()) {
+            return;
+        }
+
         $arValues = $entity->getFields()->getValues();
         $arPropertyCollection = $entity->getPropertyCollection()->getArray();
 
@@ -349,6 +356,7 @@ class SaleOrderAjaxEventsO2K
 
     }
 
+    /*
     public function eventSend(&$arFields, &$arTemplate)
     {
 
@@ -369,6 +377,7 @@ class SaleOrderAjaxEventsO2K
         }
 
     }
+    */
 
 
 }
