@@ -170,6 +170,11 @@ class SaleOrderAjaxEventsO2K
     public function eventNewOrder(\Bitrix\Main\Event $event)
     {
         $entity = $event->getParameter("ENTITY");  
+
+        if (!$entity->isNew()) {
+            return;
+        }
+
         $arValues = $entity->getFields()->getValues();
         $arPropertyCollection = $entity->getPropertyCollection()->getArray();
 
