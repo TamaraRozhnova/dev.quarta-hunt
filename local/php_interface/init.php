@@ -354,6 +354,7 @@ class SaleOrderAjaxEventsO2K
 
     }
 
+    /*
     public function eventSend(&$arFields, &$arTemplate)
     {
 
@@ -374,6 +375,7 @@ class SaleOrderAjaxEventsO2K
         }
 
     }
+    */
 
 
 }
