@@ -209,6 +209,20 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         Array()
     );?>
 
+    <?php 
+    
+        if ($APPLICATION->get_cookie('COOKIE_APPLY') != 'Y') {
+
+            $APPLICATION->IncludeComponent(
+                "custom:form.cookies",
+                "",
+                Array()
+            );
+
+        }
+    
+    ?>
+
 </footer>
 
     </div>

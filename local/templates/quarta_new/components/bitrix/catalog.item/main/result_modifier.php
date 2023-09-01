@@ -5,26 +5,30 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Helpers\DiscountsHelper;
+use General\User;
 
 $item = $arResult['ITEM'];
 
 $arResult['ITEM']['OFFERS_QUANTITY'] = 0;
 
+$user = new User();
+$priceCode = $user->getUserPriceCode();
+
 if ($item['OFFERS'] && count($item['OFFERS']) > 0) {
+
     foreach ($item['OFFERS'] as $offer) {
 
-        if ($offer['PRICES'][reset($arParams['PRICE_CODE'])]['VALUE'] == 0) {
-            $offer['CAN_BUY'] = 'N';
+        if (!empty($offer['PRICES'][$priceCode])) {
+            if ($offer['PRICES'][$priceCode]['VALUE'] == 0) {
+                $offer['CAN_BUY'] = false;
+            } 
         }
 
-        if (
-            !empty($offer['CAN_BUY'])
-            &&
-            $offer['CAN_BUY'] != 'N'
-        ) {
+        if ($offer['CAN_BUY'] == true) {
             $arResult['ITEM']['AVAILABLE'] = true;
             $arResult['ITEM']['OFFERS_QUANTITY'] += (int)$offer['PRODUCT']['QUANTITY'];
         }
+
     }
 } else {
     $arResult['ITEM']['AVAILABLE'] = boolval($item['CAN_BUY']);

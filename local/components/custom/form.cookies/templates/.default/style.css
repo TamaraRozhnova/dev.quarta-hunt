@@ -1,0 +1,50 @@
+.form-cookies-wrapper {
+    position: fixed;
+    bottom: 50px;
+    left: 30px;
+    right: 30px;
+    z-index: 100000;
+    max-width: 950px;
+    margin: 0 auto;
+    transition: .5s all ease-in-out;
+    opacity: 1;
+}
+.form-cookies-wrapper.remove {
+    bottom: 0;
+    opacity: 0;
+}
+.form-cookies {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.form-cookies-text {
+    color: black;
+    font-weight: 500;
+    max-width: 86%;
+}
+.form-cookies-inner {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
+}
+.form-cookies-btn {
+    width: 100%;
+    max-width: 16%;
+}
+.form-cookies-btn > button {
+    width: 100%;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .form-cookies {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .form-cookies-text ,
+    .form-cookies-btn {
+        max-width: 100%;
+    }
+}

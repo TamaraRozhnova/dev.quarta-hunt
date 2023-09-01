@@ -34,17 +34,14 @@ $arResult['FILES'] = [];
 $arResult['PROPS'] = [];
 
 if ($arResult['OFFERS'] && count($arResult['OFFERS']) > 0) {
+
     foreach ($arResult['OFFERS'] as $key => $offer) {
 
         if ($offer['PRICES'][reset($arParams['PRICE_CODE'])]['VALUE'] == 0) {
-            $offer['CAN_BUY'] = 'N';
+            $offer['CAN_BUY'] = false;
         }
 
-        if (
-            !empty($offer['CAN_BUY'])
-            &&
-            $offer['CAN_BUY'] != 'N'
-        ) {
+        if ($offer['CAN_BUY'] == true) {
             $arResult['AVAILABLE'] = true;
             $arResult['OFFERS_QUANTITY'] += (int)$offer['PRODUCT']['QUANTITY'];
         } else {
@@ -52,6 +49,11 @@ if ($arResult['OFFERS'] && count($arResult['OFFERS']) > 0) {
         }
     }
 } else {
+
+    if ($arResult['PRICES'][reset($arParams['PRICE_CODE'])]['VALUE'] == 0) {
+        $arResult['CAN_BUY'] = false;
+    }
+
     $arResult['AVAILABLE'] = boolval($arResult['CAN_BUY']);
 }
 
