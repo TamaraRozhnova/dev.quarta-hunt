@@ -35,7 +35,16 @@ $arResult['PROPS'] = [];
 
 if ($arResult['OFFERS'] && count($arResult['OFFERS']) > 0) {
     foreach ($arResult['OFFERS'] as $key => $offer) {
-        if ($offer['CAN_BUY']) {
+
+        if ($offer['PRICES'][reset($arParams['PRICE_CODE'])]['VALUE'] == 0) {
+            $offer['CAN_BUY'] = 'N';
+        }
+
+        if (
+            !empty($offer['CAN_BUY'])
+            &&
+            $offer['CAN_BUY'] != 'N'
+        ) {
             $arResult['AVAILABLE'] = true;
             $arResult['OFFERS_QUANTITY'] += (int)$offer['PRODUCT']['QUANTITY'];
         } else {

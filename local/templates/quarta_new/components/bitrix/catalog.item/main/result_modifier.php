@@ -12,7 +12,16 @@ $arResult['ITEM']['OFFERS_QUANTITY'] = 0;
 
 if ($item['OFFERS'] && count($item['OFFERS']) > 0) {
     foreach ($item['OFFERS'] as $offer) {
-        if ($offer['CAN_BUY']) {
+
+        if ($offer['PRICES'][reset($arParams['PRICE_CODE'])]['VALUE'] == 0) {
+            $offer['CAN_BUY'] = 'N';
+        }
+
+        if (
+            !empty($offer['CAN_BUY'])
+            &&
+            $offer['CAN_BUY'] != 'N'
+        ) {
             $arResult['ITEM']['AVAILABLE'] = true;
             $arResult['ITEM']['OFFERS_QUANTITY'] += (int)$offer['PRODUCT']['QUANTITY'];
         }
