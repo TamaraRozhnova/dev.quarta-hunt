@@ -9,21 +9,37 @@
 /** @var string $templateFile */
 /** @var string $templateFolder */
 /** @var string $componentPath */
-/** @var CBitrixComponent $component */?>
+/** @var CBitrixComponent $component */
+
+use Bitrix\Main\Loader;
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);?>
 
 <div class = "search-result-page">
     <div class="search-page">
 
         <div class = "search-page-result-text container">
-            <h2>Результаты поиска</h2>
+            <h2><?=Loc::getMessage('TITLE_RESULT')?></h2>
             <p class="mb-4">
                 <? if ($arResult['COUNT_SEARCH'] > 0): ?>
-                    Найдено <?=$arResult['COUNT_SEARCH']?>  совпадений по вашему запросу
+                    <?=Loc::getMessage('CNT_SEARCH_PREFIX')?> <?=$arResult['COUNT_SEARCH']?> <?=Loc::getMessage('CNT_SEARCH_POSTFIX')?>
                     <span class="text-primary"><?= $arResult['SEARCH_TEXT'] ?></span>
                 <? else: ?>
-                    <span>Простите, по вашему запросу товаров сейчас нет.</span>
+                    <span>
+                        <?=Loc::getMessage('SEARCH_FAILED')?>
+                    </span>
                         <br>
-                    <a href="/">На главную</a>
+                    <?if (!empty($arResult['CORRECT_TEXT'])):?>
+                        <span>
+                            <?=Loc::getMessage('MAYBE_YOU_SEARCH')?> 
+                            <a href="<?=$arResult['CORRECT_URL']?>"><?=$arResult['CORRECT_TEXT']?></a>
+                        </span>
+                    <?endif;?>
+                        <br> <br>
+                    <a href="/">
+                        <?=Loc::getMessage('MAIN_LINK_NAME')?> 
+                    </a>
                 <? endif; ?>
             </p>
         </div>

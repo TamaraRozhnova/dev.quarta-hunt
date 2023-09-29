@@ -13,7 +13,7 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 
-use Bitrix\Main\Entity\ExpressionField;
+use Bitrix\Main\Entity\ExpressionField as EF;
 use Bitrix\Main\UI\PageNavigation;
 
 use SearchSphinx\ProductTable;
@@ -27,6 +27,8 @@ $objectNavigation->allowAllRecords(false)
     ->setPageSize(10)
     ->initFromUri();
 
+$searchTarget = $_GET['q'];
+$searchTarget = mb_strtolower(htmlspecialchars($searchTarget));
 
 /** 
  * Параметры запроса для индексных таблиц Sphinx
@@ -34,9 +36,9 @@ $objectNavigation->allowAllRecords(false)
 $rsParamsQuery = [
     'select' => [
         '*',
-        new ExpressionField('weight', 'WEIGHT()', 'id'),
+        new EF('weight', 'WEIGHT()', 'id'),
     ],
-    'match' => $_GET['q'],
+    'match' => $searchTarget,
     'count_total' => true,
     'offset' => $objectNavigation->getOffset(),
     'limit' => $objectNavigation->getLimit(),
@@ -62,78 +64,151 @@ $rsBlog = BlogTable::getList(
     $rsParamsQuery
 );
 
+$tmpCountSearch = 0;
+$tmpPageSize = 0;
+$tmpArrCount = [
+    'PRODUCT' => [],
+    'BLOG' => []
+];
 
 $arResult['PRODUCTS'] = $rsProduct->fetchAll();
+
+$tmpArrCount['PRODUCT'] = $rsProduct->getCount();
+
 $arResult['BLOG'] = $rsBlog->fetchAll();
-$arResult['SEARCH_TEXT'] = htmlspecialchars($_GET['q']);
+$arResult['SEARCH_TEXT'] = $searchTarget;
 
+if (!empty($searchTarget)) {
 
-if (!empty($_GET['q'])) {
-
-    /**
-     * Если не найдено совпадений
-     * в случае использования английской раскладки, то
-     * транслитируем слово на русский язык,
-     * и повторно делаем запрос
+    /** 
+     * Делаем несколько запросов с разными транслитами слова
+     * Сохраняем в результирующий массив
      */
 
-    $translitQueryRu = Translit::getTranslitRU($_GET['q']);
     $modifyParamsQuery = $rsParamsQuery;
-    
-    $modifyParamsQuery['match'] = $translitQueryRu;
 
-    if ($rsProduct->getCount() == 0) {
-        
+
+    $translitQueryRu = Translit::getTranslitRU($searchTarget);
+    $simpleWord = Translit::getChangeSimpleWordRU($searchTarget);
+    $advancedWord = Translit::getChangeAdvancedWordRU($searchTarget);
+    $extendedWord = Translit::getChangeExtendedWordRU($searchTarget);
+
+    if (
+        $rsProduct->getCount() == 0
+        ||
+        $rsProduct->getCount() < 5
+    ) {
+
+        $modifyParamsQuery['match'] = $translitQueryRu;
+
         $rsProduct = ProductTable::getList(
             $modifyParamsQuery
         );
 
-        $arResult['SEARCH_TEXT'] = $translitQueryRu;
-
-        $arResult['PRODUCTS'] = $rsProduct->fetchAll();
-
-        if (!empty($arResult['PRODUCTS'])) {
-            $arResult['SEARCH_TEXT'] = $translitQueryRu;
-        }
-
-    }
-
-    if ($rsBlog->getCount() == 0) {
-
-        $rsBlog = BlogTable::getList(
+        $modifyParamsQuery['match'] =  $simpleWord;
+        
+        $rsProductSimple = ProductTable::getList(
             $modifyParamsQuery
         );
 
-        $arResult['BLOG'] = $rsBlog->fetchAll();
+        $modifyParamsQuery['match'] =  $advancedWord;
 
-        if (!empty($arResult['BLOG'])) {
-            $arResult['SEARCH_TEXT'] = $translitQueryRu;
+        $rsProductAdvanced = ProductTable::getList(
+            $modifyParamsQuery
+        );
+
+        $modifyParamsQuery['match'] =  $extendedWord;
+
+        $rsProductExtended = ProductTable::getList(
+            $modifyParamsQuery
+        );
+
+        $arProcessProducts = [
+            $rsProduct,
+            $rsProductSimple,
+            $rsProductAdvanced,
+            $rsProductExtended
+        ];
+
+        $arProducts = array_merge(
+            $rsProduct->fetchAll(), 
+            $rsProductSimple->fetchAll(), 
+            $rsProductAdvanced->fetchAll(),
+            $rsProductExtended->fetchAll()
+        );
+
+        $arResult['SEARCH_TEXT'] = $translitQueryRu;
+
+        $arResult['PRODUCTS'] = $arProducts;
+
+    }
+
+    if (!empty($rsBlog)) {
+
+        if ($rsBlog->getCount() == 0) {
+
+            $rsBlog = BlogTable::getList(
+                $modifyParamsQuery
+            );
+
+            if ($rsBlog->getCount() == 0) {
+                $modifyParamsQuery['match'] = $translitQueryRu;
+
+                $rsBlog = BlogTable::getList(
+                    $modifyParamsQuery
+                );
+            }
+    
+            $arResult['BLOG'] = $rsBlog->fetchAll();
+    
+            if (!empty($arResult['BLOG'])) {
+                $arResult['SEARCH_TEXT'] = $translitQueryRu;
+            }
+    
         }
 
     }
 
 }
 
+if (!empty($arProcessProducts)) {
 
-$arResult['COUNT_SEARCH'] = $rsProduct->getCount() + $rsBlog->getCount();
+    if (!is_array($tmpArrCount['PRODUCT'])) {
+        $tmpArrCount['PRODUCT'] = (array) $tmpArrCount['PRODUCT'];
+    }
 
-/**
- * Если кол-во найденных совпадений у 
- * определенной таблицы больше
- * размера установленной страницы 
- * при помощи PageNavigation,
- * тогда добавляем их в пагинацию
- */
+    foreach ($arProcessProducts as $arProcessProduct) {
+        if (!empty($arProcessProduct)) {
 
-if ($rsProduct->getCount() > $objectNavigation->getPageSize()) {
-    $tmpPageSize += $rsProduct->getCount();
+            if ($arProcessProduct->getCount() != 0) {
+
+                array_push($tmpArrCount['PRODUCT'], $arProcessProduct->getCount());
+
+            }
+            
+        }
+    }
 }
 
-if ($rsBlog->getCount() > $objectNavigation->getPageSize()) {
-    $tmpPageSize += $rsBlog->getCount();
+if (!empty($tmpArrCount['PRODUCT'])) {
+    if (count($tmpArrCount['PRODUCT']) > 1 )  {
+        $tmpArrCount['PRODUCT'] = array_sum(array_unique($tmpArrCount['PRODUCT']));
+    }
 }
 
+if (!empty($rsBlog)) {
+    $tmpArrCount['BLOG'] = $rsBlog->getCount();
+}
+
+$tmpCountSearch = array_sum($tmpArrCount);
+
+if (!empty($tmpCountSearch)) {
+    if ($tmpCountSearch > $objectNavigation->getPageSize()) {
+        $tmpPageSize = $tmpCountSearch;
+    }
+}
+
+$arResult['COUNT_SEARCH'] = $tmpCountSearch;
 $arResult['OBJECT_NAVIGATION'] = $objectNavigation->setRecordCount($tmpPageSize);
-
 
 $this->IncludeComponentTemplate();
