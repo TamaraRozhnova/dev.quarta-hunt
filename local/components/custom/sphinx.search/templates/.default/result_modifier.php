@@ -4,10 +4,51 @@
 /** @global CDatabase $DB */
 
 use General\User;
+use Bitrix\Main\Web\Json;
 
 /** Тип цены пользователя */
 $user = new User();
 $priceCode = $user->getUserPriceCode();
+
+if ($arResult['COUNT_SEARCH'] == 0) {
+	$searchTarget = $_GET['q'];
+
+	$searchTarget = urlencode($searchTarget);
+	$urlAPI = "https://speller.yandex.net/services/spellservice.json/checkText?text=".$searchTarget;
+
+	$curl = curl_init();
+	curl_setopt($curl, CURLOPT_URL, $urlAPI);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+	curl_setopt($curl, CURLOPT_HEADER, false);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	$resultCheck = curl_exec($curl);
+	$resultCheck = Json::decode($resultCheck, true);
+
+	$arResult['CORRECT_TEXT'] = '';
+
+	if (!empty($resultCheck)) {
+		foreach ($resultCheck as $arWord) {
+			if (!empty($arWord)) {
+				foreach ($arWord['s'] as $arChainWordIndex => $arChainWord) {
+
+					if ($arChainWordIndex > 0) {
+						break;
+					}
+
+					$arResult['CORRECT_TEXT'] = implode(' ', [
+						$arResult['CORRECT_TEXT'],
+						$arChainWord
+					]);
+				}
+			}
+		}
+	}
+
+	if (!empty($arResult['CORRECT_TEXT'])) {
+		$arResult['CORRECT_URL'] = $APPLICATION->GetCurPage().'?q='.trim($arResult['CORRECT_TEXT']);
+	}
+
+}
 
 if ($arResult['COUNT_SEARCH'] > 0) {
 
