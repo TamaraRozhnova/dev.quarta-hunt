@@ -93,12 +93,52 @@
     border-radius: 0.25rem;
     text-decoration: none;
 }
+
+.bonuses-cabinet-text-ico {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.bonuses-cabinet-text,
+.bonuses-cabinet-count {
+    color: #FFF;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.blue-back {
+    background-color: #004989;
+    border-radius: 4px;
+}
+
+.bonuses-cabinet-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 1240px) {
+    .bonuses-cabinet-text, .bonuses-cabinet-count {
+        font-size: 20px;
+    }
+}
 @media (max-width: 1200px) {
     .cabinet-btn-exit {
         display: inline-block;
     }
 }
 @media (max-width: 991px) {
+    .bonuses-cabinet-text, .bonuses-cabinet-count {
+        font-size: 14px;
+    }
+    .blue-back {
+        padding: 17px 15px;
+    }
+    .bonus-main-wrapper {
+        margin: 0 0 10px 0;
+    }
     .btn.cabinet__button {
         display: flex;
         align-items: center;

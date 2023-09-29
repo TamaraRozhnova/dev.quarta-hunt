@@ -269,3 +269,10 @@
 .main-slider-dot_active {
   display: block;
 }
+
+@media (max-width: 600px) {
+  .main-slider .swiper-slide {
+    background-size: initial;
+    background-position: top;
+  }
+}

@@ -17,7 +17,7 @@ if ($arResult['COUNT_SEARCH'] > 0) {
         }
 
         $GLOBALS['searchFilter'] = [
-			'=ID' => $productsIds
+			'=ID' => $productsIds,
 		];
 
         $arResult['PARAMS_CATALOG'] = [
@@ -53,8 +53,8 @@ if ($arResult['COUNT_SEARCH'] > 0) {
 			"ELEMENT_SORT_ORDER" => "asc",
 			"ELEMENT_SORT_ORDER2" => "desc",
 			"FILTER_NAME" => "searchFilter",
-			"HIDE_NOT_AVAILABLE" => "N",
-			"HIDE_NOT_AVAILABLE_OFFERS" => "N",
+			"HIDE_NOT_AVAILABLE" => "L",
+			"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
 			"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 			"IBLOCK_TYPE" => "1c_catalog",
 			"INCLUDE_SUBSECTIONS" => "Y",

@@ -31,3 +31,9 @@ $MESS['ERROR_PASS_NOT_SAVE'] = "Ошибка при смене пароля";
 $MESS['AJAX_SAVING'] = "Сохранение";
 $MESS['AJAX_SAVED'] = "Сохранено";
 $MESS['ERROR_EMPTY_FIELD'] = "Поле не заполнено";
+$MESS['BONUS_TEXT'] = "Бонусные баллы";
+
+
+$MESS['BONUS_DEC_1'] = "балл";
+$MESS['BONUS_DEC_2'] = "балла";
+$MESS['BONUS_DEC_3'] = "баллов";

@@ -1,9 +1,6 @@
 <?php
 define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 
-COption::SetOptionString("main", "check_agents", "N"); 
-COption::SetOptionString("main", "agents_use_crontab", "N"); 
-
 use \Bitrix\Main\Loader;
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
@@ -348,16 +345,17 @@ class SaleOrderAjaxEventsO2K
                     break;
             }
 
-            \Bitrix\Main\Mail\Event::send(array(
+            \Bitrix\Main\Mail\Event::sendImmediate(array(
                 "EVENT_NAME" => $typeEvent, 
                 "LID" => "s1", 
-                "C_FIELDS" => $arCFields
+                "C_FIELDS" => $arCFields,
+                "DUPLICATE" => "Y"
             ));
 
     }
 
-    /*
-    public function eventSend(&$arFields, &$arTemplate)
+    
+    /* public function eventSend(&$arFields, &$arTemplate)
     {
 
         if (!empty($arFields['PERSON_TYPE_ID'])) {
@@ -376,8 +374,8 @@ class SaleOrderAjaxEventsO2K
 
         }
 
-    }
-    */
+    } */
+    
 
 
 }

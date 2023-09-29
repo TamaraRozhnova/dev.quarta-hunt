@@ -87,9 +87,14 @@ $basketItemsCount = $basket->getProductsCount();
 
 <div class="wrapper">
 
+    <?php 
+    /*
     <div class= "teh-obs">
         <h3>Сайт находится на техническом обслуживании. Возможны сбои в работе</h3>
     </div>
+    */
+    ?>
+
 
     <header class="header header--desktop">
         <? $APPLICATION->IncludeComponent("bitrix:highloadblock.list", "location_modal", ["BLOCK_ID" => "12"]) ?>

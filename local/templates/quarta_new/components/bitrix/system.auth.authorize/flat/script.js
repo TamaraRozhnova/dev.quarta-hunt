@@ -164,8 +164,6 @@ function authPhone(data = null){
 		dataType: 'json',
 		onsuccess: function(data){
 
-			console.log(data)
-
 			if (data?.MULTI_USER == 'Y') {
 
 				/**

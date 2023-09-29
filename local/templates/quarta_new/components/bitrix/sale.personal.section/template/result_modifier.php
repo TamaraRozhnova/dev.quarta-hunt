@@ -7,6 +7,9 @@
 use \Bitrix\Main;
 use \Bitrix\Main\Localization\Loc;
 use \Bitrix\Sale\Order;
+use \Bitrix\Main\Grid\Declension;
+
+Loc::loadMessages(__FILE__);
 
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true)
     die();
@@ -81,6 +84,25 @@ if (!empty($rsUser)) {
     if (!empty($rsUser['PERSONAL_ZIP'])) {
         $arResult['USER_ADDRESS']['PERSONAL_ZIP'] = $rsUser['PERSONAL_ZIP'];
     }
+
+    $decBonus = new Declension(
+        Loc::getMessage('BONUS_DEC_1'),
+        Loc::getMessage('BONUS_DEC_2'),
+        Loc::getMessage('BONUS_DEC_3')
+    );
+
+    $bonus = $rsUser['UF_LOGICTIM_BONUS'];
+
+    if (empty($bonus)) $bonus = 0;
+
+    $arResult['BONUS_DEC'] = $decBonus->get($bonus);
+    $arResult['BONUS_COUNT'] = $bonus;
+
+    $arResult['BONUS_DISPLAY'] = implode(' ', [
+        $arResult['BONUS_COUNT'],
+        $arResult['BONUS_DEC']
+    ]);
+
 }
 
 

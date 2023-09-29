@@ -219,9 +219,11 @@ class Basket
             'LID' => Context::getCurrent()->getSite(),
         ];
 
+        
         if (isset($data['NOTES'])) {
             $atFields['NOTES'] = serialize($data['NOTES']);
         }
+        
         if (isset($data['PRICE'])) {
             $atFields['PRICE'] = $data['PRICE'];
             $atFields['BASE_PRICE'] = $data['PRICE'];

@@ -1,3 +1,3 @@
 <?
-$PERM["holosun"]["*"]="D";
+$PERM["holosun"]["*"]="R";
 ?>
