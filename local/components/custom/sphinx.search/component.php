@@ -296,6 +296,8 @@ if (!empty($tmpCountSearch)) {
     }
 }
 
+
+$arResult['COUNT_PRODUCT'] = is_array($tmpArrCount['PRODUCT']) ? current($tmpArrCount['PRODUCT']) : $tmpArrCount['PRODUCT'];
 $arResult['COUNT_SEARCH'] = $tmpCountSearch;
 $arResult['OBJECT_NAVIGATION'] = $objectNavigation->setRecordCount($tmpPageSize);
 $arResult['PAGE_SIZE'] = $objectNavigation->getPageSize();
