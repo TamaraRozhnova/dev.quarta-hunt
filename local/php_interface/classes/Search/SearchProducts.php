@@ -57,6 +57,9 @@ class ProductTable extends SphinxDataManager
             new Main\Entity\StringField('preview_text'),
             new Main\Entity\StringField('article'),
             new Main\Entity\StringField('iblock_code'),
+
+            new Main\Entity\FloatField('price_1'),
+            new Main\Entity\FloatField('price_3'),
         ];
 
     }

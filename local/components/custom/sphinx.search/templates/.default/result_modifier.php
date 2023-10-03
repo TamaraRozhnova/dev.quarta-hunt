@@ -9,6 +9,7 @@ use Bitrix\Main\Web\Json;
 /** Тип цены пользователя */
 $user = new User();
 $priceCode = $user->getUserPriceCode();
+$userPriceId = $user->getUserPriceId();
 
 if ($arResult['COUNT_SEARCH'] == 0) {
 	$searchTarget = $_GET['q'];
@@ -61,6 +62,29 @@ if ($arResult['COUNT_SEARCH'] > 0) {
 			'=ID' => $productsIds,
 		];
 
+		switch ($_GET['sort']) {
+			case 'price_asc':
+				$sortField = "catalog_PRICE_" . $userPriceId;
+				$sortDirection = 'ASC';
+				break;
+			case 'price_desc':
+				$sortField = "catalog_PRICE_" . $userPriceId;
+				$sortDirection = 'DESC';
+				break;
+			case 'name_alp':
+				$sortField = "NAME";
+				$sortDirection = 'ASC';
+				break;
+			case 'name_alp_rev':
+				$sortField = "NAME";
+				$sortDirection = 'DESC';
+				break;
+			default:
+				$sortField = "NAME";
+				$sortDirection = 'DESC';
+				break;
+		}
+
         $arResult['PARAMS_CATALOG'] = [
 			"ACTION_VARIABLE" => "action",
 			"ADD_PICT_PROP" => "MORE_PHOTO",
@@ -89,12 +113,12 @@ if ($arResult['COUNT_SEARCH'] > 0) {
 			"DISCOUNT_PERCENT_POSITION" => "bottom-right",
 			"DISPLAY_BOTTOM_PAGER" => "N",
 			"DISPLAY_TOP_PAGER" => "N",
-			"ELEMENT_SORT_FIELD" => "sort",
-			"ELEMENT_SORT_FIELD2" => "id",
-			"ELEMENT_SORT_ORDER" => "asc",
-			"ELEMENT_SORT_ORDER2" => "desc",
+			"ELEMENT_SORT_FIELD" => $sortField,
+			"ELEMENT_SORT_FIELD2" => "",
+			"ELEMENT_SORT_ORDER" => $sortDirection,
+			"ELEMENT_SORT_ORDER2" => "",
 			"FILTER_NAME" => "searchFilter",
-			"HIDE_NOT_AVAILABLE" => "L",
+			"HIDE_NOT_AVAILABLE" => "N",
 			"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
 			"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 			"IBLOCK_TYPE" => "1c_catalog",
