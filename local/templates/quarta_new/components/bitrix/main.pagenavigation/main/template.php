@@ -19,28 +19,15 @@ $totalPages = $arResult['PAGE_COUNT'];
 
 $nextPage = $totalPages > $currentPage ? $currentPage + 1 : 0;
 
-parse_str($arResult['URL'], $parsedResult);
+$queryString = parse_url($arResult['URL'], PHP_URL_QUERY);
+parse_str($queryString, $params);
 
-if (!empty($parsedResult['cur_page'])) {
-    unset($parsedResult['cur_page']);
-
-    $i = 0;
-
-    $arResult['URL'] = "";
-
-    foreach ($parsedResult as $arChunkKey => $arChunk) {
-
-        if ($i > 1) {
-            $arResult['URL'] .= '&';
-        }
-
-        $arResult['URL'] .= $arChunkKey .'='. $arChunk;
-
-        $i++;
-    }
+if (isset($params['cur_page'])) {
+    unset($params['cur_page']);
 }
 
-?>
+$queryString = http_build_query($params);
+$arResult['URL'] = '/search/?' . $queryString;?>
 
 <div class="pagination container">
     <? if ((int)$arResult['START_PAGE'] > 1) { ?>

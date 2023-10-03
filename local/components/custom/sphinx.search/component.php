@@ -13,13 +13,18 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 
-use Bitrix\Main\Entity\ExpressionField as EF;
+use Bitrix\Main\Entity\ExpressionField;
 use Bitrix\Main\UI\PageNavigation;
 
 use SearchSphinx\ProductTable;
 use SearchSphinx\BlogTable;
 
 use Helpers\Translit;
+
+use General\User;
+
+$user = new User();
+$userPriceId = $user->getUserPriceId();
 
 $objectNavigation = new PageNavigation('cur_page');
 
@@ -30,20 +35,99 @@ $objectNavigation->allowAllRecords(false)
 $searchTarget = $_GET['q'];
 $searchTarget = mb_strtolower(htmlspecialchars($searchTarget));
 
+/**
+ * Параметры сортировки
+ */
+
+ $arResult['SORT_OPTIONS'] = [
+    'name_alp' => 'названию в алфавитном порядке',
+    'name_alp_rev' => 'названию в обратном алфавитном порядке',
+    'price_asc' => 'возрастанию цены',
+    'price_desc' => 'убыванию цены',
+];
+
+/**
+ * Дефолтные значения для сортировок
+ */
+
+$priceCodeForSort = 'price_' . $userPriceId;
+
+$sortExpressionsFieldsCatalog = [
+    'revelance' => [
+        'order' => [
+            'weight' => 'DESC'
+        ],
+        'expression' => new ExpressionField('weight', 'WEIGHT()', 'id'),
+    ],
+    'name_alp' => [
+        'order' => [
+            'name' => 'ASC'
+        ],
+        'expression' => new ExpressionField('name', 'ORDER BY', 'name')
+    ],
+    'name_alp_rev' => [
+        'order' => [
+            'name' => 'DESC'
+        ],
+        'expression' => new ExpressionField('name', 'ORDER BY', 'name')
+    ],
+    'price_asc' => [
+        'order' => [
+            $priceCodeForSort => 'ASC'
+        ],
+        'expression' => new ExpressionField($priceCodeForSort, 'ORDER_BY', $priceCodeForSort),
+    ],
+    'price_desc' => [
+        'order' => [
+            $priceCodeForSort => 'DESC'
+        ],
+        'expression' => new ExpressionField($priceCodeForSort, 'ORDER_BY', $priceCodeForSort),
+    ],
+];
+
+/**
+ * Дефолтные значения сортировки
+ */
+$selectParamsEF = $sortExpressionsFieldsCatalog['revelance']['expression'];
+$orderParamsEF = $sortExpressionsFieldsCatalog['revelance']['order'];
+
+/**
+ * Если установлена сортировка, меняем значения выборки
+ */
+if (!empty($_GET['sort'])) {
+    $selectParamsEF = $sortExpressionsFieldsCatalog[$_GET['sort']]['expression'];
+    $orderParamsEF = $sortExpressionsFieldsCatalog[$_GET['sort']]['order'];
+}
+
 /** 
  * Параметры запроса для индексных таблиц Sphinx
  */
 $rsParamsQuery = [
     'select' => [
         '*',
-        new EF('weight', 'WEIGHT()', 'id'),
+        $selectParamsEF
+    ],
+    'match' => $searchTarget,
+    'count_total' => true,
+    'offset' => $objectNavigation->getOffset(),
+    'limit' => $objectNavigation->getLimit(),
+    'order' => $orderParamsEF,
+    'option' => [
+        'max_matches' => 50000,
+    ],
+];
+
+$rsParamsQuerySimple = [
+    'select' => [
+        '*',
+        new ExpressionField('weight', 'WEIGHT()', 'id'),
     ],
     'match' => $searchTarget,
     'count_total' => true,
     'offset' => $objectNavigation->getOffset(),
     'limit' => $objectNavigation->getLimit(),
     'order' => [
-        'weight' => 'DESC',
+        'weight' => 'DESC'
     ],
     'option' => [
         'max_matches' => 50000,
@@ -53,6 +137,7 @@ $rsParamsQuery = [
 /**
  * Запрос в таблицу товаров
  */
+
 $rsProduct = ProductTable::getList(
     $rsParamsQuery
 );
@@ -61,7 +146,7 @@ $rsProduct = ProductTable::getList(
  * Запрос в таблицу статей
  */
 $rsBlog = BlogTable::getList(
-    $rsParamsQuery
+    $rsParamsQuerySimple
 );
 
 $tmpCountSearch = 0;
@@ -83,6 +168,9 @@ if (!empty($searchTarget)) {
     /** 
      * Делаем несколько запросов с разными транслитами слова
      * Сохраняем в результирующий массив
+     * 
+     * Реализовано для расширения области поиска 
+     * с учетом разных стратегий транслитерации слова
      */
 
     $modifyParamsQuery = $rsParamsQuery;
@@ -148,14 +236,14 @@ if (!empty($searchTarget)) {
         if ($rsBlog->getCount() == 0) {
 
             $rsBlog = BlogTable::getList(
-                $modifyParamsQuery
+                $rsParamsQuerySimple
             );
 
             if ($rsBlog->getCount() == 0) {
-                $modifyParamsQuery['match'] = $translitQueryRu;
+                $rsParamsQuerySimple['match'] = $translitQueryRu;
 
                 $rsBlog = BlogTable::getList(
-                    $modifyParamsQuery
+                    $rsParamsQuerySimple
                 );
             }
     
@@ -208,7 +296,11 @@ if (!empty($tmpCountSearch)) {
     }
 }
 
+
+$arResult['COUNT_PRODUCT'] = is_array($tmpArrCount['PRODUCT']) ? current($tmpArrCount['PRODUCT']) : $tmpArrCount['PRODUCT'];
 $arResult['COUNT_SEARCH'] = $tmpCountSearch;
 $arResult['OBJECT_NAVIGATION'] = $objectNavigation->setRecordCount($tmpPageSize);
+$arResult['PAGE_SIZE'] = $objectNavigation->getPageSize();
+
 
 $this->IncludeComponentTemplate();

@@ -46,13 +46,52 @@ Loc::loadMessages(__FILE__);?>
 
         <? if ($arResult['COUNT_SEARCH'] > 0): ?>
 
-            <? if (!empty($arResult['PRODUCTS'])): ?>
-                <?$APPLICATION->IncludeComponent(
-                    "bitrix:catalog.section",
-                    "new_search",
-                    $arResult['PARAMS_CATALOG']
-                );?>
-            <? endif; ?>
+            <div class="search-catalog-filters__wrapper">
+                <? if (!empty($arResult['PRODUCTS'])): ?>
+                    <div class = 'filters'>
+                        <div class='container'>
+                            <div class="select__wrapper select__wrapper--small">
+                                <div id="select-sort"
+                                        class="select select--small"
+                                        data-initial-id="<?= $arResult['SORT_VALUE'] ?? '' ?>"
+                                        data-placeholder="Сортировать:"
+                                >
+                                    <button class="select__main btn">
+                                        <span id = 'select__main-default-value'>
+                                            <?=  $arResult['SORT_OPTIONS'][$_GET['sort']] ?? 'Сортировать:' ?>
+                                        </span>
+                                        
+                                        <div class="select__options">
+                                            <? foreach ($arResult['SORT_OPTIONS'] as $key => $title) { ?>
+                                                <div data-id="<?= $key ?>" class="select__option" tabindex="0">
+                                                    <span><?= $title ?></span>
+                                                </div>
+                                            <? } ?>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                    <?$APPLICATION->IncludeComponent(
+                        "bitrix:catalog.section",
+                        "new_search",
+                        $arResult['PARAMS_CATALOG']
+                    );?>
+                <? endif; ?>
+
+            </div>
+
+            <div class="loading">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Загрузка</span>
+                </div>
+                <div class="loading__text">
+                    Загрузка
+                </div>
+            </div>
 
             <? if (!empty($arResult['BLOG'])): ?>
                 <?$APPLICATION->IncludeComponent(
@@ -73,5 +112,18 @@ Loc::loadMessages(__FILE__);?>
             );?>
 
         <? endif; ?>
+        
     </div>
 </div>
+
+<script>
+    new SearchPageComponent(
+        <?=json_encode([
+            'templateFolder' => $templateFolder,
+            'paramsCatalog' => $arResult['PARAMS_CATALOG'],
+            'countSearch' => $arResult['COUNT_SEARCH'],
+            'pageSize' => $arResult['PAGE_SIZE'],
+            'countProduct' => $arResult['COUNT_PRODUCT']
+        ])?>
+    );
+</script>
