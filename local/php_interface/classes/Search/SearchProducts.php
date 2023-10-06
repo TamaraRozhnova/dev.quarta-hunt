@@ -53,10 +53,13 @@ class ProductTable extends SphinxDataManager
             new Main\Entity\IntegerField('id', [
                 'primary' => true,
             ]),
+            new Main\Entity\StringField('code'),
             new Main\Entity\StringField('name'),
             new Main\Entity\StringField('preview_text'),
             new Main\Entity\StringField('article'),
+            new Main\Entity\StringField('iblock_section_id'),
             new Main\Entity\StringField('iblock_code'),
+            new Main\Entity\StringField('iblock_id'),
 
             new Main\Entity\FloatField('price_1'),
             new Main\Entity\FloatField('price_3'),
