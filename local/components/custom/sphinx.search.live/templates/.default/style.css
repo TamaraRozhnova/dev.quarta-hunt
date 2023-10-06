@@ -99,6 +99,12 @@
     transform: rotate(180deg);
 }
 
+body.stop-scrolling {
+    margin: 0; 
+    height: 100%; 
+    overflow: hidden
+}
+
 @media (hover: hover) {
     .search-live__item-link:hover,
     .search-live__item-bold:hover {

@@ -6,6 +6,7 @@ class SearchLive {
 
         this.headerPC = document.querySelector('.header--desktop')
         this.headerMobile = document.querySelector('.header--mobile')
+        this.body = document.querySelector('body')
 
         if (params?.mobile == null) {
             this.liveSearchWrapper = this.headerPC.querySelector('.search-live__wrapper')
@@ -49,7 +50,7 @@ class SearchLive {
 
             if (!e.target.closest('.search-live__wrapper')) {
                 this.matchsItems.classList.add('hide')
-
+                this.body.classList.remove('stop-scrolling')
                 return;
             }
 
@@ -64,6 +65,7 @@ class SearchLive {
         this.btnCancel.addEventListener('click', (e) => {
             this.btnCancel.classList.add('hide')
             this.matchsItems.classList.add('hide')
+            this.body.classList.remove('stop-scrolling')
         })
     }
 
@@ -76,6 +78,8 @@ class SearchLive {
                 }
 
                 this.matchsItems.classList.remove('hide')
+
+                this.body.classList.add('stop-scrolling')
             }
         })
     }
@@ -161,6 +165,7 @@ class SearchLive {
         }
         
         this.matchsItems.classList.remove('hide')
+        this.body.classList.add('stop-scrolling')
 
         if (this.btnCancel != null) {
             this.btnCancel.classList.remove('hide')
