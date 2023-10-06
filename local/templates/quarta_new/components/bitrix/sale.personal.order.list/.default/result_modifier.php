@@ -43,6 +43,8 @@ if (!empty($arResult['ORDERS'])) {
                         $arSection['CODE'] == 'odezhda'
                         ||
                         $arSection['CODE'] == 'obuv'
+                        ||
+                        $arSection['CODE'] == 'oruzhie_i_patrony'
                     ) {
                         $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'Y';
 

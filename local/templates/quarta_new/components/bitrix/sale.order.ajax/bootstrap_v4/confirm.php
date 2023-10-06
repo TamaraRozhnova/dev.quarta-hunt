@@ -57,6 +57,8 @@ if (!empty($arResult['ORDER_ID'])) {
 					$arSection['CODE'] == 'odezhda'
 					||
 					$arSection['CODE'] == 'obuv'
+					||
+					$arSection['CODE'] == 'oruzhie_i_patrony'
 				) {
 					$arResult['HIDE_BUTTON_PAYMENT'] = 'Y';
 					break;
