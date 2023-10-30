@@ -1,0 +1,72 @@
+/*region Variables*/
+.page {
+	--ui-font-family-helvetica : 'Micra' !important;
+	--ui-link-color: #2a2b2b !important;
+}
+
+.col-sm-9{
+	width: 75%;
+	/*width: 29.6%;*/
+}
+.col-sm-3{
+	width: 25%;
+}
+@media screen and (max-width:767px) {
+	.col-sm-9{
+		width: 100%;
+		/*width: 29.6%;*/
+	}
+	.col-sm-3{
+		width: 100%;
+	}
+}
+
+.checkout__wrapper{
+	display: block;
+}
+
+.icon-camera.review-camera {
+	width: 106px;
+	height: 5em;
+	position: absolute;
+	top: 3px;
+	left: 50%;
+	margin-left: -53px;
+}
+
+.card__count.count{
+	max-width : 110px;
+}
+
+[data-delete-basket]{
+	cursor: pointer;
+}
+
+.promo-good{
+	color:green;
+	font-weight : bold;
+}
+
+.catalog__item-img img,
+.card__slider-img img {
+	-o-object-fit: contain !important;
+    object-fit: contain !important;
+}
+
+.card-info__description,
+.accordion__item-content{
+	font-family: "Jura",sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+
+.header__logo .logo img{
+	-o-object-fit: contain !important;
+    object-fit: contain !important;
+	height:auto !important;
+}
+
+.catalog__item-name{
+	height:72px
+}

@@ -161,7 +161,7 @@ class SearchLive {
         ) {
             result = this.buildHtmlNotFound()
         } else {
-            result = this.buildHtmlMatch(products) +this.buildHtmlMatch(articles)
+            result = this.buildHtmlMatch(products) + this.buildHtmlMatch(articles)
         }
         
         this.matchsItems.classList.remove('hide')

@@ -110,7 +110,7 @@ class CUserEx{
             ));
 
             if (!$addDb->isSuccess()) {
-                echo $addDb->getErrorMessages();
+//                echo $addDb->getErrorMessages();
             } else {
 
                 \Bitrix\Main\Mail\Event::send(array(

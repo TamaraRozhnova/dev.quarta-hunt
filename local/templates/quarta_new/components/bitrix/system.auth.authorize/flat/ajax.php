@@ -13,10 +13,6 @@ const TYPES_USER = [
 	'wholesale' => 'Оптовый'
 ];
 
-
-$log = date('Y-m-d H:i:s') . ' ' . print_r('попытка авторизации', true);
-file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
-
 $currentUser = CurrentUser::get();
 
 if (!$currentUser->getId()) {
@@ -51,6 +47,21 @@ if (!$currentUser->getId()) {
 	$rsUsers = UserTable::getList(
 		$defaultParamsUsers
 	)->fetchAll();
+
+	if (empty($rsUsers)) {
+
+		$result['error'] = true;
+		$result['message'] = 'Пользователь не найден';
+
+		ob_end_clean();
+
+		header('Content-Type: application/json; charset=utf-8');
+
+		echo Bitrix\Main\Web\Json::encode($result);
+
+		return;
+
+	}
 	
 	if (count($rsUsers) > 1) {
 	
@@ -96,9 +107,6 @@ if (!$currentUser->getId()) {
 		 * выбран через модальное окно 
 		 * */
 		
-
-		//  $userCode = 
-
 		$currentUser = reset($rsUsers);
 
 		if (empty($_REQUEST['USER']['userCode'])) {
@@ -169,10 +177,6 @@ if (!$currentUser->getId()) {
 				$result['message'] = 'Неверный код';
 			}
 
-			$log = date('Y-m-d H:i:s') . ' ' . print_r($result, true);
-			file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
-
-
 			ob_end_clean();
 
 			header('Content-Type: application/json; charset=utf-8');
@@ -194,9 +198,6 @@ if (!$currentUser->getId()) {
 		'FIRST_NAME' => $USER->GetFirstName(), 
 		'LAST_NAME' => $USER->GetLastName()
 	];
-
-	$log = date('Y-m-d H:i:s') . ' ' . print_r($result, true);
-	file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
 
 	ob_end_clean();
 

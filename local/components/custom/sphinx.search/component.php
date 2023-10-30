@@ -55,7 +55,7 @@ $priceCodeForSort = 'price_' . $userPriceId;
 $sortExpressionsFieldsCatalog = [
     'revelance' => [
         'order' => [
-            'weight' => 'DESC'
+            'has_stock' => 'DESC',
         ],
         'expression' => new ExpressionField('weight', 'WEIGHT()', 'id'),
     ],
@@ -79,7 +79,7 @@ $sortExpressionsFieldsCatalog = [
     ],
     'price_desc' => [
         'order' => [
-            $priceCodeForSort => 'DESC'
+            $priceCodeForSort => 'DESC',
         ],
         'expression' => new ExpressionField($priceCodeForSort, 'ORDER_BY', $priceCodeForSort),
     ],
@@ -105,7 +105,7 @@ if (!empty($_GET['sort'])) {
 $rsParamsQuery = [
     'select' => [
         '*',
-        $selectParamsEF
+        $selectParamsEF,
     ],
     'match' => $searchTarget,
     'count_total' => true,
@@ -163,6 +163,7 @@ $tmpArrCount['PRODUCT'] = $rsProduct->getCount();
 $arResult['BLOG'] = $rsBlog->fetchAll();
 $arResult['SEARCH_TEXT'] = $searchTarget;
 
+
 if (!empty($searchTarget)) {
 
     /** 
@@ -175,7 +176,6 @@ if (!empty($searchTarget)) {
 
     $modifyParamsQuery = $rsParamsQuery;
 
-
     $translitQueryRu = Translit::getTranslitRU($searchTarget);
     $simpleWord = Translit::getChangeSimpleWordRU($searchTarget);
     $advancedWord = Translit::getChangeAdvancedWordRU($searchTarget);
@@ -186,6 +186,10 @@ if (!empty($searchTarget)) {
         ||
         $rsProduct->getCount() < 5
     ) {
+
+        $rsProductStandart = ProductTable::getList(
+            $modifyParamsQuery
+        );
 
         $modifyParamsQuery['match'] = $translitQueryRu;
 
@@ -212,6 +216,7 @@ if (!empty($searchTarget)) {
         );
 
         $arProcessProducts = [
+            $rsProductStandart,
             $rsProduct,
             $rsProductSimple,
             $rsProductAdvanced,
@@ -219,14 +224,14 @@ if (!empty($searchTarget)) {
         ];
 
         $arProducts = array_merge(
+            $rsProductStandart->fetchAll(),
             $rsProduct->fetchAll(), 
             $rsProductSimple->fetchAll(), 
             $rsProductAdvanced->fetchAll(),
             $rsProductExtended->fetchAll()
         );
 
-        $arResult['SEARCH_TEXT'] = $translitQueryRu;
-
+        $arResult['SEARCH_TEXT'] = $searchTarget;
         $arResult['PRODUCTS'] = $arProducts;
 
     }
@@ -250,7 +255,7 @@ if (!empty($searchTarget)) {
             $arResult['BLOG'] = $rsBlog->fetchAll();
     
             if (!empty($arResult['BLOG'])) {
-                $arResult['SEARCH_TEXT'] = $translitQueryRu;
+                $arResult['SEARCH_TEXT'] = $searchTarget;
             }
     
         }
@@ -295,7 +300,6 @@ if (!empty($tmpCountSearch)) {
         $tmpPageSize = $tmpCountSearch;
     }
 }
-
 
 $arResult['COUNT_PRODUCT'] = is_array($tmpArrCount['PRODUCT']) ? current($tmpArrCount['PRODUCT']) : $tmpArrCount['PRODUCT'];
 $arResult['COUNT_SEARCH'] = $tmpCountSearch;

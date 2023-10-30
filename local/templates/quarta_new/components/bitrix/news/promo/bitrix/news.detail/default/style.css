@@ -1,6 +1,7 @@
 div.promo-detail {
   word-wrap: break-word;
   background-color: #fff;
+  overflow: hidden;
 }
 @media (max-width: 992px) {
   div.promo-detail .container {

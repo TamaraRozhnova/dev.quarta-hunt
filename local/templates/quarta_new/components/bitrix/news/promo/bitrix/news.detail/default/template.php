@@ -10,14 +10,15 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-$this->setFrameMode(true);
-?>
+$this->setFrameMode(true);?>
+
+
 <div class="promo-detail">
     <div class="promo-detail__top-wrapper">
         <div class="detail_picture__wrapper">
             <? if ($arParams["DISPLAY_PICTURE"] != "N" && is_array($arResult["DETAIL_PICTURE"])): ?>
                 <div class="detail_picture__element"
-                     style="background-image: url('<?= $arResult["DETAIL_PICTURE"]["SRC"] ?>')"></div>
+                     style="background-image: url('<?= $arResult["PICTURE"] ?>')"></div>
             <? endif ?>
         </div>
         <div class="deteil_title__wrapper">

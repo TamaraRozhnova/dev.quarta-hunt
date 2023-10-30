@@ -85,3 +85,7 @@ div.search-advanced, div.search-item-meta, div.search-item-meta a { color: #8a8a
 div.search-sorting b { background: #e8e9ec; }
 
 .search-item-rate {font-size: 11px;}
+
+.search-page-result-text p {
+    font-size: 16px;
+}
