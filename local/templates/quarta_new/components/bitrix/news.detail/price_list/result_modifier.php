@@ -4,20 +4,42 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Helpers\FileSizeHelper;
+use Bitrix\Main\IO,
+    Helpers\FileSizeHelper,
+    Bitrix\Main\Application;
 
-$fileIds = $arResult['PROPERTIES']['PRICE_LIST']['VALUE'];
-$arResult['FILES'] = [];
+$documentRoot = Application::getDocumentRoot();
 
-if (!empty($fileIds)) {
-    foreach ($fileIds as $fileId) {
-        $fileResource = CFile::GetByID($fileId);
-        if ($file = $fileResource->GetNext()) {
-            $arResult['FILES'][] = [
-                'NAME' => $file['ORIGINAL_NAME'],
-                'SIZE' => FileSizeHelper::getFormattedSize($file['FILE_SIZE']),
-                'SRC' => $file['SRC']
-            ];
+$dirPriceList = new IO\Directory(
+    implode('/', [
+        $documentRoot,
+        'upload',
+        'price_list'
+    ])
+);
+
+if ($dirPriceList->isExists()) {
+
+    $arFiles = $dirPriceList->getChildren();
+
+    if (!empty($arFiles)) {
+        foreach ($arFiles as $arFileIndex => $arFile) {
+
+            $pathFile = $arFile->getPath();
+
+            $obFileData = new IO\File(
+                $pathFile
+            );
+
+            $arResult['FILES'][$arFileIndex]['NAME'] = $obFileData->getName();
+            $arResult['FILES'][$arFileIndex]['SIZE'] = FileSizeHelper::getFormattedSize($obFileData->getSize());
+            $arResult['FILES'][$arFileIndex]['SRC'] = str_replace(
+                $documentRoot,
+                '',
+                $pathFile
+            );
+
         }
     }
+
 }
