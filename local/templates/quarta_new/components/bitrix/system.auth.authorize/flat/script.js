@@ -122,10 +122,25 @@ function initModalQuickRegister(data) {
 
 }
 
+function comparePassword(password, confirmPassword) {
+
+	if (password.value.trim() == '') {
+		return false
+	}
+
+	if (confirmPassword.value.trim() == '') {
+		return false
+	}
+
+	if (password.value.trim() !== confirmPassword.value.trim()) {
+		return false;
+	}
+
+	return true
+}
+
 function handleQuickRegister(data,modalNode) {
 	const btnQuickRegister = document.querySelector('.form_quick_register')
-
-	console.log(data)
 
 	if (btnQuickRegister != null) {
 		btnQuickRegister.addEventListener('click', (e) => {
@@ -133,7 +148,7 @@ function handleQuickRegister(data,modalNode) {
 
 			const inputsModal = []
 
-			modalNode.querySelectorAll('input[type=text] , input[type=password]').forEach((input) => {
+			modalNode.querySelectorAll('input[type=text], input[type=password]').forEach((input) => {
 
 				if (input.value.trim() == '') {
 					input.classList.add('error')
@@ -145,16 +160,16 @@ function handleQuickRegister(data,modalNode) {
 
 			})
 
-			const password = modalNode.querySelector(`input[name='PASSWORD']`)
-			const confirmPassword = modalNode.querySelector(`input[name='CONFIRM_PASSWORD']`)
+			// const password = modalNode.querySelector(`input[name='PASSWORD']`)
+			// const confirmPassword = modalNode.querySelector(`input[name='CONFIRM_PASSWORD']`)
 
-			if (password.value.trim() !== confirmPassword.value.trim()) {
-				password.classList.add('error')
-				confirmPassword.classList.add('error')
-			} else {
-				password.classList.remove('error')
-				confirmPassword.classList.remove('error')
-			}
+			// if (this.comparePassword(password, confirmPassword)) {
+			// 	password.classList.remove('error')
+			// 	confirmPassword.classList.remove('error')
+			// } else {
+			// 	password.classList.add('error')
+			// 	confirmPassword.classList.add('error')
+			// }
 
 			if (modalNode.querySelectorAll('input.error').length == 0) {
 
@@ -169,7 +184,25 @@ function handleQuickRegister(data,modalNode) {
 					url: '/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php',
 					dataType: 'json',
 					onsuccess: function(data){
-						console.log(data)
+
+						const modalQuckRegisterMessage = document.querySelector('.quick-register-warning')
+
+						switch (data?.STATUS) {
+							case 'SUCCESS':
+
+								modalQuckRegisterMessage.style.display = 'none'
+								
+								location.reload();
+								break;
+							case 'ERROR':
+								
+								if (modalQuckRegisterMessage != null) {
+									modalQuckRegisterMessage.innerHTML = data?.ERR
+								}
+
+								break;
+						}
+
 					}
 				})
 			

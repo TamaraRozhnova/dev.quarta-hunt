@@ -205,59 +205,44 @@ $this->setFrameMode(false);?>
 <div id="quick-register-window" class="modal">
 	<div class="modal-content">
 		<div class="modal-body">
-			<div class="quick-render-accounts-header">
-				<div class="quick-render-accounts-header-title">
+			<div class="quick-register-accounts-header">
+				<div class="quick-register-accounts-header-title">
 					<h3>Регистрация</h3>
 				</div>
-				<div class = "quick-render-accounts-header-subtitle">
-					<span><?=Loc::getMessage('quick-render_ACCOUNT_SUBTITLE')?></span>
+				<div class = "quick-register-accounts-header-subtitle">
+					<span><?=Loc::getMessage('quick-register_ACCOUNT_SUBTITLE')?></span>
 				</div>
 			</div>
-			<div class="quick-render-accounts-content">
-				<div class="quick-render-accounts-parts">
-					<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
-						<label class="bx-authform-label-container form-label">
-							Имя
-						</label>
-						<div class="bx-authform-input-container input--lg">
-							<input type="text" class="form-control"  name="NAME" maxlength="255" value="" />
-						</div>
-					</div>
-					<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
-						<label class="bx-authform-label-container form-label">
-							Фамилия
-						</label>
-						<div class="bx-authform-input-container input--lg">
-							<input type="text" class="form-control"  name="LAST_NAME" maxlength="255" value="" />
-						</div>
-					</div>
-				</div>
-				<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
+			<div class="quick-register-accounts-content">
+				<div class="bx-authform-formgroup-container input mb-4 input--lg">
 					<label class="bx-authform-label-container form-label">
-						Введите новый пароль
+						Имя
 					</label>
 					<div class="bx-authform-input-container input--lg">
-						<input type="password" class="form-control"  name="PASSWORD" maxlength="255" value="" />
+						<input type="text" class="form-control"  name="NAME" maxlength="255" value="" />
 					</div>
 				</div>
-				<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
+				<div class="bx-authform-formgroup-container input mb-4 input--lg">
 					<label class="bx-authform-label-container form-label">
-						Повторите пароль
+						Фамилия
 					</label>
 					<div class="bx-authform-input-container input--lg">
-						<input type="password" class="form-control"  name="CONFIRM_PASSWORD" maxlength="255" value="" />
+						<input type="text" class="form-control"  name="LAST_NAME" maxlength="255" value="" />
 					</div>
 				</div>
 				<hr>
-				<div class="quick-render-accounts-parts-right">
-					<div class="bx-authform-formgroup-container phone input input--lg">
-						<label class="bx-authform-label-container form-label">
-							Код из смс
-						</label>
-						<div class="bx-authform-input-container input--lg">
-							<input type="text" class="form-control"  name="SMS_CODE" maxlength="255" value="" />
-						</div>
+				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+					<label class="bx-authform-label-container form-label">
+						Код из смс
+					</label>
+					<div class="bx-authform-input-container input--lg">
+						<input type="text" class="form-control"  name="SMS_CODE" maxlength="255" value="" />
 					</div>
+				</div>
+
+				<div class="quick-register-warning"></div>
+
+				<div class="bx-authform-formgroup-container">
 					<div class="input-wrapper-form">
 						<input 
 							type="submit" 
@@ -266,7 +251,6 @@ $this->setFrameMode(false);?>
 							value="Завершить регистрацию" 
 						/>
 					</div>
-
 				</div>
 
 			</div>
@@ -283,11 +267,10 @@ $this->setFrameMode(false);?>
 </div>
 
 <script type="text/javascript">
-<?if ($arResult["LAST_LOGIN"] <> ''):?>
-try{document.form_auth.USER_PASSWORD.focus();}catch(e){}
-<?else:?>
-try{document.form_auth.USER_LOGIN.focus();}catch(e){}
-<?endif?>
-
+	<?if ($arResult["LAST_LOGIN"] <> ''):?>
+	try{document.form_auth.USER_PASSWORD.focus();}catch(e){}
+	<?else:?>
+	try{document.form_auth.USER_LOGIN.focus();}catch(e){}
+	<?endif?>
 </script>
 
