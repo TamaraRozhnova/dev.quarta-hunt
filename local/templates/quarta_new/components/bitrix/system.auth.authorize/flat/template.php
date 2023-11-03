@@ -176,8 +176,6 @@ $this->setFrameMode(false);?>
 </div>
 
 <div id="multi-accounts-window" class="modal">
-
-
 	<div class="modal-content">
 		<div class="modal-body">
 			<div class="multi-accounts-header">
@@ -201,9 +199,87 @@ $this->setFrameMode(false);?>
 					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 			</svg>
 		</div>
-
 	</div>	
+</div>
 
+<div id="quick-register-window" class="modal">
+	<div class="modal-content">
+		<div class="modal-body">
+			<div class="quick-render-accounts-header">
+				<div class="quick-render-accounts-header-title">
+					<h3>Регистрация</h3>
+				</div>
+				<div class = "quick-render-accounts-header-subtitle">
+					<span><?=Loc::getMessage('quick-render_ACCOUNT_SUBTITLE')?></span>
+				</div>
+			</div>
+			<div class="quick-render-accounts-content">
+				<div class="quick-render-accounts-parts">
+					<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
+						<label class="bx-authform-label-container form-label">
+							Имя
+						</label>
+						<div class="bx-authform-input-container input--lg">
+							<input type="text" class="form-control"  name="NAME" maxlength="255" value="" />
+						</div>
+					</div>
+					<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
+						<label class="bx-authform-label-container form-label">
+							Фамилия
+						</label>
+						<div class="bx-authform-input-container input--lg">
+							<input type="text" class="form-control"  name="LAST_NAME" maxlength="255" value="" />
+						</div>
+					</div>
+				</div>
+				<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
+					<label class="bx-authform-label-container form-label">
+						Введите новый пароль
+					</label>
+					<div class="bx-authform-input-container input--lg">
+						<input type="password" class="form-control"  name="PASSWORD" maxlength="255" value="" />
+					</div>
+				</div>
+				<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
+					<label class="bx-authform-label-container form-label">
+						Повторите пароль
+					</label>
+					<div class="bx-authform-input-container input--lg">
+						<input type="password" class="form-control"  name="CONFIRM_PASSWORD" maxlength="255" value="" />
+					</div>
+				</div>
+				<hr>
+				<div class="quick-render-accounts-parts-right">
+					<div class="bx-authform-formgroup-container phone input input--lg">
+						<label class="bx-authform-label-container form-label">
+							Код из смс
+						</label>
+						<div class="bx-authform-input-container input--lg">
+							<input type="text" class="form-control"  name="SMS_CODE" maxlength="255" value="" />
+						</div>
+					</div>
+					<div class="input-wrapper-form">
+						<input 
+							type="submit" 
+							class="btn btn-primary btn-lg w-100 form_quick_register" 
+							name="send_account_info" 
+							value="Завершить регистрацию" 
+						/>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="modal__close">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+					class="bi bi-x" viewBox="0 0 16 16">
+				<path
+					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+			</svg>
+		</div>
+	</div>	
 </div>
 
 <script type="text/javascript">

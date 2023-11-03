@@ -95,3 +95,43 @@
         margin: 3rem auto auto;
     }
 }
+
+.quick-render-accounts-parts,
+.quick-render-accounts-parts-right {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.quick-render-accounts-parts-right {
+    align-items: flex-end;
+}
+
+.quick-render-accounts-parts-right > div {
+    margin: 0;
+}
+
+.quick-render-accounts-parts-right > div:nth-child(1) {
+    width: 40%;
+}
+
+.quick-render-accounts-parts-right > div:nth-child(2) {
+    width: 60%;
+}
+
+.quick-render-accounts-parts > div {
+    width: 100%;
+}
+
+#quick-register-window {
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+    max-width: 45%;
+}
+
+.form-control.error {
+    border: 1px solid red;
+}

@@ -14,6 +14,69 @@ const TYPES_USER = [
 ];
 
 $currentUser = CurrentUser::get();
+$userObj = new CUser();
+
+if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
+
+	/**
+	 * Начинаем быструю регистрацию
+	 */
+
+	if (empty($_REQUEST['FIELDS'])) {
+		die('Не заполнены обязательные поля');
+	}
+
+	if (empty($_REQUEST['SMS_CODE'])) {
+		die('Пустой проверочный код');
+	}
+
+	$userSaveSms = $_REQUEST['SMS_CODE'];
+	$userSms = $_REQUEST['FIELDS']['SMS_CODE'];
+
+	if ((int) $userSaveSms !== (int) $userSms) {
+		die('Неправильный проверочный код');
+	}
+
+	$rsGroupTable = Bitrix\Main\GroupTable::getList([
+		'select' => [
+			'ID',
+			'NAME',
+			'STRING_ID'
+		],
+		'filter' => [
+			'STRING_ID' => 'REGISTERED_USERS'
+		]
+	])->fetch();
+
+	$groupRegUsersId = $rsGroupTable['ID'];
+
+	$arFieldsNewUser = [
+		'NAME' => htmlspecialchars($_REQUEST['FIELDS']['NAME']),
+		'LAST_NAME' => htmlspecialchars($_REQUEST['FIELDS']['LAST_NAME']),
+		'PASSWORD' => htmlspecialchars($_REQUEST['FIELDS']['PASSWORD']),
+		'CONFIRM_PASSWORD' => htmlspecialchars($_REQUEST['FIELDS']['CONFIRM_PASSWORD']),
+		'LOGIN' => $_REQUEST['PERSONAL_PHONE'],
+		'ACTIVE' => 'Y',
+		'GROUP' => [$groupRegUsersId], /** Группа зарег.пользователи */
+	];
+
+	$idUser = $userObj->Add($arFieldsNewUser);
+
+	ob_end_clean();
+
+	header('Content-Type: application/json; charset=utf-8');
+
+	die(Bitrix\Main\Web\Json::encode([
+		'ID_USER' => $idUser,
+		'STATUS' => 'SUCCESS',
+		'ERR' => $userObj->LAST_ERROR
+	]));
+
+	if (intval($idUser) > 0) {
+		$userObj->Authorize($idUser, true);
+	}
+
+}
 
 if (!$currentUser->getId()) {
 
@@ -50,16 +113,28 @@ if (!$currentUser->getId()) {
 
 	if (empty($rsUsers)) {
 
-		$result['error'] = true;
-		$result['message'] = 'Пользователь не найден';
+		// $smsObj = new Sender();
+		$smsCode = rand(1111, 9999);
+	
+		// $rsSendSms = $smsObj->sendSms(
+		// 	$_REQUEST['USER']['PERSONAL_PHONE'], 
+		// 	$smsCode, 
+		// 	'', 
+		// 	'quarta-hunt', 
+		// 	'quartahunt-login'
+		// );
 
 		ob_end_clean();
 
 		header('Content-Type: application/json; charset=utf-8');
 
-		echo Bitrix\Main\Web\Json::encode($result);
-
-		return;
+		die(
+			Bitrix\Main\Web\Json::encode([
+				'SHOW_MODAL_QUICK_REGISTER' => 'Y',
+				'SMS_CODE' => $smsCode,
+				'PERSONAL_PHONE' => $_REQUEST['USER']['PERSONAL_PHONE']
+			])
+		);
 
 	}
 	
@@ -112,7 +187,6 @@ if (!$currentUser->getId()) {
 		if (empty($_REQUEST['USER']['userCode'])) {
 		
 			$smsObj = new Sender();
-			$userObj = new CUser();
 	
 			$smsCode = rand(1111, 9999);
 
