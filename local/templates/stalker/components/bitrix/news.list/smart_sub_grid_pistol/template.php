@@ -40,7 +40,7 @@ CModule::IncludeModule( 'iblock' );
 					<a href="<?=$arFields['PROPERTY_LINK_VALUE'];?>" class="section__slide-link">
 						<span class="ui-underline ui-underline--full"> Подробнее </span>
 						<svg class="icon icon-chevron-right">
-							<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-chevron-right"></use>
+							<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-chevron-right"></use>
 						</svg>
 					</a>
 				</div>

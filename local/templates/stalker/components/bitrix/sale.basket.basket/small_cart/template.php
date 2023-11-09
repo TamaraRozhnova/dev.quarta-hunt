@@ -8,7 +8,7 @@ $q = 0;
 		<div class="section__title"> Корзина</div>
 		<div class="modal__header-close" data-modal-close="cart">
 			<svg class="icon icon-close">
-				<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-close"></use>
+				<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-close"></use>
 			</svg>
 		</div>
 	</div>
@@ -48,7 +48,7 @@ $q = 0;
 					</div>
 					<div class="modal-cart__remove" data-delete-basket="<?=$arItem['ID']?>">
 						<svg class="icon icon-close">
-							<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-close"></use>
+							<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-close"></use>
 						</svg>
 					</div>
 				</div>

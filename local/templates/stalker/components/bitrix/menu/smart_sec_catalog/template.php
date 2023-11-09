@@ -48,7 +48,7 @@ while ($arSection = $resSections->GetNext())
 		<div class="navigation__item accordion accordion__item">
 			<div class="accordion__item-head" data-accordion-head><?=$main['NAME']?>
 				<svg class="icon icon-triangle-down">
-					<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-triangle-down"></use>
+					<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-triangle-down"></use>
 				</svg>
 			</div>
 			<div class="accordion__item-body" data-accordion-body>

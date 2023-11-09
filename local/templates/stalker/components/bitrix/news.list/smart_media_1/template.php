@@ -71,7 +71,7 @@ while ($ob = $res->GetNextElement())
 				<a href="/media/" class="section-media__link ui-link">
 					<span class="ui-underline ui-underline--full"> Все медиа </span>
 					<svg class="icon icon-chevron-right">
-						<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-chevron-right"></use>
+						<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-chevron-right"></use>
 					</svg>
 				</a>
 			</div>
@@ -86,14 +86,14 @@ while ($ob = $res->GetNextElement())
 						</div>
 						<div class="video-btn">
 							<svg class="icon icon-play">
-								<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-play"></use>
+								<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-play"></use>
 							</svg>
 						</div>
 					</div>
 					<div class="section-media__description">
 						<div class="play">
 							<svg class="icon icon-play">
-								<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-play"></use>
+								<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-play"></use>
 							</svg>
 						</div>
 						<h3 class="section__title"> <?=$mediaMain['NAME'];?> </h3>
@@ -118,7 +118,7 @@ while ($ob = $res->GetNextElement())
 										</div>
 										<div class="video-btn">
 											<svg class="icon icon-play">
-												<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-play"></use>
+												<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-play"></use>
 											</svg>
 										</div>
 									</div>
