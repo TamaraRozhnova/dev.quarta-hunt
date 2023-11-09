@@ -128,7 +128,7 @@
 
 </div>
 <!-- END content -->
-<script type="text/javascript" src="/bitrix/templates/stalker/js/app.js?v5"></script>
-<script type="text/javascript" src="/bitrix/templates/stalker/js/script.js?v3"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/app.js?v5"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js?v3"></script>
 </body>
 </html>

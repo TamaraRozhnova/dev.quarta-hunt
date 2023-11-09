@@ -13,7 +13,7 @@
 	<meta name="theme-color" content="#fff"/>
 	<meta name="format-detection" content="telephone=no"/>
 	<meta name="yandex-verification" content="266faedfe7d618bc" />
-	<link rel="stylesheet" media="all" href="/bitrix/templates/stalker/css/style.css?v3"/>
+	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/style.css?v3"/>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -86,20 +86,20 @@
 					<div class="header__actions">
 						<button class="header__search link-modal-another" data-modal-open="search">
 							<svg class="icon icon-search">
-								<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-search"></use>
+								<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-search"></use>
 							</svg>
 						</button>
 
 						<?php if ($USER->IsAuthorized()): ?>
 							<a href="/personal/" class="header__profile">
 								<svg class="icon icon-profile">
-									<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-profile"></use>
+									<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-profile"></use>
 								</svg>
 							</a>
 						<?php else:?>
 							<a href="#" class="header__profile" data-modal-open="profile">
 								<svg class="icon icon-profile">
-									<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-profile"></use>
+									<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-profile"></use>
 								</svg>
 							</a>
 						<?php endif ?>

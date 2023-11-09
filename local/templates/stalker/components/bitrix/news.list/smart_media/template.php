@@ -24,12 +24,12 @@ CModule::IncludeModule( 'iblock' );
 				<div class="section__slider-navigation">
 					<button class="swiper-button-prev ui-swiper-button">
 						<svg class="icon icon-arrow-prev">
-							<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-arrow-prev"></use>
+							<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-arrow-prev"></use>
 						</svg>
 					</button>
 					<button class="swiper-button-next ui-swiper-button">
 						<svg class="icon icon-arrow-next">
-							<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-arrow-next"></use>
+							<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-arrow-next"></use>
 						</svg>
 					</button>
 				</div>
@@ -60,7 +60,7 @@ CModule::IncludeModule( 'iblock' );
 									<a href="<?=$arFields['PROPERTY_LINK_VALUE'];?>" class="section__slide-link">
 										<span class="ui-underline ui-underline--full"> Подробнее </span>
 										<svg class="icon icon-chevron-right">
-											<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-chevron-right"></use>
+											<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-chevron-right"></use>
 										</svg>
 									</a>
 								</div>

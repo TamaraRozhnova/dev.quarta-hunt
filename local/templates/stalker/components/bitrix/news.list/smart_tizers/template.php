@@ -29,22 +29,22 @@ $res = CIblockElement::GetList(Array("SORT" => "ASC"), $arFilter, false, $arPage
                 <div class="section-plus__item-text"><?=$arFields['DETAIL_TEXT'];?></div>
                 <div class="plus plus--top-left">
                   <svg class="icon icon-plus">
-                    <use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-plus"></use>
+                    <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-plus"></use>
                   </svg>
                 </div>
                 <div class="plus plus--top-right">
                   <svg class="icon icon-plus">
-                    <use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-plus"></use>
+                    <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-plus"></use>
                   </svg>
                 </div>
                 <div class="plus plus--bottom-left">
                   <svg class="icon icon-plus">
-                    <use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-plus"></use>
+                    <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-plus"></use>
                   </svg>
                 </div>
                 <div class="plus plus--bottom-right">
                   <svg class="icon icon-plus">
-                    <use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-plus"></use>
+                    <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-plus"></use>
                   </svg>
                 </div>
               </div>

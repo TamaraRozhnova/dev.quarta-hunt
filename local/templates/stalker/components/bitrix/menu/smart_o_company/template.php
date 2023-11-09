@@ -25,7 +25,7 @@ if (empty( $arResult ))
 			<li class="section-about__list-item">
 				<a href="<?=htmlspecialcharsbx( $arItem["LINK"] )?>" class="section-about__list-link"><?=htmlspecialcharsbx( $arItem["TEXT"], ENT_COMPAT, false )?>
 					<svg class="icon icon-chevron-right">
-						<use xlink:href="/bitrix/templates/stalker/img/sprite.svg#icon-chevron-right"></use>
+						<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-chevron-right"></use>
 					</svg>
 				</a>
 			</li>

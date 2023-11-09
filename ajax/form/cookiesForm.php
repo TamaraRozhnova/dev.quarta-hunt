@@ -7,7 +7,7 @@ if (!empty($_POST['COOKIE_APPLY'])) {
 
         $cookie = new \Bitrix\Main\Web\Cookie("COOKIE_APPLY", "Y", time()+60*60*24*365*10);
         $cookie->setSpread(\Bitrix\Main\Web\Cookie::SPREAD_DOMAIN);
-        $cookie->setDomain($_SERVER['SERVER_NAME']);
+        $cookie->setDomain($_SERVER['HTTP_HOST']);
         $cookie->setPath("/"); 
         $cookie->setSecure(false); 
         $cookie->setHttpOnly(false);
