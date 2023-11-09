@@ -132,6 +132,10 @@
     max-width: 450px;
 }
 
+#quick-register-window .modal-body {
+    padding: 2rem;
+}
+
 .form-control.error {
     border: 1px solid red;
 }
@@ -141,4 +145,20 @@
     margin-bottom: 1rem;
     font-size: 1rem;
     color: #eb5806;
+}
+
+.input-wrapper-form input{
+    min-height: 56px;
+}
+
+.btn-primary.btn-color-inverse {
+    background-color: white;
+}
+
+.btn-primary.btn-color-inverse a {
+    text-decoration: none;
+}
+
+.btn-primary.btn-color-inverse:hover {
+    background-color: #f9f9f9;
 }

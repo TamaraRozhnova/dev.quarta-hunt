@@ -6,13 +6,18 @@ ob_end_clean();
 
 header('Content-Type: application/json; charset=utf-8');
 
-use \Bitrix\Main\Loader,
-	\Targetsms\Sms\Sender,
-	\Bitrix\Main\Engine\CurrentUser,
-	\Bitrix\Main\UserTable,
-	\Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Loader,
+	Bitrix\Main\Engine\CurrentUser,
+	Bitrix\Main\UserTable,
+	Bitrix\Main\Localization\Loc,
+	Bitrix\Main\Web\Json,
+	Targetsms\Sms\Sender;
 
 Loc::loadMessages(__FILE__);
+
+if (!Loader::includeModule('targetsms.sms')) {
+	die(Loc::getMessage('TARGET_SMS_ISNT_INIT'));
+}	
 
 define('TYPES_USER', [
 	'retail' => Loc::getMessage('TYPE_USER_RETAIL'),
@@ -20,13 +25,6 @@ define('TYPES_USER', [
 ]);
 
 define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
-
-$encrypted_string=openssl_encrypt($string_to_encrypt,"AES-128-ECB", ENCRYPTION_KEY);
-$decrypted_string=openssl_decrypt($encrypted_string,"AES-128-ECB", ENCRYPTION_KEY);
-
-if (!Loader::includeModule('targetsms.sms')) {
-	die(Loc::getMessage('TARGET_SMS_ISNT_INIT'));
-}	
 
 $currentUser = CurrentUser::get();
 $userObj = new CUser();
@@ -38,14 +36,14 @@ if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 	 */
 
 	if (empty($_REQUEST['FIELDS'])) {
-		die(Bitrix\Main\Web\Json::encode([
+		die(Json::encode([
 			'STATUS' => 'ERROR',
 			'ERR' => Loc::getMessage('EMPTY_FIELDS_W')
 		]));
 	}
 
 	if (empty($_REQUEST['SMS_CODE'])) {
-		die(Bitrix\Main\Web\Json::encode([
+		die(Json::encode([
 			'STATUS' => 'ERROR',
 			'ERR' => Loc::getMessage('EMPTY_VEIRIFY_CODE')
 		]));
@@ -60,7 +58,7 @@ if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 	$userSms = $_REQUEST['FIELDS']['SMS_CODE'];
 
 	if ((int) $userSaveSms !== (int) $userSms) {
-		die(Bitrix\Main\Web\Json::encode([
+		die(Json::encode([
 			'STATUS' => 'ERROR',
 			'ERR' => Loc::getMessage('WRONG_VEIRIFY_CODE')
 		]));
@@ -105,7 +103,7 @@ if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 	
 		if (intval($idUser) > 0) {
 	
-			die(Bitrix\Main\Web\Json::encode([
+			die(Json::encode([
 				'ID_USER' => $idUser,
 				'STATUS' => 'SUCCESS',
 			]));
@@ -114,7 +112,7 @@ if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 
 	}
 
-	die(Bitrix\Main\Web\Json::encode([
+	die(Json::encode([
 		'STATUS' => 'ERROR',
 		'ERR' => $userObj->LAST_ERROR
 	]));
@@ -168,7 +166,7 @@ if (!$currentUser->getId()) {
 		);
 
 		die(
-			Bitrix\Main\Web\Json::encode([
+			Json::encode([
 				'SHOW_MODAL_QUICK_REGISTER' => 'Y',
 				'SMS_CODE' => openssl_encrypt(
 					$smsCode,
@@ -211,7 +209,7 @@ if (!$currentUser->getId()) {
 
 		}
 
-		die(Bitrix\Main\Web\Json::encode($arAjaxParams));
+		die(Json::encode($arAjaxParams));
 
 	
 	} else {
@@ -259,7 +257,7 @@ if (!$currentUser->getId()) {
 				$result['message'] = Loc::getMessage('SMS_CODE_NOT_SENDED');
 		 	}
 
-			die(Bitrix\Main\Web\Json::encode($result));
+			die(Json::encode($result));
 
 		} else {
 
@@ -286,7 +284,7 @@ if (!$currentUser->getId()) {
 				$result['message'] = Loc::getMessage('WRONG_VEIRIFY_CODE');
 			}
 
-			die(Bitrix\Main\Web\Json::encode($result));
+			die(Json::encode($result));
 
 		}
 
@@ -304,6 +302,6 @@ if (!$currentUser->getId()) {
 		'LAST_NAME' => $USER->GetLastName()
 	];
 
-	die(Bitrix\Main\Web\Json::encode($result));
+	die(Json::encode($result));
 
 }

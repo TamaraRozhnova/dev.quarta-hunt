@@ -23,7 +23,7 @@ $( document ).ready(function() {
 
     $('.auth_email_form').on('click', function(){
     	$("#form_auth_phone").hide();
-    	$(".auth_email_form").hide();
+    	$(".auth_email_form").parent().hide();
     	$("#form_auth").show();
     	$(".foggot_pass").show();
     	$(".auth_phone_form").show();

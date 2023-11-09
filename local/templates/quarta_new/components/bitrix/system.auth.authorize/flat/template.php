@@ -145,19 +145,23 @@ $this->setFrameMode(false);?>
 							<input type="submit" class="btn btn-primary btn-lg w-100 mb-3" name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
 						</div>
 					</form>
+
+					<div class="bx-authform-link-container mb-3 w-100 btn btn-primary btn-lg btn-color-inverse">
+						<a href="#" class="mb-5 w-100 text-md-start auth_email_form">
+							<?=GetMessage("AUTH_EMAIL_FORM")?>
+						</a>
+					</div>
 				
 				<?if($arParams["NOT_SHOW_LINKS"] != "Y" && $arResult["NEW_USER_REGISTRATION"] == "Y" && $arParams["AUTHORIZE_REGISTRATION"] != "Y"):?>
 					<noindex>
-						<div class="bx-authform-link-container mb-5 w-100 text-md-left">
+						<div class="bx-authform-link-container mb-3 w-100 btn btn-primary btn-lg btn-color-inverse">
 							<a href="/registration/" rel="nofollow">
 								<?=GetMessage("AUTH_REGISTER")?>
 							</a>
 						</div>
 					</noindex>
 				<?endif?>
-				<a href="#" class="mb-5 w-100 text-md-start auth_email_form">
-				<?=GetMessage("AUTH_EMAIL_FORM")?>
-				</a>
+
 				<?if ($arParams["NOT_SHOW_LINKS"] != "Y"):?>
 					<noindex>
 						<div style="display:none" class="bx-authform-link-container mb-5 w-100 text-md-left foggot_pass">
