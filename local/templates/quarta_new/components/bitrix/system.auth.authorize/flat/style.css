@@ -153,10 +153,8 @@
 
 .btn-primary.btn-color-inverse {
     background-color: white;
-}
-
-.btn-primary.btn-color-inverse a {
     text-decoration: none;
+    color: #004989 !important;
 }
 
 .btn-primary.btn-color-inverse:hover {

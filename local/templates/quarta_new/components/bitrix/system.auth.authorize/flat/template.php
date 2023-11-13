@@ -82,12 +82,12 @@ $this->setFrameMode(false);?>
 			
 						<input type="hidden" name="AUTH_FORM" value="Y" />
 						<input type="hidden" name="TYPE" value="AUTH" />
-				<?if ($arResult["BACKURL"] <> ''):?>
-						<input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" />
-				<?endif?>
-				<?foreach ($arResult["POST"] as $key => $value):?>
-						<input type="hidden" name="<?=$key?>" value="<?=$value?>" />
-				<?endforeach?>
+						<?if ($arResult["BACKURL"] <> ''):?>
+							<input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" />
+						<?endif?>
+						<?foreach ($arResult["POST"] as $key => $value):?>
+							<input type="hidden" name="<?=$key?>" value="<?=$value?>" />
+						<?endforeach?>
 				
 						<div class="bx-authform-formgroup-container input mb-4 input--lg">
 							<label class="bx-authform-label-container form-label">
@@ -117,7 +117,7 @@ $this->setFrameMode(false);?>
 							</div>
 						</div>
 				
-				<?if($arResult["CAPTCHA_CODE"]):?>
+					<?if($arResult["CAPTCHA_CODE"]):?>
 						<input type="hidden" name="captcha_sid" value="<?echo $arResult["CAPTCHA_CODE"]?>" />
 				
 						<div class="bx-authform-formgroup-container dbg_captha">
@@ -129,7 +129,7 @@ $this->setFrameMode(false);?>
 								<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
 							</div>
 						</div>
-				<?endif;?>
+					<?endif;?>
 				
 					<?/*if ($arResult["STORE_PASSWORD"] == "Y"):?>
 						<div class="bx-authform-formgroup-container">
@@ -145,35 +145,43 @@ $this->setFrameMode(false);?>
 							<input type="submit" class="btn btn-primary btn-lg w-100 mb-3" name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
 						</div>
 					</form>
-
-					<div class="bx-authform-link-container mb-3 w-100 btn btn-primary btn-lg btn-color-inverse">
-						<a href="#" class="mb-5 w-100 text-md-start auth_email_form">
-							<?=GetMessage("AUTH_EMAIL_FORM")?>
-						</a>
-					</div>
 				
 				<?if($arParams["NOT_SHOW_LINKS"] != "Y" && $arResult["NEW_USER_REGISTRATION"] == "Y" && $arParams["AUTHORIZE_REGISTRATION"] != "Y"):?>
 					<noindex>
-						<div class="bx-authform-link-container mb-3 w-100 btn btn-primary btn-lg btn-color-inverse">
-							<a href="/registration/" rel="nofollow">
-								<?=GetMessage("AUTH_REGISTER")?>
-							</a>
-						</div>
+						<a class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse" href="/registration/" rel="nofollow">
+							<?=GetMessage("AUTH_REGISTER")?>
+						</a>
 					</noindex>
 				<?endif?>
 
 				<?if ($arParams["NOT_SHOW_LINKS"] != "Y"):?>
 					<noindex>
-						<div style="display:none" class="bx-authform-link-container mb-5 w-100 text-md-left foggot_pass">
-							<a href="<?=$arResult["AUTH_FORGOT_PASSWORD_URL"]?>" rel="nofollow">
-								<?=GetMessage("AUTH_FORGOT_PASSWORD_2")?>
-							</a>
-						</div>
+						<a 
+							style="display: none;"
+							class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse foggot_pass" 
+							href="<?=$arResult["AUTH_FORGOT_PASSWORD_URL"]?>" rel="nofollow"
+						>
+							<?=GetMessage("AUTH_FORGOT_PASSWORD_2")?>
+						</a>
 					</noindex>
 				<?endif?>
-				<a href="#" style="display:none" class="mb-5 w-100 text-md-left auth_phone_form">
-					<?=GetMessage("AUTH_PHONE_FORM")?>
-              	</a>
+					<a 
+						style="display:none" 
+						href="#" 
+						class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse auth_phone_form"
+					>
+						<?=GetMessage("AUTH_PHONE_FORM")?>
+					</a>
+
+					<a 
+						href="#" 
+						class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse auth_email_form"
+					>
+						<?=GetMessage("AUTH_EMAIL_FORM")?>
+					</a>
+
+				</div>
+
 			</div>
 		</div>
 	</div>
