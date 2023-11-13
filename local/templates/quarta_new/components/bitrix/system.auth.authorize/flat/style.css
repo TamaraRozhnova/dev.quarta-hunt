@@ -95,3 +95,68 @@
         margin: 3rem auto auto;
     }
 }
+
+.quick-register-accounts-parts,
+.quick-register-accounts-parts-right {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.quick-register-accounts-parts-right {
+    align-items: flex-end;
+}
+
+.quick-register-accounts-parts-right > div {
+    margin: 0;
+}
+
+.quick-register-accounts-parts-right > div:nth-child(1) {
+    width: 40%;
+}
+
+.quick-register-accounts-parts-right > div:nth-child(2) {
+    width: 60%;
+}
+
+.quick-register-accounts-parts > div {
+    width: 100%;
+}
+
+#quick-register-window {
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+    max-width: 450px;
+}
+
+#quick-register-window .modal-body {
+    padding: 2rem;
+}
+
+.form-control.error {
+    border: 1px solid red;
+}
+
+.quick-register-warning {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #eb5806;
+}
+
+.input-wrapper-form input{
+    min-height: 56px;
+}
+
+.btn-primary.btn-color-inverse {
+    background-color: white;
+    text-decoration: none;
+    color: #004989 !important;
+}
+
+.btn-primary.btn-color-inverse:hover {
+    background-color: #f9f9f9;
+}

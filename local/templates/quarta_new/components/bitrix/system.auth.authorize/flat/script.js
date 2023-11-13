@@ -109,6 +109,109 @@ function initModalMultiUser(data) {
 
 }
 
+function initModalQuickRegister(data) {
+	const modalQuickRegister = document.querySelector('#quick-register-window')
+
+	const objModalQuickRegister = new Modal({
+		modalSelector: "#quick-register-window"
+	})
+
+	handleQuickRegister(data, modalQuickRegister)
+
+	objModalQuickRegister.open()
+
+}
+
+function comparePassword(password, confirmPassword) {
+
+	if (password.value.trim() == '') {
+		return false
+	}
+
+	if (confirmPassword.value.trim() == '') {
+		return false
+	}
+
+	if (password.value.trim() !== confirmPassword.value.trim()) {
+		return false;
+	}
+
+	return true
+}
+
+function handleQuickRegister(data,modalNode) {
+	const btnQuickRegister = document.querySelector('.form_quick_register')
+
+	if (btnQuickRegister != null) {
+		btnQuickRegister.addEventListener('click', (e) => {
+			e.preventDefault();
+
+			const inputsModal = []
+
+			modalNode.querySelectorAll('input[type=text], input[type=password]').forEach((input) => {
+
+				if (input.value.trim() == '') {
+					input.classList.add('error')
+				} else {
+					input.classList.remove('error')
+				}
+
+				inputsModal[input.name] = input.value.trim()
+
+			})
+
+			// const password = modalNode.querySelector(`input[name='PASSWORD']`)
+			// const confirmPassword = modalNode.querySelector(`input[name='CONFIRM_PASSWORD']`)
+
+			// if (this.comparePassword(password, confirmPassword)) {
+			// 	password.classList.remove('error')
+			// 	confirmPassword.classList.remove('error')
+			// } else {
+			// 	password.classList.add('error')
+			// 	confirmPassword.classList.add('error')
+			// }
+
+			if (modalNode.querySelectorAll('input.error').length == 0) {
+
+				BX.ajax({
+					method: 'POST',
+					data: {
+						FIELDS: inputsModal,
+						PROCESS_QUICK_REGISTER: 'Y',
+						SMS_CODE: data.SMS_CODE,
+						PERSONAL_PHONE: data.PERSONAL_PHONE
+					},
+					url: '/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php',
+					dataType: 'json',
+					onsuccess: function(data){
+
+						const modalQuckRegisterMessage = document.querySelector('.quick-register-warning')
+
+						switch (data?.STATUS) {
+							case 'SUCCESS':
+
+								modalQuckRegisterMessage.style.display = 'none'
+								
+								location.reload();
+								break;
+							case 'ERROR':
+								
+								if (modalQuckRegisterMessage != null) {
+									modalQuckRegisterMessage.innerHTML = data?.ERR
+								}
+
+								break;
+						}
+
+					}
+				})
+			
+			}
+
+		})
+	}
+}
+
 function handleMultiAccounts(data) {
 	document.addEventListener('click', (event) => {
 		if (event.target.closest('.multi-accounts-content-item') != null) {
@@ -149,6 +252,7 @@ function authPhone(data = null){
 		}
 		
 	} else {
+
 		dataSend = {
 			USER: {
 				PERSONAL_PHONE: $('input[name="USER_PHONE"]').val(),
@@ -163,6 +267,17 @@ function authPhone(data = null){
         url: '/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php',
 		dataType: 'json',
 		onsuccess: function(data){
+
+			if (data?.SHOW_MODAL_QUICK_REGISTER == 'Y') {
+
+				/**
+				 * Быстрая регистрация
+				 */
+
+				initModalQuickRegister(data);
+
+				return;
+			}
 
 			if (data?.MULTI_USER == 'Y') {
 
