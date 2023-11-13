@@ -10981,17 +10981,9 @@ h1.small-h2 {
 /* 404 PAGE */
 .not-found__wrapper {
   background-image: url(/upload/404/404.jpg);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-size: cover;
   background-position: top;
   height: 100%;
-}
-.not-found-page header {
-  display: none;
 }
 .not-found-page {
   height: 100%;
@@ -11004,9 +10996,7 @@ h1.small-h2 {
 .not-found-page body #bx-panel {
   display: none !important;
 }
-.error-message__wrapper {
-  margin-top: 3.875rem;
-}
+
 .error-message-content {
   display: flex;
   flex-direction: column;
