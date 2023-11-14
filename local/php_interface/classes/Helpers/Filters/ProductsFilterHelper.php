@@ -44,6 +44,12 @@ class ProductsFilterHelper
         $this->defineSectionName($sectionId);
     }
 
+    
+    public function setOnlyAvailable(bool $value) : void
+    {
+        $this->onlyAvailable = $value === true ? 'Y' : 'N';
+    }
+
 
     public function getFilters(): array {
         return [

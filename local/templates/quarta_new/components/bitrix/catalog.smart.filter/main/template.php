@@ -35,13 +35,24 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     <div class="filters-section__body">
                                         <? foreach ($filter['CHILDREN'] as $child) { ?>
                                             <div>
-                                                <div class="filters-item">
+                                                <div 
+                                                    class="filters-item
+                                                    <?=
+                                                        $child['ELEMENT_COUNT'] == 0
+                                                        ? 'filter-disabled'
+                                                        : null
+                                                    ?>">
                                                     <div class="checkbox form-check">
                                                         <input id="<?= $child['CONTROL_NAME'] ?>" type="checkbox"
                                                                class="form-check-input" <?= isset($child['CHECKED']) ? 'checked' : '' ?>>
                                                         <label for="<?= $child['CONTROL_NAME'] ?>"
                                                                class="form-check-label">
-                                                            <span><?= $child['VALUE'] ?></span>
+                                                               <span>
+                                                                    <?= $child['VALUE'] ?>
+                                                                    <? if ($child['ELEMENT_COUNT'] != 0): ?>
+                                                                        (<?=$child['ELEMENT_COUNT']?>)
+                                                                    <? endif;?>
+                                                                </span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -66,11 +77,23 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <div class="filters-section__body">
                         <? foreach ($arResult['FILTERS']['BRANDS']['CHILDREN'] as $child) { ?>
                             <div>
-                                <div class="filters-item">
+                                <div 
+                                    class="filters-item
+                                    <?=
+                                        $child['ELEMENT_COUNT'] == 0
+                                        ? 'filter-disabled'
+                                        : null
+                                    ?>"
+                                >
                                     <div class="checkbox form-check">
                                         <input id="<?= $child['CONTROL_NAME'] ?>" type="checkbox" <?= isset($child['CHECKED']) ? 'checked' : '' ?> class="form-check-input">
                                         <label for="<?= $child['CONTROL_NAME'] ?>" class="form-check-label">
-                                            <span><?= $child['VALUE'] ?></span>
+                                            <span>
+                                                <?= $child['VALUE'] ?>
+                                                <? if ($child['ELEMENT_COUNT'] != 0): ?>
+                                                    (<?=$child['ELEMENT_COUNT']?>)
+                                                <? endif;?>
+                                            </span>
                                         </label>
                                     </div>
                                 </div>
