@@ -110,11 +110,11 @@ $isUserAuth = $user->isAuthorized();
                                 </div>
                             </div>
                             <div class="col-2 product-availability__cell">
-                                <?if ($arStore['AMOUNT'] > 0):?>
+                                <?/*if ($arStore['AMOUNT'] > 0):?>
                                     <button class="btn">Выбрать</button>
                                 <?else:?>
                                     <button class="btn" disabled>Выбрать</button>
-                                <?endif;?>
+                                <?endif;*/?>
                             </div>
                         </div>
                     <?endforeach;?>
