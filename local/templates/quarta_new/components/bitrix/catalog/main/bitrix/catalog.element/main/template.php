@@ -109,10 +109,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     </a>
                                 </div>
                                 <button class="product__share-toggle">
-                                    <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                    <svg width="16" height="17" viewBox="0 0 12 13" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9.375 8.5C8.92969 8.5 8.51875 8.65625 8.19687 8.91719L4.95937 6.575C5.01359 6.27745 5.01359 5.97255 4.95937 5.675L8.19687 3.33281C8.51875 3.59375 8.92969 3.75 9.375 3.75C10.4094 3.75 11.25 2.90937 11.25 1.875C11.25 0.840625 10.4094 0 9.375 0C8.34062 0 7.5 0.840625 7.5 1.875C7.5 2.05625 7.525 2.22969 7.57344 2.39531L4.49844 4.62187C4.04219 4.01719 3.31719 3.625 2.5 3.625C1.11875 3.625 0 4.74375 0 6.125C0 7.50625 1.11875 8.625 2.5 8.625C3.31719 8.625 4.04219 8.23281 4.49844 7.62813L7.57344 9.85469C7.525 10.0203 7.5 10.1953 7.5 10.375C7.5 11.4094 8.34062 12.25 9.375 12.25C10.4094 12.25 11.25 11.4094 11.25 10.375C11.25 9.34062 10.4094 8.5 9.375 8.5ZM9.375 1.0625C9.82344 1.0625 10.1875 1.42656 10.1875 1.875C10.1875 2.32344 9.82344 2.6875 9.375 2.6875C8.92656 2.6875 8.5625 2.32344 8.5625 1.875C8.5625 1.42656 8.92656 1.0625 9.375 1.0625ZM2.5 7.5C1.74219 7.5 1.125 6.88281 1.125 6.125C1.125 5.36719 1.74219 4.75 2.5 4.75C3.25781 4.75 3.875 5.36719 3.875 6.125C3.875 6.88281 3.25781 7.5 2.5 7.5ZM9.375 11.1875C8.92656 11.1875 8.5625 10.8234 8.5625 10.375C8.5625 9.92656 8.92656 9.5625 9.375 9.5625C9.82344 9.5625 10.1875 9.92656 10.1875 10.375C10.1875 10.8234 9.82344 11.1875 9.375 11.1875Z"
-                                              fill="#808D9A"/>
+                                              fill="#ffffff"/>
                                     </svg>
                                 </button>
                             </div>
@@ -229,23 +229,23 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <hr/>
 
                     <div class="product__delivery mb-5">
-                        <div class="product__delivery-option">
+                        <?/*<div class="product__delivery-option">
                             <div class="product__delivery-icon">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/delivery.svg" alt="Доставка"/>
                             </div>
                             Доставка по Москве: <span class="text-dark">с 11.03</span><br/>
                             <a href="#">Узнать стоимость</a>
-                        </div>
-                            <div class="product__delivery-option">
-                                <div class="product__delivery-icon">
-                                    <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/location.svg" alt="Местоположение"/>
-                                </div>
-                                Доступно к самовывозу:
-                                <span class="text-dark">бесплатно</span><br/>
-                                <a class="available-window-open available-window-open-2" data-available-index="2" href="">
-                                    <?=$arResult['COUNT_DISPLAY_STORES_ELEMENT']?>
-                                </a>
-                            </div> 
+                        </div>*/?>
+                        <div class="product__delivery-option">
+                            <div class="product__delivery-icon">
+                                <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/location.svg" alt="Местоположение"/>
+                            </div>
+                            Доступно к самовывозу:
+                            <span class="text-dark">бесплатно</span><br/>
+                            <a class="available-window-open available-window-open-2" data-available-index="2" href="">
+                                <?=$arResult['COUNT_DISPLAY_STORES_ELEMENT']?>
+                            </a>
+                        </div> 
                     </div>
                 </div>
             </div>
