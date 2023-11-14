@@ -195,7 +195,7 @@
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
-    z-index: 2000;
+    z-index: 99999;
     top: 0;
     background-color: rgba(0, 0, 0, 0.2);
     left: 0;
@@ -256,4 +256,13 @@
     background-color: #004989;
     color: #fff;
   }
+}
+
+.filters-item.filter-disabled {
+  pointer-events: none;
+  cursor: none;
+}
+
+.filters-item.filter-disabled .form-check-label {
+  color: #9d9d9d;
 }

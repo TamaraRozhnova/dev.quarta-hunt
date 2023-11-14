@@ -37,12 +37,12 @@ if (empty($rsSection)) {
         die();
     }
 }
-   
+
+$headers = getallheaders();
 
 $filterHelperInstance = new ProductsFilterHelper($sectionId);
 $filterParams = $filterHelperInstance->getFilters();
 
-$headers = getallheaders();
 
 if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
     $APPLICATION->RestartBuffer();

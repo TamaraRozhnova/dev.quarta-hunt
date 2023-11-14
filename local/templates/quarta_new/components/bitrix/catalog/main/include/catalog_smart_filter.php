@@ -16,6 +16,7 @@ $APPLICATION->IncludeComponent(
         "CACHE_TYPE" => $params["CACHE_TYPE"],
         "CACHE_TIME" => $params["CACHE_TIME"],
         "CACHE_GROUPS" => $params["CACHE_GROUPS"],
+        "DISPLAY_ELEMENT_COUNT" => 'Y',
         "SAVE_IN_SESSION" => "N",
         "FILTER_VIEW_MODE" => $params["FILTER_VIEW_MODE"],
         "SECTION_ID" => $currentSection,
@@ -31,7 +32,8 @@ $APPLICATION->IncludeComponent(
         "SEF_MODE" => 'Y',
         "PAGER_PARAMS_NAME" => "arrPager",
         "INSTANT_RELOAD" => "Y",
-        "USE_FILTER" => "Y"
+        "USE_FILTER" => "Y",
+        
     ),
     $component,
     array('HIDE_ICONS' => 'Y')

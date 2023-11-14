@@ -1,32 +1,8 @@
 class CatalogFilter {
     constructor() {
-        this.productsDataBlock = document.querySelector('.products-data');
-        this.mainFiltersWrapper = document.querySelector('.category__filter-wrap');
-        this.mainFilters = this.mainFiltersWrapper.querySelector('.filters');
-        this.clearFilterButton = this.mainFilters.querySelector('.filters__clear');
-        this.filterSections = this.mainFilters.querySelectorAll('.filters-section');
-        this.filterCheckboxes = this.mainFilters.querySelectorAll('.filters-item input[type="checkbox"]');
 
-        /** Кнопки Применить для фильтра */
-        this.filterBtnOnCheckBox = document.querySelector('.filters__accept-on-item-wrapper');
-        this.filterBtnApplyFilter = document.querySelector('.filters__btn-apply');
-        this.mobileFilterOpenButton = document.querySelector('.filters-sort__btn');
-        this.mobileFilterCloseButton = document.querySelector('.filters__accept-btn');
-        this.filterChangeButton = document.querySelector('.filters__accept-on-item');
-        this.filterBtnApplyFilterWrapper = document.querySelector('.filters-section-btns');
-
-
-        this.loader = document.querySelector('.loading');
-        this.categoryHeaderContainer = document.querySelector('.category__header');
-
-        this.extraFilters = document.querySelector('.filters-sort');
-        this.availableCheckbox = this.extraFilters.querySelector('#available');
-        this.selectSortElement = this.extraFilters.querySelector('#select-sort');
-        this.selectCountElement = this.extraFilters.querySelector('#select-count');
-        this.listCountElements = this.extraFilters.querySelectorAll('#list-count li');
-
+        this.initDefaultVars();
         this.filterApplied = true;
-
         this.filterParams = {
             'FILTER_ITEMS': {}
         };
@@ -51,10 +27,45 @@ class CatalogFilter {
         this.hangProductCardsEvents();
     }
 
+    initDefaultVars() {
+        this.productsDataBlock = document.querySelector('.products-data');
+        this.mainFiltersWrapper = document.querySelector('.category__filter-wrap');
+        this.mainFilters = this.mainFiltersWrapper.querySelector('.filters');
+        this.clearFilterButton = this.mainFilters.querySelector('.filters__clear');
+        this.filterSections = this.mainFilters.querySelectorAll('.filters-section');
+        this.filterCheckboxes = this.mainFilters.querySelectorAll('.filters-item input[type="checkbox"]');
+        this.filterBtnOnCheckBox = document.querySelector('.filters__accept-on-item-wrapper');
+        this.filterBtnApplyFilter = document.querySelector('.filters__btn-apply');
+        this.mobileFilterOpenButton = document.querySelector('.filters-sort__btn');
+        this.mobileFilterCloseButton = document.querySelector('.filters__accept-btn');
+        this.filterChangeButton = document.querySelector('.filters__accept-on-item');
+        this.filterBtnApplyFilterWrapper = document.querySelector('.filters-section-btns');
+        this.loader = document.querySelector('.loading');
+        this.categoryHeaderContainer = document.querySelector('.category__header');
+        this.extraFilters = document.querySelector('.filters-sort');
+        this.availableCheckbox = this.extraFilters.querySelector('#available');
+        this.selectSortElement = this.extraFilters.querySelector('#select-sort');
+        this.selectCountElement = this.extraFilters.querySelector('#select-count');
+        this.listCountElements = this.extraFilters.querySelectorAll('#list-count li');
+    }
+
+    reinitHangFilter() {
+
+        this.createPriceField();
+        this.initDefaultVars();
+        
+        this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
+        this.filterCheckboxes.forEach(checkbox => this.hangChangeCheckboxEvent(checkbox));
+
+        this.hangOpenCloseFilterEvent()
+        this.hangCloseAllApplyBnts()
+        this.hangFiltersClearEvent();
+    }
+
     hangOpenMobileFilterEvent() {
-        this.mobileFilterOpenButton.addEventListener('click', () => {
+        this.mobileFilterOpenButton.onclick = () => {
             this.mainFiltersWrapper.classList.add('category__filter-wrap--show');
-        });
+        }
     }
 
     hangCloseAllApplyBnts() {
@@ -64,22 +75,21 @@ class CatalogFilter {
         }
     }
 
-    /** Кнопка применить */
     hangOpenCloseFilterEvent() {
-        this.mobileFilterCloseButton.addEventListener('click', () => {
+        this.mobileFilterCloseButton.onclick = () => {
             this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
             this.handleChangeFilters(this.filterParams)
-        });
+        }
 
-        this.filterChangeButton.addEventListener('click', () => {
+        this.filterChangeButton.onclick = () => {
             this.hangCloseAllApplyBnts()
             this.handleChangeFilters(this.filterParams)
-        });
+        }
 
-        this.filterBtnApplyFilter.addEventListener('click', () => {
+        this.filterBtnApplyFilter.onclick = () => {
             this.hangCloseAllApplyBnts()
             this.handleChangeFilters(this.filterParams)
-        });
+        }
 
     }
 
@@ -89,7 +99,7 @@ class CatalogFilter {
             return;
         }
         this.paginationElements.forEach(element => {
-            element.addEventListener('click', () => {
+            element.onclick = () => {
                 const id = element.dataset.id;
                 const url = new URL(window.location.href);
                 const params = new URLSearchParams(url.search);
@@ -97,12 +107,12 @@ class CatalogFilter {
                     return;
                 }
                 this.handleChangeFilters({PAGEN_1: id});
-            });
+            }
         })
     }
 
     hangChangeProductsCountEvent(element) {
-        element.addEventListener('click', () => {
+        element.onclick = () => {
             const id = element.dataset.id;
             if (this.selectorCount.getValue() == id) {
                 return;
@@ -110,7 +120,7 @@ class CatalogFilter {
             this.changeProductsCountClasses(element);
             this.selectorCount.setValue(id);
             this.handleChangeFilters({itemsPerPage: id});
-        });
+        }
     }
 
     handleChangeFilters(params = null, withChangeUrl = true) {
@@ -129,14 +139,18 @@ class CatalogFilter {
     }
 
     hangAvailableEvent() {
-        this.availableCheckbox.addEventListener('change', () => {
+        this.availableCheckbox.onchange = () => {
             const value = !!this.availableCheckbox.checked;
             this.handleChangeFilters({onlyAvailable: value});
-        })
+        }
+        // this.availableCheckbox.addEventListener('change', () => {
+        //     const value = !!this.availableCheckbox.checked;
+        //     this.handleChangeFilters({onlyAvailable: value});
+        // })
     }
 
     hangFiltersClearEvent() {
-        this.clearFilterButton.addEventListener('click', () => {
+        this.clearFilterButton.onclick = () => {
             this.resetControls();
             this.hangCloseAllApplyBnts()
 
@@ -145,7 +159,17 @@ class CatalogFilter {
             }
 
             this.handleChangeFilters();
-        });
+        }
+        // this.clearFilterButton.addEventListener('click', () => {
+        //     this.resetControls();
+        //     this.hangCloseAllApplyBnts()
+
+        //     if (document.documentElement.clientWidth <= 991) {
+        //         this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
+        //     }
+
+        //     this.handleChangeFilters();
+        // });
     }
 
     hangFiltersExtraClearEvent() {
@@ -153,18 +177,24 @@ class CatalogFilter {
         if (!this.clearFilterExtraButton) {
             return;
         }
-        this.clearFilterExtraButton.addEventListener('click', (event) => {
+        this.clearFilterExtraButton.onclick = () => {
             event.preventDefault();
             if (this.filterApplied) {
                 this.resetControls();
                 this.handleChangeFilters();
             }
-        });
+        }
+        // this.clearFilterExtraButton.addEventListener('click', (event) => {
+        //     event.preventDefault();
+        //     if (this.filterApplied) {
+        //         this.resetControls();
+        //         this.handleChangeFilters();
+        //     }
+        // });
     }
 
-    /** Чекбоксы */
     hangChangeCheckboxEvent(checkbox) {
-        checkbox.addEventListener('change', () => {
+        checkbox.onchange = () => {
             const id = checkbox.id;
             const valueForUrl = checkbox.checked ? 'Y' : '';
 
@@ -201,9 +231,47 @@ class CatalogFilter {
                 this.hangCloseAllApplyBnts()
 
             }
+        }
+        // checkbox.addEventListener('change', () => {
+        //     const id = checkbox.id;
+        //     const valueForUrl = checkbox.checked ? 'Y' : '';
+
+        //     this.filterParams['MULTI_OBJECT'] = 'Y'
+            
+        //     this.filterParams['FILTER_ITEMS'][id] = valueForUrl
+        //     this.setBadges();
+
+        //     if (window.innerWidth >= 991) {
+
+        //         let bodyRect = document.body.getBoundingClientRect(),
+        //             elemRect = checkbox.getBoundingClientRect(),
+        //             offsetTop   = elemRect.top - bodyRect.top,
+        //             offsetLeft  = elemRect.left - bodyRect.left;
+
+        //         let checkboxWrapper = checkbox.closest('.filters-item'),
+        //             checkboxFormWrapper = checkboxWrapper.closest('.filters-section')
+ 
+
+        //         let filtersLeftRigtPadding = window.getComputedStyle(checkboxFormWrapper, null).getPropertyValue('padding-left'),
+        //             filtersLeftRigtPaddingModify = Number(filtersLeftRigtPadding.replace('px', ''))
+
+        //         this.filterBtnOnCheckBox.style.display = 'block'
+        //         this.filterBtnApplyFilterWrapper.style.display = 'block'
+        //         this.filterBtnOnCheckBox.style.top = `${offsetTop - checkboxWrapper.offsetHeight}px`
+        //         this.filterBtnOnCheckBox.style.left = `${offsetLeft + checkboxWrapper.offsetWidth + filtersLeftRigtPaddingModify / 2}px`
+
+        //         for (let key of Object.keys(this.filterParams['FILTER_ITEMS'])) {
+        //             if (this.filterParams['FILTER_ITEMS'][key] == "Y")
+        //                 return false
+
+        //         }
+
+        //         this.hangCloseAllApplyBnts()
+
+        //     }
 
 
-        })
+        // })
     }
 
     changeScroll() {
@@ -224,7 +292,27 @@ class CatalogFilter {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         const data = doc.querySelector('.products-data');
+        const dataFilter = doc.querySelector('.category__filter-wrap')
+
+        const filtersOld = this.mainFiltersWrapper.querySelectorAll('.filters__wr .filters-section')
+        const filtersNew = dataFilter.querySelectorAll('.filters__wr .filters-section')
+
+        if (filtersOld.length > 0 && filtersNew.length > 0) {
+            for (let index = 0; index < filtersOld.length; index++) {
+                const element = filtersOld[index];
+
+                if (element.classList.contains('filters-section--expanded')) {
+                    filtersNew[index].classList.add('filters-section--expanded')
+                }
+                
+            }
+            this.mainFiltersWrapper.innerHTML = dataFilter.innerHTML;
+        }
+        
         this.productsDataBlock.innerHTML = data.innerHTML;
+
+        this.reinitHangFilter();
+        this.setBadges();
         this.hangFiltersExtraClearEvent();
         this.hangPaginationEvents();
         this.hangProductCardsEvents();
@@ -319,7 +407,7 @@ class CatalogFilter {
             method: 'GET',
             headers: {
                 'Content-Type': 'text/html',
-                'x-requested-with': 'Y'
+                'x-requested-with': 'Y',
             },
         };
         try {
@@ -338,14 +426,16 @@ class CatalogFilter {
         });
     }
 
-    createElements() {
+    createSelectorSort() {
         this.selectorSort = new Select({
             element: this.selectSortElement,
             onSelect: (id) => {
                 this.handleChangeFilters({sort: id});
             }
         });
+    }
 
+    createSelectorCount() {
         this.selectorCount = new Select({
             element: this.selectCountElement,
             onSelect: (id) => {
@@ -354,7 +444,9 @@ class CatalogFilter {
                 this.handleChangeFilters({itemsPerPage: id});
             }
         });
+    }
 
+    createPriceField() {
         this.inputMinPrice = new Input({
             inputSelector: '#min-price',
             withDebounce: true,
@@ -366,6 +458,12 @@ class CatalogFilter {
             withDebounce: true,
             onChange: () => this.handleChangeFilters(false, false)
         });
+    }
+
+    createElements() {
+        this.createSelectorSort()
+        this.createSelectorCount()
+        this.createPriceField()
     }
 
     setBadges() {
