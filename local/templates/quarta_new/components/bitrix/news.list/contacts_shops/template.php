@@ -55,8 +55,7 @@ if (!count($arResult['ITEMS'])) {
                                                 <h6>
                                                     <span><?=$arProp['NAME']?></span>
                                                 </h6>
-                                                <?if (count($arProp['VALUE']) > 1):?>
-                                                    
+                                                <?if (!empty($arProp['VALUE']) && is_array($arProp['VALUE'])):?>
                                                     <?foreach ($arProp['VALUE'] as $arValueCode => $arValue):?>
                                                         <p class="mb-1">
                                                             <?if ($arProp['CODE'] == 'PHONE_NUMBER'):?>
@@ -76,7 +75,6 @@ if (!count($arResult['ITEMS'])) {
                                                             <?endif;?>
                                                         </p>
                                                     <?endforeach;?>
-
                                                 <?else:?>
                                                     <p>
                                                         <?if ($arProp['CODE'] == 'PHONE_NUMBER'):?>
