@@ -8,8 +8,7 @@ if (!count($arResult['ITEMS'])) {
     return;
 }
 
-$isCompactSlider = $arParams['COMPACT'] === 'Y';
-?>
+$isCompactSlider = $arParams['COMPACT'] === 'Y';?>
 
 <div class="main-slider <?= $isCompactSlider ? 'main-slider__compact' : '' ?>">
     <div class="swiper-container swiper-container_main">
@@ -54,15 +53,21 @@ $isCompactSlider = $arParams['COMPACT'] === 'Y';
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <div class="main-slider__subtitle">
-                                    <?= $item['FIELDS']['PREVIEW_TEXT'] ?>
+                                    <? if (!empty($item['FIELDS']['PREVIEW_TEXT'])): ?>
+                                        <?= $item['FIELDS']['PREVIEW_TEXT'] ?>
+                                    <? endif; ?>
                                 </div>
                                 <h2 class="main-slider__title">
-                                    <?= $item['FIELDS']['NAME'] ?>
+                                    <? if (!empty($item['FIELDS']['NAME'])): ?>
+                                        <?= $item['FIELDS']['NAME'] ?>
+                                    <? endif; ?>
                                 </h2>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <div class="main-slider__text">
-                                    <?= $item['PROPERTIES']['DESCRIPTION']['~VALUE']['TEXT'] ?>
+                                    <? if (!empty($item['PROPERTIES']['DESCRIPTION']['~VALUE']['TEXT'])): ?>
+                                        <?= $item['PROPERTIES']['DESCRIPTION']['~VALUE']['TEXT'] ?>
+                                    <? endif; ?>
                                 </div>
                                 <? if (!empty($item['PROPERTIES']['LINK']['VALUE'])) { ?>
                                     <div class="main-slider__aсtion">
