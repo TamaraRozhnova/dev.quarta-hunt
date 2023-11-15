@@ -23,7 +23,7 @@ $favoritesCount = $favorites->getFavoritesCount();
 if (!empty($_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS'])) {
     $compareCount = count($_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS']);
 } else {
-    $compareCount = null;
+    $compareCount = 0;
 }
 
 $basketItemsCount = $basket->getProductsCount();
