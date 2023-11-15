@@ -13,6 +13,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <a href="/catalog" class="btn btn-primary px-4">Продолжить покупки</a>
 </div>
 
+<button class="move-left">Влево</button>
+<button class="move-right">Вправо</button>
+
 <div class="compare__table-wrapper" style="display: <?= count($arResult['ITEMS']) > 1 ? 'block' : 'none' ?>">
     <div class="compare__table">
         <div class="compare__column-backdrop"></div>
