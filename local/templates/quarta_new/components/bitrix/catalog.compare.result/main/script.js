@@ -1,19 +1,23 @@
 window.addEventListener("DOMContentLoaded", () => {
   class Compare {
     constructor() {
-      this.productCardElements = document.querySelectorAll(".product-card");
+      this.productCardElements = document.querySelectorAll(".compare__item");
       this.productCountElement = document.querySelector(".compare__count");
       this.compareContainer = document.querySelector(".compare__container");
       this.compareTable = document.querySelector(".compare__table");
-      this.compareItems = document.querySelectorAll(".compare__item");
+      this.compareWrapperMini = document.querySelector(".compare__mini");
+      this.compareTableMini = document.querySelector(".compare__table--mini");
+      this.productsRow = document.querySelector(".compare__prod-row");
 
-      this.columnBackdrop = document.querySelector(".compare__column-backdrop");
+      this.columnBackdrop = document.querySelectorAll(
+        ".compare__column-backdrop"
+      );
       this.compareRows = document.querySelectorAll(".compare__row");
       this.compareCols = document.querySelectorAll(".compare__col");
       this.compareDividers = document.querySelectorAll(".compare__divider");
 
-      this.moveLeftButton = document.querySelector(".move-left");
-      this.moveRightButton = document.querySelector(".move-right");
+      this.moveLeftButton = document.querySelectorAll(".move-left");
+      this.moveRightButton = document.querySelectorAll(".move-right");
 
       this.productsCount = this.productCardElements.length;
       this.onlyDifferent = false;
@@ -32,7 +36,10 @@ window.addEventListener("DOMContentLoaded", () => {
     hangEvents() {
       this.compareTable.addEventListener("scroll", () => this.onScroll());
       window.addEventListener("resize", () => this.updateContainerSize());
-      this.hangDragEvents();
+      window.addEventListener("scroll", () => this.miniTableHandler());
+      if (window.innerWidth >= 576) {
+        this.hangDragEvents();
+      }
       this.hangOnlyDifferentCheckboxEvents();
       this.hangCleanButtonEvents();
       this.hangProductCardsEvents();
@@ -41,10 +48,10 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     setStyles() {
-      this.columnBackdrop.style.width = `${
-        this.containerSize / this.divider
-      }px`;
-      this.columnBackdrop.style.transform = `translateX(${this.scrollOffset}px)`;
+      this.columnBackdrop.forEach((elem) => {
+        elem.style.width = `${this.containerSize / this.divider}px`;
+        elem.style.transform = `translateX(${this.scrollOffset}px)`;
+      });
       const width =
         (this.containerSize / this.divider) * (this.productsCount + 1);
       this.compareRows.forEach((row) => {
@@ -64,6 +71,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       this.offsetMemo = this.compareTable.scrollLeft;
       this.scrollOffset = this.compareTable.scrollLeft;
+      if (window.innerWidth < 576) {
+        this.compareTableMini.scrollLeft = this.offsetMemo;
+      }
       this.setStyles();
     }
 
@@ -81,6 +91,14 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     setCompareQuantity() {
+      if (this.productsCount < 4) {
+        this.moveLeftButton.forEach((elem) => {
+          elem.style.display = "none";
+        });
+        this.moveRightButton.forEach((elem) => {
+          elem.style.display = "none";
+        });
+      }
       if (!this.productCountElement) {
         return;
       }
@@ -107,19 +125,28 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     hangMoveLeft() {
-      this.moveLeftButton.addEventListener("click", () => {
-        this.handleMove(-this.getMoveValue("left"));
+      this.moveLeftButton.forEach((elem) => {
+        elem.addEventListener("click", () => {
+          this.handleMove(-this.getMoveValue("left"));
+        });
       });
     }
 
     hangMoveRight() {
-      this.moveRightButton.addEventListener("click", () => {
-        this.handleMove(this.getMoveValue("right"));
+      this.moveRightButton.forEach((elem) => {
+        elem.addEventListener("click", () => {
+          this.handleMove(this.getMoveValue("right"));
+        });
       });
     }
 
     handleMove(offset) {
       this.compareTable.scrollTo({
+        left: this.offsetMemo - offset,
+        top: 0,
+        behavior: "smooth",
+      });
+      this.compareTableMini.scrollTo({
         left: this.offsetMemo - offset,
         top: 0,
         behavior: "smooth",
@@ -130,7 +157,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     getMoveValue(direction) {
-      let toScroll = this.compareItems[0].offsetWidth;
+      let toScroll = this.productCardElements[0].offsetWidth;
       let currentOffset = 0;
 
       if (this.compareTable.scrollLeft !== 0) {
@@ -155,11 +182,27 @@ window.addEventListener("DOMContentLoaded", () => {
         this.dragActive = active;
       }
       this.compareTable.scrollLeft = this.offsetMemo - mx;
+      this.compareTableMini.scrollLeft = this.offsetMemo - mx;
       this.scrollOffset = this.compareTable.scrollLeft;
       if (!this.dragActive) {
         this.offsetMemo = this.compareTable.scrollLeft;
       }
       this.setStyles();
+    }
+
+    miniTableHandler() {
+      if (this.productsRow.getBoundingClientRect().top < -50) {
+        this.compareWrapperMini.classList.add("show");
+      } else {
+        this.compareWrapperMini.classList.remove("show");
+      }
+      // if (
+      //   this.compareContainer.getBoundingClientRect().height +
+      //     this.compareContainer.getBoundingClientRect().top <
+      //   650
+      // ) {
+      //   this.compareWrapperMini.classList.remove("show");
+      // }
     }
 
     hangOnlyDifferentCheckboxEvents() {
@@ -231,6 +274,9 @@ window.addEventListener("DOMContentLoaded", () => {
       const productCardWrapper = document.querySelector(
         `.compare__item[data-id="${productId}"]`
       );
+      const productCardWrapperMini = document.querySelector(
+        `.compare__item--mini[data-id="${productId}"]`
+      );
       const comparePropColumnElements = document.querySelectorAll(
         `.compare__prop .compare__col--main[data-id="${productId}"]`
       );
@@ -239,6 +285,7 @@ window.addEventListener("DOMContentLoaded", () => {
       );
       comparePropColumnElements.forEach((element) => element.remove());
       productCardWrapper.remove();
+      productCardWrapperMini.remove();
       ratingElement.remove();
       this.changePropsRows();
     }
@@ -272,12 +319,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     showEmptyBlock() {
-      const compareTableWrapper = document.querySelector(
+      const compareTableWrapper = document.querySelectorAll(
         ".compare__table-wrapper"
       );
       const emptyElement = document.querySelector(".compare__empty");
       this.productCountElement.style.display = "none";
-      compareTableWrapper.style.display = "none";
+      this.compareTableMini.style.display = "none";
+      compareTableWrapper.forEach((elem) => {
+        elem.style.display = "none";
+      });
       emptyElement.style.display = "block";
     }
 
