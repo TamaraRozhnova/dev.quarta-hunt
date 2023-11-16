@@ -14,7 +14,7 @@ $arResult['ITEM']['OFFERS_QUANTITY'] = 0;
 $user = new User();
 $priceCode = $user->getUserPriceCode();
 
-if (is_array($item['OFFERS']) && !empty($item['OFFERS']) && count($item['OFFERS']) > 0) {
+if (is_array($item['OFFERS']) && count($item['OFFERS']) > 0) {
 
     foreach ($item['OFFERS'] as $offer) {
 

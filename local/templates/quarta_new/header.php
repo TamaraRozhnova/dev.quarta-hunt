@@ -19,9 +19,14 @@ $isAuthorized = $user->IsAuthorized();
 $favorites = new Favorites();
 $basket = new Basket();
 $favoritesCount = $favorites->getFavoritesCount();
+$compareItems = $_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS'];
 
-if (!empty($_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS'])) {
-    $compareCount = count($_SESSION[COMPARE_LIST_NAME][CATALOG_IBLOCK_ID]['ITEMS']);
+if (
+    !empty($compareItems)
+    &&
+    is_array($compareItems)
+) {
+    $compareCount = count($compareItems);
 } else {
     $compareCount = 0;
 }
