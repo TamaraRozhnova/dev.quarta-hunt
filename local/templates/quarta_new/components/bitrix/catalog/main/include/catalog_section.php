@@ -78,6 +78,7 @@ $APPLICATION->IncludeComponent(
         "HIDE_NOT_AVAILABLE_OFFERS" => $params["HIDE_NOT_AVAILABLE_OFFERS"],
         "COMPARE_NAME" => $params["COMPARE_NAME"],
         "USE_FILTER" => "Y",
+        "COMPATIBLE_MODE" => "Y"
     ],
     $component
 );
