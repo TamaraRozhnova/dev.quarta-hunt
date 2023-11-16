@@ -284,7 +284,7 @@ if (!empty($arProcessProducts)) {
 }
 
 if (!empty($tmpArrCount['PRODUCT'])) {
-    if (count($tmpArrCount['PRODUCT']) > 1 )  {
+    if (is_array($tmpArrCount['PRODUCT']) && count($tmpArrCount['PRODUCT']) > 1 )  {
         $tmpArrCount['PRODUCT'] = array_sum(array_unique($tmpArrCount['PRODUCT']));
     }
 }
