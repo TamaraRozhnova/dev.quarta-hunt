@@ -223,6 +223,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     
     ?>
 
+    <?php 
+        $APPLICATION->IncludeComponent(
+            "custom:promo.page",
+            "",
+        Array()
+        );
+    ?>
+
 </footer>
 
     </div>
