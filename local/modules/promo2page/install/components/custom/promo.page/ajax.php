@@ -8,7 +8,7 @@ use \Bitrix\Main\Context;
 if (!empty($_POST['COOKIE_APPLY'])) {
     if ($_POST['COOKIE_APPLY'] == 'Y') {
 
-        $cookie = new Cookie("P2P_APPLY", "Y", 3600);
+        $cookie = new Cookie("P2P_APPLY", "Y", time() + 3600);
         $cookie->setSpread(Cookie::SPREAD_DOMAIN);
         $cookie->setDomain($_SERVER['HTTP_HOST']);
         $cookie->setPath("/"); 
