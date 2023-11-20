@@ -1,5 +1,7 @@
 <?php
 
+use Bitrix\Main\Loader;
+
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
@@ -206,7 +208,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <?$APPLICATION->IncludeComponent(
         "custom:arrow.up",
         "",
-        Array()
+        []
     );?>
 
     <?php 
@@ -216,11 +218,23 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             $APPLICATION->IncludeComponent(
                 "custom:form.cookies",
                 "",
-                Array()
+                []
             );
 
         }
     
+    ?>
+
+    <?php 
+    
+        if (IsModuleInstalled('promo2page')) {
+            $APPLICATION->IncludeComponent(
+                "custom:promo.page",
+                "",
+                []
+            );
+        }
+        
     ?>
 
 </footer>
