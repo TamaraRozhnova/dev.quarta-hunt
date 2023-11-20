@@ -6,17 +6,44 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 ?>
 
-<div class="compare__add-more" style="display: <?= count($arResult['ITEMS']) === 1 ? 'block' : 'none' ?>">
+<div class="compare__add-more" style="display: <?=is_array($arResult['ITEMS']) && count($arResult['ITEMS']) === 1 ? 'block' : 'none' ?>">
     <p class="text-dark fs-6">
         Добавьте еще один товар чтобы начать сравнение
     </p>
     <a href="/catalog" class="btn btn-primary px-4">Продолжить покупки</a>
 </div>
 
-<div class="compare__table-wrapper" style="display: <?= count($arResult['ITEMS']) > 1 ? 'block' : 'none' ?>">
-    <div class="compare__table">
+<div class="compare__table-wrapper compare__mini" style="display: <?=is_array($arResult['ITEMS']) && count($arResult['ITEMS']) > 1 ? 'block' : 'none' ?>">
+    <button class="move-right"></button>
+    <div class="compare__table--mini container">
         <div class="compare__column-backdrop"></div>
         <div class="compare__row">
+            <div class="compare__col compare__col--first"></div>
+            <? foreach ($arResult['ITEMS'] as $item) { ?>
+                <div class="compare__col compare__item--mini" data-id="<?= $item['ID'] ?>">
+                    <? $APPLICATION->IncludeComponent(
+                        'bitrix:catalog.item',
+                        'main',
+                        array(
+                            'RESULT' => array(
+                                'ITEM' => $item,
+                                'PARAMS' => $arParams
+                            ),
+                        ),
+                        $component
+                    ); ?>
+                </div>
+            <? } ?>
+        </div>
+    </div>
+    <button class="move-left"></button>
+</div>
+
+<div class="compare__table-wrapper" style="display: <?=is_array($arResult['ITEMS']) && count($arResult['ITEMS']) > 1 ? 'block' : 'none' ?>">
+    <button class="move-right"></button>
+    <div class="compare__table">        
+        <div class="compare__column-backdrop"></div>
+        <div class="compare__row compare__prod-row">            
             <div class="compare__col compare__col--first"></div>
             <? foreach ($arResult['ITEMS'] as $item) { ?>
                 <div class="compare__col compare__item" data-id="<?= $item['ID'] ?>">
@@ -32,7 +59,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         $component
                     ); ?>
                 </div>
-            <? } ?>
+            <? } ?>            
         </div>
 
         <div class="compare__row">
@@ -48,7 +75,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
         <div class="compare__divider"></div>
 
-        <div class="compare__row">
+        <div class="compare__row compare__prop-rating">
             <div class="compare__col compare__col--first">
                 <b>Рейтинг</b>
             </div>
@@ -67,7 +94,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
         <div class="compare__divider"></div>
 
-        <div class="compare__row">
+        <div class="compare__row compare__prop-title">
             <div class="compare__col compare__col--first">
                 <b>Основные характеристики</b>
             </div>
@@ -88,12 +115,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             </div>
         <? } ?>
 
-        <div class="compare__divider"></div>
+        <div class="compare__divider"></div>        
     </div>
 
     <div class="compare__clear btn bg-white px-4 py-2 btn-sm mt-2">
         Очистить
     </div>
+    <button class="move-left"></button>
 </div>
 
 
