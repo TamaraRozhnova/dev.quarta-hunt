@@ -3,6 +3,7 @@
 use Bitrix\Main\Loader;
 use Bitrix\Main\SystemException;
 use Bitrix\Conversion\Internals\MobileDetect;
+use General\User;
 
 if (!Loader::includeModule('conversion')) {
     throw new SystemException('Module conversion is not initialized');
@@ -22,3 +23,6 @@ if ($arParams["DISPLAY_PICTURE"] != "N" && is_array($arResult["DETAIL_PICTURE"])
     }
 }
 
+//цены пользователя
+$user = new User();
+$arResult['PRICE_CODE'] = $user->getUserPriceCode();

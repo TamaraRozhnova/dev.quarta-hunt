@@ -11174,3 +11174,29 @@ h1.small-h2 {
   }
 }
 /* breadcrumbs */
+
+.swiper-container_action .swiper-button-prev:after,
+.swiper-container_action .swiper-button-next:after {
+  color: var(--bs-primary);
+}
+
+@media (max-width: 500px) {
+  .swiper-container_action .swiper-button-prev:after,
+  .swiper-container_action .swiper-button-next:after {
+    font-size: 20px;
+  }
+
+  .swiper-container_action .swiper-button-prev,
+  .swiper-container_action .swiper-button-next {
+    width: 10px;
+    height: 20px;
+  }
+
+  .swiper-container_action .swiper-button-prev {
+    left: 0;
+  }
+
+  .swiper-container_action .swiper-button-next {
+    right: 0;
+  }
+}
