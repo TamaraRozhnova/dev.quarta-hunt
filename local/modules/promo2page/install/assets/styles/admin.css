@@ -1,0 +1,26 @@
+.module-p2p-form-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.module-p2p-form-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: max-content;
+    margin: auto;
+}
+
+.module-p2p-form-label-content {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.module-p2p-form-ins {
+    color: #a1a1a1;
+    max-width: 335px;
+}
+
