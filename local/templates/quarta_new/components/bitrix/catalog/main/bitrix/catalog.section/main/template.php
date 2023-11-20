@@ -3,7 +3,6 @@
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
-
 ?>
 
 <div class="col">
@@ -23,15 +22,15 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <label class="form-check-label" for="available">
                         В наличии
                     </label>
-                </div>
+                </div>                
                 <div class="select__wrapper select__wrapper--small">
                     <div id="select-sort"
                          class="select select--small"
-                         data-initial-id="<?= $arResult['SORT_VALUE'] ?? '' ?>"
+                         data-initial-id="<?= $arResult['CURRENT_SORT'] ?? '' ?>"
                          data-placeholder="Сортировать:"
                     >
                         <button class="select__main btn">
-                            <?= $arResult['SORT_OPTIONS'][$arResult['SORT_VALUE']] ?? 'Сортировать:' ?>
+                            Сортировать:
                             <div class="select__options">
                                 <? foreach ($arResult['SORT_OPTIONS'] as $key => $title) { ?>
                                     <div data-id="<?= $key ?>" class="select__option" tabindex="0">

@@ -3,6 +3,7 @@
 namespace Helpers\Filters;
 
 use Bitrix\Iblock\SectionTable;
+use Bitrix\Main\Application;
 use General\User;
 
 /**
@@ -17,10 +18,10 @@ class ProductsFilterHelper
     private string $priceId = BASE_PRICE_CODE_ID;
 
     /** @var string */
-    private string $sortField = 'NAME';
+    private string $sortField = 'SHOWS';
 
     /** @var string */
-    private string $sortOrder = 'ASC';
+    private string $sortOrder = 'DESC';
 
     /** @var string */
     private string $onlyAvailable = 'N';
@@ -120,22 +121,64 @@ class ProductsFilterHelper
 
 
     private function defineSortParams(): void {
-        if ($_GET['sort'] === 'expensive') {
-            $this->sortField = 'SCALED_' . $this->priceId;
-            $this->sortOrder = 'DESC';
-        }
-        if ($_GET['sort'] === 'cheaper') {
-            $this->sortField = 'SCALED_' . $this->priceId;
-            $this->sortOrder = 'ASC';
-        }
-        if ($_GET['sort'] === 'available_discount') {
-            $this->sortField = 'PROPERTY_SIZE_DISCOUNT';
-            $this->sortOrder = 'DESC';
-        }
-        if ($_GET['sort'] === 'relevante') {
-            $this->sortField = 'CATALOG_AVAILABLE';
-            $this->sortOrder = 'DESC';
-        }
+        $context = Application::getInstance()->getContext();
+        $request = $context->getRequest();
+        $sort = $request->get("sort");
+
+        switch ($sort) {
+            case 'price_desc':
+                $this->sortField = 'SCALED_' . $this->priceId;
+                $this->sortOrder = 'DESC';
+            break;
+
+            case 'price_asc':
+                $this->sortField = 'SCALED_' . $this->priceId;
+                $this->sortOrder = 'ASC';
+            break;
+
+            case 'discount_desc':
+                $this->sortField = 'PROPERTY_SIZE_DISCOUNT';
+                $this->sortOrder = 'DESC';
+            break;
+
+            case 'discount_asc':
+                $this->sortField = 'PROPERTY_SIZE_DISCOUNT';
+                $this->sortOrder = 'ASC';
+            break;
+
+            case 'relevante':
+                $this->sortField = 'SHOWS';
+                $this->sortOrder = 'DESC';
+            break;
+
+            case 'alphabet_asc':
+                $this->sortField = 'NAME';
+                $this->sortOrder = 'ASC';
+            break;
+
+            case 'alphabet_desc':
+                $this->sortField = 'NAME';
+                $this->sortOrder = 'DESC';
+            break;
+
+            case 'available':
+                $this->sortField = 'CATALOG_AVAILABLE'; 
+                $this->sortOrder = 'DESC';
+            break;
+
+            case 'rating_desc':
+                $this->sortField = 'property_RATING';
+                $this->sortOrder = 'DESC';
+            break;
+
+            case 'rating_asc':
+                $this->sortField = 'property_RATING';
+                $this->sortOrder = 'ASC';
+            break;
+            
+            default:                
+            break;
+        }        
     }
 
 

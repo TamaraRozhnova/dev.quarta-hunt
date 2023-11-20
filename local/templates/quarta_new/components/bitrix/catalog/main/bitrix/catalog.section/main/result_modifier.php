@@ -5,23 +5,22 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Helpers\DiscountsHelper;
+use Bitrix\Main\Application;
 
 DiscountsHelper::fillProductsWithBonuses($arResult['ITEMS']);
 
 $arResult['SORT_OPTIONS'] = [
     'relevante' => 'по релевантности',
-    'available_discount' => 'по наличию скидок',
-    'cheaper' => 'дешевле',
-    'expensive' => 'дороже',
+    'available' => 'по наличию',
+    'rating_asc' => 'по розрастанию рейтинга',
+    'rating_desc' => 'по убыванию рейтинга',
+    'discount_asc' => 'по возрастанию скидки',
+    'discount_desc' => 'по убыванию скидки',
+    'price_asc' => 'по возрастанию цены',
+    'price_desc' => 'по убыванию цены',
+    'alphabet_asc' => 'по алфавиту А-Я',
+    'alphabet_desc' => 'по алфавиту Я-А',
 ];
-
-if ($arParams['ELEMENT_SORT_FIELD2'] === 'SCALED_PRICE_1') {
-    if ($arParams['ELEMENT_SORT_ORDER2'] === 'ASC') {
-        $arResult['SORT_VALUE'] = 'cheaper';
-    } else {
-        $arResult['SORT_VALUE'] = 'expensive';
-    }
-}
 
 $arResult['ELEMENT_COUNT_OPTIONS'] = [
     20 => '20',
@@ -31,3 +30,7 @@ $arResult['ELEMENT_COUNT_OPTIONS'] = [
 ];
 
 $arParams['MAX_ITEMS_PER_PAGE'] = 9999;
+
+$context = Application::getInstance()->getContext();
+$request = $context->getRequest();
+$arResult['CURRENT_SORT'] = $request->get("sort");

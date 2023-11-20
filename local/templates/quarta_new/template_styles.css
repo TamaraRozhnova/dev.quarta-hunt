@@ -9430,7 +9430,7 @@ input.form-check-input:focus {
 }
 .select--small .select__main,
 .select--medium .select__main {
-  padding: 0.375rem 1rem;
+  padding: 0.375rem 2rem 0.375rem 1rem;
   width: auto;
   font-size: 0.75rem;
   background-color: #eeeff3;
