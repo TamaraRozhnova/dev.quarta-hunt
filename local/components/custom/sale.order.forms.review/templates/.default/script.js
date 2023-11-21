@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+    const objReviewApi = new ReviewsApi();
+
     /** Общие функции */
     function create(htmlStr) {
         var frag = document.createDocumentFragment(),
@@ -9,6 +11,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
             frag.appendChild(temp.firstChild);
         }
         return frag;
+    }
+
+    /** Асинхронная отправка отзыва */
+    async function sendReview(formData, groupWrapper) {
+        objReviewApi.addReview(formData).then(data => {
+            if (data) {
+                if (groupWrapper != null) {
+                    groupWrapper.innerHTML = 'Отзыв успешно отправлен!'
+                }
+            }
+        })
     }
 
     /** Рейтинг */
@@ -207,7 +220,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     /** Клик на Опубликовать отзыв */
     const btnGoPublish = document.querySelectorAll(".reviews-cabinet__form-btn")
-    const objReviewApi = new ReviewsApi();
 
     btnGoPublish.forEach((btn) => {
 
@@ -233,7 +245,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
                 } 
 
-                objReviewApi.addReview(formData)
+                sendReview(
+                    formData, 
+                    btn.closest('.reviews-cabinet__form')
+                )
 
             }
 

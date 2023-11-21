@@ -1,12 +1,20 @@
-<?php define("NEED_AUTH", true);
+<?php 
+
+define("NEED_AUTH", true);
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+
 $APPLICATION->SetPageProperty("title", "Оставьте отзыв");
 $APPLICATION->SetTitle("Оставьте отзыв");
 
 $request = \Bitrix\Main\Context::getCurrent()->getRequest();
 
-$getParams = $request->getQueryList()->toArray(); ?>
+$getParams = $request->getQueryList()->toArray(); 
+
+if (empty($getParams['order_id'])) {
+	LocalRedirect('/cabinet/');
+}
+?>
 
 
 <div class="reviews-cabinet-page-header">
@@ -33,4 +41,6 @@ $getParams = $request->getQueryList()->toArray(); ?>
 </div>
 
 
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
+<?php 
+
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
