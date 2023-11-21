@@ -4,10 +4,12 @@ define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 use \Bitrix\Main\Loader;
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
+include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/events.php');
 include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
+    'Feedback\Events' => '/local/php_interface/classes/Feedback/Events.php',
     'Form\Auth\RegistrationForm' => '/local/php_interface/classes/Form/Auth/RegistrationForm.php',
     'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
     'Form\ProductQuestionForm' => '/local/php_interface/classes/Form/ProductQuestionForm.php',
