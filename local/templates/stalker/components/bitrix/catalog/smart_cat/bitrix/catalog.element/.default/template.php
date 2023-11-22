@@ -19,8 +19,13 @@ $this->setFrameMode( true );
 //echo '</pre>';
 
 $arPrice = reset( $arResult['ITEM_PRICES'] );
+
+
 ?>
-<div class="card">
+<?
+echo_j($arResult, '$arResult element')
+?>
+<div class="card <?=($arResult['PROPERTIES']['MORE_PHOTO']['VALUE']?'js-have-slider':'')?>">
 	<div class="card-left">
 		<div class="card__slider">
 			<? if ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE']): ?>
@@ -110,7 +115,7 @@ $arPrice = reset( $arResult['ITEM_PRICES'] );
 				<?=$arResult['NAME']?>
 			</div>
 			<div class="card__code">
-				арт <?=$arResult['PROPERTIES']['ARTNUMBER']['VALUE']?>
+				АРТ <?=$arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']?>
 			</div>
 
 			<div class="card__text">
@@ -172,6 +177,7 @@ $arPrice = reset( $arResult['ITEM_PRICES'] );
 				'VES',*/
 			];
 			?>
+            <?/*?>
 			<div class="card__characteristic">
 				<?php foreach ($arShowProps as $prop): ?>
 					<?php if ($arResult['PROPERTIES'][ $prop ]['VALUE']): ?>
@@ -186,6 +192,21 @@ $arPrice = reset( $arResult['ITEM_PRICES'] );
 					<?php endif ?>
 				<?php endforeach; ?>
 			</div>
+            <?*/?>
+			<div class="card__characteristic">
+				<?php foreach ($arResult["DISPLAY_PROPERTIES"] as $prop): ?>
+					<?php if (1): ?>
+						<div class="card__characteristic-item">
+							<div class="card__characteristic-title">
+								<?=$prop['NAME']?>
+							</div>
+							<div class="card__characteristic-value">
+								<?=$prop['VALUE']?>
+							</div>
+						</div>
+					<?php endif ?>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</div>
 </div>
@@ -194,9 +215,11 @@ $arPrice = reset( $arResult['ITEM_PRICES'] );
 		<?=$arResult['DETAIL_TEXT']?>
 	</div>
 
-	<?php if ($arResult['SHOW_PROPS']): ?>
+	<?php if (isset($arResult["DISPLAY_PROPERTIES"]) && is_array($arResult["DISPLAY_PROPERTIES"])): ?>
 		<div class="card-info__block card-info__characteristic">
+            <div class="title">Характеристики</div>
 			<ul>
+                <?/*?>
 				<?
 				$detailProps = [
 					'CALIBER',
@@ -216,6 +239,16 @@ $arPrice = reset( $arResult['ITEM_PRICES'] );
 							</div>
 							<div class="empty"></div>
 							<div class="value"><?=$arResult['PROPERTIES'][ $prop ]['VALUE']?></div>
+						</li>
+					<?php endif ?>
+				<?php endforeach; ?>
+                <?*/?>
+				<?php foreach ($arResult["DISPLAY_PROPERTIES"] as $prop): ?>
+					<?php if (1): ?>
+						<li>
+							<div class="name"><?=$prop['NAME']?></div>
+							<div class="empty"></div>
+							<div class="value"><?=$prop['VALUE']?></div>
 						</li>
 					<?php endif ?>
 				<?php endforeach; ?>

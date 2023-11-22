@@ -1,0 +1,72 @@
+.inner {
+  &__wrapper {
+    display: flex;
+  }
+
+  &__left {
+    max-width: 314px;
+    width: 100%;
+    margin-right: 37px;
+
+    @include lg-screen {
+      max-width: 270px;
+    }
+
+    @include r(1024px) {
+      display: none;
+    }
+  }
+
+  &__right {
+    flex-grow: 1;
+  }
+
+  &__hero {
+    margin-bottom: 45px;
+
+    @include sm-screen {
+      margin-bottom: 15px;
+    }
+
+    &-img {
+      position: relative;
+      @include ratio(1050, 355);
+
+      @include sm-screen {
+        @include ratio(345, 220);
+      }
+
+      img {
+        @include img-cover;
+        @include coverdiv;
+      }
+    }
+
+    &-desc {
+      padding: 33px 42px;
+      column-count: 2;
+      column-gap: 65px;
+
+      @include xl-screen {
+        padding: 25px 0;
+      }
+
+      @include sm-screen {
+        column-count: 1;
+        padding: 20px 0;
+      }
+    }
+
+    p {
+      font-family: $play;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+
+      @include sm-screen {
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

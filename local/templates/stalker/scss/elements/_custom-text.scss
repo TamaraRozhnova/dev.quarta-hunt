@@ -1,0 +1,30 @@
+.custom-text {
+  h1 {
+    font-weight: 20;
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 19px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  p {
+    font-family: $play;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    margin-bottom: 25px;
+
+    @include lg-screen {
+      font-size: 14px;
+    }
+  }
+
+}

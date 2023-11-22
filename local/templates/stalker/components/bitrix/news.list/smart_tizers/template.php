@@ -22,6 +22,11 @@ $arFilter = Array("IBLOCK_ID"=>$arParams['IBLOCK_ID'], "ACTIVE_DATE"=>"Y", "ACTI
 $res = CIblockElement::GetList(Array("SORT" => "ASC"), $arFilter, false, $arPages, $arSelect);
  while($ob = $res->GetNextElement()){
    $arFields = $ob->GetFields();
+
+   $t = explode(" ", $arFields['NAME']);
+   if(is_array($t) and count($t) == 2){
+       $arFields['NAME'] = implode("<br>", $t);
+   }
 ?>
 
               <div class="section-plus__item">

@@ -12,11 +12,7 @@
 /** @var array $templateData */
 /** @var \CBitrixComponent $component */
 $this->setFrameMode( true );
-
-use Spro\Image;
 ?>
-
-
 <?php if ($arResult['ITEMS']): ?>
 	<div class="section__head">
 		<h2 class="section__title">
@@ -24,16 +20,15 @@ use Spro\Image;
 		</h2>
 	</div>
 	<div class="section__body">
-		<div class="section__slider-navigation">
-			<button class="swiper-button-prev ui-swiper-button">
-				<? Image::showSVG( 'arrow-prev' ) ?>
-			</button>
-			<button class="swiper-button-next ui-swiper-button">
-				<? Image::showSVG( 'arrow-next' ) ?>
-			</button>
-		</div>
-
-		<div class="swiper">
+		<div class="swiper swiper-slider1">
+            <div class="section__slider-navigation">
+                <button class="swiper-button-prev ui-swiper-button">
+                    <? \Spro\Image::showSVG( 'arrow-prev' ) ?>
+                </button>
+                <button class="swiper-button-next ui-swiper-button">
+                    <? \Spro\Image::showSVG( 'arrow-next' ) ?>
+                </button>
+            </div>
 			<div class="swiper-wrapper">
 				<?php foreach ($arResult['ITEMS'] as $index => $arItem): ?>
 					<div class="swiper-slide catalog__item-slide">
@@ -44,6 +39,6 @@ use Spro\Image;
 					</div>
 				<?php endforeach; ?>
 			</div>
-		</div>
+        </div>
 	</div>
 <?php endif ?>

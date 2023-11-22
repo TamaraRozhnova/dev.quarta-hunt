@@ -1,0 +1,283 @@
+.card {
+  display: flex;
+
+  @include r(1024px) {
+    flex-flow: column;
+  }
+
+  &-left {
+    max-width: 63.9%;
+    margin-right: 53px;
+
+    @include lg-screen {
+      max-width: 60%;
+      margin-right: 38px;
+    }
+
+    @include r(1024px) {
+      max-width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &-right {
+    max-width: 32.1%;
+    width: 100%;
+
+    @include lg-screen {
+      max-width: 40%;
+    }
+
+    @include r(1024px) {
+      max-width: 100%;
+      margin-top: 24px;
+    }
+  }
+
+  .dot {
+    z-index: 10;
+  }
+
+  .tip {
+    max-width: max-content;
+    margin-bottom: 18px;
+  }
+
+  &__slider {
+    position: relative;
+    border: 1px solid #E2E2E2;
+
+    &-img {
+      position: relative;
+      @include ratio(895, 507);
+      width: 100%;
+      max-width: 895px;
+      background-color: #fff;
+
+      @include r(1024px) {
+        max-width: 100%;
+      }
+
+      img {
+        @include coverdiv;
+        @include img-cover;
+      }
+    }
+
+    &-navigation {
+      position: absolute;
+      @include centerer-y;
+      padding: 0 10px;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+
+      @include sm-screen {
+        display: none;
+      }
+
+      .ui-swiper-button {
+        width: 58px;
+        height: 58px;
+        pointer-events: all;
+        background-color: rgba(242, 242, 242, 0.4);
+      }
+    }
+  }
+
+  &__thumbnail {
+    margin-top: 5px;
+
+    @include sm-screen {
+      display: none;
+    }
+
+    .swiper {
+      &-slide {
+        max-width: 138px;
+        margin-right: 13px;
+      }
+    }
+
+    &-img {
+      position: relative;
+      @include ratio(138, 78);
+      width: 100%;
+
+      img {
+        @include coverdiv;
+        @include img-cover;
+      }
+    }
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 9px;
+    text-transform: uppercase;
+
+    @include xl-screen {
+      font-size: 18px;
+    }
+
+    @include r(1024px) {
+      font-size: 16px;
+    }
+
+    @include xs-screen {
+      font-size: 13px;
+    }
+  }
+
+  &__code {
+    font-family: $play;
+    font-size: 14px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #898989;
+    margin-bottom: 17px;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    font-family: $play;
+    font-size: 14px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 19px;
+  }
+
+  &__price {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
+
+    .price-new{
+      padding-right: 15px;
+    }
+    .price-old{
+      padding-top: 4px;
+    }
+  }
+
+  &__count {
+    flex-shrink: 0;
+
+    .select {
+      position: relative;
+      font-family: $play;
+      max-width: max-content;
+
+      &__head {
+        display: flex;
+        align-items: center;
+        border: 1px solid #D1D1D1;
+        padding: 19px 13px 18px 11px;
+
+        @include xs-screen {
+          padding: 12px 11px;
+        }
+
+        &-value {
+          min-width: 20px;
+          text-align: center;
+          margin-right: 5px;
+        }
+
+        &-controller {
+          padding-left: 10px;
+          border-left: 1px solid #D1D1D1;
+          font-weight: 600;
+          font-size: 12px;
+
+          .icon {
+            color: transparent;
+            stroke: $textDark;
+            font-size: 8px;
+            margin-left: 5px;
+          }
+        }
+      }
+
+      &__body {
+        background-color: #f0f0f0;
+        border: 1px solid #D1D1D1;
+      }
+
+      &__item {
+        padding: 10px 12px;
+        transition: background-color 0.25s ease-out;
+
+        &:hover {
+          background-color: #b0b0b0;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 37px;
+
+    @include r(1024px) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__like {
+    width: 57px;
+    height: 57px;
+    flex-shrink: 0;
+
+    @include xs-screen {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__basket {
+    max-width: 256px;
+    margin: 0 10px;
+
+    @include xs-screen {
+      height: 44px;
+      font-size: 10px;
+    }
+  }
+
+  &__characteristic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+
+    @include sm-screen {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 20px;
+    }
+
+    &-item {
+      padding-top: 10px;
+      border-top: 1px solid #383838;
+    }
+
+    &-title {
+      font-family: $play;
+      font-size: 12px;
+      color: #555555;
+      margin-bottom: 8px;
+    }
+
+    &-value {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.05em;
+    }
+  }
+}

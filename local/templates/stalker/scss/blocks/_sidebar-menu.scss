@@ -1,0 +1,120 @@
+.sidebar-menu {
+  width: 100%;
+  min-width: 414px;
+  max-width: 414px;
+  margin-right: 50px;
+  overflow: hidden;
+  @include lg-screen {
+    min-width: 319px;
+    max-width: 319px;
+    margin-right: 25px;
+  }
+  @include sm-screen {
+    min-width: 100%;
+  }
+  &__content {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid #E2E2E2;
+    background: #FFFFFF;
+    @include sm-screen {
+      border: none;
+      padding: 0;
+      border-bottom: none;
+      background: transparent;
+    }
+  }
+  &__title {
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 21px;
+    letter-spacing: -0.03em;
+    color: #383838;
+    border-bottom: 1px solid rgba(115, 115, 115, 0.2);
+    @include lg-screen {
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: -0.03em;
+    }
+    @include sm-screen {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__list {
+    padding-bottom: 49px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(115, 115, 115, 0.2);
+    @include sm-screen {
+      display: flex;
+      gap: 7px;
+      overflow: scroll;
+      padding-bottom: 20px;
+    }
+    & a {
+      display: block;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: -0.03em;
+      color: rgba(56, 56, 56, 0.5);
+      &:not(:last-child) {
+        margin-bottom: 39px;
+      }
+      @include lg-screen {
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: -0.03em;
+      }
+      @include sm-screen {
+        padding: 22px;
+        font-size: 10px;
+        line-height: 10px;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+        text-transform: capitalize;
+        color: #383838;
+        border: 1px solid #383838;
+        &:not(:last-child) {
+          margin-bottom: 0px;
+        }
+      }
+    } 
+    & a:hover {
+      color: #383838;
+      @include sm-screen {
+        color: #FFFFFF;
+        background: #383838;
+      } 
+    }
+  }
+  .contacts {
+    &__text {
+      &:not(:last-child) {
+        margin-bottom: 22px;
+      }
+      & span {
+        display: block;
+        font-family: $play;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: -0.02em;
+        color: rgba(56, 56, 56, 0.5);
+      }
+      & a {
+        font-family: $play;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+        letter-spacing: -0.02em;
+        color: #383838;
+      }
+    }
+  }
+}

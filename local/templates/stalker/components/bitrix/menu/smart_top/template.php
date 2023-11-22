@@ -16,10 +16,10 @@ $this->setFrameMode(true);
 if (empty($arResult))
 	return;
 ?>
-    <nav class="header__navigation">
-		<?foreach($arResult as $itemIdex => $arItem):?>
-			<?if ($arItem["DEPTH_LEVEL"] == "1"):?>
-                <a href="<?=htmlspecialcharsbx($arItem["LINK"])?>" class="ui-link ui-link--underline"><?=htmlspecialcharsbx($arItem["TEXT"], ENT_COMPAT, false)?></a>
-			<?endif?>
-		<?endforeach;?>
-      </nav>
+<nav class="header__navigation">
+    <?foreach($arResult as $itemIdex => $arItem):?>
+        <?if ($arItem["DEPTH_LEVEL"] == "1"):?>
+            <a href="<?=htmlspecialcharsbx($arItem["LINK"])?>" class="ui-link ui-link--underline"><?=htmlspecialcharsbx($arItem["TEXT"], ENT_COMPAT, false)?></a>
+        <?endif?>
+    <?endforeach;?>
+</nav>

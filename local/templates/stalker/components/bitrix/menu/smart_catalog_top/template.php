@@ -22,7 +22,7 @@ if (empty( $arResult ))
 $list_1 = [];
 
 $arFilter = [
-	'IBLOCK_ID' => COption::GetOptionString( 'spro.wizard', 'ib-catalog',  '', SITE_ID ),
+	'IBLOCK_ID' => CATALOG_IBLOCK_ID,
 ];
 
 $arOrder = [

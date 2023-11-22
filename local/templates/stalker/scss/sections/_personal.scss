@@ -1,0 +1,343 @@
+.personal {
+  margin-top: 60px;
+  margin-bottom: 120px;
+
+  .user-form{
+    .login-block {
+      width: calc(100% / 2 - 18px);
+
+      @include md-screen {
+        width: calc(100% / 2 - 8px);
+      }
+
+      @include sm-screen {
+        width: 100%;
+      }
+    }
+  }
+
+  @include md-screen {
+    margin-top: 52px;
+  }
+
+  @include sm-screen {
+    margin-top: 0;
+  }
+
+  &-container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1255px;
+  }
+
+  &-exit {
+    @include sm-screen {
+      margin-top: 15px;
+    }
+  }
+
+  &-top {
+    display: flex;
+    justify-content: space-between;
+
+    @include sm-screen {
+      padding: 35px 0;
+      flex-flow: column;
+      align-items: center;
+      background-color: #F9F9F9;
+    }
+
+    .section-catalog__title {
+      margin-bottom: 16px;
+
+      @include sm-screen {
+        text-align: center;
+      }
+    }
+
+    &__desc {
+      max-width: 503px;
+      line-height: 1.5;
+
+      @include sm-screen {
+        text-align: center;
+      }
+    }
+
+    &__column {
+      margin-right: 40px;
+
+      @include sm-screen {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-exit {
+    position: relative;
+    color: #000;
+    height: 100%;
+    font-weight: 500;
+  }
+
+  &-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 43px;
+
+    @include sm-screen {
+      flex-flow: column;
+    }
+  }
+
+  .login {
+    &-title {
+      width: 100%;
+    }
+
+    &-label {
+      width: 100%;
+
+      @include sm-screen {
+        width: 100%;
+      }
+    }
+
+    &-form {
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+
+      &__grid {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        margin-top: 41px;
+        padding-bottom: 30px;
+
+        @include sm-screen {
+          margin-top: 25px;
+          padding-bottom: 0;
+        }
+
+        .login-label {
+          margin-top: 0;
+        }
+
+        .login-title {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    &-row {
+      @include sm-screen {
+        flex-flow: column;
+        align-items: flex-start;
+      }
+
+      .ui-btn {
+        @include sm-screen {
+          margin-top: 30px;
+          width: 100%;
+          max-width: 100%;
+        }
+
+        &-full {
+          @include sm-screen {
+            width: fit-content;
+            margin: 15px auto;
+          }
+        }
+      }
+    }
+  }
+
+  .customers {
+    &-content {
+      height: 100%;
+
+      .order {
+        max-width: 100%;
+        padding: 0;
+        background-color: #f0f0f0;
+        height: auto;
+
+        @include sm-screen {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+.customers {
+  &-menu {
+    max-width: 280px;
+    width: 100%;
+
+    @include sm-screen {
+      max-width: 100%;
+    }
+  }
+  &-list {
+    @include sm-screen {
+      display: flex;
+    }
+  }
+
+  &-item {
+    @include sm-screen {
+      width: 50%;
+    }
+    &-active {
+      .customers-link {
+        background-color: #383838;
+        color: #fff;
+      }
+    }
+  }
+
+  &-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    color: #383838;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: #fff;
+    border-left: 1px solid #383838;
+
+    @include sm-screen {
+      border-left: none;
+      padding: 17px 20px;
+    }
+
+    @include xs-screen {
+      padding: 17px 12px;
+    }
+  }
+
+  &-content {
+    width: calc(100% - 380px);
+
+    @include lg-screen {
+      width: calc(100% - 320px);
+    }
+
+    @include sm-screen {
+      width: 100%;
+      margin-top: 41px;
+    }
+
+    .checkout__personal {
+      margin-top: 0;
+      margin-bottom: 25px;
+
+      &-grid {
+        margin: 0;
+        padding: 10px 0;
+
+        &--row {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 32px;
+
+          @include lg-screen {
+            column-gap: 16px;
+          }
+
+          @include xs-screen {
+            grid-template-columns: repeat(1, 1fr);
+            column-gap: 13px;
+          }
+
+          .ui-block {
+            &:nth-child(3n+2),
+            &:nth-child(3n+3) {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .ui-button {
+      max-width: 315px;
+      height: 42px;
+      margin-top: 53px;
+
+      @include sm-screen {
+        margin-top: 35px;
+      }
+    }
+
+    &__row {
+      display: flex;
+      margin-top: -15px;
+
+      @include xs-screen {
+        margin-top: 25px;
+      }
+
+      .change {
+        display: block;
+        margin-left: auto;
+        width: max-content;
+        color: $textDark;
+
+        &::before {
+          background-color: $textDark;
+        }
+      }
+    }
+  }
+
+  &__subscribe {
+    display: flex;
+    align-items: center;
+
+    &-text {
+      margin-left: 10px;
+      font-family: $play;
+      font-size: 18px;
+      line-height: 1;
+    }
+  }
+}
+
+.toggle {
+  position: relative;
+  border: 1px solid #D1D1D1;
+  border-radius: 25px;
+  width: 37px;
+  height: 20px;
+  padding: 3px 3px;
+  flex-shrink: 0;
+  display: block;
+
+  &__item {
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translate(0, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #CCCCCC;
+    pointer-events: none;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked {
+      & + .toggle__item {
+        transform: translate(100%, -50%);
+        background-color: #383838;
+      }
+    }
+  }
+}

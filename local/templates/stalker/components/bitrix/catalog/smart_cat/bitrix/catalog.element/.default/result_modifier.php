@@ -14,7 +14,7 @@ $obElList = CIBlockElement::GetList(
 		'ID' => 'DESC'
 	],
 	[
-		'IBLOCK_ID' => COption::GetOptionString( 'spro.wizard', 'ib-review',  '', SITE_ID ),
+		'IBLOCK_ID' => IBLOCKS['ib-review'],
 		'PROPERTY_PRODUCT' => $arResult['ID'],
 		'ACTIVE' => 'Y',
 	],
