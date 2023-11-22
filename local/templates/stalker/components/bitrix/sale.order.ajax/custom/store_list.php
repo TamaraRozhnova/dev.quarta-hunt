@@ -1,5 +1,6 @@
-<script src="https://api-maps.yandex.ru/2.1/?apikey=f8d1318f-e2d1-48cd-b79a-2f0bfe1543f6&lang=ru_RU" type="text/javascript">
-</script>
+<?/*?>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=f8d1318f-e2d1-48cd-b79a-2f0bfe1543f6&lang=ru_RU" type="text/javascript"></script>
+<?*/?>
 <?php foreach ($arResult['STORE_LIST'] as $index => $arStore): ?>
 	<div class="checkout__map">
 		<div class="checkout__map-left">
@@ -30,7 +31,7 @@
 		</div>
 		<div class="checkout__map-right" style="margin-bottom: 30px;">
 			<div class="map">
-				<? $APPLICATION->IncludeFile(
+				<?$APPLICATION->IncludeFile(
 					'/_includes/order/self_map.php',
 					[
 						'ID' => $arStore['ID'],
@@ -41,7 +42,7 @@
 					[
 						'SHOW_BORDER' => false,
 					]
-				); ?>
+				);?>
 			</div>
 		</div>
 	</div>

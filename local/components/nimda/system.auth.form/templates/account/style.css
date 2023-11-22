@@ -1,0 +1,31 @@
+.auth-form-error:not(:empty){
+    background: #fee;
+    padding: 20px 10px;
+    margin-bottom: 25px;
+    border: 1px solid #dacece;
+    border-radius: 9px;
+}
+
+.auth-form-error p{
+    margin: 0 0 10px 0;
+}
+
+.auth-form-error p:last-child{
+    margin: 0;
+}
+
+.auth-loader{
+    height: 0;
+}
+
+#block-auth .auth-loader img {
+    display: inline-block;
+    margin: 13px 0px 0px 0;
+    width: 23px;
+}
+
+[disabled] {
+    cursor: not-allowed;
+    background-color: #BDBDBD;
+}
+

@@ -39,7 +39,7 @@ CModule::IncludeModule( 'iblock' );
 					<div class="swiper-wrapper">
 						<?
 						$arSelect = [ "ID", "IBLOCK_ID", "CODE", "NAME", "PROPERTY_SUBTITLE", "DETAIL_PICTURE", "PROPERTY_LINK", "DETAIL_TEXT" ];
-						$arFilter = [ "IBLOCK_ID" =>  COption::GetOptionString( 'spro.wizard', 'ib-pistol',  '', SITE_ID ), "ACTIVE_DATE" => "Y", "ACTIVE" => "Y" ];
+						$arFilter = [ "IBLOCK_ID" =>  IBLOCKS['ib-pistol'], "ACTIVE_DATE" => "Y", "ACTIVE" => "Y" ];
 						$res = CIblockElement::GetList( [ "DATE_CREATE" => "DESC" ], $arFilter, false, $arPages, $arSelect );
 						while ($ob = $res->GetNextElement())
 						{

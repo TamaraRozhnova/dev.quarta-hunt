@@ -1,0 +1,27 @@
+.ui-swiper {
+  &-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #C9C9C9;
+    width: 58px;
+    height: 58px;
+    border-radius: 8px;
+    transition: border-color 0.25s ease;
+
+    @include lg-screen {
+      width: 46px;
+      height: 46px;
+    }
+
+    .icon {
+      @include lg-screen {
+        font-size: 10px;
+      }
+    }
+
+    &:hover {
+      border-color: #383838;
+    }
+  }
+}

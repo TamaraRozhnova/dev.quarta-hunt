@@ -5,7 +5,7 @@ if ( !defined( "B_PROLOG_INCLUDED" ) || B_PROLOG_INCLUDED !== true) die();
 $list_1 = [];
 
 $arFilter = [
-	'IBLOCK_ID' => COption::GetOptionString( 'spro.wizard', 'ib-catalog', '', SITE_ID ),
+	'IBLOCK_ID' => CATALOG_IBLOCK_ID,
 ];
 
 $arOrder = [

@@ -1,0 +1,281 @@
+.modal-reviews {
+  &.modal {
+    opacity: 0;
+    visibility: hidden;
+    height: 1px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #98959594;
+    transition: all .3s ease;
+  }
+  &.modal.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+  & .modal__inner {
+    position: relative;
+    padding: 25px;
+    max-width: 778px;
+    background-color: #fff;
+    width: fit-content;
+  }
+
+  & .modal__title {
+    font-family: $play;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 130.52%;
+    letter-spacing: -0.03em;
+    color: #262626;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #E3E7E9;
+
+  }
+
+  & .modal__close {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+  }
+
+  &__rating {
+    display: flex;
+    margin-bottom: 30px;
+    &--indent {
+      margin-left: 12px;
+    }
+  }
+  &__form {
+    & form {
+      display: grid;
+      column-gap: 15px;
+      row-gap: 20px;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 3fr 1fr;
+      @include xs-screen {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+    }
+
+    & .form-group__input {
+      padding: 18px;
+      border: 1px solid rgba(56, 56, 56, 0.4);
+      font-family: $play;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: -0.03em;
+      
+      color: #6E757B;
+    }
+
+    & .form-group__textarea {
+      padding: 14px 24px;
+      border: 1px solid rgba(56, 56, 56, 0.4);
+      font-family: $play;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: -0.03em;
+
+      color: #6E757B;
+      grid-column: 1/3;
+      grid-row: 2/4;
+      @include xs-screen {
+        grid-column: auto;
+        grid-row: auto;
+      }
+    }
+    & .form-group--flex {
+      display: flex;
+      align-items: center;
+      grid-column: 1/3;
+      height: 50px;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 17px;
+      color: rgba(48, 48, 48, 0.5);
+      @include xs-screen {
+        grid-column: auto;
+        grid-row: auto;
+      }
+      @include xxs-screen {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 22px;
+      }
+      & .btn-sbm {
+        border: none;
+        padding: 16px 67px;
+        font-family: 'Play';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 9px;
+        line-height: 9px;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        background: #B20E04;
+        transition: all .3s ease;
+        margin-right: 25px;  
+        &:hover {
+          background: #510602;
+        }
+      }
+      & div {
+        font-family: $play;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 17px;
+        align-items: center;
+      }
+      & span {
+        display: inline;
+        color: #B20E04;
+      }
+    }
+    .files-preview-wrapper{
+      position: relative;
+      grid-column: 3/4;
+      grid-row: 1/4;
+      border: 1px dashed #E3E7E9;
+      padding: 20px 20px 12px;
+      @include xs-screen {
+        grid-column: auto;
+        grid-row: auto;
+      }
+      &__container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      &__img {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+        &:before {
+          position: absolute;
+          z-index: 10;
+          top: 0;
+          left: 0;
+          content: "";
+          background: rgba(0, 0, 0, 0.5) url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M10.6077 0.708296L11.0906 1.1912L6.38835 5.89346L11.0966 10.6018L10.6135 11.0849L5.90516 6.37665L1.19112 11.0907L0.708215 10.6078L5.42226 5.89375L0.713964 1.18545L1.19715 0.70226L5.90545 5.41056L10.6077 0.708296Z' fill='white'/%3e%3c/svg%3e ") no-repeat center center;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: opacity .3s ease-in-out;
+        }
+        &:hover {
+          &:before {
+            opacity: 1;
+          }
+          & img {
+            transform: scale(1.1);
+          }
+        }
+        & img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+          background: #cccccc;
+          transition: transform .3s ease;
+        }
+      }
+    }
+    .file-input-mini {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: #F9F9F9;
+      border-radius: 5px;
+      cursor: pointer;
+
+      & svg {
+        color: #4B4E51;
+        width: 14px;
+        height: 14px;
+      }
+      &--visible {
+        display: flex;
+        order: 19;
+      }
+    }
+    .file-input {
+      &--hide {
+        display: none;
+      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      &__icon {
+        width: 40px;
+        height: 33px;
+        margin-top: 24px;
+        margin-bottom: 18px;
+        & > svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &__text-help {
+        text-align: center;
+        font-family: $play;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130.52%;
+        /* or 18px */
+
+        text-align: center;
+        letter-spacing: -0.03em;
+
+        color: #262626;
+      }
+      &__text-format {
+        display: block;
+        margin-top: auto;
+        font-family: $play;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 130.52%;
+        /* or 18px */
+
+        text-align: center;
+        letter-spacing: -0.03em;
+
+        color: #262626;
+      }
+      & input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+    }
+  }
+}

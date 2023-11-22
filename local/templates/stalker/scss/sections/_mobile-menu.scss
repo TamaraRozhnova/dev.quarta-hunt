@@ -1,0 +1,163 @@
+.mobile-menu {
+  &.modal {
+    top: initial;
+    bottom: 0;
+    transform: translateX(-150%);
+    transition: transform 0.35s ease-out, opacity 0.25s ease-out;
+
+    &.is-active {
+      transform: translateX(0);
+    }
+  }
+
+  .modal {
+    &__inner {
+      max-width: 100%;
+      height: 100%;
+      background-color: #f0f0f0;
+      padding: 0;
+    }
+  }
+
+  &__header {
+    @include sm-screen {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #383838;
+      height: 62px;
+    }
+
+    .header__inner {
+      border-bottom: none;
+      width: 100%;
+    }
+
+    .header {
+      &__actions {
+        justify-content: space-around;
+      }
+
+      &__right {
+        @include xs-screen {
+          max-width: 110px;
+        }
+      }
+
+      &__search {
+        .icon {
+          font-size: 18px;
+        }
+      }
+
+      &__profile {
+        height: 19px;
+
+        .icon {
+          font-size: 19px;
+        }
+      }
+
+      &__search,
+      &__profile {
+        display: block;
+      }
+    }
+  }
+
+  &__content {
+    background-color: #f0f0f0;
+    padding: 26px 10px;
+  }
+
+  &__list {
+    li {
+      &:not(:first-child) {
+        border-top: 1px solid rgba(56, 56, 56, 0.3);
+      }
+    }
+
+    a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 0;
+      color: $textDark;
+      font-size: 14px;
+      line-height: 1;
+
+      .icon {
+        font-size: 10px;
+        color: transparent;
+        stroke: $textDark;
+      }
+    }
+  }
+
+  &__title {
+    font-family: $play;
+    font-size: 14px;
+    color: rgba(42, 43, 43, 0.5);
+    margin-bottom: 8px;
+  }
+
+  &__contacts {
+    margin-top: 21px;
+
+    a {
+      display: block;
+      width: max-content;
+      font-family: $play;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: rgba(42, 43, 43, 1);
+      margin-bottom: 5px;
+    }
+  }
+
+  &__social {
+    margin-top: 21px;
+  }
+
+  .social {
+    &__link {
+      border-color: #000;
+
+      .icon {
+        color: #000;
+      }
+    }
+  }
+}
+
+.header__mobile-menu {
+  .line {
+    transition: opacity 0.25s ease, trasform 0.35s ease;
+  }
+}
+
+.header__mobile-menu.is-active {
+  .line {
+    &--top {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) rotate(45deg);
+      margin-top: 0;
+      width: 100%;
+    }
+
+    &--bottom {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) rotate(-45deg);
+      margin-top: 0;
+      width: 100%;
+    }
+
+    &--middle {
+      opacity: 0;
+    }
+  }
+}

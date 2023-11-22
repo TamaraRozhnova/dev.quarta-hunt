@@ -2,7 +2,7 @@
 
 $q = 0;
 
-//print_r($arResult);
+echo_j($arResult, 'cart');
 ?>
 <div class="main">
 	<div class="basket">
@@ -29,11 +29,32 @@ $q = 0;
 									<div class="basket__item-img">
 										<img src="<?=$arItem['DETAIL_PICTURE_SRC']?>" alt="">
 									</div>
-									<div class="basket__item-text">
-										<div class="basket__item-name">
-											<?=$arItem['NAME']?>
-										</div>
-									</div>
+                                    <div class="basket__item-block">
+                                        <div class="basket__item-text">
+                                            <div class="basket__item-name">
+                                                <?=$arItem['NAME']?>
+                                            </div>
+                                        </div>
+                                        <?if(isset($arItem["arProps"])){?>
+                                        <div class="catalog__item-characteristic characteristic-small">
+                                            <ul class="characteristic-small__list">
+                                                <?php foreach ($arItem["arProps"] as $property): ?>
+                                                    <?php if($property['VALUE']):?>
+                                                        <li class="characteristic-small__item">
+                                                            <div class="characteristic-small__name">
+                                                                <?=$property['NAME']?>
+                                                            </div>
+                                                            <div class="characteristic-small__empty"></div>
+                                                            <div class="characteristic-small__value"><?=$property['VALUE']?></div>
+                                                        </li>
+                                                    <? endif; ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+
+                                        <?}?>
+
+                                    </div>
 								</div>
 								<div class="basket__item-price basket__price">
 									<div class="basket__item-title">
@@ -41,9 +62,7 @@ $q = 0;
 									</div>
 									<div class="price">
 										<div class="price-new">
-											<div class="price-new">
-												<span class="value"><?=priceFormat( $arItem['PRICE'] )?> ₽</span>
-											</div>
+                                            <span class="value"><?=priceFormat( $arItem['PRICE'] )?> ₽</span>
 										</div>
 									</div>
 								</div>
@@ -123,7 +142,7 @@ $q = 0;
 						</div>
 
 						<a href="/personal/order/make/" type="submit" class="ui-button ui-button--red">
-							Перейти к оформлению
+							ОФОРМИТЬ ЗАКАЗ
 						</a>
 					</div>
 				</div>
