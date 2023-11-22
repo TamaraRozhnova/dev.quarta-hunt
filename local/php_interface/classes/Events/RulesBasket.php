@@ -11,7 +11,7 @@ use \Bitrix\Sale\Internals\DiscountTable;
 
 class RulesBasket
 {
-    public static function OnAfterAddDiscountTable(&$arFields)
+    static function OnAfterAddDiscountTable(&$arFields)
     {
         
         Loader::includeModule('iblock');
@@ -123,7 +123,7 @@ class RulesBasket
  
     }
 
-    public static function OnBeforeDeleteDiscountTable(Event $event)
+    static function OnBeforeDeleteDiscountTable(Event $event)
     {
 
         Loader::includeModule('iblock');

@@ -8,7 +8,7 @@ use \Bitrix\Main\Mail\Event as MailEvent;
 class SaleOrderAjaxEventsO2K
 {
 
-    public function eventNewOrder(Event $event)
+    static function eventNewOrder(Event $event)
     {
         $entity = $event->getParameter("ENTITY");  
 
@@ -197,7 +197,7 @@ class SaleOrderAjaxEventsO2K
     }
 
     
-    /* public function eventSend(&$arFields, &$arTemplate)
+    /* static function eventSend(&$arFields, &$arTemplate)
     {
 
         if (!empty($arFields['PERSON_TYPE_ID'])) {

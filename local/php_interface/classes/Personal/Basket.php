@@ -219,7 +219,6 @@ class Basket
             'LID' => Context::getCurrent()->getSite(),
         ];
 
-        
         if (isset($data['NOTES'])) {
             $atFields['NOTES'] = serialize($data['NOTES']);
         }
@@ -228,12 +227,16 @@ class Basket
             $atFields['PRICE'] = $data['PRICE'];
             $atFields['BASE_PRICE'] = $data['PRICE'];
         }
+
         if (isset($data['CUSTOM_PRICE'])) {
             $atFields['CUSTOM_PRICE'] = $data['CUSTOM_PRICE'];
         }
+
         if (isset($data['NAME'])) {
             $atFields['NAME'] = $data['NAME'];
         }
+ 
+        $atFields['WEIGHT'] = (float) $data['WEIGHT'];
 
         $basketItem->setFields($atFields);
 
@@ -302,6 +305,7 @@ class Basket
             $price3 = $product->getFieldValue('PRICE_3');
 
             if ($basketItem) {
+                $basketItem->setField('WEIGHT', (float) $basketItem->getWeight());
                 $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);                
                 $basketItem->setField('PRICE', !$isOpt ? $price : $price3);
                 $this->basket->save();
