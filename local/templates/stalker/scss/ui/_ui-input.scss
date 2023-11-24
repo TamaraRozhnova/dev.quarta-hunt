@@ -65,6 +65,17 @@ input[type="radio"] {
   }
 }
 
+
+input[type="checkbox"] {
+  display: none;
+
+  &:checked {
+    & + .ui-radio {
+      background-color: $textDark;
+    }
+  }
+}
+
 .ui-radio {
   position: relative;
   width: 20px;

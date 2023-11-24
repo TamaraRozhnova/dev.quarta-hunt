@@ -46,9 +46,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		initializePrimaryFields: function()
 		{
-			this.DEL_SELF_ID = "3";
-
-
 			this.BXFormPosting = false;
 			this.regionBlockNotEmpty = false;
 			this.locationsInitialized = false;
@@ -1355,7 +1352,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		initFirstSection: function()
 		{
 			var firstSection = this.orderBlockNode.querySelector('.bx-soa-section.bx-active');
-			// BX.addClass(firstSection, 'bx-selected');
+			BX.addClass(firstSection, 'bx-selected');
 			this.activeSectionId = firstSection.id;
 		},
 
@@ -1730,11 +1727,11 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			this.checkNotifications();
 
-			// if (this.activeSectionId !== this.regionBlockNode.id)
-			// 	this.editFadeRegionContent(this.regionBlockNode.querySelector('.bx-soa-section-content'));
-			//
-			// if (this.activeSectionId != this.propsBlockNode.id)
-			// 	this.editFadePropsContent(this.propsBlockNode.querySelector('.bx-soa-section-content'));
+			if (this.activeSectionId !== this.regionBlockNode.id)
+				this.editFadeRegionContent(this.regionBlockNode.querySelector('.bx-soa-section-content'));
+
+			if (this.activeSectionId != this.propsBlockNode.id)
+				this.editFadePropsContent(this.propsBlockNode.querySelector('.bx-soa-section-content'));
 		},
 
 		fixLocationsStyle: function(section, hiddenSection)
@@ -2259,17 +2256,17 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				);
 			}
 
-			// node.appendChild(
-			// 	BX.create('DIV', {
-			// 		props: {className: 'row bx-soa-more'},
-			// 		children: [
-			// 			BX.create('DIV', {
-			// 				props: {className: 'bx-soa-more-btn col'},
-			// 				children: buttons
-			// 			})
-			// 		]
-			// 	})
-			// );
+			node.appendChild(
+				BX.create('DIV', {
+					props: {className: 'row bx-soa-more'},
+					children: [
+						BX.create('DIV', {
+							props: {className: 'bx-soa-more-btn col'},
+							children: buttons
+						})
+					]
+				})
+			);
 		},
 
 		getNewContainer: function(notFluid)
@@ -2455,7 +2452,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (!this.orderBlockNode || !this.result)
 				return;
 
-			/*if (this.result.DELIVERY.length > 0)
+			if (this.result.DELIVERY.length > 0)
 			{
 				BX.addClass(this.deliveryBlockNode, 'bx-active');
 				this.deliveryBlockNode.removeAttribute('style');
@@ -2464,7 +2461,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			{
 				BX.removeClass(this.deliveryBlockNode, 'bx-active');
 				this.deliveryBlockNode.style.display = 'none';
-			}*/
+			}
 
 			this.orderSaveBlockNode.style.display = this.result.SHOW_AUTH ? 'none' : '';
 			this.mobileTotalBlockNode.style.display = this.result.SHOW_AUTH ? 'none' : '';
@@ -2479,13 +2476,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					this.editSection(sections[i]);
 				}
 			}
-
-			// var editSteps = this.orderBlockNode.querySelectorAll('.bx-soa-editstep'), i;
-			// for (i in editSteps) {
-			// 	if (editSteps.hasOwnProperty(i)) {
-			// 		BX.remove(editSteps[i]);
-			// 	}
-			// }
 
 			this.editTotalBlock();
 			this.totalBlockFixFont();
@@ -2502,29 +2492,29 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (!section || !section.id)
 				return;
 
-			// if (this.result.SHOW_AUTH && section.id != this.authBlockNode.id && section.id != this.basketBlockNode.id)
-			// 	section.style.display = 'none';
-			// else if (section.id != this.pickUpBlockNode.id)
-			// 	section.style.display = '';
+			if (this.result.SHOW_AUTH && section.id != this.authBlockNode.id && section.id != this.basketBlockNode.id)
+				section.style.display = 'none';
+			else if (section.id != this.pickUpBlockNode.id)
+				section.style.display = '';
 
-			var active = true,
+			var active = section.id == this.activeSectionId,
 				titleNode = section.querySelector('.bx-soa-section-title-container'),
 				editButton, errorContainer;
 
-			// BX.unbindAll(titleNode);
-			// if (this.result.SHOW_AUTH)
-			// {
-			// 	BX.bind(titleNode, 'click', BX.delegate(function(){
-			// 		this.animateScrollTo(this.authBlockNode);
-			// 		this.addAnimationEffect(this.authBlockNode, 'bx-step-good');
-			// 	}, this));
-			// }
-			// else
-			// {
-			// 	BX.bind(titleNode, 'click', BX.proxy(this.showByClick, this));
-			// 	editButton = titleNode.querySelector('.bx-soa-editstep');
-			// 	editButton && BX.bind(editButton, 'click', BX.proxy(this.showByClick, this));
-			// }
+			BX.unbindAll(titleNode);
+			if (this.result.SHOW_AUTH)
+			{
+				BX.bind(titleNode, 'click', BX.delegate(function(){
+					this.animateScrollTo(this.authBlockNode);
+					this.addAnimationEffect(this.authBlockNode, 'bx-step-good');
+				}, this));
+			}
+			else
+			{
+				BX.bind(titleNode, 'click', BX.proxy(this.showByClick, this));
+				editButton = titleNode.querySelector('.bx-soa-editstep');
+				editButton && BX.bind(editButton, 'click', BX.proxy(this.showByClick, this));
+			}
 
 			errorContainer = section.querySelector('.alert.alert-danger');
 			this.hasErrorSection[section.id] = errorContainer && errorContainer.style.display != 'none';
@@ -5055,8 +5045,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			var paySystemInfoContainer = BX.create('DIV', {
 					props: {
-						// className: (this.result.PAY_SYSTEM.length == 0 ? 'col-12 mb-3' : 'col-md-5 mb-lg-0') + ' col-12 mb-3 order-md-2 order-1 bx-soa-pp-desc-container'
-						className: (this.result.PAY_SYSTEM.length == 0 ? 'col-12 mb-3' : 'col-12 mb-3') + ' col-12 mb-3 order-md-2 order-1 bx-soa-pp-desc-container'
+						className: (this.result.PAY_SYSTEM.length == 0 ? 'col-12 mb-3' : 'col-md-5 mb-lg-0') + ' col-12 mb-3 order-md-2 order-1 bx-soa-pp-desc-container'
 					}
 				}),
 				innerPs, extPs, delimiter, currentPaySystem,
@@ -5392,8 +5381,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 		editActiveDeliveryBlock: function(activeNodeMode)
 		{
 			var node = activeNodeMode ? this.deliveryBlockNode : this.deliveryHiddenBlockNode,
-				deliveryContent, deliveryNodeRow, deliveryNodeCol, deliveryNodeColEmpty, deliveryNodeRow1, deliveryNode,
-				tabs__head, tabs__body,  tabs__content, checkout__tabs, checkout__map, checkout__choose;
+				deliveryContent, deliveryNode;
 
 			if (this.initialized.delivery)
 			{
@@ -5413,100 +5401,10 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 				this.getErrorContainer(deliveryContent);
 
-
-				tabs__head = BX.create('DIV', {
-					props: {className: 'tabs__head'},
-					dataset: {tabsHead: true},
-					html:"\t\t\t\t\t\t\t\t<label class=\"tabs__item is-active\" data-tabs-item=\"self\">\n" +
-						"\t\t\t\t<input type=\"radio\" value=\"self\" name=\"delivery\" checked=\"\" data-delivery=\"3\">\n" +
-						"\t\t\t\t<span class=\"ui-radio\"></span>\n" +
-						"\t\t\t\t<span class=\"ui-radio__content\">\n" +
-						"\t\t\t\t\t<span class=\"ui-radio__name\">\n" +
-						"\t\t\t\t\t\tСамовывоз\t\t\t\t\t</span>\n" +
-						"\t\t\t\t\t<span class=\"ui-radio__desc\">\n" +
-						"\t\t\t\t\t\tВы можете самостоятельно забрать заказ из нашего магазина.\t\t\t\t\t</span>\n" +
-						"\t\t\t\t</span>\n" +
-						"\t\t\t</label>\n" +
-						"\t\t\t\t\t\t\t<label class=\"tabs__item\" data-tabs-item=\"delivery\">\n" +
-						"\t\t\t\t<input type=\"radio\" value=\"delivery\" name=\"delivery\" data-delivery=\"3\">\n" +
-						"\t\t\t\t<span class=\"ui-radio\"></span>\n" +
-						"\t\t\t\t<span class=\"ui-radio__content\">\n" +
-						"\t\t\t\t\t<span class=\"ui-radio__name\">\n" +
-						"\t\t\t\t\t\tДоставка\n" +
-						"\t\t\t\t\t</span>\n" +
-						"\t\t\t\t\t<span class=\"ui-radio__desc\"></span>\n" +
-						"\t\t\t\t</span>\n" +
-						"\t\t\t</label>\n"
-				});
-				checkout__tabs = BX.create('DIV', {props: {className: 'checkout__tabs tabs'}, dataset: {tabs: true, tabsInit: 'true'}});
-				checkout__tabs.appendChild(tabs__head);
-
-
-				tabs__body = BX.create('DIV', {props: {className: 'tabs__body'}, dataset: {tabsBody: "true"}});
-				tabs__content = BX.create('DIV', {props: {className: 'tabs__content is-active'}, dataset: {tabsContent: 'self'}});
-				checkout__map = BX.create('DIV', {props: {className: 'checkout__map'}, dataset: {}});
-				tabs__content.appendChild(checkout__map);
-				tabs__body.appendChild(tabs__content);
-
-
-
-				tabs__content = BX.create('DIV', {props: {className: 'tabs__content'}, dataset: {tabsContent: 'delivery'}});
-				checkout__choose = BX.create('DIV', {props: {className: 'checkout__choose-delivery'}});
-
-				// deliveryNode = BX.create('DIV', {props: {className: 'bx-soa-pp deliveryNode row'}});
-				this.editDeliveryItems(checkout__choose, 2);
-				tabs__content.appendChild(checkout__choose);
-				this.editDeliveryInfo(checkout__choose);
-
-				tabs__body.appendChild(tabs__content);
-
-				checkout__tabs.appendChild(tabs__body);
-				deliveryNode = BX.create('DIV', {props: {className: 'bx-soa-pp'}});
-				deliveryNode.appendChild(checkout__tabs);
-				deliveryContent.appendChild(deliveryNode);
-
-
-
-				// deliveryNodeRow = BX.create('DIV', {props: {className: 'bx-soa-pp row'}});
-				//
-				// deliveryNodeCol = BX.create('DIV', {props: {className: 'bx-soa-pp-deliveryNodeCol col-6'}});
-				// this.editDeliveryItems(deliveryNodeCol, 1);
-				// deliveryNodeRow.appendChild(deliveryNodeCol);
-				//
-				// deliveryNodeCol = BX.create('DIV', {props: {className: 'bx-soa-pp-deliveryNodeCol col-6'},
-				// 	html: "<div class=\"order-md-1 order-2 col-12 -col-md-7 bx-soa-pp-item-container deliv\">\n" +
-				// 		"    <div class=\"row\">\n" +
-				// 		"        <div class=\"bx-soa-pp-company col-12\">\n" +
-				// 		"            <div class=\"bx-soa-pp-company-graf-container\">\n" +
-				// 		"                <input id=\"ID_DELIVERY_ID_FAKE\" name=\"DELIVERY_ID_FAKE\" type=\"checkbox\" class=\"bx-soa-pp-company-checkbox\" value=\"3\">\n" +
-				// 		"            </div>\n" +
-				// 		"            <div class=\"bx-soa-pp-company-smalltitle\">Самовывоз</div>\n" +
-				// 		"        </div>\n" +
-				// 		"    </div>\n" +
-				// 		"</div>"
-				// });
-				// deliveryNodeRow.appendChild(deliveryNodeCol);
-				//
-				// deliveryContent.appendChild(deliveryNodeRow);
-				//
-				// deliveryNodeRow = BX.create('DIV', {props: {className: 'bx-soa-pp row row1'}});
-				// deliveryNodeCol = BX.create('DIV', {props: {className: 'bx-soa-pp-address col-12'}, text: 'адреса'});
-				// deliveryNodeRow.appendChild(deliveryNodeCol);
-				//
-				// deliveryContent.appendChild(deliveryNodeRow);
-				//
-				// deliveryNodeRow = BX.create('DIV', {props: {className: 'bx-soa-pp row row2'}});
-				// this.editDeliveryItems(deliveryNodeRow, 0);
-				// deliveryContent.appendChild(deliveryNodeRow);
-				// this.editDeliveryInfo(deliveryNodeRow);
-
-				/*
 				deliveryNode = BX.create('DIV', {props: {className: 'bx-soa-pp row'}});
 				this.editDeliveryItems(deliveryNode);
 				deliveryContent.appendChild(deliveryNode);
 				this.editDeliveryInfo(deliveryNode);
-				*/
-
 
 				if (this.params.SHOW_COUPONS_DELIVERY == 'Y')
 					this.editCoupons(deliveryContent);
@@ -5515,36 +5413,20 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 		},
 
-		editDeliveryItems: function(deliveryNode, del_self = 0)
+		editDeliveryItems: function(deliveryNode)
 		{
 			if (!this.result.DELIVERY || this.result.DELIVERY.length <= 0)
 				return;
 
-			var deliveryItemsContainer = BX.create('DIV', {props: {className: 'order-md-1 order-2 col-12 -col-md-7 bx-soa-pp-item-container deliv'}}),
+			var deliveryItemsContainer = BX.create('DIV', {props: {className: 'order-md-1 order-2 col-md-7 bx-soa-pp-item-container'}}),
 				deliveryItemsContainerRow = BX.create('DIV', {props: {className: 'row'}}),
 				deliveryItemNode, k;
 
-			console.log(this);
-
-			//nimda
 			for (k = 0; k < this.deliveryPagination.currentPage.length; k++)
 			{
-				if(del_self === 1){
-					if(this.deliveryPagination.currentPage[k]["ID"] === this.DEL_SELF_ID){
-						deliveryItemNode = this.createDeliveryItem(this.deliveryPagination.currentPage[k]);
-						deliveryItemsContainerRow.appendChild(deliveryItemNode);
-					}
-				}else if(del_self === 0){
-					if(this.deliveryPagination.currentPage[k]["ID"] !== this.DEL_SELF_ID){
-						deliveryItemNode = this.createDeliveryItem(this.deliveryPagination.currentPage[k]);
-						deliveryItemsContainerRow.appendChild(deliveryItemNode);
-					}
-				}else{
-					deliveryItemNode = this.createDeliveryItem(this.deliveryPagination.currentPage[k]);
-					deliveryItemsContainerRow.appendChild(deliveryItemNode);
-				}
+				deliveryItemNode = this.createDeliveryItem(this.deliveryPagination.currentPage[k]);
+				deliveryItemsContainerRow.appendChild(deliveryItemNode);
 			}
-
 			deliveryItemsContainer.appendChild(deliveryItemsContainerRow);
 
 			if (this.deliveryPagination.show)
@@ -5558,7 +5440,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (!this.result.DELIVERY)
 				return;
 
-			var deliveryInfoContainer = BX.create('DIV', {props: {className: 'col-md-5- mb-lg-0 col-12 mb-3 order-md-2 order-1 bx-soa-pp-desc-container deliv'}}),
+			var deliveryInfoContainer = BX.create('DIV', {props: {className: 'col-md-5 mb-lg-0 col-12 mb-3 order-md-2 order-1 bx-soa-pp-desc-container'}}),
 				currentDelivery, logotype, name, logoNode,
 				subTitle, label, title, price, period,
 				clear, infoList, extraServices, extraServicesNode;
@@ -5645,7 +5527,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			deliveryInfoContainer.appendChild(
 				BX.create('DIV', {
-					props: {className: 'bx-soa-pp-company bx-soa-pp-company-deliv'},
+					props: {className: 'bx-soa-pp-company'},
 					children: [subTitle, label, title, clear, extraServicesNode, infoList]
 				})
 			);
@@ -5769,51 +5651,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		createDeliveryItem: function(item)
 		{
-			// console.log(item, item.CHECKED === 'Y');
-
-			var checked = item.CHECKED === 'Y',
-				deliveryId = parseInt(item.ID),
-				labelNode,
-				deliveryCached = this.deliveryCachedInfo[deliveryId],
-				logotype, label, title, itemNode, logoNode,uiradio;
-
-
-			labelNode = BX.create('INPUT', {
-				props: {
-					id: 'ID_DELIVERY_ID_' + deliveryId,
-					name: 'DELIVERY_ID',
-					type: 'checkbox',
-					className: 'bx-soa-pp-company-checkbox',
-					value: deliveryId,
-					checked: checked
-				},
-				dataset: {deliveryId: deliveryId}
-			});
-			uiradio = BX.create('SPAN', {props: {className: 'ui-radio'}})
-
-			if (this.params.SHOW_DELIVERY_LIST_NAMES == 'Y')
-			{
-				title = BX.create('DIV', {
-					props: {className: 'checkout__choose-delivery__text'},
-					text: this.params.SHOW_DELIVERY_PARENT_NAMES != 'N' ? item.NAME : item.OWN_NAME
-				});
-			}
-
-			itemNode = BX.create('LABEL', {
-				props: {className: 'checkout__label' + (item.CALCULATE_ERRORS || deliveryCached && deliveryCached.CALCULATE_ERRORS ? ' bx-bd-waring' : '')},
-				children: [labelNode, uiradio, title],
-				events: {click: BX.proxy(this.selectDelivery, this)}
-			});
-			checked && BX.addClass(itemNode, 'bx-selected');
-
-			if (checked && this.result.LAST_ORDER_DATA.PICK_UP)
-				this.lastSelectedDelivery = deliveryId;
-
-			return itemNode;
-		},
-
-		createDeliveryItem1: function(item)
-		{
 			var checked = item.CHECKED == 'Y',
 				deliveryId = parseInt(item.ID),
 				labelNodes = [
@@ -5845,9 +5682,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				logotype = logotype && logotype.src_1x || this.defaultDeliveryLogo;
 				logoNode.setAttribute('style', 'background-image: url("' + logotype + '");');
 			}
-			// labelNodes.push(logoNode);
+			labelNodes.push(logoNode);
 
-			if(0){
 			if (item.PRICE >= 0 || typeof item.DELIVERY_DISCOUNT_PRICE !== 'undefined')
 			{
 				labelNodes.push(
@@ -5868,7 +5704,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 							: deliveryCached.PRICE_FORMATED})
 				);
 			}
-			}
 
 			label = BX.create('DIV', {
 				props: {
@@ -5886,7 +5721,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 
 			itemNode = BX.create('DIV', {
-				props: {className: 'bx-soa-pp-company col-12'},
+				props: {className: 'bx-soa-pp-company col-6'},
 				children: [label, title],
 				events: {click: BX.proxy(this.selectDelivery, this)}
 			});

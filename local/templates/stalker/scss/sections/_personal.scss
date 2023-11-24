@@ -266,7 +266,7 @@
     .ui-button {
       max-width: 315px;
       height: 42px;
-      margin-top: 53px;
+      margin-top: 0;
 
       @include sm-screen {
         margin-top: 35px;
@@ -305,6 +305,10 @@
       line-height: 1;
     }
   }
+}
+
+.fav .ui-button {
+  margin-top: 0;
 }
 
 .toggle {

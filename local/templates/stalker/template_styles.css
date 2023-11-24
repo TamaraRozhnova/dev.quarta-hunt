@@ -259,3 +259,24 @@
 /*		top: -15px;*/
 /*	}*/
 /*}*/
+
+.hidden{
+	display: none;
+}
+/*.tabs__content {*/
+/*	display: block!important;*/
+/*	opacity: 1!important;*/
+/*	border: 2px dotted gray!important;*/
+/*}*/
+
+/*.tabs__content.is-active {*/
+/*	display: block!important;*/
+/*	opacity: 1!important;*/
+/*	border: 2px solid black!important;*/
+/*}*/
+
+
+.form-group .has-error{}
+.form-group .has-error .tooltip-inner{
+	background-color: red;
+}

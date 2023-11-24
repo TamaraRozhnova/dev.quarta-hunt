@@ -26,7 +26,7 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 	$arItem['DETAIL_PICTURE']['SRC'] = SITE_TEMPLATE_PATH . '/img/no-photo.png';
 }
 
-//echo_j($arItem, '$arItem');
+echo_j($arItem, '$arItem');
 ?>
 <div class="catalog__item">
 	<div class="catalog__item-img">
@@ -106,6 +106,30 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="ui-button ui-button--light">
 					подробнее
 				</a>
+				<a href="#" class="ui-button ui-button--light add2compare tip-compare" data-id="<?=$arItem["ID"]?>">
+					<span class="nactive">Сравнить</span>
+                    <span class="active">Добавлено для сравнения</span>
+				</a>
+                <?
+                if (
+                    $arParams['DISPLAY_COMPARE']
+                    && (!$haveOffers || $arParams['PRODUCT_DISPLAY_MODE'] === 'Y')
+                )
+                {
+                    ?>
+                    <div class="product-item-compare-container">
+                        <div class="product-item-compare">
+                            <div class="checkbox">
+                                <label id="<?=$arItem['COMPARE_LINK']?>">
+                                    <input type="checkbox" data-entity="compare-checkbox">
+                                    <span data-entity="compare-title"><?=$arParams['MESS_BTN_COMPARE']?></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <?
+                }
+                ?>
 			</div>
 		</div>
 	</div>

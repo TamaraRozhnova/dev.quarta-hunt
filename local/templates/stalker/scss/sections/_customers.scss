@@ -131,9 +131,12 @@
   padding: 16px 0 27px;
   border-top: 1px solid #383838;
   border-bottom: 1px solid #383838;
+  margin-bottom: 16px;
 
   @include lg-screen {
-    padding: 20px 0 25px;
+    padding: 16px 0 27px;
+    margin-bottom: 16px;
+
   }
   &__title {
     padding: 0 20px;
@@ -153,10 +156,13 @@
     font-family: $play;
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
     text-align: center;
     color: #383838;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
   & .lt-plus {
     position: absolute;

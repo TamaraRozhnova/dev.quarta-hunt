@@ -12,6 +12,9 @@
   &__background {
     position: relative;
     width: 100%;
+    min-height: 720px;
+
+
     @include ratio(1400,750);
 
     @include sm-screen {
@@ -49,6 +52,8 @@
     margin-bottom: 41px;
     padding-left: 25px;
     font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
 
     @include xl-screen {
       font-size: 32px;
@@ -85,13 +90,13 @@
     margin-bottom: 58px;
 
     @include xl-screen {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 35px;
     }
 
     @include lg-screen {
-      font-size: 14px;
-      margin-bottom: 30px;
+      font-size: 18px;
+      margin-bottom: 35px;
     }
 
     @include sm-screen {
@@ -101,9 +106,10 @@
   }
 
   &__list {
+    padding-right: 25%;
     &-item {
       width: 100%;
-      padding: 37px 0;
+      padding: 25px 0;
 
       @include lg-screen {
         padding: 27px 0;
@@ -124,22 +130,22 @@
       justify-content: space-between;
       width: 100%;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 24px;
       line-height: 1;
       color: #fff;
-      letter-spacing: -0.03em;
+      letter-spacing: 0;
 
       @include xl-screen {
-        font-size: 14px;
+        font-size: 24px;
       }
 
       @include lg-screen {
-        font-size: 12px;
+        font-size: 24px;
       }
 
       @include sm-screen {
         color: $textDark;
-        font-size: 10px;
+        font-size: 24px;
       }
 
       .icon {
@@ -155,23 +161,27 @@
   }
 
   &__social {
-    margin-top: auto;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
 
     &-title {
       font-family: $play;
       font-size: 18px;
       line-height: 1.25;
-      letter-spacing: -0.05em;
+      letter-spacing: 0;
       color: #B7B7B7;
       margin-bottom: 25px;
+      text-align: left;
+      white-space:nowrap;
 
       @include xl-screen {
-        font-size: 16px;
+        font-size: 18px;
         margin-bottom: 20px;
       }
 
       @include lg-screen {
-        font-size: 14px;
+        font-size: 18px;
         margin-bottom: 15px;
       }
     }
@@ -185,6 +195,56 @@
             color: #fff;
           }
         }
+      }
+    }
+  }
+}
+
+.about__social{
+  display: flex;
+  align-items: center;
+
+  &-title{
+    padding-right: 29px;
+  }
+
+  .soc{
+    display: flex;
+    align-items: center;
+
+    .item{
+
+
+      a{
+        padding: 6px;
+        border: 1px solid rgba(255, 255, 255, 1);
+        vertical-align: middle;
+        vertical-align: -webkit-baseline-middle;
+        overflow: auto;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+        opacity: 0.5;
+        margin-right: 9px;
+
+        &.vk{
+          background-image: url("/images/about-vk.png");
+          background-position: center;
+          background-size:  20px;
+          background-repeat: no-repeat;
+        }
+
+        &.tg{
+          background-image: url("/images/about-tg.png");
+          background-position: center;
+          background-size:  20px;;
+          background-repeat: no-repeat;
+        }
+
+        &:hover{
+          opacity: 1;
+        }
+
       }
     }
   }

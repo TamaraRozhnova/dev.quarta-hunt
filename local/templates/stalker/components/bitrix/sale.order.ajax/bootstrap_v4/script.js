@@ -442,10 +442,3 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 		});
 	}
 };
-
-
-BX.addCustomEvent('onAjaxSuccess', afterFormReload);
-
-function afterFormReload() {
-	window.initTabs()
-}

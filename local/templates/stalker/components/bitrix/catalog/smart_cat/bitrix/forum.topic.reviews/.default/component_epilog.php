@@ -32,7 +32,7 @@ if ($arParams['AJAX_POST']=='Y' && ($_REQUEST["save_product_review"] == "Y"))
 				'pageNumber' => $arResult['PAGE_NUMBER'],
 				'pageCount' => $arResult['PAGE_COUNT']
 			);
-			if (strlen($messagePost) <1)
+			if (mb_strlen($messagePost) <1)
 				$JSResult += array('reload' => true);
 		} 
 		else 
@@ -53,7 +53,7 @@ if ($arParams['AJAX_POST']=='Y' && ($_REQUEST["save_product_review"] == "Y"))
 					'messageID' => $result,
 					'message' => $messagePost
 				);
-				if (strlen($messagePost) <1)
+				if (mb_strlen($messagePost) <1)
 					$JSResult += array('reload' => true);
 
 				if (strpos($JSResult['message'], "onForumImageLoad") !== false)

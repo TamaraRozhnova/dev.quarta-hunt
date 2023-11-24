@@ -15,6 +15,8 @@ $this->setFrameMode( true );
 /*echo '<pre>';
 print_r($arResult);
 echo '</pre>';*/
+
+echo_j($arParams);
 ?>
 <div class="inner__hero">
 	<? if($arResult['DETAIL_PICTURE']['SRC']):?>

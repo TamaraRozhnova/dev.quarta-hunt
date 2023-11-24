@@ -11,6 +11,11 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 
+//$_SESSION["CATALOG_COMPARE_LIST"]['CATALOG_IBLOCK_ID']['ITEMS']
+
+echo_j('$_SESSION', $_SESSION["CATALOG_COMPARE_LIST"][CATALOG_IBLOCK_ID]['ITEMS']);
+echo_j('$GLOBALS', $GLOBALS["CATALOG_COMPARE_LIST"][CATALOG_IBLOCK_ID]['ITEMS']);
+
 $isAjax = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {

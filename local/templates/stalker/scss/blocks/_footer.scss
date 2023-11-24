@@ -11,7 +11,7 @@
   }
 
   &-logo {
-    padding: 20px 22px;
+    padding: 28px 22px;
     width: 26.2%;
     border-right: 1px solid #F9F9F9;
 
@@ -32,10 +32,10 @@
     &-item {
       width: calc(100% / 3);
       height: 100%;
-      padding: 20px 0 20px 7%;
+      padding: 30px 0 30px 7%;
 
       @include lg-screen {
-        padding: 20px 0 20px 4%;
+        padding: 30px 0 30px 7%;
       }
 
       &:not(:last-child) {
@@ -48,7 +48,7 @@
       color: #f0f0f0;
       font-size: 16px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
 
       &:hover{
         text-decoration: none;
@@ -130,7 +130,7 @@
       display: flex;
       flex-flow: column;
       width: calc(100% / 3);
-      padding-left: 7%;
+      padding-left: 5%;
 
       @include r(1024px) {
         padding-left: 0;
@@ -145,8 +145,8 @@
       max-width: max-content;
       font-family: $play;
       font-size: 16px;
-      line-height: 1.25;
-      margin-bottom: 20px;
+      //line-height: 1.25;
+      margin-bottom: 12px;
       color: #f0f0f0;
 
       &:hover{
@@ -156,23 +156,25 @@
 
       @include lg-screen {
         font-size: 16px;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
       }
     }
   }
 
+
+
   &__address {
-    margin-top: 30px;
+    margin-top: 0;
 
     &-item {
       font-family: $play;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.25;
       margin-bottom: 12px;
 
       @include lg-screen {
-        font-size: 14px;
-        margin-bottom: 8px;
+        font-size: 16px;
+        margin-bottom: 12px;
       }
     }
   }
@@ -191,6 +193,47 @@
       flex-flow: column;
       align-items: flex-start;
       margin-bottom: 100px;
+    }
+
+    &-copy {
+      display: flex;
+      width: 100%;
+      font-size: 12px;
+      color: white;
+      font-family: $play;
+
+
+      @include r(1024px) {
+        margin-top: 25px;
+      }
+
+      &-column {
+        display: flex;
+        flex-flow: column;
+        width: calc(100% / 4);
+        //padding-left: 7%;
+
+        @include r(1024px) {
+          padding-left: 0;
+        }
+
+
+      }
+
+      .ui-link {
+        max-width: max-content;
+        //line-height: 1.25;
+        //margin-bottom: 20px;
+        color: #f0f0f0;
+
+        &:hover{
+          text-decoration: none;
+          color: #B20E04;
+        }
+
+        @include lg-screen {
+        }
+      }
     }
   }
 

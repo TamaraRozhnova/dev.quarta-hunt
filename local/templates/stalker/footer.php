@@ -74,7 +74,7 @@
 						<div class="accordion__arrow"></div>
 					</div>
 					<div class="accordion__body" data-accordion-body>
-						<div class="footer__links-list">
+						<!--div-- class="footer__links-list">
 							<?$APPLICATION->IncludeComponent(
 	"bitrix:menu", 
 	"smart_catalog_bottom", 
@@ -94,7 +94,19 @@
 	),
 	false
 ); ?>
-						</div>
+						</div-->
+                        <div class="footer__links-list">
+                            <?php $APPLICATION->IncludeComponent(
+                                "bitrix:main.include",
+                                "",
+                                [
+                                    "AREA_FILE_SHOW" => "file",
+                                    "AREA_FILE_SUFFIX" => "inc",
+                                    "EDIT_TEMPLATE" => "standard.php",
+                                    "PATH" => "/include/footer_adress.php",
+                                ]
+                            ); ?>
+                        </div>
 					</div>
 				</div>
 				<div class="accordion footer__links-column footer__links-column_address">
@@ -111,7 +123,7 @@
 							"AREA_FILE_SHOW" => "file",
 							"AREA_FILE_SUFFIX" => "inc",
 							"EDIT_TEMPLATE" => "standard.php",
-							"PATH" => "/include/main_info.php",
+							"PATH" => "/include/footer_phones.php",
 						]
 					); ?>
 						</div>

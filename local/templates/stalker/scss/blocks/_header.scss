@@ -28,9 +28,43 @@
   .soc{
     display: flex;
 
+    @include r(1300px) {
+      display: none;
+    }
+
     .item{
       padding: 15px;
+
+      a{
+        .soc-logo{
+          height: 36px;
+          width: 36px;
+          background-color: #C9C9C9;
+
+          &-vk{
+            -webkit-mask: url(../img/vk.svg) no-repeat center;
+            mask: url(../img/vk.svg) no-repeat center;
+          }
+
+          &-tg{
+            -webkit-mask: url(../img/tg.svg) no-repeat center;
+            mask: url(../img/tg.svg) no-repeat center;
+          }
+        }
+
+        &:hover{
+          opacity: 1;
+
+          .soc-logo{
+            background-color: #B20E04;
+          }
+
+        }
+      }
     }
+
+
+
   }
 
   .header__navigation{
@@ -263,7 +297,7 @@
       height: 62px;
       max-width: 100%;
       border-right: none;
-      z-index: 10;
+      z-index: 101;
       background-color: #f0f0f0;
       box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.07);
     }
@@ -278,7 +312,7 @@
     }
 
     @include r(1300px) {
-      display: none;
+      display: flex;
     }
 
     a {
