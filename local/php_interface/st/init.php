@@ -95,7 +95,7 @@ class OnSale{
     const DELIVERY_DEFAULT = 3;
 
 
-    static function OnSaleComponentOrderProperties(&$arFields)
+    public static function OnSaleComponentOrderProperties(&$arFields)
     {
 //        $cityId = self::defaultCity;
 //        if(isset($_COOKIE['cityId'])){

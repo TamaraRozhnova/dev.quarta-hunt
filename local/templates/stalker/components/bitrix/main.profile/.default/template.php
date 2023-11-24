@@ -67,12 +67,12 @@ if ($arResult['DATA_SAVED'] == 'Y')
 						*/ ?>
         <div style="display: flex;
     align-items: center;
-    justify-content: space-between;">
-            <button class="ui-button ui-button--dark" name="save" value="<?=GetMessage( "MAIN_SAVE" )?>">
+    justify-content: space-between; padding-top: 53px">
+            <button class="ui-button ui-button--dark" style="margin-right: 1px;" name="save" value="<?=GetMessage( "MAIN_SAVE" )?>">
                 Сохранить изменения
             </button>
 
-            <a href="<?=$APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(), [
+            <a  style="margin-left: 1px;" href="<?=$APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(), [
                     "login",
                     "logout",
                     "register",

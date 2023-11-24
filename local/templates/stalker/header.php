@@ -19,10 +19,19 @@ $APPLICATION->IncludeFile('functions.php');
 	<meta name="format-detection" content="telephone=no"/>
 <!--	<meta name="yandex-verification" content="266faedfe7d618bc" />-->
 	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/style.css?v3"/>
+	<link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.2/style/jquery.jscrollpane.min.css"/>
+
 	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/scss/compiled.css<?=(1?'?tm='.time():'')?>"/>
 	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/nimda.css<?=(1?'?tm='.time():'')?>"/>
 
+
+
     <?/*?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.2/script/jquery.jscrollpane.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" type="text/javascript"></script>
+
+
+
     <link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/bootstrap.min.css"/>
 
 <!-- Yandex.Metrika counter -->
@@ -106,7 +115,7 @@ if($USER->isAuthorized()){
                     <nav class="header__navigation">
                         <div class="menu__wrapper">
                             <div class="bigblock">
-                                <div class="subblock">
+                                <div class="subblock active">
                                     <div class="men">
                                     <?$APPLICATION->IncludeComponent(
                                         "bitrix:menu",
@@ -129,7 +138,7 @@ if($USER->isAuthorized()){
                                     </div>
                                     </div>
                                 </div>
-                                <div class="subblock active">
+                                <div class="subblock ">
                                     <div class="search">
                                     <form method="get" action="/search/" autocomplete="off">
                                         <button class="btn" type="submit" style="border: none;background: transparent;">
@@ -154,10 +163,10 @@ if($USER->isAuthorized()){
                             </div>
                             <div class="soc">
                                 <div class="item">
-                                    <a href="#"><img src="<?=SITE_TEMPLATE_PATH?>/img/vk.svg" alt=""></a>
+                                    <a href="#"><div class="soc-logo soc-logo-vk"></div></a>
                                 </div>
                                 <div class="item">
-                                    <a href="#"><img src="<?=SITE_TEMPLATE_PATH?>/img/tg.svg" alt=""></a>
+                                    <a href="#"><div class="soc-logo soc-logo-tg"></div></a>
                                 </div>
                             </div>
                         </div>
@@ -173,19 +182,31 @@ if($USER->isAuthorized()){
 						</button>
                         <?*/?>
 
-						<?php if (!$USER->IsAuthorized()): ?>
+						<?php /* if (!$USER->IsAuthorized()): ?>
 							<a href="#" class="header__profile" data-modal-open="profile">
 								<svg class="icon icon-profile">
 									<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-profile"></use>
 								</svg>
 							</a>
 						<?php else:?>
-							<a href="/personal/" class="header__profile">
-								<svg class="icon icon-profile">
-									<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-profile"></use>
-								</svg>
+							<a href="/favs/" class="header__profile">
+<!--								<svg class="icon icon-profile">-->
+<!--									<use xlink:href="--><?//=SITE_TEMPLATE_PATH?><!--/img/sprite.svg#icon-star"></use>-->
+<!--								</svg>-->
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 28.3333L10 33.3333L12.5 23.3333L5 15L15.8333 14.1667L20 5L24.1667 14.1667L35 15L27.5 23.3333L30 33.3333L20 28.3333Z" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
 							</a>
-						<?php endif ?>
+						<?php endif */?>
+
+                        <a href="/favs/" class="header__profile">
+                            <!--								<svg class="icon icon-profile">-->
+                            <!--									<use xlink:href="--><?//=SITE_TEMPLATE_PATH?><!--/img/sprite.svg#icon-star"></use>-->
+                            <!--								</svg>-->
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 28.3333L10 33.3333L12.5 23.3333L5 15L15.8333 14.1667L20 5L24.1667 14.1667L35 15L27.5 23.3333L30 33.3333L20 28.3333Z" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
 
 						<a href="#" class="header__cart" data-modal-open="cart">
 							Корзина: <span data-cart-count><?php $APPLICATION->ShowViewContent( 'BASKET_PRODUCT_COUNT' ) ?> </span>

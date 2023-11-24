@@ -73,3 +73,24 @@ a {
 button {
   cursor: pointer;
 }
+.red{
+  color: $red;
+  &-bold{
+    font-weight: bold;
+  }
+}
+
+
+.tip-like {
+  background-image: url("/local/templates/stalker/img/star.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+}
+.tip-like:hover {
+  background-image: url("/local/templates/stalker/img/star-bg.png");
+}
+.tip-like.is-active {
+  background-image: url("/local/templates/stalker/img/star-bg.png");
+}

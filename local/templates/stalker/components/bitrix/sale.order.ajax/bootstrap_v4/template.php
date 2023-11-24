@@ -34,7 +34,7 @@ $arParams['SHOW_DELIVERY_INFO_NAME'] = $arParams['SHOW_DELIVERY_INFO_NAME'] === 
 $arParams['SHOW_DELIVERY_PARENT_NAMES'] = $arParams['SHOW_DELIVERY_PARENT_NAMES'] === 'N' ? 'N' : 'Y';
 $arParams['SHOW_STORES_IMAGES'] = $arParams['SHOW_STORES_IMAGES'] === 'N' ? 'N' : 'Y';
 
-if (!isset($arParams['BASKET_POSITION']) || !in_array($arParams['BASKET_POSITION'], array('before', 'after', 'sidebar')))
+if (!isset($arParams['BASKET_POSITION']) || !in_array($arParams['BASKET_POSITION'], array('before', 'after')))
 {
 	$arParams['BASKET_POSITION'] = 'after';
 }
@@ -495,23 +495,8 @@ else
 			<!--	SIDEBAR BLOCK	-->
 			<div id="bx-soa-total" class="col-lg-4 col-md-5 bx-soa-sidebar">
 				<div class="bx-soa-cart-total-ghost"></div>
-                <div>
-                    <? if ($arParams['BASKET_POSITION'] === 'sidebar'): ?>
-                        <!--	BASKET ITEMS BLOCK	-->
-                        <div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
-                            <div class="bx-soa-section-title-container d-flex justify-content-between align-items-center flex-nowrap">
-                                <div class="bx-soa-section-title" data-entity="section-title">
-                                    <span class="bx-soa-section-title-count"></span><?=$arParams['MESS_BASKET_BLOCK_NAME']?>
-                                </div>
-                                <div><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
-                            </div>
-                            <div class="bx-soa-section-content"></div>
-                        </div>
-                    <? endif ?>
-                </div>
-                <div class="bx-soa-cart-total"></div>
-
-            </div>
+				<div class="bx-soa-cart-total"></div>
+			</div>
 		</div>
 	</form>
 

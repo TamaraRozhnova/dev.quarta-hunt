@@ -53,3 +53,28 @@
     }
   }
 }
+
+.btn-default {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  transition: background-color 0.35s ease, color 0.15s ease;
+  color: #fff;
+  border: 1px solid $red;
+  text-transform: uppercase;
+  background-color: $red;
+  padding: 16px 48px;
+  border-radius: 0;
+
+
+  &:hover {
+    background-color: transparent;
+    color: $red;
+  }
+}
+

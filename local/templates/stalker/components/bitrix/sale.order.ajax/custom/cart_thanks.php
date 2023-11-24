@@ -25,7 +25,7 @@
 					{
 						?>
 
-						<?php if (strlen( $arPaySystem["ACTION_FILE"] ) > 0 && $arPaySystem["NEW_WINDOW"] == "Y" &&
+						<?php if (mb_strlen( $arPaySystem["ACTION_FILE"] ) > 0 && $arPaySystem["NEW_WINDOW"] == "Y" &&
 						$arPaySystem["IS_CASH"] != "Y"): ?>
 						<?php
 						$orderAccountNumber = urlencode( urlencode( $arResult["ORDER"]["ACCOUNT_NUMBER"] ) );

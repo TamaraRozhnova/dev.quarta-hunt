@@ -67,34 +67,40 @@
 
   &__title {
     font-weight: 700;
-    font-size: 26px;
+    font-size: 28px;
     line-height: 1.25;
     letter-spacing: -0.03em;
     margin-bottom: 29px;
+    text-transform: uppercase;
+    padding-right: 20px;
 
     @include lg-screen {
-      font-size: 20px;
+      font-size: 28px;
       padding-right: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 29px;
     }
 
     @include sm-screen {
-      font-size: 14px;
-      margin-bottom: 14px;
+      font-size: 28px;
+      margin-bottom: 29px;
     }
   }
 
   &__description {
     font-family: $play;
-    font-size: 16px;
+    font-size: 24px;
     line-height: 1.5;
     letter-spacing: -0.02em;
     padding-right: 30px;
-    @include ellipsis(24px, 3);
+    //@include ellipsis(24px, 3);
+    overflow: inherit;
+    max-height: inherit;
 
     @include lg-screen {
-      font-size: 14px;
-      @include ellipsis(21px, 3);
+      font-size: 24px;
+      //@include ellipsis(21px, 3);
+      overflow: inherit;
+      max-height: inherit;
     }
   }
 

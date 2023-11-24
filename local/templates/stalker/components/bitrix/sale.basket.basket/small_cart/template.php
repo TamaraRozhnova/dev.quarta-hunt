@@ -2,8 +2,8 @@
 
 $q = 0;
 
-echo_j($arResult, '$arResult small_cart');
-echo_j($_SESSION["favourites"], 'favourites');
+//echo_j($arResult, '$arResult small_cart');
+//echo_j($_SESSION["favourites"], 'favourites');
 ?>
 
 <div class="modal__inner" data-modal-inner="cart">
@@ -24,7 +24,7 @@ echo_j($_SESSION["favourites"], 'favourites');
                 $q+= $arItem['QUANTITY'];
 
                 $image_src = SITE_TEMPLATE_PATH.'/img/no-photo.png';
-                if(isset($arItem['DETAIL_PICTURE_SRC']) && strlen($arItem['DETAIL_PICTURE_SRC']) > 0){
+                if(isset($arItem['DETAIL_PICTURE_SRC']) && mb_strlen($arItem['DETAIL_PICTURE_SRC']) > 0){
                     $image_src = $arItem['DETAIL_PICTURE_SRC'];
                 }
 
@@ -82,7 +82,7 @@ echo_j($_SESSION["favourites"], 'favourites');
             </div>
         </div>
         <a href="/personal/cart/" class="ui-button ui-button--red"> Оформить заказ</a>
-        <a href="/compare/?ids=<?=implode("|", $compare)?>"  class="ui-button ui-button--transparent js-compare"> Сравнить</a>
+        <a href="/compare/"  class="ui-button ui-button--transparent js-compare" data-redirect="/compare/" data-ids="<?=implode("|", $compare)?>"> Сравнить</a>
 
     </div>
 </div>

@@ -6,12 +6,14 @@
     border: 1px solid #C9C9C9;
     width: 58px;
     height: 58px;
-    border-radius: 8px;
+    border-radius: 0;
     transition: border-color 0.25s ease;
+    background-color: transparent;
 
     @include lg-screen {
-      width: 46px;
-      height: 46px;
+      width: 58px;
+      height: 58px;
+      background-color: transparent;
     }
 
     .icon {
@@ -21,7 +23,8 @@
     }
 
     &:hover {
-      border-color: #383838;
+      border-color: #B20E04;
+      background-color: transparent;
     }
   }
 }
