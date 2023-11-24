@@ -102,6 +102,12 @@
 	font-size: 14px;
 }
 
+.checkout__info .bx-soa-section-title-container,
+.checkout__info .bx-soa-section-content {
+	padding: 0;
+}
+
+
 .bx-soa-section.bx-selected .bx-soa-section-title-container { padding: 15px; }
 
 .bx-soa-section-title {

@@ -261,7 +261,7 @@
 /*}*/
 
 .hidden{
-	display: none;
+	display: none!important;
 }
 /*.tabs__content {*/
 /*	display: block!important;*/

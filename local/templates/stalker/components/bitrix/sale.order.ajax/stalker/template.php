@@ -317,9 +317,9 @@ else
 		<input type="hidden" name="<?=$arParams['ACTION_VARIABLE']?>" value="saveOrderAjax">
 		<input type="hidden" name="location_type" value="code">
 		<input type="hidden" name="BUYER_STORE" id="BUYER_STORE" value="<?=$arResult['BUYER_STORE']?>">
-		<div id="bx-soa-order" class="row" style="opacity: 0">
+		<div id="bx-soa-order" class="checkout__wrapper" style="opacity: 0">
 			<!--	MAIN BLOCK	-->
-			<div class="col-lg-8 col-md-7 bx-soa">
+			<div class="checkout__left bx-soa">
 				<div id="bx-soa-main-notifications">
 					<div class="alert alert-danger" style="display:none"></div>
 					<div data-type="informer" style="display:none"></div>
@@ -496,14 +496,14 @@ else
 
 
 			<!--	SIDEBAR BLOCK	-->
-			<div id="bx-soa-total" class="col-lg-4 col-md-5 bx-soa-sidebar">
+			<div id="bx-soa-total" class="checkout__right bx-soa-sidebar">
 				<div class="bx-soa-cart-total-ghost"></div>
-                <div class="bx-soa-cart-total-wrapper">
+                <div class="bx-soa-cart-total-wrapper checkout__info">
                     <? if ($arParams['BASKET_POSITION'] === 'sidebar'): ?>
                         <!--	BASKET ITEMS BLOCK	-->
                         <div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
                             <div class="bx-soa-section-title-container d-flex justify-content-between align-items-center flex-nowrap">
-                                <div class="bx-soa-section-title" data-entity="section-title">
+                                <div class="bx-soa-section-title section__title" data-entity="section-title">
                                     <span class="bx-soa-section-title-count"></span><?=$arParams['MESS_BASKET_BLOCK_NAME']?>
                                 </div>
                                 <div><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
