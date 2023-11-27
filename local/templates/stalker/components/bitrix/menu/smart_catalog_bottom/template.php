@@ -20,7 +20,7 @@ if (empty($arResult))
 $list_1=array();
 
 $arFilter = [
-  'IBLOCK_ID' => COption::GetOptionString( 'spro.wizard', 'ib-catalog',  '', SITE_ID )
+  'IBLOCK_ID' => CATALOG_IBLOCK_ID
 ];
 
 $arOrder = [
@@ -28,25 +28,27 @@ $arOrder = [
 ];
 
 $arSelect = [
-  'ID',
-  'LEFT_MARGIN',
-  'DEPTH_LEVEL',
-  'NAME'
+    'ID',
+    'LEFT_MARGIN',
+    'DEPTH_LEVEL',
+    'NAME',
+    'SECTION_PAGE_URL'
 ];
 
 $resSections = \CIBlockSection::GetList($arOrder, $arFilter, false, $arSelect);
 
-while( $arSection = $resSections->fetch() )
+while( $arSection = $resSections->GetNext() )
 {
-if ($arSection['DEPTH_LEVEL'] ==1){
-	$list_1[$arSection['ID']]['NAME'] = $arSection['NAME'];
-	$list_1[$arSection['ID']]['ID'] = $arSection['ID'];
-$i = $arSection['ID'];
-}
+    if ($arSection['DEPTH_LEVEL'] ==1){
+        $list_1[$arSection['ID']]['NAME'] = $arSection['NAME'];
+        $list_1[$arSection['ID']]['ID'] = $arSection['ID'];
+        $list_1[$arSection['ID']]['SECTION_PAGE_URL'] = $arSection['SECTION_PAGE_URL'];
+        $i = $arSection['ID'];
+    }
 }
 ?>
 
 <?foreach ($list_1 as $main){?>
- <a href="<?=$main['ID'];?>" class="ui-link ui-link--underline"><?=$main['NAME'];?></a>
-			  <?}?>
+ <a href="<?=$main['SECTION_PAGE_URL'];?>" class="ui-link ui-link--underline"><?=$main['NAME'];?></a>
+<?}?>
 

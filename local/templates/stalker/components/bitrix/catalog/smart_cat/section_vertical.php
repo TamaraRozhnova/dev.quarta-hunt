@@ -18,14 +18,76 @@ if (isset( $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] ) && $arParams['USE_COM
 else
 {
 	$basketAction = isset( $arParams['SECTION_ADD_TO_BASKET_ACTION'] )?$arParams['SECTION_ADD_TO_BASKET_ACTION']:'';
-} ?>
-<div class="main">
+}
+?>
+<section class="hero pb-5">
+    <div class="container">
+        <a href="/catalog/?SECTION_ID=924"><img src="/catalog/ban111.png" alt=""></a>
+    </div>
+</section>
+<div class="main section">
 	<section class="inner">
 		<div class="container">
+
+
+			<div class="inner__wrapper">
+                <div class="inner__left">
+                    <div class="filter__title">СОРТИРОВКА</div>
+                </div>
+                <div class="inner__right">
+                    <div class="filter">
+                        <ul class="filter__ul">
+                            <li class="filter__li <?=($_SESSION["sorting"]=="name"?"active":"nactive")?>">
+                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=name&sorting_asc=asc", array("sorting", "sorting_asc"));?>"><nobr>По умолчанию</nobr></a>
+                            </li>
+                            <li class="filter__li <?=($_SESSION["sorting"]=="shows"?"active":"nactive")?>">
+                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=shows&sorting_asc=desc", array("sorting", "sorting_asc"));?>"><nobr>По популярности</nobr></a>
+                            </li>
+                            <li class="filter__li <?=($_SESSION["sorting"]=="SCALED_PRICE_1"?"active":"nactive")?>">
+                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=SCALED_PRICE_1&sorting_asc=", array("sorting", "sorting_asc"));?>"><nobr>По цене</nobr></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 			<div class="inner__wrapper">
 				<? if ($isFilter || $isSidebar): ?>
 					<div class="inner__left">
-						<? $APPLICATION->IncludeComponent(
+                        <?
+                        $APPLICATION->IncludeComponent(
+                            "bitrix:catalog.smart.filter",
+                            "bootstrap_v4",
+                            array(
+                                "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+                                "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+                                "SECTION_ID" => $arCurSection['ID'],
+                                "FILTER_NAME" => $arParams["FILTER_NAME"],
+                                "PRICE_CODE" => $arParams["~PRICE_CODE"],
+                                "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+                                "CACHE_TIME" => $arParams["CACHE_TIME"],
+                                "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+                                "SAVE_IN_SESSION" => "N",
+                                "FILTER_VIEW_MODE" => $arParams["FILTER_VIEW_MODE"],
+                                "XML_EXPORT" => "N",
+                                "SECTION_TITLE" => "NAME",
+                                "SECTION_DESCRIPTION" => "DESCRIPTION",
+                                'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
+                                "TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
+                                'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
+                                'CURRENCY_ID' => $arParams['CURRENCY_ID'],
+                                "SEF_MODE" => $arParams["SEF_MODE"],
+                                "SEF_RULE" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["smart_filter"],
+                                "SMART_FILTER_PATH" => $arResult["VARIABLES"]["SMART_FILTER_PATH"],
+                                "PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
+                                "INSTANT_RELOAD" => $arParams["INSTANT_RELOAD"],
+                                "DISPLAY_ELEMENT_COUNT" => "N",
+                            ),
+                            $component,
+                            array('HIDE_ICONS' => 'Y')
+                        );
+                        ?>
+
+						<?/* $APPLICATION->IncludeComponent(
 							"bitrix:menu",
 							"smart_sec_catalog",
 							[
@@ -43,10 +105,13 @@ else
 								"COMPONENT_TEMPLATE" => "smart_sec_catalog",
 							],
 							false
-						); ?>
+						); */?>
+
 					</div>
 				<? endif ?>
 				<div class="inner__right">
+
+
 					<?
 					$sectionListParams = [
 						"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
@@ -75,24 +140,26 @@ else
 
 					if ($arParams["USE_COMPARE"] == "Y")
 					{
-						$APPLICATION->IncludeComponent(
-							"bitrix:catalog.compare.list",
-							"",
-							[
-								"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-								"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-								"NAME" => $arParams["COMPARE_NAME"],
-								"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
-								"COMPARE_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["compare"],
-								"ACTION_VARIABLE" => ( !empty( $arParams["ACTION_VARIABLE"] )?$arParams["ACTION_VARIABLE"]:"action" ),
-								"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
-								'POSITION_FIXED' => isset( $arParams['COMPARE_POSITION_FIXED'] )?$arParams['COMPARE_POSITION_FIXED']:'',
-								'POSITION' => isset( $arParams['COMPARE_POSITION'] )?$arParams['COMPARE_POSITION']:'',
-							],
-							$component,
-							[ "HIDE_ICONS" => "Y" ]
-						);
+//						$APPLICATION->IncludeComponent(
+//							"bitrix:catalog.compare.list",
+//							"",
+//							[
+//								"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+//								"IBLOCK_ID" => $arParams["IBLOCK_ID"],
+//								"NAME" => $arParams["COMPARE_NAME"],
+//								"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
+//								"COMPARE_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["compare"],
+//								"ACTION_VARIABLE" => ( !empty( $arParams["ACTION_VARIABLE"] )?$arParams["ACTION_VARIABLE"]:"action" ),
+//								"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
+//								'POSITION_FIXED' => isset( $arParams['COMPARE_POSITION_FIXED'] )?$arParams['COMPARE_POSITION_FIXED']:'',
+//								'POSITION' => isset( $arParams['COMPARE_POSITION'] )?$arParams['COMPARE_POSITION']:'',
+//							],
+//							$component,
+//							[ "HIDE_ICONS" => "Y" ]
+//						);
 					}
+
+                    echo_j($arResult);
 
 					$intSectionID = $APPLICATION->IncludeComponent(
 						"bitrix:catalog.section",
@@ -222,6 +289,8 @@ else
 						],
 						$component
 					);
+
+                    $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;
 					?>
 				</div>
 			</div>

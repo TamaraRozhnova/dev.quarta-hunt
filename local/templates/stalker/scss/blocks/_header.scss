@@ -1,0 +1,414 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background-color: #F9F9F9!important;
+  border-bottom: 1px solid #383838;
+
+  @include sm-screen {
+    height: 62px;
+  }
+
+  .main.section {
+    padding-top: 0;
+  }
+
+  .menu__wrapper{
+    display: flex;
+    width: 100%;
+
+    .bigblock{
+      flex-grow: 1;
+    }
+  }
+
+  .soc{
+    display: flex;
+
+    @include r(1300px) {
+      display: none;
+    }
+
+    .item{
+      padding: 15px;
+
+      a{
+        .soc-logo{
+          height: 36px;
+          width: 36px;
+          background-color: #C9C9C9;
+
+          &-vk{
+            -webkit-mask: url(../img/vk.svg) no-repeat center;
+            mask: url(../img/vk.svg) no-repeat center;
+          }
+
+          &-tg{
+            -webkit-mask: url(../img/tg.svg) no-repeat center;
+            mask: url(../img/tg.svg) no-repeat center;
+          }
+        }
+
+        &:hover{
+          opacity: 1;
+
+          .soc-logo{
+            background-color: #B20E04;
+          }
+
+        }
+      }
+    }
+
+
+
+  }
+
+  .header__navigation{
+    width: 100%;
+
+
+    .bigblock{
+      display: flex;
+
+      .subblock{
+        display: none;
+      }
+      .subblock.active{
+        display: inherit;
+      }
+    }
+
+    .icon{
+      padding-top: 7px;
+    }
+    .subblock{
+      width: 100%;
+
+      .men{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .lupa{
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
+    }
+
+    .menu__wrapper{
+      form{
+        display: flex;
+        width: 100%;
+        align-items: center;
+      }
+    }
+
+    .ajaxsearch__wrapper{
+      flex-grow: 1;
+    }
+
+    .search{
+      display: flex;
+      width: 100%;
+      align-items: center;
+
+        .lupa{
+          padding-right: 34px;
+        }
+
+        .cross{
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+    }
+
+
+    .input-wrapper{
+      flex-grow: 1;
+
+      input{
+        width: 100%;
+        padding: 15px;
+        border: none;
+        background-color: transparent;
+        letter-spacing: 1px;
+
+      }
+      input::placeholder{
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #999999;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+
+  &__container {
+    height: 100%;
+
+    @include sm-screen {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__mobile-menu {
+    display: none;
+    margin-right: 25px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+
+    @include xxs-screen {
+      margin-right: 10px;
+      width: 24px;
+    }
+
+    .catalog-link-icon {
+      margin-right: 0;
+
+      .line {
+        background-color: $textDark;
+      }
+    }
+
+    @include sm-screen {
+      display: flex;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    border: none!important;
+
+    @include sm-screen {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__left {
+    width: 100%;
+  }
+
+  &__right {
+    justify-content: flex-end;
+    max-width: 243px;
+    width: 100%;
+    border-left: 1px solid #383838;
+    padding: 0 13px 0 34px;
+
+    @include sm-screen {
+      max-width: 132px;
+      padding: 0 0 0 17px;
+    }
+  }
+
+  &__item {
+    border-right: 1px solid #383838;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 0;
+    width: 100%;
+    max-width: 172px;
+
+    @include lg-screen {
+      max-width: 140px;
+    }
+
+    @include sm-screen {
+      max-width: 190px;
+      border-right: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      position: relative;
+      @include ratio(108, 14.4);
+      max-width: 149px;
+      width: 100%;
+
+      @include lg-screen {
+        max-width: 108px;
+        width: 100%;
+      }
+
+      img {
+        @include coverdiv;
+        @include img-cover;
+
+      }
+    }
+  }
+
+  &__catalog {
+    max-width: 188px;
+    width: 100%;
+    background-color: #B20E04;
+
+    font-size: 18px;
+    letter-spacing: 2px;
+
+    .catalog-link-text{
+      color: white;
+    }
+    .catalog-link-icon .line{
+      background-color: white;
+    }
+
+    @include lg-screen {
+      max-width: 148px;
+    }
+
+    @include sm-screen {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 62px;
+      max-width: 100%;
+      border-right: none;
+      z-index: 101;
+      background-color: #f0f0f0;
+      box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.07);
+    }
+  }
+
+  &__navigation {
+    display: flex;
+    padding-left: 34px;
+
+    @include xl-screen {
+      padding-left: 27px;
+    }
+
+    @include r(1300px) {
+      display: flex;
+    }
+
+    a {
+      color: $textDark;
+      transition: opacity 0.25s ease;
+
+      @include xl-screen {
+        font-size: 14px;
+      }
+
+      &:hover {
+        opacity: 0.75;
+      }
+
+      &:not(:last-child) {
+        margin-right: 35px;
+
+        @include xl-screen {
+          margin-right: 25px;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @include sm-screen {
+      justify-content: flex-end;
+    }
+  }
+
+  &__search {
+    border: none;
+    background-color: transparent!important;
+
+    @include sm-screen {
+      display: none;
+    }
+
+    .icon {
+      font-size: 22px;
+    }
+  }
+
+  &__profile {
+    position: relative;
+    border: none;
+    color: $textDark;
+
+    @include sm-screen {
+      display: none;
+    }
+
+    .icon {
+      font-size: 22px;
+    }
+
+    &-value {
+      position: absolute;
+      top: -9px;
+      right: -5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: $textDark;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      font-size: 11px;
+    }
+  }
+
+  &__cart {
+    padding: 14px 26px;
+    border: 1px solid #383838;
+    border-radius: 0;
+    transition: background-color 0.2s ease;
+    font-size: 12px;
+    color: $textDark;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    @include sm-screen {
+      padding: 10px;
+      font-size: 10px;
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: $textDark;
+    }
+  }
+}

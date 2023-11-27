@@ -298,9 +298,9 @@ switch (LANGUAGE_ID)
 		$locale = 'en-US'; break;
 }
 
-//\Bitrix\Main\UI\Extension::load('ui.fonts.opensans');
+\Bitrix\Main\UI\Extension::load('ui.fonts.opensans');
 $this->addExternalCss('/bitrix/css/main/bootstrap.css');
-//$APPLICATION->SetAdditionalCSS('/bitrix/css/main/themes/'.$arParams['TEMPLATE_THEME'].'/style.css', true);
+$APPLICATION->SetAdditionalCSS('/bitrix/css/main/themes/'.$arParams['TEMPLATE_THEME'].'/style.css', true);
 $APPLICATION->SetAdditionalCSS($templateFolder.'/style.css', true);
 $this->addExternalJs($templateFolder.'/order_ajax.js');
 \Bitrix\Sale\PropertyValueCollection::initJs();
@@ -309,13 +309,6 @@ $this->addExternalJs($templateFolder.'/script.js');
 	<NOSCRIPT>
 		<div style="color:red"><?=Loc::getMessage('SOA_NO_JS')?></div>
 	</NOSCRIPT>
-<div class="main">
-	<div class="checkout">
-		<div class="container">
-			<h1 class="section__title sm-block">
-				Оформление заказа
-			</h1>
-			<div class="checkout__wrapper">
 <?
 
 if ($request->get('ORDER_ID') <> '')
@@ -328,7 +321,7 @@ elseif ($arParams['DISABLE_BASKET_REDIRECT'] === 'Y' && $arResult['SHOW_EMPTY_BA
 }
 else
 {
-//	Main\UI\Extension::load('phone_auth');
+	Main\UI\Extension::load('phone_auth');
 
 	$hideDelivery = empty($arResult['DELIVERY']);
 	?>
@@ -701,8 +694,3 @@ else
 		<?
 	}
 }
-?>
-			</div>
-		</div>
-	</div>
-</div>

@@ -21,7 +21,7 @@ if (empty($arResult))
 			<?if ($arItem["DEPTH_LEVEL"] == "1"):?>
               <li>
                 <a href="<?=htmlspecialcharsbx($arItem["LINK"])?>"><?=htmlspecialcharsbx($arItem["TEXT"], ENT_COMPAT, false)?><svg class="icon icon-chevron-right">
-                    <use xlink:href="bitrix/templates/stalker/img/sprite.svg#icon-chevron-right"></use>
+                    <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-chevron-right"></use>
                   </svg>
                 </a>
               </li>

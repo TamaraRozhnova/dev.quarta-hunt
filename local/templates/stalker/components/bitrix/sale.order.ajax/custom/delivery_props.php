@@ -9,7 +9,7 @@
 	<div class="checkout__personal-grid">
 		<? foreach ($arResult['JS_DATA']["ORDER_PROP"]["properties"] as $index => $field): ?>
 			<?
-			if ($field['PROPS_GROUP_ID'] == 12)
+			if ($field['PROPS_GROUP_ID'] == 2)
 			{
 				\Spro\Dom::showField( $field );
 			}

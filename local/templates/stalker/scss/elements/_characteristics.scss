@@ -1,0 +1,41 @@
+.characteristic {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    font-family: $play;
+
+    &:not(:last-child) {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__name {
+    color: #898989;
+    flex-shrink: 0;
+    font-size: 14px;
+    line-height: 1;
+
+    @include r(1279px) {
+      font-size: 13px;
+    }
+  }
+
+  &__empty {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px dotted #898989;
+  }
+
+  &__value {
+    letter-spacing: -0.02em;
+    color: $textDark;
+    margin-left: 12px;
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+
+    @include r(1279px) {
+      font-size: 13px;
+    }
+  }
+}

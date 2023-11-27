@@ -1,0 +1,86 @@
+.auth-form-error:not(:empty){
+    background: #fee;
+    padding: 20px 10px;
+    margin-bottom: 25px;
+    border: 1px solid #dacece;
+    border-radius: 9px;
+}
+
+.auth-form-error p{
+    margin: 0 0 10px 0;
+}
+
+.reg-form__form-success span{
+    color: #8a8e95;
+    line-height: 1.4em;
+}
+.reg-form__form-success h4{
+    font-weight: 500;
+    color: #696f77;
+    font-size: 0.93rem;
+    margin-bottom: 11px;
+}
+
+.auth-form-error p:last-child{
+    margin: 0;
+}
+
+/*input[type="password"] ~ em.error{*/
+form em.error span{
+    display: block;
+    margin-bottom: 5px;
+}
+
+form em.error span:last-child{
+    margin-bottom: 0;
+}
+
+form em.error:not(:empty){
+    display: block;
+    color: #fff;
+    position: relative;
+    background: #d83559;
+    padding: 8px 10px;
+    border-radius: 0 0 8px 8px;
+    margin-top: -6px;
+    font-size: 12px;
+    text-align: left;
+    line-height: 1.4em;
+}
+
+
+#block-reg .captcha label{
+    display: flex;
+}
+#block-reg .captcha .image img{
+    display: block;
+    min-height: inherit;
+    min-width: inherit;
+    height: inherit;
+    width: 100%;
+    position: inherit;
+    top: inherit;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+
+    /*padding: 6px 16px;*/
+    height: calc(48px + 12px);
+    font-size: 1rem;
+}
+
+#block-reg .captcha .input{
+    width: 50%;
+    padding-right: 5px;
+}
+#block-reg .captcha .image{
+    width: 50%;
+    margin-left: 5px;
+    overflow: hidden
+}
+#block-reg .captcha .image > img {
+    height: 100% !important;
+    width: auto !important;
+    max-width: 100%;
+}

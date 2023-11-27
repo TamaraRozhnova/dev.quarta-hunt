@@ -15,6 +15,8 @@ $this->setFrameMode( true );
 /*echo '<pre>';
 print_r($arResult);
 echo '</pre>';*/
+
+echo_j($arParams);
 ?>
 <div class="inner__hero">
 	<? if($arResult['DETAIL_PICTURE']['SRC']):?>
@@ -35,7 +37,10 @@ echo '</pre>';*/
 	<div class="catalog__list">
 		<? foreach ($arResult['ITEMS'] as $index => $arItem)
 		{
-			$APPLICATION->IncludeComponent( 'bitrix:catalog.item', 'catalog.item', [
+			$APPLICATION->IncludeComponent( 'bitrix:catalog.item',
+                'catalog.item',
+//                'catalog.item',
+                [
 				'RESULT' => [
 					'ITEM' => $arItem,
 					'SHOW_PROPS' => $arResult['SHOW_PROPS'],

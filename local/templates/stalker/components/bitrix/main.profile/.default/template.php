@@ -65,8 +65,23 @@ if ($arResult['DATA_SAVED'] == 'Y')
 							</div>
 						</div>
 						*/ ?>
-		<button class="ui-button ui-button--dark" name="save" value="<?=GetMessage( "MAIN_SAVE" )?>">
-			Сохранить изменения
-		</button>
+        <div style="display: flex;
+    align-items: center;
+    justify-content: space-between; padding-top: 53px">
+            <button class="ui-button ui-button--dark" style="margin-right: 1px;" name="save" value="<?=GetMessage( "MAIN_SAVE" )?>">
+                Сохранить изменения
+            </button>
+
+            <a  style="margin-left: 1px;" href="<?=$APPLICATION->GetCurPageParam("logout=yes&".bitrix_sessid_get(), [
+                    "login",
+                    "logout",
+                    "register",
+                    "forgot_password",
+                    "change_password"]
+            );?>" class="ui-button ui-button--dark" name="save" value="<?=GetMessage( "MAIN_SAVE" )?>">
+                Выйти
+            </a>
+
+        </div>
 	</form>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 $isSelf = true;
-$firstDelivery = $deliveryChecked = $selfId = 0;
+$firstDelivery = $deliveryChecked = $selfId = 3;
 
 ?>
 <? foreach ($arResult["DELIVERY"] as $arDelivery):
@@ -22,6 +22,11 @@ $activeTab = ( $deliveryChecked == $selfId )?'self':'delivery';
 <div class="checkout__block-title">
 	Где и как вы хотите получить заказ?
 </div>
+
+<?
+//echo_j([$selfId, $arResult['DELIVERY'][ $selfId ]]);
+?>
+
 <div class="checkout__tabs tabs" data-tabs>
 	<div class="tabs__head" data-tabs-head>
 		<? if ($selfId): ?>

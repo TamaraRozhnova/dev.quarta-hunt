@@ -3,6 +3,12 @@
 	</section>
 	</div>
 <?php endif; ?>
+<?php if ( CSite::InDir( '/login/' ) || CSite::InDir( '/auth/' ) ): ?>
+    </div>
+    </section>
+    </div>
+<?php endif; ?>
+
 <footer class="footer">
 	<div class="container">
 		<?php $APPLICATION->IncludeComponent(
@@ -68,24 +74,39 @@
 						<div class="accordion__arrow"></div>
 					</div>
 					<div class="accordion__body" data-accordion-body>
-						<div class="footer__links-list">
-							<?php $APPLICATION->IncludeComponent(
-								"bitrix:menu",
-								"smart_catalog_bottom",
-								[
-									"ALLOW_MULTI_SELECT" => "N",
-									"CHILD_MENU_TYPE" => "left",
-									"DELAY" => "N",
-									"MAX_LEVEL" => "1",
-									"MENU_CACHE_GET_VARS" => [ "" ],
-									"MENU_CACHE_TIME" => "3600",
-									"MENU_CACHE_TYPE" => "N",
-									"MENU_CACHE_USE_GROUPS" => "Y",
-									"ROOT_MENU_TYPE" => "top",
-									"USE_EXT" => "N",
-								]
-							); ?>
-						</div>
+						<!--div-- class="footer__links-list">
+							<?$APPLICATION->IncludeComponent(
+	"bitrix:menu", 
+	"smart_catalog_bottom", 
+	array(
+		"ALLOW_MULTI_SELECT" => "N",
+		"CHILD_MENU_TYPE" => "left",
+		"DELAY" => "N",
+		"MAX_LEVEL" => "1",
+		"MENU_CACHE_GET_VARS" => array(
+		),
+		"MENU_CACHE_TIME" => "3600",
+		"MENU_CACHE_TYPE" => "N",
+		"MENU_CACHE_USE_GROUPS" => "Y",
+		"ROOT_MENU_TYPE" => "top",
+		"USE_EXT" => "N",
+		"COMPONENT_TEMPLATE" => "smart_catalog_bottom"
+	),
+	false
+); ?>
+						</div-->
+                        <div class="footer__links-list">
+                            <?php $APPLICATION->IncludeComponent(
+                                "bitrix:main.include",
+                                "",
+                                [
+                                    "AREA_FILE_SHOW" => "file",
+                                    "AREA_FILE_SUFFIX" => "inc",
+                                    "EDIT_TEMPLATE" => "standard.php",
+                                    "PATH" => "/include/footer_adress.php",
+                                ]
+                            ); ?>
+                        </div>
 					</div>
 				</div>
 				<div class="accordion footer__links-column footer__links-column_address">
@@ -102,7 +123,7 @@
 							"AREA_FILE_SHOW" => "file",
 							"AREA_FILE_SUFFIX" => "inc",
 							"EDIT_TEMPLATE" => "standard.php",
-							"PATH" => "/include/main_info.php",
+							"PATH" => "/include/footer_phones.php",
 						]
 					); ?>
 						</div>
@@ -129,6 +150,15 @@
 </div>
 <!-- END content -->
 <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/app.js?v5"></script>
+<?/*?>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/counter.js"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/input.js"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/counter.js"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/inputFile.js"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/select.js"></script>
+<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/tooltip.js"></script>
+<?*/?>
 <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js?v3"></script>
+
 </body>
 </html>

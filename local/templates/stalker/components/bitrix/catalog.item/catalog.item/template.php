@@ -25,6 +25,8 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 {
 	$arItem['DETAIL_PICTURE']['SRC'] = SITE_TEMPLATE_PATH . '/img/no-photo.png';
 }
+
+echo_j($arItem, '$arItem');
 ?>
 <div class="catalog__item">
 	<div class="catalog__item-img">
@@ -38,18 +40,24 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 				-<?=$arPrice['PERCENT']?>%
 			</div>
 		<? endif; ?>
+        <??>
+        <div class="tip tip-like <?=(in_array($arItem["ID"], $_SESSION['favourites'])?'is-active':'')?>" data-id="<?=$arItem["ID"]?>"></div>
+        <??>
 	</div>
 	<div class="catalog__item-description">
 		<div class="catalog__item-column">
-				<div class="catalog__item-code">
-				арт <?=$arProps['CML2_ARTICLE']['VALUE']?:$arProps['ARTNUMBER']['VALUE']?>
-			</div>
 
-			<a class="catalog__item-name" href="<?=$arItem['DETAIL_PAGE_URL']?>" style="color:#2a2b2b">
+			<div><a class="catalog__item-name" href="<?=$arItem['DETAIL_PAGE_URL']?>">
 				<?=$arItem['NAME']?>
 			</a>
+            </div>
 
-			<div class="catalog__item-characteristic characteristic">
+            <div class="catalog__item-code">
+                АРТ <?=$arProps['CML2_ARTICLE']['VALUE']?:$arProps['ARTNUMBER']['VALUE']?>
+            </div>
+
+
+            <?/*div class="catalog__item-characteristic characteristic">
 				<ul class="characteristic__list">
 					<?php foreach ($showProperties as $property): ?>
 						<?php if($arProps[$property]['VALUE']):?>
@@ -59,6 +67,21 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 								</div>
 								<div class="characteristic__empty"></div>
 								<div class="characteristic__value"><?=$arProps[$property]['VALUE']?></div>
+							</li>
+						<? endif; ?>
+					<?php endforeach; ?>
+				</ul>
+			</div*/?>
+			<div class="catalog__item-characteristic characteristic">
+				<ul class="characteristic__list">
+					<?php foreach ($arItem["DISPLAY_PROPERTIES"] as $property): ?>
+						<?php if($property['VALUE']):?>
+							<li class="characteristic__item">
+								<div class="characteristic__name">
+									<?=$property['NAME']?>
+								</div>
+								<div class="characteristic__empty"></div>
+								<div class="characteristic__value"><?=$property['VALUE']?></div>
 							</li>
 						<? endif; ?>
 					<?php endforeach; ?>
@@ -80,9 +103,33 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 				<button class="ui-button ui-button--dark" data-add-basket="<?=$arItem['ID']?>">
 					в корзину
 				</button>
-				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="ui-button ui-button--transparent">
+				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="ui-button ui-button--light">
 					подробнее
 				</a>
+				<a href="#" class="ui-button ui-button--light add2compare tip-compare" data-id="<?=$arItem["ID"]?>">
+					<span class="nactive">Сравнить</span>
+                    <span class="active">Добавлено для сравнения</span>
+				</a>
+                <?
+                if (
+                    $arParams['DISPLAY_COMPARE']
+                    && (!$haveOffers || $arParams['PRODUCT_DISPLAY_MODE'] === 'Y')
+                )
+                {
+                    ?>
+                    <div class="product-item-compare-container">
+                        <div class="product-item-compare">
+                            <div class="checkbox">
+                                <label id="<?=$arItem['COMPARE_LINK']?>">
+                                    <input type="checkbox" data-entity="compare-checkbox">
+                                    <span data-entity="compare-title"><?=$arParams['MESS_BTN_COMPARE']?></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <?
+                }
+                ?>
 			</div>
 		</div>
 	</div>

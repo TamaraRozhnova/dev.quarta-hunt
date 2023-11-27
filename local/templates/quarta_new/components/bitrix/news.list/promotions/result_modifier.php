@@ -6,12 +6,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 $newsIblockId = 13;
 $mainBannerNewsId = $arParams['MAIN_BANNER_NEWS_ID'] ?? '';
-$arrivalNewsIds = $arParams['ARRIVAL_NEWS_IDS'] ?? [];
+$arrivalNewsIds = $arParams['ARRIVAL_NEWS_IDS'] ?? '';
 
 $newArrivalArr = explode(',', $arrivalNewsIds);
 
-if (!empty($mainBannerNewsId) || !empty($arrivalNewsIds)) {
-    $newsIds = array_merge($arrivalNewsIds, [$mainBannerNewsId]);
+if (!empty($mainBannerNewsId) || !empty($newArrivalArr)) {
+    $newsIds = array_merge($newArrivalArr, [$mainBannerNewsId]);
     $newsResource = CIBlockElement::GetList([], ['IBLOCK_ID' => $newsIblockId, 'ID' => $newsIds, 'ACTIVE' => 'Y']);
 
     while ($news = $newsResource->GetNextElement()) {

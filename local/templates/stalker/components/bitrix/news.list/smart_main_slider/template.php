@@ -79,7 +79,7 @@ CModule::IncludeModule( 'iblock' );
 						<a href="<?=$arFields['PROPERTY_LINK_VALUE'];?>" class="hero__slide-link">
 							<span class="ui-underline ui-underline--full"> Смотреть </span>
 							<svg class="icon icon-chevron-right">
-								<use xlink:href="img/sprite.svg#icon-chevron-right"></use>
+								<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-chevron-right"></use>
 							</svg>
 						</a>
 					</div>

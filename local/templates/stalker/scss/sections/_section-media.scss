@@ -1,0 +1,219 @@
+.section-media {
+  margin: 50px 0 0;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px 0;
+    border-bottom: 1px solid rgba(56, 56, 56, 0.3);
+    margin-bottom: 38px;
+
+    @include lg-screen {
+      padding: 27px 0;
+    }
+
+    @include sm-screen {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding: 18px 0;
+    }
+
+    .section__title {
+      margin-bottom: 0;
+    }
+
+    .ui-link {
+      font-family: $play;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      color: $textDark;
+
+      .icon {
+        margin-left: 6px;
+      }
+    }
+
+    .ui-underline {
+      &::before {
+        background-color: $textDark;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+
+    @include sm-screen {
+      flex-flow: column;
+    }
+  }
+
+  &__video {
+    max-width: 62%;
+    width: 100%;
+
+    @include sm-screen {
+      max-width: 100%;
+    }
+
+    .video-block {
+      @include ratio(869, 529);
+    }
+  }
+
+  &__description {
+    max-width: 38%;
+    width: 100%;
+    padding-left: 58px;
+
+    @include lg-screen {
+      padding-left: 44px;
+    }
+
+    @include sm-screen {
+      padding-left: 0;
+      max-width: 100%;
+    }
+
+    .play {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid $textDark;
+      border-radius: 50%;
+      margin-bottom: 23px;
+      padding-left: 3px;
+
+      @include sm-screen {
+        display: none;
+      }
+
+      .icon {
+        font-size: 12px;
+      }
+    }
+
+    .section__title {
+      font-size: 22px;
+      margin-bottom: 27px;
+
+      @include lg-screen {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      @include sm-screen {
+        margin-top: 15px;
+        font-size: 10px;
+      }
+    }
+
+    .section__text {
+      margin-bottom: 36px;
+      color: rgba(56, 56, 56, 0.6);
+      font-size: 16px;
+      line-height: 1.25;
+
+      @include lg-screen {
+        font-size: 14px;
+      }
+
+      @include sm-screen {
+        display: none;
+      }
+    }
+
+    .ui-button {
+      max-width: 300px;
+      height: 57px;
+
+      @include lg-screen {
+        max-width: 230px;
+        height: 42px;
+        font-size: 10px;
+      }
+
+      @include sm-screen {
+        display: none;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    padding: 45px 0 36px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(56, 56, 56, 0.3);
+    border-bottom: 1px solid rgba(56, 56, 56, 0.3);
+
+    @include lg-screen {
+      padding: 30px 0;
+    }
+
+    @include sm-screen {
+      margin-top: 0;
+      padding: 21px 0;
+      border-bottom: none;
+    }
+  }
+
+  &__item {
+    position: relative;
+    max-width: calc(100% / 3 - 10px);
+    width: 100%;
+
+    @include sm-screen {
+      max-width: 329px;
+    }
+
+    &:not(:last-child) {
+      margin-right: 16px;
+
+      @include sm-screen {
+        margin-right: 6px;
+      }
+    }
+
+    .video {
+      margin-bottom: 15px;
+
+      &-block {
+        @include ratio(456, 278);
+        width: 100%;
+      }
+
+      &-btn {
+        width: 64px;
+        height: 64px;
+
+        @include lg-screen {
+          width: 36px;
+          height: 36px;
+        }
+
+        .icon {
+          font-size: 16px;
+
+          @include lg-screen {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+
+      @include lg-screen {
+        font-size: 13px;
+      }
+    }
+  }
+}

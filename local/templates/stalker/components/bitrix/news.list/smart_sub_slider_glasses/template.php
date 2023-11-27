@@ -26,8 +26,8 @@ $res = CIblockElement::GetList(Array("DATE_CREATE" => "DESC"), $arFilter, false,
                     <div class="swiper-slide section__slide">
                       <div class="section__slide-background">
                         <picture>
-                          <source data-srcset="<?=CFile::GetPath($arFields['DETAIL_PICTURE']);?>" />
-                          <img class="lazy" data-src="<?=CFile::GetPath($arFields['DETAIL_PICTURE']);?>" alt="" />
+                          <source data-srcset="<?=str_replace(" ", "%20", CFile::GetPath( $arFields['DETAIL_PICTURE'] ));?>" />
+                          <img class="lazy" data-src="<?=str_replace(" ", "%20", CFile::GetPath( $arFields['DETAIL_PICTURE'] ));?>" alt="" />
                         </picture>
                       </div>
                       <div class="section__slide-content">

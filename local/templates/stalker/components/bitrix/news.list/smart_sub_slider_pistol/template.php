@@ -24,12 +24,14 @@ CModule::IncludeModule( 'iblock' );
 		while ($ob = $res->GetNextElement())
 		{
 			$arFields = $ob->GetFields();
+
+//            $arFields['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE']);
 			?>
 			<div class="swiper-slide section__slide">
 				<div class="section__slide-background">
 					<picture>
-						<source data-srcset="<?=CFile::GetPath( $arFields['DETAIL_PICTURE'] );?>"/>
-						<img class="lazy" data-src="<?=CFile::GetPath( $arFields['DETAIL_PICTURE'] );?>" alt=""/>
+						<source data-srcset="<?=str_replace(" ", "%20", CFile::GetPath( $arFields['DETAIL_PICTURE'] ));?>"/>
+						<img class="lazy" data-src="<?=str_replace(" ", "%20", CFile::GetPath($arFields['DETAIL_PICTURE']));?>" alt=""/>
 					</picture>
 				</div>
 				<div class="section__slide-content">

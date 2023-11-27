@@ -115,6 +115,7 @@ $ElementID = $APPLICATION->IncludeComponent(
         "MESSAGES_PER_PAGE" => $arParams["MESSAGES_PER_PAGE"],
         "SET_CANONICAL_URL" => $arParams["DETAIL_SET_CANONICAL_URL"],
         "SHOW_PRODUCT_TAGS" => $arParams["SHOW_PRODUCT_TAGS_IN_RECOMMENDED"],
+        "COMPATIBLE_MODE" => "Y"
     ),
     $component
 );

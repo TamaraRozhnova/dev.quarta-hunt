@@ -19,7 +19,7 @@ if (empty($arResult))
 <div class="footer-head">
             <div class="logo footer-logo">
 	            <?
-				$APPLICATION->IncludeFile('/_includes/logo.php', false, array('SHOW_BORDER'=>false));
+				$APPLICATION->IncludeFile('/_includes/logo_ft.php', false, array('SHOW_BORDER'=>false));
 				?>
             </div>
 

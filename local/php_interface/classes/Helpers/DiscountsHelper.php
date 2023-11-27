@@ -24,7 +24,7 @@ class DiscountsHelper
         $user = new User();
         $isWholesaler = $user->isWholesaler();
 
-        if (count($product['OFFERS']) > 0) {
+        if (is_array($product['OFFERS']) && count($product['OFFERS']) > 0) {
             $prices = $product['OFFERS'][0]['PRICES'];
         } else {
             $prices = $product['PRICES'];

@@ -1,0 +1,80 @@
+.ui-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  transition: background-color 0.35s ease, color 0.15s ease;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+
+  &--red {
+    background-color: $red;
+
+    &:hover {
+      background-color: transparent;
+      color: $red;
+    }
+  }
+
+  &--dark {
+    border: 1px solid #383838;
+    background-color: #383838;
+
+    &:hover {
+      background-color: transparent;
+      color: #383838;
+    }
+  }
+
+  &--transparent {
+    background-color: transparent;
+    color: #383838;
+    border: 1px solid #383838;
+
+    &:hover {
+      background-color: #383838;
+      color: #fff;
+    }
+  }
+
+  &--border {
+    background-color: transparent;
+    color: $red;
+    border: 1px solid $red;
+
+    &:hover {
+      background-color: $red;
+      color: #fff;
+    }
+  }
+}
+
+.btn-default {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  transition: background-color 0.35s ease, color 0.15s ease;
+  color: #fff;
+  border: 1px solid $red;
+  text-transform: uppercase;
+  background-color: $red;
+  padding: 16px 48px;
+  border-radius: 0;
+
+
+  &:hover {
+    background-color: transparent;
+    color: $red;
+  }
+}
+

@@ -1,0 +1,44 @@
+.modal-favorite {
+  .modal {
+    &__inner {
+      max-width: 515px;
+      height: 640px;
+      padding: 24px 33px;
+    }
+
+    &__close {
+      position: absolute;
+      top: 0;
+      right: -35px;
+
+      .icon {
+        color: #fff;
+      }
+    }
+
+    &-cart {
+      &__total {
+        border: none;
+
+        .ui-button {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .modal-cart {
+    &__content {
+      position: relative;
+      height: calc(100% - 62px - 118px);
+      margin-left: -33px;
+      width: calc(100% + 66px);
+      padding-left: 33px;
+      padding-right: 33px;
+    }
+  }
+
+  .section__title {
+    text-align: center;
+  }
+}
