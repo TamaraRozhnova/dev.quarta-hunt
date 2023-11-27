@@ -12,6 +12,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
+    'Feedback\Events' => '/local/php_interface/classes/Feedback/Events.php',
     'Form\Auth\RegistrationForm' => '/local/php_interface/classes/Form/Auth/RegistrationForm.php',
     'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
     'Form\ProductQuestionForm' => '/local/php_interface/classes/Form/ProductQuestionForm.php',
