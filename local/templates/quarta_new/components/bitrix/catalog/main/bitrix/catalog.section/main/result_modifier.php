@@ -34,3 +34,28 @@ $arParams['MAX_ITEMS_PER_PAGE'] = 9999;
 $context = Application::getInstance()->getContext();
 $request = $context->getRequest();
 $arResult['CURRENT_SORT'] = $request->get("sort");
+
+if (!empty($arResult['IBLOCK_SECTION_ID'])) {
+    $arSections = [];
+    $sectionId = $arResult['ID'];
+
+    while($sectionId) {
+        $arSection = \Bitrix\Iblock\SectionTable::getList([
+            'filter' => ['IBLOCK_ID' => CATALOG_IBLOCK_ID, 'ID' => $sectionId],
+            'select' => ['ID', 'IBLOCK_SECTION_ID', 'DESCRIPTION']
+        ])->fetch();
+
+        if (is_array($arSection) && count($arSection) > 0) {
+            $arSections[] = $arSection;
+            $sectionId = $arSection['IBLOCK_SECTION_ID'];
+        } else {
+            $sectionId = '';
+        }    
+    }
+
+    $arSections = array_reverse($arSections);
+
+    if (!empty($arSections[0])) {
+        $arResult['ROOT_SECTION_DESC'] = $arSections[0]['DESCRIPTION'];
+    }
+}

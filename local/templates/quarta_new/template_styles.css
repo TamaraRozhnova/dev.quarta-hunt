@@ -11200,3 +11200,7 @@ h1.small-h2 {
     right: 0;
   }
 }
+
+.section__desc {
+  margin: 3.125rem 0 0 0;
+}
