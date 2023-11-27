@@ -7041,11 +7041,13 @@ function (e, t, n) {
         }))
     }
 
-    document.getElementById("file-drag").addEventListener("drop", (function (e) {
-        s = [].concat(i(l(s, e.target.files)))
-    }), !1), r.addEventListener("change", (function (e) {
-        d(s = [].concat(i(l(s, e.target.files))))
-    }))
+    if($('#file-drag').length){
+        document.getElementById("file-drag").addEventListener("drop", (function (e) {
+            s = [].concat(i(l(s, e.target.files)))
+        }), !1), r.addEventListener("change", (function (e) {
+            d(s = [].concat(i(l(s, e.target.files))))
+        }))
+    }
 }, function (e, t, n) {
 
     "use strict";

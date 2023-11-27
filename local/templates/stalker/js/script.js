@@ -4,9 +4,10 @@ favrun = function (){
         url: '/ajax/fav.php',
         data: {}, // данные для отправки
         success: function (data) { // событие после удачного обращения к серверу и получения ответа
-            let fav = $.parseJSON(data);
+            let r = $.parseJSON(data);
+            let fav = r.res;
             let n = 0;
-            if(fav && fav[0]){
+            if(fav && Object.keys(fav).length > 0 && fav[0]){
                 $('.tip-like.is-active').removeClass('is-active');
                 for (const eid in fav) {
                     $('.tip-like[data-id='+fav[eid]+']').addClass("is-active");
@@ -14,7 +15,6 @@ favrun = function (){
                 }
 
             }
-
             console.log(''+n+' favs inited')
         },
     });
@@ -28,12 +28,20 @@ compare_run = function (){
         success: function (data) { // событие после удачного обращения к серверу и получения ответа
             let fav = $.parseJSON(data);
             let n = 0;
-            if(fav && fav[0]){
+
+            if(fav && Object.keys(fav).length > 0 && fav[0]){
                 $('.tip-compare.is-active').removeClass('is-active');
                 for (const eid in fav) {
                     $('.tip-compare[data-id='+fav[eid]+']').addClass("is-active");
                     n++;
                 }
+
+                console.log('Object.keys(fav).length', Object.keys(fav).length)
+
+                $(".compare-badge").html(Object.keys(fav).length).show();
+            }
+            if(!fav || (fav && Object.keys(fav).length < 1)){
+                $(".compare-badge").html('').hide();
             }
 
             console.log(''+n+' compare inited');
@@ -57,10 +65,14 @@ $(function () {
         $.ajax({
             type: 'GET',
             url: '/ajax/fav.php',
-            data: {ID: ID_val, CHECKED: button.hasClass('is-active')}, // данные для отправки
+            data: {ID: ID_val, CHECKED: button.hasClass('is-active')},
             success: (data) => { // событие после удачного обращения к серверу и получения ответа
-                console.log($.parseJSON(data));
-                var dataArr = $.parseJSON(data);
+                let r = $.parseJSON(data);
+                // console.log('favs: ', r.res);
+
+                // console.log('favs result', data);
+                // console.log('favs result', $.parseJSON(data.res));
+                // var dataArr = $.parseJSON(data);
 
                 if($(button).parents('.customers-content').length){
                     $(button).parents('.catalog__item').remove()
@@ -85,9 +97,16 @@ $(function () {
             // dataType: 'json',
             // processData: true,
             success: (data) => { // событие после удачного обращения к серверу и получения ответа
-                console.log(data);
+                // console.log(data);
                 console.log($.parseJSON(data));
-                var dataArr = $.parseJSON(data);
+                let dataArr = $.parseJSON(data);
+                let arr = dataArr;
+
+                if(!arr || (arr && Object.keys(arr).length < 1)){
+                    $(".compare-badge").html('').hide();
+                }else{
+                    $(".compare-badge").html(Object.keys(arr).length).show();
+                }
 
                 window.location.replace("/compare/")
             },
@@ -112,11 +131,15 @@ $(function () {
             data: {ID: ID_val, CHECKED: button.hasClass('is-active')}, // данные для отправки
             success: (data) => { // событие после удачного обращения к серверу и получения ответа
                 console.log($.parseJSON(data));
-                var dataArr = $.parseJSON(data);
+                let dataArr = $.parseJSON(data);
+                let arr = dataArr;
 
-                // if($(button).parents('.customers-content').length){
-                //     $(button).parents('.catalog__item').remove()
-                // }
+
+                if(!arr || (arr && Object.keys(arr).length < 1)){
+                    $(".compare-badge").html('').hide();
+                }else{
+                    $(".compare-badge").html(Object.keys(arr).length).show();
+                }
             },
         });
 

@@ -1,4 +1,6 @@
 <? if ( !defined( "B_PROLOG_INCLUDED" ) || B_PROLOG_INCLUDED !== true) die(); ?><?
+use Bitrix\Main\Localization\Loc;
+
 ?>
 <?=ShowError( $arResult["strProfileError"] );?>
 <?
@@ -54,6 +56,23 @@ if ($arResult['DATA_SAVED'] == 'Y')
 				<?php endforeach; ?>
 			</div>
 		</div>
+        <div class="checkout__personal">
+            <div class="checkout__block-title">Смена пароля</div>
+            <div class="checkout__personal-grid">
+                    <div class="ui-block" style="width: 48%;">
+                        <div class="ui-block__placeholder"><?=Loc::getMessage('NEW_PASSWORD_REQ')?></div>
+                        <label class="ui-label">
+                            <input class="ui-input" type="password" name="NEW_PASSWORD" maxlength="50" id="main-profile-password" value="" autocomplete="off"/>
+                        </label>
+                    </div>
+                    <div class="ui-block" style="width: 48%;">
+                        <div class="ui-block__placeholder"><?=Loc::getMessage('NEW_PASSWORD_CONFIRM')?></div>
+                        <label class="ui-label">
+                            <input class="ui-input" type="password" name="NEW_PASSWORD_CONFIRM" maxlength="50" value="" id="main-profile-password-confirm" autocomplete="off" />
+                        </label>
+                    </div>
+            </div>
+        </div>
 		<?php /*
 						<div class="customers__subscribe">
 							<label class="toggle">

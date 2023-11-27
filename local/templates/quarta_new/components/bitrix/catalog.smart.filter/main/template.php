@@ -38,7 +38,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                                 <div class="filters-item">
                                                     <div class="checkbox form-check">
                                                         <input id="<?= $child['CONTROL_NAME'] ?>" type="checkbox"
-                                                               class="form-check-input" <?= isset($child['CHECKED']) ? 'checked' : '' ?>>
+                                                               class="form-check-input" <?= intval($child['CHECKED']) > 0 ? 'checked' : '' ?>>
                                                         <label for="<?= $child['CONTROL_NAME'] ?>"
                                                                class="form-check-label">
                                                             <span><?= $child['VALUE'] ?></span>
@@ -68,7 +68,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             <div>
                                 <div class="filters-item">
                                     <div class="checkbox form-check">
-                                        <input id="<?= $child['CONTROL_NAME'] ?>" type="checkbox" <?= isset($child['CHECKED']) ? 'checked' : '' ?> class="form-check-input">
+                                        <input id="<?= $child['CONTROL_NAME'] ?>" type="checkbox" <?= intval($child['CHECKED']) > 0 ? 'checked' : '' ?> class="form-check-input">
                                         <label for="<?= $child['CONTROL_NAME'] ?>" class="form-check-label">
                                             <span><?= $child['VALUE'] ?></span>
                                         </label>

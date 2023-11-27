@@ -3491,7 +3491,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			{
 				currentColumn = this.result.GRID.HEADERS[i];
 
-				if (currentColumn.id === 'NAME' || currentColumn.id === 'PREVIEW_PICTURE' || currentColumn.id === 'PROPS' || currentColumn.id === 'NOTES')
+				if (currentColumn.id === 'NAME' || currentColumn.id === 'PREVIEW_PICTURE' || currentColumn.id === 'PROPS' || currentColumn.id === 'NOTES'  || currentColumn.id === 'QUANTITY' )
 					continue;
 
 				if (currentColumn.id === 'DETAIL_PICTURE' && !this.options.showPreviewPicInBasket)
@@ -3828,11 +3828,12 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 
 
-				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, children: [
-						BX.create('SPAN', {props: {className: ''}, html: data["QUANTITY"]}),
-						BX.create('SPAN', {props: {className: ''}, html: "X"}),
-						price,
-						discount_price
+				textNode.appendChild(BX.create('DIV', {props: {className: 'bx-soa-cart-total-line'}, children: [
+						BX.create('DIV', {props: {className: 'bx-soa-cart-t'}, html: data["QUANTITY"]+' шт.'}),
+						BX.create('DIV', {props: {className: 'bx-soa-cart-d'}, children: [
+								price,
+								discount_price
+							]}),
 					]}));
 
 
@@ -7198,7 +7199,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (!this.result.ORDER_PROP || !this.propertyCollection)
 				return;
 
-			var propsItemsContainer = BX.create('DIV', {props: {className: 'col-sm-12 bx-soa-customer'}}),
+			var propsItemsContainer = BX.create('DIV', {props: {className: 'col-sm-12 bx-soa-customer checkout__personal-grid'}}),
 				group, property, groupIterator = this.propertyCollection.getGroupIterator(), propsIterator;
 
 			if (!propsItemsContainer)
@@ -7229,7 +7230,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				textHtml = '',
 				propertyType = property.getType() || '',
 				propertyDesc = property.getDescription() || '',
-				label;
+				label, placeh;
 
 			if (disabled)
 			{
@@ -7237,7 +7238,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 			else
 			{
-				BX.addClass(propsItemNode, "form-group bx-soa-customer-field");
+				BX.addClass(propsItemNode, "ui-block form-group");
 
 				if (property.isRequired())
 					textHtml += '<span class="bx-authform-starrequired">*</span> ';
@@ -7246,13 +7247,17 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				if (propertyDesc.length && propertyType != 'STRING' && propertyType != 'NUMBER' && propertyType != 'DATE')
 					textHtml += ' <small>(' + BX.util.htmlspecialchars(propertyDesc) + ')</small>';
 
-				label = BX.create('LABEL', {
-					attrs: {'for': 'soa-property-' + property.getId()},
-					props: {className: 'bx-soa-custom-label'},
+				placeh = BX.create('DIV', {
+					props: {className: 'ui-block__placeholder'},
 					html: textHtml
 				});
+				propsItemNode.appendChild(placeh);
+
+				label = BX.create('LABEL', {
+					attrs: {'for': 'soa-property-' + property.getId()},
+					props: {className: 'ui-label'},
+				});
 				propsItemNode.setAttribute('data-property-id-row', property.getId());
-				propsItemNode.appendChild(label);
 			}
 
 			switch (propertyType)
@@ -7278,6 +7283,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				case 'NUMBER':
 					this.insertNumberProperty(property, propsItemNode, disabled);
 			}
+
+			propsItemNode.appendChild(label);
 
 			propsItemsContainer.appendChild(propsItemNode);
 		},
@@ -7475,6 +7482,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		insertStringProperty: function(property, propsItemNode, disabled)
 		{
+			console.log('[[[[', property, propsItemNode)
+
 			var prop, inputs, values, i, propContainer;
 
 			if (disabled)
@@ -7504,6 +7513,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				propContainer = BX.create('DIV', {props: {className: 'soa-property-container'}});
 				property.appendTo(propContainer);
 				propsItemNode.appendChild(propContainer);
+				// propsItemNode.appendChild(property);
 				this.alterProperty(property.getSettings(), propContainer);
 				this.bindValidation(property.getId(), propContainer);
 			}
@@ -7657,18 +7667,18 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			for (i = 0; i < inputs.length; i++)
 			{
 				inputs[i].placeholder = settings.DESCRIPTION;
-				BX.addClass(inputs[i], 'form-control bx-soa-customer-input bx-ios-fix');
+				BX.addClass(inputs[i], 'form-control- bx-soa-customer-input bx-ios-fix ui-input');
 			}
 
 			inputs = propContainer.querySelectorAll('select');
 			for (i = 0; i < inputs.length; i++)
-				BX.addClass(inputs[i], 'form-control');
+				BX.addClass(inputs[i], 'form-control ui-input');
 
 			inputs = propContainer.querySelectorAll('textarea');
 			for (i = 0; i < inputs.length; i++)
 			{
 				inputs[i].placeholder = settings.DESCRIPTION;
-				BX.addClass(inputs[i], 'form-control bx-ios-fix');
+				BX.addClass(inputs[i], 'form-control- bx-ios-fix ui-input');
 			}
 
 			del = propContainer.querySelectorAll('label');
@@ -8412,7 +8422,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				props: {
 					id: 'orderDescription',
 					cols: '4',
-					className: 'form-control bx-soa-customer-textarea bx-ios-fix',
+					className: 'form-control1 bx-soa-customer-textarea bx-ios-fix ui-input',
 					name: 'ORDER_DESCRIPTION'
 				},
 				text: this.result.ORDER_DESCRIPTION ? this.result.ORDER_DESCRIPTION : ''
@@ -8555,7 +8565,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 							BX.create('A', {
 								props: {
 									href: 'javascript:void(0)',
-									className: 'btn btn-primary btn-lg btn-order-save'
+									className: 'btn- btn-primary- btn-lg- ui-button ui-button--red make-order btn-order-save'
 								},
 								html: this.params.MESS_ORDER,
 								events: {
@@ -8781,7 +8791,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				target = BX.lastChild(totalNode);
 				objList.push({
 					node: target,
-					maxFontSize: 28,
+					// maxFontSize: 28,
 					smallestValue: false,
 					scaleBy: target.parentNode
 				});
@@ -8795,14 +8805,14 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					target = BX.lastChild(buttonNode);
 					objList.push({
 						node: target,
-						maxFontSize: 18,
+						// maxFontSize: 18,
 						smallestValue: false
 					});
 				}
 			}
 
-			if (objList.length)
-				BX.FixFontSize.init({objList: objList, onAdaptiveResize: true});
+			// if (objList.length)
+				// BX.FixFontSize.init({objList: objList, onAdaptiveResize: true});
 		},
 
 		setAnalyticsDataLayer: function(action, id)

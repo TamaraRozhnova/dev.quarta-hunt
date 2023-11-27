@@ -82,7 +82,15 @@ $q = 0;
             </div>
         </div>
         <a href="/personal/cart/" class="ui-button ui-button--red"> Оформить заказ</a>
-        <a href="/compare/"  class="ui-button ui-button--transparent js-compare" data-redirect="/compare/" data-ids="<?=implode("|", $compare)?>"> Сравнить</a>
+
+        <?
+        $ids = [];
+        if(isset($compare) && count($compare)){
+            $ids = implode("|", $compare);
+        }
+
+        ?>
+        <!--a href="/compare/"  class="ui-button ui-button--transparent js-compare" data-redirect="/compare/" data-ids="<?=$ids?>"> Сравнить</a-->
 
     </div>
 </div>

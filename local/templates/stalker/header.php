@@ -1,5 +1,7 @@
 <?php if ( !defined( "B_PROLOG_INCLUDED" ) || B_PROLOG_INCLUDED !== true) die();
 
+global $APPLICATION;
+
 if(isset($arUser) and isset($arUser['UF_FAVORITES'])){
     $GLOBALS["FAVOURITES"] = $arUser['UF_FAVORITES'];
 }
@@ -13,7 +15,9 @@ $APPLICATION->IncludeFile('functions.php');
 	<meta charset="utf-8"/>
 	<?php $APPLICATION->ShowHead(); ?>
 	<title><?php $APPLICATION->ShowTitle(true); ?></title>
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/app.js?v5"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<meta name="theme-color" content="#fff"/>
 	<meta name="format-detection" content="telephone=no"/>
@@ -182,23 +186,52 @@ if($USER->isAuthorized()){
 						</button>
                         <?*/?>
 
-						<?php /* if (!$USER->IsAuthorized()): ?>
+						<?if (!$USER->IsAuthorized()): ?>
 							<a href="#" class="header__profile" data-modal-open="profile">
 								<svg class="icon icon-profile">
 									<use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-profile"></use>
 								</svg>
 							</a>
-						<?php else:?>
-							<a href="/favs/" class="header__profile">
-<!--								<svg class="icon icon-profile">-->
-<!--									<use xlink:href="--><?//=SITE_TEMPLATE_PATH?><!--/img/sprite.svg#icon-star"></use>-->
-<!--								</svg>-->
-                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 28.3333L10 33.3333L12.5 23.3333L5 15L15.8333 14.1667L20 5L24.1667 14.1667L35 15L27.5 23.3333L30 33.3333L20 28.3333Z" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <a href="/compare" class="header__top-item btn btn-link px-2 mx-2 header__compare">
+                                <div class="position-relative px-1">
+                                    <svg style="vertical-align: bottom;" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.78723 0.542553L5.78723 4.34043L1.98936 4.34043C1.84547 4.34043 1.70747 4.39759 1.60572 4.49934C1.50397 4.60108 1.44681 4.73909 1.44681 4.88298L1.44681 15.9149L0.542553 15.9149C0.398659 15.9149 0.260658 15.9721 0.15891 16.0738C0.0571616 16.1756 -3.00056e-08 16.3136 -2.37158e-08 16.4574C-1.74259e-08 16.6013 0.0571616 16.7393 0.15891 16.8411C0.260659 16.9428 0.398659 17 0.542553 17L16.4574 17C16.6013 17 16.7393 16.9428 16.8411 16.8411C16.9428 16.7393 17 16.6013 17 16.4574C17 16.3136 16.9428 16.1756 16.8411 16.0738C16.7393 15.9721 16.6013 15.9149 16.4574 15.9149L15.5532 15.9149L15.5532 7.7766C15.5532 7.6327 15.496 7.4947 15.3943 7.39295C15.2925 7.2912 15.1545 7.23404 15.0106 7.23404L11.2128 7.23404L11.2128 0.542552C11.2128 0.398658 11.1556 0.260658 11.0539 0.15891C10.9521 0.0571628 10.8141 -4.727e-07 10.6702 -4.6641e-07L6.32979 -2.76684e-07C6.18589 -2.70394e-07 6.04789 0.057163 5.94614 0.15891C5.84439 0.260658 5.78723 0.398658 5.78723 0.542553ZM2.53191 5.42553L5.78723 5.42553L5.78723 15.9149L2.53191 15.9149L2.53191 5.42553ZM14.4681 8.31915L14.4681 15.9149L11.2128 15.9149L11.2128 8.31915L14.4681 8.31915ZM10.1277 1.08511L10.1277 15.9149L6.87234 15.9149L6.87234 1.08511L10.1277 1.08511Z" fill="#2A2B2B"></path>
+                                    </svg>
+                                    <?
+                                    $f = 0;
+                                    if(isset($_SESSION['favourites']) && count($_SESSION['favourites'])){
+                                        $f = count($_SESSION['favourites']);
+                                    }
+                                    ?>
+                                    <span class="compare-badge badge-" style="<?=($f>0?'display:block':'display:none')?>"><?=$f?></span>
+                                </div>
+                            </a>
+						<?else:?>
+							<a href="/personal/" class="header__profile">
+<!--                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                                    <path d="M20 28.3333L10 33.3333L12.5 23.3333L5 15L15.8333 14.1667L20 5L24.1667 14.1667L35 15L27.5 23.3333L30 33.3333L20 28.3333Z" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>-->
+<!--                                </svg>-->
+                                <svg class="icon icon-profile">
+                                    <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-profile"></use>
                                 </svg>
 							</a>
-						<?php endif */?>
+                            <a href="/compare" class="header__top-item btn btn-link px-2 mx-2 header__compare">
+                                <div class="position-relative px-1">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.78723 0.542553L5.78723 4.34043L1.98936 4.34043C1.84547 4.34043 1.70747 4.39759 1.60572 4.49934C1.50397 4.60108 1.44681 4.73909 1.44681 4.88298L1.44681 15.9149L0.542553 15.9149C0.398659 15.9149 0.260658 15.9721 0.15891 16.0738C0.0571616 16.1756 -3.00056e-08 16.3136 -2.37158e-08 16.4574C-1.74259e-08 16.6013 0.0571616 16.7393 0.15891 16.8411C0.260659 16.9428 0.398659 17 0.542553 17L16.4574 17C16.6013 17 16.7393 16.9428 16.8411 16.8411C16.9428 16.7393 17 16.6013 17 16.4574C17 16.3136 16.9428 16.1756 16.8411 16.0738C16.7393 15.9721 16.6013 15.9149 16.4574 15.9149L15.5532 15.9149L15.5532 7.7766C15.5532 7.6327 15.496 7.4947 15.3943 7.39295C15.2925 7.2912 15.1545 7.23404 15.0106 7.23404L11.2128 7.23404L11.2128 0.542552C11.2128 0.398658 11.1556 0.260658 11.0539 0.15891C10.9521 0.0571628 10.8141 -4.727e-07 10.6702 -4.6641e-07L6.32979 -2.76684e-07C6.18589 -2.70394e-07 6.04789 0.057163 5.94614 0.15891C5.84439 0.260658 5.78723 0.398658 5.78723 0.542553ZM2.53191 5.42553L5.78723 5.42553L5.78723 15.9149L2.53191 15.9149L2.53191 5.42553ZM14.4681 8.31915L14.4681 15.9149L11.2128 15.9149L11.2128 8.31915L14.4681 8.31915ZM10.1277 1.08511L10.1277 15.9149L6.87234 15.9149L6.87234 1.08511L10.1277 1.08511Z" fill="#2A2B2B"></path>
+                                    </svg>
+                                    <?
+                                    $f = 0;
+                                    if(isset($_SESSION['favourites']) && count($_SESSION['favourites'])){
+                                        $f = count($_SESSION['favourites']);
+                                    }
+                                    ?>
+                                    <span class="compare-badge badge-" style="<?=($f>0?'display:block':'display:none')?>"><?=$f?></span>
+                                </div>
+                            </a>
+						<?endif?>
 
+                        <?/*?>
                         <a href="/favs/" class="header__profile">
                             <!--								<svg class="icon icon-profile">-->
                             <!--									<use xlink:href="--><?//=SITE_TEMPLATE_PATH?><!--/img/sprite.svg#icon-star"></use>-->
@@ -207,6 +240,8 @@ if($USER->isAuthorized()){
                                 <path d="M20 28.3333L10 33.3333L12.5 23.3333L5 15L15.8333 14.1667L20 5L24.1667 14.1667L35 15L27.5 23.3333L30 33.3333L20 28.3333Z" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
+                        <?*/?>
+                        
 
 						<a href="#" class="header__cart" data-modal-open="cart">
 							Корзина: <span data-cart-count><?php $APPLICATION->ShowViewContent( 'BASKET_PRODUCT_COUNT' ) ?> </span>

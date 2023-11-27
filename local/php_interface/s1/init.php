@@ -1,4 +1,5 @@
 <?php
+//auto_prepend_file = '/var/www/www-root/data/www/quarta-hunt.ru/bitrix/modules/security/tools/start.php';
 
 define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 

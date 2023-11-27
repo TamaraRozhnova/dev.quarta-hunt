@@ -26,7 +26,7 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 	$arItem['DETAIL_PICTURE']['SRC'] = SITE_TEMPLATE_PATH . '/img/no-photo.png';
 }
 
-echo_j($arItem, '$arItem');
+//echo_j($arItem, '$arItem');
 ?>
 <div class="catalog__item">
 	<div class="catalog__item-img">

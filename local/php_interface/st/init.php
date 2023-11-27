@@ -1,4 +1,6 @@
 <?
+//auto_prepend_file = '/var/www/www-root/data/www/dev.stalker.ru/bitrix/modules/security/tools/start.php';
+
 use \Bitrix\Main\Loader;
 use Bitrix\Main;
 
