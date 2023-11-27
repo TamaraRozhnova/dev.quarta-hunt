@@ -45,12 +45,16 @@ $APPLICATION->IncludeComponent("bitrix:socserv.auth.form",
 	$component,
 	array("HIDE_ICONS"=>"Y")
 );
+
+
+//    $arParams["NOT_SHOW_LINKS"] = "Y";
 ?>
 
 	<hr class="bxe-light">
 <?endif?>
 
-	<form name="form_auth" method="post" target="_top" action="<?=$arResult["AUTH_URL"]?>">
+<!--	<form name="form_auth" method="post" target="_top" action="--><?//=$arResult["AUTH_URL"]?><!--">-->
+	<form name="form_auth" method="post" target="_top" action="/login/">
 
 		<input type="hidden" name="AUTH_FORM" value="Y" />
 		<input type="hidden" name="TYPE" value="AUTH" />
@@ -96,20 +100,34 @@ document.getElementById('bx_auth_secure').style.display = '';
 <?endif;?>
 
 <?if ($arResult["STORE_PASSWORD"] == "Y"):?>
+<?/*?>
 		<div class="bx-authform-formgroup-container">
-			<div class="checkbox">
-				<label class="bx-filter-param-label">
-					<input type="checkbox" id="USER_REMEMBER" name="USER_REMEMBER" value="Y" checked="checked" />
+			<div class="checkbox form-check">
+                <input type="checkbox" id="USER_REMEMBER" name="USER_REMEMBER" class="form-check-input" value="Y" checked="checked" />
+                    <!--                    <span class="ui-radio"></span>-->
+                <label class="bx-filter-param-label checkout__label_ form-check-label" for="USER_REMEMBER">
 					<span class="bx-filter-param-text"><?=GetMessage("AUTH_REMEMBER_ME")?></span>
 				</label>
 			</div>
 		</div>
+<?*/?>
+
+    <div class="customers__subscribe">
+        <label class="toggle">
+            <input type="checkbox" id="USER_REMEMBER" name="USER_REMEMBER" class="form-check-input" value="Y" checked="checked" />
+            <span class="toggle__item"></span>
+        </label>
+        <div class="customers__subscribe-text">
+            <?=GetMessage("AUTH_REMEMBER_ME")?>
+        </div>
+    </div>
 <?endif?>
+
 		<div class="bx-authform-formgroup-container">
-			<input type="submit" class="ui-button ui-button--red" style="padding: 16px" name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
+			<input type="submit" class="ui-button ui-button--red auth" style="padding: 16px; max-width: 100%" name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
 		</div>
 	</form>
-
+<?/*?>
 <?if ($arParams["NOT_SHOW_LINKS"] != "Y"):?>
 	<hr class="bxe-light">
 
@@ -128,7 +146,7 @@ document.getElementById('bx_auth_secure').style.display = '';
 		</div>
 	</noindex>
 <?endif?>
-
+<?*/?>
 </div>
 
 <script type="text/javascript">

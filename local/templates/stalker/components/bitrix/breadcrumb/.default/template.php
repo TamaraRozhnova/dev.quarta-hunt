@@ -23,7 +23,7 @@ $strReturn = '';
 $strReturn .= '<div class="breadcrumbs-row" itemscope itemtype="http://schema.org/BreadcrumbList">';
 $title = "Главная";
 $strReturn .= '
-			<div class="breadcrumbs-item" id="bx_breadcrumb_'.$index.'0" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+			<div class="breadcrumbs-item" id="bx_breadcrumb_00" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 				<a href="/" title="'.$title.'" itemprop="item">
 					<span itemprop="name">'.$title.'</span>
 				</a>
@@ -52,10 +52,11 @@ for($index = 0; $index < $itemSize; $index++)
 	}
 	else
 	{
-//		$strReturn .= '
-//			<div class="breadcrumbs-item">
-//				<span>'.$title.'</span>
-//			</div>';
+		$strReturn .= '
+			<div class="breadcrumbs-divider"> / </div>
+			<div class="breadcrumbs-item">
+				<span>'.$title.'</span>
+			</div>';
 	}
 }
 

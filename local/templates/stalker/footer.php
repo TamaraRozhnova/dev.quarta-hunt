@@ -149,7 +149,6 @@
 
 </div>
 <!-- END content -->
-<script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/app.js?v5"></script>
 <?/*?>
 <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/counter.js"></script>
 <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/uiKit/input.js"></script>

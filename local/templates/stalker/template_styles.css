@@ -280,3 +280,76 @@
 .form-group .has-error .tooltip-inner{
 	background-color: red;
 }
+.header__compare{
+	padding: 26px;
+}
+.header__compare .compare-badge{
+	display: block;
+	position: absolute;
+	top: -10px;
+	right: -3px;
+	color: white;
+	background-color: #b2110e;
+	border-radius: 20px;
+	padding: 4px;
+	font-size: 10px;
+}
+.position-relative{
+	position: relative;
+}
+.position-absolute{
+	position: absolute;
+}
+.header__cart{
+	display: flex;
+}
+.header__profile svg{
+	vertical-align: bottom;
+}
+.header__profile svg{
+	vertical-align: bottom;
+}
+.header__compare svg{
+	vertical-align: bottom;
+	margin-bottom: -2px;
+}
+.sale-order-list-title-container{
+	background-color: #f0f0f0;
+
+}
+.section-plus__item-text{
+	padding: 0 24px!important;
+}
+@media screen and (max-width: 743px){
+	.header__right {
+		max-width: 155px!important;
+		padding: 0 0 0 17px;
+	}
+	.header__compare {
+		padding: 20px!important;
+	}
+	.header__navigation {
+		display: none!important;
+	}
+	.hero__slide:before {
+		padding-top: 48.1428571429%!important;
+	}
+	.section-about__list{
+		padding-right: 0!important;
+	}
+	.footer__links{
+		width: 100%!important;
+	}
+	.footer__links-column{
+		width: 100%!important;
+	}
+	.footer__social {
+		 width: 100%!important;
+	}
+}
+.characteristic__name{
+	max-width: 70%;
+}
+.ui-button{
+	text-align: center;
+}

@@ -120,7 +120,7 @@
 
   &__links {
     display: flex;
-    width: 100%;
+    width: 73.8%;
 
     @include r(1024px) {
       margin-top: 25px;
@@ -130,7 +130,7 @@
       display: flex;
       flex-flow: column;
       width: calc(100% / 3);
-      padding-left: 5%;
+      padding-left: 6%;
 
       @include r(1024px) {
         padding-left: 0;

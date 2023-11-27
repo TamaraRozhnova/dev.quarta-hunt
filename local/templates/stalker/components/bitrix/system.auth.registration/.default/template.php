@@ -91,7 +91,8 @@ new BX.PhoneAuth({
 
 <?elseif(!$arResult["SHOW_EMAIL_SENT_CONFIRMATION"]):?>
 
-	<form method="post" action="<?=$arResult["AUTH_URL"]?>" name="bform" enctype="multipart/form-data">
+<!--	<form method="post" action="--><?//=$arResult["AUTH_URL"]?><!--" name="bform" enctype="multipart/form-data">-->
+	<form method="post" action="/login/?register=yes" name="bform" enctype="multipart/form-data">
 		<input type="hidden" name="AUTH_FORM" value="Y" />
 		<input type="hidden" name="TYPE" value="REGISTRATION" />
 
@@ -228,7 +229,7 @@ $APPLICATION->IncludeComponent(
 			</div>
 		</div>
 		<div class="bx-authform-formgroup-container">
-			<input type="submit" class="btn btn-primary" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
+			<input type="submit" class="ui-button ui-button--red auth" style="padding: 16px; max-width: 100%" name="Register" value="<?=GetMessage("AUTH_REGISTER")?>" />
 		</div>
 
 		<hr class="bxe-light">

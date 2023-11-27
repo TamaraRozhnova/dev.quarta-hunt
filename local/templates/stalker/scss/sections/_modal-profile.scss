@@ -76,11 +76,11 @@
           }
         }
 
-        .ui-button {
-          margin-top: 21px;
-          height: 57px;
-          font-size: 20px;
-        }
+        //.ui-button {
+        //  margin-top: 21px;
+        //  height: 57px;
+        //  font-size: 20px;
+        //}
 
         .policy {
           font-family: $play;
@@ -106,4 +106,10 @@
       }
     }
   }
+}
+
+.ui-button.auth {
+  margin-top: 21px;
+  height: 57px;
+  font-size: 20px;
 }

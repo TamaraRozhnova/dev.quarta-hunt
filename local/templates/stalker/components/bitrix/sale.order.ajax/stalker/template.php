@@ -305,6 +305,10 @@ else
 	$themeClass = !empty($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_THEME'] : '';
 	$hideDelivery = empty($arResult['DELIVERY']);
 	?>
+<div class="checkout">
+    <div class="section__title">
+        Оформление заказа
+    </div>
 	<form action="<?=POST_FORM_ACTION_URI?>" method="POST" name="ORDER_FORM" class="bx-soa-wrapper mb-4<?=$themeClass?>" id="bx-soa-order-form" enctype="multipart/form-data">
 		<?
 		echo bitrix_sessid_post();
@@ -320,9 +324,11 @@ else
 		<div id="bx-soa-order" class="checkout__wrapper" style="opacity: 0">
 			<!--	MAIN BLOCK	-->
 			<div class="checkout__left bx-soa">
+
+
 				<div id="bx-soa-main-notifications">
 					<div class="alert alert-danger" style="display:none"></div>
-					<div data-type="informer" style="display:none"></div>
+					<div data-type="informer hidden" style="display:none"></div>
 				</div>
 				<!--	AUTH BLOCK	-->
 				<div id="bx-soa-auth" class="bx-soa-section bx-soa-auth" style="display: none;">
@@ -434,7 +440,7 @@ else
 						</div>
 						<div><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 					</div>
-					<div class="bx-soa-section-content"></div>
+					<div class="bx-soa-section-content checkout__personal"></div>
 				</div>
 
 				<? if ($arParams['BASKET_POSITION'] === 'after'): ?>
@@ -452,31 +458,33 @@ else
 
 				<!--	ORDER SAVE BLOCK	-->
 				<div id="bx-soa-orderSave">
-					<div class="checkbox">
-						<?
-						if ($arParams['USER_CONSENT'] === 'Y')
-						{
-							$APPLICATION->IncludeComponent(
-								'bitrix:main.userconsent.request',
-								'',
-								array(
-									'ID' => $arParams['USER_CONSENT_ID'],
-									'IS_CHECKED' => $arParams['USER_CONSENT_IS_CHECKED'],
-									'IS_LOADED' => $arParams['USER_CONSENT_IS_LOADED'],
-									'AUTO_SAVE' => 'N',
-									'SUBMIT_EVENT_NAME' => 'bx-soa-order-save',
-									'REPLACE' => array(
-										'button_caption' => isset($arParams['~MESS_ORDER']) ? $arParams['~MESS_ORDER'] : $arParams['MESS_ORDER'],
-										'fields' => $arResult['USER_CONSENT_PROPERTY_DATA']
-									)
-								)
-							);
-						}
-						?>
-					</div>
-					<a href="javascript:void(0)" style="margin: 10px 0" class="btn btn-primary btn-lg d-none d-sm-inline-block" data-save-button="true">
+                    <div class="bx-soa-section-content">
+					<a href="javascript:void(0)" style="margin: 10px 0" class="btn- btn-primary- btn-lg- ui-button ui-button--red make-order d-none- d-sm-inline-block-" data-save-button="true">
 						<?=$arParams['MESS_ORDER']?>
 					</a>
+                    <div class="checkbox">
+                        <?
+                        if ($arParams['USER_CONSENT'] === 'Y')
+                        {
+                            $APPLICATION->IncludeComponent(
+                                'bitrix:main.userconsent.request',
+                                '',
+                                array(
+                                    'ID' => $arParams['USER_CONSENT_ID'],
+                                    'IS_CHECKED' => $arParams['USER_CONSENT_IS_CHECKED'],
+                                    'IS_LOADED' => $arParams['USER_CONSENT_IS_LOADED'],
+                                    'AUTO_SAVE' => 'N',
+                                    'SUBMIT_EVENT_NAME' => 'bx-soa-order-save',
+                                    'REPLACE' => array(
+                                        'button_caption' => isset($arParams['~MESS_ORDER']) ? $arParams['~MESS_ORDER'] : $arParams['MESS_ORDER'],
+                                        'fields' => $arResult['USER_CONSENT_PROPERTY_DATA']
+                                    )
+                                )
+                            );
+                        }
+                        ?>
+                    </div>
+                    </div>
 				</div>
 
 				<div style="display: none;">
@@ -499,6 +507,8 @@ else
 			<div id="bx-soa-total" class="checkout__right bx-soa-sidebar">
 				<div class="bx-soa-cart-total-ghost"></div>
                 <div class="bx-soa-cart-total-wrapper checkout__info">
+
+
                     <? if ($arParams['BASKET_POSITION'] === 'sidebar'): ?>
                         <!--	BASKET ITEMS BLOCK	-->
                         <div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
@@ -508,6 +518,7 @@ else
                                 </div>
                                 <div><a href="javascript:void(0)" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
                             </div>
+
                             <div class="bx-soa-section-content"></div>
                         </div>
                     <? endif ?>
@@ -571,6 +582,7 @@ else
 		);
 		?>
 	</div>
+</div>
 	<?
 	$signer = new Main\Security\Sign\Signer;
 	$signedParams = $signer->sign(base64_encode(serialize($arParams)), 'sale.order.ajax');
