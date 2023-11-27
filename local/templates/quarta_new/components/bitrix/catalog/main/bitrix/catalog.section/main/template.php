@@ -109,13 +109,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                 <?= $arResult['NAV_STRING'] ?>
 
-                <?if ($arResult['ROOT_SECTION_DESC']) {?>
+                <?if ($arResult['ROOT_SECTION_DESC'] && !empty($arResult['ROOT_SECTION_DESC'])) {?>
                   <div class="section__desc section__desc--root">
                     <?=$arResult['ROOT_SECTION_DESC']?>
                   </div>
                 <?}?>
 
-                <?if ($arResult['DESCRIPTION']) {?>
+                <?if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) {?>
                   <div class="section__desc">
                     <?=$arResult['DESCRIPTION']?>
                   </div>
