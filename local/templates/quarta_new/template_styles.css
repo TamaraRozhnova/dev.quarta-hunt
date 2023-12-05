@@ -11274,3 +11274,22 @@ h1.small-h2 {
     margin: 3rem auto auto;
   }
 }
+
+.subscribe-window__wrapper {
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40vh auto 0 auto;
+}
+
+.subscribe-success {
+  font-size: 1rem;
+  margin: 10px 0 0 0;
+}
+
+div[id*="wait_comp"] {
+  opacity: 0;
+}
