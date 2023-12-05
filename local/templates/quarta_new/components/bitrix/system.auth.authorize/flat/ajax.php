@@ -86,7 +86,7 @@ if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 		'CONFIRM_PASSWORD' => $randomPass,
 		'LOGIN' => $_REQUEST['PERSONAL_PHONE'],
 		'ACTIVE' => 'Y',
-		'GROUP' => [$groupRegUsersId],
+		'GROUP_ID' => [$groupRegUsersId],
 	];
 
 	$arFieldsUpdateUser = [
