@@ -122,7 +122,7 @@
                                 <hr />
                                 <?foreach ($result['STORES_ELEMENT'] as $arStore):?>
                                     <div class="row pt-3">
-                                        <div class="col-6 fs-6">
+                                        <div class="col-9 fs-6">
                                             <div class="row mb-3">
                                                 <div class="col flex-grow-0">Адрес:</div>
                                                 <div class="col w-100 flex-grow-1 text-dark">
@@ -151,7 +151,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-3">
+                                        <?/*<div class="col-3">
                                             <button 
                                             <?=
                                             $arStore['AMOUNT'] > 0
@@ -161,7 +161,7 @@
                                             class="btn btn-light text-body w-100">
                                                 Выбрать
                                             </button>
-                                        </div>
+                                        </div>*/?>
 
                                         <div class="col-12 pt-3"><hr /></div>
                                     </div>
