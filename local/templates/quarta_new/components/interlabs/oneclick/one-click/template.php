@@ -163,6 +163,10 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                             </button>
                         </div>
 
+                        <small>                            
+                            <?=Loc::getMessage('AGREEMENT', ['#LINK#' => '/privacy-statement/'])?>
+                        </small>
+
                     </form>
                     <div class="js-interlabs-oneclick__result js-step-2">
                         <?php if (isset($arResult['success']) && isset($arResult['success']['message'])) {

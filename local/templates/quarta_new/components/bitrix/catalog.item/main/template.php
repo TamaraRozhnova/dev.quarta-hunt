@@ -138,7 +138,7 @@ $item = $arResult['ITEM'];
 
     <? if ($item['AVAILABLE']) { ?>
         <a href="javascript:void(0);" 
-            class="btn btn-primary px-5 interlabs-one-click-buy"
+            class="btn btn-primary interlabs-one-click-buy"
             data-productid="<?=$item['ID']?>" 
             data-data="<?=json_encode(["PRODUCT_ID" => $item['ID']])?>" 
             id="one-click-buy-<?=$item['ID']?>"

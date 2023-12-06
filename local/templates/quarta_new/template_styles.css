@@ -10573,6 +10573,9 @@ ymaps[class$="-balloon__layout"] {
   .wholesale__price-list .col-5 > div:last-child {
     margin-bottom: 0 !important;
   }
+  .modal {
+    z-index: 99999;
+  }
 }
 @media (max-width: 420px) {
   .wholesale__head-descr {
