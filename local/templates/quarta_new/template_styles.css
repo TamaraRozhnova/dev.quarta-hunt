@@ -11223,3 +11223,8 @@ h1.small-h2 {
 div[id*="wait_comp"] {
   opacity: 0;
 }
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  pointer-events: auto;
+}
