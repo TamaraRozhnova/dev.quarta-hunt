@@ -228,11 +228,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <?php 
     
         if (IsModuleInstalled('promo2page')) {
-            $APPLICATION->IncludeComponent(
-                "custom:promo.page",
-                "",
-                []
-            );
+            if ($APPLICATION->get_cookie('COOKIE_APPLY') == 'Y') {
+                $APPLICATION->IncludeComponent(
+                    "custom:promo.page",
+                    "",
+                    []
+                );
+            }
         }
         
     ?>
