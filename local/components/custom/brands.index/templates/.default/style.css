@@ -1,0 +1,19 @@
+.brands-index__alph-words {
+    display: flex;
+    gap: 18px;
+}
+
+.brands-index__alph-words .brands-index__alph-word a {
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+}
+
+.brands-index__alph-words .brands-index__alph-word a:hover {
+    color: blue
+}
+
+.brands-index__search {
+    max-width: 603px;
+    margin-bottom: 24px;
+}

@@ -80,6 +80,12 @@ $APPLICATION->SetTitle("Главная — QUARTA. Оружейный Кварт
     false
 );
 
+$APPLICATION->IncludeComponent(
+	"custom:brands.slider", 
+	"", 
+	[]
+);
+
 $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "section_list", [
     "ADD_SECTIONS_CHAIN" => "N",
     "CACHE_FILTER" => "N",
