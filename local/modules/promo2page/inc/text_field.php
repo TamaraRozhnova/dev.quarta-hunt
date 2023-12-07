@@ -10,9 +10,9 @@
         </div>
         <div class="module-p2p-form-content">
             <input 
-                type= '<?=$arOption['TYPE']?>'  
-                name= '<?=$arOptionKey?>' 
-                value="<?=$arOption['VALUE'] ?? ''?>"
+                type = '<?=$arOption['TYPE']?>'  
+                name = '<?=$arOptionKey?>' 
+                value = "<?=htmlspecialchars($arOption['VALUE']) ?? ''?>"
                 >
         </div>
     </div>
