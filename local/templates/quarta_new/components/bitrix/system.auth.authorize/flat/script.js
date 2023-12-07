@@ -191,8 +191,13 @@ function handleQuickRegister(data,modalNode) {
 							case 'SUCCESS':
 
 								modalQuckRegisterMessage.style.display = 'none'
-								
-								location.reload();
+
+								if (document.referrer.trim() !== '') {
+									window.location.href = document.referrer
+								} else {
+									location.reload();
+								}
+
 								break;
 							case 'ERROR':
 								
@@ -311,7 +316,13 @@ function authPhone(data = null){
 							window.location.href = newUrl;
 
 						} else {
-							window.location.reload();
+
+							if (document.referrer.trim() !== '') {
+								window.location.href = document.referrer
+							} else {
+								window.location.reload()
+							}
+
 						}
 
 					}
