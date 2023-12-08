@@ -1,7 +1,12 @@
-<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?php 
+
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
+	die();
+}
 
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Sale;
+use Bitrix\Sale\DiscountCouponsManager;
 
 /**
  * @var array $arParams
@@ -22,6 +27,9 @@ if ($arParams["SET_TITLE"] == "Y"){
  */
 
 if (!empty($arResult['ORDER_ID'])) {
+
+	DiscountCouponsManager::clear(true);
+
 	$rsBasket = Sale\Order::load($arResult['ORDER_ID'])->getBasket()->getBasketItems();
 
 	foreach ($rsBasket as $arProductIndex => $arProduct) { 

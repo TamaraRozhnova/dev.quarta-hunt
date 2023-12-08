@@ -188,6 +188,15 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </div>
                     <? } ?>
 
+                    <a href="javascript:void(0);" 
+                           class="btn btn-primary px-5 interlabs-one-click-buy"
+                           data-productid="<?=$arResult['ID']?>" 
+                           data-data="<?=json_encode(["PRODUCT_ID" => $arResult['ID']])?>" 
+                           id="one-click-buy-<?=$arResult['ID']?>"
+                        >                        
+                        <?=GetMessage("BUY_ONE_CLICK")?>
+                    </a>
+
                     <div class="product__add<?= !$arResult['PRODUCT']['USE_OFFERS'] || !$arResult['AVAILABLE'] ? ' placeholder-glow' : '' ?>">
                         <? if (!$arResult['PRODUCT']['USE_OFFERS'] || !$arResult['AVAILABLE']) { ?>
                             <div class="placeholder"></div>
@@ -227,7 +236,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </button>
                     </div>
                     <hr/>
-
                     <div class="product__delivery mb-5">
                         <?/*<div class="product__delivery-option">
                             <div class="product__delivery-icon">
@@ -279,4 +287,3 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         'params' => $arParams,
         'component' => $component
     ], ['SHOW_BORDER' => false]); ?>
-

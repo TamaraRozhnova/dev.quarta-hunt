@@ -10573,6 +10573,9 @@ ymaps[class$="-balloon__layout"] {
   .wholesale__price-list .col-5 > div:last-child {
     margin-bottom: 0 !important;
   }
+  .modal {
+    z-index: 99999;
+  }
 }
 @media (max-width: 420px) {
   .wholesale__head-descr {
@@ -11203,4 +11206,99 @@ h1.small-h2 {
 
 .section__desc {
   margin: 3.125rem 0 0 0;
+}
+/* MULTI ACCOUNTS WINDOW */
+
+#multi-accounts-window .modal-content {
+  max-width: 450px;
+  margin: 10rem auto auto;
+}
+
+.multi-accounts-header-subtitle {
+  font-size: 15px;
+}
+
+.multi-accounts-header {
+  margin: 0 0 30px 0;
+}
+
+.multi-accounts-content-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.multi-accounts-content-item-name,
+.multi-accounts-content-item-type {
+  transition: 0.2s all ease-in;
+}
+
+@media (hover: hover) {
+  .multi-accounts-content-item:hover .multi-accounts-content-item-name,
+  .multi-accounts-content-item:hover .multi-accounts-content-item-type {
+    opacity: 0.7;
+  }
+}
+
+.multi-accounts-content-item:not(:first-child)::before {
+  width: 100%;
+  height: 1px;
+  content: " ";
+  display: block;
+
+  opacity: 0.2;
+  background-color: #808d9a;
+  border-radius: 2px;
+
+  margin: 4px 0;
+}
+
+.multi-accounts-content-item-name {
+  font-size: 14px;
+  font-weight: 500;
+  max-width: 50%;
+}
+
+.multi-accounts-content-item-name-type {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.multi-accounts-content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (max-width: 500px) {
+  #multi-accounts-window .modal-content {
+    margin: 3rem auto auto;
+  }
+}
+
+.subscribe-window__wrapper {
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40vh auto 0 auto;
+}
+
+.subscribe-success {
+  font-size: 1rem;
+  margin: 10px 0 0 0;
+  font-weight: bold;
+}
+
+div[id*="wait_comp"] {
+  opacity: 0;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  pointer-events: auto;
 }

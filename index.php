@@ -453,7 +453,8 @@ $APPLICATION->IncludeComponent("bitrix:form.result.new","subscribe_form", [
         "USE_EXTENDED_ERRORS" => "Y",
         "CACHE_TYPE" => "Y",
         "CACHE_TIME" => "3600000",
-        "VARIABLE_ALIASES" => []
+        "VARIABLE_ALIASES" => [],
+		"AJAX_MODE" => "Y"
     ]
 );
 
