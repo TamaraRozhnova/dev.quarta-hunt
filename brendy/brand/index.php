@@ -166,7 +166,7 @@ $priceCode = $user->getUserPriceCode(); ?>
 		"SECTION_COUNT_ELEMENTS" => "Y",
 		"SECTION_ID_VARIABLE" => "SECTION_ID",
 		"SECTION_TOP_DEPTH" => "1",
-		"SEF_FOLDER" => "/catalog/",
+		"SEF_FOLDER" => "/brendy/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -251,9 +251,9 @@ $priceCode = $user->getUserPriceCode(); ?>
 		"GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE" => "Выберите один из товаров, чтобы получить подарок",
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
-			"section" => "#SECTION_CODE_PATH#/",
-			"element" => "#ELEMENT_ID#/#ELEMENT_CODE#/",
-			"compare" => "compare.php?action=#ACTION_CODE#",
+			"section" => "",
+			"element" => "",
+			"compare" => "",
 			"smart_filter" => "#SECTION_CODE_PATH#/filter/#SMART_FILTER_PATH#/apply/",
 		),
 		"VARIABLE_ALIASES" => array(
