@@ -15,26 +15,16 @@ Loader::includeModule('iblock');
 final class IndexBrands extends CBitrixComponent
 {
 
-    private array $arBrands;
     private array $arBrandProperty;
     private array $arPropsBrands;
     private array $arAlphabet;
-
-    function getBrandsFromIblock()
-    {
-        $this->arBrands = ElementBrandsTable::getList([
-            'select' => ['ID', 'NAME' , 'CODE', 'PREVIEW_PICTURE'],
-            'cache' => [
-                'ttl' => 3600
-            ]
-        ])->fetchAll();
-    }
 
     function getBrandProperty()
     {
         $this->arBrandProperty = PropertyTable::getList([
             'select' => ['ID','CODE'],
             'filter' => [
+                '=ACTIVE' => 'Y',
                 '=CODE' => 'BREND',
                 '=IBLOCK_ID' => CATALOG_IBLOCK_ID
             ],
@@ -59,44 +49,20 @@ final class IndexBrands extends CBitrixComponent
 
     function prepareBrands()
     {
-        $arBrands = &$this->arBrands;
-
-        foreach ($arBrands as $arBrandIndex => &$arBrand) {
-
-            $currentBrand = &$arBrands[$arBrandIndex];
-
-            $arBrand['IMAGE'] = CFile::ResizeImageGet(
-                $arBrand['PREVIEW_PICTURE'],
-                [
-                    'width' => 150,
-                    'height' => 40
-                ],
-                BX_RESIZE_IMAGE_PROPORTIONAL
-            );
-
-            foreach ($this->arPropsBrands as $arPropBrand) {
-
-                if (
-                    strtolower($arPropBrand['VALUE']) == strtolower($arBrand['NAME'])
-                    ||
-                    strtolower($arPropBrand['VALUE']) == strtolower($arBrand['CODE'])
-                ) {
-                    $currentBrand['FILTER_ID'] = $arPropBrand['ID'];
-                }
-            }
-
-            if (empty($arBrand['FILTER_ID'])) {
-                continue;
-            }
-
-            $arBrand['URL'] = "/brendy/all/?cur={$arBrand['FILTER_ID']}";
-
+        $arPropBrands = &$this->arPropsBrands;
+        foreach ($arPropBrands as $arPropBrand) {
+            $this->arResult['BRANDS_FILTERS'][$arPropBrand['VALUE']] = "/brendy/all/?cur={$arPropBrand['ID']}";
         }
     }
 
     function getSortedWords(&$array)
     {
         return ksort($array);
+    }
+
+    function mergeAlphabet($array, $key) 
+    {
+        return [$key => array_reduce($array, 'array_merge', [])];
     }
 
     function setAlphabet()
@@ -107,20 +73,17 @@ final class IndexBrands extends CBitrixComponent
 
             $begWordBrand = mb_strtoupper(mb_substr($arBrand['VALUE'], 0, 1));
 
-            if (preg_match("/[А-Яа-я]/", $arBrand['VALUE'][0])) {
+            $categoryName = 'ENG_WORDS';
 
-                $alphabet['RUS_WORDS'][$begWordBrand][$arBrand['VALUE']] = $arBrand['VALUE'];
-
-                continue;
+            if (preg_match("/[А-Яа-я]/", $begWordBrand)) {
+                $categoryName = 'RUS_WORDS';
             }
 
             if (is_numeric($begWordBrand)) {
-                $alphabet['NUMERIC'][$begWordBrand][$arBrand['VALUE']] = $arBrand['VALUE'];
-
-                continue;
+                $categoryName = 'NUMERIC';
             }
 
-            $alphabet['ENG_WORDS'][$begWordBrand][$arBrand['VALUE']] = $arBrand['VALUE'];
+            $alphabet[$categoryName][$begWordBrand][$arBrand['VALUE']] = $arBrand['VALUE'];
         }
 
         if (!empty($alphabet['ENG_WORDS'])) {
@@ -131,25 +94,28 @@ final class IndexBrands extends CBitrixComponent
             $this->getSortedWords($alphabet['RUS_WORDS']);
         }
 
+        $alphabet['RUS_WORDS'] = $this->mergeAlphabet($alphabet['RUS_WORDS'], 'А-Я');
+        $alphabet['NUMERIC'] = $this->mergeAlphabet($alphabet['NUMERIC'], '0-9');
+
         $this->arAlphabet = $alphabet;
     }
     
     function prepareResult()
     {
+        $this->arResult['BRANDS_ALPHABET'] = $this->arAlphabet;
 
-        $this->arResult['BRANDS_SLIDER_ITEMS'] = $this->arBrands;
-        $this->arResult['BRANDS_SLIDER_PROPS'] = $this->arPropsBrands;
-        $this->arResult['BRANDS_SLIDER_ALPHABET'] = $this->arAlphabet;
+        $merAlphabetMainWords = array_merge(
+            $this->mergeAlphabet($this->arAlphabet['RUS_WORDS'], 'R') ?? [],
+            $this->mergeAlphabet($this->arAlphabet['ENG_WORDS'], 'E') ?? [],
+            $this->mergeAlphabet($this->arAlphabet['NUMERIC'], 'N') ?? [],
+        );
+
+        $this->arResult['BRANDS_SEARCH'] = $this->mergeAlphabet($merAlphabetMainWords, 'ALP_SEARCH');
     }
 
     function executeComponent() 
     {
         $this->getBrandProperty();
-        $this->getBrandsFromIblock();
-
-        if (empty($this->arBrands)) {
-            return false;
-        }
 
         if (empty($this->arBrandProperty)) {
             return false;

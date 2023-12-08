@@ -28,18 +28,6 @@ if (empty($currentBrandId)) {
 
 <div class="catalog">
 
-    <div class="breadcrumb-wrapper">
-        <div class="container">
-            <? $APPLICATION->IncludeComponent(
-                "bitrix:breadcrumb", "", array(
-                    "START_FROM" => "0",
-                    "PATH" => "",
-                    "SITE_ID" => "s1"
-                )
-            ); ?>
-        </div>
-    </div>
-
     <div class="category">
 
         <section class="category__header">

@@ -18,87 +18,71 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) {
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
+
 ?>
 
 <section class="bg-white">
 	<div class="brands-index__wrapper container">
 		<div class="brands-index__inner">
 			<div class="brands-index">
+
 				<div class="brands-index__header">
 					<div class="brands-index__title">
-						<h1>Все бренды</h1>
+						<h1><?=Loc::getMessage('BRAND_TITLE')?></h1>
 					</div>
 					<div class="brands-index__search">
 						<div class="input--lg">
-							<input placeholder="Хочу найти..." type="text" class="form-control" maxlength="255" value="" inputmode="text">
+							<input placeholder="<?=Loc::getMessage('SEARCH_PLACEHOLDER')?>" type="text" class="form-control search-brand-panel" maxlength="255" value="" inputmode="text">
 						</div>
+						<div class="brands-index__search-result hide"></div>
 					</div>
 					<div class="brands-index__alph">
-
-					<?if (!empty($arResult['BRANDS_SLIDER_ALPHABET'])):?>
-						<div class="brands-index__alph-words">
-							<?if (!empty($arResult['BRANDS_SLIDER_ALPHABET']['ENG_WORDS'])):?>
-								<?foreach ($arResult['BRANDS_SLIDER_ALPHABET']['ENG_WORDS'] as $engWordKey => $endWord):?>
-									<div class="brands-index__alph-word">
-										<a href="#<?=$engWordKey?>">
-											<?=$engWordKey?>
-										</a>
-									</div>
-								<?endforeach;?>
-
-							<?endif;?>
-							<?if (!empty($arResult['BRANDS_SLIDER_ALPHABET']['RUS_WORDS'])):?>
-								<div class="brands-index__alph-word">
-									<a href="#А-Я">
-										А-Я
-									</a>
-								</div>
-							<?endif;?>
-							<?if (!empty($arResult['BRANDS_SLIDER_ALPHABET']['NUMERIC'])):?>
-								<div class="brands-index__alph-word">
-									<a href="#0-9">
-										0-9
-									</a>
-								</div>
-							<?endif;?>
-						</div>
-					<?endif;?>
+						<?php include 'alphabet_line.php' ?>
 					</div>
 				</div>
 
 				<div class="brands-index__list-brands">
-
-					<?foreach ($arResult['BRANDS_SLIDER_ALPHABET'] as $typeWord => $arWords):?>
+					<?foreach ($arResult['BRANDS_ALPHABET'] as $typeWord => $arWords):?>
 						<div class="brands-index__list-brand">
 							<div class="brands-index__list-brand-items">
 								<?foreach ($arWords as $arWordKey => $arWord):?>
-									<div class="brands-index__list-brand-main-word">
-										<?if ($typeWord == 'RUS_WORDS'):?>
-											<h2>А-Я</h2>
-										<?elseif($typeWord == 'ENG_WORDS'):?>
+									<div data-word-anchor = '<?=$arWordKey?>' class="brands-index__list-brand-main-wrapper">
+										<div class="brands-index__list-brand-main-word">
 											<h2><?=$arWordKey?></h2>
-										<?elseif($typeWord == 'NUMERIC'):?>
-											<h2>0-9</h2>
-										<?endif;?>
-									</div>
-									<?foreach ($arWord as $brand):?>
-										<div class="brands-index__list-brand-item">
-											<a href="">
-												<?=$brand?>
-											</a>
 										</div>
-									<?endforeach;?>
+										<div class="brands-index__list-brand-item-wrapper">
+											<?foreach ($arWord as $brand):?>
+												<div class="brands-index__list-brand-item">
+													<a href="<?=$arResult['BRANDS_FILTERS'][$brand] ?? '#'?>">
+														<?=$brand?>
+													</a>
+												</div>
+											<?endforeach;?>
+										</div>
+									</div>
 								<?endforeach;?>
 							</div>
 						</div>
 					<?endforeach;?>
+				</div>
 
-
+				<div class="brands-index__footer">
+					<div class="brands-index__alph">
+						<?php include 'alphabet_line.php' ?>
+					</div>
 				</div>
 
 			</div>
 		</div>
 	</div>
 </section>
+
+<script>
+	const brandsForSearch = <?= json_encode($arResult['BRANDS_SEARCH']); ?>;
+	const brandsFilters = <?= json_encode($arResult['BRANDS_FILTERS']); ?>;
+</script>
 
 
