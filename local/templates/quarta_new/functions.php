@@ -59,7 +59,8 @@ function showBreadcrumb(): bool {
         '/cabinet/addresses/',
         '/cabinet/personal/',
         '/cabinet/orders',
-        '/cart/'
+        '/cart/',
+        '/brendy/'
     ];
 
     foreach ($notAllowedUrls as $url) {

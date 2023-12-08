@@ -24,6 +24,7 @@ Loader::registerAutoLoadClasses(null, [
     'Helpers\FileSizeHelper' => '/local/php_interface/classes/Helpers/FileSizeHelper.php',
     'Helpers\Filters\ProductsFilterHelper' => '/local/php_interface/classes/Helpers/Filters/ProductsFilterHelper.php',
     'Helpers\Filters\ReviewsFilterHelper' => '/local/php_interface/classes/Helpers/Filters/ReviewsFilterHelper.php',
+    'Helpers\Filters\BrandsFilterHelper' => '/local/php_interface/classes/Helpers/Filters/BrandsFilterHelper.php',
     'Helpers\NumWordHelper' => '/local/php_interface/classes/Helpers/NumWordHelper.php',
     'Helpers\ProductsDataHelper' => '/local/php_interface/classes/Helpers/ProductsDataHelper.php',
     'Helpers\RecommendedProductsHelper' => '/local/php_interface/classes/Helpers/RecommendedProductsHelper.php',
