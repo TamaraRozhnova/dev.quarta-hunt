@@ -10,13 +10,9 @@ use Helpers\Filters\BrandsFilterHelper;
 $filterHelperInstance = new BrandsFilterHelper();
 $filterParams = $filterHelperInstance->getFilters();
 
-$request = Context::getCurrent()->getRequest();
-
-if ($request->getRequestMethod() == 'GET') {
-    $arGet = $request->getQueryList()->toArray();
-
-    if (!empty($arGet['cur'])) {
-        $currentBrandId = htmlspecialchars($arGet['cur']);
+if (!empty($_REQUEST['BRAND_ID'])) {
+    if (is_numeric($_REQUEST['BRAND_ID'])) {
+        $currentBrandId = $_REQUEST['BRAND_ID'];
     }
 }
 

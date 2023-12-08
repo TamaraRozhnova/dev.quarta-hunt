@@ -51,7 +51,7 @@ final class IndexBrands extends CBitrixComponent
     {
         $arPropBrands = &$this->arPropsBrands;
         foreach ($arPropBrands as $arPropBrand) {
-            $this->arResult['BRANDS_FILTERS'][$arPropBrand['VALUE']] = "/brendy/all/?cur={$arPropBrand['ID']}";
+            $this->arResult['BRANDS_FILTERS'][$arPropBrand['VALUE']] = "/brendy/" . $arPropBrand['ID'] . '/';
         }
     }
 

@@ -88,7 +88,8 @@ final class SliderBrands extends CBitrixComponent
                 continue;
             }
 
-            $arBrand['URL'] = "/brendy/all/?cur={$arBrand['FILTER_ID']}";
+            $this->arResult['BRANDS_FILTERS'][$arPropBrand['VALUE']] = "/brendy/" . $arPropBrand['ID'] . '/';
+            $arBrand['URL'] = "/brendy/" . $arBrand['FILTER_ID'] . "/";
 
         }
     }
