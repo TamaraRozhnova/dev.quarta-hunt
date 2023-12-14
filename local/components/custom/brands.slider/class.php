@@ -23,6 +23,7 @@ final class SliderBrands extends CBitrixComponent
     {
         $this->arBrands = ElementBrandsTable::getList([
             'select' => ['ID', 'NAME' , 'CODE', 'PREVIEW_PICTURE'],
+            'filter' => ['=ACTIVE' => 'Y'],
             'cache' => [
                 'ttl' => 3600
             ]
