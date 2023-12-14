@@ -143,10 +143,6 @@ class CatalogFilter {
             const value = !!this.availableCheckbox.checked;
             this.handleChangeFilters({onlyAvailable: value});
         }
-        // this.availableCheckbox.addEventListener('change', () => {
-        //     const value = !!this.availableCheckbox.checked;
-        //     this.handleChangeFilters({onlyAvailable: value});
-        // })
     }
 
     hangFiltersClearEvent() {
@@ -160,16 +156,6 @@ class CatalogFilter {
 
             this.handleChangeFilters();
         }
-        // this.clearFilterButton.addEventListener('click', () => {
-        //     this.resetControls();
-        //     this.hangCloseAllApplyBnts()
-
-        //     if (document.documentElement.clientWidth <= 991) {
-        //         this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
-        //     }
-
-        //     this.handleChangeFilters();
-        // });
     }
 
     hangFiltersExtraClearEvent() {
@@ -228,7 +214,9 @@ class CatalogFilter {
 
                 }
 
-                this.hangCloseAllApplyBnts()
+                setTimeout(() => {
+                    this.hangCloseAllApplyBnts() 
+                }, 5000);
 
             }
         }
