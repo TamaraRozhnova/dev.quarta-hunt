@@ -11291,8 +11291,14 @@ h1.small-h2 {
 .subscribe-success {
   font-size: 1rem;
   margin: 10px 0 0 0;
+  font-weight: bold;
 }
 
 div[id*="wait_comp"] {
   opacity: 0;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  pointer-events: auto;
 }

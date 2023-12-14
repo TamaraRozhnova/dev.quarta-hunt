@@ -12,7 +12,7 @@ DiscountsHelper::fillProductsWithBonuses($arResult['ITEMS']);
 $arResult['SORT_OPTIONS'] = [
     'relevante' => 'по релевантности',
     'available' => 'по наличию',
-    'rating_asc' => 'по возрастанию рейтинга',
+    'rating_asc' => 'по розрастанию рейтинга',
     'rating_desc' => 'по убыванию рейтинга',
     'discount_asc' => 'по возрастанию скидки',
     'discount_desc' => 'по убыванию скидки',
