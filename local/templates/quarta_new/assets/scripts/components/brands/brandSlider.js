@@ -11,7 +11,7 @@ class SliderBrands {
                 loop: true,
                 slidesPerView: 'auto',
                 slidesPerGroupAuto: true,
-                spaceBetween: 76,
+                spaceBetween: 55,
                 navigation: {
                     nextEl: '.base-slider__next',
                     prevEl: '.base-slider__prev',

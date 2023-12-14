@@ -65,14 +65,16 @@ final class SliderBrands extends CBitrixComponent
 
             $currentBrand = &$arBrands[$arBrandIndex];
 
-            $arBrand['IMAGE'] = CFile::ResizeImageGet(
-                $arBrand['PREVIEW_PICTURE'],
-                [
-                    'width' => 150,
-                    'height' => 40
-                ],
-                BX_RESIZE_IMAGE_PROPORTIONAL
-            );
+            // $arBrand['IMAGE'] = CFile::ResizeImageGet(
+            //     $arBrand['PREVIEW_PICTURE'],
+            //     [
+            //         'width' => 150,
+            //         'height' => 100
+            //     ],
+            //     BX_RESIZE_IMAGE_PROPORTIONAL 
+            // );
+
+            $arBrand['IMAGE']['src'] = CFile::getPath($arBrand['PREVIEW_PICTURE']);
 
             foreach ($this->arPropsBrands as $arPropBrand) {
 
