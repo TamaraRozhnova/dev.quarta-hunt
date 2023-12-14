@@ -152,7 +152,7 @@ if (!$currentUser->getId()) {
 		$defaultParamsUsers
 	)->fetchAll();
 
-	if (empty($rsUsers)) {
+	if (empty($rsUsers) && !isset($_REQUEST['IS_BYU_ONE_CLICK'])) {
 
 		$smsObj = new Sender();
 		$smsCode = rand(1111, 9999);
@@ -213,6 +213,10 @@ if (!$currentUser->getId()) {
 
 	
 	} else {
+
+		if (isset($_REQUEST['IS_BYU_ONE_CLICK'])) {
+			die(Json::encode(['data' => 'ok']));
+		}
 
 		/** 
 		 * Аккаунт один или пользователь 

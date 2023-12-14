@@ -23,6 +23,7 @@ function interlabsOneClickComponentApp() {
           USER: {
             PERSONAL_PHONE: element.querySelector('input[name="PHONE"]').value,
           },
+          IS_BYU_ONE_CLICK: "true",
         };
 
         BX.ajax({
@@ -35,6 +36,7 @@ function interlabsOneClickComponentApp() {
               initModalMultiUser(data, element);
             } else {
               isMultiAccountsElement.value = "N";
+              element.submit();
             }
           },
         });
