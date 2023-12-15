@@ -191,7 +191,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     miniTableHandler() {
-      if (this.productsRow.getBoundingClientRect().top < -50) {
+      if (this.productsRow.getBoundingClientRect().top < -100) {
         this.compareWrapperMini.classList.add("show");
       } else {
         this.compareWrapperMini.classList.remove("show");
