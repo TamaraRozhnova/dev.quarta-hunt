@@ -5634,7 +5634,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								BX.create('SPAN', {props: {className: "ui-radio"}}),
 								BX.create('SPAN', {
 									props: {className: "ui-radio__content"}, children: [
-										BX.create('SPAN', {props: {className: "ui-ui-radio__name"}, html: 'Самовывоз'}),
+										BX.create('SPAN', {props: {className: "ui-radio__name"}, html: 'Самовывоз'}),
 										BX.create('SPAN', {
 											props: {class: "ui-radio__desc"},
 											html: 'Вы можете самостоятельно забрать заказ из нашего магазина.'
@@ -5652,7 +5652,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 								}),
 								BX.create('SPAN', {props: {className: "ui-radio"}}),
 								BX.create('SPAN', {props: {className: "ui-radio__content"}, children: [
-										BX.create('SPAN', {props: {className: "ui-ui-radio__name"}, html: 'Доставка'}),
+										BX.create('SPAN', {props: {className: "ui-radio__name"}, html: 'Доставка'}),
 										BX.create('SPAN', {props: {className: "ui-radio__desc"}, html: ''}),
 									]})
 							]
@@ -7482,7 +7482,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		insertStringProperty: function(property, propsItemNode, disabled)
 		{
-			console.log('[[[[', property, propsItemNode)
 
 			var prop, inputs, values, i, propContainer;
 

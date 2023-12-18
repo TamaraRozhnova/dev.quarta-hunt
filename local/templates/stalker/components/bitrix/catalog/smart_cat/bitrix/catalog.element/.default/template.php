@@ -20,15 +20,11 @@ $this->setFrameMode( true );
 
 $arPrice = reset( $arResult['ITEM_PRICES'] );
 
-
-?>
-<?
-echo_j($arResult, '$arResult element')
 ?>
 <div class="card <?=($arResult['PROPERTIES']['MORE_PHOTO']['VALUE']?'js-have-slider':'')?>">
 	<div class="card-left">
 		<div class="card__slider">
-			<? if ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE']): ?>
+			<?if(isset($arResult['PROPERTIES']) && isset($arResult['PROPERTIES']['MORE_PHOTO']) && isset($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])): ?>
 				<div class="swiper swiper-slider">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
@@ -71,7 +67,7 @@ echo_j($arResult, '$arResult element')
 			<div class="card__thumbnail">
 				<div class="swiper swiper-thumbs">
 					<div class="swiper-wrapper">
-						<? $img = Spro\Image::ResizeImageGet( $arResult['DETAIL_PICTURE']['ID'], [ 'width' => 138, 'height' => 78 ] ) ?>
+						<? $img = Spro\Image::ResizeImageGet( $arResult['DETAIL_PICTURE']['ID']??'0', [ 'width' => 138, 'height' => 78 ], BX_RESIZE_IMAGE_EXACT ) ?>
 						<div class="swiper-slide swiper-slide-thumb">
 							<div class="card__thumbnail-img">
 								<picture>
@@ -84,7 +80,7 @@ echo_j($arResult, '$arResult element')
 							</div>
 						</div>
 						<? foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $index => $item):
-							$img = Spro\Image::ResizeImageGet( $item, [ 'width' => 138, 'height' => 78 ] )
+                            $img = Spro\Image::ResizeImageGet( $item??'0', [ 'width' => 138, 'height' => 78 ], BX_RESIZE_IMAGE_EXACT )
 							?>
 							<div class="swiper-slide swiper-slide-thumb">
 								<div class="card__thumbnail-img">
@@ -103,7 +99,8 @@ echo_j($arResult, '$arResult element')
 			</div>
 		<? endif; ?>
 	</div>
-	<div class="card-right">
+
+    <div class="card-right">
 		<div class="card__description">
 			<? if ($arPrice['DISCOUNT']): ?>
 				<div class="tip tip-sale">
@@ -135,7 +132,7 @@ echo_j($arResult, '$arResult element')
 			<div class="card__actions">
 				<div class="card__count count">
 					<label class="ui-label">
-						<input type="number" name="q" data-q class="ui-input" placeholder="Кол">
+						<input type="number" name="q" data-q class="ui-input" placeholder="Кол-во">
 					</label>
 					<?php /*
 					<div class="select" data-select>
@@ -303,10 +300,20 @@ echo_j($arResult, '$arResult element')
 	<div class="card-info__block card-info__review review">
 		<h2>Отзывы</h2>
 
-		<?php if ($arResult['REVIEWS']): ?>
+        <?
+        echo_j($arResult['REVIEWS'], '$arResult[REVIEWS]');
+        ?>
+
+		<?if ($arResult['REVIEWS']): ?>
 			<div class="swiper">
 				<div class="swiper-wrapper">
-					<?php foreach ($arResult['REVIEWS'] as $arReview): ?>
+					<?foreach ($arResult['REVIEWS'] as $arReview):
+
+                        $stars = 0;
+                        if(isset($arReview['PROPERTY_STARS_VALUE'])){
+                            $stars = $arReview['PROPERTY_STARS_VALUE'];
+                        }
+                        ?>
 						<div class="swiper-slide">
 							<div class="review-item">
 								<div class="review-item__wrapper">
@@ -314,12 +321,17 @@ echo_j($arResult, '$arResult element')
 										<div class="review-item__title">
 											<?=$arReview['NAME']?>
 										</div>
+										<div class="review-item__stars">
+                                            <div class="stars-wrapper">
+                                                <div class="stars stars-<?=$stars?>"></div>
+                                            </div>
+										</div>
 									</div>
 
 									<div class="review-item__body">
 										<div class="review-item__img">
 
-											<?php if ($arReview['PREVIEW_PICTURE']): ?>
+											<?php if (isset($arReview['PREVIEW_PICTURE'])): ?>
 												<? $img = Spro\Image::ResizeImageGet( $arReview['PREVIEW_PICTURE'], [ 'width' => 138, 'height' => 78 ] ) ?>
 												<img class="lazy" data-src="<?=$img['src']?>" alt=""/>
 											<? else: ?>

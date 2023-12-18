@@ -13,6 +13,8 @@
 /** @var \CBitrixComponent $component */
 $this->setFrameMode( true );
 
+//use \Bitrix\Sale\Basket;
+use Bitrix\Sale;
 
 $arItem = $arResult['ITEM'];
 $showProperties = $arResult['SHOW_PROPS'];
@@ -41,7 +43,7 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 			</div>
 		<? endif; ?>
         <??>
-        <div class="tip tip-like <?=(in_array($arItem["ID"], $_SESSION['favourites'])?'is-active':'')?>" data-id="<?=$arItem["ID"]?>"></div>
+        <div class="tip tip-fav <?=(in_array($arItem["ID"], (array)$_SESSION['favourites'])?'is-active':'')?>" data-id="<?=$arItem["ID"]?>"></div>
         <??>
 	</div>
 	<div class="catalog__item-description">

@@ -7,6 +7,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Sale;
 use Bitrix\Sale\DiscountCouponsManager;
+use Bitrix\Main\Loader;
+
+Loader::includeModule('sale');
 
 /**
  * @var array $arParams
@@ -36,6 +39,19 @@ if (!empty($arResult['ORDER_ID'])) {
 
 		$rsSectionsEl = CIBlockElement::GetElementGroups($arProduct->getProductId(), true)->fetch();
 
+		if (empty($rsSectionsEl)) {
+
+			/**
+			 * Проверка на торговое предложение
+			 */
+
+			$productInfo = CCatalogSku::GetProductInfo(
+				$arProduct->getProductId()
+			);
+
+			$rsSectionsEl = CIBlockElement::GetElementGroups($productInfo['ID'], true)->fetch();
+		}
+
 		$rsPath = CIBlockSection::GetNavChain(false, $rsSectionsEl['ID']); 
 
 		while ($arPath = $rsPath->GetNext()) {
@@ -43,6 +59,8 @@ if (!empty($arResult['ORDER_ID'])) {
 		}
 		
 	}
+
+
 
 	if (!empty($sectionIds)) {
 

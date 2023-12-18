@@ -118,12 +118,12 @@
       padding-right: 50px;
 
       @include sm-screen {
-        font-size: 10px;
+        font-size: 16px;
       }
     }
 
     &-art {
-      font-size: 10px;
+      font-size: 14px;
       color: #999999;
       margin-bottom: 5px;
     }
@@ -141,6 +141,7 @@
         }
 
         &-old {
+          position: relative;
           font-size: 7px;
           line-height: 1.14;
 
@@ -150,6 +151,27 @@
         }
       }
     }
+
+    &-count{
+      display: flex;
+      align-items: end;
+      font-weight: bold;
+      line-height: 1;
+      font-size: 17px;
+
+      .count_measure{
+        padding-left: 2px;
+      }
+      .count_divider{
+        padding: 0 9px;
+      }
+    }
+
+    &-priceinfo{
+      display: flex;
+      align-items: flex-start;
+    }
+
   }
 
   &__like {
@@ -239,9 +261,9 @@
 
       }
       @include sm-screen {
-        margin-top: 20px;
-        height: 42px;
-        font-size: 9px;
+        margin-top: 24px;
+        height: 46px;
+        font-size: 18px;
       }
     }
   }

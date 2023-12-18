@@ -1,8 +1,8 @@
 <?php
 $IDs = [];
-foreach ($arResult['ORDERS'] as $key => &$order)
+foreach ($arResult['ORDERS'] as $key => $order)
 {
-	foreach ($order['BASKET_ITEMS'] as $index => &$item)
+	foreach ($order['BASKET_ITEMS'] as $index => $item)
 	{
 		$IDs[] = $item['PRODUCT_ID'];
 	}
@@ -18,16 +18,20 @@ $obElList = CIBlockElement::GetList(
 	]
 );
 $images = [];
-while ($item = $obElList->GetNext())
+while ($item1 = $obElList->GetNext())
 {
-	$images[ $item['ID'] ] = CFile::GetPath( $item['DETAIL_PICTURE'] );
+    if(is_array($item1['DETAIL_PICTURE']) || strlen($item1['DETAIL_PICTURE'])){
+        $images[ $item1['ID'] ] = CFile::GetPath( $item1['DETAIL_PICTURE'] );
+    }else{
+        $images[ $item1['ID'] ] = SITE_TEMPLATE_PATH . '/img/no-photo.png';
+    }
 }
 
-foreach ($arResult['ORDERS'] as $key => &$order)
+foreach ($arResult['ORDERS'] as $key => $arOrder)
 {
-	foreach ($order['BASKET_ITEMS'] as $index => &$item)
+	foreach ($arOrder['BASKET_ITEMS'] as $index => $arItem)
 	{
-		$item['IMAGE'] = $images[ $item['PRODUCT_ID'] ];
+        $arResult['ORDERS'][$key]['BASKET_ITEMS'][$index]['IMAGE'] = $images[ $arItem['PRODUCT_ID'] ];
 
 	}
 }

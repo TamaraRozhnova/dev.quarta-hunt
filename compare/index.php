@@ -1,6 +1,8 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Сравнение товаров на сайте");
+$APPLICATION->SetTitle("Сравнение товаров на сайте");
 
 use General\User;
 

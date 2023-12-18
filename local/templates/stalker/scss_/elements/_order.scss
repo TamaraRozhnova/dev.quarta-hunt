@@ -1,0 +1,276 @@
+.order {
+  max-width: 29.6%;
+  width: 100%;
+  background-color: #fff;
+  height: 100%;
+  padding: 26px 24px;
+
+  @include r(1279px) {
+    padding: 20px 14px;
+  }
+
+  @include r(916px) {
+    max-width: 100%;
+    margin-top: 25px;
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 26px;
+  }
+
+  &__promocode {
+    display: flex;
+    margin-bottom: 36px;
+
+    .ui-label {
+      max-width: 293px;
+      margin-right: 8px;
+
+      @include r(916px) {
+        max-width: 100%;
+      }
+    }
+
+    &-apply  {
+      &.ui-button.ui-button--dark {
+        width: 66px;
+        height: auto;
+        flex-shrink: 0;
+      }
+
+      .icon {
+        font-size: 7px;
+      }
+    }
+  }
+
+  &__info {
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      font-family: $play;
+      font-size: 16px;
+
+      &:not(:last-child) {
+        margin-bottom: 13px;
+      }
+    }
+  }
+
+  &__bottom {
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid #E2E2E2;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    margin-bottom: 23px;
+
+    .price {
+      &-new {
+        margin-bottom: 0;
+        font-size: 8px;
+
+        .value {
+          font-size: 14px;
+
+          @include r(1290px) {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+
+    &-name {
+      font-size: 12px;
+
+      @include r(1290px) {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .ui-button {
+    height: 42px;
+
+    @include r(1024px) {
+      font-size: 10px;
+    }
+  }
+}
+
+.order {
+  &__item {
+    border: 1px solid #E2E2E2;
+    margin-bottom: 30px;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    font-family: $play;
+    padding: 17px 20px;
+    border-bottom: 1px solid #E2E2E2;
+
+    .order__number {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1;
+      color: #141414;
+      margin-right: 28px;
+
+      @include sm-screen {
+        font-size: 14px;
+        margin-right: 18px;
+      }
+    }
+
+    .order__date {
+      color: rgba(20, 20, 20, 0.4);
+      font-size: 12px;
+      line-height: 2;
+    }
+  }
+
+  &__body {
+    display: flex;
+    padding: 35px 28px;
+
+    @include lg-screen {
+      padding: 26px 20px;
+    }
+
+    @include md-screen {
+      flex-flow: column;
+      padding: 16px;
+    }
+
+
+    .order__total {
+      flex-flow: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      max-width: 195px;
+      width: 100%;
+      margin-left: auto;
+
+      @include md-screen {
+        align-items: flex-start;
+        max-width: 100%;
+        margin-top: 38px;
+        padding-top: 12px;
+        border-top: 1px solid #E2E2E2;
+        margin-left: 0;
+      }
+
+      &-price {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-weight: 400;
+        font-size: 12px;
+
+        .price-new {
+          margin-left: auto;
+
+          @include md-screen {
+            margin-left: 20px;
+          }
+        }
+      }
+
+      &-count {
+        margin-top: 8px;
+        font-family: $play;
+        font-size: 14px;
+        color: rgba(56, 56, 56, 0.6);
+        text-align: right;
+
+        @include md-screen {
+          text-align: left;
+          padding-left: 80px;
+        }
+      }
+    }
+  }
+
+  &__goods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 25px;
+    column-gap: 15px;
+    width: 100%;
+    height: 100%;
+    max-width: calc(100% - 225px);
+
+    @include lg-screen {
+      grid-template-columns: repeat(1, 1fr);
+      max-width: calc(100% - 55px);
+      margin-right: 20px;
+    }
+
+    @include xs-screen {
+      max-width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &__good {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    &-chars {
+      @include lg-screen {
+        max-width: 50%;
+      }
+    }
+
+    &-img {
+      position: relative;
+      @include ratio(138, 78);
+      width: 100%;
+      height: 100%;
+      max-width: 138px;
+      border: 1px solid #E2E2E2;
+      margin-right: 26px;
+
+      @include xs-screen {
+        max-width: 99px;
+        height: 58px;
+        @include ratio(99, 58);
+      }
+
+      img {
+        @include img-cover;
+        @include coverdiv;
+      }
+    }
+
+    &-name {
+      font-family: $play;
+      font-size: 14px;
+      line-height: 1.14;
+      margin-bottom: 18px;
+    }
+
+    &-price {
+      .price-new {
+        font-size: 8px;
+
+        .value {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

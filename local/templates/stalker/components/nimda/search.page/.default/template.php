@@ -12,6 +12,8 @@
 /** @var CBitrixComponent $component */
 
 //echo_r($arResult);
+
+//echo_j('$arResult', $arResult);
 ?>
 <div class="sf__wrapper" style="width: 100%">
     <form method="get" action="/search/" autocomplete="off" class="sf__form">

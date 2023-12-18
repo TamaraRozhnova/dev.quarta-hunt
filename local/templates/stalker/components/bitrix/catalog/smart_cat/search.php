@@ -13,6 +13,11 @@
 
 $this->addExternalCss("/bitrix/css/main/bootstrap.css");
 
+?>
+    <div class="main">
+            <div class="container">
+
+<?
 if ($arParams["USE_COMPARE"]=="Y")
 {
 	$APPLICATION->IncludeComponent(
@@ -113,6 +118,7 @@ $APPLICATION->IncludeComponent(
 		"SET_STATUS_404" => "N",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "N",
+        "USE_TITLE_RANK" => "Y",
 
 		"PAGE_RESULT_COUNT" => !empty($arParams["SEARCH_PAGE_RESULT_COUNT"]) ? $arParams["SEARCH_PAGE_RESULT_COUNT"] : "50",
 		"RESTART" => !empty($arParams["SEARCH_RESTART"]) ? $arParams["SEARCH_RESTART"] : "N",
@@ -166,3 +172,7 @@ $APPLICATION->IncludeComponent(
 	array("HIDE_ICONS" => "Y")
 );
 unset($basketAction);
+
+?>
+            </div>
+    </div>

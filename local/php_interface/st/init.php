@@ -2,7 +2,9 @@
 //auto_prepend_file = '/var/www/www-root/data/www/dev.stalker.ru/bitrix/modules/security/tools/start.php';
 
 use \Bitrix\Main\Loader;
-use Bitrix\Main;
+use \Bitrix\Main;
+use Bitrix\Sale;
+use Bitrix\Sale\Location;
 
 include_once($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/st/constants.php');
 
@@ -80,6 +82,47 @@ function num_declension($number, $titles) {
 //    $arUserResult['DELIVERY_LOCATION'] = 269; // id Санкт-Петербурга
 //}
 
+//\Bitrix\Main\EventManager::getInstance()->addEventHandlerCompatible(
+//    'sale',
+//    'OnSaleComponentOrderProperties',
+//    'SaleOrderEvents::fillLocation'
+//);
+//
+//class SaleOrderEvents
+//
+//{
+//
+////    function fillLocation(&$arUserResult, $request, &$arParams, &$arResult)
+////
+////    {
+////
+////        $registry = \Bitrix\Sale\Registry::getInstance(\Bitrix\Sale\Registry::REGISTRY_TYPE_ORDER);
+////        $orderClassName = $registry->getOrderClassName();
+////        $order = $orderClassName::create(\Bitrix\Main\Application::getInstance()->getContext()->getSite());
+////        $propertyCollection = $order->getPropertyCollection();
+////
+////        foreach ($propertyCollection as $property)
+////        {
+////            if ($property->isUtil())
+////                continue;
+////
+////            $arProperty = $property->getProperty();
+////            if(
+////                $arProperty['TYPE'] === 'LOCATION'
+////                && array_key_exists($arProperty['ID'],$arUserResult["ORDER_PROP"])
+////                && !$request->getPost("ORDER_PROP_".$arProperty['ID'])
+////                && (
+////                    !is_array($arOrder=$request->getPost("order"))
+////                    || !$arOrder["ORDER_PROP_".$arProperty['ID']]
+////                )
+////            ) {
+////                $arUserResult["ORDER_PROP"][$arProperty['ID']] = 269;
+////            }
+////        }
+////    }
+//}
+
+
 Main\EventManager::getInstance()->addEventHandler('sale', 'OnSaleComponentOrderProperties', ['OnSale','OnSaleComponentOrderProperties']);
 //function OnSaleComponentOrderProperties(&$arUserResult, $request, &$arParams, &$arResult)
 //{
@@ -99,22 +142,42 @@ class OnSale{
 
     public static function OnSaleComponentOrderProperties(&$arFields)
     {
-//        $cityId = self::defaultCity;
-//        if(isset($_COOKIE['cityId'])){
-//            $cityId = $_COOKIE['cityId'];
-//        }
-//
-//        $userCity = self::defaultUserCity;
-//        if(isset($_COOKIE['userCity'])){
-//            $userCity = $_COOKIE['userCity'];
-//        }
-//
-//        $rsLocaction = CSaleLocation::GetLocationZIP($cityId);
-//        $arLocation = $rsLocaction->Fetch();
-//        $arFields['ORDER_PROP'][self::PROP_ZIP] = $arLocation['ZIP'];
-//        $arFields['ORDER_PROP'][self::PROP_LOCATION_NAME] = $userCity;
-//        $arFields['ORDER_PROP'][self::PROP_LOCATION] = CSaleLocation::getLocationCODEbyID($cityId);
-//        $arFields["DELIVERY_ID"] = self::DELIVERY_DEFAULT;
+        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r($arFields, 1), FILE_APPEND);
+
+        $cityId = self::defaultCity;
+        if(isset($_COOKIE['cityId'])){
+            $cityId = $_COOKIE['cityId'];
+        }
+
+        $userCity = self::defaultUserCity;
+        if(isset($_COOKIE['userCity'])){
+            $userCity = $_COOKIE['userCity'];
+        }
+
+        $rsLocaction = CSaleLocation::GetLocationZIP($cityId);
+        $arLocation = $rsLocaction->Fetch();
+
+        if(!isset($arFields['ORDER_PROP'][self::PROP_ZIP])){
+            $arFields['ORDER_PROP'][self::PROP_ZIP] = $arLocation['ZIP'];
+        }
+        if(!isset($arFields['ORDER_PROP'][self::PROP_LOCATION_NAME])){
+            $arFields['ORDER_PROP'][self::PROP_LOCATION_NAME] = $userCity;
+        }
+        if(!isset($arFields['ORDER_PROP'][self::PROP_LOCATION])){
+            $arFields['ORDER_PROP'][self::PROP_LOCATION] = CSaleLocation::getLocationCODEbyID($cityId);
+        }
+        if(!isset($arFields["DELIVERY_ID"]) || intval($arFields["DELIVERY_ID"]) < 1){
+            $arFields["DELIVERY_ID"] = self::DELIVERY_DEFAULT;
+            $arFields['ORDER_PROP'][self::PROP_ZIP] = $arLocation['ZIP'];
+            $arFields['ORDER_PROP'][self::PROP_LOCATION_NAME] = $userCity;
+            $arFields['ORDER_PROP'][self::PROP_LOCATION] = CSaleLocation::getLocationCODEbyID($cityId);
+        }
+
+        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r([
+            'loc' => CSaleLocation::getLocationCODEbyID($cityId),
+            'cityId' => $cityId,
+            ], 1), FILE_APPEND);
+        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r($arFields, 1), FILE_APPEND);
 
     }
 }

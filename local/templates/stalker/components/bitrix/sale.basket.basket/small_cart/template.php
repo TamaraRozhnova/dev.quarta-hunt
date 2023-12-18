@@ -32,37 +32,47 @@ $q = 0;
                 ?>
                 <div class="modal-cart__item">
                     <div class="modal-cart__item-img">
+                        <a href="<?=$arItem['DETAIL_PAGE_URL']?>">
                         <picture>
                             <img src="<?=$image_src?>" alt="">
                         </picture>
+                        </a>
                         <div class="dot dot--top-left"></div>
                         <div class="dot dot--top-right"></div>
                         <div class="dot dot--bottom-right"></div>
                         <div class="dot dot--bottom-left"></div>
                     </div>
                     <div class="modal-cart__item-content">
-                        <div class="modal-cart__item-name"><?=$arItem['NAME']?></div>
+                        <div class="modal-cart__item-name"><a href="<?=$arItem['DETAIL_PAGE_URL']?>"><?=$arItem['NAME']?></a></div>
                         <?if(isset($arItem['arProps']) && isset($arItem['arProps']["CML2_ARTICLE"])){?>
                             <div class="modal-cart__item-art">АРТ <?=$arItem['arProps']["CML2_ARTICLE"]["VALUE"]?></div>
                         <?}?>
-                        <div class="modal-cart__item-price">
-                            <div class="price">
-                                <?if($arItem['DISCOUNT_PRICE']):?>
-                                    <div class="price-new">
-                                        <span class="value"><?=priceFormat($arItem['PRICE'])?></span> ₽
-                                    </div>
-                                    <div class="price-old">
-                                        <span class="value"><?=priceFormat($arItem['FULL_PRICE'])?></span> ₽
-                                    </div>
-                                <?else:?>
-                                    <div class="price-new">
-                                        <span class="value"><?=priceFormat($arItem['PRICE'])?></span> ₽
-                                    </div>
-                                <?endif;?>
+                        <div class="modal-cart__item-priceinfo">
+                            <div class="modal-cart__item-count">
+                                <div class="count"><?=$arItem['QUANTITY']?></div>
+                                <div class="count_measure"><?=$arItem['MEASURE_TEXT']?></div>
+                                <div class="count_divider">x</div>
+                            </div>
+                            <div class="modal-cart__item-price">
+                                <div class="price">
+                                    <?if($arItem['DISCOUNT_PRICE']):?>
+                                        <div class="price-new">
+                                            <span class="value"><?=priceFormat($arItem['PRICE'])?></span> ₽
+                                        </div>
+                                        <div class="price-old">
+                                            <span class="value"><?=priceFormat($arItem['FULL_PRICE'])?></span> ₽
+                                        </div>
+                                    <?else:?>
+                                        <div class="price-new">
+                                            <span class="value"><?=priceFormat($arItem['PRICE'])?></span> ₽
+                                        </div>
+                                    <?endif;?>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="modal-cart__like tip-like" data-id="<?=$arItem["PRODUCT_ID"]?>"></div>
+                    <div class="modal-cart__like tip-fav" data-id="<?=$arItem["PRODUCT_ID"]?>"></div>
                     <div class="modal-cart__remove" data-delete-basket="<?=$arItem['ID']?>">
                         <svg class="icon icon-close">
                             <use xlink:href="<?=SITE_TEMPLATE_PATH?>/img/sprite.svg#icon-close"></use>

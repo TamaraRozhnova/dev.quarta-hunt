@@ -14,16 +14,21 @@ $this->setFrameMode( true );
 CModule::IncludeModule( 'iblock' );
 ?>
 
+<?php
+    echo_j($arResult, '$arResult');
+?>
 
 <div class="swiper">
 	<div class="swiper-wrapper">
 		<?
 		$arSelect = [ "ID", "IBLOCK_ID", "CODE", "NAME", "PROPERTY_SUBTITLE", "DETAIL_PICTURE", "PROPERTY_LINK", "DETAIL_TEXT" ];
 		$arFilter = [ "IBLOCK_ID" => $arParams['IBLOCK_ID'], "ACTIVE_DATE" => "Y", "ACTIVE" => "Y" ];
-		$res = CIblockElement::GetList( [ "DATE_CREATE" => "DESC" ], $arFilter, false, $arPages, $arSelect );
+		$res = CIblockElement::GetList( [ "SORT" => "ASC" ], $arFilter, false, $arPages, $arSelect );
 		while ($ob = $res->GetNextElement())
 		{
 			$arFields = $ob->GetFields();
+
+            echo_j($arFields, '$arFields');
 
 //            $arFields['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE']);
 			?>

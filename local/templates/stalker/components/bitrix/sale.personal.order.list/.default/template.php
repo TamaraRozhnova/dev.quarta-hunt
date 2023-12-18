@@ -10,6 +10,8 @@ CJSCore::Init(array('clipboard', 'fx'));
 
 Loc::loadMessages(__FILE__);
 
+echo_j($arResult, '$arResult order.list');
+
 if (!empty($arResult['ERRORS']['FATAL']))
 {
 }

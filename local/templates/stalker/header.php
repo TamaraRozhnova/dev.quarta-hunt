@@ -61,7 +61,9 @@ $APPLICATION->IncludeFile('functions.php');
 
 </head>
 <body>
-<?php $APPLICATION->ShowPanel(); ?>
+<div class="panel-wrapper">
+    <?php $APPLICATION->ShowPanel(); ?>
+</div>
 <?
 if($USER->isAuthorized()){
     echo_j($USER->getLogin(), 'auth');
@@ -144,7 +146,7 @@ if($USER->isAuthorized()){
                                 </div>
                                 <div class="subblock ">
                                     <div class="search">
-                                    <form method="get" action="/search/" autocomplete="off">
+                                    <form method="get" action="/catalog/" autocomplete="off">
                                         <button class="btn" type="submit" style="border: none;background: transparent;">
                                             <div class="icon lupa">
                                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +159,6 @@ if($USER->isAuthorized()){
                                                 <input type="text" class="search-input ajaxsearch__input"  placeholder="Введите запрос для поиска" name="q" value="" autocomplete="off">
                                             </div>
                                         </div>
-
                                         <div class="icon cross">
                                             <a href="#" class="close__search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.45597 0.100422L0.0993155 1.45708C-0.0212764 1.57767 -0.0212768 1.69827 0.099315 1.81886L7.19916 8.9187L0.461617 15.6562C0.341026 15.7768 0.341026 15.8974 0.461618 16.018L1.81828 17.3747C1.93887 17.4953 2.05946 17.4953 2.18005 17.3747L8.91759 10.6371L16.0174 17.737C16.138 17.8576 16.2586 17.8576 16.3792 17.737L17.7359 16.3803C17.8565 16.2597 17.8565 16.1391 17.7359 16.0185L10.636 8.9187L17.3746 2.1801C17.4952 2.05951 17.4952 1.93892 17.3746 1.81832L16.018 0.461665C15.8974 0.341074 15.7768 0.341072 15.6562 0.461665L8.91759 7.20026L1.81775 0.100422C1.69716 -0.0201698 1.57657 -0.0201701 1.45597 0.100422Z" fill="#2A2B2B" fill-opacity="0.85"/></svg></a>
                                         </div>
@@ -165,14 +166,7 @@ if($USER->isAuthorized()){
                                     </div>
                                 </div>
                             </div>
-                            <div class="soc">
-                                <div class="item">
-                                    <a href="#"><div class="soc-logo soc-logo-vk"></div></a>
-                                </div>
-                                <div class="item">
-                                    <a href="#"><div class="soc-logo soc-logo-tg"></div></a>
-                                </div>
-                            </div>
+                            <?$APPLICATION->IncludeFile("/include/social__header.php");?>
                         </div>
                     </nav>
 				</div>
@@ -221,12 +215,12 @@ if($USER->isAuthorized()){
                                         <path d="M5.78723 0.542553L5.78723 4.34043L1.98936 4.34043C1.84547 4.34043 1.70747 4.39759 1.60572 4.49934C1.50397 4.60108 1.44681 4.73909 1.44681 4.88298L1.44681 15.9149L0.542553 15.9149C0.398659 15.9149 0.260658 15.9721 0.15891 16.0738C0.0571616 16.1756 -3.00056e-08 16.3136 -2.37158e-08 16.4574C-1.74259e-08 16.6013 0.0571616 16.7393 0.15891 16.8411C0.260659 16.9428 0.398659 17 0.542553 17L16.4574 17C16.6013 17 16.7393 16.9428 16.8411 16.8411C16.9428 16.7393 17 16.6013 17 16.4574C17 16.3136 16.9428 16.1756 16.8411 16.0738C16.7393 15.9721 16.6013 15.9149 16.4574 15.9149L15.5532 15.9149L15.5532 7.7766C15.5532 7.6327 15.496 7.4947 15.3943 7.39295C15.2925 7.2912 15.1545 7.23404 15.0106 7.23404L11.2128 7.23404L11.2128 0.542552C11.2128 0.398658 11.1556 0.260658 11.0539 0.15891C10.9521 0.0571628 10.8141 -4.727e-07 10.6702 -4.6641e-07L6.32979 -2.76684e-07C6.18589 -2.70394e-07 6.04789 0.057163 5.94614 0.15891C5.84439 0.260658 5.78723 0.398658 5.78723 0.542553ZM2.53191 5.42553L5.78723 5.42553L5.78723 15.9149L2.53191 15.9149L2.53191 5.42553ZM14.4681 8.31915L14.4681 15.9149L11.2128 15.9149L11.2128 8.31915L14.4681 8.31915ZM10.1277 1.08511L10.1277 15.9149L6.87234 15.9149L6.87234 1.08511L10.1277 1.08511Z" fill="#2A2B2B"></path>
                                     </svg>
                                     <?
-                                    $f = 0;
-                                    if(isset($_SESSION['favourites']) && count($_SESSION['favourites'])){
-                                        $f = count($_SESSION['favourites']);
-                                    }
+//                                    $f = 0;
+//                                    if(isset($_SESSION['favourites']) && count($_SESSION['favourites'])){
+//                                        $f = count($_SESSION['favourites']);
+//                                    }
                                     ?>
-                                    <span class="compare-badge badge-" style="<?=($f>0?'display:block':'display:none')?>"><?=$f?></span>
+                                    <span class="compare-badge badge-" style="display:none<?//=($f>0?'display:block':'display:none')?>"></span>
                                 </div>
                             </a>
 						<?endif?>
@@ -279,13 +273,16 @@ if($USER->isAuthorized()){
                     <? if (showBreadcrumb()) { ?>
                     <div class="container">
                         <div class="breadcrumbs">
-                                <? $APPLICATION->IncludeComponent(
-                                    "bitrix:breadcrumb", "", array(
-                                        "START_FROM" => "0",
-                                        "PATH" => "",
-                                        "SITE_ID" => "st"
-                                    )
-                                ); ?>
+                                <? $APPLICATION->IncludeComponent("bitrix:breadcrumb", "", array(
+	"START_FROM" => "0",
+		"PATH" => "",
+		"SITE_ID" => "st"
+	),
+	false,
+	array(
+	"ACTIVE_COMPONENT" => "N"
+	)
+); ?>
                         </div>
                     </div>
                     <? } ?>

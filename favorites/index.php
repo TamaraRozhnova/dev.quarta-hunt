@@ -1,6 +1,8 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Ваши избранные товары");
+$APPLICATION->SetTitle("Ваши избранные товары");
 
 $APPLICATION->AddChainItem('Избранное');
 

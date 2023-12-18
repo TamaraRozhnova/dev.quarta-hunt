@@ -25,6 +25,7 @@ $obElList = CIBlockElement::GetList(
 		'PREVIEW_PICTURE',
 		'PREVIEW_TEXT',
 		'ACTIVE_FROM',
+        'PROPERTY_STARS'
 	]
 );
 

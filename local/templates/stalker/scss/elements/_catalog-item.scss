@@ -3,13 +3,13 @@
   position: relative;
   display: flex;
   //align-items: stretch;
-  align-items: center;
+  align-items: stretch;
   background-color: #fff;
   border: 1px solid #e6e6e6;
 
   .tip {
     position: absolute;
-    top: 10px;
+    top: 5%;
     left: inherit;
     right: 10px;
 
@@ -18,13 +18,18 @@
     }
   }
 
-  .tip-like {
+  .tip-fav {
     position: absolute;
-    top: 4px;
+    top: 5%;
     left: 32px;
     right: inherit;
     height: 36px;
     width: 36px;
+    margin-top: -3px;
+    cursor: pointer;
+
+    //display: none!important;
+
   }
 
   @include sm-screen {
@@ -39,7 +44,8 @@
     position: relative;
     @include ratio(420, 280);
     max-width: 42.5%;
-    height: 100%;
+    //height: 100%;
+    height: auto;
     width: 100%;
 
     @include sm-screen {
@@ -47,6 +53,20 @@
     }
 
     img {
+      //max-width: 90%;
+      //left: 10%;
+      max-width: 100%;
+      left: 0%;
+
+      @include xl-screen {
+        max-width: 88%;
+        left: 12%;
+      }
+      @include xxl-screen {
+        max-width: 88%;
+        left: 12%;
+      }
+
       @include coverdiv;
       @include img-cover;
     }
@@ -168,6 +188,11 @@
       &--dark {
         margin-bottom: 9px;
         background-color: #B20E04;
+
+        &:hover{
+          //color: #fff;
+          background-color: transparent;
+        }
       }
       &--light {
         margin-bottom: 9px;
