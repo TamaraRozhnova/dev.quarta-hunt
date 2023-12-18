@@ -129,34 +129,40 @@ if (!empty($arResult["SHOW_FIELDS"]))
 			foreach($arResult["ITEMS"] as $arElement)
 			{
 		?>
-				<td valign="top">
+
 		<?
 				switch($code)
 				{
 					case "NAME":
+                        ?><td valign="top"><?
 						?><a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><?=$arElement[$code]?></a>
 						<?if($arElement["CAN_BUY"]):?>
 						<noindex><br /><a class="bx_bt_button bx_small" href="<?=$arElement["BUY_URL"]?>" rel="nofollow"><?=GetMessage("CATALOG_COMPARE_BUY"); ?></a></noindex>
 						<?elseif(!empty($arResult["PRICES"]) || is_array($arElement["PRICE_MATRIX"])):?>
 						<br /><?=GetMessage("CATALOG_NOT_AVAILABLE")?>
 						<?endif;
+                        ?></td><?
 						break;
 					case "PREVIEW_PICTURE":
 					case "DETAIL_PICTURE":
 						if (!empty($arElement["FIELDS"][$code]) && is_array($arElement["FIELDS"][$code])):?>
-							<a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><img
+                            <td valign="middle">
+                            <a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><img
 							border="0" src="<?=$arElement["FIELDS"][$code]["SRC"]?>"
 							width="auto" height="150"
 							alt="<?=$arElement["FIELDS"][$code]["ALT"]?>" title="<?=$arElement["FIELDS"][$code]["TITLE"]?>"
 							/></a>
+                            </td>
 						<?endif;
 						break;
 					default:
-						echo $arElement["FIELDS"][$code];
-						break;
+                        ?><td valign="top"><?
+                        echo $arElement["FIELDS"][$code];
+                        ?></td><?
+
+                        break;
 				}
 			?>
-				</td>
 			<?
 			}
 			unset($arElement);

@@ -81,6 +81,8 @@ if(isset($_REQUEST["q"]))
 else
 	$q = false;
 
+$arResult["dbg"]["q"] = $q;
+
 
 
 if(
@@ -204,6 +206,8 @@ else
 {
 	$arrDropdown = $obCache->GetVars();
 }
+
+
 
 $arResult["DROPDOWN"] = htmlspecialcharsex($arrDropdown);
 $arResult["REQUEST"]["HOW"] = htmlspecialcharsbx($how);

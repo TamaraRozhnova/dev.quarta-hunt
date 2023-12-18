@@ -55,8 +55,17 @@ class CUserEx
             $addDb = DiscountCouponTable::add($arCoupon);
 
             if (!$addDb->isSuccess()) {
+                $log = date('Y-m-d H:i:s') . ' ' . print_r('Ошибка отправки почты', true);
+                file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+
+                $log = date('Y-m-d H:i:s') . ' ' . print_r($addDb->getErrorMessages(), true);
+                file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
 //                echo $addDb->getErrorMessages();
             } else {
+
+                $log = date('Y-m-d H:i:s') . ' ' . print_r('Процесс отправки почты', true);
+                file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+
 
                 Event::send(array(
                     "EVENT_NAME" => "NEW_USER_COUPON", 

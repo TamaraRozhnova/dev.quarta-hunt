@@ -74,7 +74,7 @@
 						<div class="accordion__arrow"></div>
 					</div>
 					<div class="accordion__body" data-accordion-body>
-						<!--div-- class="footer__links-list">
+						<div class="footer__links-list">
 							<?$APPLICATION->IncludeComponent(
 	"bitrix:menu", 
 	"smart_catalog_bottom", 
@@ -94,19 +94,8 @@
 	),
 	false
 ); ?>
-						</div-->
-                        <div class="footer__links-list">
-                            <?php $APPLICATION->IncludeComponent(
-                                "bitrix:main.include",
-                                "",
-                                [
-                                    "AREA_FILE_SHOW" => "file",
-                                    "AREA_FILE_SUFFIX" => "inc",
-                                    "EDIT_TEMPLATE" => "standard.php",
-                                    "PATH" => "/include/footer_adress.php",
-                                ]
-                            ); ?>
-                        </div>
+						</div>
+
 					</div>
 				</div>
 				<div class="accordion footer__links-column footer__links-column_address">
@@ -115,6 +104,18 @@
 						<div class="accordion__arrow"></div>
 					</div>
 					<div class="accordion__body" data-accordion-body>
+                            <div class="footer__links-list">
+                                <?php $APPLICATION->IncludeComponent(
+                                    "bitrix:main.include",
+                                    "",
+                                    [
+                                        "AREA_FILE_SHOW" => "file",
+                                        "AREA_FILE_SUFFIX" => "inc",
+                                        "EDIT_TEMPLATE" => "standard.php",
+                                        "PATH" => "/include/footer_adress.php",
+                                    ]
+                                ); ?>
+                            </div>
 						<div class="footer__links-list">
 					<?php $APPLICATION->IncludeComponent(
 						"bitrix:main.include",
@@ -159,5 +160,11 @@
 <?*/?>
 <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/script.js?v3"></script>
 
+<script>
+    (function(w,d,u){
+        var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+        var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+    })(window,document,'https://crm.quarta-hunt.ru/upload/crm/site_button/loader_3_h1rrbr.js');
+</script>
 </body>
 </html>

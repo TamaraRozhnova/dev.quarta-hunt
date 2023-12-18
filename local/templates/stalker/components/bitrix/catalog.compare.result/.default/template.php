@@ -13,8 +13,8 @@
 
 //$_SESSION["CATALOG_COMPARE_LIST"]['CATALOG_IBLOCK_ID']['ITEMS']
 
-echo_j('$_SESSION', $_SESSION["CATALOG_COMPARE_LIST"][CATALOG_IBLOCK_ID]['ITEMS']);
-echo_j('$GLOBALS', $GLOBALS["CATALOG_COMPARE_LIST"][CATALOG_IBLOCK_ID]['ITEMS']);
+//echo_j('$_SESSION', $_SESSION["CATALOG_COMPARE_LIST"][CATALOG_IBLOCK_ID]['ITEMS']);
+//echo_j('$GLOBALS', $GLOBALS["CATALOG_COMPARE_LIST"][CATALOG_IBLOCK_ID]['ITEMS']);
 
 $isAjax = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -35,9 +35,9 @@ if ($isAjax)
 {
 	$APPLICATION->RestartBuffer();
 }
-?><div class="bx_sort_container" style="display: flex; align-items: center;">
-	<div class="sorttext" style="padding-right: 16px"><?=GetMessage("CATALOG_SHOWN_CHARACTERISTICS")?>:</div>
-    <div style="display: flex">
+?><div class="bx_sort_container">
+	<div class="sorttext"><?=GetMessage("CATALOG_SHOWN_CHARACTERISTICS")?>:</div>
+    <div class="btn__wrapper">
         <a class="<? echo (!$arResult["DIFFERENT"] ? ' ui-button ui-button--dark' : 'ui-button ui-button--transparent'); ?>" style="padding: 8px 16px; text-align:center" href="<? echo $arResult['COMPARE_URL_TEMPLATE'].'DIFFERENT=N'; ?>" rel="nofollow"><?=GetMessage("CATALOG_ALL_CHARACTERISTICS")?></a>
         <a class="<? echo ($arResult["DIFFERENT"] ? ' ui-button ui-button--dark' : 'ui-button ui-button--transparent'); ?>" style="padding: 8px 16px; text-align:center" href="<? echo $arResult['COMPARE_URL_TEMPLATE'].'DIFFERENT=Y'; ?>" rel="nofollow"><?=GetMessage("CATALOG_ONLY_DIFFERENT")?></a>
     </div>
@@ -135,38 +135,42 @@ if (!empty($arResult["SHOW_FIELDS"]))
 			?><tr><td><?=GetMessage("IBLOCK_FIELD_".$code)?></td><?
 			foreach($arResult["ITEMS"] as $arElement)
 			{
-		?>
-				<td valign="top">
-		<?
-				switch($code)
-				{
-					case "NAME":
-						?><a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><?=$arElement[$code]?></a>
-                        <?/*?>
-						<?if($arElement["CAN_BUY"]):?>
-						<noindex><br /><a class="bx_bt_button bx_small" href="<?=$arElement["BUY_URL"]?>" rel="nofollow"><?=GetMessage("CATALOG_COMPARE_BUY"); ?></a></noindex>
-						<?elseif(!empty($arResult["PRICES"]) || is_array($arElement["PRICE_MATRIX"])):?>
-						<br /><?=GetMessage("CATALOG_NOT_AVAILABLE")?>
-						<?endif;?>
-                        <?*/
-						break;
-					case "PREVIEW_PICTURE":
-					case "DETAIL_PICTURE":
-						if (!empty($arElement["FIELDS"][$code]) && is_array($arElement["FIELDS"][$code])):?>
-							<a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><img
-							border="0" src="<?=$arElement["FIELDS"][$code]["SRC"]?>"
-							width="auto" height="150"
-							alt="<?=$arElement["FIELDS"][$code]["ALT"]?>" title="<?=$arElement["FIELDS"][$code]["TITLE"]?>"
-							/></a>
-						<?endif;
-						break;
-					default:
-						echo $arElement["FIELDS"][$code];
-						break;
-				}
-			?>
-				</td>
-			<?
+                ?>
+
+                <?
+                switch($code)
+                {
+                    case "NAME":
+                        ?><td valign="top"><?
+                        ?><a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><?=$arElement[$code]?></a>
+                        <?if($arElement["CAN_BUY"]):?>
+                        <noindex><br /><a class="bx_bt_button bx_small" href="<?=$arElement["BUY_URL"]?>" rel="nofollow"><?=GetMessage("CATALOG_COMPARE_BUY"); ?></a></noindex>
+                    <?elseif(!empty($arResult["PRICES"]) || is_array($arElement["PRICE_MATRIX"])):?>
+                        <br /><?=GetMessage("CATALOG_NOT_AVAILABLE")?>
+                    <?endif;
+                        ?></td><?
+                        break;
+                    case "PREVIEW_PICTURE":
+                    case "DETAIL_PICTURE":
+                        if (!empty($arElement["FIELDS"][$code]) && is_array($arElement["FIELDS"][$code])):?>
+                            <td valign="middle">
+                                <a href="<?=$arElement["DETAIL_PAGE_URL"]?>"><img
+                                            border="0" src="<?=$arElement["FIELDS"][$code]["SRC"]?>"
+                                            width="auto" height="150"
+                                            alt="<?=$arElement["FIELDS"][$code]["ALT"]?>" title="<?=$arElement["FIELDS"][$code]["TITLE"]?>"
+                                    /></a>
+                            </td>
+                        <?endif;
+                        break;
+                    default:
+                        ?><td valign="top"><?
+                        echo $arElement["FIELDS"][$code];
+                        ?></td><?
+
+                        break;
+                }
+                ?>
+                <?
 			}
 			unset($arElement);
 		}

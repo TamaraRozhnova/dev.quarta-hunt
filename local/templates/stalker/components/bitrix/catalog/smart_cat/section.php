@@ -25,7 +25,7 @@ $isFilter = ($arParams['USE_FILTER'] == 'Y');
 
 if ($isFilter)
 {
-    echo_j($arResult, '$arResult 111');
+//    echo_j($arResult, '$arResult 111');
 
 	$arFilter = array(
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],

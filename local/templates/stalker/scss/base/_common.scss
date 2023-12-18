@@ -46,6 +46,16 @@ body {
   margin-left: auto;
   margin-right: auto;
 
+  @include xl-screen {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  @include lg-screen {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   @include md-screen {
     padding-left: 20px;
     padding-right: 20px;
@@ -81,16 +91,18 @@ button {
 }
 
 
-.tip-like {
-  background-image: url("/local/templates/stalker/img/star.png");
+.tip-fav {
+  background-image: url("/local/templates/stalker/img/star0.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   cursor: pointer;
+
+  display: none;
 }
-.tip-like:hover {
-  background-image: url("/local/templates/stalker/img/star-bg.png");
+.tip-fav:hover {
+  background-image: url("/local/templates/stalker/img/star1.png");
 }
-.tip-like.is-active {
-  background-image: url("/local/templates/stalker/img/star-bg.png");
+.tip-fav.is-active {
+  background-image: url("/local/templates/stalker/img/star1.png");
 }

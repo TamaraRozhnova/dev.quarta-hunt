@@ -341,8 +341,12 @@ else
 					<div class="bx-soa-section-content"></div>
 				</div>
 
+                <?/*?><?*/?>
 				<!--	DUPLICATE MOBILE ORDER SAVE BLOCK	-->
+                <div  class="d-none">
 				<div id="bx-soa-total-mobile" style="margin-bottom: 6px;"></div>
+                </div>
+
 
 				<? if ($arParams['BASKET_POSITION'] === 'before'): ?>
 					<!--	BASKET ITEMS BLOCK	-->

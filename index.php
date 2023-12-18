@@ -1,8 +1,10 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Интернет магазин товаров для охоты, стрельбы и активного отдыха в Quarta «Оружейный квартал»");
+$APPLICATION->SetPageProperty("title", "Товары для охоты, стрельбы и активного отдыха в Quarta «Оружейный квартал»");
 
-$APPLICATION->SetTitle("Главная — QUARTA. Оружейный Квартал.");?>
+$APPLICATION->SetTitle("Товары для охоты, стрельбы и активного отдыха в Quarta «Оружейный квартал»");?>
 
 <h1 class="hidden-on-page unset-margin">
     <?=$APPLICATION->ShowTitle();?>

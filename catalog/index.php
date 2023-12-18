@@ -1,10 +1,11 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Тюнинг оружия и ЗИП");
 
 use General\User;
 
-$APPLICATION->SetTitle("Каталог - QUARTA Hunt");
+$APPLICATION->SetTitle("Тюнинг оружия и ЗИП");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
 <h1 class="hidden-on-page unset-margin">

@@ -36,6 +36,7 @@ $res = [
     "ajaxid"=>$arResult["AJAXID"],
     "items"=>$arr,
     "dbg"=>$arResult["dbg"],
+    "arResult"=>$arResult,
 ];
 
-echo(_json_encode($res  ));
+echo(json_encode($res, JSON_FORCE_OBJECT));

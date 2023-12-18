@@ -10,6 +10,7 @@ $eventManager = EventManager::getInstance();
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
 include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
+include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
@@ -41,8 +42,6 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\RulesBasket' => '/local/php_interface/classes/Events/RulesBasket.php',
 ]);
 
-
-include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 
 function AddBonusPoints($order_id, $status) {
 	$order = \Bitrix\Sale\Order::load($order_id);

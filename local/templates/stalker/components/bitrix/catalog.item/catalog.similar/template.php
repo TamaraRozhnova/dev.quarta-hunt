@@ -23,7 +23,10 @@ $arPrice = reset($arItem['ITEM_PRICES']);
 ?>
 <div class="catalog__item">
 	<div class="catalog__item-img">
-		<? $img = Image::ResizeImageGet($arItem['DETAIL_PICTURE'],  [ 'width' => 421, 'height' => 280 ]);
+		<?
+        $img = [];
+        if(isset($arItem['DETAIL_PICTURE']) && isset($arItem['DETAIL_PICTURE']['ID']))
+            $img = Image::ResizeImageGet($arItem['DETAIL_PICTURE']['ID']??0,  [ 'width' => 421, 'height' => 280 ]);
 		if(!$img['src'])
 		{
 			$img['src'] = SITE_TEMPLATE_PATH . '/img/no-photo.png';
@@ -31,9 +34,11 @@ $arPrice = reset($arItem['ITEM_PRICES']);
 ?>
 
 		<?php if ($img['src']): ?>
-			<picture>
-				<img data-src="<?=$img['src']?>" alt="" class="lazy"/>
-			</picture>
+            <a href="<?=$arItem['DETAIL_PAGE_URL']?>">
+                <picture>
+                    <img data-src="<?=$img['src']?>" alt="" class="lazy"/>
+                </picture>
+            </a>
 		<?php endif ?>
 
 		<?if($arPrice['DISCOUNT']):?>

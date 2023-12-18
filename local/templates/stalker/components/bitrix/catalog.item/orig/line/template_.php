@@ -53,7 +53,7 @@ else
             </div>
         <? endif; ?>
         <??>
-        <div class="tip tip-like <?=(in_array($item["ID"], $_SESSION['favourites'])?'is-active':'')?>" data-id="<?=$item["ID"]?>"></div>
+        <div class="tip tip-fav <?=(in_array($item["ID"], $_SESSION['favourites'])?'is-active':'')?>" data-id="<?=$item["ID"]?>"></div>
         <??>
     </div>
     <div class="catalog__item-description">

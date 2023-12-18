@@ -1,0 +1,34 @@
+.review {
+  .swiper {
+    &-slide {
+      max-width: 623px;
+      margin-right: 23px;
+    }
+
+    &-pagination {
+      display: none;
+
+      @include sm-screen {
+        position: initial;
+        display: block;
+        margin-top: 10px;
+      }
+
+      &-bullet {
+        &-active {
+          --swiper-pagination-color: #E2212A;
+        }
+      }
+    }
+  }
+
+  .ui-button {
+    margin-top: 23px;
+    max-width: 299px;
+    height: 57px;
+
+    @include sm-screen {
+      height: 42px;
+    }
+  }
+}

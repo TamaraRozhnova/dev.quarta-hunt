@@ -1,0 +1,81 @@
+.media {
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(3, 4fr);
+    column-gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(56, 56, 56, 0.3);
+    margin-bottom: 35px;
+
+    @include lg-screen {
+      column-gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+
+    @include sm-screen {
+      grid-template-columns: repeat(1, 12fr);
+      row-gap: 24px;
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__item {
+    @include sm-screen {
+      border-bottom: 1px solid rgba(56, 56, 56, 0.3);
+    }
+    &-picture {
+      position: relative;
+      @include ratio(456, 278);
+
+      img {
+        @include coverdiv;
+        @include img-cover;
+      }
+    }
+
+    &-play {
+      position: absolute;
+      @include centerer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border: 1px solid #fff;
+      border-radius: 50%;
+
+      .icon {
+        color: #fff;
+        font-size: 20px;
+      }
+    }
+
+    &-description {
+      padding: 20px;
+      font-weight: 700;
+      font-size: 14px;
+
+      @include md-screen {
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      @include sm-screen {
+        padding: 15px 0 22px;
+      }
+    }
+  }
+
+  &__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .ui-button {
+      max-width: 299px;
+      height: 42px;
+    }
+  }
+}

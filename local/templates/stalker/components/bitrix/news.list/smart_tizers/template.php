@@ -13,9 +13,9 @@
 $this->setFrameMode(true);
 CModule::IncludeModule('iblock');
 ?>
- <section class="section section-plus">
-          <div class="container">
-            <div class="section-plus__grid">
+<section class="section section-plus">
+  <div class="container">
+    <div class="section-plus__grid">
 				<?
 $arSelect = Array("ID", "IBLOCK_ID", "CODE", "NAME", "DETAIL_TEXT");
 $arFilter = Array("IBLOCK_ID"=>$arParams['IBLOCK_ID'], "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
@@ -56,6 +56,6 @@ $res = CIblockElement::GetList(Array("SORT" => "ASC"), $arFilter, false, $arPage
  <?}?>
 
              </div>
-          </div>
-        </section>
+  </div>
+</section>
 

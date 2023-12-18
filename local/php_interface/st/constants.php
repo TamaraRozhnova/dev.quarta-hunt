@@ -14,6 +14,7 @@ const IBLOCKS = [
     'ib-media' => 60,
     'ib-catalog' => 45,
     'ib-review' => 61,
+    'ib-from' => 67,
     'ib-news' => 62,
     'news' => 62,
     'about-photo' => 64,

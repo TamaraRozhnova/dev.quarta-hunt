@@ -55,6 +55,7 @@ $priceCodeForSort = 'price_' . $userPriceId;
 $sortExpressionsFieldsCatalog = [
     'revelance' => [
         'order' => [
+            'weight' => 'DESC',
             'has_stock' => 'DESC',
         ],
         'expression' => new ExpressionField('weight', 'WEIGHT()', 'id'),

@@ -18,6 +18,19 @@ if (!empty($arResult['ORDERS'])) {
                 
                 $rsSectionsEl = CIBlockElement::GetElementGroups($arBasketItem['PRODUCT_ID'], true)->fetch();
 
+                if (empty($rsSectionsEl)) {
+
+                    /**
+                     * Проверка на торговое предложение
+                     */
+        
+                    $productInfo = CCatalogSku::GetProductInfo(
+                        $arBasketItem['PRODUCT_ID']
+                    );
+        
+                    $rsSectionsEl = CIBlockElement::GetElementGroups($productInfo['ID'], true)->fetch();
+                }
+
                 $rsPath = CIBlockSection::GetNavChain(false, $rsSectionsEl['ID']); 
 
                 while ($arPath = $rsPath->GetNext()) {

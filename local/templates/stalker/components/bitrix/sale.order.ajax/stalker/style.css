@@ -84,9 +84,13 @@
 	background: #db4c4c;
 }
 
-.bx-soa-section.bx-step-error .bx-soa-section-title-count:after { color: #fff; }
+.bx-soa-section.bx-step-error .bx-soa-section-title-count:after {
+	color: #fff;
+}
 
-.bx-soa-section.bx-step-error { border: 1px solid #db4a29; }
+.bx-soa-section.bx-step-error {
+	/*border: 1px solid #db4a29; */
+}
 
 .bx-soa-section.bx-step-error .bx-soa-section-title-count:before {
 	display: block;

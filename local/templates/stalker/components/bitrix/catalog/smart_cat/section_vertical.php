@@ -11,6 +11,14 @@ use Bitrix\Main\ModuleManager;
  * @var array            $arCurSection
  */
 
+/** Баннер на странице каталога
+<section class="hero pb-5">
+    <div class="container">
+        <a href="/catalog/?SECTION_ID=924"><img src="/catalog/ban111.png" alt=""></a>
+    </div> 
+</section>
+ */
+
 if (isset( $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] ) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] == 'Y')
 {
 	$basketAction = isset( $arParams['COMMON_ADD_TO_BASKET_ACTION'] )?$arParams['COMMON_ADD_TO_BASKET_ACTION']:'';
@@ -20,11 +28,7 @@ else
 	$basketAction = isset( $arParams['SECTION_ADD_TO_BASKET_ACTION'] )?$arParams['SECTION_ADD_TO_BASKET_ACTION']:'';
 }
 ?>
-<section class="hero pb-5">
-    <div class="container">
-        <a href="/catalog/?SECTION_ID=924"><img src="/catalog/ban111.png" alt=""></a>
-    </div>
-</section>
+
 <div class="main section">
 	<section class="inner">
 		<div class="container">
@@ -37,14 +41,18 @@ else
                 <div class="inner__right">
                     <div class="filter">
                         <ul class="filter__ul">
-                            <li class="filter__li <?=($_SESSION["sorting"]=="name"?"active":"nactive")?>">
-                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=name&sorting_asc=asc", array("sorting", "sorting_asc"));?>"><nobr>По умолчанию</nobr></a>
+                            <?php
+                                $S = $_SESSION['sorting']??'';
+                                $O = $_SESSION['sorting_asc']??'';
+                            ?>
+                            <li class="filter__li <?=($_SESSION["sorting"]=="name"?"active ".$O:"nactive")?>">
+                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=name&sorting_asc=".($S=='name'&&$O=='asc'?'desc':'asc'), array("sorting", "sorting_asc"));?>"><nobr>По названию<i></i></nobr></a>
                             </li>
-                            <li class="filter__li <?=($_SESSION["sorting"]=="shows"?"active":"nactive")?>">
-                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=shows&sorting_asc=desc", array("sorting", "sorting_asc"));?>"><nobr>По популярности</nobr></a>
+                            <li class="filter__li <?=($_SESSION["sorting"]=="shows"?"active ".$O:"nactive")?>">
+                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=shows&sorting_asc=".($S=='shows'&&$O=='desc'?'asc':'desc'), array("sorting", "sorting_asc"));?>"><nobr>По популярности<i></i></nobr></a>
                             </li>
-                            <li class="filter__li <?=($_SESSION["sorting"]=="SCALED_PRICE_1"?"active":"nactive")?>">
-                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=SCALED_PRICE_1&sorting_asc=", array("sorting", "sorting_asc"));?>"><nobr>По цене</nobr></a>
+                            <li class="filter__li <?=($_SESSION["sorting"]=="SCALED_PRICE_1"?"active ".$O:"nactive")?>">
+                                <a href="javascript:;" class="nav-link jslink" data-href="<?=$APPLICATION->GetCurPageParam("sorting=SCALED_PRICE_1&sorting_asc=".($S=='SCALED_PRICE_1'&&$O=='asc'?'desc':'asc'), array("sorting", "sorting_asc"));?>"><nobr>По цене<i></i></nobr></a>
                             </li>
                         </ul>
                     </div>

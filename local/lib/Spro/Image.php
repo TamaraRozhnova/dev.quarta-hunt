@@ -9,17 +9,20 @@ use Exception;
 
 class Image
 {
-	public static function ResizeImageGet ( $imgId, $sizes )
+	public static function ResizeImageGet ( $imgId, $sizes, $resizeType = 1)
 	{
-		try{
-			$img = CFile::ResizeImageGet( $imgId, $sizes );
-		}
-		catch (Exception $e)
-		{
-			$img['src'] = CFile::GetPath( $imgId );
-		}
-
-		return $img;
+        if(intval($imgId) > 0 && isset($sizes) && !empty($sizes)){
+            try{
+                $img = CFile::ResizeImageGet($imgId, $sizes, $resizeType, false,  [[ "name" => "sharpen", "precision" => 0]], false, 80);
+    //            $img = CFile::ResizeImageGet( $imgId, $sizes );
+            }
+            catch (Exception $e)
+            {
+                $img['src'] = CFile::GetPath( $imgId );
+            }
+            return $img;
+        }
+        return ['src' => SITE_TEMPLATE_PATH."/img/no-photo.png"];
 	}
 
 	/**
