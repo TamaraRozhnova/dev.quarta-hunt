@@ -656,7 +656,8 @@ span.bx-authform-starrequired {
   }
 }
 
-.product-card .interlabs-one-click-buy {
+.product-card .interlabs-one-click-buy,
+.compare__item .interlabs-one-click-buy {
   height: auto;
   margin-top: 15px;
   font-weight: 500;
@@ -668,7 +669,8 @@ span.bx-authform-starrequired {
 }
 
 @media (max-width: 767px) {
-  .product-card .interlabs-one-click-buy {
+  .product-card .interlabs-one-click-buy,
+  .compare__item .interlabs-one-click-buy {
     font-size: 14px;
     padding: 9px;
   }
