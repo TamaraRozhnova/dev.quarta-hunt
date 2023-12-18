@@ -137,8 +137,7 @@ class Review
         }
 
         return $result;
-    }
-
+    }    
 
     /**
      * @param int[] $responseIds - массив идентификатор ответов на отзыв

@@ -1,0 +1,26 @@
+.bonuses-cabinet-ref-wrapper {
+	margin-top: 14px;
+}
+
+.bonuses-cabinet-ref-item {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	gap: 6px;
+}
+
+.bonuses-cabinet-ref-label {
+	font-weight: 500;
+	font-size: 14px;
+}
+
+#generate_coupon {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.bonuses-cabinet-ref {
+	display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}

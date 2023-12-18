@@ -458,7 +458,7 @@ $basketItemsCount = $basket->getProductsCount();
                 <div class="container">
                     <? $APPLICATION->IncludeComponent(
                         "bitrix:breadcrumb", "", array(
-                            "START_FROM" => "0",
+                            "START_FROM" => CSite::InDir('/catalog/') ? '1' : '0',
                             "PATH" => "",
                             "SITE_ID" => "s1"
                         )

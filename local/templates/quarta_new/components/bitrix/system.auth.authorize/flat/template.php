@@ -82,12 +82,12 @@ $this->setFrameMode(false);?>
 			
 						<input type="hidden" name="AUTH_FORM" value="Y" />
 						<input type="hidden" name="TYPE" value="AUTH" />
-				<?if ($arResult["BACKURL"] <> ''):?>
-						<input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" />
-				<?endif?>
-				<?foreach ($arResult["POST"] as $key => $value):?>
-						<input type="hidden" name="<?=$key?>" value="<?=$value?>" />
-				<?endforeach?>
+						<?if ($arResult["BACKURL"] <> ''):?>
+							<input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" />
+						<?endif?>
+						<?foreach ($arResult["POST"] as $key => $value):?>
+							<input type="hidden" name="<?=$key?>" value="<?=$value?>" />
+						<?endforeach?>
 				
 						<div class="bx-authform-formgroup-container input mb-4 input--lg">
 							<label class="bx-authform-label-container form-label">
@@ -117,7 +117,7 @@ $this->setFrameMode(false);?>
 							</div>
 						</div>
 				
-				<?if($arResult["CAPTCHA_CODE"]):?>
+					<?if($arResult["CAPTCHA_CODE"]):?>
 						<input type="hidden" name="captcha_sid" value="<?echo $arResult["CAPTCHA_CODE"]?>" />
 				
 						<div class="bx-authform-formgroup-container dbg_captha">
@@ -129,7 +129,7 @@ $this->setFrameMode(false);?>
 								<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
 							</div>
 						</div>
-				<?endif;?>
+					<?endif;?>
 				
 					<?/*if ($arResult["STORE_PASSWORD"] == "Y"):?>
 						<div class="bx-authform-formgroup-container">
@@ -148,49 +148,96 @@ $this->setFrameMode(false);?>
 				
 				<?if($arParams["NOT_SHOW_LINKS"] != "Y" && $arResult["NEW_USER_REGISTRATION"] == "Y" && $arParams["AUTHORIZE_REGISTRATION"] != "Y"):?>
 					<noindex>
-						<div class="bx-authform-link-container mb-5 w-100 text-md-left">
-							<a href="/registration/" rel="nofollow">
-								<?=GetMessage("AUTH_REGISTER")?>
-							</a>
-						</div>
+						<a class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse" href="/registration/" rel="nofollow">
+							<?=GetMessage("AUTH_REGISTER")?>
+						</a>
 					</noindex>
 				<?endif?>
-				<a href="#" class="mb-5 w-100 text-md-start auth_email_form">
-				<?=GetMessage("AUTH_EMAIL_FORM")?>
-				</a>
+
 				<?if ($arParams["NOT_SHOW_LINKS"] != "Y"):?>
 					<noindex>
-						<div style="display:none" class="bx-authform-link-container mb-5 w-100 text-md-left foggot_pass">
-							<a href="<?=$arResult["AUTH_FORGOT_PASSWORD_URL"]?>" rel="nofollow">
-								<?=GetMessage("AUTH_FORGOT_PASSWORD_2")?>
-							</a>
-						</div>
+						<a 
+							style="display: none;"
+							class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse foggot_pass" 
+							href="<?=$arResult["AUTH_FORGOT_PASSWORD_URL"]?>" rel="nofollow"
+						>
+							<?=GetMessage("AUTH_FORGOT_PASSWORD_2")?>
+						</a>
 					</noindex>
 				<?endif?>
-				<a href="#" style="display:none" class="mb-5 w-100 text-md-left auth_phone_form">
-					<?=GetMessage("AUTH_PHONE_FORM")?>
-              	</a>
+					<a 
+						style="display:none" 
+						href="#" 
+						class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse auth_phone_form"
+					>
+						<?=GetMessage("AUTH_PHONE_FORM")?>
+					</a>
+
+					<a 
+						href="#" 
+						class="mb-3 w-100 btn btn-primary btn-lg btn-color-inverse auth_email_form"
+					>
+						<?=GetMessage("AUTH_EMAIL_FORM")?>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div id="multi-accounts-window" class="modal">
+<?$APPLICATION->IncludeFile(SITE_TEMPLATE_PATH.'/include/multi_account_modal.php', [], [])?>
 
-
+<div id="quick-register-window" class="modal">
 	<div class="modal-content">
 		<div class="modal-body">
-			<div class="multi-accounts-header">
-				<div class="multi-accounts-header-title">
-					<h3><?=Loc::getMessage('MULTI_ACCOUNT_TITLE')?></h3>
+			<div class="quick-register-accounts-header">
+				<div class="quick-register-accounts-header-title">
+					<h3>Регистрация</h3>
 				</div>
-				<div class = "multi-accounts-header-subtitle">
-					<span><?=Loc::getMessage('MULTI_ACCOUNT_SUBTITLE')?></span>
+				<div class = "quick-register-accounts-header-subtitle">
+					<span><?=Loc::getMessage('quick-register_ACCOUNT_SUBTITLE')?></span>
 				</div>
 			</div>
-			<div class="multi-accounts-content">
-				<div class = "multi-accounts-content-list">
+			<div class="quick-register-accounts-content">
+				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+					<label class="bx-authform-label-container form-label">
+						Имя
+					</label>
+					<div class="bx-authform-input-container input--lg">
+						<input type="text" class="form-control"  name="NAME" maxlength="255" value="" />
+					</div>
 				</div>
+				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+					<label class="bx-authform-label-container form-label">
+						Фамилия
+					</label>
+					<div class="bx-authform-input-container input--lg">
+						<input type="text" class="form-control"  name="LAST_NAME" maxlength="255" value="" />
+					</div>
+				</div>
+				<hr>
+				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+					<label class="bx-authform-label-container form-label">
+						Код из смс
+					</label>
+					<div class="bx-authform-input-container input--lg">
+						<input type="text" class="form-control"  name="SMS_CODE" maxlength="255" value="" />
+					</div>
+				</div>
+
+				<div class="quick-register-warning"></div>
+
+				<div class="bx-authform-formgroup-container">
+					<div class="input-wrapper-form">
+						<input 
+							type="submit" 
+							class="btn btn-primary btn-lg w-100 form_quick_register" 
+							name="send_account_info" 
+							value="Завершить регистрацию" 
+						/>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
@@ -201,17 +248,14 @@ $this->setFrameMode(false);?>
 					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
 			</svg>
 		</div>
-
 	</div>	
-
 </div>
 
 <script type="text/javascript">
-<?if ($arResult["LAST_LOGIN"] <> ''):?>
-try{document.form_auth.USER_PASSWORD.focus();}catch(e){}
-<?else:?>
-try{document.form_auth.USER_LOGIN.focus();}catch(e){}
-<?endif?>
-
+	<?if ($arResult["LAST_LOGIN"] <> ''):?>
+	try{document.form_auth.USER_PASSWORD.focus();}catch(e){}
+	<?else:?>
+	try{document.form_auth.USER_LOGIN.focus();}catch(e){}
+	<?endif?>
 </script>
 

@@ -1,0 +1,30 @@
+.p2p-line__wrapper {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: #004989;
+	z-index: 900000000000;
+	transition: .4s all ease-in-out;
+}
+
+.p2p-line__inner {
+	display: flex;
+	align-items: center;
+	padding: 12px;
+	justify-content: center;
+}
+
+.p2p-line__text {
+	font-size: 13px;
+	color: white;
+}
+
+.p2p-line__wrapper.hide {
+    transform: translateY(100%);
+}
+
+@media (max-width: 1200px) {
+	.p2p-line__wrapper {
+		bottom: 60px;
+	}
+}

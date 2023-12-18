@@ -1,19 +1,123 @@
-<?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+<?php 
 
-use \Bitrix\Main\Loader,
-	\Targetsms\Sms\Sender,
-	\Bitrix\Main\Engine\CurrentUser,
-	\Bitrix\Main\UserTable;
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
-	Loader::includeModule('targetsms.sms');
+ob_end_clean();
 
+header('Content-Type: application/json; charset=utf-8');
 
-const TYPES_USER = [
-	'retail' => 'Розничный',
-	'wholesale' => 'Оптовый'
-];
+use Bitrix\Main\Loader,
+	Bitrix\Main\Engine\CurrentUser,
+	Bitrix\Main\UserTable,
+	Bitrix\Main\Localization\Loc,
+	Bitrix\Main\Web\Json,
+	Targetsms\Sms\Sender;
+
+Loc::loadMessages(__FILE__);
+
+if (!Loader::includeModule('targetsms.sms')) {
+	die(Loc::getMessage('TARGET_SMS_ISNT_INIT'));
+}	
+
+define('TYPES_USER', [
+	'retail' => Loc::getMessage('TYPE_USER_RETAIL'),
+	'wholesale' => Loc::getMessage('TYPE_USER_OPT')
+]);
+
+define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
 
 $currentUser = CurrentUser::get();
+$userObj = new CUser();
+
+if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
+
+	/**
+	 * Начинаем быструю регистрацию
+	 */
+
+	if (empty($_REQUEST['FIELDS'])) {
+		die(Json::encode([
+			'STATUS' => 'ERROR',
+			'ERR' => Loc::getMessage('EMPTY_FIELDS_W')
+		]));
+	}
+
+	if (empty($_REQUEST['SMS_CODE'])) {
+		die(Json::encode([
+			'STATUS' => 'ERROR',
+			'ERR' => Loc::getMessage('EMPTY_VEIRIFY_CODE')
+		]));
+	}
+
+	$userSaveSms = openssl_decrypt(
+		$_REQUEST['SMS_CODE'],
+		'AES-128-ECB', 
+		ENCRYPTION_KEY
+	);
+
+	$userSms = $_REQUEST['FIELDS']['SMS_CODE'];
+
+	if ((int) $userSaveSms !== (int) $userSms) {
+		die(Json::encode([
+			'STATUS' => 'ERROR',
+			'ERR' => Loc::getMessage('WRONG_VEIRIFY_CODE')
+		]));
+	}
+
+	$rsGroupTable = Bitrix\Main\GroupTable::getList([
+		'select' => [
+			'ID',
+			'NAME',
+			'STRING_ID'
+		],
+		'filter' => [
+			'STRING_ID' => 'REGISTERED_USERS'
+		]
+	])->fetch();
+
+	$groupRegUsersId = $rsGroupTable['ID'];
+
+	$randomPass = \Bitrix\Main\Security\Random::getString(10);
+
+	$arFieldsNewUser = [
+		'NAME' => htmlspecialchars($_REQUEST['FIELDS']['NAME']),
+		'LAST_NAME' => htmlspecialchars($_REQUEST['FIELDS']['LAST_NAME']),
+		'PASSWORD' => $randomPass,
+		'CONFIRM_PASSWORD' => $randomPass,
+		'LOGIN' => $_REQUEST['PERSONAL_PHONE'],
+		'ACTIVE' => 'Y',
+		'GROUP_ID' => [$groupRegUsersId],
+	];
+
+	$arFieldsUpdateUser = [
+		'UF_TYPE' => 'retail',
+		'PERSONAL_PHONE' => $_REQUEST['PERSONAL_PHONE'],
+	];
+
+	$idUser = $userObj->Add($arFieldsNewUser);
+
+	if (intval($idUser) > 0) {
+
+		$userObj->Update($idUser, $arFieldsUpdateUser);
+		$userObj->Authorize($idUser);
+	
+		if (intval($idUser) > 0) {
+	
+			die(Json::encode([
+				'ID_USER' => $idUser,
+				'STATUS' => 'SUCCESS',
+			]));
+	
+		}
+
+	}
+
+	die(Json::encode([
+		'STATUS' => 'ERROR',
+		'ERR' => $userObj->LAST_ERROR
+	]));
+
+}
 
 if (!$currentUser->getId()) {
 
@@ -48,18 +152,30 @@ if (!$currentUser->getId()) {
 		$defaultParamsUsers
 	)->fetchAll();
 
-	if (empty($rsUsers)) {
+	if (empty($rsUsers) && !isset($_REQUEST['IS_BYU_ONE_CLICK'])) {
 
-		$result['error'] = true;
-		$result['message'] = 'Пользователь не найден';
+		$smsObj = new Sender();
+		$smsCode = rand(1111, 9999);
+	
+		$rsSendSms = $smsObj->sendSms(
+			$_REQUEST['USER']['PERSONAL_PHONE'], 
+			$smsCode, 
+			'', 
+			'quarta-hunt', 
+			'quartahunt-login'
+		);
 
-		ob_end_clean();
-
-		header('Content-Type: application/json; charset=utf-8');
-
-		echo Bitrix\Main\Web\Json::encode($result);
-
-		return;
+		die(
+			Json::encode([
+				'SHOW_MODAL_QUICK_REGISTER' => 'Y',
+				'SMS_CODE' => openssl_encrypt(
+					$smsCode,
+					'AES-128-ECB', 
+					ENCRYPTION_KEY
+				),
+				'PERSONAL_PHONE' => $_REQUEST['USER']['PERSONAL_PHONE']
+			])
+		);
 
 	}
 	
@@ -85,7 +201,7 @@ if (!$currentUser->getId()) {
 				' ',
 				[
 					TYPES_USER[$arUser['UF_TYPE']],
-					'покупатель'
+					Loc::getMessage('BUYER')
 				]
 			);
 
@@ -93,14 +209,14 @@ if (!$currentUser->getId()) {
 
 		}
 
-		ob_end_clean();
-
-		header('Content-Type: application/json; charset=utf-8');
-
-		echo Bitrix\Main\Web\Json::encode($arAjaxParams);
+		die(Json::encode($arAjaxParams));
 
 	
 	} else {
+
+		if (isset($_REQUEST['IS_BYU_ONE_CLICK'])) {
+			die(Json::encode(['data' => 'ok']));
+		}
 
 		/** 
 		 * Аккаунт один или пользователь 
@@ -112,7 +228,6 @@ if (!$currentUser->getId()) {
 		if (empty($_REQUEST['USER']['userCode'])) {
 		
 			$smsObj = new Sender();
-			$userObj = new CUser();
 	
 			$smsCode = rand(1111, 9999);
 
@@ -140,17 +255,13 @@ if (!$currentUser->getId()) {
 	
 			if (!$rsSendSms->error) {
 				$result['error'] = false;
-				$result['message'] = 'Сообщение с кодом авторизации успешно отправлено';
+				$result['message'] = Loc::getMessage('SMS_CODE_SENDED');
 			}  else {
-				 $result['error'] = true;
-				 $result['message'] = 'Ошибка отправки кода авторизации';
-			 }
+				$result['error'] = true;
+				$result['message'] = Loc::getMessage('SMS_CODE_NOT_SENDED');
+		 	}
 
-			ob_end_clean();
-
-			header('Content-Type: application/json; charset=utf-8');
-
-			echo Bitrix\Main\Web\Json::encode($result);
+			die(Json::encode($result));
 
 		} else {
 
@@ -164,7 +275,7 @@ if (!$currentUser->getId()) {
 
 				$USER->Authorize($currentUser['ID']);
 				$result['error'] = false;
-				$result['message'] = 'Вы успешно авторизовались';
+				$result['message'] = Loc::getMessage('YOU_GET_AUTH');
 				$result['user'] = [
 					'ID' => $USER->GetID(), 
 					'LOGIN' => $USER->GetLogin(), 
@@ -174,14 +285,10 @@ if (!$currentUser->getId()) {
 				];
 			} else {
 				$result['error'] = true;
-				$result['message'] = 'Неверный код';
+				$result['message'] = Loc::getMessage('WRONG_VEIRIFY_CODE');
 			}
 
-			ob_end_clean();
-
-			header('Content-Type: application/json; charset=utf-8');
-
-			echo Bitrix\Main\Web\Json::encode($result);
+			die(Json::encode($result));
 
 		}
 
@@ -190,7 +297,7 @@ if (!$currentUser->getId()) {
 } else {
 
 	$result['error'] = true;
-    $result['message'] = 'Вы уже авторизованы';
+    $result['message'] = Loc::getMessage('YOU_HAVE_AUTH');
     $result['user'] = [
 		'ID' => $USER->GetID(), 
 		'LOGIN' => $USER->GetLogin(), 
@@ -199,10 +306,6 @@ if (!$currentUser->getId()) {
 		'LAST_NAME' => $USER->GetLastName()
 	];
 
-	ob_end_clean();
-
-	header('Content-Type: application/json; charset=utf-8');
-
-	echo Bitrix\Main\Web\Json::encode($result);
+	die(Json::encode($result));
 
 }

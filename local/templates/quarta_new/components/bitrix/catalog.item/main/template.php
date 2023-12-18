@@ -136,10 +136,16 @@ $item = $arResult['ITEM'];
         </div>
     <?endif;?>
 
-
-
-
-
+    <? if ($item['AVAILABLE']) { ?>
+        <a href="javascript:void(0);" 
+            class="btn btn-primary interlabs-one-click-buy"
+            data-productid="<?=$item['ID']?>" 
+            data-data="<?=json_encode(["PRODUCT_ID" => $item['ID']])?>" 
+            id="one-click-buy-<?=$item['ID']?>"
+        >                        
+            <?=GetMessage("BUY_ONE_CLICK")?>
+        </a>
+    <? } ?>
 </div>
 
 

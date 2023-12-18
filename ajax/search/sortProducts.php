@@ -11,9 +11,8 @@ use Helpers\Translit;
 use General\User;
 
 $user = new User();
+$userPriceCode = $user->getUserPriceCode();
 $userPriceId = $user->getUserPriceId();
-
-
 
 /**
  * Получение request данных
@@ -41,6 +40,20 @@ $objectNavigation->allowAllRecords(false)
     'price_asc' => 'возрастанию цены',
     'price_desc' => 'убыванию цены',
 ];
+
+function sortMultiDimensionalArray(&$array, $sortKey, $direction = 'ASC') {
+    usort($array, function($a, $b) use ($sortKey, $direction) {
+        if ($a[$sortKey] == $b[$sortKey]) {
+            return 0;
+        }
+        
+        if ($direction == 'ASC') {
+            return ($a[$sortKey] < $b[$sortKey]) ? -1 : 1;
+        } else {
+            return ($a[$sortKey] > $b[$sortKey]) ? -1 : 1;
+        }
+    });
+}
 
 /**
  * Дефолтные значения для сортировок
@@ -120,8 +133,7 @@ $rsParamsQuery = [
     ],
     'match' => $searchTarget,
     'count_total' => true,
-    'offset' => $offsetParams,
-    'limit' => $objectNavigation->getLimit(),
+    'limit' => 1000,
     'order' => $orderParanmsEF,
     'option' => [
         'max_matches' => 50000,
@@ -214,6 +226,32 @@ if (!empty($searchTarget)) {
     }
 
 }
+
+/** Обход товаров для скрытия если не в наличии */
+foreach ($arResult['PRODUCTS'] as &$arProduct) {
+
+    if (intval($arProduct['has_stock']) == 0) {
+        continue;
+    }
+
+    if (
+        empty($arProduct['store_1'])
+        &&
+        empty($arProduct['store_2'])
+        &&
+        empty($arProduct['store_3'])
+    ) {
+        continue;
+    }
+
+    $arProduct['has_stock'] = match ($userPriceCode) {
+        'BASE' => empty($arProduct['price_1']) ? 0 : 1,
+        'OPT' => empty($arProduct['price_3']) ? 0 : 1,
+    };
+
+}
+
+sortMultiDimensionalArray($arResult['PRODUCTS'], 'has_stock', 'DESC');
 
 foreach ($arResult['PRODUCTS'] as $arProduct) {
     $productsIds[$arProduct['id']] = $arProduct['id'];

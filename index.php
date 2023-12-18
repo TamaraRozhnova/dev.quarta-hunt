@@ -82,6 +82,12 @@ $APPLICATION->SetTitle("Товары для охоты, стрельбы и ак
     false
 );
 
+$APPLICATION->IncludeComponent(
+	"custom:brands.slider", 
+	"", 
+	[]
+);
+
 $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "section_list", [
     "ADD_SECTIONS_CHAIN" => "N",
     "CACHE_FILTER" => "N",
@@ -449,7 +455,8 @@ $APPLICATION->IncludeComponent("bitrix:form.result.new","subscribe_form", [
         "USE_EXTENDED_ERRORS" => "Y",
         "CACHE_TYPE" => "Y",
         "CACHE_TIME" => "3600000",
-        "VARIABLE_ALIASES" => []
+        "VARIABLE_ALIASES" => [],
+		"AJAX_MODE" => "Y"
     ]
 );
 

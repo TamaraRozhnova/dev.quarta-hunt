@@ -6,21 +6,23 @@ $(document).ready(function() {
 
     const phoneInput = document.querySelector('#phone');
 
-    phoneInput.addEventListener('paste', (event) => {
-        clipboardData = event.clipboardData || window.clipboardData;
-
-        pastedData = clipboardData.getData('Text');
-
-        if (pastedData.match(/\d+/g) != null) {
-            let modifyResult = pastedData.match(/\d+/g).join('');
-
-            if (modifyResult.length == 11) {
-                phoneInput.value = modifyResult.substring(1)
+    if (phoneInput !== null) {
+        phoneInput.addEventListener('paste', (event) => {
+            clipboardData = event.clipboardData || window.clipboardData;
+    
+            pastedData = clipboardData.getData('Text');
+    
+            if (pastedData.match(/\d+/g) != null) {
+                let modifyResult = pastedData.match(/\d+/g).join('');
+    
+                if (modifyResult.length == 11) {
+                    phoneInput.value = modifyResult.substring(1)
+                }
+    
             }
-
-        }
-
-    })
+    
+        })
+    }
 
     if ($('#promo').prop('checked') == true) {
 		$('input[name="UF_PROMO"]').val('true');

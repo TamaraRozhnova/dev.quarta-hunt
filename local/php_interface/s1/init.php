@@ -1,5 +1,4 @@
 <?php
-//auto_prepend_file = '/var/www/www-root/data/www/quarta-hunt.ru/bitrix/modules/security/tools/start.php';
 
 define("LOG_FILENAME", $_SERVER["DOCUMENT_ROOT"] . "/mylog-8898956595.txt");
 
@@ -14,6 +13,7 @@ include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/gene
 
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
+    'Feedback\Events' => '/local/php_interface/classes/Feedback/Events.php',
     'Form\Auth\RegistrationForm' => '/local/php_interface/classes/Form/Auth/RegistrationForm.php',
     'Form\ProductSubscribeForm' => '/local/php_interface/classes/Form/ProductSubscribeForm.php',
     'Form\ProductQuestionForm' => '/local/php_interface/classes/Form/ProductQuestionForm.php',
@@ -25,6 +25,7 @@ Loader::registerAutoLoadClasses(null, [
     'Helpers\FileSizeHelper' => '/local/php_interface/classes/Helpers/FileSizeHelper.php',
     'Helpers\Filters\ProductsFilterHelper' => '/local/php_interface/classes/Helpers/Filters/ProductsFilterHelper.php',
     'Helpers\Filters\ReviewsFilterHelper' => '/local/php_interface/classes/Helpers/Filters/ReviewsFilterHelper.php',
+    'Helpers\Filters\BrandsFilterHelper' => '/local/php_interface/classes/Helpers/Filters/BrandsFilterHelper.php',
     'Helpers\NumWordHelper' => '/local/php_interface/classes/Helpers/NumWordHelper.php',
     'Helpers\ProductsDataHelper' => '/local/php_interface/classes/Helpers/ProductsDataHelper.php',
     'Helpers\RecommendedProductsHelper' => '/local/php_interface/classes/Helpers/RecommendedProductsHelper.php',

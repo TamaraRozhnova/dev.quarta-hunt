@@ -8,7 +8,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 <div class="recommendations">
     <div class="container">
-        <h2 class="mb-4">С этим товаром покупают</h2>
+        <h2 class="mb-4"><?=GetMessage("RECOMMEND_TITLE")?></h2>
     </div>
     <div class="base-slider">
         <div class="container">
