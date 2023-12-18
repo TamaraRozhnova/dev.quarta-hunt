@@ -15,8 +15,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 <div class="compare__table-wrapper compare__mini" style="display: <?=is_array($arResult['ITEMS']) && count($arResult['ITEMS']) > 1 ? 'block' : 'none' ?>">
     <button class="move-right"></button>
-    <div class="compare__table--mini container">
-        <div class="compare__column-backdrop"></div>
+    <div class="compare__table--mini container">        
         <div class="compare__row">
             <div class="compare__col compare__col--first"></div>
             <? foreach ($arResult['ITEMS'] as $item) { ?>
