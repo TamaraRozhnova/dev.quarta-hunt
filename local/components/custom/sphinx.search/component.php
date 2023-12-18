@@ -24,6 +24,7 @@ use Helpers\Translit;
 use General\User;
 
 $user = new User();
+$userPriceCode = $user->getUserPriceCode();
 $userPriceId = $user->getUserPriceId();
 
 $objectNavigation = new PageNavigation('cur_page');
@@ -34,6 +35,20 @@ $objectNavigation->allowAllRecords(false)
 
 $searchTarget = $_GET['q'];
 $searchTarget = mb_strtolower(htmlspecialchars($searchTarget));
+
+function sortMultiDimensionalArray(&$array, $sortKey, $direction = 'ASC') {
+    usort($array, function($a, $b) use ($sortKey, $direction) {
+        if ($a[$sortKey] == $b[$sortKey]) {
+            return 0;
+        }
+        
+        if ($direction == 'ASC') {
+            return ($a[$sortKey] < $b[$sortKey]) ? -1 : 1;
+        } else {
+            return ($a[$sortKey] > $b[$sortKey]) ? -1 : 1;
+        }
+    });
+}
 
 /**
  * Параметры сортировки
@@ -55,7 +70,7 @@ $priceCodeForSort = 'price_' . $userPriceId;
 $sortExpressionsFieldsCatalog = [
     'revelance' => [
         'order' => [
-            'has_stock' => 'DESC',
+            'weight' => 'DESC',
         ],
         'expression' => new ExpressionField('weight', 'WEIGHT()', 'id'),
     ],
@@ -109,9 +124,8 @@ $rsParamsQuery = [
     ],
     'match' => $searchTarget,
     'count_total' => true,
-    'offset' => $objectNavigation->getOffset(),
-    'limit' => $objectNavigation->getLimit(),
     'order' => $orderParamsEF,
+    'limit' => 1000,
     'option' => [
         'max_matches' => 50000,
     ],
@@ -124,8 +138,7 @@ $rsParamsQuerySimple = [
     ],
     'match' => $searchTarget,
     'count_total' => true,
-    'offset' => $objectNavigation->getOffset(),
-    'limit' => $objectNavigation->getLimit(),
+    'limit' => 1000,
     'order' => [
         'weight' => 'DESC'
     ],
@@ -157,7 +170,6 @@ $tmpArrCount = [
 ];
 
 $arResult['PRODUCTS'] = $rsProduct->fetchAll();
-
 $tmpArrCount['PRODUCT'] = $rsProduct->getCount();
 
 $arResult['BLOG'] = $rsBlog->fetchAll();
@@ -264,6 +276,44 @@ if (!empty($searchTarget)) {
 
 }
 
+/** Обход товаров для скрытия если не в наличии */
+foreach ($arResult['PRODUCTS'] as &$arProduct) {
+
+    if (intval($arProduct['has_stock']) == 0) {
+        continue;
+    }
+
+    if (
+        empty($arProduct['store_1'])
+        &&
+        empty($arProduct['store_2'])
+        &&
+        empty($arProduct['store_3'])
+    ) {
+        continue;
+    }
+
+    $arProduct['has_stock'] = match ($userPriceCode) {
+        'BASE' => empty($arProduct['price_1']) ? 0 : 1,
+        'OPT' => empty($arProduct['price_3']) ? 0 : 1,
+    };
+
+}
+
+sortMultiDimensionalArray($arResult['PRODUCTS'], 'has_stock', 'DESC');
+
+$arResult['PRODUCTS'] = array_slice(
+    $arResult['PRODUCTS'],
+    $objectNavigation->getOffset(),
+    10
+);
+
+$arResult['BLOG'] = array_slice(
+    $arResult['BLOG'],
+    $objectNavigation->getOffset(),
+    10
+);
+
 if (!empty($arProcessProducts)) {
 
     if (!is_array($tmpArrCount['PRODUCT'])) {
@@ -301,10 +351,19 @@ if (!empty($tmpCountSearch)) {
     }
 }
 
+if (
+    !empty($tmpArrCount['PRODUCT'])
+    &&
+    !empty($tmpArrCount['BLOG']) 
+) {
+    if (strlen($tmpArrCount['PRODUCT']) === strlen($tmpArrCount['BLOG'])) {
+        $tmpPageSize = $tmpArrCount['PRODUCT'] > $tmpArrCount['BLOG'] ? $tmpArrCount['PRODUCT'] : $tmpArrCount['BLOG'];
+    }
+}
+
 $arResult['COUNT_PRODUCT'] = is_array($tmpArrCount['PRODUCT']) ? current($tmpArrCount['PRODUCT']) : $tmpArrCount['PRODUCT'];
 $arResult['COUNT_SEARCH'] = $tmpCountSearch;
 $arResult['OBJECT_NAVIGATION'] = $objectNavigation->setRecordCount($tmpPageSize);
 $arResult['PAGE_SIZE'] = $objectNavigation->getPageSize();
-
 
 $this->IncludeComponentTemplate();

@@ -54,12 +54,15 @@ if ($arResult['COUNT_SEARCH'] == 0) {
 if ($arResult['COUNT_SEARCH'] > 0) {
 
     if (!empty($arResult['PRODUCTS'])) {
+
         foreach ($arResult['PRODUCTS'] as $arProduct) {
             $productsIds[$arProduct['id']] = $arProduct['id'];
         }
 
+		array_reverse($productsIds, true);
+
         $GLOBALS['searchFilter'] = [
-			'=ID' => $productsIds,
+			'ID' => $productsIds,
 		];
 
 		switch ($_GET['sort']) {
@@ -76,10 +79,6 @@ if ($arResult['COUNT_SEARCH'] > 0) {
 				$sortDirection = 'ASC';
 				break;
 			case 'name_alp_rev':
-				$sortField = "NAME";
-				$sortDirection = 'DESC';
-				break;
-			default:
 				$sortField = "NAME";
 				$sortDirection = 'DESC';
 				break;
@@ -113,13 +112,13 @@ if ($arResult['COUNT_SEARCH'] > 0) {
 			"DISCOUNT_PERCENT_POSITION" => "bottom-right",
 			"DISPLAY_BOTTOM_PAGER" => "N",
 			"DISPLAY_TOP_PAGER" => "N",
-			"ELEMENT_SORT_FIELD" => $sortField,
+			"ELEMENT_SORT_FIELD" => $sortField ?? '',
 			"ELEMENT_SORT_FIELD2" => "",
-			"ELEMENT_SORT_ORDER" => $sortDirection,
+			"ELEMENT_SORT_ORDER" => $sortDirection ?? '',
 			"ELEMENT_SORT_ORDER2" => "",
 			"FILTER_NAME" => "searchFilter",
-			"HIDE_NOT_AVAILABLE" => "N",
-			"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
+			"HIDE_NOT_AVAILABLE" => "L",
+			"HIDE_NOT_AVAILABLE_OFFERS" => "L",
 			"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 			"IBLOCK_TYPE" => "1c_catalog",
 			"INCLUDE_SUBSECTIONS" => "Y",
