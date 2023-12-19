@@ -30,3 +30,5 @@ const DELIVERY_RF_COURIER = 7; // Идентификатор службы дос
 
 const DELIVERY_SDEK_PICKUP = 13; // Идентификатор службы доставки Сдек Самовывоз 
 const DELIVERY_SDEK_COURIER = 12; // Идентификатор службы доставки Сдек Доставка курьером
+
+const RESTRICTED_SECTIONS_FOF_FAST_BUY = 'oruzhie_i_patrony'; // ID раздела, в котором не выводится кнопка покупки в 1 клик

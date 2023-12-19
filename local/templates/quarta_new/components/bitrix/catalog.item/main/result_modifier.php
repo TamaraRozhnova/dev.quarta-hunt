@@ -37,3 +37,11 @@ if (is_array($item['OFFERS']) && count($item['OFFERS']) > 0) {
 if (!$item['PRICES_LIST']) {
     $arResult['ITEM']['PRICES_LIST'] = DiscountsHelper::getCorrectPrices($item);
 }
+
+$productSections = getRootProductSection($item['IBLOCK_ID'], $item['IBLOCK_SECTION_ID']);
+
+if (is_array($productSections) && count($productSections) > 0) {
+    if ($productSections[0]['CODE'] == RESTRICTED_SECTIONS_FOF_FAST_BUY) {
+        $arResult['RESTRICTED_SECTION'] = 'Y';
+    }
+}

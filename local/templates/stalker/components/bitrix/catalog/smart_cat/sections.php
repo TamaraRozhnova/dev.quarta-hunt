@@ -47,7 +47,7 @@ $APPLICATION->IncludeComponent(
 unset($sectionListParams);
 
 if ($arParams["USE_COMPARE"] === "Y")
-{
+{/*
 	$APPLICATION->IncludeComponent(
 		"bitrix:catalog.compare.list",
 		"",
@@ -65,7 +65,7 @@ if ($arParams["USE_COMPARE"] === "Y")
 		$component,
 		array("HIDE_ICONS" => "Y")
 	);
-}
+*/}
 
 if ($arParams["SHOW_TOP_ELEMENTS"] !== "N")
 {

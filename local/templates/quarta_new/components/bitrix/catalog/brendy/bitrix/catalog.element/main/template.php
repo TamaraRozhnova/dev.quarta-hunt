@@ -92,17 +92,17 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         <div class="col-4">
                             <div class="product__share">
                                 <div class="product__share-modal">
-                                    <a class="product__share-btn share-network-whatsapp" data-sharer="Whatsapp" data-url="<?='https://'.$_SERVER['HTTP_HOST'].$APPLICATION->GetCurPage()?>" data-title="<?= $arResult['NAME'] ?>">
+                                    <a class="product__share-btn share-network-whatsapp" data-sharer="Whatsapp">
                                         <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/whatsapp-circle.svg"
                                              alt="Whatsapp"/>
                                         <span>Whatsapp</span>
                                     </a>
-                                    <a class="product__share-btn share-network-vk sharer" data-sharer="vk" data-url="<?='https://'.$_SERVER['HTTP_HOST'].$APPLICATION->GetCurPage()?>" data-title="<?= $arResult['NAME'] ?>">
+                                    <a class="product__share-btn share-network-vk sharer" data-sharer="vk">
                                         <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/vk-circle.svg"
                                              alt="Вконтакте"/>
                                         <span>Вконтакте</span>
                                     </a>
-                                    <a class="product__share-btn share-network-telegram sharer" data-sharer="telegram" data-url="<?='https://'.$_SERVER['HTTP_HOST'].$APPLICATION->GetCurPage()?>" data-title="<?= $arResult['NAME'] ?>">
+                                    <a class="product__share-btn share-network-telegram sharer" data-sharer="telegram">
                                         <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/telegram-circle.svg"
                                              alt="Telegram"/>
                                         <span>Telegram</span>
@@ -188,16 +188,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </div>
                     <? } ?>
 
-                    <? if (!isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID])) { ?>
-                        <a href="javascript:void(0);" 
-                            class="btn btn-primary px-5 interlabs-one-click-buy"
-                            data-productid="<?=$arResult['ID']?>" 
-                            data-data="<?=json_encode(["PRODUCT_ID" => $arResult['ID']])?>" 
-                            id="one-click-buy-<?=$arResult['ID']?>"
-                            >                        
-                            <?=GetMessage("BUY_ONE_CLICK")?>
-                        </a>
-                    <?}?>
+                    <a href="javascript:void(0);" 
+                           class="btn btn-primary px-5 interlabs-one-click-buy"
+                           data-productid="<?=$arResult['ID']?>" 
+                           data-data="<?=json_encode(["PRODUCT_ID" => $arResult['ID']])?>" 
+                           id="one-click-buy-<?=$arResult['ID']?>"
+                        >                        
+                        <?=GetMessage("BUY_ONE_CLICK")?>
+                    </a>
 
                     <div class="product__add<?= !$arResult['PRODUCT']['USE_OFFERS'] || !$arResult['AVAILABLE'] ? ' placeholder-glow' : '' ?>">
                         <? if (!$arResult['PRODUCT']['USE_OFFERS'] || !$arResult['AVAILABLE']) { ?>

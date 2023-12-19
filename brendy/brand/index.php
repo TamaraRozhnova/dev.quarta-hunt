@@ -1,6 +1,7 @@
 <?php 
 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Бренды");
 
 use General\User;
 
@@ -166,7 +167,7 @@ $priceCode = $user->getUserPriceCode(); ?>
 		"SECTION_COUNT_ELEMENTS" => "Y",
 		"SECTION_ID_VARIABLE" => "SECTION_ID",
 		"SECTION_TOP_DEPTH" => "1",
-		"SEF_FOLDER" => "/brendy/",
+		"SEF_FOLDER" => "/catalog/",
 		"SEF_MODE" => "Y",
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
@@ -252,8 +253,8 @@ $priceCode = $user->getUserPriceCode(); ?>
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "",
-			"element" => "",
-			"compare" => "",
+			"element" => "#ELEMENT_ID#/#ELEMENT_CODE#/",
+			"compare" => "compare.php?action=#ACTION_CODE#",
 			"smart_filter" => "#SECTION_CODE_PATH#/filter/#SMART_FILTER_PATH#/apply/",
 		),
 		"VARIABLE_ALIASES" => array(

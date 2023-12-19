@@ -188,7 +188,7 @@
 }
 
 .promo-grid .product-card > a {
-    height: 100%;
+    height: fit-content;
 }
 
 @media screen and (min-width: 2048px) {

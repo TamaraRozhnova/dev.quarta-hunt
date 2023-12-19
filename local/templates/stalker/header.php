@@ -1,12 +1,14 @@
 <?php if ( !defined( "B_PROLOG_INCLUDED" ) || B_PROLOG_INCLUDED !== true) die();
 
 global $APPLICATION;
+global $USER;
 
 if(isset($arUser) and isset($arUser['UF_FAVORITES'])){
     $GLOBALS["FAVOURITES"] = $arUser['UF_FAVORITES'];
 }
 
 $APPLICATION->IncludeFile('functions.php');
+//include_once('functions.php');
 
 ?><!doctype html>
 <html>
@@ -246,7 +248,10 @@ if($USER->isAuthorized()){
 		</div>
 	</header>
 
-	<?php $APPLICATION->IncludeFile( "/_includes/_modal.php" ); ?>
+	<?php
+    $APPLICATION->IncludeFile( "/_includes/_modal.php" );
+    ?>
+
 	<?php if ( CSite::InDir( '/about/' ) && !CSite::InDir( '/about/contacts/' ) ): ?>
 		<div class="main">
 			<section class="customers container">

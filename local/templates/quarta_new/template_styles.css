@@ -11295,3 +11295,13 @@ div[id*="wait_comp"] {
 .swiper-button-prev.swiper-button-disabled {
   pointer-events: auto;
 }
+
+.item-not-available {
+  margin-top: auto;
+}
+
+.promo-grid .interlabs-one-click-buy,
+.compare .interlabs-one-click-buy,
+.promo-detail .interlabs-one-click-buy {
+  display: none;
+}

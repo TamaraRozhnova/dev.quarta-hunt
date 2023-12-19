@@ -95,7 +95,7 @@ $item = $arResult['ITEM'];
             <? } ?>
         </div>
     <? } else { ?>
-        <div class="fs-6 text-dark pb-1"><b>Нет в наличии</b></div>
+        <div class="fs-6 text-dark pb-1 item-not-available"><b>Нет в наличии</b></div>
     <? } ?>
 
     <? if ($arResult['PARAMS']['HIDE_RATING'] !== 'Y') { ?>
@@ -136,7 +136,7 @@ $item = $arResult['ITEM'];
         </div>
     <?endif;?>
 
-    <? if ($item['AVAILABLE']) { ?>
+    <? if ($item['AVAILABLE'] && !isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID])) { ?>
         <a href="javascript:void(0);" 
             class="btn btn-primary interlabs-one-click-buy"
             data-productid="<?=$item['ID']?>" 
@@ -147,5 +147,3 @@ $item = $arResult['ITEM'];
         </a>
     <? } ?>
 </div>
-
-

@@ -35,7 +35,7 @@ function checkRequestLogout() {
     ) {
         runLogout();
     }
-    
+
 }
 
 function runLogout() {
@@ -48,11 +48,11 @@ function runLogout() {
 function showBreadcrumb(): bool {
     $notAllowedUrls = ['/catalog/index.php'];
     $allowedUrls = [
-        '/catalog/', 
-        '/search/', 
-        '/blog/', 
-        '/favorites/', 
-        '/compare/', 
+        '/catalog/',
+        '/search/',
+        '/blog/',
+        '/favorites/',
+        '/compare/',
         '/jobs/',
         '/about/oferta/',
         '/cabinet/reviews/',
@@ -76,4 +76,19 @@ function showBreadcrumb(): bool {
     }
 
     return false;
+}
+
+function getRootProductSection($iblockId, $sectionId) {
+    $arSections = [];
+    while($sectionId) {
+        if ($arSection = \Bitrix\Iblock\SectionTable::getList([
+            'filter' => ['IBLOCK_ID' => $iblockId, 'ID' => $sectionId],
+            'select' => ['ID', 'IBLOCK_SECTION_ID', 'CODE']
+        ])->fetch()) {
+            $arSections[] = $arSection;
+        }
+        $sectionId = $arSection['IBLOCK_SECTION_ID'];
+    }
+    $arSections = array_reverse($arSections);
+    return $arSections;
 }

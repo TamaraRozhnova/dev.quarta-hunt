@@ -15,11 +15,18 @@
     width: 100%;
     min-height: 150px;
     align-items: center;
+}
+
+.brands-slider-item {
     background-color: white;
+    border-radius: 0.875rem;
+    overflow: hidden;
+    transition: .2s all ease-in-out;
 }
 
 @media (hover : hover) {
-    .brands-slider-item-img:hover {
+    
+    .brands-slider-item:hover {
         scale: 1.05;
         box-shadow: 0 0 18px rgba(0, 0, 0, 0.18);
     }

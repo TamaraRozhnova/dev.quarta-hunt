@@ -140,7 +140,7 @@ if (
 
                 if ($arProduct['iblock_section_id'] == $arSection['ID']) {
                     $arProducts[$arProductIndex] = $arProduct;
-    
+
                     $arProducts[$arProductIndex]['detail_page'] = CIBlock::ReplaceDetailUrl(
                         $iblockParams['DETAIL_PAGE_URL'],
                         [
@@ -152,6 +152,7 @@ if (
                         false,
                         'E'
                     );
+
     
                     $arProducts[$arProductIndex]['section_name'] = $arSection['NAME'];
     

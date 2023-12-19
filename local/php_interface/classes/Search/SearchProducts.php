@@ -55,6 +55,7 @@ class ProductTable extends SphinxDataManager
             ]),
             new Main\Entity\IntegerField('has_stock'),
             new Main\Entity\StringField('name'),
+            new Main\Entity\StringField('code'),
             new Main\Entity\StringField('article'),
             new Main\Entity\StringField('iblock_section_id'),
             new Main\Entity\StringField('iblock_code'),
