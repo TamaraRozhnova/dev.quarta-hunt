@@ -188,7 +188,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </div>
                     <? } ?>
 
-                    <? if (!isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID])) { ?>
+                    <? if (!isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID]) && $arResult['AVAILABLE']) { ?>
                         <a href="javascript:void(0);" 
                             class="btn btn-primary px-5 interlabs-one-click-buy"
                             data-productid="<?=$arResult['ID']?>" 
