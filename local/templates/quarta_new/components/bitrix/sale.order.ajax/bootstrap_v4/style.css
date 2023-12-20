@@ -1,6 +1,10 @@
 .bx-soa-wrapper {
 	font-size: 14px;
 }
+.bx-block-coupon-error{
+	color: #eb5806;
+	padding: 10px 0;
+}
 
 #bx-soa-order-form{
 	background-color: #F9F9FA;

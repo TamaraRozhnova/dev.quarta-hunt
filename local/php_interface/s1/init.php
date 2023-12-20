@@ -11,6 +11,8 @@ include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
 include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 
+include 'events.php';
+
 Loader::registerAutoLoadClasses(null, [
     'Feedback\Review' => '/local/php_interface/classes/Feedback/Review.php',
     'Feedback\Events' => '/local/php_interface/classes/Feedback/Events.php',
@@ -41,6 +43,7 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\CUserEx' => '/local/php_interface/classes/Events/CUserEx.php',
     'CustomEvents\SaleOrderAjaxEventsO2K' => '/local/php_interface/classes/Events/SaleOrderAjaxEventsO2K.php',
     'CustomEvents\RulesBasket' => '/local/php_interface/classes/Events/RulesBasket.php',
+    'CustomEvents\OnDiscount' => '/local/php_interface/classes/Events/OnDiscount.php',
 ]);
 
 
@@ -70,38 +73,12 @@ function AddBonusPoints($order_id, $status) {
 		}
 	}
 }
-function num_declension($number, $titles) {	
+
+function num_declension($number, $titles) {
     $abs = abs($number);	
     $cases = array (2, 0, 1, 1, 1, 2);	
     return $number." ".$titles[ ($abs%100 > 4 && $abs %100 < 20) ? 2 : $cases[min($abs%10, 5)] ];
 }
-
-$eventManager->addEventHandler(
-    'main',
-    'OnBeforeUserLogin',
-    [
-        'CustomEvents\CUserEx',
-        'OnBeforeUserLogin'
-    ]
-);
-
-$eventManager->addEventHandler(
-    'main',
-    'OnBeforeUserRegister',
-    [
-        'CustomEvents\CUserEx',
-        'OnBeforeUserRegister'
-    ]
-);
-
-$eventManager->addEventHandler(
-    'main',
-    'OnAfterUserRegister',
-    [
-        'CustomEvents\CUserEx',
-        'OnAfterUserRegister'
-    ]
-);
 
 function random_number($length = 6){
 	$arr = array(
@@ -116,48 +93,6 @@ function random_number($length = 6){
 	}
 	return $res;
 }
-
-$eventManager->addEventHandler(
-    "sale", 
-    "OnSaleOrderSaved", 
-    [
-        "CustomEvents\SaleOrderAjaxEventsO2K",
-        "eventNewOrder"
-    ]
-);
-
-$eventManager->addEventHandler(
-    "sale",
-    "\Bitrix\Sale\Internals\Discount::OnAfterUpdate",
-    array(
-        "CustomEvents\RulesBasket",
-        "OnAfterAddDiscountTable"
-    )
-);
-
-$eventManager->addEventHandler(
-    "sale",
-    "\Bitrix\Sale\Internals\Discount::OnAfterAdd",
-    array(
-        "CustomEvents\RulesBasket",
-        "OnAfterAddDiscountTable"
-    )
-);
-
-$eventManager->addEventHandler(
-    "sale",
-    "\Bitrix\Sale\Internals\Discount::OnBeforeDelete",
-    array(
-        "CustomEvents\RulesBasket",
-        "OnBeforeDeleteDiscountTable"
-    )
-);
-
-$eventManager->addEventHandler(
-    'sale', 
-    'OnSalePaymentEntitySaved', 
-    'changeOrderStatus'
-);
 
 function changeOrderStatus(\Bitrix\Main\Event $event)
 {

@@ -71,6 +71,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			this.isHttps = window.location.protocol === "https:";
 			this.orderSaveAllowed = false;
 			this.socServiceHiddenNode = false;
+			this.couponNotFirstOrder = false;
 		},
 
 		/**
@@ -81,6 +82,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			this.initializePrimaryFields();
 
 			this.result = parameters.result || {};
+			this.couponNotFirstOrder = parameters.couponNotFirstOrder || false;
 
 			// if (parameters.result?.DEBUG_IP == '127.0.0.1') {
 			// 	this.debugMode = true;
@@ -2580,16 +2582,35 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					}, 350);
 
 				}
-
 			}
+
+			let that = this;
+			BX.ajax({
+				url: this.templateFolder + '/backend.php',
+				data: {},
+				method: 'POST',
+				onsuccess: function (data) {
+					data = JSON.parse(data);
+					that.couponNotFirstOrder = data.couponNotFirstOrder;
+
+					console.log(data.couponNotFirstOrder);
+					if (BX("bx-soa-coupon_id") && data.couponNotFirstOrder == true) {
+						BX.append(
+							BX.create('DIV', {
+								props: {className: 'bx-block-coupon-error'},
+								html: 'Данный промокод для вас недоступен',
+							}),
+							BX('bx-soa-coupon_id')
+						)
+					}
+				}
+			});
 
 			this.editTotalBlock();
 			this.totalBlockFixFont();
 
 			this.showErrors(this.result.ERROR, false);
 			this.showWarnings();
-
-
 		},
 
 		/**
