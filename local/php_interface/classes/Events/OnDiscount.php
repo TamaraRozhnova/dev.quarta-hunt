@@ -11,7 +11,7 @@ use CUser;
 
 class OnDiscount
 {
-    const COUPON_CODE = 'ZAKAZ';
+    const COUPON_CODE = 'ПРИВЕТ';
 
     public static function onManagerCouponAddHandler($event)
     {
