@@ -10,6 +10,8 @@ use Bitrix\Main\Application;
 use Bitrix\Sale\DiscountCouponsManager;
 use Bitrix\Main\UserTable;
 
+use Personal\Basket;
+
 /**
  * Class Oneclick
  */
@@ -207,20 +209,8 @@ class Oneclick extends CBitrixComponent
                         $this->arResult['validateErrors'][] = ['message' => Loc::getMessage('ERROR_PRODUCT_ID_REQUIRED')];
                         return $data;
                     }
-                    $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
-                    foreach ($basket as $item) {
-                        if ($item && $item->delete()) {
-                            $basket->save();
-                        }
-                    }
-                    $item = $basket->createItem('catalog', intval($request->get('PRODUCT_ID')));
-                    $item->setFields(array(
-                        'QUANTITY' => 1,
-                        'CURRENCY' => \Bitrix\Currency\CurrencyManager::getBaseCurrency(),
-                        'LID' => \Bitrix\Main\Context::getCurrent()->getSite(),
-                        'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
-                    ));
-                    $basket->save();
+                    $basket = new Basket();
+                    $basket->addProductToBasket($request->get('PRODUCT_ID'));                    
                     break;
                 case 'OnlyBasket':
                     $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
