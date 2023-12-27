@@ -451,6 +451,15 @@ else
 					<div class="bx-soa-section-content"></div>
 				</div>
 
+				<div id="restricted__container" class="bx-soa-section important-no-border" style="display: none">
+					<div class="restricted__message">
+						<?= getMessage('RESTRICTED_MESSAGE')?>
+					</div>
+					<ol class="restricted__list">
+
+					</ol>
+				</div>
+
 				<?/* if ($arParams['BASKET_POSITION'] === 'after'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
 					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
@@ -630,6 +639,7 @@ else
 			pickUpBlockId: 'bx-soa-pickup',
 			propsBlockId: 'bx-soa-properties',
 			totalBlockId: 'bx-soa-total',
+			restrictBlockId: 'restricted__container',
             couponNotFirstOrder: '<?=($session->get('couponNotFirstOrder') ?? false)?>'
 		});
 	</script>
