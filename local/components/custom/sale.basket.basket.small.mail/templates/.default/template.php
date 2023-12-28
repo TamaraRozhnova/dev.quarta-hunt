@@ -14,7 +14,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             border-collapse: collapse;
             background-color: #F9F9FA;
             border-radius: 7px;
-            font-family: 'Gotham Pro';
+            font-family: Arial, Helvetica, sans-serif;
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -49,7 +49,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
         }
 
         table.sale_basket_small ul li .productName {
-            font-family: 'Gotham Pro';
+            font-family: Arial, Helvetica, sans-serif;
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
@@ -60,7 +60,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
         }
 
         table.sale_basket_small ul li .productSumm {
-            font-family: 'Gotham Pro';
+            font-family: Arial, Helvetica, sans-serif;
             font-style: normal;
             font-weight: 600;
             font-size: 16px;
@@ -85,6 +85,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             padding: 5px;
             width: 100%;
             color: #E05E1F;
+            margin: 0 auto;
         }
 
         .basket-btn {
@@ -99,7 +100,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
         }
     </style>
 
-    <div   class="quartaImg">
+    <div class="quartaImg">
         <?php
         if ($arResult['IS_LICENCE_PRODUCT']) { ?>
             <img src="<?= $templateFolder ?>/cartBannerNoDiscount.png" alt="">
@@ -107,7 +108,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             <img src="<?= $templateFolder ?>/cartBanner.png" alt="">
         <?php } ?>
     </div>
-    <br><br>
     <br><br>
 
 <?php if ($arResult["ShowReady"] == "Y" || $arResult["ShowDelay"] == "Y" || $arResult["ShowSubscribe"] == "Y" || $arResult["ShowNotAvail"] == "Y") {
@@ -121,6 +121,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     endforeach;
 
     ?>
+    <?php if (!$arResult['IS_LICENCE_PRODUCT']) { ?>
+        <div style="text-align: center">
+            <span class="promocode"><?= GetMessage("TSBS_2PROMOCODE", ['#CODE#' => $arResult['PROMOCODE']]) ?></span>
+        </div>
+        <br><br>
+    <?php } ?>
+
     <table class="sale_basket_small"><?php
     if ($arResult["ShowReady"] == "Y") {
         ?>
@@ -159,13 +166,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             </td>
         </tr>
 
-        <?php if (!$arResult['IS_LICENCE_PRODUCT']) { ?>
-            <tr>
-                <td align="center">
-                    <span class="promocode"><?= GetMessage("TSBS_2PROMOCODE") ?></span>
-                </td>
-            </tr>
-        <?php } ?>
 
         <?php if ('' != $arParams["PATH_TO_ORDER"]) { ?>
             <tr>
