@@ -85,8 +85,7 @@ class Oneclick extends CBitrixComponent
             if (!empty($rsUsers) && count($rsUsers) == 1) {
                 $anonUserID = $rsUsers[0]['ID'];
                 $bUserExists = true;
-            } elseif (!empty($rsUsers) && count($rsUsers) > 1) {
-                debug($rsUsers);
+            } elseif (!empty($rsUsers) && count($rsUsers) > 1) {                
                 $bUserExists = true;
             }
         }
