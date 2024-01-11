@@ -6,12 +6,13 @@ let oneClickForms = document.querySelectorAll(
 let isMultiAccountsElement = "";
 let isMultiAccountsIdElement = "";
 let isMultiAccounts = "";
+let captchaElement = "";
 let objModal = "";
 
 function interlabsOneClickComponentApp() {
-  // Перед отправкой формы ищем одинаковых пользователей
   oneClickForms.forEach((element) => {
     element.addEventListener("submit", function (evt) {
+      // Перед отправкой формы ищем одинаковых пользователей
       isMultiAccountsElement = element.querySelector('input[name="MULTIUSER"]');
       isMultiAccountsIdElement = element.querySelector(
         'input[name="MULTIUSER_ID"]'

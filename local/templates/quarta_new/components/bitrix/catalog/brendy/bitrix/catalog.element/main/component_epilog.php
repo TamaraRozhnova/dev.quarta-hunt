@@ -16,7 +16,7 @@ $APPLICATION->IncludeComponent(
         "AJAX_OPTION_STYLE" => "Y",
         "BUY_STRATEGY" => "OnlyProduct",
         "PRODUCT_ID" => $arResult['ID'],
-        "USE_CAPTCHA" => "N",
+        "USE_CAPTCHA" => "Y",
         "USE_FIELD_COMMENT" => "Y",
         "USE_FIELD_EMAIL" => "N"
     )
