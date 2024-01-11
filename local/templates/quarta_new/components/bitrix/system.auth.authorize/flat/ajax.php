@@ -11,7 +11,8 @@ use Bitrix\Main\Loader,
 	Bitrix\Main\UserTable,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\Web\Json,
-	Targetsms\Sms\Sender;
+	Targetsms\Sms\Sender,
+	Bitrix\Main\Config\Option;
 
 Loc::loadMessages(__FILE__);
 
@@ -29,11 +30,17 @@ define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
 $currentUser = CurrentUser::get();
 $userObj = new CUser();
 
-if (isset($_POST['captcha_sid']) && !$APPLICATION->CaptchaCheckCode($_POST["captcha_word"], $_POST["captcha_sid"])) {
-	die(Json::encode([
-		'captcha_error' => true,
-		'message' => Loc::getMessage('WRONG_CARTCHA')	
-	]));
+if (isset($_POST['captcha']) && Loader::includeModule('twim.recaptchafree')) {
+	parse_str($_POST['captcha'], $output);
+	$moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
+	$word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
+	$captcha = new CCaptcha();
+	if (!$captcha->CheckCode($word, $_REQUEST["captcha_sid"])) {
+		die(Json::encode([
+			'captcha_error' => true,
+			'message' => Loc::getMessage('WRONG_CARTCHA')	
+		]));
+	}	
 }
 
 if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
@@ -252,21 +259,21 @@ if (!$currentUser->getId()) {
 
 			}
 
-			// $rsSendSms = $smsObj->sendSms(
-			// 	$_REQUEST['USER']['PERSONAL_PHONE'], 
-			// 	$smsCode, 
-			// 	'', 
-			// 	'quarta-hunt', 
-			// 	'quartahunt-login'
-			// );
+			$rsSendSms = $smsObj->sendSms(
+				$_REQUEST['USER']['PERSONAL_PHONE'], 
+				$smsCode, 
+				'', 
+				'quarta-hunt', 
+				'quartahunt-login'
+			);
 	
-			//if (!$rsSendSms->error) {
+			if (!$rsSendSms->error) {
 				$result['error'] = false;
 				$result['message'] = Loc::getMessage('SMS_CODE_SENDED');
-			// }  else {
-			// 	$result['error'] = true;
-			// 	$result['message'] = Loc::getMessage('SMS_CODE_NOT_SENDED');
-		 	// }
+			}  else {
+				$result['error'] = true;
+				$result['message'] = Loc::getMessage('SMS_CODE_NOT_SENDED');
+		 	}
 
 			die(Json::encode($result));
 

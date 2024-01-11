@@ -42,9 +42,11 @@ $(document).ready(function () {
 
     if (phoneLength.length < 11) {
       phoneElement.next(".error_message").text("Введите номер телефона");
-    } else if (captchaElement.val() == "") {
-      captchaElement.next(".error_message").text("Введите слово на картинке");
-    } else {
+    }
+    // else if (captchaElement.val() == "") {
+    //   captchaElement.next(".error_message").text("Введите слово на картинке");
+    // }
+    else {
       authPhone(null, true);
     }
   });
@@ -246,8 +248,8 @@ function authPhone(data = null, isCaptcha = false) {
   }
 
   if (isCaptcha) {
+    dataSend.captcha = $("#form_auth_phone").serialize();
     dataSend.captcha_sid = $('input[name="captcha_sid"]').val();
-    dataSend.captcha_word = $('input[name="captcha_word"]').val();
   }
 
   BX.ajax({

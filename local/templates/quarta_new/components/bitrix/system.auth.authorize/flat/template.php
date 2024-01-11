@@ -72,15 +72,17 @@ $this->setFrameMode(false);?>
 						</div>
 						<?if($arResult["CAPTCHA_CODE"]):?>
 							<div class="register-capthca-auth mb-4">
+								<div class="input input--lg">
+									<label for="" class="form-label">
+										<?=GetMessage("AUTH_CAPTCHA_PROMT")?>:<span class="starrequired">*</span>
+									</label>									
+								</div>
 								<div class="mb-4">
 									<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
 									<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" />
 								</div>								
-								<div class="input mb-4 input--lg">
-									<label for="" class="form-label">
-										<?=GetMessage("AUTH_CAPTCHA_PROMT")?>:<span class="starrequired">*</span>
-									</label>
-									<input class="form-control" type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" required/>
+								<div class="input mb-4 input--lg">									
+									<input class="form-control" type="text" name="captcha_word" maxlength="50" value="" autocomplete="off"/>
 									<div class="error_message"></div>
 								</div>
 							</div>							

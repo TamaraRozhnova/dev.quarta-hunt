@@ -180,7 +180,7 @@ class Oneclick extends CBitrixComponent
                 return $data;
             }
 
-            if ($this->arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId()) {
+            if ($this->arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId() && $request->get('MULTIUSER_ID') == '') {
                 $captcha = new CCaptcha();
                 if (!strlen($_REQUEST["captcha_word"]) > 0) {                    
                     $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_NO_CAPTCHA_CODE')];
@@ -414,7 +414,7 @@ class Oneclick extends CBitrixComponent
         }
         $this->arResult['USE_FIELD_EMAIL'] = $this->arParams['USE_FIELD_EMAIL'];
         $this->arResult['USE_FIELD_COMMENT'] = $this->arParams['USE_FIELD_COMMENT'];
-        $this->arResult['PRODUCT_ID'] = $this->getProductId();
+        $this->arResult['PRODUCT_ID'] = $this->getProductId($request);
 
 
         $this->arResult['AGREE_PROCESSING_TEXT'] = null;
@@ -451,10 +451,13 @@ class Oneclick extends CBitrixComponent
     /**
      * @return int
      */
-    protected function getProductId()
+    protected function getProductId($request = null)
     {
         if ($this->arParams['PRODUCT_ID']) {
             return intval($this->arParams['PRODUCT_ID']);
+        }
+        if ($request && $request->get('PRODUCT_ID')) {
+            return intval($request->get('PRODUCT_ID'));
         }
         return 0;
     }
