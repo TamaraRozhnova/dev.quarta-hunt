@@ -10,7 +10,7 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-$this->setFrameMode(true);?>
+$this->setFrameMode(false);?>
 
 <div class="promo-detail">
     <div class="promo-detail__top-wrapper">

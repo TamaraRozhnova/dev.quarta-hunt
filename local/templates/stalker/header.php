@@ -10,25 +10,27 @@ if(isset($arUser) and isset($arUser['UF_FAVORITES'])){
 $APPLICATION->IncludeFile('functions.php');
 //include_once('functions.php');
 
-?><!doctype html>
-<html>
+?>
+<!doctype html>
+<html lang="ru">
 
 <head>
-	<meta charset="utf-8"/>
+    <meta charset="UTF-8">
 	<?php $APPLICATION->ShowHead(); ?>
 	<title><?php $APPLICATION->ShowTitle(true); ?></title>
     <script type="text/javascript" src="<?=SITE_TEMPLATE_PATH?>/js/app.js?v5"></script>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
 	<meta name="theme-color" content="#fff"/>
 	<meta name="format-detection" content="telephone=no"/>
 <!--	<meta name="yandex-verification" content="266faedfe7d618bc" />-->
-	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/style.css?v3"/>
-	<link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.2/style/jquery.jscrollpane.min.css"/>
+	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/style.css?v3" />
+	<link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.2/style/jquery.jscrollpane.min.css" />
 
-	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/scss/compiled.css<?=(1?'?tm='.time():'')?>"/>
-	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/nimda.css<?=(1?'?tm='.time():'')?>"/>
+	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/scss/compiled.css" />
+	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/nimda.css" />
 
 
 
@@ -68,9 +70,9 @@ $APPLICATION->IncludeFile('functions.php');
 </div>
 <?
 if($USER->isAuthorized()){
-    echo_j($USER->getLogin(), 'auth');
+//    echo_j($USER->getLogin(), 'auth');
 }else{
-    echo_j('', '!auth');
+//    echo_j('', '!auth');
 }
 ?>
 <!-- BEGIN content -->

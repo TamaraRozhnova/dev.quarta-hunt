@@ -356,9 +356,15 @@ if (
     &&
     !empty($tmpArrCount['BLOG']) 
 ) {
-    if (strlen($tmpArrCount['PRODUCT']) === strlen($tmpArrCount['BLOG'])) {
-        $tmpPageSize = $tmpArrCount['PRODUCT'] > $tmpArrCount['BLOG'] ? $tmpArrCount['PRODUCT'] : $tmpArrCount['BLOG'];
-    }
+    if (is_array($tmpArrCount['PRODUCT'])) {
+        if (strlen($tmpArrCount['PRODUCT'][0]) === strlen($tmpArrCount['BLOG'])) {
+            $tmpPageSize = $tmpArrCount['PRODUCT'] > $tmpArrCount['BLOG'] ? $tmpArrCount['PRODUCT'] : $tmpArrCount['BLOG'];
+        }
+    } else {
+        if (strlen($tmpArrCount['PRODUCT']) === strlen($tmpArrCount['BLOG'])) {
+            $tmpPageSize = $tmpArrCount['PRODUCT'] > $tmpArrCount['BLOG'] ? $tmpArrCount['PRODUCT'] : $tmpArrCount['BLOG'];
+        }
+    }    
 }
 
 $arResult['COUNT_PRODUCT'] = is_array($tmpArrCount['PRODUCT']) ? current($tmpArrCount['PRODUCT']) : $tmpArrCount['PRODUCT'];

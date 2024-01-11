@@ -33,9 +33,11 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 <div class="catalog__item">
 	<div class="catalog__item-img">
 		<?php if ($arItem['DETAIL_PICTURE']['SRC']): ?>
+        <a class="catalog__item-name" href="<?=$arItem['DETAIL_PAGE_URL']?>">
 			<picture>
 				<img data-src="<?=$arItem['DETAIL_PICTURE']['SRC']?>" alt="" class="lazy"/>
 			</picture>
+        </a>
 		<?php endif ?>
 		<? if ($arPrice['DISCOUNT']): ?>
 			<div class="tip tip-sale">
@@ -102,9 +104,15 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 			</div>
 
 			<div class="catalog__item-buttons">
-				<button class="ui-button ui-button--dark" data-add-basket="<?=$arItem['ID']?>">
-					в корзину
-				</button>
+                <?if($arItem['CAN_BUY']){?>
+                    <button class="ui-button ui-button--dark" data-add-basket="<?=$arItem['ID']?>">
+                        в корзину
+                    </button>
+                <?}else{?>
+                    <button class="ui-button ui-button--light" disabled="disabled">
+                        нет в наличии
+                    </button>
+                <?}?>
 				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="ui-button ui-button--light">
 					подробнее
 				</a>

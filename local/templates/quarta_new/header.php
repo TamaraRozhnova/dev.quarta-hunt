@@ -89,13 +89,13 @@ $basketItemsCount = $basket->getProductsCount();
 
 <div class="wrapper">
 
-    <?php 
-    /*
+    
+    
     <div class= "teh-obs">
-        <h3>Сайт находится на техническом обслуживании. Возможны сбои в работе</h3>
+        <h3>На данный момент на сайте действует авторизация и регистрация только по e-mail</h3>
     </div>
-    */
-    ?>
+    
+    
 
 
     <header class="header header--desktop">

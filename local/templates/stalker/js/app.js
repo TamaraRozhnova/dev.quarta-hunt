@@ -6725,6 +6725,7 @@
                 r = new a.default(o, {slidesPerView: "auto", watchSlidesProgress: !0});
             new a.default(t, {
                 modules: [s.Navigation, s.Thumbs],
+                loop: true,
                 navigation: {prevEl: n, nextEl: i},
                 thumbs: {swiper: r, thumbsContainerClass: "swiper-thumbs"}
             })
