@@ -1,6 +1,7 @@
 <? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main;
+use Bitrix\Main\Application;
 use Bitrix\Main\Localization\Loc;
 
 /**
@@ -450,6 +451,15 @@ else
 					<div class="bx-soa-section-content"></div>
 				</div>
 
+				<div id="restricted__container" class="bx-soa-section important-no-border" style="display: none">
+					<div class="restricted__message">
+						<?= getMessage('RESTRICTED_MESSAGE')?>
+					</div>
+					<ol class="restricted__list">
+
+					</ol>
+				</div>
+
 				<?/* if ($arParams['BASKET_POSITION'] === 'after'): ?>
 					<!--	BASKET ITEMS BLOCK	-->
 					<div id="bx-soa-basket" data-visited="false" class="bx-soa-section bx-active">
@@ -588,6 +598,7 @@ else
 	$signer = new Main\Security\Sign\Signer;
 	$signedParams = $signer->sign(base64_encode(serialize($arParams)), 'sale.order.ajax');
 	$messages = Loc::loadLanguageFile(__FILE__);
+    $session = Application::getInstance()->getSession();
 	?>
 	<script>
 		BX.message(<?=CUtil::PhpToJSObject($messages)?>);
@@ -627,7 +638,9 @@ else
 			deliveryBlockId: 'bx-soa-delivery',
 			pickUpBlockId: 'bx-soa-pickup',
 			propsBlockId: 'bx-soa-properties',
-			totalBlockId: 'bx-soa-total'
+			totalBlockId: 'bx-soa-total',
+			restrictBlockId: 'restricted__container',
+            couponNotFirstOrder: '<?=($session->get('couponNotFirstOrder') ?? false)?>'
 		});
 	</script>
 	<script>

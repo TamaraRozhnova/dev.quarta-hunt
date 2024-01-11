@@ -3,12 +3,14 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Config\Option;
 use Bitrix\Main\Context;
 use Bitrix\Main\Localization\Loc;
-
+use Bitrix\Main\Engine\CurrentUser;
 use Bitrix\Sale;
 use Bitrix\Sale\Order;
 use Bitrix\Main\Application;
 use Bitrix\Sale\DiscountCouponsManager;
 use Bitrix\Main\UserTable;
+
+use Personal\Basket;
 
 /**
  * Class Oneclick
@@ -83,8 +85,7 @@ class Oneclick extends CBitrixComponent
             if (!empty($rsUsers) && count($rsUsers) == 1) {
                 $anonUserID = $rsUsers[0]['ID'];
                 $bUserExists = true;
-            } elseif (!empty($rsUsers) && count($rsUsers) > 1) {
-                debug($rsUsers);
+            } elseif (!empty($rsUsers) && count($rsUsers) > 1) {                
                 $bUserExists = true;
             }
         }
@@ -179,6 +180,18 @@ class Oneclick extends CBitrixComponent
                 return $data;
             }
 
+            if ($this->arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId() && $request->get('MULTIUSER_ID') == '') {
+                $captcha = new CCaptcha();
+                if (!strlen($_REQUEST["captcha_word"]) > 0) {                    
+                    $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_NO_CAPTCHA_CODE')];
+                    return $data;
+
+                } elseif (!$captcha->CheckCode($_REQUEST["captcha_word"], $_REQUEST["captcha_sid"])) {                    
+                    $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_CAPTCHA_CODE_WRONG')];
+                    return $data;
+                }
+            }
+
             switch ($BUY_STRATEGY) {
                 case 'ProductAndBasket':
                     $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
@@ -207,20 +220,8 @@ class Oneclick extends CBitrixComponent
                         $this->arResult['validateErrors'][] = ['message' => Loc::getMessage('ERROR_PRODUCT_ID_REQUIRED')];
                         return $data;
                     }
-                    $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
-                    foreach ($basket as $item) {
-                        if ($item && $item->delete()) {
-                            $basket->save();
-                        }
-                    }
-                    $item = $basket->createItem('catalog', intval($request->get('PRODUCT_ID')));
-                    $item->setFields(array(
-                        'QUANTITY' => 1,
-                        'CURRENCY' => \Bitrix\Currency\CurrencyManager::getBaseCurrency(),
-                        'LID' => \Bitrix\Main\Context::getCurrent()->getSite(),
-                        'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
-                    ));
-                    $basket->save();
+                    $basket = new Basket();
+                    $basket->addProductToBasket($request->get('PRODUCT_ID'));                    
                     break;
                 case 'OnlyBasket':
                     $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
@@ -368,22 +369,7 @@ class Oneclick extends CBitrixComponent
                 } else {
                     $this->arResult['validateErrors'][] = ["message" => 'Error: sessid'];
                 }
-            }
-            if ($this->arParams['USE_CAPTCHA'] === 'Y') {
-                $captcha = new CCaptcha();
-                if (!strlen($_REQUEST["captcha_word"]) > 0) {
-                    $this->arResult['validateErrors'][] = [
-                        'message' => Loc::getMessage("ERROR_NO_CAPTCHA_CODE"),
-                        'field' => 'captcha_word'
-                    ];
-
-                } elseif (!$captcha->CheckCode($_REQUEST["captcha_word"], $_REQUEST["captcha_sid"])) {
-                    $this->arResult['validateErrors'][] = [
-                        'message' => Loc::getMessage("ERROR_CAPTCHA_CODE_WRONG"),
-                        'field' => 'captcha_word'
-                    ];
-                }
-            }
+            }            
 
             if ($this->arParams['AGREE_PROCESSING'] === 'Y') {
                 if (isset($_REQUEST['AGREE_PROCESSING']) && strval($_REQUEST['AGREE_PROCESSING']) === 'Y') {
@@ -422,10 +408,13 @@ class Oneclick extends CBitrixComponent
             $rsUser = CUser::GetByID($USER->GetID());
             $arUser = $rsUser->Fetch();
             $this->arResult['user']["PHONE"] = $arUser['PERSONAL_PHONE'];
+        } else {
+            $this->arResult['user']['NAME'] = $request->get('NAME');
+            $this->arResult['user']['PHONE'] = $request->get('PHONE');
         }
         $this->arResult['USE_FIELD_EMAIL'] = $this->arParams['USE_FIELD_EMAIL'];
         $this->arResult['USE_FIELD_COMMENT'] = $this->arParams['USE_FIELD_COMMENT'];
-        $this->arResult['PRODUCT_ID'] = $this->getProductId();
+        $this->arResult['PRODUCT_ID'] = $this->getProductId($request);
 
 
         $this->arResult['AGREE_PROCESSING_TEXT'] = null;
@@ -447,7 +436,7 @@ class Oneclick extends CBitrixComponent
         if (!isset($this->arParams['USE_CAPTCHA'])) {
             $this->arParams['USE_CAPTCHA'] = 'N';
         }
-        if ($this->arParams['USE_CAPTCHA'] === 'Y') {
+        if ($this->arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId()) {
             $this->arResult["CAPTCHA_CODE"] = htmlspecialchars($APPLICATION->CaptchaGetCode());
         }
 
@@ -462,10 +451,13 @@ class Oneclick extends CBitrixComponent
     /**
      * @return int
      */
-    protected function getProductId()
+    protected function getProductId($request = null)
     {
         if ($this->arParams['PRODUCT_ID']) {
             return intval($this->arParams['PRODUCT_ID']);
+        }
+        if ($request && $request->get('PRODUCT_ID')) {
+            return intval($request->get('PRODUCT_ID'));
         }
         return 0;
     }

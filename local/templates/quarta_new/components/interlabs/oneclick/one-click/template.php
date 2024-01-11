@@ -19,14 +19,14 @@ use Bitrix\Main\Engine\CurrentUser;
 CUtil::InitJSCore(array('interlabs_oneclick_popup'));
 
 ?>
-<div class="interlabs-oneclick__container" id="interlabs-oneclick__container"
-     style="<?php if ( (isset($arResult['success']) && isset($arResult['success']['message'])) || ($arResult['PRODUCT_ID'] == $_REQUEST['PRODUCT_ID'] && isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) ) {
+<div class="interlabs-oneclick__container" id="interlabs-oneclick__container"        
+     style="<?php if ( (isset($arResult['success']) && isset($arResult['success']['message'])) || (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) ) {
      } else {
          echo 'display:none;';
-     } ?>">    
+     } ?>">
     <div class="interlabs-oneclick__container__dialog modal-mask">
         <div class="modal-wrapper">
-            <div class="modal-container">
+            <div class="modal-container">                 
                 <div class="header">
                     <label><?php echo Loc::getMessage("buy_in_1_click") ?></label>
                     <span class="js-interlabs-oneclick__dialog__close">
@@ -40,7 +40,7 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                          style="<?php if (isset($arResult['success']) && isset($arResult['success']['message'])) {
                              echo 'display:none;';
                          } ?>">
-                        <?php if ($arResult['PRODUCT_ID'] == $_REQUEST['PRODUCT_ID'] && isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) {
+                        <?php if (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) {
                             foreach ($arResult['validateErrors'] as $error) {
                                 echo "<div>{$error['message']}</div>";
                             } ?>
@@ -79,27 +79,30 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                             </div>
                         <?php } ?>
 
+                        <?php if ($arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId()) { ?>                            
+                            <div class="register-capthca-auth mb-4">
+                                <div class="input input--lg">
+									<label for="" class="form-label">
+										<?=GetMessage("CAPTCHA_ENTER_CODE")?><span class="starrequired">*</span>
+									</label>									
+								</div>
+								<div class="mb-2">
+									<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+									<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" />
+								</div>								
+								<div class="input mb-4 input--lg">									
+									<input class="form-control" type="text" name="captcha_word" maxlength="50" value="" autocomplete="off"/>
+									<div class="error_message"></div>
+								</div>
+							</div>
+                        <?php } ?>
+
                         <?php if ($arResult['USE_FIELD_COMMENT'] === 'Y') { ?>
                             <div class="form-group">
                                 <label><?php echo Loc::getMessage("comment"); ?></label>
                                 <textarea class="form-control"
                                         name="COMMENT"><?php echo Oneclick::reqInputByProduct("COMMENT", '', $arResult['PRODUCT_ID']); ?></textarea>
                                 <div class="error error-COMMENT"></div>
-                            </div>
-                        <?php } ?>
-
-
-                        <?php if ($arParams['USE_CAPTCHA'] === 'Y') { ?>
-                            <div class="form-group">
-                                <label for="captcha"><?php echo Loc::getMessage("CAPTCHA_ENTER_CODE"); ?></label>
-                                <div class="captcha">
-                                    <input type="hidden" name="captcha_sid"
-                                           value="<?= $arResult["CAPTCHA_CODE"] ?>"/>
-                                    <input id="captcha" type="text" name="captcha_word" maxlength="50" value=""
-                                           required/>
-                                    <img src="/bitrix/tools/captcha.php?captcha_code=<?= $arResult["CAPTCHA_CODE"] ?>"
-                                         alt="CAPTCHA"/>
-                                </div>
                             </div>
                         <?php } ?>
 

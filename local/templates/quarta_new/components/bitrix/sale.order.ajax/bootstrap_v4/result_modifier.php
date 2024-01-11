@@ -10,20 +10,37 @@
 
  Bitrix\Main\Loader::includeModule('iblock');
 
+/* Получаем список категорий, разрешённых для доставки */
+$dbRestr = \Bitrix\Sale\Delivery\Restrictions\Manager::getList(array(
+	'filter' => array('SERVICE_ID' => CDEK_DELIVERY_ID)
+));
+
+while ($arRestr = $dbRestr->fetch()) {
+    if ($arRestr['ID'] == CDEK_RESTRICTION_SECTIONS_RULE_ID) {
+        if (is_array($arRestr['PARAMS']) && is_array($arRestr['PARAMS']['CATEGORIES']))
+        $arResult['JS_DATA']['ALLOWED_CATEGORIES'] = $arRestr['PARAMS']['CATEGORIES'];
+    }
+}
 
  if (!empty($arResult['BASKET_ITEMS'])) {
-    foreach ($arResult['BASKET_ITEMS'] as $arItem) {
+    foreach ($arResult['BASKET_ITEMS'] as $arItem) {        
         $arProductsIDS[$arItem['PRODUCT_ID']] = $arItem['PRODUCT_ID'];
+        $arResult['JS_DATA']['PRODUCTS_RESTRICT_INFO'][$arItem['PRODUCT_ID']]['NAME'] = $arItem['NAME'];
     }
  }
 
  foreach ($arProductsIDS as $arProduct) {
+
+    $arResult['JS_DATA']['PRODUCTS_RESTRICT_INFO'][$arProduct]['ALLOWED'] = 'N';
 
     $rsSectionsEl = CIBlockElement::GetElementGroups($arProduct, true)->fetch();
 
     $rsPath = CIBlockSection::GetNavChain(false, $rsSectionsEl['ID']); 
 
     while ($arPath = $rsPath->GetNext()) {
+        if (is_array($arResult['JS_DATA']['ALLOWED_CATEGORIES']) && array_search($arPath['ID'], $arResult['JS_DATA']['ALLOWED_CATEGORIES']) !== false) {
+            $arResult['JS_DATA']['PRODUCTS_RESTRICT_INFO'][$arProduct]['ALLOWED'] = 'Y';
+        }
         $sectionIds[$arPath['ID']] = $arPath['ID']; 
     }
 

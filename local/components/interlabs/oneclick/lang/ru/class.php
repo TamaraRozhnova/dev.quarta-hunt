@@ -19,6 +19,6 @@ $MESS['ERROR_CREATE_ANONYMOUS_USER'] = 'Ошибка создания анони
 
 $MESS["ERROR_NO_CAPTCHA_CODE"] = "Не введен защитный код";
 
-$MESS["ERROR_CAPTCHA_CODE_WRONG"] = "Код с картинки заполнен не правильно";
+$MESS["ERROR_CAPTCHA_CODE_WRONG"] = "Вы не прошли проверку на робота";
 
 $MESS["ERROR_AGREE_REQUIRED"] = "Необходимо дать согласие на обработку";

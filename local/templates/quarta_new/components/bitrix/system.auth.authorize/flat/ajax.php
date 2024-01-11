@@ -11,7 +11,8 @@ use Bitrix\Main\Loader,
 	Bitrix\Main\UserTable,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\Web\Json,
-	Targetsms\Sms\Sender;
+	Targetsms\Sms\Sender,
+	Bitrix\Main\Config\Option;
 
 Loc::loadMessages(__FILE__);
 
@@ -28,6 +29,19 @@ define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
 
 $currentUser = CurrentUser::get();
 $userObj = new CUser();
+
+if (isset($_POST['captcha']) && Loader::includeModule('twim.recaptchafree')) {
+	parse_str($_POST['captcha'], $output);
+	$moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
+	$word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
+	$captcha = new CCaptcha();
+	if (!$captcha->CheckCode($word, $_REQUEST["captcha_sid"])) {
+		die(Json::encode([
+			'captcha_error' => true,
+			'message' => Loc::getMessage('WRONG_CARTCHA')	
+		]));
+	}	
+}
 
 if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 
