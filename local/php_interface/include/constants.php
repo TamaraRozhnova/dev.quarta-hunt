@@ -32,3 +32,5 @@ const DELIVERY_SDEK_PICKUP = 13; // Идентификатор службы до
 const DELIVERY_SDEK_COURIER = 12; // Идентификатор службы доставки Сдек Доставка курьером
 
 const RESTRICTED_SECTIONS_FOF_FAST_BUY = 'oruzhie_i_patrony'; // ID раздела, в котором не выводится кнопка покупки в 1 клик
+const CDEK_DELIVERY_ID = 11; // ID службы доставки СДЭК. Необхоим для получения списка разшрешённых категорий
+const CDEK_RESTRICTION_SECTIONS_RULE_ID = 35; // ID ограничения со списков разрешённых категорий для доставки
