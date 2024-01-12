@@ -30,17 +30,11 @@ define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
 $currentUser = CurrentUser::get();
 $userObj = new CUser();
 
-if (isset($_POST['captcha']) && Loader::includeModule('twim.recaptchafree')) {
-	parse_str($_POST['captcha'], $output);
-	$moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
-	$word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
-	$captcha = new CCaptcha();
-	if (!$captcha->CheckCode($word, $_REQUEST["captcha_sid"])) {
-		die(Json::encode([
-			'captcha_error' => true,
-			'message' => Loc::getMessage('WRONG_CARTCHA')	
-		]));
-	}	
+if (isset($_POST['captcha']) && !checkCustomCaptcha($_POST['captcha'])) {	
+	die(Json::encode([
+		'captcha_error' => true,
+		'message' => Loc::getMessage('WRONG_CARTCHA')	
+	]));
 }
 
 if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
@@ -229,7 +223,14 @@ if (!$currentUser->getId()) {
 	} else {
 
 		if (isset($_REQUEST['IS_BYU_ONE_CLICK'])) {
-			die(Json::encode(['data' => 'ok']));
+			if (isset($_REQUEST['captcha']) && !checkCustomCaptcha($_REQUEST['captcha'])) {	
+				die(Json::encode([
+					'captcha_error' => true,
+					'message' => Loc::getMessage('WRONG_CARTCHA')	
+				]));
+			} else {
+				die(Json::encode(['data' => 'ok']));
+			}
 		}
 
 		/** 

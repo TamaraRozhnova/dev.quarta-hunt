@@ -4,6 +4,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+use Bitrix\Main\Loader;
+use Bitrix\Main\Config\Option;
+
 function getUserFullNameOrEmail(): string {
     global $USER;
     $fullName = $USER->GetFullName();
@@ -76,4 +79,31 @@ function showBreadcrumb(): bool {
     }
 
     return false;
+}
+
+function getRootProductSection($iblockId, $sectionId) {
+    $arSections = [];
+    while($sectionId) {
+        if ($arSection = \Bitrix\Iblock\SectionTable::getList([
+            'filter' => ['IBLOCK_ID' => $iblockId, 'ID' => $sectionId],
+            'select' => ['ID', 'IBLOCK_SECTION_ID', 'CODE']
+        ])->fetch()) {
+            $arSections[] = $arSection;
+        }
+        $sectionId = $arSection['IBLOCK_SECTION_ID'];
+    }
+    $arSections = array_reverse($arSections);
+    return $arSections;
+}
+
+function checkCustomCaptcha($post) {
+    if (Loader::includeModule('twim.recaptchafree')) {
+        parse_str($post, $output);
+        $moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
+        $word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
+        $captcha = new CCaptcha();
+        return $captcha->CheckCode($word, $_REQUEST["captcha_sid"]);
+    } else {
+        return false;
+    }
 }

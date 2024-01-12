@@ -13,6 +13,10 @@ function interlabsOneClickComponentApp() {
   oneClickForms.forEach((element) => {
     element.addEventListener("submit", function (evt) {
       // Перед отправкой формы ищем одинаковых пользователей
+      let isCaptcha = false;
+      if (element.querySelector('input[name="captcha_sid"]')) {
+        isCaptcha = true;
+      }
       isMultiAccountsElement = element.querySelector('input[name="MULTIUSER"]');
       isMultiAccountsIdElement = element.querySelector(
         'input[name="MULTIUSER_ID"]'
@@ -27,6 +31,13 @@ function interlabsOneClickComponentApp() {
           IS_BYU_ONE_CLICK: "true",
         };
 
+        if (isCaptcha) {
+          dataSend.captcha = $(element).serialize();
+          dataSend.captcha_sid = element.querySelector(
+            'input[name="captcha_sid"]'
+          ).value;
+        }
+
         BX.ajax({
           method: "POST",
           data: dataSend,
@@ -35,6 +46,10 @@ function interlabsOneClickComponentApp() {
           onsuccess: function (data) {
             if (data?.MULTI_USER == "Y") {
               initModalMultiUser(data, element);
+            } else if (data?.captcha_error) {
+              document.querySelector(
+                "#interlabs-oneclick__container .errors.common"
+              ).textContent = data.message;
             } else {
               isMultiAccountsElement.value = "N";
               element.submit();
