@@ -10,7 +10,7 @@ CJSCore::Init(array('clipboard', 'fx'));
 
 Loc::loadMessages(__FILE__);
 
-echo_j($arResult, '$arResult order.list');
+//echo_j($arResult, '$arResult order.list');
 
 if (!empty($arResult['ERRORS']['FATAL']))
 {
@@ -49,8 +49,7 @@ else
 		}
 	}
 	?>
-	<div class="row mb-3">
-		<div class="col">
+	<div class="row mb-3 filter__history">
 			<?php
 			$nothing = !isset($_REQUEST["filter_history"]) && !isset($_REQUEST["show_all"]);
 			$clearFromLink = array("filter_history","filter_status","show_all", "show_canceled");
@@ -58,33 +57,39 @@ else
 			if ($nothing || $_REQUEST["filter_history"] == 'N')
 			{
 				?>
+                    <div class="col">
 				<a class="mr-4" href="<?=$APPLICATION->GetCurPageParam("filter_history=Y", $clearFromLink, false)?>"><?php echo Loc::getMessage("SPOL_TPL_VIEW_ORDERS_HISTORY")?></a>
+                    </div>
 				<?php
 			}
 			if ($_REQUEST["filter_history"] == 'Y')
 			{
 				?>
+                    <div class="col">
 				<a class="mr-4" href="<?=$APPLICATION->GetCurPageParam("", $clearFromLink, false)?>"><?php echo Loc::getMessage("SPOL_TPL_CUR_ORDERS")?></a>
+                    </div>
 				<?php
 				if ($_REQUEST["show_canceled"] == 'Y')
 				{
 					?>
+                        <div class="col">
 					<a class="mr-4" href="<?=$APPLICATION->GetCurPageParam("filter_history=Y", $clearFromLink, false)?>"><?php echo Loc::getMessage("SPOL_TPL_VIEW_ORDERS_HISTORY")?></a>
+                        </div>
 					<?php
 				}
 				else
 				{
-					?>
+					?><div class="col">
 					<a class="mr-4" href="<?=$APPLICATION->GetCurPageParam("filter_history=Y&show_canceled=Y", $clearFromLink, false)?>"><?php echo Loc::getMessage("SPOL_TPL_VIEW_ORDERS_CANCELED")?></a>
+                    </div>
 					<?php
 				}
 			}
 			?>
-		</div>
 	</div>
 	<?php
 	if (!count($arResult['ORDERS']))
-	{
+	{/*
 		?>
 		<div class="row mb-3">
 			<div class="col">
@@ -92,6 +97,7 @@ else
 			</div>
 		</div>
 		<?php
+    */
 	}
 	foreach ($arResult['ORDERS'] as $key => $order)
 	{

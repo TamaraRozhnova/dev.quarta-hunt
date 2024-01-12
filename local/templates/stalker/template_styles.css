@@ -342,8 +342,23 @@
 .filter__ul{
 	flex-direction: row;
 }
+
+.filter__history{
+	display: flex;
+	justify-content: space-between;
+}
+.filter__history > div{
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
 @media screen and (max-width: 550px) {
 	.filter__ul{
+		flex-direction: column;
+	}
+	.filter__history{
+		display: flex;
+		justify-content: space-between;
 		flex-direction: column;
 	}
 }
@@ -512,5 +527,13 @@ a.ajaxsearch__title {
 }
 .filter__li.active.desc i{
 	background-image: url("img/sdesc.svg");
+}
+
+.card-left{
+	width: 100%;
+}
+
+.contacts-info__text_list a:hover{
+	text-decoration: underline;
 }
 

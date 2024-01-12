@@ -70,7 +70,7 @@ else
 		}
 	}
 	?>
-	<div class="row mb-3">
+	<div class="row mb-3 filter__history">
 		<div class="col">
 			<?
 			$nothing = !isset($_REQUEST["filter_history"]) && !isset($_REQUEST["show_all"]);

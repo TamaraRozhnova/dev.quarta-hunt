@@ -7,7 +7,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 global $APPLICATION;
 
-echo_j($arResult, 'breadcrumb');
+//echo_j($arResult, 'breadcrumb');
 
 //delayed function must return a string
 if(empty($arResult))

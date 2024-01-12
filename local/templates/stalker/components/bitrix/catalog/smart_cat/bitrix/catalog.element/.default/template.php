@@ -20,6 +20,20 @@ $this->setFrameMode( true );
 
 $arPrice = reset( $arResult['ITEM_PRICES'] );
 
+//echo_j($arResult, '$arResult');
+
+$arPhotos = [];
+
+if(isset($arResult['DETAIL_PICTURE']['SRC'])){
+    $arPhotos[] = $arResult['DETAIL_PICTURE']['SRC'];
+}
+if(isset($arResult['PROPERTIES']) && isset($arResult['PROPERTIES']['MORE_PHOTO']) && isset($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])){
+    foreach ($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'] as $index => $item){
+        $arPhotos[] = CFile::GetPath( $item );
+    }
+}
+
+
 ?>
 <div class="card <?=($arResult['PROPERTIES']['MORE_PHOTO']['VALUE']?'js-have-slider':'')?>">
 	<div class="card-left">
@@ -301,7 +315,7 @@ $arPrice = reset( $arResult['ITEM_PRICES'] );
 		<h2>Отзывы</h2>
 
         <?
-        echo_j($arResult['REVIEWS'], '$arResult[REVIEWS]');
+//        echo_j($arResult['REVIEWS'], '$arResult[REVIEWS]');
         ?>
 
 		<?if ($arResult['REVIEWS']): ?>

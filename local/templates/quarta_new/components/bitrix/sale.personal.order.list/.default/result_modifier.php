@@ -33,10 +33,9 @@ if (!empty($arResult['ORDERS'])) {
 
                 $rsPath = CIBlockSection::GetNavChain(false, $rsSectionsEl['ID']); 
 
-                while ($arPath = $rsPath->GetNext()) {
+                while ($arPath = $rsPath->GetNext()) {                     
                     $sectionIds[$arOrderIndex][$arPath['ID']] = $arPath['ID']; 
                 }
-
             }
 
             $rsSections = $entSections::getList(array(
@@ -47,11 +46,10 @@ if (!empty($arResult['ORDERS'])) {
                     "ID" => $sectionIds[$arOrderIndex]
                 ),
                 "select" => array("NAME", "CODE"),
-            ))->fetchAll();
+            ))->fetchAll();            
     
             if (!empty($rsSections)) {
-                foreach ($rsSections as $arSection) {
-    
+                foreach ($rsSections as $arSection) {    
                     if (
                         $arSection['CODE'] == 'odezhda'
                         ||
@@ -61,10 +59,14 @@ if (!empty($arResult['ORDERS'])) {
                     ) {
                         $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'Y';
 
-                        break;
+                        //break;
+                    }
+
+                    if ($arSection['CODE'] == 'pnevmaticheskoe_oruzhie') {
+                        $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'N';
                     }
     
-                    continue;
+                    //continue;
     
                 }
             }

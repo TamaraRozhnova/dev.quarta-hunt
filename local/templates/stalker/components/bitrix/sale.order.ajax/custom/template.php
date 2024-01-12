@@ -15,7 +15,7 @@ $deliveryChecked = 3;
 
 ?>
 <?
-echo_j($arResult, 'sale.order.ajax $arResult');
+//echo_j($arResult, 'sale.order.ajax $arResult');
 ?>
 <div class="main">
 	<div class="checkout">

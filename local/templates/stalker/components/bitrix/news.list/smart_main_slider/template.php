@@ -51,7 +51,7 @@ CModule::IncludeModule( 'iblock' );
 					<div class="swiper-slide hero__slide">
 
 						<div class="hero__slide-background">
-							<img src="<?=$img?>" alt=""/>
+							<img class="lazy" data-src="<?=$img?>" alt=""/>
 						</div>
 						<div class="hero__slide-content">
 							<div class="hero__slide-title"><?/*=$arFields['NAME'];?></br><?=$arFields['PROPERTY_TITLE_2_VALUE'];*/?></div>
