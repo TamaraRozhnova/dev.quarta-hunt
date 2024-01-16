@@ -31,6 +31,8 @@ function interlabsOneClickComponentApp() {
           IS_BYU_ONE_CLICK: "true",
         };
 
+        dataSend.sessid = element.querySelector('input[name="sessid"]').value;
+
         if (isCaptcha) {
           dataSend.captcha = $(element).serialize();
           dataSend.captcha_sid = element.querySelector(

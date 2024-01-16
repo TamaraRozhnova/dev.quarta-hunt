@@ -91,9 +91,9 @@ $basketItemsCount = $basket->getProductsCount();
 
     
     
-    <div class= "teh-obs">
+    <!-- <div class= "teh-obs">
         <h3>На данный момент на сайте действует авторизация и регистрация только по e-mail</h3>
-    </div>
+    </div> -->
     
     
 
