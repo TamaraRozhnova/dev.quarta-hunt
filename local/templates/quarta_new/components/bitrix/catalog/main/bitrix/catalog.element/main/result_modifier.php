@@ -178,6 +178,6 @@ $productSections = getRootProductSection($arResult['IBLOCK_ID'], $arResult['IBLO
 
 if (is_array($productSections) && count($productSections) > 0) {
     if ($productSections[0]['CODE'] == RESTRICTED_SECTIONS_FOF_FAST_BUY) {
-        $arResult['RESTRICTED_SECTION'] = 'Y';
+        $arResult['RESTRICTED_SECTION'] = 'Y';        
     }
 }
