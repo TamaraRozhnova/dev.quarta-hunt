@@ -174,10 +174,33 @@ if (!empty($rsStoreElement)) {
 
 }
 
+// Получаем ограничения по категориям платёжной системы
+$dbRestriction = \Bitrix\Sale\Internals\ServiceRestrictionTable::getList(array(
+    'select' => array('PARAMS'),
+    'filter' => array(
+        'SERVICE_ID' => PANYWAY_ID,
+        'SERVICE_TYPE' => \Bitrix\Sale\Services\PaySystem\Restrictions\Manager::SERVICE_TYPE_PAYMENT
+    )
+));
+$restrictions = array();
+while ($restriction = $dbRestriction->fetch()) {
+    if(is_array($restriction['PARAMS'])) {
+        $restrictions = array_merge($restrictions,$restriction['PARAMS']);
+    }
+}
+
+// Получаем все категории товара вплоть до основной
 $productSections = getRootProductSection($arResult['IBLOCK_ID'], $arResult['IBLOCK_SECTION_ID']);
 
-if (is_array($productSections) && count($productSections) > 0) {
-    if ($productSections[0]['CODE'] == RESTRICTED_SECTIONS_FOF_FAST_BUY) {
-        $arResult['RESTRICTED_SECTION'] = 'Y';        
-    }
+// Устанавливаем ограничение
+$arResult['RESTRICTED_SECTION'] = 'Y';
+
+// Снимаем ограничение, если хоть одна из категорий товара попадает под исключение
+if (is_array($productSections) && is_array($restrictions['CATEGORIES']) && count($productSections) > 0) {
+    foreach ($productSections as $section) {
+        if (in_array($section['ID'], $restrictions['CATEGORIES'])) {
+            unset($arResult['RESTRICTED_SECTION']);
+            break;
+        }
+    }    
 }
