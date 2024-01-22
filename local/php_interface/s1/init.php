@@ -158,3 +158,11 @@ function changeOrderStatus(\Bitrix\Main\Event $event)
         }
     }
 }
+
+function debug($var) {
+    if (Bitrix\Main\Engine\CurrentUser::get()->isAdmin()) {
+        print_r('<pre>');
+        print_r($var);
+        print_r('</pre>');
+    }
+}

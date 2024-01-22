@@ -180,17 +180,17 @@ class Oneclick extends CBitrixComponent
                 return $data;
             }
 
-            if ($this->arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId() && $request->get('MULTIUSER_ID') == '') {
-                $captcha = new CCaptcha();
-                if (!strlen($_REQUEST["captcha_word"]) > 0) {                    
-                    $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_NO_CAPTCHA_CODE')];
-                    return $data;
+            // if ($this->arParams['USE_CAPTCHA'] === 'Y' && !CurrentUser::get()->getId() && $request->get('MULTIUSER_ID') == '') {
+            //     $captcha = new CCaptcha();
+            //     if (!strlen($_REQUEST["captcha_word"]) > 0) {                    
+            //         $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_NO_CAPTCHA_CODE')];
+            //         return $data;
 
-                } elseif (!$captcha->CheckCode($_REQUEST["captcha_word"], $_REQUEST["captcha_sid"])) {                    
-                    $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_CAPTCHA_CODE_WRONG')];
-                    return $data;
-                }
-            }
+            //     } elseif (!$captcha->CheckCode($_REQUEST["captcha_word"], $_REQUEST["captcha_sid"])) {                    
+            //         $this->arResult['validateErrors']['catpcha'] = ['message' => Loc::getMessage('ERROR_CAPTCHA_CODE_WRONG')];
+            //         return $data;
+            //     }
+            // }
 
             switch ($BUY_STRATEGY) {
                 case 'ProductAndBasket':

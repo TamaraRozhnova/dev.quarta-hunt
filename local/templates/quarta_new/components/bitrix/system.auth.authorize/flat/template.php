@@ -52,7 +52,7 @@ $this->setFrameMode(false);?>
 	
 				<?endif?>
 					<form name="form_auth_phone" id="form_auth_phone" method="post" enctype="multipart/form-data" action="">
-						
+						<?=bitrix_sessid_post()?>
 						<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
 							<label class="bx-authform-label-container form-label">
 								<?echo GetMessage("AUTH_LOGIN_PHONE")?>

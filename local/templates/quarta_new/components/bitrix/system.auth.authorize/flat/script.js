@@ -38,15 +38,10 @@ $(document).ready(function () {
     e.preventDefault();
     let phoneElement = $("#phone");
     let phoneLength = phoneElement.val().replace(/[^0-9]/g, "");
-    let captchaElement = $('input[name="captcha_word"]');
 
     if (phoneLength.length < 11) {
       phoneElement.next(".error_message").text("Введите номер телефона");
-    }
-    // else if (captchaElement.val() == "") {
-    //   captchaElement.next(".error_message").text("Введите слово на картинке");
-    // }
-    else {
+    } else {
       authPhone(null, true);
     }
   });
@@ -176,6 +171,7 @@ function handleQuickRegister(data, modalNode) {
             PROCESS_QUICK_REGISTER: "Y",
             SMS_CODE: data.SMS_CODE,
             PERSONAL_PHONE: data.PERSONAL_PHONE,
+            sessid: $('input[name="sessid"]').val(),
           },
           url: "/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php",
           dataType: "json",
@@ -246,6 +242,8 @@ function authPhone(data = null, isCaptcha = false) {
       },
     };
   }
+
+  dataSend.sessid = $('input[name="sessid"]').val();
 
   if (isCaptcha) {
     dataSend.captcha = $("#form_auth_phone").serialize();
