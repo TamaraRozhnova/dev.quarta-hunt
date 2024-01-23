@@ -11,9 +11,14 @@ use Bitrix\Main\Loader,
 	Bitrix\Main\UserTable,
 	Bitrix\Main\Localization\Loc,
 	Bitrix\Main\Web\Json,
-	Targetsms\Sms\Sender;
+	Targetsms\Sms\Sender,
+	Bitrix\Main\Config\Option;
 
 Loc::loadMessages(__FILE__);
+
+if(!check_bitrix_sessid()){
+    die("ACCESS_DENIED");
+}
 
 if (!Loader::includeModule('targetsms.sms')) {
 	die(Loc::getMessage('TARGET_SMS_ISNT_INIT'));
@@ -28,6 +33,13 @@ define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
 
 $currentUser = CurrentUser::get();
 $userObj = new CUser();
+
+if (isset($_POST['captcha']) && !checkCustomCaptcha($_POST['captcha'])) {
+	die(Json::encode([
+		'captcha_error' => true,
+		'message' => Loc::getMessage('WRONG_CARTCHA')	
+	]));
+}
 
 if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 
@@ -116,7 +128,6 @@ if ($_REQUEST['PROCESS_QUICK_REGISTER'] == 'Y') {
 		'STATUS' => 'ERROR',
 		'ERR' => $userObj->LAST_ERROR
 	]));
-
 }
 
 if (!$currentUser->getId()) {
@@ -214,8 +225,8 @@ if (!$currentUser->getId()) {
 	
 	} else {
 
-		if (isset($_REQUEST['IS_BYU_ONE_CLICK'])) {
-			die(Json::encode(['data' => 'ok']));
+		if (isset($_REQUEST['IS_BYU_ONE_CLICK'])) {									
+			die(Json::encode(['data' => 'ok']));			
 		}
 
 		/** 

@@ -2,7 +2,7 @@
 
 $q = 0;
 
-echo_j($arResult, 'cart');
+//echo_j($arResult, 'cart');
 ?>
 <div class="main">
 	<div class="basket">

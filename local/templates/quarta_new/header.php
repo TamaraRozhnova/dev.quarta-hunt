@@ -72,14 +72,14 @@ $basketItemsCount = $basket->getProductsCount();
         window.basketItemsCount = <?= $basketItemsCount ?>;
     </script>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-M526Z2F0KC"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V3D494BEBF"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-M526Z2F0KC');
+  gtag('config', 'G-V3D494BEBF');
 </script>
 
 </head>
@@ -89,13 +89,13 @@ $basketItemsCount = $basket->getProductsCount();
 
 <div class="wrapper">
 
-    <?php 
-    /*
-    <div class= "teh-obs">
-        <h3>Сайт находится на техническом обслуживании. Возможны сбои в работе</h3>
-    </div>
-    */
-    ?>
+    
+    
+    <!-- <div class= "teh-obs">
+        <h3>На данный момент на сайте действует авторизация и регистрация только по e-mail</h3>
+    </div> -->
+    
+    
 
 
     <header class="header header--desktop">

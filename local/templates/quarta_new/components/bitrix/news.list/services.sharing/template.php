@@ -17,7 +17,7 @@
             <div class="sharing-elements">
                 <?foreach ($arResult['ITEMS'] as $arItem):?>
                     <?if (!empty($arItem['PROPERTIES']['SS_ICON']['VALUE'])):?>
-                        <a 
+                        <a rel="nofollow" target="_blank"
                         <?=$arItem['COPY_ATTR'] ? 'data-copy-attr='. $arItem['COPY_ATTR'] : null ?>
                         href='<?=$arItem['LINK_SERVICE']?>'
                         class="sharing-element">

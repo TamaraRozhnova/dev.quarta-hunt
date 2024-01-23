@@ -15,7 +15,7 @@ CModule::IncludeModule( 'iblock' );
 ?>
 
 <?php
-    echo_j($arResult, '$arResult');
+//    echo_j($arResult, '$arResult');
 ?>
 
 <div class="swiper">
@@ -28,7 +28,7 @@ CModule::IncludeModule( 'iblock' );
 		{
 			$arFields = $ob->GetFields();
 
-            echo_j($arFields, '$arFields');
+//            echo_j($arFields, '$arFields');
 
 //            $arFields['DETAIL_PICTURE'] = $arFields['DETAIL_PICTURE']);
 			?>

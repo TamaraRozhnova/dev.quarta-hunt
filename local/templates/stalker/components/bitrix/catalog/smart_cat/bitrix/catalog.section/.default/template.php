@@ -17,7 +17,7 @@ print_r($arResult);
 echo '</pre>';*/
 
 //echo_j($arParams);
-echo_j('$arResult section search', $arResult);
+//echo_j('$arResult section search', $arResult);
 
 ?>
 <div class="inner__hero">

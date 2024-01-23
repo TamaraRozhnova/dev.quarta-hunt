@@ -86,54 +86,63 @@
   src: url("../fonts/Micra.woff2") format("woff2"), url("../fonts/Micra.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Micra";
   src: url("../fonts/Micra-Bold.woff2") format("woff2"), url("../fonts/Micra-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Jura";
   src: url("../fonts/Jura-Light.woff2") format("woff2"), url("../fonts/Jura-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Jura";
   src: url("../fonts/Jura-Regular.woff2") format("woff2"), url("../fonts/Jura-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Jura";
   src: url("../fonts/Jura-Bold.woff2") format("woff2"), url("../fonts/Jura-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Play";
   src: url("../fonts/Play-Regular.woff2") format("woff2"), url("../fonts/Play-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Play";
   src: url("../fonts/Play-Bold.woff2") format("woff2"), url("../fonts/Play-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Averta";
   src: url("../fonts/AvertaCY-Regular.woff2") format("woff2"), url("../fonts/AvertaCY-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Averta";
   src: url("../fonts/AvertaCY-Bold.woff2") format("woff2"), url("../fonts/AvertaCY-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 * {
   outline: none;

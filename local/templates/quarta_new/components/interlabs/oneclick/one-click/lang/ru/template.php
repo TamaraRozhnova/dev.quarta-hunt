@@ -1,5 +1,5 @@
 <?php
-$MESS["CAPTCHA_ENTER_CODE"] = "Введите код с картинки:";
+$MESS["CAPTCHA_ENTER_CODE"] = "Подтвердите, что вы не робот";
 $MESS["AGREE_PROCESSING"] = "Согласен на обработку";
 $MESS["AGREE_PROCESSING_DIALOG_TITLE"] = "Соглашение";
 $MESS["fio"] = "Ф.И.О.";

@@ -8,6 +8,7 @@ use \Bitrix\Main\EventManager;
 $eventManager = EventManager::getInstance();
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
+include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/functions.php');
 include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 
@@ -155,5 +156,13 @@ function changeOrderStatus(\Bitrix\Main\Event $event)
             $order->setField('STATUS_ID', $statusId);
             $order->save();
         }
+    }
+}
+
+function debug($var) {
+    if (Bitrix\Main\Engine\CurrentUser::get()->isAdmin()) {
+        print_r('<pre>');
+        print_r($var);
+        print_r('</pre>');
     }
 }

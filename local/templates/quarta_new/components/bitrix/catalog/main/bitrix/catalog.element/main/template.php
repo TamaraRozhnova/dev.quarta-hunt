@@ -238,7 +238,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </button>
                     </div>
                     <hr/>
-                    <div class="product__delivery mb-5">
+                    <div class="product__delivery mb-3">
                         <?/*<div class="product__delivery-option">
                             <div class="product__delivery-icon">
                                 <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/delivery.svg" alt="Доставка"/>
@@ -256,7 +256,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <?=$arResult['COUNT_DISPLAY_STORES_ELEMENT']?>
                             </a>
                         </div> 
-                    </div>
+                    </div>                    
+                    <?if (isset($arResult['RESTRICTED_SECTION'])) {?>
+                        <div class="product__restiction mb-3">
+                            <?=GetMessage("RESTRICTION_TEXT")?>
+                        </div>
+                    <?}?>
                 </div>
             </div>
         </div>

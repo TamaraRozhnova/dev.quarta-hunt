@@ -11305,3 +11305,8 @@ div[id*="wait_comp"] {
 .promo-detail .interlabs-one-click-buy {
   display: none;
 }
+
+.product__restiction {
+  font-size: 1rem;
+  color: var(--bs-danger);
+}

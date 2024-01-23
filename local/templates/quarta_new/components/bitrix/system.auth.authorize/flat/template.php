@@ -15,7 +15,6 @@ Loc::loadMessages(__FILE__);
 
 $this->setFrameMode(false);?>
 
-
 <div class="bx-authform-wrap mb-4">
 	<div class="container">
 		<div class="bx-authform-container">
@@ -53,7 +52,7 @@ $this->setFrameMode(false);?>
 	
 				<?endif?>
 					<form name="form_auth_phone" id="form_auth_phone" method="post" enctype="multipart/form-data" action="">
-						
+						<?=bitrix_sessid_post()?>
 						<div class="bx-authform-formgroup-container phone input mb-4 input--lg">
 							<label class="bx-authform-label-container form-label">
 								<?echo GetMessage("AUTH_LOGIN_PHONE")?>
@@ -71,6 +70,23 @@ $this->setFrameMode(false);?>
 								<input type="text" class="form-control" name="CODE" maxlength="255" value="" />
 							</div>
 						</div>
+						<?if($arResult["CAPTCHA_CODE"]):?>
+							<div class="register-capthca-auth mb-4">
+								<div class="input input--lg">
+									<label for="" class="form-label">
+										<?=GetMessage("AUTH_CAPTCHA_PROMT")?>:<span class="starrequired">*</span>
+									</label>									
+								</div>
+								<div class="mb-4">
+									<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+									<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" />
+								</div>								
+								<div class="input mb-4 input--lg">									
+									<input class="form-control" type="text" name="captcha_word" maxlength="50" value="" autocomplete="off"/>
+									<div class="error_message"></div>
+								</div>
+							</div>							
+						<?endif;?>
 						<div class="bx-authform-formgroup-container">
 							<input type="submit" class="btn btn-primary btn-lg w-100 mb-3 form_auth_phone" name="send_account_info" value="<?=GetMessage("AUTH_LOGIN_PHONE_SUBMIT")?>" />
 							<input type="submit" class="btn btn-primary btn-lg w-100 mb-3 login_auth_phone" style="display:none" name="send_account_info" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
@@ -115,9 +131,8 @@ $this->setFrameMode(false);?>
 								<?endif?>
 								<input type="password" class="form-control" name="USER_PASSWORD" maxlength="255" autocomplete="off" />
 							</div>
-						</div>
-				
-					<?if($arResult["CAPTCHA_CODE"]):?>
+						</div>				
+					<?/*if($arResult["CAPTCHA_CODE"]):?>
 						<input type="hidden" name="captcha_sid" value="<?echo $arResult["CAPTCHA_CODE"]?>" />
 				
 						<div class="bx-authform-formgroup-container dbg_captha">
@@ -129,7 +144,7 @@ $this->setFrameMode(false);?>
 								<input type="text" name="captcha_word" maxlength="50" value="" autocomplete="off" />
 							</div>
 						</div>
-					<?endif;?>
+					<?endif;*/?>
 				
 					<?/*if ($arResult["STORE_PASSWORD"] == "Y"):?>
 						<div class="bx-authform-formgroup-container">
