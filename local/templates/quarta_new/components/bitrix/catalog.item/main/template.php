@@ -71,7 +71,7 @@ $item = $arResult['ITEM'];
         <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
             <figure>
                 <? if (!empty($item['PREVIEW_PICTURE']['SRC'])) {?>
-                    <img src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" alt="<?= $item['NAME'] ?>"/>
+                    <img src="<?=CFile::ResizeImageGet($item['PREVIEW_PICTURE'], array('width' => 220, 'height' => 250), BX_RESIZE_IMAGE_PROPORTIONAL )['src'] ?>" alt="<?= $item['NAME'] ?>"/>
                 <?} else {?>
                     <img src="/upload/cards/photo-not-found.jpg" alt="<?= $item['NAME'] ?>"/>
                 <? } ?>

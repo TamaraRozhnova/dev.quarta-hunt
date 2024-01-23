@@ -1,4 +1,8 @@
-$(document).ready(function () {
+window.addEventListener('load', (e) => {
+
+
+
+// $(document).ready(function () {
   if (document.getElementById("phone")) {
     $("#phone").inputmask({ mask: "+7 (999) 999-99-99" });
   }
@@ -48,14 +52,21 @@ $(document).ready(function () {
 
   $(".more_code_phone").on("click", function (e) {
     e.preventDefault();
-    authPhone();
+    authPhone(null, false);
   });
 
   $(".login_auth_phone").on("click", function (e) {
     e.preventDefault();
-    authPhone();
+
+    if ($(`[name='CODE']`).is(':visible')) {
+      if ($(`[name='CODE']`).val().trim() == '') {
+        return;
+      }
+    }
+
+    authPhone(null, false);
   });
-});
+// });
 
 let objModal = "",
   userSelected = null,
@@ -224,6 +235,7 @@ function handleMultiAccounts(data) {
 }
 
 function authPhone(data = null, isCaptcha = false) {
+
   let dataSend;
 
   if ((data != null && data?.USER_SELECTED) || userSelected == "Y") {
@@ -272,7 +284,9 @@ function authPhone(data = null, isCaptcha = false) {
          */
 
         initModalMultiUser(data);
+
       } else {
+
         if (
           typeof objModal != undefined &&
           objModal != null &&
@@ -311,9 +325,17 @@ function authPhone(data = null, isCaptcha = false) {
         } else if (data?.captcha_error == true) {
           $("input[name='captcha_word'] + .error_message").text(data.message);
         } else {
-          $("#phone + .error_message").text(data.message);
+
+          if ($("#input_sms_code + .error_message").is(':visible')) {
+            $("#input_sms_code + .error_message").text(data.message);
+          } else if ($("#phone + .error_message").is(':visible')) {
+            $("#phone + .error_message").text(data.message);
+          }
+
         }
       }
     },
   });
 }
+
+})

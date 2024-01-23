@@ -48,9 +48,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <?if ($arResult['HIDE_MODAL'] == 'Y'):?>
                                     data-hide = 'Y'
                                 <?endif;?>
-                                data-modal-index = "0" 
-                                class="product-photos__selected-photo"
-                                style="background-image: url('<?= $arResult['IMAGES'][0] ?>')">
+                                data-modal-index = "0"
+                                class="wr product-photos__selected-photo"
+                                style="background-image: url('<?=CFile::ResizeImageGet($arResult['IMAGES_ID'][0], array('width' => 468, 'height' => 420), BX_RESIZE_IMAGE_PROPORTIONAL)['src'] //= $arResult['IMAGES'][0]  ?>')">
                                 <div class="product-photos__expander"></div>
                             </a>
                         </figure>
@@ -65,11 +65,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                                 href="<?= $image ?>"
                                                 data-modal-index="<?=$imageIndex?>" 
                                             <?endif;?>
-                                            class="
+                                            data-middle="<?=CFile::ResizeImageGet($arResult['IMAGES_ID'][$imageIndex], array('width' => 468, 'height' => 420), BX_RESIZE_IMAGE_PROPORTIONAL)['src']?>"
+                                            class=" we
                                                 detail-card-open-modal-mobile 
                                                 photos-slider__item swiper-slide
                                                 detail-card-open-modal-mobile-<?=$imageIndex?>"
-                                            style="background-image: url('<?= $image ?>')">
+                                            style="background-image: url('<?=CFile::ResizeImageGet($arResult['IMAGES_ID'][$imageIndex], array('width' => 74, 'height' => 74), BX_RESIZE_IMAGE_PROPORTIONAL)['src'] //$image ?>')">
                                         </a>
                                     <? } ?>
                                 </div>

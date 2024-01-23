@@ -87,7 +87,13 @@ Loc::loadMessages(__FILE__);
 									<?=$arResult['INFO']['DELIVERY'][$shipment['DELIVERY_ID']]['NAME']?><br> 
 								<?}?>
 								<b><?=Loc::getMessage('SPOL_TPL_DELIVERY_COST')?>:</b> 
-								<?= $shipment['FORMATED_DELIVERY_PRICE'];?>
+								<?= $shipment['FORMATED_DELIVERY_PRICE'];?> <br> 
+
+								<?if (!empty($order['ADD_BONUSES'])):?>
+									<b>Начислено бонусов:</b>
+									<?=$order['ADD_BONUSES']?>
+								<?endif;?>
+
 							</span>
 						</div> 
 						<div class="col-2 history-order__column">
@@ -133,17 +139,18 @@ Loc::loadMessages(__FILE__);
 						      		<span class="history-order__item-mob">
 									  	<?= $item['QUANTITY']?> <br >
 										<?= $item['PRICE']?> <br >
-						        		0 баллов
 						      		</span>
 								</span>
 							</div> 
 							<div class="col-2"><?= $item['QUANTITY']?> <?= $item['MEASURE_TEXT']?></div> 
 							<div class="col-2"><?= CurrencyFormat($item['PRICE'], 'RUB');?></div> 
-							<div class="col-2">0 баллов</div>
 						</div>  
 	                <? } ?>
 					<div class="history-order__body-btns">
-						<a href="/cabinet/reviews/?order_id=<?= $order['ORDER']['ACCOUNT_NUMBER'];?>" class="btn btn-primary btn-lg px-5 history-order__body-btn">Оставить отзыв</a> 
+						<? if ($order['ORDER']['STATUS_ID'] == 'F'): ?>
+							<a href="/cabinet/reviews/?order_id=<?= $order['ORDER']['ACCOUNT_NUMBER'];?>" class="btn btn-primary btn-lg px-5 history-order__body-btn">Оставить отзыв</a> 
+						<? endif; ?>
+
 						<a href="<?=htmlspecialcharsbx($order["ORDER"]["URL_TO_COPY"])?>" class="btn btn-primary btn-lg px-5 history-order__body-btn sale-order-list-repeat-link">
 							<span ><?= getMessage('SPOL_REPEAT_ORDER');?></span>
 						</a> 
@@ -171,6 +178,8 @@ Loc::loadMessages(__FILE__);
 										$payment['ACTION_FILE'] !== 'cash'
 										&&
 										$order['HIDE_BUTTON_PAYMENT'] != 'Y'
+										&&
+										$order['ORDER']['CANCELED'] !== 'Y'
 									) { ?>
 										<div class="sale-order-list-button-container">
 											<a class="sale-order-list-button ajax_reload btn btn-secondary btn-lg px-5 history-order__body-btn text-white" href="<?=htmlspecialcharsbx($payment['PSA_ACTION_FILE'])?>">
@@ -178,6 +187,35 @@ Loc::loadMessages(__FILE__);
 											</a>
 										</div>
 									<?}?>
+									<?php 
+									/**
+									 * Если не оплачен заказ
+									 * и не выполнен
+									 * и выбран тип оплаты наличные или банковский
+									 * и заказ не отменен
+									 * перевод (при получении),
+									 * то добавляем кнопку "отменить заказ"
+									 */
+									?>
+									<? if (
+										$payment['PAID'] === 'N' 
+										&& 
+										$payment['IS_CASH'] !== 'Y' 
+										&& 
+										$payment['ACTION_FILE'] !== 'cash'
+										&&
+										$order['HIDE_BUTTON_PAYMENT'] != 'Y'
+										&&
+										$order['ORDER']['CANCELED'] !== 'Y'
+									): ?>
+										<?$APPLICATION->IncludeComponent("bitrix:sale.personal.order.cancel","order.cancel",Array(
+												"PATH_TO_LIST" => "",
+												"PATH_TO_DETAIL" => "",
+												"ID" => $order['ORDER']['ID'],
+												"SET_TITLE" => "N"
+											)
+										);?>
+									<? endif; ?>
 								</div>
 								<div class="sale-order-list-inner-row-template">
 								</div>

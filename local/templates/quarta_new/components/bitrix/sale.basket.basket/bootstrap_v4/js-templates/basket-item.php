@@ -329,6 +329,13 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                         ?>
                         <div class="col-2 d-none d-lg-block order-sm-0 col-lg-2 basket-items-list-item-price basket-items-list-item-price-for-one">
                             <div class="basket-item-block-price<?=(!isset($mobileColumns['PRICE']) ? ' d-none d-sm-block' : '')?>">
+
+                                <div class="basket-item-price-current">
+                                    <span class="basket-item-price-current-text" id="basket-item-price-{{ID}}">
+                                        {{{PRICE_FORMATED}}}
+                                    </span>
+                                </div>
+
                                 {{#SHOW_DISCOUNT_PRICE}}
                                     <div class="basket-item-price-old">
                                         <span class="basket-item-price-old-text">
@@ -336,12 +343,6 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                         </span>
                                     </div>
                                 {{/SHOW_DISCOUNT_PRICE}}
-
-                                <div class="basket-item-price-current">
-                                    <span class="basket-item-price-current-text" id="basket-item-price-{{ID}}">
-                                        {{{PRICE_FORMATED}}}
-                                    </span>
-                                </div>
                                 
                                 {{#SHOW_LOADING}}
                                     <div class="basket-items-list-item-overlay"></div>
@@ -373,6 +374,13 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                         ?>
                         <div class="col-6 order-2 order-sm-0 col-lg-2 basket-items-list-item-price<?=(!isset($mobileColumns['SUM']) ? ' ' : '')?>">
                             <div class="basket-item-block-price">
+
+                                <div class="basket-item-price-current">
+                                    <span class="basket-item-price-current-text" id="basket-item-sum-price-{{ID}}">
+                                        {{{SUM_PRICE_FORMATED}}}
+                                    </span>
+                                </div>
+                                
                                 {{#SHOW_DISCOUNT_PRICE}}
                                     <div class="basket-item-price-old">
                                         <span class="basket-item-price-old-text" id="basket-item-sum-price-old-{{ID}}">
@@ -380,12 +388,6 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                         </span>
                                     </div>
                                 {{/SHOW_DISCOUNT_PRICE}}
-
-                                <div class="basket-item-price-current">
-                                    <span class="basket-item-price-current-text" id="basket-item-sum-price-{{ID}}">
-                                        {{{SUM_PRICE_FORMATED}}}
-                                    </span>
-                                </div>
 
                                 {{#SHOW_DISCOUNT_PRICE}}
                                     <div class="basket-item-price-difference">

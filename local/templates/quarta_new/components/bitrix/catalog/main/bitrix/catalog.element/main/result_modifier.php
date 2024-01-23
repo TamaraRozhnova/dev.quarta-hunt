@@ -76,6 +76,7 @@ foreach ($arResult['PROPERTIES']['FILES']['VALUE'] as $fileId) {
 
 if (!empty($arResult['DETAIL_PICTURE']['SRC'])) {
     $arResult['IMAGES'][] = $arResult['DETAIL_PICTURE']['SRC'];
+    $arResult['IMAGES_ID'][] = $arResult['DETAIL_PICTURE'];
 }
 
 if (!empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
@@ -84,6 +85,7 @@ if (!empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
 
         if (trim(CFile::GetPath($value)) !== '') {
             $arResult['IMAGES'][] = CFile::GetPath($value);
+            $arResult['IMAGES_ID'][] = $value;
         }
 
     }    
