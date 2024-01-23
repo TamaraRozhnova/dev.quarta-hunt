@@ -96,6 +96,7 @@ class CBitrixBasketBasketSmallMailComponent extends CBitrixBasketComponent
             $subSections[] = $arGroup['ID'];
         }
 
+        $arSections = [];
         foreach ($subSections as $subSectionItem) {
             foreach (CIBlockSection::GetNavChain(false, $subSectionItem, ['ID'], true) as $sectionItem) {
                 $arSections[] = $sectionItem['ID'];
