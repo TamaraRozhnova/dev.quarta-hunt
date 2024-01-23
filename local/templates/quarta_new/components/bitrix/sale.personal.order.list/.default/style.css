@@ -25,11 +25,24 @@
     color: #333;
     border-bottom: 1px solid #eee;
 }
+.sale-order-list-inner-row-body {
+	display: flex;
+}
 .history-order__body {
     padding: 1.25rem 1.875rem;
     background-color: #fff;
     font-size: 1rem;
     border-radius: 0 0 0.875rem 0.875rem;
+}
+.cancel-order {
+    background: #dd4343 !important;
+}
+.cancel-order:hover {
+	background: #cf3d3d !important;
+}
+.cancel-order:focus {
+	border-color: #cd1b1b !important;
+    box-shadow: 0 0 0 0.25rem rgb(200 5 5 / 50%) !important;
 }
 .history-order__summary [class*=col-] {
     display: flex;

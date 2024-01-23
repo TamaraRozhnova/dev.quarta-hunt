@@ -20,10 +20,10 @@
   left: 0;
   right: 0;
   max-width: 100%;
+  padding: 10px;
 }
 .product-card__image img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
 }
 .product-card__fav:hover {
   color: #eb5806;

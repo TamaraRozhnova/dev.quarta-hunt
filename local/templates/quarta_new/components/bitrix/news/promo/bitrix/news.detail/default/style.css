@@ -74,9 +74,14 @@ div.promo-detail .promo-detail__body-wrapper {
   padding: 6.25rem 0 8.5rem;
   font-size: 1rem;
 }
+
 @media (max-width: 767.98px) {
   div.promo-detail .promo-detail__body-wrapper {
     padding: 40px 0;
+  }
+  div.promo-detail .promo-detail__body-wrapper img {
+    width: 100%;
+    object-fit: contain;
   }
 }
 div.promo-detail a {

@@ -51,9 +51,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     <?if ($item['PROPERTIES']['HIDE_NAME_CARD_IN_SLIDER']['VALUE'] != 'Y'):?>
                                         <h3><?= $item['NAME'] ?></h3>
                                     <?endif;?>
-                                    <?if (!empty($item['PREVIEW_TEXT'])):?>
-                                        <p><?= $item['PREVIEW_TEXT'] ?></p>
-                                    <?endif;?>
                                 </a>
                             </div>
                         <? } ?>

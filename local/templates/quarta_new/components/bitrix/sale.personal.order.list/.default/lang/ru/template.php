@@ -56,4 +56,5 @@ $MESS["SPOL_ITEM_ORDER"] = "Состав заказа:";
 $MESS["SPOL_REPEAT_ORDER"] = "Повторить заказ";
 $MESS["SPOL_PAYMENT_ORDER"] = "Оплатить";
 $MESS["SPOL_HISTORY_ORDER"] = "История заказов";
+$MESS["TITLE_BTN_CANCEL"] = "Отменить"; 
 ?>

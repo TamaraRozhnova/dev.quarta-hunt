@@ -1,5 +1,8 @@
 <?php if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true)die();
 
+use Bitrix\Sale\Order;
+
+global $USER;
 
 
 if (!empty($arResult['ORDERS'])) {
@@ -7,6 +10,28 @@ if (!empty($arResult['ORDERS'])) {
     $entSections = \Bitrix\Iblock\Model\Section::compileEntityByIblock(CATALOG_IBLOCK_ID);
 
     foreach ($arResult['ORDERS'] as $arOrderIndex => $arOrder) {
+
+        if (empty($arOrder['ORDER']['ID'])) {
+            continue;
+        }
+
+        $order = Order::loadByAccountNumber($arOrder['ORDER']['ID']);
+        $propertyCollection = $order->getPropertyCollection();
+
+        foreach ($propertyCollection as $arPropertyValue) {
+
+            $arPropertyValues = $arPropertyValue?->getFields()?->getValues();
+
+            if (empty($arPropertyValues)) {
+                continue;
+            }
+
+            if ($arPropertyValues['CODE'] == 'LOGICTIM_ADD_BONUS') {
+                $arResult['ORDERS'][$arOrderIndex]['ADD_BONUSES'] = $arPropertyValues['VALUE'];
+            }
+
+        }
+
 
         if ($arOrder['ORDER']['PERSON_TYPE_ID'] == 2) {
             $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'Y';
