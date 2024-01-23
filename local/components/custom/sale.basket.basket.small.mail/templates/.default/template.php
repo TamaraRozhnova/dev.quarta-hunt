@@ -101,12 +101,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     </style>
 
     <div class="quartaImg">
-        <?php
-        if ($arResult['IS_LICENCE_PRODUCT']) { ?>
-            <img src="<?= $templateFolder ?>/cartBannerNoDiscount.png" alt="">
-        <?php } else { ?>
-            <img src="<?= $templateFolder ?>/cartBanner.png" alt="">
-        <?php } ?>
+        <img src="<?= $templateFolder ?>/cartBanner.png" alt="">
     </div>
     <br><br>
 
@@ -123,7 +118,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     ?>
     <?php if (!$arResult['IS_LICENCE_PRODUCT']) { ?>
         <div style="text-align: center">
-            <span class="promocode"><?= GetMessage("TSBS_2PROMOCODE", ['#CODE#' => $arResult['PROMOCODE']]) ?></span>
+            <div class="promocode"><?= GetMessage("TSBS_2PROMOCODE", ['#CODE#' => $arResult['PROMOCODE']]) ?></div>
         </div>
         <br><br>
     <?php } ?>
