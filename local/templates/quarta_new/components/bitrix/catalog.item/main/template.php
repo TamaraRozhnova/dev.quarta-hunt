@@ -10,24 +10,18 @@ if (!isset($arResult['ITEM'])) {
 
 $item = &$arResult['ITEM'];
 
-global $USER;
-
-if ($USER->isAdmin()) {
-
-    if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
-        if (count($item['PREVIEW_PICTURE']) > 1) {
-            $item['IMG_SRC'] = CFile::ResizeImageGet(
-                $item['PREVIEW_PICTURE'], 
-                ['width' => 220, 'height' => 250], 
-                BX_RESIZE_IMAGE_PROPORTIONAL 
-            )['src'];
-        } else {
-            $item['IMG_SRC'] = $item['PREVIEW_PICTURE']['SRC'];
-        }
+if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
+    if (count($item['PREVIEW_PICTURE']) > 1) {
+        $item['IMG_SRC'] = CFile::ResizeImageGet(
+            $item['PREVIEW_PICTURE'], 
+            ['width' => 220, 'height' => 250], 
+            BX_RESIZE_IMAGE_PROPORTIONAL 
+        )['src'];
     } else {
-        $item['IMG_SRC'] = '/upload/cards/photo-not-found.jpg';
+        $item['IMG_SRC'] = $item['PREVIEW_PICTURE']['SRC'];
     }
-
+} else {
+    $item['IMG_SRC'] = '/upload/cards/photo-not-found.jpg';
 }
 
 ?>
