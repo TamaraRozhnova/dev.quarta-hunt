@@ -180,7 +180,7 @@ if (!empty($rsStoreElement)) {
 $dbRestriction = \Bitrix\Sale\Internals\ServiceRestrictionTable::getList(array(
     'select' => array('PARAMS'),
     'filter' => array(
-        'SERVICE_ID' => PANYWAY_ID,
+        'SERVICE_ID' => UKASSA_ID,
         'SERVICE_TYPE' => \Bitrix\Sale\Services\PaySystem\Restrictions\Manager::SERVICE_TYPE_PAYMENT
     )
 ));
