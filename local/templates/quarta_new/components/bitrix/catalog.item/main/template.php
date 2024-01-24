@@ -8,7 +8,27 @@ if (!isset($arResult['ITEM'])) {
     return;
 }
 
-$item = $arResult['ITEM'];
+$item = &$arResult['ITEM'];
+
+global $USER;
+
+if ($USER->isAdmin()) {
+
+    if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
+        if (count($item['PREVIEW_PICTURE']) > 1) {
+            $item['IMG_SRC'] = CFile::ResizeImageGet(
+                $item['PREVIEW_PICTURE'], 
+                ['width' => 220, 'height' => 250], 
+                BX_RESIZE_IMAGE_PROPORTIONAL 
+            )['src'];
+        } else {
+            $item['IMG_SRC'] = $item['PREVIEW_PICTURE']['SRC'];
+        }
+    } else {
+        $item['IMG_SRC'] = '/upload/cards/photo-not-found.jpg';
+    }
+
+}
 
 ?>
 
@@ -70,11 +90,7 @@ $item = $arResult['ITEM'];
 
         <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
             <figure>
-                <? if (!empty($item['PREVIEW_PICTURE']['SRC'])) {?>
-                    <img src="<?=CFile::ResizeImageGet($item['PREVIEW_PICTURE'], array('width' => 220, 'height' => 250), BX_RESIZE_IMAGE_PROPORTIONAL )['src'] ?>" alt="<?= $item['NAME'] ?>"/>
-                <?} else {?>
-                    <img src="/upload/cards/photo-not-found.jpg" alt="<?= $item['NAME'] ?>"/>
-                <? } ?>
+                <img src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>"/>
             </figure>
         </a>
     </div>
