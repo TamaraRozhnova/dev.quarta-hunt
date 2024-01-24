@@ -192,6 +192,12 @@ class Oneclick extends CBitrixComponent
             //     }
             // }
 
+            $log = date('Y-m-d H:i:s') . ' ' . print_r('Вход в class' , true);
+            file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+
+            $log = date('Y-m-d H:i:s') . ' ' . print_r($BUY_STRATEGY , true);
+            file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+
             switch ($BUY_STRATEGY) {
                 case 'ProductAndBasket':
                     $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
@@ -213,6 +219,10 @@ class Oneclick extends CBitrixComponent
                             'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
                         ));
                     }
+
+                    $log = date('Y-m-d H:i:s') . ' ' . print_r('Сохраняем заказ ' . $this->getProductId($request) , true);
+                    file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+
                     $basket->save();
                     break;
                 case 'OnlyProduct':
@@ -220,8 +230,11 @@ class Oneclick extends CBitrixComponent
                         $this->arResult['validateErrors'][] = ['message' => Loc::getMessage('ERROR_PRODUCT_ID_REQUIRED')];
                         return $data;
                     }
+                    $log = date('Y-m-d H:i:s') . ' ' . print_r('Сохранение товара' , true);
+                    file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
                     $basket = new Basket();
-                    $basket->addProductToBasket($request->get('PRODUCT_ID'));                    
+                    $basket->addProductToBasket($request->get('PRODUCT_ID'));      
+
                     break;
                 case 'OnlyBasket':
                     $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());

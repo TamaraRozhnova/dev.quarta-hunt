@@ -96,6 +96,7 @@ class CBitrixBasketBasketSmallMailComponent extends CBitrixBasketComponent
             $subSections[] = $arGroup['ID'];
         }
 
+        $arSections = [];
         foreach ($subSections as $subSectionItem) {
             foreach (CIBlockSection::GetNavChain(false, $subSectionItem, ['ID'], true) as $sectionItem) {
                 $arSections[] = $sectionItem['ID'];
@@ -111,7 +112,7 @@ class CBitrixBasketBasketSmallMailComponent extends CBitrixBasketComponent
 
             $coupon = DiscountCouponTable::generateCoupon(true);
             $addDb = DiscountCouponTable::add(array(
-                'DISCOUNT_ID' => 42,
+                'DISCOUNT_ID' => 101,
                 'COUPON' => $coupon,
                 'TYPE' => DiscountCouponTable::TYPE_ONE_ORDER,
                 'MAX_USE' => 1,

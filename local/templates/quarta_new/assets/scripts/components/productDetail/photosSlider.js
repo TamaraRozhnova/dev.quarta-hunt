@@ -81,8 +81,9 @@ class PhotosSlider {
         this.photosSlider.slides.forEach((slide, index) => {
             if (this.photosSliderCurrentSlide === index) {
                 const imageSrc = slide.style.backgroundImage;
-                this.selectedPhoto.style.backgroundImage = imageSrc;
-                
+                //this.selectedPhoto.style.backgroundImage = imageSrc;
+                this.selectedPhoto.style.backgroundImage = 'url("'+slide.dataset.middle+'")';
+
                 this.imageElementSrc = imageSrc.replace(/(url\(")|("\))/g, '');
                 
                 slide.classList.add('photos-slider__item--active');

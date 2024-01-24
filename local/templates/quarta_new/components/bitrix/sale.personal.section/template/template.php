@@ -236,7 +236,7 @@ if (empty($availablePages)){
 
 							</div>
 
-							<?$APPLICATION->IncludeComponent(
+							<? /* $APPLICATION->IncludeComponent(
 								"logictim:bonus.history",
 								"cabinet",
 								Array(
@@ -248,7 +248,7 @@ if (empty($availablePages)){
 									"PAGE_NAVIG_TEMP" => "arrows",
 									"SORT" => "DESC"
 								)
-							);?>
+							); */ ?>
 
 						</div>
 					</div>

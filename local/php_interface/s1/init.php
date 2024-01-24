@@ -99,7 +99,7 @@ function changeOrderStatus(\Bitrix\Main\Event $event)
 {
     $arPickup = DELIVERY_PICKUP_ID;
 
-    $arPayments = PANYWAY_ID;
+    $arPayments = UKASSA_ID;
     $arDeliveries = [
         DELIVERY_RF_POST,
         DELIVERY_RF_COURIER,

@@ -18,6 +18,7 @@ const BASE_PRICE_CODE = 'BASE';
 const OPT_PRICE_CODE_ID = 'PRICE_3';
 const BASE_PRICE_CODE_ID = 'PRICE_1';
 
+const UKASSA_ID = 3; // Идентификатор платежной системы Юкасса
 const PANYWAY_ID = 4; // Идентификатор платежной системы Банковская карта PANYWAY
 const BANK_TRANSFER_ID = 8; // Идентификатор платежной системы перевод БК
 const DEBET_CARD_PERSONALLY_ID = 2; // Идентификатор платежной системы Банковские карты (при получении)

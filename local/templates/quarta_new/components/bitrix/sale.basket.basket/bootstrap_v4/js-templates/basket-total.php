@@ -34,16 +34,17 @@ use Bitrix\Main\Localization\Loc;
 
                 <div class="basket-checkout-block basket-checkout-block-total-price">
                     <div class="basket-checkout-block-total-price-inner">
-                        {{#DISCOUNT_PRICE_FORMATED}}
-                        <div class="basket-coupon-block-total-price-old">
-                            {{{PRICE_WITHOUT_DISCOUNT_FORMATED}}}
-                        </div>
-                        {{/DISCOUNT_PRICE_FORMATED}}
 
                         <div class="basket-coupon-block-total-price-current" data-entity="basket-total-price">
                             <div class="basket-checkout-block-total-title"><?=Loc::getMessage('SBB_TOTAL')?> ({{{BASKET_ITEM_COUNT}}} <?= Loc::getMessage('SBB_TOTAL_M') ?>):</div>
                             <div class="basket-checkout-block-total__text">{{{PRICE_FORMATED}}}</div>
                         </div>
+
+						{{#DISCOUNT_PRICE_FORMATED}}
+                        <div class="basket-coupon-block-total-price-old">
+                            {{{PRICE_WITHOUT_DISCOUNT_FORMATED}}}
+                        </div>
+                        {{/DISCOUNT_PRICE_FORMATED}}
 
                         {{#DISCOUNT_PRICE_FORMATED}}
                         <div class="basket-coupon-block-total-price-difference">

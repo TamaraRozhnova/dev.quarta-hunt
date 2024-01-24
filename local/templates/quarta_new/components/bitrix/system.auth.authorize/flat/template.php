@@ -67,7 +67,8 @@ $this->setFrameMode(false);?>
 								<?echo GetMessage("AUTH_LOGIN_CODE")?>
 							</label>
 							<div class="bx-authform-input-container input--lg">
-								<input type="text" class="form-control" name="CODE" maxlength="255" value="" />
+								<input id="input_sms_code" type="text" class="form-control" name="CODE" maxlength="255" value="" />
+								<div class="error_message"></div>
 							</div>
 						</div>
 						<?if($arResult["CAPTCHA_CODE"]):?>

@@ -168,6 +168,7 @@ class Basket
     public function setProductQuantityToBasket(int $productId, int $quantity): int
     {
         try {
+
             $basketItem = $this->getBasketItem($productId);
             $element = CIBlockElement::GetList([], ['ID' => $productId], ['QUANTITY'])->GetNext();
             $availableQuantity = $element['QUANTITY'];
@@ -212,6 +213,7 @@ class Basket
 
     private function createBasketItem(int $productId, int $quantity, array $data = []): void
     {
+
         $basketItem = $this->basket->createItem('catalog', $productId);
         $atFields = [
             'QUANTITY' => $quantity,
@@ -238,6 +240,18 @@ class Basket
  
         $atFields['WEIGHT'] = (float) $data['WEIGHT'];
 
+        $atFields['CATALOG_XML_ID'] = \Bitrix\Iblock\IblockTable::getList([
+            'select' => ['XML_ID'],
+            'filter' => [
+                '=ID' => CATALOG_IBLOCK_ID
+            ]
+        ])->fetch()['XML_ID'];
+
+        $atFields['PRODUCT_XML_ID'] = ElementTable::query()
+            ->addSelect('XML_ID')
+            ->where('ID', $productId)
+            ->fetch()['XML_ID'];
+
         $basketItem->setFields($atFields);
 
         /* свойства корзины на добавление из каталога */
@@ -252,7 +266,7 @@ class Basket
 
         $iblockDataClass = Iblock::wakeUp($iblockId)->getEntityDataClass();
         $elementPropertyData = $iblockDataClass::getByPrimary($productId, [
-            'select' => ['CML2_ARTICLE_' => 'CML2_ARTICLE']
+            'select' => ['*' , 'CML2_ARTICLE_' => 'CML2_ARTICLE']
         ])->fetchAll();
 
         $basketPropertyCollection = $basketItem->getPropertyCollection();
@@ -303,6 +317,7 @@ class Basket
             $product = new Product($productId);            
             $price = $product->getFieldValue('PRICE_1');
             $price3 = $product->getFieldValue('PRICE_3');
+
 
             if ($basketItem) {
                 $basketItem->setField('WEIGHT', (float) $basketItem->getWeight());

@@ -869,10 +869,12 @@
 }
 
 .basket-item-label-ring.basket-item-label-small {
-  width: 40px;
-  height: 40px;
-  font-size: 13px;
-  line-height: 40px;
+  padding: 0 0.3125rem;
+  line-height: 1rem;
+  margin-left: 0.5rem;
+  background-color: #eb5806;
+  color: #fff;
+  border-radius: 0.25rem;
 }
 
 .basket-item-label-ring.basket-item-label-big {
@@ -883,12 +885,6 @@
 }
 
 @media (max-width: 767px) {
-  .basket-item-label-ring.basket-item-label-small {
-    width: 24px;
-    height: 24px;
-    font-size: 8px;
-    line-height: 24px;
-  }
   .basket-item-label-ring.basket-item-label-big {
     width: 30px;
     height: 30px;
@@ -1534,10 +1530,22 @@ h2.basket-item-info-name {
   line-height: 15px;
 }
 
+#basket-items-list-wrapper .basket-item-price-old {
+  position: initial;
+  margin-bottom: 8px;
+}
+
+.basket-checkout-section .basket-coupon-block-total-price-old {
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
 .basket-item-price-old-text {
   position: relative;
   display: inline-block;
-  font: 400 13px/15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* font: 400 13px/15px "Helvetica Neue", Helvetica, Arial, sans-serif; */
 }
 
 .basket-item-price-old-text:after {
