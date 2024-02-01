@@ -2639,7 +2639,17 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
         }
       }
 
+
+      this.editTotalBlock();
+      this.totalBlockFixFont();
+
+      this.showErrors(this.result.ERROR, false);
+      this.showWarnings();
+      this.checkProductsSections(this.result);
+
+
       let that = this;
+      console.log(BX('bx-soa-coupon_id'), 'coupon_id');
       BX.ajax({
         url: this.templateFolder + "/backend.php",
         data: {},
@@ -2648,25 +2658,25 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
           data = JSON.parse(data);
           that.couponNotFirstOrder = data.couponNotFirstOrder;
 
-          console.log(data.couponNotFirstOrder);
-          if (BX("bx-soa-coupon_id") && data.couponNotFirstOrder == true) {
-            BX.append(
-              BX.create("DIV", {
-                props: { className: "bx-block-coupon-error" },
-                html: "Данный промокод для вас недоступен",
-              }),
-              BX("bx-soa-coupon_id")
-            );
-          }
+          // console.log(data.couponNotFirstOrder, 'couponNotFirstOrder');
+          // console.log(BX('bx-soa-coupon_id'), 'coupon_id');
+          
+          setTimeout(() => {
+            if (BX("bx-soa-coupon_id") && data.couponNotFirstOrder == true) {
+
+              BX.append(
+                  BX.create("DIV", {
+                    props: { className: "bx-block-coupon-error" },
+                    html: "Данный промокод для вас недоступен",
+                  }),
+                  BX("bx-soa-coupon_id")
+              );
+
+            }
+          }, 250);
         },
       });
 
-      this.editTotalBlock();
-      this.totalBlockFixFont();
-
-      this.showErrors(this.result.ERROR, false);
-      this.showWarnings();
-      this.checkProductsSections(this.result);
     },
 
     checkProductsSections: function (result) {
