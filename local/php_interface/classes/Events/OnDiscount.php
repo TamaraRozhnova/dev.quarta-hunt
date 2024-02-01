@@ -19,9 +19,11 @@ class OnDiscount
 
         $session = Application::getInstance()->getSession();
         $session->remove('couponNotFirstOrder');
-        if (strtoupper($couponData['COUPON']) == self::COUPON_CODE) {
-            $isExistOrders = self::getUserOrderList();
 
+        if (mb_strtoupper($couponData['COUPON']) == self::COUPON_CODE) {
+
+            $isExistOrders = self::getUserOrderList();
+        
             if ($isExistOrders) {
                 DiscountCouponsManager::delete($couponData["COUPON"]);
 

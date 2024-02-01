@@ -2660,7 +2660,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
 
           // console.log(data.couponNotFirstOrder, 'couponNotFirstOrder');
           // console.log(BX('bx-soa-coupon_id'), 'coupon_id');
-          
+
           setTimeout(() => {
             if (BX("bx-soa-coupon_id") && data.couponNotFirstOrder == true) {
 
