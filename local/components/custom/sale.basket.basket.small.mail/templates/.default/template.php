@@ -5,10 +5,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 }
 ?>
 
-    <div>
-        <img style="max-width: 100%" src="<?= $templateFolder ?>/cartBannerNoDiscount.png" alt="">
-    </div>
-    <br><br>
+<div>
+    <img style="max-width: 100%" src="<?= $templateFolder ?>/cartBannerNoDiscount.png" alt="">
+</div>
+<br><br>
 
 <?php if ($arResult["ShowReady"] == "Y" || $arResult["ShowDelay"] == "Y" || $arResult["ShowSubscribe"] == "Y" || $arResult["ShowNotAvail"] == "Y") {
     foreach ($arResult["GRID"]["HEADERS"] as $id => $arHeader):
@@ -62,8 +62,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             list-style: none;"><?php
                     foreach ($arResult["ITEMS"]["AnDelCanBuy"] as &$v) {
                         ?>
-                        <li style="
-            display: flex;
+                        <li class="sale_basket_item" style="
+            flex-direction: column;
+            gap: 5px;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid #EEEFF3;
@@ -78,39 +79,42 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
+            text-align: center;
             line-height: 130%;
             color: #3C3C3C;
             text-decoration: none;
-            padding: 0 12px;"  href="<?php echo $v["DETAIL_PAGE_URL"]; ?>">
+            display: block;
+            padding: 5px 0;"  href="<?php echo $v["DETAIL_PAGE_URL"]; ?>">
                                         <?php echo $v[$arHeader['id']] ?>
                                         </a><?php
                                     } else {
-                                        ?><span class="productName" style="
+                                        ?><div class="productName" style="
             font-family: Arial, Helvetica, sans-serif;
             font-style: normal;
             font-weight: 400;
             font-size: 16px;
+            text-align: center;
             line-height: 130%;
             color: #3C3C3C;
             text-decoration: none;
-            padding: 0 12px;"></span><?php echo $v[$arHeader['id']] ?></span><?php
+            padding: 5px 0;"></div><?php echo $v[$arHeader['id']] ?></span><?php
                                     }
                                 } else if (in_array($arHeader['id'], array("PRICE_FORMATED"))) {
-                                    ?><span class="productPrice"><?php echo $v[$arHeader['id']] ?></span><?php
+                                    ?><div class="productPrice"><?php echo $v[$arHeader['id']] ?></div><?php
                                 } else if (in_array($arHeader['id'], ["DETAIL_PICTURE", "PREVIEW_PICTURE"]) && !empty($v[$arHeader['id'] . "_SRC"])) {
                                     ?>
-                                    <div class="productImage" style="
-            border-radius: 7px;"><img src="<?php echo $v[$arHeader['id'] . "_SRC"] ?>">
+                                    <div class="productImage" style="border-radius: 7px; text-align: center"><img src="<?php echo $v[$arHeader['id'] . "_SRC"] ?>">
                                     </div><?php
                                 } else {
-                                    ?><span class="productSumm" style="
+                                    ?><div class="productSumm" style="
             font-family: Arial, Helvetica, sans-serif;
             font-style: normal;
             font-weight: 600;
             font-size: 16px;
+            text-align: center;
             line-height: 130%;
             color: #000000;
-            white-space: nowrap;"><?php echo $v[$arHeader['id']] ?></span><?php
+            white-space: nowrap;"><?php echo $v[$arHeader['id']] ?></div><?php
                                 }
                             }
                         }
@@ -145,3 +149,4 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     ?></table><?php
 }
 ?>
+
