@@ -192,12 +192,6 @@ class Oneclick extends CBitrixComponent
             //     }
             // }
 
-            $log = date('Y-m-d H:i:s') . ' ' . print_r('Вход в class' , true);
-            file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
-
-            $log = date('Y-m-d H:i:s') . ' ' . print_r($BUY_STRATEGY , true);
-            file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
-
             switch ($BUY_STRATEGY) {
                 case 'ProductAndBasket':
                     $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
@@ -220,9 +214,6 @@ class Oneclick extends CBitrixComponent
                         ));
                     }
 
-                    $log = date('Y-m-d H:i:s') . ' ' . print_r('Сохраняем заказ ' . $this->getProductId($request) , true);
-                    file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
-
                     $basket->save();
                     break;
                 case 'OnlyProduct':
@@ -230,8 +221,7 @@ class Oneclick extends CBitrixComponent
                         $this->arResult['validateErrors'][] = ['message' => Loc::getMessage('ERROR_PRODUCT_ID_REQUIRED')];
                         return $data;
                     }
-                    $log = date('Y-m-d H:i:s') . ' ' . print_r('Сохранение товара' , true);
-                    file_put_contents(__DIR__ . '/log.txt', $log . PHP_EOL, FILE_APPEND);
+
                     $basket = new Basket();
                     $basket->addProductToBasket($request->get('PRODUCT_ID'));      
 
@@ -279,22 +269,28 @@ class Oneclick extends CBitrixComponent
 
 
             /*Payment*/
+
+            $pay_system_id = intval(Option::get(Oneclick::MODULE_ID, 'pay_system_id', ''));
+
+            if ($pay_system_id == 0) {
+                goto skip_payment;
+            }
+
             $paymentCollection = $order->getPaymentCollection();
             $extPayment = $paymentCollection->createItem();
-            $pay_system_id = intval(Option::get(Oneclick::MODULE_ID, 'pay_system_id', ''));
-            if ($pay_system_id == 0) {
-                $data = null;
-                $this->arResult['validateErrors'][] = ['message' => Loc::getMessage('ERROR_SETTING_pay_system_id')];
-                return $data;
-            }
+
             $payment = \Bitrix\Sale\PaySystem\Manager::getObjectById($pay_system_id);
-            $extPayment->setFields(array(
-                'PAY_SYSTEM_ID' => $payment->getField("PAY_SYSTEM_ID"),
-                'PAY_SYSTEM_NAME' => $payment->getField("NAME"),
-                'SUM' => $order->getPrice()
-            ));
+
+            $arExtPayment['SUM'] = $order->getPrice();
+            $arExtPayment['PAY_SYSTEM_ID'] = $payment->getField("PAY_SYSTEM_ID");
+            $arExtPayment['PAY_SYSTEM_NAME'] = $payment->getField("NAME");
+
+            $extPayment->setFields($arExtPayment);
 
             /**/
+
+            skip_payment:
+
             $order->doFinalAction(true);
 
             $locationId = Option::get(Oneclick::MODULE_ID, 'location_id', 0);
@@ -348,6 +344,32 @@ class Oneclick extends CBitrixComponent
 
     }
 
+    public function validateFields($request)
+    {
+
+        /**
+         * Проверка на заполненность поля
+         * Если заполнено - значит бот
+         */
+        if (!empty($request->get('MORDOR'))) {
+            return false;
+        }
+
+        /**
+         * Проверка формата +7 (999) 111-11-11
+         */
+        if (
+            !$this->validatePhoneNumber($request->get('PHONE'))
+            && $request->get('interlabs__oneclick') === 'Y'
+        ) {
+            $this->arResult['validateErrors'][] = [
+                'message' => 'Неверный формат номера',
+                'field' => 'PHONE'
+            ];
+        }
+
+    }
+
     /**
      * @return mixed|void
      * @throws Exception
@@ -370,6 +392,8 @@ class Oneclick extends CBitrixComponent
         $this->arResult['success'] = null;
 
         $request = Context::getCurrent()->getRequest();
+
+        $this->validateFields($request);
 
         if ($request->isPost() && $request->get('interlabs__oneclick') === 'Y') {
             if (!check_bitrix_sessid()) {
@@ -473,6 +497,17 @@ class Oneclick extends CBitrixComponent
             return intval($request->get('PRODUCT_ID'));
         }
         return 0;
+    }
+
+    function validatePhoneNumber($phoneNumber) {
+
+        $pattern = '/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/';
+    
+        if (preg_match($pattern, $phoneNumber)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -50,13 +50,13 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                           style="<?php if (isset($arResult['success']) && isset($arResult['success']['message'])) {
                               echo 'display:none;';
                           } ?>">
-                        <?= bitrix_sessid_post() ?>
                         <!--<input name="ONE_CLICK_JSON" value="Y" type="hidden"/>-->
                         <input name="PRODUCT_ID" value="<?php echo $arResult['PRODUCT_ID']; ?>" type="hidden"/>
                         <input name="interlabs__oneclick" value="Y" type="hidden"/>
                         <input type="hidden" name="IS_AUTHORIZED" value="<?=CurrentUser::get()->getId()?>">
                         <input type="hidden" name="MULTIUSER" value="">
                         <input type="hidden" name="MULTIUSER_ID" value="">
+                        <input type="hidden" name="MORDOR" value="">
                         <div class="form-group">
                             <label><?php echo Loc::getMessage("fio"); ?><span class="bx-authform-starrequired">*</span></label>
                             <input name="NAME" type="text" class="form-control"

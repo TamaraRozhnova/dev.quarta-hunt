@@ -91,7 +91,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "CHAIN_ITEM_TEXT" => "",
                                 "CHAIN_ITEM_LINK" => "",
                                 "CACHE_TYPE" => "N",
-                                "VARIABLE_ALIASES" => []
+                                "VARIABLE_ALIASES" => [],
+                                "AJAX_MODE" => "Y"
                             ]
                         ); ?>
                     </div>

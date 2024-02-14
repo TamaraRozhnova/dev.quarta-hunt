@@ -251,7 +251,8 @@ $pay_system_id = intval(Option::get($module_id, 'pay_system_id', 0));
 while ($arr = $rsPaySystem->fetch()) {
     $arPaySystems[$arr['ID']] = $arr['NAME'];//PAY_SYSTEM_ID
     if ($pay_system_id == 0) {
-        Option::set($module_id, 'pay_system_id', $arr['ID']);
+        // Option::set($module_id, 'pay_system_id', $arr['ID']);
+        Option::set($module_id, 'pay_system_id', 0);
         $pay_system_id = Option::get($module_id, 'pay_system_id', 0);
     }
 }

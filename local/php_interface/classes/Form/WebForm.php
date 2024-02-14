@@ -25,8 +25,16 @@ class WebForm
      */
     public function saveResult(array $data): bool
     {
+        foreach ($data as $filed => $formData) {
+            if ($formData == 'undefined') {
+                unset($data[$filed]);
+            }
+        }
+
         $result = CFormResult::Add($this->webFormId, $data, 'N');
         if ($result) {
+            CFormResult::Mail($result);
+            
             return true;
         }
         return false;

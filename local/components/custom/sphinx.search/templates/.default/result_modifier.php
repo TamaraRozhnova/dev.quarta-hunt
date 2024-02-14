@@ -118,7 +118,7 @@ if ($arResult['COUNT_SEARCH'] > 0) {
 			"ELEMENT_SORT_ORDER2" => "",
 			"FILTER_NAME" => "searchFilter",
 			"HIDE_NOT_AVAILABLE" => "L",
-			"HIDE_NOT_AVAILABLE_OFFERS" => "L",
+			"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
 			"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 			"IBLOCK_TYPE" => "1c_catalog",
 			"INCLUDE_SUBSECTIONS" => "Y",

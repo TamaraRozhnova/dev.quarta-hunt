@@ -99,6 +99,19 @@ if (!empty($arResult['ORDER_ID'])) {
 
 }
 
+/**
+ * Закрываем кнопку оплаты
+ * для Юкассы, если сумма оплаты
+ * более 700 000
+ */
+
+if (
+	$arResult['ORDER']['PRICE'] > 700000
+	&& $arResult['PAY_SYSTEM']['PAY_SYSTEM_ID'] == UKASSA_ID
+) {
+	$arResult['HIDE_BUTTON_PAYMENT'] = 'Y';
+}
+
 ?>
 <div id="bx-soa-order-form">
 <div class="container">
@@ -162,6 +175,7 @@ if (!empty($arResult['ORDER_ID'])) {
 							 * Закрываем ссылку на оплату
 							 */
 							?>
+
 							<? if ($arResult['ORDER']['PERSON_TYPE_ID'] != 2): ?>
 								<div class="">
 									<div class="col">

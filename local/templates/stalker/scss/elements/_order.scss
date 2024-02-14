@@ -191,13 +191,14 @@
       &-count {
         margin-top: 8px;
         font-family: $play;
-        font-size: 14px;
-        color: rgba(56, 56, 56, 0.6);
+        font-size: 12px;
+        font-weight: normal;
+        color: #2A2B2B;
         text-align: right;
 
         @include md-screen {
           text-align: left;
-          padding-left: 80px;
+          padding-left: 0;
         }
       }
     }

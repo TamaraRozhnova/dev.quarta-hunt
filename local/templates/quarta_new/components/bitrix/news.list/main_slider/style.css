@@ -84,7 +84,7 @@
 }
 .main-slider__arrows {
   position: absolute;
-  top: 370px;
+  top: 330px;
   left: 0;
   right: 0;
   z-index: 1;
@@ -120,7 +120,7 @@
 }
 @media (max-width: 1171px) {
   .main-slider__arrows {
-    top: 360px;
+    top: 300px;
   }
 }
 @media (max-width: 991.98px) {

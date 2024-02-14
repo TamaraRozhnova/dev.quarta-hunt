@@ -10,7 +10,7 @@ CJSCore::Init(array('clipboard', 'fx'));
 
 Loc::loadMessages(__FILE__);
 
-//echo_j($arResult, '$arResult order.list');
+echo_j($arResult, '$arResult order.list');
 
 if (!empty($arResult['ERRORS']['FATAL']))
 {
@@ -105,7 +105,9 @@ else
 		<div class="order__item">
 			<div class="order__head">
 				<div class="order__number">
+                    <a href="<?=$order["ORDER"]["URL_TO_DETAIL"]?>">
 					Заказ <?=Loc::getMessage('SPOL_TPL_NUMBER_SIGN').$order['ORDER']['ACCOUNT_NUMBER'].' ('.$arResult['INFO']['STATUS'][$order['ORDER']['STATUS_ID']]['NAME'].')'?>
+                    </a>
 				</div>
 
 				<div class="order__date">

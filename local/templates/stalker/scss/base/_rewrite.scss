@@ -1,0 +1,42 @@
+.buy-btn{
+  &.ui-button {
+    height: 42px;
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    @include sm-screen {
+      font-size: 11px;
+    }
+
+    &--dark {
+      margin-bottom: 9px;
+      background-color: #B20E04;
+
+      &:hover{
+        //color: #fff;
+        background-color: transparent;
+      }
+    }
+    &--light {
+      margin-bottom: 9px;
+      background-color: #E6E6E6;
+      border-color: #E6E6E6;
+      color: #2A2B2B;
+
+      .nactive{display: block}
+      .active{display: none}
+
+      &.is-active{
+        border: 1px solid #999;
+        background-color: transparent;
+
+        .nactive{display: none}
+        .active{display: block}
+
+      }
+    }
+
+  }
+
+}

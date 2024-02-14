@@ -127,13 +127,13 @@ document.getElementById('bx_auth_secure').style.display = '';
 			<input type="submit" class="ui-button ui-button--red auth" style="padding: 16px; max-width: 100%" name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
 		</div>
 	</form>
-<?/*?>
+<??>
 <?if ($arParams["NOT_SHOW_LINKS"] != "Y"):?>
 	<hr class="bxe-light">
 
 	<noindex>
 		<div class="bx-authform-link-container">
-			<a href="/login/?forgot_password=yes" rel="nofollow"><b><?=GetMessage("AUTH_FORGOT_PASSWORD_2")?></b></a>
+			<a href="/auth/?forgot_password=yes" rel="nofollow"><b><?=GetMessage("AUTH_FORGOT_PASSWORD_2")?></b></a>
 		</div>
 	</noindex>
 <?endif?>
@@ -142,11 +142,11 @@ document.getElementById('bx_auth_secure').style.display = '';
 	<noindex>
 		<div class="bx-authform-link-container">
 			<?=GetMessage("AUTH_FIRST_ONE")?><br />
-			<a href="/login/?register=yes" rel="nofollow"><b><?=GetMessage("AUTH_REGISTER")?></b></a>
+			<a href="/auth/?register=yes" rel="nofollow"><b><?=GetMessage("AUTH_REGISTER")?></b></a>
 		</div>
 	</noindex>
 <?endif?>
-<?*/?>
+<??>
 </div>
 
 <script type="text/javascript">

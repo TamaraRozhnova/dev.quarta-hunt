@@ -1,8 +1,5 @@
 "use strict";
 
-let oneClickForms = document.querySelectorAll(
-  ".interlabs-oneclick__container form"
-);
 let isMultiAccountsElement = "";
 let isMultiAccountsIdElement = "";
 let isMultiAccounts = "";
@@ -10,56 +7,89 @@ let captchaElement = "";
 let objModal = "";
 
 function interlabsOneClickComponentApp() {
+
+  let oneClickForms = document.querySelectorAll(
+    ".interlabs-oneclick__container form"
+  );
+
   oneClickForms.forEach((element) => {
-    element.addEventListener("submit", function (evt) {
-      // Перед отправкой формы ищем одинаковых пользователей
-      let isCaptcha = false;
-      if (element.querySelector('input[name="captcha_sid"]')) {
-        isCaptcha = true;
-      }
-      isMultiAccountsElement = element.querySelector('input[name="MULTIUSER"]');
-      isMultiAccountsIdElement = element.querySelector(
-        'input[name="MULTIUSER_ID"]'
-      );
-      isMultiAccounts = isMultiAccountsElement.value;
-      if (isMultiAccounts == "") {
-        evt.preventDefault();
-        let dataSend = {
-          USER: {
-            PERSONAL_PHONE: element.querySelector('input[name="PHONE"]').value,
-          },
-          IS_BYU_ONE_CLICK: "true",
-        };
 
-        dataSend.sessid = element.querySelector('input[name="sessid"]').value;
+    if (!element.dataset.hasSubmitListener) {
 
-        if (isCaptcha) {
-          dataSend.captcha = $(element).serialize();
-          dataSend.captcha_sid = element.querySelector(
-            'input[name="captcha_sid"]'
-          ).value;
+      element.addEventListener("submit", function (evt) {
+
+        // Перед отправкой формы ищем одинаковых пользователей
+        let isCaptcha = false;
+        if (element.querySelector('input[name="captcha_sid"]')) {
+          isCaptcha = true;
         }
+        isMultiAccountsElement = element.querySelector('input[name="MULTIUSER"]');
+        isMultiAccountsIdElement = element.querySelector(
+          'input[name="MULTIUSER_ID"]'
+        );
+        isMultiAccounts = isMultiAccountsElement.value;
+        if (isMultiAccounts == "") {
+          evt.preventDefault();
+          let dataSend = {
+            USER: {
+              PERSONAL_PHONE: element.querySelector('input[name="PHONE"]').value,
+            },
+            IS_BYU_ONE_CLICK: "true",
+          };
 
-        BX.ajax({
-          method: "POST",
-          data: dataSend,
-          url: "/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php",
-          dataType: "json",
-          onsuccess: function (data) {
-            if (data?.MULTI_USER == "Y") {
-              initModalMultiUser(data, element);
-            } else if (data?.captcha_error) {
-              document.querySelector(
-                "#interlabs-oneclick__container .errors.common"
-              ).textContent = data.message;
-            } else {
-              isMultiAccountsElement.value = "N";
-              element.submit();
-            }
-          },
-        });
-      }
-    });
+          /**
+           * Добавляем поле с сессией
+           */
+
+          // if (!element.querySelector(`[name = 'sessid']`)) {
+
+            let nodeInputSessid = document.createElement('input')
+
+            nodeInputSessid.type = 'hidden'
+            nodeInputSessid.name = 'sessid'
+            nodeInputSessid.value = BX.bitrix_sessid()
+    
+            element.appendChild(
+              nodeInputSessid
+            )
+
+          // }
+
+          dataSend.sessid = element.querySelector('input[name="sessid"]').value;
+
+          if (isCaptcha) {
+            dataSend.captcha = $(element).serialize();
+            dataSend.captcha_sid = element.querySelector(
+              'input[name="captcha_sid"]'
+            ).value;
+          }
+
+          BX.ajax({
+            method: "POST",
+            data: dataSend,
+            url: "/local/templates/quarta_new/components/bitrix/system.auth.authorize/flat/ajax.php",
+            dataType: "json",
+            onsuccess: function (data) {
+              if (data?.MULTI_USER == "Y") {
+                initModalMultiUser(data, element);
+              } else if (data?.captcha_error) {
+                document.querySelector(
+                  "#interlabs-oneclick__container .errors.common"
+                ).textContent = data.message;
+              } else {
+                isMultiAccountsElement.value = "N";
+                element.submit();
+              }
+            },
+          });
+        }
+      });
+
+    }
+
+    element.dataset.hasSubmitListener = 'true';
+
+
   });
 
   $(".interlabs-oneclick__container").each(function () {

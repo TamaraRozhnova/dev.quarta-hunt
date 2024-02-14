@@ -170,7 +170,10 @@ if (!$currentUser->getId()) {
 	
 		$rsSendSms = $smsObj->sendSms(
 			$_REQUEST['USER']['PERSONAL_PHONE'], 
-			$smsCode, 
+			implode(' ', [
+				Loc::getMessage('TEXT_SMS'),
+				$smsCode
+			]), 
 			'', 
 			'quarta-hunt', 
 			'quartahunt-login'
@@ -258,7 +261,10 @@ if (!$currentUser->getId()) {
 
 			$rsSendSms = $smsObj->sendSms(
 				$_REQUEST['USER']['PERSONAL_PHONE'], 
-				$smsCode, 
+				implode(' ', [
+					Loc::getMessage('TEXT_SMS'),
+					$smsCode
+				]), 
 				'', 
 				'quarta-hunt', 
 				'quartahunt-login'

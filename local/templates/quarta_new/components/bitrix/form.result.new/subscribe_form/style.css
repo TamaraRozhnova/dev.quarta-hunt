@@ -28,6 +28,41 @@
 .subscribe .form-check-label {
   color: #808d9a;
 }
+
+.subscribe-window-ico {
+  display: flex;
+  max-width: 25%;
+  width: 100%;
+  margin: auto auto 4px auto;
+}
+
+.subscribe-window-ico svg path {
+  fill: #bbbdbf;
+}
+
+.subscribe-window-btn a {
+  font-size: 14px;
+}
+
+.subscribe-window__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.subscribe-window-text {
+  margin-bottom: 24px;
+}
+
+.subscribe-window-text > h2 {
+  text-transform: uppercase;
+}
+
+.subscribe-window-text * {
+  margin-bottom: 0;
+}
+
 @media (max-width: 991.98px) {
   .subscribe {
     padding: 4.375rem 0 5.188rem;

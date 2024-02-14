@@ -2561,14 +2561,15 @@ input[type=checkbox]:checked + .ui-radio {
 .order__body .order__total-count {
   margin-top: 8px;
   font-family: "Play", sans-serif;
-  font-size: 14px;
-  color: rgba(56, 56, 56, 0.6);
+  font-size: 12px;
+  font-weight: normal;
+  color: #2A2B2B;
   text-align: right;
 }
 @media screen and (max-width: 1132px) {
   .order__body .order__total-count {
     text-align: left;
-    padding-left: 80px;
+    padding-left: 0;
   }
 }
 .order__goods {
@@ -7595,6 +7596,47 @@ input[type=checkbox]:checked + .ui-radio {
 }
 .breadcrumbs-item:not(:first-child) {
   margin-left: 11px;
+}
+
+.buy-btn.ui-button {
+  height: 42px;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 743px) {
+  .buy-btn.ui-button {
+    font-size: 11px;
+  }
+}
+.buy-btn.ui-button--dark {
+  margin-bottom: 9px;
+  background-color: #B20E04;
+}
+.buy-btn.ui-button--dark:hover {
+  background-color: transparent;
+}
+.buy-btn.ui-button--light {
+  margin-bottom: 9px;
+  background-color: #E6E6E6;
+  border-color: #E6E6E6;
+  color: #2A2B2B;
+}
+.buy-btn.ui-button--light .nactive {
+  display: block;
+}
+.buy-btn.ui-button--light .active {
+  display: none;
+}
+.buy-btn.ui-button--light.is-active {
+  border: 1px solid #999;
+  background-color: transparent;
+}
+.buy-btn.ui-button--light.is-active .nactive {
+  display: none;
+}
+.buy-btn.ui-button--light.is-active .active {
+  display: block;
 }
 
 /*# sourceMappingURL=compiled.css.map */

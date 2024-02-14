@@ -142,7 +142,7 @@ class OnSale{
 
     public static function OnSaleComponentOrderProperties(&$arFields)
     {
-        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r($arFields, 1), FILE_APPEND);
+//        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r($arFields, 1), FILE_APPEND);
 
         $cityId = self::defaultCity;
         if(isset($_COOKIE['cityId'])){
@@ -173,11 +173,11 @@ class OnSale{
             $arFields['ORDER_PROP'][self::PROP_LOCATION] = CSaleLocation::getLocationCODEbyID($cityId);
         }
 
-        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r([
-            'loc' => CSaleLocation::getLocationCODEbyID($cityId),
-            'cityId' => $cityId,
-            ], 1), FILE_APPEND);
-        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r($arFields, 1), FILE_APPEND);
+//        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r([
+//            'loc' => CSaleLocation::getLocationCODEbyID($cityId),
+//            'cityId' => $cityId,
+//            ], 1), FILE_APPEND);
+//        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r($arFields, 1), FILE_APPEND);
 
     }
 }
@@ -221,4 +221,42 @@ function _Check404Error(){
         include $_SERVER['DOCUMENT_ROOT'] . '/404.php';
         include $_SERVER['DOCUMENT_ROOT'] . SITE_TEMPLATE_PATH . '/footer.php';
     }
+}
+
+
+Main\EventManager::getInstance()->addEventHandler("main", "OnBeforeUserAdd", "OnBeforeUserRegisterHandler");
+Main\EventManager::getInstance()->addEventHandler("main", "OnBeforeUserRegister", "OnBeforeUserRegisterHandler");
+function OnBeforeUserRegisterHandler(&$arFields)
+{
+    file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events_OnBeforeUser.txt', print_r($arFields, 1), FILE_APPEND);
+
+    if(isset($arFields["EMAIL"]) && strpos($arFields["EMAIL"], "@") !== false){
+        if($arFields["LOGIN"] !== $arFields["EMAIL"]){
+            $arFields["LOGIN"] = $arFields["EMAIL"];
+        }
+    }
+}
+
+
+Main\EventManager::getInstance()->addEventHandler("main", "OnAfterUserAdd", "OnAfterUserRegisterHandler");
+Main\EventManager::getInstance()->addEventHandler("main", "OnAfterUserRegister", "OnAfterUserRegisterHandler");
+Main\EventManager::getInstance()->addEventHandler("main", "OnAfterUserSimpleRegister", "OnAfterUserRegisterHandler");
+function OnAfterUserRegisterHandler(&$arFields)
+{
+    file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events_OnAfterUser.txt', print_r($arFields, 1), FILE_APPEND);
+
+    if (intval($arFields["ID"])>0)
+    {
+        $toSend = Array();
+        $toSend["PASSWORD"] = $arFields["CONFIRM_PASSWORD"];
+        $toSend["EMAIL"] = $arFields["EMAIL"];
+        $toSend["USER_ID"] = $arFields["ID"];
+        $toSend["USER_IP"] = $arFields["USER_IP"];
+        $toSend["USER_HOST"] = $arFields["USER_HOST"];
+        $toSend["LOGIN"] = $arFields["LOGIN"];
+        $toSend["NAME"] = (trim ($arFields["NAME"]) == "") ? '' : $arFields["NAME"];
+        $toSend["LAST_NAME"] = (trim ($arFields["LAST_NAME"]) == "") ? '' : $arFields["LAST_NAME"];
+        CEvent::SendImmediate ("STALKER_USER_INFO", SITE_ID, $toSend);
+    }
+    return $arFields;
 }

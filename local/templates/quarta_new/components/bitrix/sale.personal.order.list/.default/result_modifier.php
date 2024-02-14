@@ -32,6 +32,19 @@ if (!empty($arResult['ORDERS'])) {
 
         }
 
+        /**
+         * Закрываем кнопку оплаты
+         * для Юкассы, если сумма оплаты
+         * более 700 000
+         */
+
+        if (
+            $arOrder['ORDER']['PRICE'] > 700000
+            && $arOrder['ORDER']['PAY_SYSTEM_ID'] == UKASSA_ID
+        ) {
+            $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'Y';
+            continue;
+        }
 
         if ($arOrder['ORDER']['PERSON_TYPE_ID'] == 2) {
             $arResult['ORDERS'][$arOrderIndex]['HIDE_BUTTON_PAYMENT'] = 'Y';

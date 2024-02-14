@@ -83,6 +83,47 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #DDE2E6 #DFE9EB;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #DDE2E6;
+  opacity: .4;
+  cursor: pointer;
+  transition: .2s;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #DDE2E6;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #dde2e6;
+}
+
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -11004,6 +11045,7 @@ h1.small-h2 {
   max-width: 495px;
   text-align: center;
   transform: translateY(-60%);
+  opacity: 1;
 }
 .error-message > *:not(:last-child) {
   margin-bottom: 1.5rem;
@@ -11272,19 +11314,19 @@ h1.small-h2 {
 }
 
 .subscribe-window__wrapper {
-  width: 400px;
+  width: 700px;
   max-width: 90%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40vh auto 0 auto;
+  margin: auto;
+  height: 100%;
 }
 
 .subscribe-success {
   font-size: 1rem;
   margin: 10px 0 0 0;
-  font-weight: bold;
 }
 
 div[id*="wait_comp"] {

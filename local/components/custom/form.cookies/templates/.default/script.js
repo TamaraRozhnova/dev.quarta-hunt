@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 
                 if (!formCookiesWrapper.classList.contains('remove')) {
                     formCookiesWrapper.classList.add('remove')
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 250);
                 }
 
             },
