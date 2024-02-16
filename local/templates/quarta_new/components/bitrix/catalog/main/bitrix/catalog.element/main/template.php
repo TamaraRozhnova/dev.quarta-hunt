@@ -70,7 +70,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                                 detail-card-open-modal-mobile 
                                                 photos-slider__item swiper-slide
                                                 detail-card-open-modal-mobile-<?=$imageIndex?>"
-                                            style="background-image: url('<?=CFile::ResizeImageGet($arResult['IMAGES_ID'][$imageIndex], array('width' => 74, 'height' => 74), BX_RESIZE_IMAGE_PROPORTIONAL)['src'] //$image ?>')">
+                                            style="background-image: url('<?=CFile::ResizeImageGet($arResult['IMAGES_ID'][$imageIndex], array('width' => 468, 'height' => 420), BX_RESIZE_IMAGE_PROPORTIONAL)['src'] //$image ?>')">
                                         </a>
                                     <? } ?>
                                 </div>

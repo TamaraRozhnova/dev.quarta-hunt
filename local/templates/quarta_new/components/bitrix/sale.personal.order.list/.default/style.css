@@ -82,6 +82,7 @@
 }
 .history-order__body-btns>.history-order__body-btn:first-child {
     margin-left: 0;
+	max-height: 52px;
 }
 .history-order__body-btn {
     margin-top: 1.875rem;

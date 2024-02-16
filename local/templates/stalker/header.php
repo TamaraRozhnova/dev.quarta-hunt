@@ -25,7 +25,7 @@ $APPLICATION->IncludeFile('functions.php');
           content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
 	<meta name="theme-color" content="#fff"/>
 	<meta name="format-detection" content="telephone=no"/>
-<!--	<meta name="yandex-verification" content="266faedfe7d618bc" />-->
+    <meta name="yandex-verification" content="76ae5f791cca8115" />
 	<link rel="stylesheet" media="all" href="<?=SITE_TEMPLATE_PATH?>/css/style.css?v3" />
 	<link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/jScrollPane/2.2.2/style/jquery.jscrollpane.min.css" />
 
