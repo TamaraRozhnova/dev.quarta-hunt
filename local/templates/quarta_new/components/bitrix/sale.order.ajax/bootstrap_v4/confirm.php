@@ -73,25 +73,15 @@ if (!empty($arResult['ORDER_ID'])) {
 				"GLOBAL_ACTIVE" => "Y",
 				"ID" => $sectionIds
 			),
-			"select" => array("NAME", "CODE"),
+			"select" => ['NAME', 'CODE', 'UF_LISENCE_PRODUCTS'],
 		))->fetchAll();
 
 		if (!empty($rsSections)) {
 			foreach ($rsSections as $arSection) {
-
-				if (
-					$arSection['CODE'] == 'odezhda'
-					||
-					$arSection['CODE'] == 'obuv'
-					||
-					$arSection['CODE'] == 'oruzhie_i_patrony'
-				) {
+				if ((bool)$arSection['UF_LISENCE_PRODUCTS'] == true) {
 					$arResult['HIDE_BUTTON_PAYMENT'] = 'Y';
 					break;
 				}
-
-				continue;
-
 			}
 		}
 
@@ -193,6 +183,7 @@ if (
 										<p><?=Loc::getMessage("SOA_PAY_PDF", array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".$orderAccountNumber."&pdf=1&DOWNLOAD=Y"))?></p>
 										<? endif ?>
 										<? else: ?>
+
 
 											<? if ($arResult['HIDE_BUTTON_PAYMENT'] != 'Y'): ?>
 												<?=$arPaySystem["BUFFERED_OUTPUT"]?>

@@ -199,12 +199,6 @@ Loc::loadMessages(__FILE__);
 									?>
 									<? if (
 										$payment['PAID'] === 'N' 
-										&& 
-										$payment['IS_CASH'] !== 'Y' 
-										&& 
-										$payment['ACTION_FILE'] !== 'cash'
-										&&
-										$order['HIDE_BUTTON_PAYMENT'] != 'Y'
 										&&
 										$order['ORDER']['CANCELED'] !== 'Y'
 									): ?>
