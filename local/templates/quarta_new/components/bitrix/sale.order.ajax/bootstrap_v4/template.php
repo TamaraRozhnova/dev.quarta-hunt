@@ -484,6 +484,9 @@ else
             				<a href="/privacy-statement/">
              					<?= getMessage('SOA_BTN_ORDER_AGREE');?>
 							</a>
+							<a href="/about/oferta/">
+             					<?= getMessage('SOA_BTN_OFERTA_AGREE');?>
+							</a>
 						</p>
 					</div>
 					<div class="checkbox">

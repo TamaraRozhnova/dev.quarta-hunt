@@ -167,7 +167,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     );?>
                     <div class="product__bonus" id="lb_ajax_<?=$arResult["ID"]?>"></div>
 
-                    <? if (!empty($arResult['OFFERS'])) { ?>
+                    <? if (!empty($arResult['OFFERS'])) {
+                        ?>
                         <div class="select__wrapper product__trade-offers placeholder-glow">
                             <div class="placeholder"></div>
                             <div class="select" data-placeholder="Выберите размер:">
@@ -180,7 +181,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                                  data-id="<?= $offer['ID'] ?>"
                                                  data-quantity="<?= $offer['PRODUCT']['QUANTITY'] ?>"
                                             >
-                                                <span><?= $offer['PROPERTIES']['CML2_ATTRIBUTES']['VALUE'][0] ?? $offer['NAME'] ?></span>
+                                                <span><?= ($offer['PROPERTIES']['CML2_ATTRIBUTES']['VALUE'][0] != NULL) ? $offer['PROPERTIES']['CML2_ATTRIBUTES']['VALUE'][0] :  $offer['NAME'] ?></span>
                                             </div>
                                         <? } ?>
                                     </div>
@@ -247,16 +248,18 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             Доставка по Москве: <span class="text-dark">с 11.03</span><br/>
                             <a href="#">Узнать стоимость</a>
                         </div>*/?>
-                        <div class="product__delivery-option">
-                            <div class="product__delivery-icon">
-                                <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/location.svg" alt="Местоположение"/>
-                            </div>
-                            Доступно к самовывозу:
-                            <span class="text-dark">бесплатно</span><br/>
-                            <a class="available-window-open available-window-open-2" data-available-index="2" href="">
-                                <?=$arResult['COUNT_DISPLAY_STORES_ELEMENT']?>
-                            </a>
-                        </div> 
+                        <? if ($arResult['AVAILABLE']) { ?>
+                            <div class="product__delivery-option">
+                                <div class="product__delivery-icon">
+                                    <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/location.svg" alt="Местоположение"/>
+                                </div>
+                                Доступно к самовывозу:
+                                <span class="text-dark">бесплатно</span><br/>
+                                <a class="available-window-open available-window-open-2" data-available-index="2" href="">
+                                    <?=$arResult['COUNT_DISPLAY_STORES_ELEMENT']?>
+                                </a>
+                            </div> 
+                        <?}?>
                     </div>                    
                     <?if (isset($arResult['RESTRICTED_SECTION'])) {?>
                         <div class="product__restiction mb-3">

@@ -85,8 +85,9 @@
                             </div>
 
                             <div itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer" class="price price--small">
-                                <meta itemprop="priceCurrency" content="RUB" /> 
-                                <span itemprop="price" class="price__current"> 
+                                <meta itemprop="priceCurrency" content="RUB" >
+                                <meta itemprop="price" content="<?=str_replace([' '], '', $result['PRICES_LIST']['PRICE'])?>" >
+                                <span class="price__current">
                                     <?=$result['PRICES_LIST']['PRICE']?> ₽
                                     <? if ($result['PRICES_LIST']['OLD_PRICE']) { ?>
                                         <span class="price__old"><?= $result['PRICES_LIST']['OLD_PRICE'] ?> ₽</span>
@@ -95,11 +96,14 @@
                                         <span class="price__discount">-<?= $result['PRICES_LIST']['DISCOUNT'] ?>%</span>
                                     <? } ?>
                                 </span>
-                                <meta itemprop="availability" href="https://schema.org/InStock" />
+                                <meta itemprop="availability" href="https://schema.org/InStock" >
                             </div>
 
-
-                            <div itemprop="aggregateRating" itemscope="itemscope" itemtype="https://schema.org/AggregateRating" class="stars">
+                            <div itemprop="aggregateRating" itemscope  itemtype="https://schema.org/AggregateRating" class="stars">
+                                <meta itemprop="ratingValue" content="5">
+                                <meta itemprop="reviewCount" content="1">
+                                <meta itemprop="bestRating" content="5">
+                                <meta itemprop="worstRating" content="1">
                                 <div class="stars placeholder-glow">
                                     <div class="placeholder"></div>
                                     <div class="placeholder"></div>

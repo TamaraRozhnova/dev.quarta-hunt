@@ -13,9 +13,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <div class="base-slider">
         <div class="container">
             <div class="swiper-container swiper-container_recommended">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper" itemscope itemtype="http://schema.org/ItemList">
                     <? foreach ($result['RECOMMENDED_PRODUCTS'] as $product) { ?>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide" >
                             <? $APPLICATION->IncludeComponent(
                                 'bitrix:catalog.item',
                                 'main',

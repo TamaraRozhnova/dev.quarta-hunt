@@ -21,12 +21,12 @@ while ($ar_result = $resAllSections->GetNext()) {
 
 
 ?>
-<div class="news-detail<?= $themeClass ?>">
+<div class="news-detail<?= $themeClass ?>" itemscope itemtype="http://schema.org/Article">
     <div class="news-detail__title-wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-3 col-lg-4">
-                    <h1><?= $APPLICATION->GetTitle() ?></h1>
+                    <h1 itemprop="headline"><?= $APPLICATION->GetTitle() ?></h1>
                 </div>
                 <div class="col-12 col-md-9 pb-lg-5 col-lg-8">
                     <? $APPLICATION->IncludeComponent(
@@ -134,7 +134,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                 <? if ($arParams["DISPLAY_DATE"] != "N" && $arResult["DISPLAY_ACTIVE_FROM"]):
                                     ?>
                                     <div class="news-detail-date">
-                                        <span class="news-detail-param"><? echo FormatDate('d F Y', strtotime($arResult["DISPLAY_ACTIVE_FROM"]));
+                                        <span class="news-detail-param" itemprop="dateModified" ><? echo FormatDate('d F Y', strtotime($arResult["DISPLAY_ACTIVE_FROM"]));
                                             ?></span>
                                         <? if (false && $arResult['IBLOCK_SECTION_ID'] != null): ?>
                                             <span class="news-list-item__section-name">
@@ -163,7 +163,8 @@ while ($ar_result = $resAllSections->GetNext()) {
                                 src="<?= $arResult["DETAIL_PICTURE"]["SRC"] ?>"
                                 alt="<?= $arResult["DETAIL_PICTURE"]["ALT"] ?>"
                                 title="<?= $arResult["DETAIL_PICTURE"]["TITLE"] ?>"
-                        />
+                                itemprop="image"
+                        >
                     </div>
                 </div>
                 <?
@@ -175,7 +176,7 @@ while ($ar_result = $resAllSections->GetNext()) {
 
             <div class="news-detail-content container">
                 <div class="row">
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-8" itemprop="articleBody">
                         <? if ($arResult["NAV_RESULT"]): ?>
                         <? if ($arParams["DISPLAY_TOP_PAGER"]): ?><?= $arResult["NAV_STRING"] ?><br/><? endif; ?>
                         <? echo $arResult["NAV_TEXT"]; ?>

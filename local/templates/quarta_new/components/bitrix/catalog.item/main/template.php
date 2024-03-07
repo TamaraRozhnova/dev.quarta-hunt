@@ -26,7 +26,9 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
 
 ?>
 
-<div class="product-card "
+<div class="product-card" 
+     itemscope
+     itemprop="itemListElement" itemtype="http://schema.org/Product"
      data-id="<?= $item['ID'] ?>"
      data-product-quantity="<?= $item['PRODUCT']['QUANTITY'] ?>"
      data-offers-quantity="<?= $item['OFFERS_QUANTITY'] ?>"
@@ -82,20 +84,20 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
             </svg>
         </div>
 
-        <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
+        <a itemprop="url" href="<?= $item['DETAIL_PAGE_URL'] ?>">
             <figure>
-                <img src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>"/>
+                <img itemprop="image" src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>"/>
             </figure>
         </a>
     </div>
 
     <a href="<?= $item['DETAIL_PAGE_URL'] ?>">
-        <p class="product-card__article">Артикул: <?= $item['PROPERTIES']['CML2_ARTICLE']['VALUE'] ?></p>
-        <h2 class="product-card__title"><?= $item['NAME'] ?></h2>
+        <p class="product-card__article" itemprop="description">Артикул: <?= $item['PROPERTIES']['CML2_ARTICLE']['VALUE'] ?></p>
+        <h2 itemprop="name" class="product-card__title"><?= $item['NAME'] ?></h2>
     </a>
 
     <? if ($item['AVAILABLE']) { ?>
-        <div class="price price--small">
+        <div class="price price--small" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
             <span class="price__current"><?= $item['PRICES_LIST']['PRICE'] ?> ₽</span>
             <? if ($item['PRICES_LIST']['OLD_PRICE']) { ?>
                 <span class="price__old"><?= $item['PRICES_LIST']['OLD_PRICE'] ?> ₽</span>
@@ -103,9 +105,15 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
             <? if ($item['PRICES_LIST']['DISCOUNT']) { ?>
                 <span class="price__discount">-<?= $item['PRICES_LIST']['DISCOUNT'] ?>%</span>
             <? } ?>
+            <meta itemprop="priceCurrency" content="RUB">
+            <meta itemprop="price" content="<?=str_replace([' '], '', $item['PRICES_LIST']['PRICE']) ?>">
+            <meta itemprop="availability" content="http://schema.org/InStock">
         </div>
     <? } else { ?>
-        <div class="fs-6 text-dark pb-1 item-not-available"><b>Нет в наличии</b></div>
+        <div class="fs-6 text-dark pb-1 item-not-available" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
+            <b>Нет в наличии</b>
+            <meta itemprop="availability" content="http://schema.org/SoldOut">
+        </div>
     <? } ?>
 
     <? if ($arResult['PARAMS']['HIDE_RATING'] !== 'Y') { ?>

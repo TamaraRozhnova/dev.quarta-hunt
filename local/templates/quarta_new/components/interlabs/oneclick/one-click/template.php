@@ -161,6 +161,7 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                         <div class="form-group control-buttons">                            
                             <button class="btn btn-primary btn-lg js-interlabs-oneclick__dialog__send-button"
                                     href="javascript:void(0);"
+                                    onclick="ym(30377432,'reachGoal','js-interlabs-oneclick__dialog__send-button'); return true;"
                                     type="submit">
                                 <?php echo Loc::getMessage('send'); ?>
                             </button>
@@ -168,6 +169,7 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
 
                         <small>                            
                             <?=Loc::getMessage('AGREEMENT', ['#LINK#' => '/privacy-statement/'])?>
+                            <?=Loc::getMessage('OFERTA', ['#LINK#' => '/about/oferta/'])?>
                         </small>
 
                     </form>

@@ -110,10 +110,19 @@ new BX.PhoneAuth({
 			</div>
 		</div>
 
-		<div class="bx-authform-formgroup-container">
+        <?if($arResult["EMAIL_REGISTRATION"]):?>
+            <div class="bx-authform-formgroup-container">
+                <div class="bx-authform-label-container"><?if($arResult["EMAIL_REQUIRED"]):?><span class="bx-authform-starrequired">*</span><?endif?><?=GetMessage("AUTH_EMAIL")?></div>
+                <div class="bx-authform-input-container">
+                    <input type="text" name="USER_EMAIL" id="REGEMAIL" maxlength="255" value="<?=$arResult["USER_EMAIL"]?>" />
+                </div>
+            </div>
+        <?endif?>
+
+		<div class="bx-authform-formgroup-container" style="display: none">
 			<div class="bx-authform-label-container"><span class="bx-authform-starrequired">*</span><?=GetMessage("AUTH_LOGIN_MIN")?></div>
 			<div class="bx-authform-input-container">
-				<input type="text" name="USER_LOGIN" maxlength="255" value="<?=$arResult["USER_LOGIN"]?>" />
+				<input type="text" name="USER_LOGIN" id="REGLOGIN" maxlength="255" value="<?=$arResult["USER_LOGIN"]?>" />
 			</div>
 		</div>
 
@@ -145,14 +154,6 @@ document.getElementById('bx_auth_secure_conf').style.display = '';
 			</div>
 		</div>
 
-<?if($arResult["EMAIL_REGISTRATION"]):?>
-		<div class="bx-authform-formgroup-container">
-			<div class="bx-authform-label-container"><?if($arResult["EMAIL_REQUIRED"]):?><span class="bx-authform-starrequired">*</span><?endif?><?=GetMessage("AUTH_EMAIL")?></div>
-			<div class="bx-authform-input-container">
-				<input type="text" name="USER_EMAIL" maxlength="255" value="<?=$arResult["USER_EMAIL"]?>" />
-			</div>
-		</div>
-<?endif?>
 
 <?if($arResult["PHONE_REGISTRATION"]):?>
 		<div class="bx-authform-formgroup-container">

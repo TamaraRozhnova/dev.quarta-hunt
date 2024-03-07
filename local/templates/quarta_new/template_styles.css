@@ -8821,8 +8821,21 @@ input.form-check-input:focus {
   font-size: 0.875rem;
 }
 .footer__payment-methods figure {
+  display: flex;
+  gap: 20px;
   margin-top: 1.5rem;
 }
+
+@media (max-width: 400px) {
+  .footer__payment-methods {
+    overflow: hidden;
+  }
+  .footer__payment-methods figure {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
 .footer__payment-methods figure img {
   max-width: 100%;
 }

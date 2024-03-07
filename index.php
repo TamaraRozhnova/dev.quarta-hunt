@@ -82,11 +82,11 @@ $APPLICATION->SetTitle("Товары для охоты, стрельбы и ак
     false
 );
 
-$APPLICATION->IncludeComponent(
+/* $APPLICATION->IncludeComponent(
 	"custom:brands.slider", 
 	"", 
 	[]
-);
+); */
 
 $APPLICATION->IncludeComponent("bitrix:catalog.section.list", "section_list", [
     "ADD_SECTIONS_CHAIN" => "N",
@@ -459,6 +459,27 @@ $APPLICATION->IncludeComponent("bitrix:form.result.new","subscribe_form", [
 		"AJAX_MODE" => "Y"
     ]
 );
+
+
+?>
+    <div class="hidden-on-page unset-margin" itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">Quarta «Оружейный квартал»</span>
+
+        <link itemprop="url" href="https://quarta-hunt.ru/">
+        <link itemprop="image" href="https://quarta-hunt.ru/local/templates/quarta_new/assets/images/logo.svg">
+        Контакты:
+        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            Адрес:
+            <span itemprop="streetAddress">Московский проспект, д.222А</span>
+            <span itemprop="postalCode">196066</span>
+            <span itemprop="addressRegion">г. Санкт-Петербург</span>,
+            <span itemprop="addressLocality">г. Санкт-Петербург</span>,
+            <span itemprop="addressCountry">RU</span>,
+        </div>
+        Телефон:<span itemprop="telephone">8 (800) 775-03-04</span>,
+        Электронная почта: <span itemprop="email">shop@quarta-hunt.ru</span>
+    </div>
+<?
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
 

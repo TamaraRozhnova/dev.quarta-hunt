@@ -82,7 +82,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             </div>
             <div class="products-data products-data--show">
                 <? if (count($arResult['ITEMS']) > 0) { ?>
-                    <div class="row">
+                    <div class="row" itemscope itemtype="http://schema.org/ItemList">
                         <? foreach ($arResult['ITEMS'] as $item) { ?>
                             <div class="col-6 col-md-3">
                                 <? $APPLICATION->IncludeComponent(

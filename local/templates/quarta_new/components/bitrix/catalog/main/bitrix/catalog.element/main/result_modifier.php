@@ -41,6 +41,10 @@ if ($arResult['OFFERS'] && count($arResult['OFFERS']) > 0) {
             $offer['CAN_BUY'] = false;
         }
 
+        $iblockData = CIBlockElement::GetByID($offer['ID'])->Fetch();
+
+        $arResult['OFFERS'][$key] = array_merge($arResult['OFFERS'][$key], $iblockData);
+
         if ($offer['CAN_BUY'] == true) {
             $arResult['AVAILABLE'] = true;
             $arResult['OFFERS_QUANTITY'] += (int)$offer['PRODUCT']['QUANTITY'];

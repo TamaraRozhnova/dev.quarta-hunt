@@ -183,11 +183,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             <div class="col-12 col-sm-6 col-lg-4 footer__payment-methods">
                 Принимаем к оплате
                 <figure>
-                    <img width="342"
-                         src="<?= SITE_TEMPLATE_PATH ?>/assets/images/payment-methods.png"
-                         srcset="<?= SITE_TEMPLATE_PATH ?>/assets/images/payment-methods@2x.png 1.5x"
-                         alt="Visa, Yandex Money, MasterCard, Qiwi"
-                    />
+                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/mir.png", 9999, 25,'alt = "Мир"'); ?>
+                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/sberpay.png", 9999, 25,'alt = "Сбер Pay"'); ?>
+                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/tinpay.png", 9999, 25,'alt = "Тинькофф Pay"'); ?>
+                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/youmoney.png", 9999, 25,'alt = "ЮМани"'); ?>
                 </figure>
             </div>
             <div class="col-12 col-sm-6 col-lg-4 footer__social">
