@@ -242,7 +242,7 @@ $basketItemsCount = $basket->getProductsCount();
                 </div>
             </div>
 
-            <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sections_menu", [
+            <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "mega_sections_menu", [
                 "ADD_SECTIONS_CHAIN" => "N",
                 "CACHE_GROUPS" => "N",
                 "CACHE_TIME" => "36000000",
@@ -266,6 +266,9 @@ $basketItemsCount = $basket->getProductsCount();
                     10 => "IBLOCK_CODE",
                     11 => "IBLOCK_EXTERNAL_ID",
                     12 => "",
+                ],
+                "SECTION_USER_FIELDS" => [
+                    0 => "UF_ICON"
                 ],
                 "SECTION_ID" => false,
                 "SECTION_URL" => "#SECTION_CODE_PATH#/",
