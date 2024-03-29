@@ -41,8 +41,10 @@ $(document).ready(function () {
         })
 
         $('#manu-brands-list').show()
+        $('.menu-content').removeClass('sale')
         if (contentId == 'sale') {
             $('#manu-brands-list').hide()
+            $('.menu-content').addClass('sale')
         }
 
         $(this).addClass('active')
