@@ -127,6 +127,8 @@
   filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.13));
   display: none;
   scrollbar-width: none;
+  padding: 0px !important;
+  margin: 0 !important;
 }
 
 .mega-menu.open{
@@ -141,6 +143,7 @@
   overflow-y: auto;
   scrollbar-width: none;
   margin: 30px 0;
+  padding: 0 !important;
 }
 .mega-menu-wrapper::-webkit-scrollbar{
   display: none;
@@ -148,7 +151,7 @@
 
 .menu-list{
   padding: 0px 20px 0px 0;
-  min-width: 330px;
+  width: 330px;
 }
 
 .menu-list ul{
@@ -156,9 +159,11 @@
   flex-direction: column;
   gap: 10px;
   padding: 0;
+  width: 100%;
 }
 
 .menu-list ul li{
+  width: 100%;
   cursor: pointer;
   display: flex;
   list-style: none;
@@ -212,6 +217,10 @@
 /* menu comtent*/
 .menu-content{
   padding: 0px 20px;
+  width: calc(100% - 250px - 330px);
+}
+.menu-content.sale{
+  width: calc(100% - 330px);
 }
 
 .menu-content-data{
@@ -308,6 +317,7 @@
 
 .sale-item img{
   border-radius: 9px;
+  width: 100%;
 }
 
 .sale-item-textblock{
@@ -342,6 +352,7 @@
 
 /* brands */
 .mega-menu .brands-list {
+  width: 250px;
   margin-left: auto;
   display: flex;
   flex-direction: column;
