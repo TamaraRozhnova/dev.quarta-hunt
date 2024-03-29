@@ -34,9 +34,7 @@ if (!count($arResult['ITEMS'])) {
 
 
     <div class="mega-menu">
-        <div class="mega-menu-wrapper">
-
-
+        <div class="mega-menu-wrapper container">
             <!-- menu-->
             <div class="menu-list">
 
@@ -44,6 +42,7 @@ if (!count($arResult['ITEMS'])) {
                     <li class="sale" data-id="sale">
                         <span class="menu-icon sale"></span>
                         <span class="menu-text">Акции</span>
+                        <span class="active-icon"><img src="<?=$templateFolder?>/img/menuarrow.svg" alt="->"></span>
                     </li>
 
                     <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
@@ -51,6 +50,7 @@ if (!count($arResult['ITEMS'])) {
                         <span class="menu-icon"
                               style="background-image: url('<?= $topLevelSection['ICON'] ?>');"></span>
                             <span class="menu-text"><?= $topLevelSection['NAME'] ?></span>
+                            <span class="active-icon"><img src="<?=$templateFolder?>/img/menuarrow.svg" alt="->"></span>
                         </li>
                     <?php } ?>
                 </ul>

@@ -4,7 +4,16 @@ $(document).ready(function () {
     $('.mega-menu-opener').on('click', function (e) {
         e.preventDefault();
 
+
+        $('.mega-menu').css('top', 220)
+        $('.mega-menu').css('height', window.innerHeight-220)
+        if (window.scrollY > 50) {
+            $('.mega-menu').css('top', 140)
+            $('.mega-menu').css('height', window.innerHeight-140)
+        }
+
         $('.mega-menu').toggleClass('open');
+        $(this).toggleClass('open')
     });
     $(document).on('click', function (e) {
         let button = $('.mega-menu-opener');
@@ -15,6 +24,7 @@ $(document).ready(function () {
             (!button.is(e.target) && button.has(e.target).length === 0)
         ) {
             container.removeClass('open')
+            button.removeClass('open')
         }
     });
 
