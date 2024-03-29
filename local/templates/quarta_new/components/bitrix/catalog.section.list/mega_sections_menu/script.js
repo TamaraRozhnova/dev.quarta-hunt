@@ -5,11 +5,11 @@ $(document).ready(function () {
         e.preventDefault();
 
 
-        $('.mega-menu').css('top', 220)
-        $('.mega-menu').css('height', window.innerHeight-220)
+        $('.mega-menu').css('top', 215)
+        $('.mega-menu').css('height', window.innerHeight-215)
         if (window.scrollY > 50) {
-            $('.mega-menu').css('top', 140)
-            $('.mega-menu').css('height', window.innerHeight-140)
+            $('.mega-menu').css('top', 135)
+            $('.mega-menu').css('height', window.innerHeight-135)
         }
 
         $('.mega-menu').toggleClass('open');
