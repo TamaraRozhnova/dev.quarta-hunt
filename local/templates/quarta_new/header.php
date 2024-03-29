@@ -198,7 +198,7 @@ $basketItemsCount = $basket->getProductsCount();
                 ); ?>
 
                 <div class="header__lists-section col">
-                    <a href="/compare" class="header__top-item btn btn-link px-2 mx-2">
+                    <a href="/compare" class="header__top-item btn-link px-2 mx-2">
                         <div class="position-relative px-1">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 2.42771C0 1.08692 1.08692 0 2.42771 0H15.3755C16.7163 0 17.8032 1.08692 17.8032 2.42771V15.3755C17.8032 16.7163 16.7163 17.8032 15.3755 17.8032H2.42771C1.08692 17.8032 0 16.7163 0 15.3755V2.42771Z" fill="#004989" fill-opacity="0.09"/>
@@ -215,7 +215,7 @@ $basketItemsCount = $basket->getProductsCount();
                         </div>
                     </a>
 
-                    <a href="/favorites" class="header__top-item btn btn-link px-2 mx-2">
+                    <a href="/favorites" class="header__top-item btn-link px-2 mx-2">
                         <div class="position-relative px-1 text-primary">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 2.42771C0 1.08692 1.08692 0 2.42771 0H15.3755C16.7163 0 17.8032 1.08692 17.8032 2.42771V15.3755C17.8032 16.7163 16.7163 17.8032 15.3755 17.8032H2.42771C1.08692 17.8032 0 16.7163 0 15.3755V2.42771Z" fill="#004989" fill-opacity="0.09"/>
@@ -229,7 +229,7 @@ $basketItemsCount = $basket->getProductsCount();
                         </div>
                     </a>
 
-                    <a href="/cart" class="header__top-item btn btn-link px-2 mx-2">
+                    <a href="/cart" class="header__top-item btn-link px-2 mx-2">
                         <div class="position-relative px-1 text-primary">
                             <div class="basket-icon-background">
                                 <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
