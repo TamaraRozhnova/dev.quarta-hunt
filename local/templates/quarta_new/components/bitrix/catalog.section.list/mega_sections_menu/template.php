@@ -14,7 +14,7 @@ if (!count($arResult['ITEMS'])) {
 
 <div class="row" style="position: relative;">
     <div class="header-categories">
-        <div class="header-nav-item header-categories__item">
+        <div class="header-nav-item header-categories__item mega-menu-opener">
             <a href="/catalog/">
                 <div class="header-categories__icon">
                     <img src="<?= SITE_TEMPLATE_PATH ?>/assets/icons/catalog.svg" alt=""/>
@@ -34,64 +34,94 @@ if (!count($arResult['ITEMS'])) {
 
 
     <div class="mega-menu">
+        <div class="mega-menu-wrapper">
 
-        <!-- menu-->
-        <div class="menu-list">
 
-            <ul>
-                <li class="sale" data-id="sale">
-                    <span class="menu-icon sale"></span>
-                    <span class="menu-text">Акции</span>
-                </li>
+            <!-- menu-->
+            <div class="menu-list">
 
-                <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
-                    <li data-id="<?= $id ?>">
-                        <span class="menu-icon" style="background-image: url('<?=$topLevelSection['ICON']?>');"></span>
-                        <span class="menu-text"><?= $topLevelSection['NAME'] ?></span>
+                <ul>
+                    <li class="sale" data-id="sale">
+                        <span class="menu-icon sale"></span>
+                        <span class="menu-text">Акции</span>
                     </li>
-                <?php }?>
-            </ul>
 
-        </div>
+                    <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
+                        <li data-id="<?= $id ?>">
+                        <span class="menu-icon"
+                              style="background-image: url('<?= $topLevelSection['ICON'] ?>');"></span>
+                            <span class="menu-text"><?= $topLevelSection['NAME'] ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
 
-        <div class="menu-content">
+            </div>
 
-            <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
-                <div class="menu-content-data" data-content="<?= $id ?>">
-                    <div class="title"><?= $topLevelSection['NAME'] ?> <span><?=$topLevelSection['ELEMENT_CNT']?> <?= Loc::getMessage('PRODUCT_TITLE')?></span></div>
+            <div class="menu-content">
 
-                    <div class="subsection-grid">
-                        <?php foreach ($topLevelSection['SUBSECTIONS'] as $subSection) { ?>
-                            <div class="subsection">
-                                <div class="subsection-title">
-                                    <a href="<?=$subSection['LINK']?>">
-                                        <span><?=$subSection['NAME']?></span>
-                                    </a>
+
+                <div class="menu-content-data " data-content="sale">
+                    <div class="title">Действующие акции</div>
+
+                    <div class="sale-data">
+                        <?php foreach ($arResult['SALE_DATA'] as $saleItem) { ?>
+
+                            <div class="sale-item" onclick="location.href='<?= $saleItem['URL'] ?>'">
+                                <img src="<?= $saleItem["IMAGE"] ?>" alt="<?= $saleItem['NAME'] ?>"/>
+
+                                <div class="sale-item-textblock">
+                                    <p class="sale-item-title"><?= $saleItem['NAME'] ?></p>
+                                    <p class="sale-item-preview"><?= $saleItem['NAME'] ?></p>
+                                    <a href="<?= $saleItem['URL'] ?>" class="sale-item-button">Подробности акции</a>
                                 </div>
-
-                                <?php if ($subSection['SUBSECTIONS']) { ?>
-                                    <ul>
-                                        <?php foreach ($subSection['SUBSECTIONS'] as $subLvl3) { ?>
-                                           <li><a href="<?=$subLvl3['LINK']?>"><span><?=$subLvl3['NAME']?></span></a></li>
-                                        <?php } ?>
-                                    </ul>
-                                <?php } ?>
                             </div>
+
                         <?php } ?>
                     </div>
+
                 </div>
-            <?php }?>
+
+                <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
+                    <div class="menu-content-data" data-content="<?= $id ?>">
+                        <div class="title"><?= $topLevelSection['NAME'] ?>
+                            <span><?= $topLevelSection['ELEMENT_CNT'] ?> <?= Loc::getMessage('PRODUCT_TITLE') ?></span>
+                        </div>
+
+                        <div class="subsection-grid">
+                            <?php foreach ($topLevelSection['SUBSECTIONS'] as $subSection) { ?>
+                                <div class="subsection">
+                                    <div class="subsection-title">
+                                        <a href="<?= $subSection['LINK'] ?>">
+                                            <span><?= $subSection['NAME'] ?></span>
+                                        </a>
+                                    </div>
+
+                                    <?php if ($subSection['SUBSECTIONS']) { ?>
+                                        <ul>
+                                            <?php foreach ($subSection['SUBSECTIONS'] as $subLvl3) { ?>
+                                                <li>
+                                                    <a href="<?= $subLvl3['LINK'] ?>"><span><?= $subLvl3['NAME'] ?></span></a>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+
+            <!-- brands-->
+            <div class="brands-list" id="manu-brands-list">
+                <?php foreach ($arResult['BRAND_DATA'] as $brand) { ?>
+                    <a href="<?= $brand['URL'] ?>">
+                        <img src="<?= $brand["IMAGE"] ?>" alt="<?= $brand['NAME'] ?>"/>
+                    </a>
+                <?php } ?>
+            </div>
         </div>
 
-        <!-- brands-->
-        <div class="brands-list">
-            <?php foreach ($arResult['BRAND_DATA'] as $brand) { ?>
-                <a href="<?= $brand['URL'] ?>">
-                    <img src="<?= $brand["IMAGE"] ?>" alt="<?=$brand['NAME']?>"/>
-                </a>
-            <?php } ?>
-        </div>
     </div>
-
 </div>
 

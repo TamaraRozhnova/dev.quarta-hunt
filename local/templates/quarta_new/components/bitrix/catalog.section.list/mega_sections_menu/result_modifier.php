@@ -8,6 +8,39 @@ $arResult['ITEMS'] = [];
 $topLevelId = 0;
 $secondLevelId = 0;
 
+$saleData = \Bitrix\Iblock\Elements\ElementpromTable::getList([
+    'select' => [
+        'ID',
+        'IBLOCK_ID',
+        'CODE',
+        'IBLOCK_SECTION_ID',
+        'NAME',
+        'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
+        'PREVIEW_PICTURE',
+        'PREVIEW_TEXT',
+    ],
+    'filter' => [
+        "<=ACTIVE_FROM" => new \Bitrix\Main\Type\DateTime(),
+        ">=ACTIVE_TO" => new \Bitrix\Main\Type\DateTime(),
+        'ACTIVE' => 'Y'
+    ],
+    'order' => ['SORT' => 'ASC']
+])->fetchAll();
+
+foreach ($saleData as &$sale) {
+    if ($sale['PREVIEW_PICTURE']) {
+        $sale['URL'] = CIBlock::ReplaceDetailUrl($sale['DETAIL_PAGE_URL'], $sale, false, 'E');
+        $sale['IMAGE'] = CFile::ResizeImageGet(
+            $sale['PREVIEW_PICTURE'],
+            ['width' => 450, 'height' => 250],
+            BX_RESIZE_IMAGE_PROPORTIONAL
+        )['src'];
+    }
+}
+unset($sale);
+
+$arResult['SALE_DATA'] = $saleData;
+
 $brandData = \Bitrix\Iblock\Elements\ElementBrandsTable::getList([
     'select' => [
         'ID',
