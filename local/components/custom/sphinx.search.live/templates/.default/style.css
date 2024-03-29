@@ -131,6 +131,23 @@ body.stop-scrolling-bread {
   overflow: hidden;
 }
 
+.search-live__wrapper input {
+  height: 42px;
+  border-radius: 7px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0px 0px 5px 0px #00000021;
+  border: none;
+}
+
+.search-live__wrapper button {
+  padding: 8px 21px 8px 20px;
+  height: 42px;
+  border-radius: 15px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 @media (hover: hover) {
   .search-live__item-link:hover,
   .search-live__item-bold:hover {

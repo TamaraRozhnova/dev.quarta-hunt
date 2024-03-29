@@ -8424,8 +8424,13 @@ input.form-check-input:focus {
 
 .header--desktop .header__location,
 .header--desktop .header__logo-section {
-  min-width: 333px;
-  max-width: 333px;
+  min-width: 248px;
+  max-width: 248px;
+}
+.header--desktop .header__logo-section {
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__location,
@@ -8438,8 +8443,8 @@ input.form-check-input:focus {
   width: 248px;
 }
 .header--desktop .header__search-section {
-  min-width: 702px;
-  max-width: 702px;
+  min-width: 630px;
+  max-width: 630px;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__search-section {
@@ -8450,6 +8455,55 @@ input.form-check-input:focus {
 .header--desktop .header__lists-section {
   display: flex;
   justify-content: flex-end;
+}
+.header--desktop .header__lists-section > a {
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+}
+.header--desktop .header__lists-section > a > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.header--desktop .header__lists-section > a > div > span {
+  color: #004989;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+}
+.header--desktop .header__lists-section > a > div .basket-icon-background {
+  width: 18px;
+  height: 18px;
+  background-color: #E8EFF4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.header--desktop .header__lists-section > a > div .basket-icon-background svg {
+  width: 11px;
+}
+@media (max-width: 1399px) {
+  .header--desktop .header__lists-section > a > div > span {
+    display: none;
+  }
+  .header--desktop .header__lists-section > a > div svg {
+    width: 32px;
+    height: 32px;
+  }
+  .header--desktop .header__lists-section > a > div .basket-icon-background {
+    width: 32px;
+    height: 32px;
+  }
+  .header--desktop .header__lists-section > a > div .basket-icon-background svg {
+    width: 19px;
+  }
+}
+.header--desktop .header__lists-section > a:last-child {
+  margin-right: 0 !important;
 }
 .header--desktop .header__location {
   display: flex;
