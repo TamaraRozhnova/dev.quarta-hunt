@@ -8797,8 +8797,9 @@ input.form-check-input:focus {
   color: #333333;
 }
 .header--mobile .mobile-nav__body {
-  /*overflow-x: hidden;*/
-  /*overflow-y: auto;*/
+  overflow-x: scroll;
+  /* overflow-y: auto; */
+  height: 100%;
 }
 .header--mobile .mobile-nav__item {
   display: flex;
