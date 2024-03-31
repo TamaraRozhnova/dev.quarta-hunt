@@ -342,10 +342,11 @@ $basketItemsCount = $basket->getProductsCount();
 
         <div class="mobile-nav">
             <a class="mobile-nav__close"></a>
+            <a class="mobile-nav__back"></a>
             <div class="mobile-nav__header">Меню</div>
 
             <div class="mobile-nav__body">
-                <?$APPLICATION->IncludeComponent(
+                <?/*$APPLICATION->IncludeComponent(
                     "bitrix:main.include",
                     "",
                     [
@@ -353,9 +354,9 @@ $basketItemsCount = $basket->getProductsCount();
                         "PATH" => "/include/header/main_links_mobile.php",
                     ],
                     false,
-                );?>
+                );*/?>
 
-                <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sections_menu_mobile", [
+                <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "mega_sections_menu_mobile", [
                     "ADD_SECTIONS_CHAIN" => "N",
                     "CACHE_GROUPS" => "N",
                     "CACHE_TIME" => "36000000",
@@ -383,13 +384,13 @@ $basketItemsCount = $basket->getProductsCount();
                     "SECTION_ID" => false,
                     "SECTION_URL" => "#SECTION_CODE_PATH#/",
                     "SHOW_PARENT_NAME" => "N",
-                    "TOP_DEPTH" => "2",
+                    "TOP_DEPTH" => "3",
                     "VIEW_MODE" => "LIST",
                 ],
                     false
                 )?>
 
-                <?$APPLICATION->IncludeComponent("bitrix:menu",
+                <?/*$APPLICATION->IncludeComponent("bitrix:menu",
                     "menu_vertical_header_mobile",
                     array(
                         "ROOT_MENU_TYPE" => "main_header_mobile",
@@ -400,7 +401,7 @@ $basketItemsCount = $basket->getProductsCount();
                         "DELAY" => "N",
                         "ALLOW_MULTI_SELECT" => "N",
                     )
-                );?>
+                );*/?>
             </div>
         </div>
 
