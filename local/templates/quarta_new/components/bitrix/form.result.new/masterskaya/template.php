@@ -59,12 +59,12 @@ use Bitrix\Main\Engine\CurrentUser;
 
     <?=$arResult['CAPTCHA']?>
 
-    <button type="submit" class="btn btn-primary mb-4">
+    <button type="submit" class="btn btn-secondary mb-4">
         Отправить запрос
     </button>
 
     <div class="row">
-        <small>Нажимая кнопку «Зарегистрироваться», 
+        <small>Нажимая кнопку «Отправить запрос», 
             <a href="/privacy-statement/">я даю свое согласие на обработку моих персональных данных.</a>
             <a href="/about/oferta/">а так же подтверждаю своё согласие с офертой</a>
         </small>

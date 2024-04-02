@@ -20,7 +20,11 @@ $isCheck = $captcha->CheckCode($data['captcha_word'], $_REQUEST["captcha_sid"]);
 if ($isCheck) {
     $response = $webForm->saveResult($data);
 } else {
-    die();
+    die(
+        json_encode(
+            ['errorMessage' => 'Не пройдена проверка на робота']
+        )
+    );
 }
 
 echo json_encode($response);

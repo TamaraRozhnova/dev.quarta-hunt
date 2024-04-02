@@ -33,8 +33,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!response) {
                     throw new Error();
                 }
-                this.showSuccess();
+
+                if (response?.errorMessage) {
+                    this.showError(response.errorMessage)
+                } else {
+                    this.showSuccess();
+                }
+
             } catch (e) {
+                console.log(e)
                 this.showError('Ошибка запроса, попробуйте позже');
             } finally {
                 this.setDisableSubmitButton(false);

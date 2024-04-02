@@ -2,6 +2,7 @@
 
 namespace Helpers;
 
+use Bitrix\Main\Diag\Debug;
 use Bitrix\Sale\Compatible\DiscountCompatibility;
 use Bitrix\Sale\Discount\Gift\Manager;
 use General\Section;
@@ -41,11 +42,7 @@ class DiscountsHelper
         $discountPercent = $resultPrices['DISCOUNT_DIFF_PERCENT'];
 
         if ($discountPercent > 0) {
-            return [
-                'PRICE' => number_format($discountPrice, 0, '.', ' '),
-                'OLD_PRICE' => number_format($price, 0, '.', ' '),
-                'DISCOUNT' => round($discountPercent)
-            ];
+            return ['PRICE' => number_format($discountPrice, 0, '.', ' '), 'OLD_PRICE' => number_format($price, 0, '.', ' '), 'DISCOUNT' => round($discountPercent)];
         }
 
         return ['PRICE' => number_format($price, 0, '.', ' ')];
@@ -74,36 +71,6 @@ class DiscountsHelper
         }
     }
 
-
-    /**
-     * Проверяет и заполняет массив свойств товаров бонусами
-     * @param array &$products - ассоциативный массив свойств товаров
-     */
-    public static function fillProductsWithBonuses(array &$products): void
-    {
-        $user = new User();
-
-        $isWholesaler = $user->isWholesaler();
-        $sectionIdsWithDoubleBonus = Section::getBonusDoubleSectionsArray();
-        global $USER;
-
-
-        foreach ($products as $index => $product) {
-
-            if ($isWholesaler) {
-                unset($products[$index]['PROPERTIES']['KOMPLEKTY_DLYA_SAYTA']);
-                unset($products[$index]['PROPERTIES']['DOUBLE_BONUS']);
-            } else {
-
-                $products[$index]['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
-                if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithDoubleBonus)) {
-                    $products[$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
-                }
-            }
-        }
-    }
-
-
     /**
      * @return int[] - возвращает массив идентификаторов товаров - подарков
      */
@@ -111,19 +78,10 @@ class DiscountsHelper
     {
         $giftProductIds = [];
 
-        if (!$productId) {
-            return $giftProductIds;
-        }
-
         DiscountCompatibility::stopUsageCompatible();
         $giftManager = Manager::getInstance();
 
-        $potentialBuy = [
-            'ID' => $productId,
-            'MODULE' => 'catalog',
-            'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider',
-            'QUANTITY' => 1,
-        ];
+        $potentialBuy = ['ID' => $productId, 'MODULE' => 'catalog', 'PRODUCT_PROVIDER_CLASS' => 'CCatalogProductProvider', 'QUANTITY' => 1,];
 
         $basket = new Basket();
         $basketPseudo = $basket->getCopyOfBasket();
@@ -143,5 +101,43 @@ class DiscountsHelper
         DiscountCompatibility::revertUsageCompatible();
 
         return $giftProductIds;
+    }
+
+    /**
+     * Проверяет и заполняет массив свойств товаров бонусами
+     * @param array &$products - ассоциативный массив свойств товаров
+     */
+    public static function fillProductsWithBonuses(array &$products): void
+    {
+        $user = new User();
+
+        $isWholesaler = $user->isWholesaler();
+        $sectionIdsWithDoubleBonus = Section::getBonusDoubleSectionsArray();
+
+        if ($products['ID']) {
+            if ($isWholesaler) {
+                unset($products['PROPERTIES']['KOMPLEKTY_DLYA_SAYTA']);
+                unset($products['PROPERTIES']['DOUBLE_BONUS']);
+            } else {
+                $products['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
+                if (in_array($products['IBLOCK_SECTION_ID'], $sectionIdsWithDoubleBonus)) {
+                    $products['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
+                }
+            }
+        } else {
+
+            foreach ($products as $index => $product) {
+
+                if ($isWholesaler) {
+                    unset($products[$index]['PROPERTIES']['KOMPLEKTY_DLYA_SAYTA']);
+                    unset($products[$index]['PROPERTIES']['DOUBLE_BONUS']);
+                } else {
+                    $products[$index]['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
+                    if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithDoubleBonus)) {
+                        $products[$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
+                    }
+                }
+            }
+        }
     }
 }

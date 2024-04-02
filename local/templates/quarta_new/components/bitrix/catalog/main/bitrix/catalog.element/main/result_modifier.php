@@ -121,7 +121,10 @@ if (!$recommendedProductIds) {
 
 $sectionId = $arResult['SECTION']['IBLOCK_SECTION_ID'];
 
-$arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedProducts($recommendedProductIds, $sectionId, 4, $arParams['DETAIL_URL']);
+
+if (is_array($recommendedProductIds) && count($recommendedProductIds) > 0) {
+    $arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedProducts($recommendedProductIds, $sectionId, 4, $arParams['DETAIL_URL']);
+}
 
 $arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECTION']['ID']);
 

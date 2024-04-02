@@ -42,11 +42,15 @@ class MainSlider {
 
     makeSlider() {
         this.displayImages();
+        
+        const swiperSlides = document.querySelectorAll(`${this.swiperSelector} .swiper-slide`)
+        const swiperLoop = swiperSlides?.length > 1 ? true : false;
+
         this.swiper = new Swiper(this.swiperSelector, {
             slidesPerView: 1,
             direction: 'horizontal',
             height: this.compact ? 455 : 511,
-            loop: true,
+            loop: swiperLoop,
             navigation: {
                 nextEl: '.main-slider__arrow-next',
                 prevEl: '.main-slider__arrow-prev',
