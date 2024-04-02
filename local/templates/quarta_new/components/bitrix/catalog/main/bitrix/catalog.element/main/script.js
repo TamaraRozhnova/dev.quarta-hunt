@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.hangPersonalProductDataEvents();
             this.hangShareNetworkEvents();
             this.hangTooltipsEvents();
+            this.hangStarsClick()
         }
 
         hangPersonalProductDataEvents() {
@@ -31,6 +32,25 @@ window.addEventListener('DOMContentLoaded', () => {
                     new ProductCards(response);
                     new AvailableBlock(response);
                 })
+        }
+
+        hangStarsClick() {
+            const stars = document.querySelector('section.product .stars')
+            const tabReviews = document.querySelector('.product-tab-reviews')
+
+            if (stars) {
+                stars.addEventListener('click', (e) => {
+                    tabReviews.dispatchEvent(
+                        new Event('click')
+                    )
+                    tabReviews.scrollIntoView(
+                        {
+                            behavior: "smooth", 
+                            block: "start", 
+                        }
+                    )
+                })
+            }
         }
 
         setReviewsCount(ratingsList) {

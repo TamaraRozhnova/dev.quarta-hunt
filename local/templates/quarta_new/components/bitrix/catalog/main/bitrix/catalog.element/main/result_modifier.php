@@ -181,6 +181,7 @@ if (!empty($rsStoreElement)) {
 }
 
 // Получаем ограничения по категориям платёжной системы
+/*
 $dbRestriction = \Bitrix\Sale\Internals\ServiceRestrictionTable::getList(array(
     'select' => array('PARAMS'),
     'filter' => array(
@@ -194,19 +195,53 @@ while ($restriction = $dbRestriction->fetch()) {
         $restrictions = array_merge($restrictions,$restriction['PARAMS']);
     }
 }
+*/
 
 // Получаем все категории товара вплоть до основной
 $productSections = getRootProductSection($arResult['IBLOCK_ID'], $arResult['IBLOCK_SECTION_ID']);
 
-// Устанавливаем ограничение
-$arResult['RESTRICTED_SECTION'] = 'Y';
+// Массив с разделами, где отображать надпись о лицензии
+$sectionsLicense = $arParams['PRODUCTS_TEXT_LICENSE'];
 
 // Снимаем ограничение, если хоть одна из категорий товара попадает под исключение
-if (is_array($productSections) && is_array($restrictions['CATEGORIES']) && count($productSections) > 0) {
+if (is_array($productSections) && count($productSections) > 0) {
     foreach ($productSections as $section) {
-        if (in_array($section['ID'], $restrictions['CATEGORIES'])) {
-            unset($arResult['RESTRICTED_SECTION']);
+        if (in_array($section['ID'], $sectionsLicense)) {
+            // Устанавливаем ограничение
+            $arResult['RESTRICTED_SECTION'] = 'Y';
             break;
         }
     }    
 }
+
+/*
+ * Поиск внешних ссылок в тексте
+ * Добавление target="_blank"
+ * Добавление rel="nofollow"
+ */
+preg_match_all('/<a(.*)>/U', $arResult['~DETAIL_TEXT'], $output_array);
+if(!empty($output_array[0][0]))
+    foreach ($output_array[0] AS $v){
+        $new = $v;
+
+        if(!stripos($v, 'http')){
+            continue;
+        }
+
+        if(!stripos($v, '_blank')){
+            $new = str_replace('href=', 'target="_blank" href=', $new);
+        }
+        if(!stripos($v, 'nofollow')){
+            $new = str_replace('href=', 'rel="nofollow" href=', $new);
+        }
+        $arResult["~DETAIL_TEXT"] = str_replace($v, $new, $arResult["~DETAIL_TEXT"]);
+    }
+
+// Создаем изображение для превью соц.сетей
+$image_social = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"], array('width'=>'1200', 'height'=>'630'), BX_RESIZE_IMAGE_EXACT, true);
+$arResult["DETAIL_PICTURE"]["SOCIAL"] = $image_social["src"];
+
+// Передаем данные в результат после кеширования
+$this->__component->SetResultCacheKeys(array(
+    "DETAIL_PICTURE"
+));

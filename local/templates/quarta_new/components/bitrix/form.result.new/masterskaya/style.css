@@ -1,0 +1,15 @@
+.warranty-form .invalid-feedback {
+  font-size: 0.75rem;
+}
+.warranty-form .input--required label::after {
+  content: "*";
+  color: #eb5806;
+  font-size: 1.2em;
+}
+.warranty-form .textarea label {
+  font-size: 1rem;
+}
+
+.warranty-form__success-message {
+  margin-bottom: 0;
+}

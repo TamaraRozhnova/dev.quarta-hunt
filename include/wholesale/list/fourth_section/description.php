@@ -1,4 +1,4 @@
-<a class="btn bg-gray-200 text-primary px-4" href="https://www.youtube.com/channel/UCiZRW21PB-OK1CY6Rrv88nw" target="_blank">
+<a class="btn bg-gray-200 text-primary px-4" rel="nofollow" href="https://www.youtube.com/channel/UCiZRW21PB-OK1CY6Rrv88nw" target="_blank">
     <svg class="me-1"
          width="27"
          height="17"

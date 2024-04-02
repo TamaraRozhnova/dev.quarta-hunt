@@ -30,7 +30,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 
                 <div class="wide-promotion__content-backdrop">
                     <div class="backdrop">
-                        <a href="<?= $arItem['PROPERTIES']['BANNER_LINK']['VALUE'] ?>" target="_blank"
+                        <a href="<?= $arItem['PROPERTIES']['BANNER_LINK']['VALUE'] ?>" target="_blank" rel="nofollow"
                            class="play-button">
                             <svg width="107" height="107" viewBox="0 0 107 107" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
                             <div class="col-6 youtube-promotion__content">
                                 <h3><?= $arItem['PROPERTIES']['BANNER_TEXT']['~VALUE'] ?></h3>
                                 <a href="<?= $arItem['PROPERTIES']['BANNER_LINK']['VALUE'] ?>"
-                                   class="btn btn-outline-light" target="_blank">
+                                   class="btn btn-outline-light" target="_blank" rel="nofollow">
                                     <?= Loc::getMessage('YOUTUBE_BTN_TITLE') ?>
                                 </a>
                             </div>

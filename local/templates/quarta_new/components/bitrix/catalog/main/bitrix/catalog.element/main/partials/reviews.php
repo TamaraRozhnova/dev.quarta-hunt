@@ -76,17 +76,17 @@ $isUserAuth = $user->isAuthorized();
                         </div>
 
                         <form>
-                            <div class="textarea add-review__flaws mb-4">
-                                <label for="flaws" class="form-label">
-                                    Недостатки
-                                </label>
-                                <textarea id="flaws" rows="3" class="form-control"></textarea>
-                            </div>
                             <div class="textarea add-review__dignities mb-4">
                                 <label for="dignities" class="form-label">
                                     Достоинства
                                 </label>
                                 <textarea id="dignities" rows="3" class="form-control"></textarea>
+                            </div>
+                            <div class="textarea add-review__flaws mb-4">
+                                <label for="flaws" class="form-label">
+                                    Недостатки
+                                </label>
+                                <textarea id="flaws" rows="3" class="form-control"></textarea>
                             </div>
                             <div class="textarea add-review__comments mb-4">
                                 <label for="comments" class="form-label">
@@ -106,7 +106,7 @@ $isUserAuth = $user->isAuthorized();
                             <button class="btn btn-primary" type="submit">Опубликовать отзыв</button>
                         </form>
                         <div class="add-review__success card-body">
-                            <p>Спасибо Ваш отзыв отправлен</p>
+                            <p>Спасибо, ваше мнение очень важно и поможет другим покупателям! Отзыв появится после прохождения модерации.</p>
                         </div>
                     </div>
                 </div>

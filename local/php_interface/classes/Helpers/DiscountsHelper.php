@@ -85,12 +85,16 @@ class DiscountsHelper
 
         $isWholesaler = $user->isWholesaler();
         $sectionIdsWithDoubleBonus = Section::getBonusDoubleSectionsArray();
+        global $USER;
+
 
         foreach ($products as $index => $product) {
+
             if ($isWholesaler) {
                 unset($products[$index]['PROPERTIES']['KOMPLEKTY_DLYA_SAYTA']);
                 unset($products[$index]['PROPERTIES']['DOUBLE_BONUS']);
             } else {
+
                 $products[$index]['PRESENT'] = !empty(DiscountsHelper::getGiftIds($product['ID']));
                 if (in_array($product['IBLOCK_SECTION_ID'], $sectionIdsWithDoubleBonus)) {
                     $products[$index]['PROPERTIES']['DOUBLE_BONUS']['VALUE'] = 'Да';
@@ -103,7 +107,7 @@ class DiscountsHelper
     /**
      * @return int[] - возвращает массив идентификаторов товаров - подарков
      */
-    public static function getGiftIds(int $productId): array
+    public static function getGiftIds(?int $productId): array
     {
         $giftProductIds = [];
 

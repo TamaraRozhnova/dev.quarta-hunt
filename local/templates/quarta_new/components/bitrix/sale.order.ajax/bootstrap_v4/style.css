@@ -2200,3 +2200,14 @@ hr.bxe-light {
 .restricted__list {
   margin-top: 15px;
 }
+.sale-paysystem-wrapper{
+  display: inline-block;
+}
+.sale-paysystem-wrapper .sale-paysystem-yandex-button{
+  margin-bottom: 0;
+}
+.sale-paysystem-wrapper .sale-paysystem-yandex-button-item{
+  height: auto;
+  font-family: var(--bs-font-sans-serif);
+  font-weight: 400;
+}

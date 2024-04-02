@@ -144,3 +144,35 @@ if ($sliderProperty)
 	}
 }
 
+
+/*
+ * Поиск внешних ссылок в тексте
+ * Добавление target="_blank"
+ * Добавление rel="nofollow"
+ */
+preg_match_all('/<a(.*)>/U', $arResult['DETAIL_TEXT'], $output_array);
+if(!empty($output_array[0][0]))
+    foreach ($output_array[0] AS $v){
+        $new = $v;
+
+        if(!stripos($v, 'http')){
+            continue;
+        }
+
+        if(!stripos($v, '_blank')){
+            $new = str_replace('href=', 'target="_blank" href=', $new);
+        }
+        if(!stripos($v, 'nofollow')){
+            $new = str_replace('href=', 'rel="nofollow" href=', $new);
+        }
+        $arResult["DETAIL_TEXT"] = str_replace($v, $new, $arResult["DETAIL_TEXT"]);
+    }
+
+// Создаем изображение для превью соц.сетей
+$image_social = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"], array('width'=>'1200', 'height'=>'630'), BX_RESIZE_IMAGE_EXACT, true);
+$arResult["DETAIL_PICTURE"]["SOCIAL"] = $image_social["src"];
+
+// Передаем данные в результат после кеширования
+$this->__component->SetResultCacheKeys(array(
+    "DETAIL_PICTURE"
+));

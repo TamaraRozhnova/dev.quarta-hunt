@@ -30,7 +30,7 @@ $isUserAuth = $user->isAuthorized();
             <button class="product-about__tab" data-tab="4">
                 Задать вопрос
             </button>
-            <button class="product-about__tab" data-tab="5">
+            <button class="product-about__tab product-tab-reviews" data-tab="5">
                 Отзывы
                 <span class="product-about__reviews-count"></span>
             </button>

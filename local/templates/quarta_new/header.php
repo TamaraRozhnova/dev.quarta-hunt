@@ -33,6 +33,8 @@ if (
 
 $basketItemsCount = $basket->getProductsCount();
 
+define("SITE_SERVER_PROTOCOL", (CMain::IsHTTPS()) ? "https://" : "http://");
+$curPage = $APPLICATION->GetCurPage();
 ?>
 <!doctype html>
 <html 
@@ -64,6 +66,12 @@ $basketItemsCount = $basket->getProductsCount();
     $APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>',true);
     $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" type="text/javascript"></script>',true);
     ?>
+
+    <meta property="og:url" content="<?=SITE_SERVER_PROTOCOL . SITE_SERVER_NAME . $curPage?>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?$APPLICATION->ShowProperty("title")?>">
+    <meta property="og:description" content="<?=$APPLICATION->ShowProperty("description")?>">
+    <meta property="og:image" content="<?=$APPLICATION->ShowProperty("og:image", SITE_SERVER_PROTOCOL . SITE_SERVER_NAME . "/upload/logo_og.png")?>">
 
     <script>
         window.isAuth = '<?= boolval($isAuthorized) ?>';
