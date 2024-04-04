@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
     /*slider init */
-    new Swiper('.compact-swiper ', {
+    new Swiper('.compact-swiper', {
         speed: 400,
         spaceBetween: 0,
         navigation: {

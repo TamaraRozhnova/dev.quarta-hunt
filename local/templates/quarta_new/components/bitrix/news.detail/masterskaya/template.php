@@ -101,7 +101,6 @@ $this->addExternalJs($templateFolder . '/video.min.js');
 
     <!--    о компании-->
     <div class="container">
-        <small> О компании </small>
         <div class="row mt-3">
             <div class="col-12 col-lg-6">
                 <h2><?= html_entity_decode($arResult['PROPERTIES']['ABOUT_TITLE']['VALUE']) ?></h2>
@@ -597,8 +596,8 @@ $this->addExternalJs($templateFolder . '/video.min.js');
                             <div class="col-12 col-md-6 pt-4">
                                 <div class="base-slider">
                                     <div class="">
-                                        <div class="compact-swiper swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
-                                            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+<!--                                        <div class="compact-swiper swiper swiper-container swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">-->
+<!--                                            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">-->
 
                                                 <?php foreach ($arResult['PROPERTIES']['SLIDER_3']['ITEMS'] as $arSlide) : ?>
                                                     <div class="swiper-slide swiper-slide-active">
@@ -616,15 +615,15 @@ $this->addExternalJs($templateFolder . '/video.min.js');
                                                     </div>
                                                 <?php endforeach; ?>
 
-                                            </div>
-                                            <div class="swiper-scrollbar" style="display: none;">
-                                                <div class="swiper-scrollbar-drag" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms; width: 0px;"></div>
-                                            </div>
-                                            <div class="base-slider__arrows">
-                                                <div class="base-slider__prev"></div>
-                                                <div class="base-slider__next"></div>
-                                            </div>
-                                        </div>
+<!--                                            </div>-->
+<!--                                            <div class="swiper-scrollbar" style="display: none;">-->
+<!--                                                <div class="swiper-scrollbar-drag" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms; width: 0px;"></div>-->
+<!--                                            </div>-->
+<!--                                            <div class="base-slider__arrows">-->
+<!--                                                <div class="base-slider__prev"></div>-->
+<!--                                                <div class="base-slider__next"></div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>
