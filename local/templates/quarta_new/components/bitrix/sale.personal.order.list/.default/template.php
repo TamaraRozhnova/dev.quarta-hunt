@@ -75,6 +75,15 @@ Loc::loadMessages(__FILE__);
 					 	<div class="col-2"><?= getMessage('SPOL_SUM_ORDER');?></div> 
 					 	<div class="col-2"><?= getMessage('SPOL_STATUS_ORDER');?></div>
 					</div>
+					<? global $USER;
+					
+					 if ($USER->IsAdmin()):?>
+					<div class="history-order__arrow hided">
+						<svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M7.42981 1.14955C7.74711 0.832293 8.26153 0.832313 8.57881 1.1496L15.5436 8.11435C15.8609 8.43165 15.8609 8.94609 15.5436 9.26339C15.2263 9.5807 14.7118 9.5807 14.3945 9.26339L8.00424 2.87312L1.61293 9.26344C1.29561 9.58072 0.78116 9.58068 0.463883 9.26335C0.146607 8.94602 0.146647 8.43158 0.463973 8.1143L7.42981 1.14955Z" fill="#4E4E4E"/>
+						</svg>
+					</div>
+					<?endif;?>
 				</div>
 				
 				<div class="history-order__summary">

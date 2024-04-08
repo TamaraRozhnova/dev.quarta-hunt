@@ -6,6 +6,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Loader;
 use Bitrix\Main\Config\Option;
+use Skyweb24\YandexCaptcha\YandexCaptcha;
+use Skyweb24\YandexCaptcha\YandexCaptchaOption;
 
 function getUserFullNameOrEmail(): string {
     global $USER;
@@ -99,10 +101,17 @@ function getRootProductSection($iblockId, $sectionId) {
 function checkCustomCaptcha($post) {
     if (Loader::includeModule('twim.recaptchafree')) {
         parse_str($post, $output);
-        $moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
-        $word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
-        $captcha = new CCaptcha();
-        return $captcha->CheckCode($word, $_REQUEST["captcha_sid"]);
+
+        //yandex
+        Loader::includeModule('skyweb24.yandexcaptcha');
+        $optionCaptcha = new YandexCaptchaOption();
+
+        return (new YandexCaptcha($output['smart-token'], $optionCaptcha->getServerKey()))->checkCaptcha();
+        //google
+//        $moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
+//        $word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
+//        $captcha = new CCaptcha();
+//        return $captcha->CheckCode($word, $_REQUEST["captcha_sid"]);
     } else {
         return false;
     }

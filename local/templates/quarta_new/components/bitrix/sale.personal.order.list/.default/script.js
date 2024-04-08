@@ -14,6 +14,8 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 			Array.prototype.forEach.call(rowWrapper, function(wrapper)
 			{
 				var shipmentTrackingId = wrapper.getElementsByClassName('sale-order-list-shipment-id');
+				const parentCard = wrapper.closest('.history-order')
+
 				if (shipmentTrackingId[0])
 				{
 					Array.prototype.forEach.call(shipmentTrackingId, function(blockId)
@@ -25,6 +27,11 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 						}
 					});
 				}
+
+				BX.bindDelegate(parentCard, 'click', { 'class': 'history-order__arrow' }, BX.proxy(function(event)
+				{
+					BX.toggleClass(BX(event.target), ["", "hided"]);
+				}, this));
 
 				BX.bindDelegate(wrapper, 'click', { 'class': 'ajax_reload' }, BX.proxy(function(event)
 				{

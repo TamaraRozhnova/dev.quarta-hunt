@@ -236,6 +236,7 @@ $arResult["SHOW_FIELDS"] = array(
 						<span class="starrequired">*</span>
 					<?endif?>
 				</label>
+				<span class="password-eye"></span>
 				<input type="password" class="form-control bx-auth-input" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off"  />
 				<?if ($arResult["SECURE_AUTH"]): ?>
 					<span class="bx-auth-secure" id="bx_auth_secure" title="<?echo GetMessage("AUTH_SECURE_NOTE") ?>" style="display:none">
@@ -260,6 +261,7 @@ $arResult["SHOW_FIELDS"] = array(
 						<span class="starrequired">*</span>
 					<?endif?>
 				</label>
+				<span class="password-eye"></span>
 				<input type="password" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off" />
 			</div>
 			<? break;

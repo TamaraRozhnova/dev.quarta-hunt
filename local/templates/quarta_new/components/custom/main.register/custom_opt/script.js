@@ -34,5 +34,19 @@ $(document).ready(function() {
 		}
 	});
 
+    $('.password-eye').on('click', function(){
+        showPassword(this);
+        $(this).toggleClass('active');
+    });
+    
+    function showPassword(node) {
+        inputPass = $(node).siblings('input');
+        if ($(node).hasClass('active')) {
+            inputPass.prop('type', 'password');
+        } else {
+            inputPass.prop('type', 'text');
+        }
+    }
+
 })
 

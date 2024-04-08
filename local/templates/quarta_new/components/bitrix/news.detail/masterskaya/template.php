@@ -118,7 +118,138 @@ $this->addExternalJs($templateFolder . '/video.min.js');
                 </a>
             </div>
 
-            <img width="1080" src="/upload/medialibrary/Прейскурант%20Мастерской.jpg" height="5260">
+            <div class="preiskurant-block">
+                <h2>Прейскурант Мастерской</h2>
+                <div class="preiskurant-table">
+                    <h3>Чистка и уход</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="preiskurant-table-item"><span>Чистка гладкоствольного оружия</span></div>
+                        <div class="preiskurant-table-item text-center">1500 ₽</div>
+                        <div class="preiskurant-table-item"></div>
+                        <div class="preiskurant-table-item"><span>Чистка нарезного оружия</span></div>
+                        <div class="preiskurant-table-item text-center">3000 ₽</div>
+                        <div class="preiskurant-table-item"></div>
+                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Освобождение от консервационной смазки</span></div>
+                        <div class="preiskurant-table-item text-center">1500 ₽</div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius">Скидка 50% на купленное в магазине "Оружейный квартал", в день покупки.</div>
+                    </div>
+                </div>
+                <div class="preiskurant-table">
+                    <h3>Установка и монтаж</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="preiskurant-table-item"><span>Установка оптического прицела в кольцо</span></div>
+                        <div class="preiskurant-table-item text-center">2000 ₽</div>
+                        <div class="preiskurant-table-item light-weight">Бесплатно, при покупке и оружия и колец и оптики в нашем магазине, скидка 50% на работы, при покупке и прицела и оружия в нашем магазине</div>
+                        <div class="preiskurant-table-item"><span>Установка оптического прицела в кольцо с притиранием колец</span></div>
+                        <div class="preiskurant-table-item text-center">6000 ₽</div>
+                        <div class="preiskurant-table-item light-weight">Скидка 50% на работы, при покупке и прицела, оружия и колец в нашем магазине</div>
+                        <div class="preiskurant-table-item"><span>Установка планки на оружие с вклейкой</span></div>
+                        <div class="preiskurant-table-item text-center">3000 ₽</div>
+                        <div class="preiskurant-table-item light-weight"></div>
+                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Установка коллиматора</span></div>
+                        <div class="preiskurant-table-item text-center">1000 ₽</div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius">Бесплатно, при покупке и коллиматора и оружия в нашем магазине</div>
+                    </div>
+                </div>
+                <div class="preiskurant-table big-block">
+                    <h3>Специализированные работы с оружием АК-серии</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="left-block">
+                            <div class="preiskurant-table-item"><span>Полная разборка/сборка в штатной комплектации</span></div>
+                            <div class="preiskurant-table-item text-center">3000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Полная разборка/сборка в тюнинге</span></div>
+                            <div class="preiskurant-table-item text-center">6000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Монтаж цевья без демонтажа оковки</span></div>
+                            <div class="preiskurant-table-item text-center">2000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Демонтаж оковки цевья</span></div>
+                            <div class="preiskurant-table-item text-center">2000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Установка шасси</span></div>
+                            <div class="preiskurant-table-item text-center">12000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена приклада</span></div>
+                            <div class="preiskurant-table-item text-center">3000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена и настройка УСМ</span></div>
+                            <div class="preiskurant-table-item text-center">3500 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена пистолетной рукоятки</span></div>
+                            <div class="preiskurant-table-item text-center">1000 ₽</div>
+                            <div class="preiskurant-table-item">Монтаж устройства сброса магазина</span></div>
+                            <div class="preiskurant-table-item text-center">1500 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена дульных устройств</span></div>
+                            <div class="preiskurant-table-item text-center">1500 ₽</div>
+                            <div class="preiskurant-table-item"><span>Монтаж/демонтаж газового блока</span></div>
+                            <div class="preiskurant-table-item text-center">9000 ₽</div>
+                            <div class="preiskurant-table-item border-bottom-left-radius"><span>Установка накладок на рукоятку взведения затвора</span></div>
+                            <div class="preiskurant-table-item text-center">1000 ₽</div>
+                        </div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius big-block">Скидка 30% на работы, при покупке устанавливаемой детали в нашем магазине</div>
+                    </div>
+                </div>
+                <div class="preiskurant-table">
+                    <h3>Специализированные работы с оружием на базе СВД</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="preiskurant-table-item"><span>Установка шасси SAG/цевья РиР</span></div>
+                        <div class="preiskurant-table-item text-center">15000 ₽</div>
+                        <div class="preiskurant-table-item light-weight"></div>
+                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Отладка УСМ</span></div>
+                        <div class="preiskurant-table-item text-center">6000 ₽</div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius"></div>
+                    </div>
+                </div>
+                <div class="preiskurant-table big-block">
+                    <h3>Специализированные работы с оружием AR-серии</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="left-block">
+                            <div class="preiskurant-table-item"><span>Замена цевья</span></div>
+                            <div class="preiskurant-table-item text-center">6000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена газблока</span></div>
+                            <div class="preiskurant-table-item text-center">2000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена УСМ</span></div>
+                            <div class="preiskurant-table-item text-center">2000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена предохранителя</span></div>
+                            <div class="preiskurant-table-item text-center">1500 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена трубы приклада</span></div>
+                            <div class="preiskurant-table-item text-center">2000 ₽</div>
+                            <div class="preiskurant-table-item"><span>Замена ДТК с подгонкой</span></div>
+                            <div class="preiskurant-table-item text-center">2000 ₽</div>
+                        </div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius big-block">Скидка 30% на работы, при покупке устанавливаемой детали в нашем магазине</div>
+                    </div>
+                </div>
+                <div class="preiskurant-table">
+                    <h3>Работа с ОООП</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Замена ЗИП на ОООП</span></div>
+                        <div class="preiskurant-table-item text-center">1500 ₽</div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius"></div>
+                    </div>
+                </div>
+                <div class="preiskurant-table">
+                    <h3>Диагностика</h3>
+                    <div class="preiskurant-table-block">
+                        <div class="preiskurant-table-item"><span>Диагностика тех состояния (Оценка технического состояния степени износа, ремонтопригодности оружия, выявление неисправности, определение видов работ по её устранению), без выдачи заключения.</span></div>
+                        <div class="preiskurant-table-item text-center">1500 ₽</div>
+                        <div class="preiskurant-table-item light-weight"></div>
+                        <div class="preiskurant-table-item"><span>Выдача заключения о тех состоянии оружия</span></div>
+                        <div class="preiskurant-table-item text-center">3000 ₽</div>
+                        <div class="preiskurant-table-item light-weight"></div>
+                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Осмотр ствола бороскопом</span></div>
+                        <div class="preiskurant-table-item text-center">1500 ₽</div>
+                        <div class="preiskurant-table-item light-weight border-bottom-right-radius">Бесплатно, в день покупки нашего оружия</div>
+                    </div>
+                </div>
+                <div class="alarm-info">
+                    <h2>Внимание!</h2>
+                    <p>В данном Прейскуранте указаны лишь некоторые работы из всех возможных. <br> В данном Прейскуранте указаны лишь ориентировочные цены на работы, точная стоимость станет известна только после осмотра оружия мастером!<br> На итоговую стоимость и срок ремонта влияют:</p>
+                    <p>
+                        *объем работ<br>
+                        *сложность работ<br>
+                        *стоимость и наличие запчастей<br>
+                        *необходимость использования специализированного оборудования<br>
+                        *необходимость использования специализированного инструмента
+                    </p>
+                </div>
+            </div>
+
+            <?/*<img src="<?=$templateFolder?>/img/55.jpg">*/?>
 
         </div>
     </div>

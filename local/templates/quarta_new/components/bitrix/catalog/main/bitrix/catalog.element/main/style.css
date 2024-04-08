@@ -1485,6 +1485,9 @@
   max-width: 90%;
   max-height: 90%;
 }
+.available-product-window .product-card__image figure{
+  position: static;
+}
 
 /*bonus*/
 .product__bonus {

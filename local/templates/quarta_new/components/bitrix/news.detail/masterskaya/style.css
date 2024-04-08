@@ -8,7 +8,7 @@
 
 .holosun p {
     font-size: 1rem;
-    max-width: 500px;
+    /*max-width: 500px;*/
 }
 
 .holosun h2, .holosun h3 {
@@ -25,19 +25,19 @@
 }
 
 .holosun .checklist ul li {
-    /*padding-left: calc(15px + 1.5ch);*/
+    padding-left: calc(15px + 1.5ch);
     position: relative;
     display: block;
 }
 
 .holosun .checklist ul li::before {
-    /*content: '';*/
-    /*width: 15px;*/
-    /*height: 12px;*/
-    /*position: absolute;*/
-    /*top: 0.25em;*/
-    /*left: 0;*/
-    /*background-image: url("data:image/svg+xml,%3Csvg width='15' height='12' viewBox='0 0 15 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.65736 11.4989C4.76606 11.6539 4.90936 11.7802 5.07538 11.8674C5.2414 11.9545 5.42536 12 5.612 12C5.79865 12 5.9826 11.9545 6.14862 11.8674C6.31464 11.7802 6.45794 11.6539 6.56665 11.4989L14.3441 0.479277C14.4845 0.279264 14.3441 0 14.1041 0H12.3721C11.9954 0 11.6372 0.184917 11.4156 0.501919L5.61385 8.72887L2.98442 5.00033C2.76284 4.6871 2.40831 4.49841 2.02793 4.49841H0.295909C0.055863 4.49841 -0.0844716 4.77767 0.055863 4.97768L4.65736 11.4989Z' fill='%23EB5806'/%3E%3C/svg%3E%0A");*/
+    content: '';
+    width: 15px;
+    height: 12px;
+    position: absolute;
+    top: 0.25em;
+    left: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='15' height='12' viewBox='0 0 15 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.65736 11.4989C4.76606 11.6539 4.90936 11.7802 5.07538 11.8674C5.2414 11.9545 5.42536 12 5.612 12C5.79865 12 5.9826 11.9545 6.14862 11.8674C6.31464 11.7802 6.45794 11.6539 6.56665 11.4989L14.3441 0.479277C14.4845 0.279264 14.3441 0 14.1041 0H12.3721C11.9954 0 11.6372 0.184917 11.4156 0.501919L5.61385 8.72887L2.98442 5.00033C2.76284 4.6871 2.40831 4.49841 2.02793 4.49841H0.295909C0.055863 4.49841 -0.0844716 4.77767 0.055863 4.97768L4.65736 11.4989Z' fill='%23EB5806'/%3E%3C/svg%3E%0A");
 }
 
 .holosun .main-slider {
@@ -872,4 +872,141 @@
 .cabinet-section__content  p:last-child {
     margin-bottom: 0;
 }
- 
+
+
+/* preiskurant masterskoi */
+
+.preiskurant-block h2 {
+    color: #004989;
+    font-weight: 900;
+    font-size: 42px;
+    text-align: center;
+    max-width: 100%;
+    line-height: 42px;
+    margin-bottom: 50px;
+    margin-top: 40px;
+}
+
+.preiskurant-block .preiskurant-table {
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    padding: 40px 5px 5px 5px;
+    margin-bottom: 40px;
+}
+
+.preiskurant-block .preiskurant-table h3 {
+    max-width: 100%;
+    text-align: center;
+    color: #004989;
+    font-weight: 900;
+    font-size: 41px;
+    line-height: 41px;
+    margin-bottom: 40px;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block {
+    display: grid;
+    grid-template-columns: 40% 19.3% 40%;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item {
+    background-color: #fff;
+    padding: 30px 50px;
+    color: #004989;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 26px;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item.light-weight {
+    font-weight: 500;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item.text-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item span {
+    display: block;
+    max-width: 60%;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item.border-bottom-left-radius {
+    border-bottom-left-radius: 20px;
+}
+
+.preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item.border-bottom-right-radius {
+    border-bottom-right-radius: 20px;
+}
+
+.preiskurant-block .alarm-info h2 {
+    text-align: left;
+}
+
+.preiskurant-block .alarm-info p {
+    color: #004989;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.preiskurant-block .alarm-info p:nth-child(2) {
+    margin-bottom: 30px;
+}
+
+.preiskurant-table.big-block .preiskurant-table-block {
+    grid-template-columns: 59.6% 40%;
+}
+
+.preiskurant-table.big-block .preiskurant-table-block .left-block {
+    display: grid;
+    grid-template-columns: 67.12% 32.38%;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.preiskurant-table.big-block .preiskurant-table-block .big-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 767px) {
+    .preiskurant-block .alarm-info p {
+        font-size: 16px;
+    }
+
+    .preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item {
+        padding: 10px 15px;
+    }
+
+    .preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item span {
+        max-width: 100%;
+    }
+
+    .preiskurant-block h2 {
+        font-size: 32px;
+        line-height: 32px;
+        margin-bottom: 30px;
+    }
+
+    .preiskurant-block .preiskurant-table {
+        padding: 20px 5px 5px 5px;
+    }
+
+    .preiskurant-block .preiskurant-table h3 {
+        font-size: 30px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+
+    .preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item {
+        font-size: 14px;
+        line-height: 18px;
+    }
+}

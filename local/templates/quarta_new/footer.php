@@ -254,14 +254,16 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
                 var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
         })(window,document,'https://crm.quarta-hunt.ru/upload/crm/site_button/loader_2_uee9eu.js');
-    </script>
-
-    <script>
+        
         window.addEventListener('onBitrixLiveChat', function(event){
             var widget = event.detail.widget;
             widget.setOption('checkSameDomain', false);
         });
+        
+        (function(w,d,u){
+            var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+            var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+        })(window,document,'https://crm.quarta-hunt.ru/upload/crm/tag/call.tracker.js');
     </script>
-
     </body>
 </html>

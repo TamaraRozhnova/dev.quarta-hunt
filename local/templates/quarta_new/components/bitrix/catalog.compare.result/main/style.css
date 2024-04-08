@@ -31,6 +31,13 @@
   position: relative;
   overflow: hidden;
 }
+
+@media (min-width: 1440px) {
+  .compare__table-wrapper {
+    overflow: visible !important;
+  }
+}
+
 .compare__table-wrapper::after {
   content: "";
   position: absolute;
@@ -154,7 +161,7 @@
 
 .move-left {
   left: auto;
-  right: 0;
+  right: -35px;
   transform: rotate(180deg);
 }
 
@@ -166,6 +173,59 @@
 .compare__col.compare__item--mini {
   margin-bottom: 0;
 }
+
+/* Mini cards */
+.compare__col.compare__item--mini .product-card {
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  gap: 8px;
+}
+
+.compare__col.compare__item--mini .product-card__image img {
+  object-fit: contain;
+}
+
+.compare__col.compare__item--mini .product-card__image {
+  padding: initial;
+  /* max-width: 90px; */
+  margin: 0;
+  flex: 1 1 100%;
+}
+
+.compare__col.compare__item--mini .product-card a {
+  height: initial;
+  /* flex: 0 1 10%; */
+}
+
+.compare__col.compare__item--mini .product-card__add-wrapper {
+  /* flex: 0 1 10%; */
+  display: none;
+}
+
+.compare__col.compare__item--mini .price.price--small {
+  display: block;
+}
+
+.compare__col.compare__item--mini .product-card__title {
+  margin: 0;
+  font-size: 14px;
+}
+
+.compare__col.compare__item--mini .product-card__image figure {
+  position: initial;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  max-width: 90px;
+}
+
+.compare__col.compare__item--mini .product-card__article {
+  display: none;
+}
+
+/* End mini cards */
 
 @media (max-width: 1199.98px) {
   .compare__col {
@@ -262,7 +322,7 @@
 }
 
 .compare__mini .move-left {
-  right: 330px;
+  right: 295px;
 }
 
 .compare__mini .move-right {
@@ -335,4 +395,18 @@
     left: 100%;
     width: 20px;
   }
+
+  .compare__col.compare__item--mini .product-card__image figure {
+    max-width: 70px;
+  }
+
+  .compare__col.compare__item--mini .product-card .price--small .price__current,
+  .compare__col.compare__item--mini .product-card__title {
+    font-size: 13px !important;
+  }
+
+  .compare__col.compare__item--mini .price.price--small {
+    display: none;
+  }
+
 }
