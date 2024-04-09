@@ -95,7 +95,7 @@ if (!count($arResult['ITEMS'])) {
                 <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
                     <div class="menu-content-data" data-content="<?= $id ?>">
                         <div class="title"><?= $topLevelSection['NAME'] ?>
-                            <span><?= $topLevelSection['ELEMENT_CNT'] ?> <?= Loc::getMessage('PRODUCT_TITLE') ?></span>
+                            <span><?= num_word($topLevelSection['ELEMENT_CNT'], ['товар', 'товара', 'товаров']) ?></span>
                         </div>
 
                         <div class="subsection-grid">

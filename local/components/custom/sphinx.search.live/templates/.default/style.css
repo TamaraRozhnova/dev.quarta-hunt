@@ -143,7 +143,7 @@ body.stop-scrolling-bread {
 .search-live__wrapper button {
   padding: 8px 21px 8px 20px;
   height: 42px;
-  border-radius: 15px;
+  border-radius: 7px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }

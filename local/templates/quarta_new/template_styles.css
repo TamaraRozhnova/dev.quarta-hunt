@@ -8443,13 +8443,13 @@ input.form-check-input:focus {
   width: 248px;
 }
 .header--desktop .header__search-section {
-  min-width: 630px;
-  max-width: 630px;
+  min-width: 530px;
+  max-width: 530px;
+  margin-left: 100px;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__search-section {
-    min-width: 600px;
-    max-width: 600px;
+    margin-left: 75px;
   }
 }
 .header--desktop .header__lists-section {
