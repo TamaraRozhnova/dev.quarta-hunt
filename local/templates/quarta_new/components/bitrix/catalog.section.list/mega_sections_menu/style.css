@@ -33,7 +33,7 @@
   border-radius: 10px;
 }
 .row .header-categories__item:hover > a {
-  color: var(--bs-blue);
+  color: var(--bs-orange) !important;
 }
 .row .header-categories__icon {
   display: flex;
@@ -216,7 +216,7 @@
 
 /* menu comtent*/
 .menu-content{
-  padding: 0px 20px;
+  padding: 0 40px 0 20px;
   width: calc(100% - 250px - 330px);
 }
 .menu-content.sale{
@@ -288,12 +288,13 @@
 .subsection-grid .subsection ul li{
   list-style: none;
   margin: 0;
+  padding-left: 10px;
 }
 .subsection-grid .subsection ul li a{
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 13px;
+  line-height: 18px;
   /* identical to box height */
   display: flex;
   align-items: center;
