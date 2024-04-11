@@ -35,7 +35,7 @@ if (!count($arResult['ITEMS'])) {
         </div>
 
         <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
-            <div class="header-nav-item header-categories__item" data-id="<?= $id ?>">
+            <div class="header-nav-item header-categories__item <?= ($topLevelSection['SELECTED']) ? 'active-link' : '' ?>" data-id="<?= $id ?>">
                 <a href="<?= $topLevelSection['LINK'] ?>">
                     <span><?= $topLevelSection['NAME'] ?></span>
                 </a>
