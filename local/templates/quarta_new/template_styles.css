@@ -8568,8 +8568,8 @@ input.form-check-input:focus {
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__nav {
-    min-width: 600px;
-    max-width: 600px;
+    min-width: 670px;
+    max-width: 670px;
   }
 }
 .header--desktop .header__nav-item {
@@ -8577,7 +8577,10 @@ input.form-check-input:focus {
   padding: 0 6px;
   border-radius: 0.25rem;
   color: #808d9a;
-  margin-right: 15px;
+  margin-right: 10px;
+}
+.header--desktop .header__nav-item:last-child {
+  margin-right: 0;
 }
 .header--desktop .header__nav-item:hover {
   color: #004989;

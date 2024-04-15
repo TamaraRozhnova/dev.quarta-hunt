@@ -6,10 +6,10 @@ $(document).ready(function () {
 
 
         $('.mega-menu').css('top', 215)
-        $('.mega-menu').css('height', window.innerHeight - 215)
+        $('.mega-menu').css('height', window.innerHeight - 397)
         if (window.scrollY > 50) {
             $('.mega-menu').css('top', 135)
-            $('.mega-menu').css('height', window.innerHeight - 135)
+            $('.mega-menu').css('height', window.innerHeight - 397)
         }
 
         $('.mega-menu').toggleClass('open');

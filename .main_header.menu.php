@@ -14,6 +14,13 @@ $aMenuLinks = Array(
 		Array("HIGHLIGHT_ORANGE"=>"Y", "SET_BACKGROUND"=>"Y"), 
 		"" 
 	),
+    Array(
+        "Мастерская",
+        "/landing/masterskaya/",
+        Array(),
+        Array(),
+        ""
+    ),
 	Array(
 		"О компании", 
 		"/about/", 
