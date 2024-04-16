@@ -126,9 +126,9 @@ if (!count($arResult['ITEMS'])) {
             <!-- brands-->
             <div class="brands-list" id="manu-brands-list">
                 <?php foreach ($arResult['BRAND_DATA'] as $brand) { ?>
-                    <a href="<?= $brand['URL'] ?>">
+                    <span>
                         <img src="<?= $brand["IMAGE"] ?>" alt="<?= $brand['NAME'] ?>"/>
-                    </a>
+                    </span>
                 <?php } ?>
             </div>
         </div>
