@@ -12,6 +12,14 @@ class ProductCardBasket {
         this.offersQuantity = this.productElement.dataset.offersQuantity;
         this.basketApi = new BasketApi();
 
+        this.productElementPicture = this.productElement.querySelector('.product-card__image a figure img')
+        this.productElementName = this.productElement.querySelector('.product-card__title')
+        this.productElementHref = this.productElement.querySelector(`a[itemprop = 'url']`)
+
+        if (window.basketPopupActive !== null) {
+            window.basketPopupActive = false
+        }
+
         this.hangEvents();
     }
 
@@ -58,7 +66,26 @@ class ProductCardBasket {
                 return;
             }
             this.handleAddFirstProductToBasket(addToBasketButton);
+
+            if (window.innerWidth >= 1200) {
+                if (window.basketPopupActive = true) {
+                    const allBasketPopupActive = document.querySelectorAll('.product-basket-popup__wrapper')
+
+                    if (allBasketPopupActive.length > 0) {
+                        allBasketPopupActive.forEach((popup) =>  {
+                            popup.parentNode.removeChild(popup)
+                        })
+                        window.productAddedPopupBasket = false
+                    }
+                }
+
+                this.lastPopupHtml = this.createPopupIntoBasket()
+                this.insertPopupIntoBasket(this.lastPopupHtml)
+                this.deletePopupIntoBasket(this.lastPopupHtml);
+            }
+
         })
+
     }
 
     hangCounterEvents() {
@@ -270,4 +297,59 @@ class ProductCardBasket {
             </button>`
         )
     }
+
+    createPopupIntoBasket() {
+
+        const popupText = `<div class="product-basket-popup__wrapper">
+            <div class="product-basket-popup__inner">
+                <div class="product-basket-popup__items">
+                    <a href="${this.productElementHref?.href.trim()}" class="product-basket-popup__item">
+                        <div class="product-basket-popup__item-picture">
+                            <img src="${this.productElementPicture?.src}" alt="${this.productElementPicture?.alt}">
+                        </div>
+                        <div class="product-basket-popup__item-text">
+                            <span>${this.productElementName.textContent}</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-basket-popup__btn">
+                    <a href = "/cart/" class="btn btn-primary">
+                        В корзину
+                    </a>
+                </div>
+            </div>
+        </div>`
+
+        const domParser = new DOMParser();
+        const popupHtml = domParser.parseFromString(popupText, 'text/html');
+
+        return popupHtml.body.firstElementChild
+    }
+
+    insertPopupIntoBasket(nodePopup) {
+
+        if (!nodePopup) {
+            return
+        }
+
+        const nodeCartPage = document.querySelector(`a[href*='cart'].header__top-item`)
+
+        if (nodeCartPage) {
+            nodeCartPage.parentNode.appendChild(nodePopup)
+            window.basketPopupActive = true
+        }
+
+    }
+
+    deletePopupIntoBasket(nodePopup, delay = 2500) {
+
+        this.popupTimeoutId = setTimeout(() => {
+            if (nodePopup.parentNode) {
+                nodePopup.parentNode.removeChild(nodePopup);
+                window.basketPopupActive = false
+            }
+        }, delay);
+
+    }
+
 }
