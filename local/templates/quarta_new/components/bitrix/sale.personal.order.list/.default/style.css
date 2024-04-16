@@ -32,11 +32,27 @@
 	cursor: pointer;
 	padding: 1.275rem;
 	transform: rotate(0deg);
-	transition: .4s all cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition: .4s all ease-in-out;
 }
 
 .history-order__arrow.hided {
 	transform: rotate(180deg);
+}
+
+.history-order__arrow > svg {
+	pointer-events: none;
+}
+
+.history-order {
+	overflow: hidden;
+}
+
+.history-order__body {
+	display: none;
+}
+
+.history-order__summary-body {
+	position: relative;
 }
 
 .history-order__summary {
@@ -157,6 +173,10 @@
 	margin-bottom: 0;
 }
 
+.history-order__summary-body .history-order__arrow {
+	display: none;
+}
+
 @media (max-width: 971px) {
 	.personal-order h2 svg {
 		transform: none;
@@ -174,6 +194,11 @@
 	}	
 	.history-order .history-order__header {
 		display: none;
+	}
+	.history-order__summary-body .history-order__arrow {
+		display: flex;
+		margin: 0;
+		top: 30px;
 	}
 	.history-order .history-order__summary {
 		padding: 0;
