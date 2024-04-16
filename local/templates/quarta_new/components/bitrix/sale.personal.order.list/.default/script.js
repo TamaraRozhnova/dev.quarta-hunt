@@ -6,26 +6,6 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 		{
 			var rowWrapper = document.getElementsByClassName('sale-order-list-inner-row');
 
-			const orders = document.querySelectorAll('.history-order')
-
-			if (orders.length > 0) {
-				orders.forEach((order) => {
-					const cardArrows = order.querySelectorAll('.history-order__arrow');
-					const cardBody = order.querySelector('.history-order__body')
-
-					if (cardArrows.length > 0) {
-						cardArrows.forEach((arrow) => {
-							BX.bind(arrow, 'click', function() {
-								BX.toggleClass(arrow, ['', 'hided'])
-								$(cardBody).slideToggle('slow')
-							})
-						})
-					}
-
-
-				})
-			}
-
 			params.paymentList = params.paymentList || {};
 			params.url = params.url || "";
 			params.templateName = params.templateName || "";
@@ -34,7 +14,7 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 			Array.prototype.forEach.call(rowWrapper, function(wrapper)
 			{
 				var shipmentTrackingId = wrapper.getElementsByClassName('sale-order-list-shipment-id');
-			
+				const parentCard = wrapper.closest('.history-order')
 
 				if (shipmentTrackingId[0])
 				{
@@ -47,6 +27,11 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 						}
 					});
 				}
+
+				BX.bindDelegate(parentCard, 'click', { 'class': 'history-order__arrow' }, BX.proxy(function(event)
+				{
+					BX.toggleClass(BX(event.target), ["", "hided"]);
+				}, this));
 
 				BX.bindDelegate(wrapper, 'click', { 'class': 'ajax_reload' }, BX.proxy(function(event)
 				{
