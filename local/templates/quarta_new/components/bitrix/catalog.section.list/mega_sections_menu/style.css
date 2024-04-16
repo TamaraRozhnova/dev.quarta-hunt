@@ -206,6 +206,8 @@
 .menu-list ul li span.menu-icon{
   width: 26px;
   height: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .menu-list ul li span.menu-icon.sale{
   background-image: url('img/sale.png');
