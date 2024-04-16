@@ -16,6 +16,9 @@
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+.row .header-categories__item.active-link > a {
+  color: var(--bs-orange) !important;
+}
 .row .header-categories__item > a {
   display: flex;
   justify-content: center;

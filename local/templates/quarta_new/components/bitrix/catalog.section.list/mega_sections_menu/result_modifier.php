@@ -103,6 +103,22 @@ foreach ($arResult['SECTIONS'] as $section) {
     }
 }
 
+$url = $_SERVER['REQUEST_URI'];
+$url = explode('?', $url);
+$url = $url[0];
+$url = explode('/', $url);
+$url = $url[2];
+
+foreach ($arResult['ITEMS'] as $id => $topLevelSection) {
+    $pos = strripos($topLevelSection['LINK'], $url);
+
+    if ($pos === false) {
+        $arResult['ITEMS'][$id]['SELECTED'] = false;
+    } else {
+        $arResult['ITEMS'][$id]['SELECTED'] = true;
+    }
+}
+
 function num_word($value, $words, $show = true)
 {
     $num = $value % 100;
