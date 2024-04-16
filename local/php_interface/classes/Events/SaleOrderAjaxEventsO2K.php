@@ -4,6 +4,7 @@ namespace CustomEvents;
 
 use \Bitrix\Main\Event;
 use \Bitrix\Main\Mail\Event as MailEvent;
+use \Bitrix\Main\EventResult;
 
 class SaleOrderAjaxEventsO2K
 {
@@ -196,26 +197,80 @@ class SaleOrderAjaxEventsO2K
 
     }
 
-    
-    /* static function eventSend(&$arFields, &$arTemplate)
+    /**
+     * Убирает скидку из цены товара
+     * если платежная система в рассрочку / кредит
+     */
+    static function disableDiscountIntoCreditPayment(
+        $order, 
+        &$arUserResult, 
+        $request, 
+        &$arParams, 
+        &$arResult, 
+        &$arDeliveryServiceAll, 
+        &$arPaySystemServiceAll
+    ) 
     {
 
-        if (!empty($arFields['PERSON_TYPE_ID'])) {
+        $basket = $order->getBasket();
+ 
+        if ($arUserResult['PAY_SYSTEM_ID'] == UKASSA_CREDIT_ID) {
 
-            switch ($arFields['PERSON_TYPE_ID']) {
-                case 2:
-                    $arFields['EVENT_NAME'] = 'SALE_NEW_ORDER_WHOLESALE';
-                    break;
-                case 1:
-                    $arFields['EVENT_NAME'] = 'SALE_NEW_ORDER_RETAIL';
-                    break;
-                
-                default:
-                    break;
+            $GLOBALS['UNSET_CALCULATE_BONUS_INTO_CREDIT'] = true;
+
+            $arUserResult['ADD_BONUS'] = 0;
+            $arResult['ADD_BONUS'] = 0;
+
+            $propertyCollection = $order->getPropertyCollection();
+            $bonusesPropValue = $propertyCollection->getItemByOrderPropertyId(3);
+            $bonusesPropValue->setValue(0);
+
+            foreach ($basket as $basketItem) {
+
+                $item = $basketItem->getFields();
+                $arItem = $item->getValues();
+
+                $basketItem->setField('CUSTOM_PRICE', 'Y');
+                $basketItem->setField('PRICE', $arItem["PRICE"] + $arItem['DISCOUNT_PRICE']);
+                $basketItem->setField('BASE_PRICE', $arItem["BASE_PRICE"]);
+                $basketItem->setField('DISCOUNT_PRICE', 0);
+
+
             }
-
+            
         }
 
-    } */
+    }
+
+    /**
+     * Отменяет расчет бонусов если
+     * платежная система в рассрочку / кредит
+     * 
+     * Ограничение на начисление бонусов
+     * настраиваются через модуль logictim,
+     * но этот метод был реализован для того,
+     * чтобы в каждом способе начисления не 
+     * настраивать одно и тоже ограничение
+     */
+    static function disableBallsIntoCreditPayment(Event $event)
+    {
+
+        if (empty($GLOBALS['UNSET_CALCULATE_BONUS_INTO_CREDIT'])) {
+            return false;
+        }
+
+        if ((bool) !$GLOBALS['UNSET_CALCULATE_BONUS_INTO_CREDIT']) {
+            return false;
+        }
+
+        $arBonus = $event->getParameters();
+    
+        $arBonus['BONUS'] = 0;
+
+        $result = new EventResult($event->getEventType(), $arBonus);
+
+        return $result;
+
+    }
     
 }

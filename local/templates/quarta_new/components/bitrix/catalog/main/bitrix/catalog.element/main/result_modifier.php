@@ -6,9 +6,16 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Helpers\DiscountsHelper;
 use Helpers\FileSizeHelper;
+use General\User;
 use Helpers\RecommendedProductsHelper;
 use Helpers\VideoReviewsHelper;
 use Bitrix\Main\Grid\Declension;
+use Bitrix\Sale\Internals\ServiceRestrictionTable;
+use Bitrix\Sale\Services\PaySystem\Restrictions\Manager;
+use Bitrix\Currency\CurrencyManager;
+use Bitrix\Main\Loader;
+
+Loader::includeModule('currency');
 
 $shopsMeasory = new Declension('магазин', 'магазина', 'магазинов');
 
@@ -32,6 +39,9 @@ $bannedProps = [
 
 $arResult['FILES'] = [];
 $arResult['PROPS'] = [];
+
+$user = new User();
+$priceCode = $user->getUserPriceCode();
 
 if ($arResult['OFFERS'] && count($arResult['OFFERS']) > 0) {
 
@@ -183,22 +193,23 @@ if (!empty($rsStoreElement)) {
 
 }
 
-// Получаем ограничения по категориям платёжной системы
-/*
-$dbRestriction = \Bitrix\Sale\Internals\ServiceRestrictionTable::getList(array(
-    'select' => array('PARAMS'),
-    'filter' => array(
-        'SERVICE_ID' => UKASSA_ID,
-        'SERVICE_TYPE' => \Bitrix\Sale\Services\PaySystem\Restrictions\Manager::SERVICE_TYPE_PAYMENT
-    )
-));
-$restrictions = array();
+// Получаем ограничения для сервиса через запрос к таблице ограничений
+$dbRestriction = ServiceRestrictionTable::getList([
+    'select' => ['PARAMS'],
+    'filter' => [
+        'SERVICE_ID' => UKASSA_CREDIT_ID,
+        'SERVICE_TYPE' => Manager::SERVICE_TYPE_PAYMENT 
+    ]
+]);
+
+// Инициализируем массив для сбора параметров ограничений
+$restrictions = [];
+// Перебираем результаты запроса
 while ($restriction = $dbRestriction->fetch()) {
     if(is_array($restriction['PARAMS'])) {
-        $restrictions = array_merge($restrictions,$restriction['PARAMS']);
+        $restrictions = array_merge($restrictions, $restriction['PARAMS']);
     }
 }
-*/
 
 // Получаем все категории товара вплоть до основной
 $productSections = getRootProductSection($arResult['IBLOCK_ID'], $arResult['IBLOCK_SECTION_ID']);
@@ -215,6 +226,33 @@ if (is_array($productSections) && count($productSections) > 0) {
             break;
         }
     }    
+}
+
+// Для лицензионных товаров рассрочки не будет
+if ($arResult['RESTRICTED_SECTION'] !== 'Y') {
+    // Проверяем, есть ли категории в ограничениях
+    if (!empty($restrictions['CATEGORIES'])) {
+        if (is_array($productSections) && count($productSections) > 0) {
+            foreach ($productSections as $section) {
+                // Если ID раздела есть среди категорий ограничений
+                if (in_array($section['ID'], $restrictions['CATEGORIES'])) {
+                    $arResult['SHOW_CREDIT'] = 'Y'; // Показываем возможность кредитования
+
+                    $productPrice = (float) $arResult['PRICES'][$priceCode]['VALUE'];
+                    $countMonth = (float) 12;
+
+                    $arResult['CREDIT_PRICE_PER_MONTH'] = round($productPrice / $countMonth);
+
+                    $arResult['CREDIT_PRICE_PER_MONTH_FORMATTED'] = CCurrencyLang::CurrencyFormat(
+                        $arResult['CREDIT_PRICE_PER_MONTH'], 
+                        CurrencyManager::getBaseCurrency()
+                    );
+
+                    break;
+                }
+            }    
+        }
+    }
 }
 
 /*

@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.hangShareNetworkEvents();
             this.hangTooltipsEvents();
             this.hangStarsClick()
+            this.hangCredit()
         }
 
         hangPersonalProductDataEvents() {
@@ -83,6 +84,37 @@ window.addEventListener('DOMContentLoaded', () => {
                     shareNetworkPopup.classList.remove('product__share-modal--show');
                 }
             });
+        }
+
+        showCreditTip(creditTipIco) {
+            creditTipIco.parentNode.classList.add('active')
+        }
+
+        closeCreditTip(creditTipIco) {
+            creditTipIco.parentNode.classList.remove('active')
+        }
+
+        hangCreditTipClose(creditTipIco) {
+
+            const creditTipIcoClose = creditTipIco.parentNode.querySelector('.product__credit-ico-tip-close')
+
+            if (creditTipIcoClose) {
+                creditTipIcoClose.addEventListener('click', () => this.closeCreditTip(creditTipIco))
+            }
+        }
+
+        hangCredit() {
+            const creditTipIco = document.querySelector('.product__credit-ico svg');
+
+            if (creditTipIco) {
+                this.hangCreditTipOpen(creditTipIco)
+                this.hangCreditTipClose(creditTipIco);
+            }
+
+        }
+
+        hangCreditTipOpen(creditTipIco) {
+            creditTipIco.addEventListener('click', () => this.showCreditTip(creditTipIco))
         }
     }
 

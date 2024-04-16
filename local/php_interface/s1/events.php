@@ -77,6 +77,30 @@ $eventManager->addEventHandler(
     ]
 );
 
+/**
+ * Убираем скидки для оплаты рассрочкой
+ */
+$eventManager->addEventHandler(
+    'sale',
+    'OnSaleComponentOrderCreated',
+    [
+        'CustomEvents\SaleOrderAjaxEventsO2K',
+        'disableDiscountIntoCreditPayment'
+    ]
+);
+
+/**
+ * Убираем начисление бонусов для оплаты рассрочкой
+ */
+$eventManager->addEventHandler(
+    'logictim.balls',
+    'BeforeCalculateBonus',
+    [
+        'CustomEvents\SaleOrderAjaxEventsO2K',
+        'disableBallsIntoCreditPayment'
+    ]
+);
+
 //Применение скидки по купону, только если заказ первый
 $eventManager->addEventHandler(
     'sale',

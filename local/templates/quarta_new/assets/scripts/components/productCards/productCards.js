@@ -31,6 +31,7 @@ class ProductCards {
             new RatingStarsHelper(
                 { productElement, ratingsList: this.productsData.RATINGS }
             );
+            new ProductCardLabels(productElement)
 
             const tooltipContainers = productElement.querySelectorAll('.product-card__tags .info');
             tooltipContainers.forEach(container => {
