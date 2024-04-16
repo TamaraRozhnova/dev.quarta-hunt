@@ -256,7 +256,7 @@ $curPage = $APPLICATION->GetCurPage();
                 </div>
             </div>
 
-            <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "mega_sections_menu", [
+            <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sections_menu", [
                 "ADD_SECTIONS_CHAIN" => "N",
                 "CACHE_GROUPS" => "N",
                 "CACHE_TIME" => "36000000",
@@ -364,7 +364,7 @@ $curPage = $APPLICATION->GetCurPage();
                     false,
                 );*/?>
 
-                <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "mega_sections_menu_mobile", [
+                <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sections_menu_mobile", [
                     "ADD_SECTIONS_CHAIN" => "N",
                     "CACHE_GROUPS" => "N",
                     "CACHE_TIME" => "36000000",
