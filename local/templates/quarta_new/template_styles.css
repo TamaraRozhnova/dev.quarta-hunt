@@ -8424,8 +8424,13 @@ input.form-check-input:focus {
 
 .header--desktop .header__location,
 .header--desktop .header__logo-section {
-  min-width: 333px;
-  max-width: 333px;
+  min-width: 248px;
+  max-width: 248px;
+}
+.header--desktop .header__logo-section {
+  display: flex;
+  align-items: center;
+  padding: 0;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__location,
@@ -8438,18 +8443,67 @@ input.form-check-input:focus {
   width: 248px;
 }
 .header--desktop .header__search-section {
-  min-width: 702px;
-  max-width: 702px;
+  min-width: 530px;
+  max-width: 530px;
+  margin-left: 100px;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__search-section {
-    min-width: 600px;
-    max-width: 600px;
+    margin-left: 75px;
   }
 }
 .header--desktop .header__lists-section {
   display: flex;
   justify-content: flex-end;
+}
+.header--desktop .header__lists-section > a {
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+}
+.header--desktop .header__lists-section > a > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.header--desktop .header__lists-section > a > div > span {
+  color: #004989;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+}
+.header--desktop .header__lists-section > a > div .basket-icon-background {
+  width: 18px;
+  height: 18px;
+  background-color: #E8EFF4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.header--desktop .header__lists-section > a > div .basket-icon-background svg {
+  width: 11px;
+}
+@media (max-width: 1399px) {
+  .header--desktop .header__lists-section > a > div > span {
+    display: none;
+  }
+  .header--desktop .header__lists-section > a > div svg {
+    width: 32px;
+    height: 32px;
+  }
+  .header--desktop .header__lists-section > a > div .basket-icon-background {
+    width: 32px;
+    height: 32px;
+  }
+  .header--desktop .header__lists-section > a > div .basket-icon-background svg {
+    width: 19px;
+  }
+}
+.header--desktop .header__lists-section > a:last-child {
+  margin-right: 0 !important;
 }
 .header--desktop .header__location {
   display: flex;
@@ -8514,8 +8568,8 @@ input.form-check-input:focus {
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__nav {
-    min-width: 600px;
-    max-width: 600px;
+    min-width: 670px;
+    max-width: 670px;
   }
 }
 .header--desktop .header__nav-item {
@@ -8523,7 +8577,10 @@ input.form-check-input:focus {
   padding: 0 6px;
   border-radius: 0.25rem;
   color: #808d9a;
-  margin-right: 15px;
+  margin-right: 10px;
+}
+.header--desktop .header__nav-item:last-child {
+  margin-right: 0;
 }
 .header--desktop .header__nav-item:hover {
   color: #004989;
@@ -8701,7 +8758,7 @@ input.form-check-input:focus {
   bottom: 3.75rem;
   left: 0;
   right: 0;
-  background-color: #f9f9fa;
+  background-color: var(--bs-white);
   z-index: 2;
   opacity: 0;
   pointer-events: none;
@@ -8711,6 +8768,18 @@ input.form-check-input:focus {
   opacity: 1;
   pointer-events: all;
 }
+.header--mobile .mobile-nav__back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.875rem;
+  height: 2.875rem;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyOCAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI4IiBoZWlnaHQ9IjI2IiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNy4yOTI4OSAxMi4yOTI5QzYuOTAyMzcgMTIuNjgzNCA2LjkwMjM3IDEzLjMxNjYgNy4yOTI4OSAxMy43MDcxTDEzLjY1NjkgMjAuMDcxMUMxNC4wNDc0IDIwLjQ2MTYgMTQuNjgwNSAyMC40NjE2IDE1LjA3MTEgMjAuMDcxMUMxNS40NjE2IDE5LjY4MDUgMTUuNDYxNiAxOS4wNDc0IDE1LjA3MTEgMTguNjU2OUw5LjQxNDIxIDEzTDE1LjA3MTEgNy4zNDMxNUMxNS40NjE2IDYuOTUyNjIgMTUuNDYxNiA2LjMxOTQ2IDE1LjA3MTEgNS45Mjg5M0MxNC42ODA1IDUuNTM4NDEgMTQuMDQ3NCA1LjUzODQxIDEzLjY1NjkgNS45Mjg5M0w3LjI5Mjg5IDEyLjI5MjlaTTggMTRMOSAxNEw5IDEyTDggMTJMOCAxNFoiIGZpbGw9IiM4MDhEOUEiLz4KPC9zdmc+Cg==");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+
 .header--mobile .mobile-nav__close {
   position: absolute;
   top: 0;
@@ -8731,8 +8800,9 @@ input.form-check-input:focus {
   color: #333333;
 }
 .header--mobile .mobile-nav__body {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: scroll;
+  /* overflow-y: auto; */
+  height: 100%;
 }
 .header--mobile .mobile-nav__item {
   display: flex;
