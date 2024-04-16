@@ -1,4 +1,4 @@
 <?
-$PERM["masterskaya"]["*"]="R";
+$PERM["masterskaya"]["*"]="D";
 $PERM["holosun"]["*"]="R";
 ?>

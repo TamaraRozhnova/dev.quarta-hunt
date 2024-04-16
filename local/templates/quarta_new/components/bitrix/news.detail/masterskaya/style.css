@@ -928,6 +928,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .preiskurant-block .preiskurant-table .preiskurant-table-block .preiskurant-table-item span {
@@ -956,17 +957,6 @@
 
 .preiskurant-block .alarm-info p:nth-child(2) {
     margin-bottom: 30px;
-}
-
-.preiskurant-block .alarm-info ul {
-    color: #004989;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 22px;
-}
-
-.preiskurant-block .alarm-info ul li {
-    margin-bottom: 0.4rem;
 }
 
 .preiskurant-table.big-block .preiskurant-table-block {
