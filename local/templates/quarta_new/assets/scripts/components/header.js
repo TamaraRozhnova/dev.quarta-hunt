@@ -67,8 +67,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     categories.forEach(category => {
         const button = category.querySelector('.catalog-category-mobile__title');
-        button.addEventListener('click', () => {
-            category.classList.toggle('catalog-category-mobile--expanded');
+        button.addEventListener('click', (e) => {
+            if (e.target.classList.contains('expand')) {
+                category.classList.toggle('catalog-category-mobile--expanded');
+                e.preventDefault()
+            }
         })
     });
 
