@@ -8455,6 +8455,7 @@ input.form-check-input:focus {
 .header--desktop .header__lists-section {
   display: flex;
   justify-content: flex-end;
+  position: relative;
 }
 .header--desktop .header__lists-section > a {
   display: flex;
@@ -11434,4 +11435,58 @@ div[id*="wait_comp"] {
 .product__restiction {
   font-size: 1rem;
   color: var(--bs-danger);
+}
+
+/* Popup card basket */
+.product-basket-popup__wrapper {
+  position: absolute;
+  top: 100%;
+  max-width: 300px;
+  z-index: 20;
+}
+
+.product-basket-popup__inner {
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.product-basket-popup__items {
+  padding-bottom: 24px;
+  padding: 12px 12px 24px 12px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.product-basket-popup__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 12px;
+}
+
+.product-basket-popup__btn > a {
+  width: 100%;
+  max-width: 100%;
+  color: white;
+  font-size: 14px;
+}
+
+.product-basket-popup__item-picture {
+  display: flex;
+  align-items: center;
+  max-width: 100px;
+}
+
+.product-basket-popup__item-picture img {
+  width: 100%;
+}
+
+.product-basket-popup__item-text {
+  font-size: 14px;
+}
+
+.product-basket-popup__item {
+  display: flex;
+  gap: 14px;
 }
