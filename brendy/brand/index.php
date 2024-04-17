@@ -125,7 +125,7 @@ $priceCode = $user->getUserPriceCode(); ?>
 			1 => "HIT",
 			2 => "NEW_PRODUCT",
 			3 => "DOUBLE_BONUS",
-			4 => "",
+			4 => "ITS_CREDIT",
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",

@@ -13,6 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
             this.hangPersonalProductDataEvents();
             this.hangShareNetworkEvents();
             this.hangTooltipsEvents();
+            this.hangStarsClick()
+            this.hangCredit()
         }
 
         hangPersonalProductDataEvents() {
@@ -31,6 +33,25 @@ window.addEventListener('DOMContentLoaded', () => {
                     new ProductCards(response);
                     new AvailableBlock(response);
                 })
+        }
+
+        hangStarsClick() {
+            const stars = document.querySelector('section.product .stars')
+            const tabReviews = document.querySelector('.product-tab-reviews')
+
+            if (stars) {
+                stars.addEventListener('click', (e) => {
+                    tabReviews.dispatchEvent(
+                        new Event('click')
+                    )
+                    tabReviews.scrollIntoView(
+                        {
+                            behavior: "smooth", 
+                            block: "start", 
+                        }
+                    )
+                })
+            }
         }
 
         setReviewsCount(ratingsList) {
@@ -63,6 +84,37 @@ window.addEventListener('DOMContentLoaded', () => {
                     shareNetworkPopup.classList.remove('product__share-modal--show');
                 }
             });
+        }
+
+        showCreditTip(creditTipIco) {
+            creditTipIco.parentNode.classList.add('active')
+        }
+
+        closeCreditTip(creditTipIco) {
+            creditTipIco.parentNode.classList.remove('active')
+        }
+
+        hangCreditTipClose(creditTipIco) {
+
+            const creditTipIcoClose = creditTipIco.parentNode.querySelector('.product__credit-ico-tip-close')
+
+            if (creditTipIcoClose) {
+                creditTipIcoClose.addEventListener('click', () => this.closeCreditTip(creditTipIco))
+            }
+        }
+
+        hangCredit() {
+            const creditTipIco = document.querySelector('.product__credit-ico svg');
+
+            if (creditTipIco) {
+                this.hangCreditTipOpen(creditTipIco)
+                this.hangCreditTipClose(creditTipIco);
+            }
+
+        }
+
+        hangCreditTipOpen(creditTipIco) {
+            creditTipIco.addEventListener('click', () => this.showCreditTip(creditTipIco))
         }
     }
 

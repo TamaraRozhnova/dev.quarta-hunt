@@ -34,7 +34,8 @@ $bannedProps = [
     'PRESENT',
     'DOUBLE_BONUS',
     'DOP_IMAGE_MB',
-    'SIZE_DISCOUNT'
+    'SIZE_DISCOUNT',
+    'ITS_CREDIT'
 ];
 
 $arResult['FILES'] = [];

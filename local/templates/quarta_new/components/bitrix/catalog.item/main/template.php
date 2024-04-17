@@ -41,7 +41,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
                 class="product-card__tags <?=$item['SHOW_BTN_LIST_LABELS'] ? 'show-btn-list-labels' : null?>"
             >
                 <? if ($item['SHOW_CREDIT'] == 'Y') { ?>
-                    <div class="product-card__tag">Кредит до 12 мес.</div>
+                    <div class="product-card__tag">Рассрочка до 12 мес.</div>
                 <? } ?>
                 <? if ($item['PROPERTIES']['HIT']['VALUE']) { ?>
                     <div class="product-card__tag">Хит</div>

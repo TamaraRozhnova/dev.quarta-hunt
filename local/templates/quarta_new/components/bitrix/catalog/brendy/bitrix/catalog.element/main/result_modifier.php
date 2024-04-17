@@ -6,9 +6,16 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Helpers\DiscountsHelper;
 use Helpers\FileSizeHelper;
+use General\User;
 use Helpers\RecommendedProductsHelper;
 use Helpers\VideoReviewsHelper;
 use Bitrix\Main\Grid\Declension;
+use Bitrix\Sale\Internals\ServiceRestrictionTable;
+use Bitrix\Sale\Services\PaySystem\Restrictions\Manager;
+use Bitrix\Currency\CurrencyManager;
+use Bitrix\Main\Loader;
+
+Loader::includeModule('currency');
 
 $shopsMeasory = new Declension('магазин', 'магазина', 'магазинов');
 
@@ -27,11 +34,15 @@ $bannedProps = [
     'PRESENT',
     'DOUBLE_BONUS',
     'DOP_IMAGE_MB',
-    'SIZE_DISCOUNT'
+    'SIZE_DISCOUNT',
+    'ITS_CREDIT'
 ];
 
 $arResult['FILES'] = [];
 $arResult['PROPS'] = [];
+
+$user = new User();
+$priceCode = $user->getUserPriceCode();
 
 if ($arResult['OFFERS'] && count($arResult['OFFERS']) > 0) {
 
@@ -76,6 +87,7 @@ foreach ($arResult['PROPERTIES']['FILES']['VALUE'] as $fileId) {
 
 if (!empty($arResult['DETAIL_PICTURE']['SRC'])) {
     $arResult['IMAGES'][] = $arResult['DETAIL_PICTURE']['SRC'];
+    $arResult['IMAGES_ID'][] = $arResult['DETAIL_PICTURE'];
 }
 
 if (!empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
@@ -84,12 +96,12 @@ if (!empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) {
 
         if (trim(CFile::GetPath($value)) !== '') {
             $arResult['IMAGES'][] = CFile::GetPath($value);
+            $arResult['IMAGES_ID'][] = $value;
         }
 
     }    
 
 }
-
 
 
 /** 
@@ -115,7 +127,9 @@ if (!$recommendedProductIds) {
 
 $sectionId = $arResult['SECTION']['IBLOCK_SECTION_ID'];
 
-$arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedProducts($recommendedProductIds, $sectionId, 4, $arParams['DETAIL_URL']);
+if (is_array($recommendedProductIds) && count($recommendedProductIds) > 0) {
+    $arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedProducts($recommendedProductIds, $sectionId, 4, $arParams['DETAIL_URL']);
+}
 
 $arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECTION']['ID']);
 
@@ -173,4 +187,99 @@ if (!empty($rsStoreElement)) {
     }
 
 }
+
+
+// Получаем ограничения для сервиса через запрос к таблице ограничений
+$dbRestriction = ServiceRestrictionTable::getList([
+    'select' => ['PARAMS'],
+    'filter' => [
+        'SERVICE_ID' => UKASSA_CREDIT_ID,
+        'SERVICE_TYPE' => Manager::SERVICE_TYPE_PAYMENT 
+    ]
+]);
+
+// Инициализируем массив для сбора параметров ограничений
+$restrictions = [];
+// Перебираем результаты запроса
+while ($restriction = $dbRestriction->fetch()) {
+    if(is_array($restriction['PARAMS'])) {
+        $restrictions = array_merge($restrictions, $restriction['PARAMS']);
+    }
+}
+
+// Получаем все категории товара вплоть до основной
+$productSections = getRootProductSection($arResult['IBLOCK_ID'], $arResult['IBLOCK_SECTION_ID']);
+
+// Массив с разделами, где отображать надпись о лицензии
+$sectionsLicense = $arParams['PRODUCTS_TEXT_LICENSE'];
+
+// Снимаем ограничение, если хоть одна из категорий товара попадает под исключение
+if (is_array($productSections) && count($productSections) > 0) {
+    foreach ($productSections as $section) {
+        if (in_array($section['ID'], $sectionsLicense)) {
+            // Устанавливаем ограничение
+            $arResult['RESTRICTED_SECTION'] = 'Y';
+            break;
+        }
+    }    
+}
+
+// Для лицензионных товаров рассрочки не будет
+if ($arResult['RESTRICTED_SECTION'] !== 'Y') {
+    // Проверяем, есть ли категории в ограничениях
+    if (!empty($restrictions['CATEGORIES'])) {
+        if (is_array($productSections) && count($productSections) > 0) {
+            foreach ($productSections as $section) {
+                // Если ID раздела есть среди категорий ограничений
+                if (in_array($section['ID'], $restrictions['CATEGORIES'])) {
+                    $arResult['SHOW_CREDIT'] = 'Y'; // Показываем возможность кредитования
+
+                    $productPrice = (float) $arResult['PRICES'][$priceCode]['VALUE'];
+                    $countMonth = (float) 12;
+
+                    $arResult['CREDIT_PRICE_PER_MONTH'] = round($productPrice / $countMonth);
+
+                    $arResult['CREDIT_PRICE_PER_MONTH_FORMATTED'] = CCurrencyLang::CurrencyFormat(
+                        $arResult['CREDIT_PRICE_PER_MONTH'], 
+                        CurrencyManager::getBaseCurrency()
+                    );
+
+                    break;
+                }
+            }    
+        }
+    }
+}
+
+/*
+ * Поиск внешних ссылок в тексте
+ * Добавление target="_blank"
+ * Добавление rel="nofollow"
+ */
+preg_match_all('/<a(.*)>/U', $arResult['~DETAIL_TEXT'], $output_array);
+if(!empty($output_array[0][0]))
+    foreach ($output_array[0] AS $v){
+        $new = $v;
+
+        if(!stripos($v, 'http')){
+            continue;
+        }
+
+        if(!stripos($v, '_blank')){
+            $new = str_replace('href=', 'target="_blank" href=', $new);
+        }
+        if(!stripos($v, 'nofollow')){
+            $new = str_replace('href=', 'rel="nofollow" href=', $new);
+        }
+        $arResult["~DETAIL_TEXT"] = str_replace($v, $new, $arResult["~DETAIL_TEXT"]);
+    }
+
+// Создаем изображение для превью соц.сетей
+$image_social = CFile::ResizeImageGet($arResult["DETAIL_PICTURE"], array('width'=>'1200', 'height'=>'630'), BX_RESIZE_IMAGE_EXACT, true);
+$arResult["DETAIL_PICTURE"]["SOCIAL"] = $image_social["src"];
+
+// Передаем данные в результат после кеширования
+$this->__component->SetResultCacheKeys(array(
+    "DETAIL_PICTURE"
+));
 

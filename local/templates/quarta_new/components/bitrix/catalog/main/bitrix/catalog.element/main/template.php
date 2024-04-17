@@ -170,7 +170,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <? if ($arResult['SHOW_CREDIT'] == 'Y') { ?>
                         <div class="product__credit">
                             <span>
-                                % Кредит <span class="bold"> от 
+                                % Рассрочка <span class="bold"> от 
                                     <?=$arResult['CREDIT_PRICE_PER_MONTH_FORMATTED']?>/мес
                                 </span>
                             </span>
@@ -180,10 +180,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 </svg>
                                 <div class="product__credit-ico-tip">
                                     <div class="product__credit-ico-tip-title">
-                                        <span>Онлайн-кредит</span>
+                                        <span>Онлайн-рассрочка</span>
                                     </div>
                                     <div class="product__credit-ico-tip-text">
-                                        <span>Выберите способ оплаты «Онлайн-кредит» при оформлении заказа и заполните заявку. Банк ответит через несколько минут. 
+                                        <span>Выберите способ оплаты «Рассрочка» при оформлении заказа и заполните заявку. Банк ответит через несколько минут. 
                                             <a href="<?=LINK_CREDIT_ARTICLE?>">Подробнее</a>
                                         </span>
                                     </div>

@@ -1516,6 +1516,11 @@
 /* credit */
 .product__credit {
   font-size: 14px;
+
+}
+
+.product__credit > span:not([class]) {
+  color: #eb5806;
 }
 
 .product__credit .bold {
@@ -1530,11 +1535,12 @@
 }
 
 .product__credit-ico {
+  position: relative;
   display: flex;
 }
 
-.product__credit-ico {
-  position: relative;
+.product__credit-ico svg {
+  cursor: pointer;
 }
 
 .product__credit-ico-tip {
