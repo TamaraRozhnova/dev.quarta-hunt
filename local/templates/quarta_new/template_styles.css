@@ -8475,6 +8475,16 @@ input.form-check-input:focus {
   font-size: 14px;
   line-height: 14px;
 }
+.header--desktop .header__lists-section > a > div > span.badge {
+  min-width: 16px;
+  min-height: 16px;
+  font-size: 10px;
+  max-height: 16px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .header--desktop .header__lists-section > a > div .basket-icon-background {
   width: 18px;
   height: 18px;
@@ -8562,15 +8572,19 @@ input.form-check-input:focus {
   color: #808d9a;
 }
 .header--desktop .header__nav {
-  min-width: 702px;
-  max-width: 702px;
+  max-width: 740px;
+  padding: 0;
+  min-width: 740px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
   font-size: 0.75rem;
   line-height: 150%;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__nav {
-    min-width: 670px;
-    max-width: 670px;
+    min-width: 640px;
+    max-width: 640px;
   }
 }
 .header--desktop .header__nav-item {
@@ -8578,7 +8592,6 @@ input.form-check-input:focus {
   padding: 0 6px;
   border-radius: 0.25rem;
   color: #808d9a;
-  margin-right: 10px;
 }
 .header--desktop .header__nav-item:last-child {
   margin-right: 0;

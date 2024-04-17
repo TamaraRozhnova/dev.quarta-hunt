@@ -35,6 +35,23 @@ if (!count($arResult['ITEMS'])) {
         </div>
 
         <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
+            <?php
+                $url = $_SERVER['REQUEST_URI'];
+                $url = explode('?', $url);
+                $url = $url[0];
+                $url = explode('/', $url);
+                $url = $url[2];
+
+                if ($url) {
+                    $pos = strripos($topLevelSection['LINK'], $url);
+
+                    if ($pos === false) {
+                        $topLevelSection['SELECTED'] = false;
+                    } else {
+                        $topLevelSection['SELECTED'] = true;
+                    }
+                }
+            ?>
             <div class="header-nav-item header-categories__item <?= ($topLevelSection['SELECTED']) ? 'active-link' : '' ?>" data-id="<?= $id ?>">
                 <a href="<?= $topLevelSection['LINK'] ?>">
                     <span><?= $topLevelSection['NAME'] ?></span>

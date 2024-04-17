@@ -157,8 +157,12 @@
   width: 330px;
   overflow-y: scroll;
   margin-top: 30px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
+.menu-list::-webkit-scrollbar {
+  display: none;
+}
 .menu-list ul{
   display: flex;
   flex-direction: column;
@@ -206,6 +210,8 @@
 .menu-list ul li span.menu-icon{
   width: 26px;
   height: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .menu-list ul li span.menu-icon.sale{
   background-image: url('img/sale.png');
@@ -225,6 +231,11 @@
   width: calc(100% - 250px - 330px);
   overflow-y: scroll;
   margin-top: 30px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.menu-content::-webkit-scrollbar {
+  display: none;
 }
 .menu-content.sale{
   width: calc(100% - 330px);
@@ -284,6 +295,10 @@
   margin-bottom: 11px;
 }
 
+.subsection-grid .subsection .subsection-title a:hover {
+  color: var(--bs-orange);
+}
+
 .subsection-grid .subsection ul{
   display: flex;
   flex-direction: column;
@@ -306,6 +321,10 @@
   display: flex;
   align-items: center;
   color: #000000;
+}
+
+.subsection-grid .subsection ul li a:hover {
+  color: var(--bs-orange);
 }
 
 /* sale items */
@@ -362,11 +381,18 @@
 .mega-menu .brands-list {
   width: 250px;
   overflow-y: scroll;
+  overflow-x: hidden;
   margin-left: auto;
   display: flex;
   flex-direction: column;
   gap: 15px;
   margin: 30px 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mega-menu .brands-list::-webkit-scrollbar {
+  display: none;
 }
 
 .mega-menu .brands-list span {

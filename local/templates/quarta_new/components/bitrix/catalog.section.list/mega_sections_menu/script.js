@@ -5,7 +5,7 @@ $(document).ready(function () {
         e.preventDefault();
 
 
-        $('.mega-menu').css('top', 215)
+        $('.mega-menu').css('top', 175)
         $('.mega-menu').css('height', window.innerHeight - 397)
         if (window.scrollY > 50) {
             $('.mega-menu').css('top', 135)

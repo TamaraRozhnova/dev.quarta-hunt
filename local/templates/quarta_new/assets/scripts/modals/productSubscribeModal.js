@@ -104,7 +104,7 @@ class ProductSubscribeModal extends Modal {
         this.inputEmail = new Input({
             wrapperSelector: `.${this.modalClass} .input--email`,
             required: true,
-            validMask: /^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+            validMask: /^([aA-zZ0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
             errorMessage: 'Введите email в корректном формате'
         });
 
