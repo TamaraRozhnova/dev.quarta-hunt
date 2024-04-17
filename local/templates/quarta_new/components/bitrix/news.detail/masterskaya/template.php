@@ -129,7 +129,7 @@ $this->addExternalJs($templateFolder . '/video.min.js');
                         <div class="preiskurant-table-item"><span>Чистка нарезного оружия</span></div>
                         <div class="preiskurant-table-item text-center">от 3 000 ₽</div>
                         <div class="preiskurant-table-item"></div>
-                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Отчистка от консервационной смазки</span></div>
+                        <div class="preiskurant-table-item border-bottom-left-radius"><span>Удаление консервационной смазки</span></div>
                         <div class="preiskurant-table-item text-center">от 1 500 ₽</div>
                         <div class="preiskurant-table-item light-weight border-bottom-right-radius">Скидка 50% в день покупки оружия в магазине «QUARTA Оружейный квартал».</div>
                     </div>
@@ -157,7 +157,7 @@ $this->addExternalJs($templateFolder . '/video.min.js');
                     </div>
                 </div>
                 <div class="preiskurant-table big-block">
-                    <h3>Специализированные работы с оружием АК-серии</h3>
+                    <h3>Специализированные работы: платформа АК</h3>
                     <div class="preiskurant-table-block">
                         <div class="left-block">
                             <div class="preiskurant-table-item"><span>Полная разборка/сборка в штатной комплектации</span></div>

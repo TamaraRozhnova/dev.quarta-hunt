@@ -107,3 +107,10 @@ $eventManager->addEventHandler(
     DiscountCouponsManagerBase::EVENT_ON_COUPON_ADD,
     ['CustomEvents\OnDiscount', 'onManagerCouponAddHandler']
 );
+
+//не менять символьный код при обновении из 1с
+$eventManager->addEventHandler(
+    'iblock',
+    'OnBeforeIBlockElementUpdate',
+    ['CustomEvents\OnBeforeIBlockElementUpdate', 'OnBeforeIBlockElementUpdateHandler']
+);
