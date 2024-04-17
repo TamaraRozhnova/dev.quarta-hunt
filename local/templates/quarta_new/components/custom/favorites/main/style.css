@@ -13,6 +13,9 @@
   height: 0.688rem;
   margin-left: auto;
 }
+.favorites__item .product-card__add {
+  margin-bottom: 15px;
+}
 @media (max-width: 991.98px) {
   .favorites .container {
     max-width: 100%;

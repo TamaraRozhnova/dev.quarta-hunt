@@ -8484,6 +8484,7 @@ input.form-check-input:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 .header--desktop .header__lists-section > a > div .basket-icon-background {
   width: 18px;

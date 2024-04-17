@@ -13,15 +13,18 @@ $(document).ready(function () {
         }
 
         $('.mega-menu').toggleClass('open');
-        $(this).toggleClass('open')
+        $(this).toggleClass('open');
+
+        $('body').css({'overflow' : 'hidden'});
     });
     $(document).on('click', function (e) {
         let button = $('.mega-menu-opener');
         let container = $('.mega-menu');
 
         if ((!container.is(e.target) && container.has(e.target).length === 0) && (!button.is(e.target) && button.has(e.target).length === 0)) {
-            container.removeClass('open')
-            button.removeClass('open')
+            container.removeClass('open');
+            button.removeClass('open');
+            $('body').css({'overflow' : 'unset'});
         }
     });
 

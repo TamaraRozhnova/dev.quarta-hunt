@@ -324,6 +324,7 @@ window.addEventListener("DOMContentLoaded", () => {
       );
       const emptyElement = document.querySelector(".compare__empty");
       this.productCountElement.style.display = "none";
+      document.querySelector(".compare__add-more").style.display = "none";
       this.compareTableMini.style.display = "none";
       compareTableWrapper.forEach((elem) => {
         elem.style.display = "none";
