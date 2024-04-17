@@ -216,10 +216,10 @@ $curPage = $APPLICATION->GetCurPage();
                                 <path d="M10.4666 14.1338L10.4666 8.66712H13.4443V14.0005" stroke="#004989"/>
                             </svg>
                             <span>Сравнение</span>
-                            <?/*<span class="position-absolute top-0 start-100 translate-middle compare-badge badge bg-secondary"
+                            <span class="position-absolute top-0 start-100 translate-middle compare-badge badge bg-secondary"
                                   style="display: <?= $compareCount > 0 ? 'block' : 'none' ?>">
                                 <?= $compareCount ?>
-                            </span>*/?>
+                            </span>
                         </div>
                     </a>
 
@@ -230,10 +230,10 @@ $curPage = $APPLICATION->GetCurPage();
                                 <path d="M8.60803 12.9796L8.60731 12.979C7.3096 11.8247 6.27354 10.9018 5.55589 10.0412C4.84367 9.18702 4.5 8.45711 4.5 7.69755C4.5 6.4721 5.47702 5.5 6.75 5.5C7.47217 5.5 8.17043 5.83219 8.62243 6.35285L9 6.78778L9.37757 6.35285C9.82957 5.83219 10.5278 5.5 11.25 5.5C12.523 5.5 13.5 6.4721 13.5 7.69755C13.5 8.45712 13.1563 9.18705 12.444 10.0419C11.7263 10.9032 10.6904 11.8271 9.39288 12.9837C9.39269 12.9839 9.39249 12.9841 9.39229 12.9843L9.00126 13.3308L8.60803 12.9796Z" stroke="#004989"/>
                             </svg>
                             <span>Избранное</span>
-                            <?/*<span class="position-absolute top-0 start-100 translate-middle favorites-badge badge bg-secondary"
+                            <span class="position-absolute top-0 start-100 translate-middle favorites-badge badge bg-secondary"
                                   style="display: <?= $favoritesCount > 0 ? 'block' : 'none' ?>">
                                 <?= $favoritesCount ?>
-                            </span>*/?>
+                            </span>
                         </div>
                     </a>
 
@@ -247,10 +247,10 @@ $curPage = $APPLICATION->GetCurPage();
                                 </svg>
                             </div>
                             <span>Корзина</span>
-                            <?/*<span class="position-absolute top-0 start-100 translate-middle basket-badge badge bg-secondary"
+                            <span class="position-absolute top-0 start-100 translate-middle basket-badge badge bg-secondary"
                                   style="display: <?= $basketItemsCount > 0 ? 'block' : 'none' ?>">
                                 <?= $basketItemsCount ?>
-                            </span>*/?>
+                            </span>
                         </div>
                     </a>
                 </div>

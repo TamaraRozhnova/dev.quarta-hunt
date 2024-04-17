@@ -42,12 +42,14 @@ if (!count($arResult['ITEMS'])) {
                 $url = explode('/', $url);
                 $url = $url[2];
 
-                $pos = strripos($topLevelSection['LINK'], $url);
+                if ($url) {
+                    $pos = strripos($topLevelSection['LINK'], $url);
 
-                if ($pos === false) {
-                    $topLevelSection['SELECTED'] = false;
-                } else {
-                    $topLevelSection['SELECTED'] = true;
+                    if ($pos === false) {
+                        $topLevelSection['SELECTED'] = false;
+                    } else {
+                        $topLevelSection['SELECTED'] = true;
+                    }
                 }
             ?>
             <div class="header-nav-item header-categories__item <?= ($topLevelSection['SELECTED']) ? 'active-link' : '' ?>" data-id="<?= $id ?>">
