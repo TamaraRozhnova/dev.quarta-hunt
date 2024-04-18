@@ -262,11 +262,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     showAddMoreBlock() {
-      const compareTableWrapper = document.querySelector(
-        ".compare__table-wrapper"
+      const compareTableWrapper = document.querySelectorAll(
+          ".compare__table-wrapper"
       );
       const addMoreElement = document.querySelector(".compare__add-more");
-      compareTableWrapper.style.display = "none";
+      compareTableWrapper.forEach((block) => {
+        if (block) {
+          block.style.display = "none";
+        }
+      });
       addMoreElement.style.display = "block";
     }
 
