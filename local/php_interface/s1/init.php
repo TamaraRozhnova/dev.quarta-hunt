@@ -45,6 +45,7 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\SaleOrderAjaxEventsO2K' => '/local/php_interface/classes/Events/SaleOrderAjaxEventsO2K.php',
     'CustomEvents\RulesBasket' => '/local/php_interface/classes/Events/RulesBasket.php',
     'CustomEvents\OnDiscount' => '/local/php_interface/classes/Events/OnDiscount.php',
+    'CustomEvents\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/OnBeforeIBlockElementUpdate.php',
 ]);
 
 
