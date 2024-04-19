@@ -16,6 +16,9 @@
 .favorites__item .product-card__add {
   margin-bottom: 15px;
 }
+.favorites__item .product-card a {
+  height: fit-content;
+}
 @media (max-width: 991.98px) {
   .favorites .container {
     max-width: 100%;
