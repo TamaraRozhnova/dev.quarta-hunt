@@ -26,7 +26,7 @@ while ($ar_result = $resAllSections->GetNext()) {
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-3 col-lg-4">
-                    <h1 itemprop="headline"><?= $APPLICATION->GetTitle() ?></h1>
+                    <div class="h1" itemprop="headline"><?= $APPLICATION->GetTitle() ?></div>
                 </div>
                 <div class="col-12 col-md-9 pb-lg-5 col-lg-8">
                     <? $APPLICATION->IncludeComponent(
@@ -144,7 +144,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                     </div>
                                 <? endif ?>
                                 <? if ($arParams["DISPLAY_NAME"] != "N" && $arResult["NAME"]): ?>
-                                    <h2 class="news-detail-title"><?= $arResult["NAME"] ?></h2>
+                                    <h1 class="news-detail-title"><?= $arResult["NAME"] ?></h1>
                                 <? endif; ?>
                                 <div class="preview-text"><? echo $arResult["PREVIEW_TEXT"]; ?></div>
                             </div>

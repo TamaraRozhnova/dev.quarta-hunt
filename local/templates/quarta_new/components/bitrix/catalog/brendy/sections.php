@@ -29,7 +29,7 @@ if (empty($currentBrandId)) {
         <section class="category__header">
             <div class="container">
                 <h1 class="category__header-title">
-                    Бренды
+                    <?=$APPLICATION->ShowTitle(false)?>
                 </h1>
             </div>
         </section>

@@ -59,3 +59,9 @@ if (!empty($arResult['IBLOCK_SECTION_ID'])) {
         $arResult['ROOT_SECTION_DESC'] = $arSections[0]['DESCRIPTION'];
     }
 }
+
+// set <h1>
+if(!empty($arResult['ITEMS'][0]['PROPERTIES']['BREND']['VALUE_XML_ID'])){
+    $APPLICATION->SetTitle($arResult['ITEMS'][0]['PROPERTIES']['BREND']['VALUE_XML_ID']);
+    $APPLICATION->AddChainItem($arResult['ITEMS'][0]['PROPERTIES']['BREND']['VALUE_XML_ID']);
+}

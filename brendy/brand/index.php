@@ -8,9 +8,9 @@ use General\User;
 $user = new User();
 $priceCode = $user->getUserPriceCode(); ?>
 
-<h1 class="hidden-on-page unset-margin">
-    <?=$APPLICATION->ShowTitle()?> 
-</h1>
+<? /*<h1 class="hidden-on-page unset-margin">
+    <?=$APPLICATION->ShowTitle()?>
+</h1>*/?>
 
 <?php $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 

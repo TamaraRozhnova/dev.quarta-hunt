@@ -69,8 +69,13 @@ window.addEventListener('DOMContentLoaded', () => {
         const button = category.querySelector('.catalog-category-mobile__title');
         button.addEventListener('click', (e) => {
             if (e.target.classList.contains('expand')) {
+                category.classList.remove('catalog-category-mobile--expanded');
+                e.target.classList.remove('expand')
+                e.preventDefault();
+            } else {
                 category.classList.toggle('catalog-category-mobile--expanded');
-                e.preventDefault()
+                e.target.classList.toggle('expand')
+                e.preventDefault();
             }
         })
     });
