@@ -34,12 +34,26 @@ if (!count($arResult['ITEMS'])) {
             </a>
         </div>
 
-        <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
-            <div class="header-nav-item header-categories__item" data-id="<?= $id ?>">
-                <a href="<?= $topLevelSection['LINK'] ?>">
-                    <span><?= $topLevelSection['NAME'] ?></span>
-                </a>
-            </div>
+        <?php
+        /*Оптика и крепления
+Оружие и патроны
+Снаряжение и одежда
+Средства для ухода за оружием
+Тюнинг оружия и ЗИП
+        */?>
+        <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) {
+
+            if ($topLevelSection['ID'] == 516 ||
+                $topLevelSection['ID'] == 583 ||
+                $topLevelSection['ID'] == 609 ||
+                $topLevelSection['ID'] == 715 ||
+                $topLevelSection['ID'] == 745) { ?>
+                <div class="header-nav-item header-categories__item" data-id="<?= $id ?>">
+                    <a href="<?= $topLevelSection['LINK'] ?>">
+                        <span><?= $topLevelSection['NAME'] ?></span>
+                    </a>
+                </div>
+            <? }?>
         <?php } ?>
     </div>
 

@@ -73,6 +73,7 @@ foreach ($arResult['SECTIONS'] as $section) {
     $sectionData =
         [
             'NAME' => $section['NAME'],
+            'ID' => $section['ID'],
             'LINK' => $section['LIST_PAGE_URL'] . $section['SECTION_PAGE_URL'],
             'SORT' => $section['SORT'],
             'ELEMENT_CNT' => $section['ELEMENT_CNT'],
