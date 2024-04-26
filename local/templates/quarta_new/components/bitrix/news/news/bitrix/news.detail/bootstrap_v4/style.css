@@ -5,7 +5,7 @@
 .news-detail__title-wrapper {
   background-color: #f9f9fa;
 }
-.news-detail__title-wrapper h1 {
+.news-detail__title-wrapper h1, .news-detail__title-wrapper .h1 {
   font-size: 60px;
   font-family: "Gotham Pro", serif;
 }
@@ -32,7 +32,7 @@
   line-height: 11.5px;
   color: #808d9a;
 }
-.news-detail__header-title h2 {
+.news-detail__header-title h2, .news-detail__header-title h1 {
   color: #333333;
   font-size: 26px;
   line-height: 120%;
