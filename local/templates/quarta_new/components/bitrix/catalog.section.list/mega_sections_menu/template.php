@@ -35,7 +35,7 @@ if (!count($arResult['ITEMS'])) {
         </div>
 
         <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
-            <div class="header-nav-item header-categories__item <?= ($topLevelSection['SELECTED']) ? 'active-link' : '' ?>" data-id="<?= $id ?>">
+            <div class="header-nav-item header-categories__item" data-id="<?= $id ?>">
                 <a href="<?= $topLevelSection['LINK'] ?>">
                     <span><?= $topLevelSection['NAME'] ?></span>
                 </a>
@@ -50,14 +50,14 @@ if (!count($arResult['ITEMS'])) {
             <div class="menu-list">
 
                 <ul>
-                    <li class="sale" data-id="sale">
+                    <li class="sale" data-id="sale" onclick="location.href = '/promo/';">
                         <span class="menu-icon sale"></span>
                         <span class="menu-text">Акции</span>
                         <span class="active-icon"><img src="<?=$templateFolder?>/img/menuarrow.svg" alt="->"></span>
                     </li>
 
                     <?php foreach ($arResult['ITEMS'] as $id => $topLevelSection) { ?>
-                        <li data-id="<?= $id ?>">
+                        <li data-id="<?= $id ?>" onclick="location.href = '<?=$topLevelSection['LINK']?>';">
                         <span class="menu-icon"
                               style="background-image: url('<?= $topLevelSection['ICON'] ?>');"></span>
                             <span class="menu-text"><?= $topLevelSection['NAME'] ?></span>
@@ -124,13 +124,13 @@ if (!count($arResult['ITEMS'])) {
             </div>
 
             <!-- brands-->
-            <div class="brands-list" id="manu-brands-list">
+            <?/*<div class="brands-list" id="manu-brands-list">
                 <?php foreach ($arResult['BRAND_DATA'] as $brand) { ?>
                     <span>
                         <img src="<?= $brand["IMAGE"] ?>" alt="<?= $brand['NAME'] ?>"/>
                     </span>
                 <?php } ?>
-            </div>
+            </div> */?>
         </div>
 
     </div>

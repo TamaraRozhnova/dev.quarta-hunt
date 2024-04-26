@@ -262,11 +262,15 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     showAddMoreBlock() {
-      const compareTableWrapper = document.querySelector(
+      const compareTableWrapper = document.querySelectorAll(
         ".compare__table-wrapper"
       );
       const addMoreElement = document.querySelector(".compare__add-more");
-      compareTableWrapper.style.display = "none";
+      compareTableWrapper.forEach((block) => {
+        if (block) {
+          block.style.display = "none";
+        }
+      });
       addMoreElement.style.display = "block";
     }
 
@@ -324,6 +328,7 @@ window.addEventListener("DOMContentLoaded", () => {
       );
       const emptyElement = document.querySelector(".compare__empty");
       this.productCountElement.style.display = "none";
+      document.querySelector(".compare__add-more").style.display = "none";
       this.compareTableMini.style.display = "none";
       compareTableWrapper.forEach((elem) => {
         elem.style.display = "none";

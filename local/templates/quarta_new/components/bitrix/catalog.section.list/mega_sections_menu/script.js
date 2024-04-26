@@ -5,7 +5,7 @@ $(document).ready(function () {
         e.preventDefault();
 
 
-        $('.mega-menu').css('top', 215)
+        $('.mega-menu').css('top', 175)
         $('.mega-menu').css('height', window.innerHeight - 397)
         if (window.scrollY > 50) {
             $('.mega-menu').css('top', 135)
@@ -13,21 +13,24 @@ $(document).ready(function () {
         }
 
         $('.mega-menu').toggleClass('open');
-        $(this).toggleClass('open')
+        $(this).toggleClass('open');
+
+        $('body').css({'overflow' : 'hidden'});
     });
     $(document).on('click', function (e) {
         let button = $('.mega-menu-opener');
         let container = $('.mega-menu');
 
         if ((!container.is(e.target) && container.has(e.target).length === 0) && (!button.is(e.target) && button.has(e.target).length === 0)) {
-            container.removeClass('open')
-            button.removeClass('open')
+            container.removeClass('open');
+            button.removeClass('open');
+            $('body').css({'overflow' : 'unset'});
         }
     });
 
 
     /* jq menu hover, click both menu*/
-    $('.mega-menu .menu-list li').on('click mouseover', function (e) {
+    $('.mega-menu .menu-list li').on('mouseover', function (e) {
         let contentId = $(this).data('id');
 
         $('.mega-menu .menu-list li').each((index, el) => {
