@@ -41,33 +41,33 @@ unset($sale);
 
 $arResult['SALE_DATA'] = $saleData;
 
-$brandData = \Bitrix\Iblock\Elements\ElementBrandsTable::getList([
-    'select' => [
-        'ID',
-        'IBLOCK_ID',
-        'CODE',
-        'IBLOCK_SECTION_ID',
-        'NAME',
-        'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
-        'PREVIEW_PICTURE'
-        ],
-    'filter' => ['ACTIVE' => 'Y'],
-    'order' => ['SORT' => 'ASC']
-])->fetchAll();
-
-foreach ($brandData as &$brand) {
-    if ($brand['PREVIEW_PICTURE']) {
-        $brand['URL'] = CIBlock::ReplaceDetailUrl($brand['DETAIL_PAGE_URL'], $brand, false, 'E');
-        $brand['IMAGE'] = CFile::ResizeImageGet(
-            $brand['PREVIEW_PICTURE'],
-            ['width' => 250, 'height' => 70],
-            BX_RESIZE_IMAGE_PROPORTIONAL
-        )['src'];
-    }
-}
-unset($brand);
-
-$arResult['BRAND_DATA'] = $brandData;
+//$brandData = \Bitrix\Iblock\Elements\ElementBrandsTable::getList([
+//    'select' => [
+//        'ID',
+//        'IBLOCK_ID',
+//        'CODE',
+//        'IBLOCK_SECTION_ID',
+//        'NAME',
+//        'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
+//        'PREVIEW_PICTURE'
+//        ],
+//    'filter' => ['ACTIVE' => 'Y'],
+//    'order' => ['SORT' => 'ASC']
+//])->fetchAll();
+//
+//foreach ($brandData as &$brand) {
+//    if ($brand['PREVIEW_PICTURE']) {
+//        $brand['URL'] = CIBlock::ReplaceDetailUrl($brand['DETAIL_PAGE_URL'], $brand, false, 'E');
+//        $brand['IMAGE'] = CFile::ResizeImageGet(
+//            $brand['PREVIEW_PICTURE'],
+//            ['width' => 250, 'height' => 70],
+//            BX_RESIZE_IMAGE_PROPORTIONAL
+//        )['src'];
+//    }
+//}
+//unset($brand);
+//
+//$arResult['BRAND_DATA'] = $brandData;
 
 foreach ($arResult['SECTIONS'] as $section) {
     $sectionData =

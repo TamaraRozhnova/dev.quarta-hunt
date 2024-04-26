@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 
     /* jq menu hover, click both menu*/
-    $('.mega-menu .menu-list li').on('click mouseover', function (e) {
+    $('.mega-menu .menu-list li').on('mouseover', function (e) {
         let contentId = $(this).data('id');
 
         $('.mega-menu .menu-list li').each((index, el) => {
