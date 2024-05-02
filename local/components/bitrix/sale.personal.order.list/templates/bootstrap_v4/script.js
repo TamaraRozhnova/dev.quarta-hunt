@@ -2,43 +2,9 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 
 (function() {
 	BX.Sale.PersonalOrderComponent.PersonalOrderList = {
-		toggleAnimationOrder : function(cardBody,arrow)
-		{
-			BX.toggleClass(arrow, ['', 'hided'])
-			$(cardBody).slideToggle('slow')
-		},
-
 		init : function(params)
 		{
 			var rowWrapper = document.getElementsByClassName('sale-order-list-inner-row');
-
-			const orders = document.querySelectorAll('.history-order')
-
-			if (orders.length > 0) {
-				orders.forEach((order) => {
-					const cardArrows = order.querySelectorAll('.history-order__arrow');
-					const cardBody = order.querySelector('.history-order__body')
-					const wrapperCardBody = order.querySelector('.history-order__summary-body')
-
-					if (cardArrows.length > 0) {
-						cardArrows.forEach((arrow) => {
-
-							if (window.innerWidth <= 1024) {
-								wrapperCardBody.onclick = () => {
-									this.toggleAnimationOrder(cardBody, arrow)
-								}
-							} else {
-								BX.bind(arrow, 'click', () => {
-									this.toggleAnimationOrder(cardBody, arrow)
-								})
-							}
-
-						})
-					}
-
-
-				})
-			}
 
 			params.paymentList = params.paymentList || {};
 			params.url = params.url || "";
@@ -48,8 +14,6 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 			Array.prototype.forEach.call(rowWrapper, function(wrapper)
 			{
 				var shipmentTrackingId = wrapper.getElementsByClassName('sale-order-list-shipment-id');
-			
-
 				if (shipmentTrackingId[0])
 				{
 					Array.prototype.forEach.call(shipmentTrackingId, function(blockId)
@@ -103,8 +67,12 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 					event.preventDefault();
 				}, this));
 
+				var isChangingLoaded = false;
 				BX.bindDelegate(wrapper, 'click', { 'class': 'sale-order-list-change-payment' }, BX.proxy(function(event)
 				{
+					if (isChangingLoaded)
+						return;
+					isChangingLoaded = true;
 					event.preventDefault();
 
 					var block = wrapper.getElementsByClassName('sale-order-list-inner-row-body')[0];
@@ -124,8 +92,11 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 							},
 							onsuccess: BX.proxy(function(result)
 							{
-								var resultDiv = document.createElement('div');
-								resultDiv.innerHTML = result;
+								var resultDiv = BX.create("div",{
+									props: {className: "row"},
+									children: [result]
+								});
+
 								template.insertBefore(resultDiv, cancelPaymentLink);
 								event.target.style.display = 'none';
 								block.parentNode.removeChild(block);
@@ -138,6 +109,7 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 							},this),
 							onfailure: BX.proxy(function()
 							{
+								isChangingLoaded = false;
 								return this;
 							}, this)
 						}, this
