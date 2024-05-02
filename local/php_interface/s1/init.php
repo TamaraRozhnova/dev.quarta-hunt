@@ -167,3 +167,15 @@ function debug($var) {
         print_r('</pre>');
     }
 }
+/*
+ * SEO, replace text/javascript for html5 validation w3c
+ * */
+function removeType(&$content)
+{
+    $content = str_replace(' type="text/javascript"', '', $content);
+    $content = str_replace(' type=\'text/javascript\'', '', $content);
+    $content = str_replace(' type="text/css"', '', $content);
+    $content = str_replace(' type=\'text/css\'', '', $content);
+    $content = str_replace('<br />', '<br>', $content);
+    $content = str_replace('<hr />', '<hr>', $content);
+}

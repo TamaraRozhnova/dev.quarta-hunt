@@ -92,7 +92,7 @@ if (!count($arResult['ITEMS'])) {
                         <?php foreach ($arResult['SALE_DATA'] as $saleItem) { ?>
 
                             <div class="sale-item" onclick="location.href='<?= $saleItem['URL'] ?>'">
-                                <img src="<?= $saleItem["IMAGE"] ?>" alt="<?= $saleItem['NAME'] ?>"/>
+                                <img src="<?= $saleItem["IMAGE"] ?>" alt="<?= $saleItem['NAME'] ?>">
 
                                 <div class="sale-item-textblock">
                                     <p class="sale-item-title"><?= $saleItem['NAME'] ?></p>

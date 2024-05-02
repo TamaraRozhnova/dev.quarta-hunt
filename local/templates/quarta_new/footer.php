@@ -176,17 +176,17 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         </div>
     </div>
 
-    <hr class="d-none d-lg-block"/>
+    <hr class="d-none d-lg-block">
 
     <div class="container mt-4">
         <div class="row">
             <div class="col-12 col-sm-6 col-lg-4 footer__payment-methods">
                 Принимаем к оплате
                 <figure>
-                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/mir.png", 9999, 25,'alt = "Мир"'); ?>
-                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/sberpay.png", 9999, 25,'alt = "Сбер Pay"'); ?>
-                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/tinpay.png", 9999, 25,'alt = "Тинькофф Pay"'); ?>
-                    <?= CFile::ShowImage(SITE_TEMPLATE_PATH . "/assets/images/payments/youmoney.png", 9999, 25,'alt = "ЮМани"'); ?>
+                    <img src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир" width="82" height="25" >
+                    <img src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay" width="52" height="25" >
+                    <img src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay" width="52" height="25" >
+                    <img src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани" width="120" height="25" >
                 </figure>
             </div>
             <div class="col-12 col-sm-6 col-lg-4 footer__social">

@@ -35,7 +35,7 @@ Loc::loadMessages(__FILE__);
 					</div>
 					<div class="brands-index__search">
 						<div class="input--lg">
-							<input placeholder="<?=Loc::getMessage('SEARCH_PLACEHOLDER')?>" type="text" class="form-control search-brand-panel" maxlength="255" value="" inputmode="text">
+							<input placeholder="<?=Loc::getMessage('SEARCH_PLACEHOLDER')?>" type="text" class="form-control search-brand-panel" maxlength="255" value="">
 						</div>
 						<div class="brands-index__search-result hide"></div>
 					</div>
