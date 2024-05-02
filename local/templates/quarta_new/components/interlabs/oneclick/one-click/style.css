@@ -666,6 +666,11 @@ span.bx-authform-starrequired {
   font-size: 0.875rem;
 }
 
+.email-warning-more {
+  font-style: italic;
+  font-size: 13px;
+}
+
 @media (max-width: 767px) {
   .product-card .interlabs-one-click-buy,
   .compare__item .interlabs-one-click-buy {

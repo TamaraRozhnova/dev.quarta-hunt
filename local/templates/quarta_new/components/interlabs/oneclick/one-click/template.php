@@ -72,7 +72,13 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                         </div>
                         <?php if ($arResult['USE_FIELD_EMAIL'] === 'Y') { ?>
                             <div class="form-group">
-                                <label><?php echo Loc::getMessage("email"); ?><span class="bx-authform-starrequired">*</span></label>
+                                <label>
+                                    <?php echo Loc::getMessage("email"); ?>
+                                    <span class="email-warning-more">
+                                        <?php echo Loc::getMessage("email_more"); ?>
+                                    </span>
+                                    <span class="bx-authform-starrequired">*</span>
+                                </label>
                                 <input name="EMAIL" type="text" class="form-control"
                                        value="<?php echo Oneclick::reqInputByProduct("EMAIL", $arResult['user']['EMAIL'], $arResult['PRODUCT_ID']); ?>" required>
                                 <div class="error error-EMAIL"></div>
