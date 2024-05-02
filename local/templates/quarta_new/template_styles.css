@@ -8909,9 +8909,10 @@ input.form-check-input:focus {
   display: flex;
   gap: 20px;
   margin-top: 1.5rem;
+  align-items: center;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .footer__payment-methods {
     overflow: hidden;
   }
