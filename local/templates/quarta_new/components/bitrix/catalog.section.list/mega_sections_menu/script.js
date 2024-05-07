@@ -28,6 +28,7 @@ $(document).ready(function () {
         }
     });
 
+    const brandList = document.querySelector('.mega-menu #manu-brands-list')
 
     /* jq menu hover, click both menu*/
     $('.mega-menu .menu-list li').on('mouseover', function (e) {
@@ -46,6 +47,27 @@ $(document).ready(function () {
             $('.mega-menu #manu-brands-list').hide()
             $('.mega-menu .menu-content').addClass('sale')
         }
+
+        brandList.innerHTML = '';
+
+        $.each(arSectionsBrandsMenu, (iSection, iBrand) => {
+
+            $.each(iBrand, (iBrandID, iBrandAr) => {
+
+                if (iSection == contentId) {
+                    const brand = document.createElement('span')
+                    const brandImg = document.createElement('img')
+            
+                    brandImg.setAttribute('src', iBrandAr?.IMAGE)
+                    brandImg.setAttribute('alt', iBrandAr?.NAME)
+                    brand.appendChild(brandImg)
+        
+                    brandList.appendChild(brand)
+                }
+
+            })
+
+        })  
 
         $(this).addClass('active')
         $(".mega-menu [data-content='" + contentId + "']").addClass('active');
