@@ -1,53 +1,6 @@
 BX.namespace('BX.Sale.PersonalOrderComponent');
 
 (function() {
-	
-	/**
-	 * Arrows animation orders
-	 */
-
-	/**
-	 * Function animated hide order body
-	 */
-	function toggleAnimationOrder(cardBody, arrow) {
-		BX.toggleClass(arrow, ['', 'hided'])
-		$(cardBody).slideToggle('slow')
-	}
-	
-	const orders = document.querySelectorAll('.history-order')
-
-	if (orders.length > 0) {
-		orders.forEach((order) => {
-			const cardArrows = order.querySelectorAll('.history-order__arrow');
-			const cardBody = order.querySelector('.history-order__body')
-			const wrapperCardBody = order.querySelector('.history-order__summary-body')
-			const cardBodyBtnsClass = '.history-order__body-btns'
-
-			if (cardArrows.length > 0) {
-				cardArrows.forEach((arrow) => {
-
-					if (window.innerWidth <= 1024) {
-
-						wrapperCardBody.onclick = (e) => {
-
-							if (!e.target.closest(cardBodyBtnsClass)) {
-								toggleAnimationOrder(cardBody, arrow)
-							}
-
-						}
-					} else {
-
-						BX.bind(arrow, 'click', () => {
-							toggleAnimationOrder(cardBody, arrow)
-						})
-					}
-
-				})
-			}
-
-
-		})
-	}
 
 	BX.Sale.PersonalOrderComponent.PersonalOrderList = {
 
@@ -162,4 +115,5 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 			});
 		}
 	};
+
 })();
