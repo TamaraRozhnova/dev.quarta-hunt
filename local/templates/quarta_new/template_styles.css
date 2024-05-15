@@ -8923,9 +8923,15 @@ input.form-check-input:focus {
   }
 }
 
-.footer__payment-methods figure img {
+.footer__payment-methods figure .img-ft-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__payment-methods figure .img-ft-wrapper img {
   max-width: 100%;
 }
+
 .footer__social {
   display: flex;
   align-items: center;
