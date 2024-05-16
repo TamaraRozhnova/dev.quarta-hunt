@@ -184,14 +184,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 Принимаем к оплате
                 <figure>
                     <div class="img-ft-wrapper">
-                        <img src="/local/templates/quarta_new/assets/images/payments/visa.png" alt="Visa" width="66" height="21">
-                        <img src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир" width="82" height="25" >
-                        <img src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay" width="52" height="25" >
+                        <img src="/local/templates/quarta_new/assets/images/payments/visa.png" alt="Visa" >
+                        <img src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир" >
+                        <img src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay" >
                     </div>
                     <div class="img-ft-wrapper">
-                        <img src="/local/templates/quarta_new/assets/images/payments/mastercard.png" alt="Mastercard" width="49" height="29">
-                        <img src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани" width="120" height="25" >
-                        <img src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay" width="52" height="25" >
+                        <img src="/local/templates/quarta_new/assets/images/payments/mastercard.png" alt="Mastercard" >
+                        <img src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани"  >
+                        <img src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay"  >
                     </div>
                 </figure>
             </div>
