@@ -188,6 +188,24 @@
     height: fit-content;
 }
 
+@media (max-width: 500px) {
+	#cancel-md-form,
+	#cancel-md-form-success {
+		width: 90%;
+	}
+
+	#cancel-md-form-success .modal__close,
+	#cancel-md-form .modal__close {
+		top: 10px;
+		right: 10px;
+	}
+
+	#cancel-md-form-success .modal-body h3 {
+		margin: 0;
+	}
+
+}
+
 #cancel-md-form .modal-body {
 	display: flex;
 	flex-direction: column;
