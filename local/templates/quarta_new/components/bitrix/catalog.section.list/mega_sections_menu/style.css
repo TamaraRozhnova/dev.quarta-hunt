@@ -385,6 +385,8 @@
   margin: 30px 0;
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+  padding: 2px;
 }
 
 .mega-menu .brands-list::-webkit-scrollbar {
@@ -400,7 +402,7 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.13);
   background: var(--bs-white);
   border-radius: 13px;
-  width: 250px;
+  width: calc(100% - 2px);
   height: 65px;
 }
 

@@ -132,12 +132,9 @@ $arResult["SHOW_FIELDS"] = array(
 <?foreach ($arResult["SHOW_FIELDS"] as $FIELD): ?>
 	<? switch ($FIELD) {
 		case "WORK_COMPANY":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-work-company-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<input type="text" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" />
 			</div>
@@ -154,12 +151,9 @@ $arResult["SHOW_FIELDS"] = array(
 			</div>
 			<?break;
 		case "WORK_DEPARTMENT":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-work-depart-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 					<span class="info">
 						<span>
 							<svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon"><path data-v-236cc743="" d="M8 16A8 8 0 108-.001 8 8 0 008 16zm.93-9.412l-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287H8.93zM8 5.5a1 1 0 110-2 1 1 0 010 2z" fill="currentColor"></path>
@@ -174,45 +168,33 @@ $arResult["SHOW_FIELDS"] = array(
 			</div>
 			<?break;
 		case "NAME":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-name-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<input type="text" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" />
 			</div>
 			<?break;
 		case "WORK_POSITION":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-work-post-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<input type="text" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" />
 			</div>
 			<?break;
 		case "PERSONAL_PHONE":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-phone-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<input autocomplete="off" type="text" id="phone" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="+7 (___) ___-__-__" />
 			</div>
 			<?break;
 		case "EMAIL":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-email-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<input type="text" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="example@gmail.com" />
 			</div>
@@ -229,12 +211,9 @@ $arResult["SHOW_FIELDS"] = array(
 			</div>
 			<?break;
 		case "PASSWORD":?>
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-pass-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<span class="password-eye"></span>
 				<input type="password" class="form-control bx-auth-input" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off"  />
@@ -254,12 +233,9 @@ $arResult["SHOW_FIELDS"] = array(
 			</div>
 			<? break;
 		case "CONFIRM_PASSWORD":?>	
-			<div class="input mb-4 input--lg">
+			<div class="input mb-4 input--lg re-conf-pass-reg">
 				<label class="form-label">
 					<?=GetMessage("REGISTER_FIELD_" . $FIELD)?>:
-					<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"): ?>
-						<span class="starrequired">*</span>
-					<?endif?>
 				</label>
 				<span class="password-eye"></span>
 				<input type="password" class="form-control" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off" />
@@ -332,7 +308,7 @@ if ($arResult["USE_CAPTCHA"] == "Y") {
         </label>
     </div>
 <div>
-	<input type="submit" class="btn btn-primary btn-lg w-100 mb-3" name="register_submit_button" value="<?=GetMessage("AUTH_REGISTER")?>" />
+	<input type="submit" class="reg-submit-form btn btn-primary btn-lg w-100 mb-3" name="register_submit_button" value="<?=GetMessage("AUTH_REGISTER")?>" />
 </div>
 <small >
     Нажимая кнопку «Зарегистрироваться»,

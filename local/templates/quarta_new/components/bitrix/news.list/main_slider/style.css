@@ -144,6 +144,14 @@
   }
   .main-slider__compact {
     height: 482px;
+    /* height: auto; */
+  }
+  .main-slider__compact .swiper-container,
+  .main-slider__compact.main-slider .swiper-slide {
+    height: 100%;
+  }
+  .main-slider__compact.main-slider .swiper-slide {
+    background-size: cover;
   }
   .main-slider__compact .swiper-wrapper .container {
     margin-top: 104px;

@@ -287,7 +287,8 @@ $curPage = $APPLICATION->GetCurPage();
                     12 => "",
                 ],
                 "SECTION_USER_FIELDS" => [
-                    0 => "UF_ICON"
+                    0 => "UF_ICON",
+                    1 => "UF_BRAND_LINK"
                 ],
                 "SECTION_ID" => false,
                 "SECTION_URL" => "#SECTION_CODE_PATH#/",

@@ -15,3 +15,7 @@
 .password-eye.active{
     background-image: url(images/eye-active.svg);
 }
+
+.registration__form-wr .input.is-invalid .password-eye {
+    bottom: 47px;
+}

@@ -1,4 +1,21 @@
 $(document).ready(function() {
+
+	/** Validation fields for recovery data */
+	const phoneForgot = new Input({
+		wrapperSelector: '.fo-phone-recovery',
+		required: true,
+		validMask: /^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/,
+		mask: '+7 (###) ###-##-##',
+		errorMessage: 'Телефон должен быть в указанном формате'
+	});
+
+	const emailForgot = new Input({
+		wrapperSelector: '.fo-email-recovery',
+		required: true,
+		validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+		errorMessage: 'Введите email в корректном формате'
+	});
+
     if ( document.getElementById("phone") ) {
     	BX.ready(function() {
             var result = new BX.MaskedInput({
@@ -14,22 +31,31 @@ $(document).ready(function() {
 		$(this).addClass('active');
 		$('.forgot_phone_form').removeClass('active');
     });
+
     $('.forgot_phone_form').on('click', function(){
     	$("#form_forgot").hide();
     	$("#form_forgot_phone").show();
 		$(this).addClass('active');
 		$('.forgot_email_form').removeClass('active');
     });
+
+	$('.recovery__btn').on('click', (e) => {
+		if (!emailForgot.isValidValue()) {
+			e.preventDefault();
+			emailForgot.setError()
+		}
+	})
     
     $('.recovery_btn_phone').on('click', function(e){
     	e.preventDefault();
-    	console.log($('#phone').val().length);
-    	if($('#phone').val() == '' || $('#phone').val().length < 18){
-    		$('.error_message').text('Введите номер телефона');
-    	}else{
+
+		if (!phoneForgot.isValidValue()) {
+			phoneForgot.setError()
+		} else {
     		authPhone();
 			$(this).addClass('code');
-    	}
+		}
+
     });
     
     $('.recovery_btn_phone.code').on('click', function(e){
@@ -37,6 +63,7 @@ $(document).ready(function() {
     	authPhone();
     });
 });
+
 function authPhone(){
 	BX.ajax({
         method: 'POST',
