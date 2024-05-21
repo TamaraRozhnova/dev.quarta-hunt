@@ -8462,20 +8462,20 @@ input.form-check-input:focus {
   align-items: center;
   padding: 0 !important;
 }
-.header--desktop .header__lists-section > a > div {
+.header--desktop .header__lists-section > a > span {
   display: flex;
   align-items: center;
   gap: 6px;
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-.header--desktop .header__lists-section > a > div > span {
+.header--desktop .header__lists-section > a > span > span {
   color: #004989;
   font-weight: 700;
   font-size: 14px;
   line-height: 14px;
 }
-.header--desktop .header__lists-section > a > div > span.badge {
+.header--desktop .header__lists-section > a > span > span.badge {
   min-width: 16px;
   min-height: 16px;
   font-size: 10px;
@@ -8486,7 +8486,7 @@ input.form-check-input:focus {
   justify-content: center;
   color: white;
 }
-.header--desktop .header__lists-section > a > div .basket-icon-background {
+.header--desktop .header__lists-section > a > span .basket-icon-background {
   width: 18px;
   height: 18px;
   background-color: #E8EFF4;
@@ -8495,22 +8495,22 @@ input.form-check-input:focus {
   justify-content: center;
   border-radius: 4px;
 }
-.header--desktop .header__lists-section > a > div .basket-icon-background svg {
+.header--desktop .header__lists-section > a > span .basket-icon-background svg {
   width: 11px;
 }
 @media (max-width: 1399px) {
-  .header--desktop .header__lists-section > a > div > span {
+  .header--desktop .header__lists-section > a > span > span {
     display: none;
   }
-  .header--desktop .header__lists-section > a > div svg {
+  .header--desktop .header__lists-section > a > span svg {
     width: 32px;
     height: 32px;
   }
-  .header--desktop .header__lists-section > a > div .basket-icon-background {
+  .header--desktop .header__lists-section > a > span .basket-icon-background {
     width: 32px;
     height: 32px;
   }
-  .header--desktop .header__lists-section > a > div .basket-icon-background svg {
+  .header--desktop .header__lists-section > a > span .basket-icon-background svg {
     width: 19px;
   }
 }

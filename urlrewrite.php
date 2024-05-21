@@ -32,6 +32,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/ymarket/index.php',
     'SORT' => 100,
   ),
+  19 => 
+  array (
+    'CONDITION' => '#^/brendy/([0-9]+)/?.*#',
+    'RULE' => 'BRAND_ID=$1',
+    'ID' => 'bitrix:catalog',
+    'PATH' => '/brendy/brand/index.php',
+    'SORT' => 100,
+  ),
   3 => 
   array (
     'CONDITION' => '#^/online/(/?)([^/]*)#',
@@ -56,7 +64,15 @@ $arUrlRewrite=array (
     'PATH' => '/cabinet/index.php',
     'SORT' => 100,
   ),
-  17 => 
+  18 => 
+  array (
+    'CONDITION' => '#^/brendy/$#',
+    'RULE' => '',
+    'ID' => 'custom:brands.index',
+    'PATH' => '/brendy/index.php',
+    'SORT' => 100,
+  ),
+  20 => 
   array (
     'CONDITION' => '#^/catalog/#',
     'RULE' => '',
@@ -102,22 +118,6 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:news',
     'PATH' => '/blog/index.php',
-    'SORT' => 100,
-  ),
-  18 => 
-  array (
-    'CONDITION' => '#^/brendy/$#',
-    'RULE' => '',
-    'ID' => 'custom:brands.index',
-    'PATH' => '/brendy/index.php',
-    'SORT' => 100,
-  ),
-  19 => 
-  array (
-    'CONDITION' => '#^/brendy/([0-9]+)/?.*#',
-    'RULE' => 'BRAND_ID=$1',
-    'ID' => 'bitrix:catalog',
-    'PATH' => '/brendy/brand/index.php',
     'SORT' => 100,
   ),
 );

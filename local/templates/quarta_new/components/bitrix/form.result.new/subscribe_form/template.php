@@ -3,7 +3,6 @@
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
-
 ?>
 
 <section class="subscribe">
@@ -11,14 +10,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         <div class="row">
             <div class="col-12 col-lg-6 subscribe__title">
                 <h2>
-                    <small>Подписаться на новости</small><br/>
+                    <small>Подписаться на новости</small><br>
                     Будьте в курсе событий!
                 </h2>
             </div>
 
             <div class="col-12 col-lg-6 subscribe__form-wr">
                 <div class="subscribe__form">
-                    <?= $arResult['FORM_HEADER'] ?>
+                    <?=preg_replace('/<input(.*)\/>/U', '<input$1>', $arResult['FORM_HEADER']); ?>
                     <div class="input input--lg">
                         <span class="input__container">
                             <input id="i_0"
@@ -48,7 +47,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                    type="submit"
                                    class="btn btn-primary btn-lg"
                                    value="Подписаться"
-                            />
+                            >
                         </div>
                     </div>
                     <?= $arResult['FORM_FOOTER'] ?>

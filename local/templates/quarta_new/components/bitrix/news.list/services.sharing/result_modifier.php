@@ -19,7 +19,7 @@ if (!empty($arResult['ITEMS'])) {
             $arResult['ITEMS'][$arItemIndex]['LINK_SERVICE'] .= '?url=' . $currentURL;
 
             if (!empty($arItem['PREVIEW_TEXT'])) {
-                $arResult['ITEMS'][$arItemIndex]['LINK_SERVICE'] .= '&text=' . $arItem['PREVIEW_TEXT'];
+                $arResult['ITEMS'][$arItemIndex]['LINK_SERVICE'] .= '&text=' . urlencode($arItem['PREVIEW_TEXT']);
             }
 
             if ($arItem['PROPERTIES']['SS_LINK_S']['VALUE'] == 'COPY_LINK') {

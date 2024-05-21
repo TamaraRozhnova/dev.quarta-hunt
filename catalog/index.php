@@ -1,11 +1,11 @@
 <?php
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
-$APPLICATION->SetPageProperty("title", "Тюнинг оружия и ЗИП");
+$APPLICATION->SetPageProperty("title", "Каталог товаров Quarta Оружейный Квартал в Санкт-Петербурге");
 
 use General\User;
 
-$APPLICATION->SetTitle("Тюнинг оружия и ЗИП");
+$APPLICATION->SetTitle("Каталог товаров Quarta Оружейный Квартал");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
 <h1 class="hidden-on-page unset-margin">
