@@ -18,7 +18,7 @@ if (!empty($mainBannerNewsId) || !empty($newArrivalArr)) {
         $fields = $news->GetFields();
         $properties = $news->GetProperties();
         $newsImage = CFile::GetPath($properties['BANNER_IMAGE']['VALUE']);
-
+        
         // Разделяем путь на директорию и имя файла
         $path_parts = pathinfo($newsImage);
         $directory = $path_parts['dirname'];

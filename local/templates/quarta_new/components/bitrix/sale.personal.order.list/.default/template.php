@@ -2,21 +2,29 @@
 
 use Bitrix\Main,
 	Bitrix\Main\Localization\Loc,
-	Bitrix\Main\Page\Asset;
+	Bitrix\Main\Page\Asset,
+	\Bitrix\Main\UI\Extension,
+	Bitrix\Main\Context;
 
-\Bitrix\Main\UI\Extension::load([
+Extension::load([
 	'ui.design-tokens',
 	'ui.fonts.opensans',
 	'clipboard',
 	'fx',
 ]);
 
-Asset::getInstance()->addJs("/bitrix/components/bitrix/sale.order.payment.change/templates/.default/script.js");
-Asset::getInstance()->addCss("/bitrix/components/bitrix/sale.order.payment.change/templates/.default/style.css");
-//$this->addExternalCss("/bitrix/css/main/bootstrap.css");
+Asset::getInstance()->addJs(
+	"/bitrix/components/bitrix/sale.order.payment.change/templates/.default/script.js"
+);
 
-Loc::loadMessages(__FILE__);
-?>
+Asset::getInstance()->addCss(
+	"/bitrix/components/bitrix/sale.order.payment.change/templates/.default/style.css"
+);
+
+$obRequest = Context::getCurrent()->getRequest();
+
+Loc::loadMessages(__FILE__);?>
+
 <div class="personal-order">
 	<div class="container">
 		<h2>
@@ -253,4 +261,150 @@ Loc::loadMessages(__FILE__);
 		<?}?>
 	</div>
 </div>
+
+<?php /** Модальное окно об успешной отмене заказа */ ?>
+<div id="cancel-md-form-success" class="modal">
+	<div class="modal-content">
+		<div class="modal-body">
+			<h3>Заказ успешно отменен!</h3>
+		</div>
+		<div class="modal__close">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+					class="bi bi-x" viewBox="0 0 16 16">
+				<path
+					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+			</svg>
+		</div>
+	</div>	
+</div>
+
+<?php /** Модальное окно об отмене заказа */ ?>
+<div id="cancel-md-form" class="modal">
+	<div class="modal-content">
+		<div class="modal-body">
+			<h3>Вы действительно хотите отменить заказ?</h3>
+			<div class="modal-body__btns">
+			</div>
+		</div>
+
+		<div class="modal__close">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+					class="bi bi-x" viewBox="0 0 16 16">
+				<path
+					d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+			</svg>
+		</div>
+	</div>	
+</div>
+
+<script>
+	window.addEventListener('load', () => {
+		/**
+		 * Стрелки - анимация заказов
+		 */
+
+		/**
+		 * Функция анимации заказа
+		 */
+		function toggleAnimationOrder(cardBody, arrow) {
+			BX.toggleClass(arrow, ['', 'hided'])
+			$(cardBody).slideToggle('slow')
+		}
+
+		const orders = document.querySelectorAll('.history-order')
+		const modalCancel = document.querySelector('#cancel-md-form')
+		const modalBtns = document.querySelector('#cancel-md-form .modal-body__btns')
+		
+		const modalSuccessCancelOrder = document.querySelector('#cancel-md-form-success')
+
+		if (modalSuccessCancelOrder) {
+
+			if (sessionStorage.getItem('order_canceled_modal')) {
+				const modalSuccessCancel = new Modal({
+					modalSelector: "#cancel-md-form-success",
+				});
+
+				modalSuccessCancel.open()
+
+				sessionStorage.removeItem('order_canceled_modal')
+
+			}
+
+		}
+
+		/**
+		 * Обработчики для самих заказов
+		 */
+		if (orders.length > 0) {
+
+			orders.forEach((order) => {
+
+				const cardArrows = order.querySelectorAll('.history-order__arrow');
+				const cardBody = order.querySelector('.history-order__body')
+				const wrapperCardBody = order.querySelector('.history-order__summary-body')
+				const cardBodyBtnsClass = '.history-order__body-btns'
+
+				const btnCancel = order.querySelector('.cancel-order')
+
+				/**
+				 * Стрелки
+				 */
+				if (cardArrows.length > 0) {
+					cardArrows.forEach((arrow) => {
+
+						if (window.innerWidth <= 1024) {
+
+							wrapperCardBody.onclick = (e) => {
+
+								if (!e.target.closest(cardBodyBtnsClass)) {
+									toggleAnimationOrder(cardBody, arrow)
+								}
+
+							}
+						} else {
+
+							BX.bind(arrow, 'click', () => {
+								toggleAnimationOrder(cardBody, arrow)
+							})
+						}
+
+					})
+				}
+
+				/**
+				 * Кнопка отмены
+				 */
+				if (btnCancel) {
+					btnCancel.addEventListener('click', (e) => {
+
+						e.preventDefault();
+
+						const currentFormCancel = btnCancel.closest('form').cloneNode(true)
+
+						modalBtns.innerHTML = '';
+						modalBtns.appendChild(currentFormCancel);
+
+						sessionStorage.setItem('order_canceled_modal', 'Y')
+
+						const cancelModal = new Modal({
+							modalSelector: "#cancel-md-form",
+							modalOpenElementSelector: `.history-order[id = "${order.getAttribute('id')}"] .cancel-order`
+						});
+
+						cancelModal.onClose = () => {
+							if (sessionStorage.getItem('order_canceled_modal')) {
+								sessionStorage.removeItem('order_canceled_modal')
+							}
+						}
+
+						cancelModal.open()
+
+					})
+				}
+
+			})
+		}
+	})
+</script>
+
 	

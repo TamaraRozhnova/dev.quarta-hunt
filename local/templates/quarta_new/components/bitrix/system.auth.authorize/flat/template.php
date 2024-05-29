@@ -106,15 +106,15 @@ $this->setFrameMode(false);?>
 							<input type="hidden" name="<?=$key?>" value="<?=$value?>" />
 						<?endforeach?>
 				
-						<div class="bx-authform-formgroup-container input mb-4 input--lg">
-							<label class="bx-authform-label-container form-label">
+						<div class="bx-authform-formgroup-container input mb-4 input--lg au-email-login">
+							<label class="bx-authform-label-container form-label ">
 								<?=GetMessage("AUTH_LOGIN")?>
 							</label>
 							<div class="bx-authform-input-container">
 								<input type="text" class="form-control" name="USER_LOGIN" maxlength="255" value="<?=$arResult["LAST_LOGIN"]?>" />
 							</div>
 						</div>
-						<div class="bx-authform-formgroup-container input mb-4 input--lg">
+						<div class="bx-authform-formgroup-container input mb-4 input--lg au-email-password">
 							<label class="bx-authform-label-container form-label">
 								<?=GetMessage("AUTH_PASSWORD")?>
 							</label>
@@ -157,7 +157,7 @@ $this->setFrameMode(false);?>
 							</div>
 						</div>
 					<?endif*/?>
-						<div class="bx-authform-formgroup-container">
+						<div class="bx-authform-formgroup-container au-email-login-btn">
 							<input type="submit" class="btn btn-primary btn-lg w-100 mb-3" name="Login" value="<?=GetMessage("AUTH_AUTHORIZE")?>" />
 						</div>
 					</form>
@@ -215,7 +215,7 @@ $this->setFrameMode(false);?>
 				</div>
 			</div>
 			<div class="quick-register-accounts-content">
-				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+				<div class="bx-authform-formgroup-container input mb-4 input--lg reg-name-qr">
 					<label class="bx-authform-label-container form-label">
 						Имя
 					</label>
@@ -223,7 +223,7 @@ $this->setFrameMode(false);?>
 						<input type="text" class="form-control"  name="NAME" maxlength="255" value="" />
 					</div>
 				</div>
-				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+				<div class="bx-authform-formgroup-container input mb-4 input--lg reg-last-name-qr">
 					<label class="bx-authform-label-container form-label">
 						Фамилия
 					</label>
@@ -232,7 +232,7 @@ $this->setFrameMode(false);?>
 					</div>
 				</div>
 				<hr>
-				<div class="bx-authform-formgroup-container input mb-4 input--lg">
+				<div class="bx-authform-formgroup-container input mb-4 input--lg reg-code-qr">
 					<label class="bx-authform-label-container form-label">
 						Код из смс
 					</label>
