@@ -27,6 +27,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                    class="form-control bg-white"
                                    required
                             >
+                            <span class="svg-x-icon"></span>
                         </span>
                     </div>
 
