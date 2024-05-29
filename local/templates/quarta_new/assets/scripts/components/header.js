@@ -14,8 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const searchInputWrappers = document.querySelectorAll('.header .search-input');
 
-    const headerDesktop = document.querySelector('.header--desktop'),
-          headerDesktopNavItems = headerDesktop.querySelector('.row.header__top-row');
+    const headerDesktop = document.querySelector('.header--desktop');
 
     if (window.innerWidth > 1200) {
         window.addEventListener('scroll', function() {
@@ -31,8 +30,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     && headerDesktop.style.position == 'initial' 
                     || headerDesktop.style.position == ''
                 ) {
-                    headerDesktopNavItems.style.display = 'none';
-    
                     headerDesktop.style.transform = 'translateY(-100%)'
     
                     setTimeout(() => {
@@ -45,7 +42,6 @@ window.addEventListener('DOMContentLoaded', () => {
             } 
     
             if (document.documentElement.scrollTop < headerDesktop.offsetHeight - 100) {
-                headerDesktopNavItems.style.display = 'flex'
                 headerDesktop.style.position = 'initial';
             }
     
