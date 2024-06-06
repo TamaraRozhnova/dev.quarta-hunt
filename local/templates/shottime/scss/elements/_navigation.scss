@@ -1,0 +1,46 @@
+.navigation {
+  &__item {
+    .accordion {
+      &__item {
+        &-head {
+          padding: 16px 0;
+          font-size: 12px;
+          line-height: 1;
+
+          @include r(1279px) {
+            font-size: 11px;
+            padding: 12px 0;
+          }
+        }
+
+        &-content {
+          ul {
+          }
+
+          li {
+            position: relative;
+            padding-left: 31px;
+
+            &:hover {
+              a {
+                color: #E2212A;
+              }
+            }
+
+            &::before {
+              content: '—';
+              position: absolute;
+              @include centerer-y;
+              left: 10px;
+            }
+
+            a {
+              font-size: 12px;
+              color: rgba(56, 56, 56, 0.6);
+            }
+          }
+        }
+      }
+    }
+  }
+}

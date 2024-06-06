@@ -24,7 +24,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                     <div class="col-6">
                         <figure class="promo-wide-light__image">
-                            <img
+                            <img loading="lazy"
                                  src="<?= $arResult['MAIN_BANNER_NEWS']['BANNER_IMAGE']['SRC'] ?>"
                                  alt="<?= $arResult['MAIN_BANNER_NEWS']['BANNER_TITLE']['VALUE'] ?>"
                             />

@@ -1,0 +1,27 @@
+.tabs {
+  &__content {
+    display: none;
+    opacity: 0;
+    animation: open-tabs 0.3s var(--ease);
+
+    &.is-active {
+      display: block;
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes open-tabs {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

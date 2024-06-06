@@ -1,0 +1,465 @@
+.checkout {
+  padding-bottom: 60px;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    @include sm-screen {
+      flex-flow: column;
+    }
+  }
+
+  &__left {
+    width: 61.14%;
+
+    @include sm-screen {
+      width: 100%;
+      order: 2;
+    }
+
+    .section__title {
+      @include sm-screen {
+        display: none;
+      }
+    }
+
+    .back-button {
+      @include sm-screen {
+        display: none;
+      }
+    }
+  }
+
+  .section__title.sm-block {
+    display: none;
+
+    @include sm-screen {
+      display: block;
+    }
+  }
+
+  .back-button.sm-flex {
+    display: none;
+
+    @include sm-screen {
+      display: flex;
+      margin-bottom: 25px;
+    }
+  }
+
+  &__right {
+    width: 29.6%;
+
+    @include lg-screen {
+      width: 35%;
+    }
+
+    @include md-screen {
+      width: 37%;
+    }
+
+    @include sm-screen {
+      width: 100%;
+      order: 1;
+      margin-bottom: 35px;
+    }
+  }
+
+  .back-button {
+    margin-bottom: 41px;
+    font-family: $play;
+
+    .ui-swiper-button {
+      width: 42px;
+      height: 42px;
+
+      @include md-screen {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+      }
+
+      .icon {
+        font-size: 10px;
+      }
+    }
+  }
+
+  &__block {
+    &-title {
+      margin-bottom: 16px;
+
+      @include sm-screen {
+        font-size: 12px;
+      }
+    }
+
+    &-subtitle {
+      font-family: $play;
+      font-size: 12px;
+      line-height: 1.2;
+      color: #A9A9A9;
+    }
+  }
+
+  &__tabs {
+    .tabs {
+      &__head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 39px;
+
+        @include xs-screen {
+          flex-flow: column;
+        }
+      }
+
+      &__item {
+        display: flex;
+        width: 48%;
+        padding: 21px 18px 27px;
+        background-color: transparent;
+        border: 1px solid rgba(56, 56, 56, 0.5);
+        cursor: pointer;
+
+        @include lg-screen {
+          padding: 20px 18px;
+        }
+
+        @include xs-screen {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+        
+        &.is-active {
+          background-color: #fff;
+          border: 1px solid #383838;
+        }
+      }
+    }
+  }
+
+  &__map {
+    display: flex;
+    justify-content: space-between;
+    font-family: $play;
+
+    @include sm-screen {
+      flex-flow: wrap;
+    }
+
+    &-left {
+      width: 48%;
+      margin-bottom: 25px;
+
+      @include sm-screen {
+        width: 100%;
+      }
+    }
+
+    &-right {
+      width: 48%;
+
+      @include sm-screen {
+        width: 100%;
+      }
+
+      .map {
+        position: relative;
+        @include ratio(412, 233);
+
+        @include lg-screen {
+          height: 100%;
+        }
+
+        &-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    &-title {
+      font-weight: 700;
+      font-size: 18px;
+      color: #383838;
+      margin-bottom: 20px;
+
+      @include lg-screen {
+        font-size: 16px;
+        margin-bottom: 11px;
+      }
+    }
+
+    &-show {
+      max-width: max-content;
+      color: $accent;
+      font-weight: 500;
+      cursor: pointer;
+      
+      &::before {
+        background-color: $accent;
+      }
+    }
+
+    &-block {
+      margin-top: 17px;
+      max-width: 260px;
+
+      &__name {
+        font-size: 14px;
+        line-height: 1.25;
+        color: rgba(56, 56, 56, 0.5);
+        margin-bottom: 8px;
+      }
+
+      &__desc {
+        font-size: 16px;
+        color: rgba(56, 56, 56, 1);
+      }
+    }
+  }
+  
+  &__personal {
+    margin-top: 64px;
+
+    @include sm-screen {
+      margin-top: 25px;
+    }
+
+    .ui-input {
+      background-color: #f0f0f0;
+      border: 1px solid rgba(56, 56, 56, 0.5);
+      color: #383838;
+    }
+
+    &-grid {
+      margin-top: 34px;
+      margin-bottom: 57px;
+      display: flex;
+      justify-content: space-between;
+      flex-flow: wrap;
+
+      @include sm-screen {
+        margin-top: 15px;
+        margin-bottom: 25px;
+      }
+
+      .ui-block {
+        margin-bottom: 17px;
+
+        &:nth-child(3n + 1) {
+          width: 100%;
+        }
+
+        &:nth-child(3n + 2),
+        &:nth-child(3n + 3) {
+          width: 48%;
+
+          @include xs-screen {
+            width: 100%;
+          }
+        }
+
+        &__placeholder {
+          font-family: $play;
+          font-size: 13px;
+          margin-bottom: 6px;
+          color: #151515;
+        }
+
+        textarea {
+          height: 121px;
+        }
+      }
+    }
+  }
+
+  &__composition {
+    margin-bottom: 53px;
+
+    @include sm-screen {
+      margin-bottom: 25px;
+    }
+
+    .characteristic {
+      &__name {
+        font-size: 16px;
+      }
+
+      &__value {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+
+    &-text {
+      font-weight: 400;
+    }
+
+    &-value {
+      font-size: 14px;
+
+      .value {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &__personal {
+
+  }
+
+  .make-order {
+    max-width: 299px;
+    height: 42px;
+    margin-bottom: 17px;
+  }
+
+  .policy {
+    font-family: $play;
+    font-size: 12px;
+    line-height: 1.2;
+    max-width: 79%;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  &__choose {
+    &-delivery {
+      display: flex;
+      flex-flow: column;
+
+      &__text {
+        font-family: $play;
+        font-weight: 700;
+        font-size: 16px;
+        color: rgba(56, 56, 56, 1);
+      }
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    background: #F0F0F0;
+    border: 1px solid rgba(56, 56, 56, 0.5);
+    padding: 14px 17px;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+    .ui-radio {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+  
+  &__info {
+    position: sticky;
+    top: 110px;
+    background-color: #fff;
+    border: 1px solid #E2E2E2;
+    padding: 32px 25px;
+
+    @include md-screen {
+      padding: 25px 17px;
+    }
+
+    @include sm-screen {
+      padding: 20px 15px;
+    }
+
+    .section__title {
+      margin-bottom: 20px;
+      padding-bottom: 31px;
+      border-bottom: 1px solid rgba(115, 115, 115, 0.2);
+      font-size: 19px;
+      width: 100%;
+
+      @include sm-screen {
+        font-weight: 400;
+        padding-bottom: 24px;
+      }
+    }
+
+    .checkout__total {
+      margin-bottom: 29px;
+
+      &-text {
+        font-family: $play;
+        font-size: 16px;
+
+        @include lg-screen {
+          font-size: 14px;
+        }
+      }
+
+      &-value {
+        font-family: $play;
+        font-weight: 700;
+        font-size: 10px;
+
+        @include lg-screen {
+          font-size: 8px;
+        }
+
+        .value {
+          font-size: 16px;
+
+          @include lg-screen {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+
+  &__product {
+    font-family: $play;
+    margin-bottom: 25px;
+
+    &-name {
+      max-width: 70%;
+      font-size: 16px;
+      margin-bottom: 8px;
+
+      @include lg-screen {
+        font-size: 14px;
+      }
+    }
+
+    &-info {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 16px;
+
+      @include lg-screen {
+        font-size: 14px;
+      }
+
+      .price-old {
+        margin-left: 15px;
+        font-size: 14px;
+        position: relative;
+
+        @include lg-screen {
+          margin-left: 8px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
