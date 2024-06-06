@@ -1,0 +1,183 @@
+.contacts {
+  &-block {
+    display: flex;
+    border-top: 1px solid rgba(56, 56, 56, 0.4);
+    border-bottom: 1px solid rgba(56, 56, 56, 0.4);
+
+    @include sm-screen {
+      flex-flow: column;
+      border: none;
+    }
+  }
+
+  &-element {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    padding: 41px 22px 41px 0;
+    width: 42.85%;
+
+    @include r(1024px) {
+      width: 55%;
+    }
+
+    @include sm-screen {
+      width: 100%;
+      padding: 30px 0 0 0;
+      border-top: 1px solid rgba(56, 56, 56, 0.4);
+    }
+  }
+
+  &-row {
+    display: flex;
+    width: 100%;
+
+    @include r(350px) {
+      flex-flow: column;
+    }
+  }
+
+  &-map {
+    width: 57.15%;
+    padding: 20px 0 20px 22px;
+    border-left: 1px solid rgba(56, 56, 56, 0.4);
+
+    @include r(1024px) {
+      width: 45%;
+    }
+
+    @include sm-screen {
+      border-left: none;
+      border-top: 1px solid rgba(56, 56, 56, 0.4);
+      margin-top: 30px;
+      padding: 30px 0 0 0;
+      width: 100%;
+      height: 379px;
+    }
+  }
+
+  &-item {
+    max-width: 277px;
+
+    &:first-child {
+      margin-right: 30px;
+
+      @include r(1024px) {
+        margin-right: 15px;
+      }
+
+      @include sm-screen {
+        margin-right: 40px;
+      }
+
+      @include r(366px) {
+        margin-right: 10px;
+      }
+    }
+
+    &:not(:first-child) {
+      margin: 0 auto;
+
+      @include r(345px) {
+        margin: 25px 0 0;
+      }
+    }
+
+    &__title {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+
+      @include r(1024px) {
+        font-size: 14px;
+      }
+
+      @include sm-screen {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &-info {
+    @include xs-screen {
+      min-height: 95px;
+    }
+
+    @include r(345px) {
+      min-height: 0;
+    }
+    &:not(:last-child) {
+      margin-bottom: 45px;
+
+      @include xs-screen {
+        margin-bottom: 25px;
+      }
+    }
+
+    &__title {
+      font-weight: 700;
+      font-family: $play;
+      font-size: 18px;
+      color: #383838;
+      margin-bottom: 10px;
+    }
+
+    &__text {
+      display: block;
+      font-family: $play;
+      font-size: 16px;
+      color: #383838;
+      line-height: 1.5;
+
+      &_list{
+        a{
+          display: block;
+          line-height: 1.5;
+        }
+      }
+
+      @include sm-screen {
+        font-size: 14px;
+      }
+
+    }
+  }
+
+  &-social {
+    margin-top: 40px;
+
+    &__title {
+      margin-bottom: 15px;
+      font-family: $play;
+      font-size: 18px;
+      letter-spacing: -0.05em;
+
+      @include sm-screen {
+        font-size: 14px;
+      }
+    }
+
+    .social {
+      &__link {
+        border-color: #383838;
+
+        .icon {
+          color: #383838;
+        }
+      }
+    }
+  }
+
+  &-button {
+    margin-top: 43px;
+    max-width: 300px;
+    height: 57px;
+
+
+    @include sm-screen {
+      max-width: 100%;
+      height: 42px;
+    }
+  }
+}

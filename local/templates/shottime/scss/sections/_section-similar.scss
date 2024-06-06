@@ -1,0 +1,154 @@
+.section-similar {
+  $similar: &;
+  margin-top: 100px;
+  margin-bottom: 107px;
+  border-top: none;
+
+  &.section-similar--index {
+    margin-bottom: 40px;
+    margin-top: 0;
+
+    &:not(:first-of-type) {
+      margin-top: 40px;
+    }
+
+    .section__head {
+      padding-top: 20px;
+    }
+
+    .section__grid {
+      .section__slide {
+        margin-right: 0;
+      }
+
+      .section__slide-description {
+        max-width: 350px;
+      }
+    }
+  }
+
+  .section {
+    &__head {
+      padding: 31px 0;
+      margin-bottom: 33px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+
+    &__title {
+      margin-bottom: 0;
+    }
+
+    &__name {
+      margin-bottom: 50px;
+
+      @include md-screen {
+        flex-flow: column;
+      }
+
+      .section__title {
+        width: 35.71%;
+
+        @include lg-screen {
+          width: 40%;
+        }
+
+        @include md-screen {
+          width: 100%;
+        }
+      }
+
+      .section__description {
+        padding-right: 125px;
+        width: 45.42%;
+
+        @include xl-screen {
+          padding-right: 0;
+        }
+
+        @include lg-screen {
+          width: 50%;
+        }
+
+        @include md-screen {
+          width: 100%;
+          margin-top: 25px;
+        }
+      }
+    }
+  }
+  .section__slider-navigation {
+    justify-content: space-between;
+    margin-bottom: 32px;
+
+    .section__title{
+      align-self: center!important;
+      text-transform: uppercase!important;
+      font-size: 32px!important;
+    }
+  }
+
+  .section__slide {
+    margin-right: 19px;
+  }
+
+  .catalog {
+    &__item {
+      flex-flow: column;
+
+      &-img {
+        max-width: 100%;
+      }
+
+      &-slide {
+        max-width: 334px;
+        margin-right: 15px;
+
+        @include xs-screen {
+          max-width: 100%;
+        }
+      }
+
+      &-description {
+        flex-flow: column;
+        padding: 7px 25px 27px;
+      }
+
+      .price {
+        margin-bottom: 15px;
+
+        &-new {
+          font-size: 13px;
+          margin-bottom: 5px;
+          .value {
+            font-size: 18px;
+          }
+        }
+      }
+
+      &-buttons {
+        max-width: 100%;
+      }
+
+      &-column {
+        max-width: 100%;
+
+        &_price {
+          padding-top: 5px;
+
+          @include xl-screen {
+            flex-flow: column;
+          }
+        }
+      }
+    }
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-sb {
+    @extend .flex;
+    justify-content: space-between;
+  }
+}

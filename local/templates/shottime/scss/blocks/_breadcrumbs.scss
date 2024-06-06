@@ -1,0 +1,30 @@
+.breadcrumbs {
+  margin-top: 24px;
+  margin-bottom: 20px;
+  &-row {
+    display: flex;
+    align-items: center;
+  }
+
+  &-divider {
+    font-family: $play;
+    color: rgba(149, 149, 149, 1);
+  }
+
+  &-item {
+    margin-right: 11px;
+    font-family: $play;
+    font-size: 16px;
+    color: rgba(149, 149, 149, 1);
+
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+
+
+    &:not(:first-child) {
+      margin-left: 11px;
+    }
+  }
+}

@@ -17,7 +17,7 @@ if (!empty($mainBannerNewsId) || !empty($newArrivalArr)) {
     while ($news = $newsResource->GetNextElement()) {
         $fields = $news->GetFields();
         $properties = $news->GetProperties();
-        $newsImage = CFile::GetPath($properties['BANNER_IMAGE']['VALUE']);
+        $newsImage = \CHTTP::urnEncode(CFile::ResizeImageGet($properties['BANNER_IMAGE']['VALUE'], array('width' => 640, 'height' => 328), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true)['src'], 'UTF-8'); // 640 328
         
         // Разделяем путь на директорию и имя файла
         $path_parts = pathinfo($newsImage);
