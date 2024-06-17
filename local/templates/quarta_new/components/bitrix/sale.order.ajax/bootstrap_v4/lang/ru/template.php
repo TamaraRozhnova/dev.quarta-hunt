@@ -61,6 +61,7 @@ $MESS["SOA_SUM_IT"] = "Итого к оплате";
 $MESS["SOA_SUM_PAYED"] = "Оплачено:";
 $MESS["SOA_SUM_LEFT_TO_PAY"] = "Осталось оплатить:";
 $MESS["SOA_ORDER_COMPLETE"] = "Заказ сформирован";
+$MESS["SOA_ORDER_CREDIT"] = "Подробные условия рассрочки и кредиту - на следующем экране";
 $MESS["CAPTCHA_REGF_TITLE"] = "Защита от автоматической регистрации";
 $MESS["CAPTCHA_REGF_PROMT"] = "Введите слово на картинке";
 $MESS["STOF_LOGIN"] = "Логин";
