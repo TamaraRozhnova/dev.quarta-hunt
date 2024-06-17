@@ -4,11 +4,18 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+use \Bitrix\Iblock\Elements\ElementBrandsTable,
+    \Bitrix\Iblock\Elements\ElementpromTable,
+    \Bitrix\Main\Type\DateTime;
+
 $arResult['ITEMS'] = [];
 $topLevelId = 0;
 $secondLevelId = 0;
 
-$saleData = \Bitrix\Iblock\Elements\ElementpromTable::getList([
+/**
+ * Получение акций
+ */
+$saleData = ElementpromTable::getList([
     'select' => [
         'ID',
         'IBLOCK_ID',
@@ -20,8 +27,8 @@ $saleData = \Bitrix\Iblock\Elements\ElementpromTable::getList([
         'PREVIEW_TEXT',
     ],
     'filter' => [
-        "<=ACTIVE_FROM" => new \Bitrix\Main\Type\DateTime(),
-        ">=ACTIVE_TO" => new \Bitrix\Main\Type\DateTime(),
+        "<=ACTIVE_FROM" => new DateTime(),
+        ">=ACTIVE_TO" => new DateTime(),
         'ACTIVE' => 'Y'
     ],
     'order' => ['SORT' => 'ASC']
@@ -41,50 +48,87 @@ unset($sale);
 
 $arResult['SALE_DATA'] = $saleData;
 
-$brandData = \Bitrix\Iblock\Elements\ElementBrandsTable::getList([
-    'select' => [
-        'ID',
-        'IBLOCK_ID',
-        'CODE',
-        'IBLOCK_SECTION_ID',
-        'NAME',
-        'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
-        'PREVIEW_PICTURE'
-        ],
-    'filter' => ['ACTIVE' => 'Y'],
-    'order' => ['SORT' => 'ASC']
+$rsBrands = ElementBrandsTable::getList([
+   'select' => [
+       'ID',
+       'IBLOCK_ID',
+       'CODE',
+       'IBLOCK_SECTION_ID',
+       'NAME',
+       'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
+       'PREVIEW_PICTURE'
+       ],
+   'filter' => ['ACTIVE' => 'Y'],
+   'order' => ['SORT' => 'ASC']
 ])->fetchAll();
 
-foreach ($brandData as &$brand) {
-    if ($brand['PREVIEW_PICTURE']) {
-        $brand['URL'] = CIBlock::ReplaceDetailUrl($brand['DETAIL_PAGE_URL'], $brand, false, 'E');
-        $brand['IMAGE'] = CFile::ResizeImageGet(
-            $brand['PREVIEW_PICTURE'],
-            ['width' => 250, 'height' => 70],
-            BX_RESIZE_IMAGE_PROPORTIONAL
-        )['src'];
+foreach ($rsBrands as &$arBrand) {
+
+    if (empty($arBrand['PREVIEW_PICTURE'])) {
+        continue;
     }
+    
+    $arBrand['URL'] = CIBlock::ReplaceDetailUrl($arBrand['DETAIL_PAGE_URL'], $arBrand, false, 'E');
+
+    $arBrand['IMAGE'] = CFile::ResizeImageGet(
+        $arBrand['PREVIEW_PICTURE'],
+        ['width' => 250, 'height' => 70],
+        BX_RESIZE_IMAGE_PROPORTIONAL
+    )['src'];
+
 }
-unset($brand);
 
-$arResult['BRAND_DATA'] = $brandData;
+/**
+ * Переиндексация брендов
+ * В качестве ключа выступает ID бренда
+ */
+$rsBrands = array_column($rsBrands, null, 'ID');
 
+/**
+ * Формирование ассоциативного массива  
+ * разделов с брендами и фильтрация пустых значений
+ */
+$arSectionsIDSWithBrands = array_filter(
+    array_column($arResult['SECTIONS'], 'UF_BRAND_LINK', 'ID')
+);
+
+/**
+ * Формирование дерева разделов
+ */
+$arBrandsJS = &$arResult['BRANDS_JS'];
 foreach ($arResult['SECTIONS'] as $section) {
-    $sectionData =
-        [
-            'NAME' => $section['NAME'],
-            'LINK' => $section['LIST_PAGE_URL'] . $section['SECTION_PAGE_URL'],
-            'SORT' => $section['SORT'],
-            'ELEMENT_CNT' => $section['ELEMENT_CNT'],
-            'ICON' => $section['UF_ICON'] ?
-                CFile::ResizeImageGet(
-                $section['UF_ICON'],
-                ['width' => 25, 'height' => 25],
-                BX_RESIZE_IMAGE_PROPORTIONAL
-            )['src']
-                :
-                false,
-        ];
+
+    $currentSectionID = $section['ID'];
+
+    $sectionData = [
+        'NAME' => $section['NAME'],
+        'ID' => $section['ID'],
+        'LINK' => $section['LIST_PAGE_URL'] . $section['SECTION_PAGE_URL'],
+        'SORT' => $section['SORT'],
+        'ELEMENT_CNT' => $section['ELEMENT_CNT'],
+        'ICON' => $section['UF_ICON'] ?
+            CFile::ResizeImageGet(
+            $section['UF_ICON'],
+            ['width' => 25, 'height' => 25],
+            BX_RESIZE_IMAGE_PROPORTIONAL
+        )['src']
+            :
+            false,
+    ];
+
+    /**
+     * Если бренд привязан к разделу, то
+     * формируем массив вида ID раздела => массив брендов
+     */
+    if (!empty($arSectionsIDSWithBrands[$currentSectionID])) {
+
+        $arCurrentBrandsIDS = $arSectionsIDSWithBrands[$currentSectionID]; 
+        foreach ($arCurrentBrandsIDS as $arBrandID) {
+            $currentArBrand = $rsBrands[$arBrandID];
+            $arBrandsJS[$section['ID']][$currentArBrand['ID']] = $currentArBrand;
+        }
+
+    }
 
     switch ($section['DEPTH_LEVEL']) {
         case 1:
@@ -100,22 +144,6 @@ foreach ($arResult['SECTIONS'] as $section) {
         default:
             $arResult['ITEMS'][$topLevelId]['SUBSECTIONS'][$secondLevelId]['SUBSECTIONS'][$section['ID']] = $sectionData;
             break;
-    }
-}
-
-$url = $_SERVER['REQUEST_URI'];
-$url = explode('?', $url);
-$url = $url[0];
-$url = explode('/', $url);
-$url = $url[2];
-
-foreach ($arResult['ITEMS'] as $id => $topLevelSection) {
-    $pos = strripos($topLevelSection['LINK'], $url);
-
-    if ($pos === false) {
-        $arResult['ITEMS'][$id]['SELECTED'] = false;
-    } else {
-        $arResult['ITEMS'][$id]['SELECTED'] = true;
     }
 }
 

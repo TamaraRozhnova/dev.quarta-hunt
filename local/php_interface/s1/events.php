@@ -114,3 +114,10 @@ $eventManager->addEventHandler(
     'OnBeforeIBlockElementUpdate',
     ['CustomEvents\OnBeforeIBlockElementUpdate', 'OnBeforeIBlockElementUpdateHandler']
 );
+
+// SEO, w3org
+$eventManager->addEventHandler(
+    'main',
+    'OnEndBufferContent',
+    'removeType'
+);

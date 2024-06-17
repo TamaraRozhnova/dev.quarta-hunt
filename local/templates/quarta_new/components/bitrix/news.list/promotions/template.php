@@ -24,7 +24,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                     <div class="col-6">
                         <figure class="promo-wide-light__image">
-                            <img
+                            <img loading="lazy"
                                  src="<?= $arResult['MAIN_BANNER_NEWS']['BANNER_IMAGE']['SRC'] ?>"
                                  alt="<?= $arResult['MAIN_BANNER_NEWS']['BANNER_TITLE']['VALUE'] ?>"
                             />
@@ -47,7 +47,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                    class="promo-card promo-card--background-image
                                    <?= $item['PROPERTIES']['TEXT_COLOR']['VALUE'] !== 'Темный' ? 'promo-card--light' : '' ?>"
                                 >
-                                    <figure style="background-image: url(<?= $item['PREVIEW_PICTURE']['SRC'] ?>)"></figure>
+                                    <figure style="background-image: url(<?=\CHTTP::urnEncode(CFile::ResizeImageGet($item['PREVIEW_PICTURE'], array('width' => 640, 'height' => 328), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true)['src'], 'UTF-8'); ?>)"></figure>
                                     <?if ($item['PROPERTIES']['HIDE_NAME_CARD_IN_SLIDER']['VALUE'] != 'Y'):?>
                                         <h3><?= $item['NAME'] ?></h3>
                                     <?endif;?>

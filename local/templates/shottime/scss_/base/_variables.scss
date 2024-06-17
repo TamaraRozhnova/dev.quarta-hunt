@@ -1,0 +1,43 @@
+// colors
+$accent: #B20E04;
+$accent2: darken($accent, 10%);
+$accent3: #d01515;
+
+$red: #B20E04;
+
+$grey: #2A2B2B;
+$light: #F9F9F9;
+
+$textDark: $grey;
+$error: $accent;
+$linkColor: $accent;
+
+// fonts
+$micra: 'Micra', sans-serif;
+$jura: 'Jura', sans-serif;
+$play: 'Play', sans-serif;
+$averta: 'Averta', sans-serif;
+$font: $play;
+
+// grid and responsive
+$container: 1400px;
+$columns: 12;
+$gap: 30px;
+$halfGap: ($gap / 2);
+$fields: 140px;
+
+$z-index: (
+        header: 200,
+        modal: 400
+);
+
+$break_xl: 1640px;
+$break_lg: 1439px;
+$break_md: 1132px;
+$break_sm: 743px;
+$break_xs: 575px;
+$break_xxs: 449px;
+
+$shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+
+$easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);

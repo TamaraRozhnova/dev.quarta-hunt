@@ -58,7 +58,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                             array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
                         );
                         ?>
-                        <div  <?=$arItemIterator?> class="news-list-item col-12 col-sm-6 col-lg-4
+                        <div  <?//=$arItemIterator?> class="news-list-item col-12 col-sm-6 col-lg-4
                             <?= $arItemIterator % 13 == 0 && $arItemIterator != 0 
                                 ? "wide-card"
                                 : null
@@ -149,7 +149,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                                             height="<?= $arItem["SLIDER"][0]["HEIGHT"] ?>"
                                                             alt="<?= $arItem["SLIDER"][0]["ALT"] ?>"
                                                             title="<?= $arItem["SLIDER"][0]["TITLE"] ?>"
-                                                    />
+                                                    >
                                                 </a>
                                                 <?
                                             } else {
@@ -161,7 +161,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                                         height="<?= $arItem["SLIDER"][0]["HEIGHT"] ?>"
                                                         alt="<?= $arItem["SLIDER"][0]["ALT"] ?>"
                                                         title="<?= $arItem["SLIDER"][0]["TITLE"] ?>"
-                                                />
+                                                >
                                                 <?
                                             }
                                             ?>
@@ -181,7 +181,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                                             src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
                                                             alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
                                                             title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                                                    />
+                                                    >
                                                 </picture>
                                             </a>
                                         </figure>
@@ -194,7 +194,7 @@ while ($ar_result = $resAllSections->GetNext()) {
                                             class="card-img-top"
                                             alt="<?= $arItem["PREVIEW_PICTURE"]["ALT"] ?>"
                                             title="<?= $arItem["PREVIEW_PICTURE"]["TITLE"] ?>"
-                                    />
+                                    >
                                         <?
                                     }
                                     }

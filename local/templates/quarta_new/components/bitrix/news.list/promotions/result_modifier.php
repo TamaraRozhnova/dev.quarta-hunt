@@ -18,14 +18,26 @@ if (!empty($mainBannerNewsId) || !empty($newArrivalArr)) {
         $fields = $news->GetFields();
         $properties = $news->GetProperties();
         $newsImage = CFile::GetPath($properties['BANNER_IMAGE']['VALUE']);
+        
+        // Разделяем путь на директорию и имя файла
+        $path_parts = pathinfo($newsImage);
+        $directory = $path_parts['dirname'];
+        $filename = $path_parts['basename'];
+
+        // Кодируем только имя файла
+        $encoded_filename = rawurlencode($filename);
+
+        // Собираем путь обратно
+        $encoded_src = $directory . "/" . $encoded_filename;
+
         if ($fields['ID'] == $mainBannerNewsId) {
             $arResult['MAIN_BANNER_NEWS'] = $properties;
-            $arResult['MAIN_BANNER_NEWS']['BANNER_IMAGE']['SRC'] = $newsImage;
+            $arResult['MAIN_BANNER_NEWS']['BANNER_IMAGE']['SRC'] = $encoded_src;
         }
 
         if (in_array($fields['ID'], $newArrivalArr)) {
             $arResult['ARRIVAL_NEWS'][$fields['ID']] = $properties;
-            $arResult['ARRIVAL_NEWS'][$fields['ID']]['BANNER_IMAGE']['SRC'] = $newsImage;
+            $arResult['ARRIVAL_NEWS'][$fields['ID']]['BANNER_IMAGE']['SRC'] = \CHTTP::urnEncode(CFile::ResizeImageGet($properties['BANNER_IMAGE']['VALUE'], array('width' => 640, 'height' => 328), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true)['src'], 'UTF-8');
         }
     }
 }

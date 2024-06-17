@@ -163,7 +163,7 @@ class ProductSubscribeForm
         if ($this->userPhone && !preg_grep('/^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/', [$this->userPhone])) {
             $this->errors['phone'] = 'Неверный номер телефона';
         }
-        if (!preg_grep('/^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$this->userEmail])) {
+        if (!preg_grep('/^([aA-zZ0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$this->userEmail])) {
             $this->errors['email'] = 'Неверный email';
         }
     }

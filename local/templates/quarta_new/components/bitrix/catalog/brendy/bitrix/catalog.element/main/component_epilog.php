@@ -18,6 +18,6 @@ $APPLICATION->IncludeComponent(
         "PRODUCT_ID" => $arResult['ID'],
         "USE_CAPTCHA" => "Y",
         "USE_FIELD_COMMENT" => "Y",
-        "USE_FIELD_EMAIL" => "N"
+        "USE_FIELD_EMAIL" => "Y"
     )
 );

@@ -1,30 +1,12 @@
 BX.namespace('BX.Sale.PersonalOrderComponent');
 
 (function() {
+
 	BX.Sale.PersonalOrderComponent.PersonalOrderList = {
+
 		init : function(params)
 		{
 			var rowWrapper = document.getElementsByClassName('sale-order-list-inner-row');
-
-			const orders = document.querySelectorAll('.history-order')
-
-			if (orders.length > 0) {
-				orders.forEach((order) => {
-					const cardArrows = order.querySelectorAll('.history-order__arrow');
-					const cardBody = order.querySelector('.history-order__body')
-
-					if (cardArrows.length > 0) {
-						cardArrows.forEach((arrow) => {
-							BX.bind(arrow, 'click', function() {
-								BX.toggleClass(arrow, ['', 'hided'])
-								$(cardBody).slideToggle('slow')
-							})
-						})
-					}
-
-
-				})
-			}
 
 			params.paymentList = params.paymentList || {};
 			params.url = params.url || "";
@@ -133,4 +115,5 @@ BX.namespace('BX.Sale.PersonalOrderComponent');
 			});
 		}
 	};
+
 })();

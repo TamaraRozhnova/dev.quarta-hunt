@@ -20,7 +20,7 @@ if (!count($arResult['SECTIONS'])) {
 
                         <div class="category-card__body">
                             <figure class="category-card__image">
-                                <img src="<?= $section['PICTURE']['SRC'] ?>" alt="<?= $section['NAME'] ?>"/>
+                                <img src="<?= $section['PICTURE']['SRC'] ?>" alt="<?= $section['NAME'] ?>">
                             </figure>
                             <h2 class="category-card__title">
                                 <?= $section['NAME'] ?>

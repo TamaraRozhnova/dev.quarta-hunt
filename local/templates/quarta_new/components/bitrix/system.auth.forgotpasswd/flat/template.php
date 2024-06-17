@@ -37,7 +37,7 @@ CJSCore::Init(['masked_input', 'jquery']);
 					<input type="hidden" name="AUTH_FORM" value="Y">
 					<input type="hidden" name="TYPE" value="SEND_PWD">
 			
-					<div class="bx-authform-formgroup-container input input--lg w-100">
+					<div class="bx-authform-formgroup-container input input--lg w-100 fo-email-recovery">
 						<label class="bx-authform-label-container form-label">
 							<?echo GetMessage("AUTH_LOGIN_EMAIL")?>
 						</label>
@@ -79,7 +79,7 @@ CJSCore::Init(['masked_input', 'jquery']);
 				</form>
 
 				<form name="bform-phone" id="form_forgot_phone" method="post" enctype="multipart/form-data" action="">
-					<div class="bx-authform-formgroup-container phone input input--lg w-100">
+					<div class="bx-authform-formgroup-container phone input input--lg w-100 fo-phone-recovery">
 						<label class="bx-authform-label-container form-label">
 							<?echo GetMessage("FOGGOT_PHONE")?>
 						</label>

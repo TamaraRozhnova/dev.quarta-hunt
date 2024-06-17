@@ -1,5 +1,43 @@
 window.addEventListener('load', (e) => {
 
+  /** Validation fields for login */
+
+  const phoneLogin = new Input({
+    wrapperSelector: '.phone.input',
+    required: true,
+    validMask: /^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/,
+    mask: '+7 (###) ###-##-##',
+    errorMessage: 'Телефон должен быть в указанном формате'
+  });
+
+  const emailLogin = new Input({
+    wrapperSelector: '.au-email-login',
+    required: true,
+    validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+    errorMessage: 'Введите email в корректном формате'
+  });
+
+  const emailPassword = new Input({
+    wrapperSelector: '.au-email-password',
+    required: true,
+    errorMessage: 'Поле обязательно к заполнению'
+  });
+
+  /** Validation email login */
+
+  $(".au-email-login-btn input").on("click", (e) => {
+
+    if (!emailLogin.isValidValue()) {
+      emailLogin.setError()
+      e.preventDefault();
+    }
+
+    if (!emailPassword.isValidValue()) {
+      emailPassword.setError()
+      e.preventDefault();
+    }
+
+  })
 
 
 // $(document).ready(function () {
@@ -23,6 +61,7 @@ window.addEventListener('load', (e) => {
     }
   });
 
+
   $(".auth_email_form").on("click", function () {
     $("#form_auth_phone").hide();
     $(".auth_email_form").hide();
@@ -43,11 +82,20 @@ window.addEventListener('load', (e) => {
     let phoneElement = $("#phone");
     let phoneLength = phoneElement.val().replace(/[^0-9]/g, "");
 
-    if (phoneLength.length < 11) {
+    /* if (phoneLength.length < 11) {
       phoneElement.next(".error_message").text("Введите номер телефона");
-    } else {
+    } */
+
+    /**
+     * Если телефон введен
+     * корректно по маске, то пропускаем
+     */
+    if (phoneLogin.isValidValue()) {
       authPhone(null, true);
+    } else {
+      phoneLogin.setError()
     }
+
   });
 
   $(".more_code_phone").on("click", function (e) {
@@ -146,6 +194,31 @@ function handleQuickRegister(data, modalNode) {
   const btnQuickRegister = document.querySelector(".form_quick_register");
 
   if (btnQuickRegister != null) {
+
+    const nameQr = new Input({
+      wrapperSelector: '.reg-name-qr',
+      required: true,
+      errorMessage: 'Поле обязательно к заполнению'
+    });
+
+    const lastNameQr = new Input({
+      wrapperSelector: '.reg-last-name-qr',
+      required: true,
+      errorMessage: 'Поле обязательно к заполнению'
+    });
+
+    const codeQr = new Input({
+      wrapperSelector: '.reg-code-qr',
+      required: true,
+      errorMessage: 'Поле обязательно к заполнению'
+    });
+
+    const reqFieldsQr = [
+      nameQr,
+      lastNameQr,
+      codeQr
+    ];
+
     btnQuickRegister.addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -154,12 +227,6 @@ function handleQuickRegister(data, modalNode) {
       modalNode
         .querySelectorAll("input[type=text], input[type=password]")
         .forEach((input) => {
-          if (input.value.trim() == "") {
-            input.classList.add("error");
-          } else {
-            input.classList.remove("error");
-          }
-
           inputsModal[input.name] = input.value.trim();
         });
 
@@ -174,7 +241,13 @@ function handleQuickRegister(data, modalNode) {
       // 	confirmPassword.classList.add('error')
       // }
 
-      if (modalNode.querySelectorAll("input.error").length == 0) {
+      reqFieldsQr.forEach(field => {
+          if (!field.isValidValue()) {
+              field.setError()
+          }
+      });
+
+      if (modalNode.querySelectorAll("input.is-invalid").length == 0) {
         BX.ajax({
           method: "POST",
           data: {

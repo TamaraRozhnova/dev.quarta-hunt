@@ -1,0 +1,33 @@
+.nav-search {
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  background-color: #f0f0f0;
+  z-index: 100;
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
+
+  &.is-active {
+    @include sm-screen {
+      max-height: 300px;
+    }
+  }
+
+  &__content {
+    padding: 52px 0 160px;
+
+    @include md-screen {
+      padding: 0 0 40px;
+    }
+
+    @include sm-screen {
+      padding: 0 0 40px;
+    }
+  }
+
+  .form-block {
+    display: flex;
+    align-items: center;
+  }
+}

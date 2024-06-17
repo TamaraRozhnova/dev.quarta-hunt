@@ -26,7 +26,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
 
 ?>
 
-<div class="product-card" 
+<div class="product-card"
      itemscope
      itemprop="itemListElement" itemtype="http://schema.org/Product"
      data-id="<?= $item['ID'] ?>"
@@ -102,7 +102,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
 
         <a itemprop="url" href="<?= $item['DETAIL_PAGE_URL'] ?>">
             <figure>
-                <img itemprop="image" src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>"/>
+                <img loading="lazy" itemprop="image" src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>">
             </figure>
         </a>
     </div>
@@ -174,7 +174,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
         <a href="javascript:void(0);" 
             class="btn btn-primary interlabs-one-click-buy"
             data-productid="<?=$item['ID']?>" 
-            data-data="<?=json_encode(["PRODUCT_ID" => $item['ID']])?>" 
+            data-data='<?=json_encode(["PRODUCT_ID" => $item['ID']])?>'
             id="one-click-buy-<?=$item['ID']?>"
         >                        
             <?=GetMessage("BUY_ONE_CLICK")?>

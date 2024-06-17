@@ -21,7 +21,7 @@
                         <?=$arItem['COPY_ATTR'] ? 'data-copy-attr='. $arItem['COPY_ATTR'] : null ?>
                         href='<?=$arItem['LINK_SERVICE']?>'
                         class="sharing-element">
-                            <img class="svg" src="<?=CFile::GetPath($arItem['PROPERTIES']['SS_ICON']['VALUE'])?>">
+                            <img class="svg" src="<?=CFile::GetPath($arItem['PROPERTIES']['SS_ICON']['VALUE'])?>" alt="<?=$arItem['NAME']?>">
                         </a>
                     <?endif?>
                 <?endforeach;?>

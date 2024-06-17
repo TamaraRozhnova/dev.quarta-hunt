@@ -69,8 +69,25 @@ window.addEventListener('DOMContentLoaded', () => {
         const button = category.querySelector('.catalog-category-mobile__title');
         button.addEventListener('click', (e) => {
             if (e.target.classList.contains('expand')) {
+                category.classList.remove('catalog-category-mobile--expanded');
+                e.target.classList.remove('expand')
+
+                let children = e.target.nextSibling;
+                if (children) {
+                    children.nextSibling.style.display = 'block';
+                }
+
+                e.preventDefault();
+            } else {
                 category.classList.toggle('catalog-category-mobile--expanded');
-                e.preventDefault()
+                e.target.classList.toggle('expand')
+
+                let children = e.target.nextSibling;
+                if (children) {
+                    children.nextSibling.style.display = 'none';
+                }
+
+                e.preventDefault();
             }
         })
     });

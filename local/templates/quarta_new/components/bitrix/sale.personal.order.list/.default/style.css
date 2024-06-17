@@ -177,6 +177,50 @@
 	display: none;
 }
 
+#cancel-md-form,
+#cancel-md-form-success {
+	width: 30%;
+    margin: auto;
+	right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    height: fit-content;
+}
+
+@media (max-width: 500px) {
+	#cancel-md-form,
+	#cancel-md-form-success {
+		width: 90%;
+	}
+
+	#cancel-md-form-success .modal__close,
+	#cancel-md-form .modal__close {
+		top: 10px;
+		right: 10px;
+	}
+
+	#cancel-md-form-success .modal-body h3 {
+		margin: 0;
+	}
+
+}
+
+#cancel-md-form .modal-body {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+#cancel-md-form .modal-body__btns .cancel-order {
+	width: 100%;
+}
+
+#cancel-md-form .modal-content,
+#cancel-md-form-success .modal-content {
+	box-shadow: none;
+}
+
 @media (max-width: 971px) {
 	.personal-order h2 svg {
 		transform: none;
@@ -184,6 +228,17 @@
 }
 
 @media screen and (max-width: 768px) {
+	.sale-order-list-inner-row-body {
+		flex-direction: column;
+	}
+	.sale-order-list-inner-row-body .bx-order-cancel {
+		max-width: 100%;
+		margin: 1rem auto auto auto;
+		width: 100%;
+	}
+	.sale-order-list-inner-row-body .bx-order-cancel input.btn {
+		width: 100%;
+	}
 	.history-order__column > span > b{
 		font-size: 14px;
 	}

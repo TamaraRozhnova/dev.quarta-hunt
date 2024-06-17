@@ -43,14 +43,19 @@ $curPage = $APPLICATION->GetCurPage();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <meta name="robots" content="noindex, nofollow"/> -->
 
     <title><? $APPLICATION->ShowTitle(false); ?></title>
     <?
-    $APPLICATION->ShowHead();
+    // SEO w3org, вместо $APPLICATION->ShowHead();
+    $APPLICATION->ShowMeta("robots", false, false);
+    $APPLICATION->ShowMeta("description", false, false);
+    $APPLICATION->ShowLink("canonical", null, false);
+    $APPLICATION->ShowCSS(true, false);
+    $APPLICATION->ShowHeadStrings();
+    $APPLICATION->ShowHeadScripts();
+
     $asset->addCss(SITE_TEMPLATE_PATH . "/assets/fonts/stylesheet.css");
     $asset->addCss(SITE_TEMPLATE_PATH . "/assets/libs/styles/swiper.min.css");
     $asset->addJs(SITE_TEMPLATE_PATH . "/assets/libs/scripts/swiper.min.js");
@@ -195,7 +200,7 @@ $curPage = $APPLICATION->GetCurPage();
             <div class="row header__main-row">
                 <div class="header__logo-section">
                     <a href="/">
-                        <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo" alt="QUARTA"/>
+                        <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo" alt="QUARTA">
                     </a>
                 </div>
 
@@ -207,7 +212,7 @@ $curPage = $APPLICATION->GetCurPage();
 
                 <div class="header__lists-section col">
                     <a href="/compare" class="header__top-item btn-link px-2 mx-2">
-                        <div class="position-relative px-1">
+                        <span class="position-relative px-1">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 2.42771C0 1.08692 1.08692 0 2.42771 0H15.3755C16.7163 0 17.8032 1.08692 17.8032 2.42771V15.3755C17.8032 16.7163 16.7163 17.8032 15.3755 17.8032H2.42771C1.08692 17.8032 0 16.7163 0 15.3755V2.42771Z" fill="#004989" fill-opacity="0.09"/>
                                 <line x1="3" y1="14.167" x2="15" y2="14.167" stroke="#004989"/>
@@ -216,47 +221,47 @@ $curPage = $APPLICATION->GetCurPage();
                                 <path d="M10.4666 14.1338L10.4666 8.66712H13.4443V14.0005" stroke="#004989"/>
                             </svg>
                             <span>Сравнение</span>
-                            <?/*<span class="position-absolute top-0 start-100 translate-middle compare-badge badge bg-secondary"
+                            <span class="position-absolute top-0 start-100 translate-middle compare-badge badge bg-secondary"
                                   style="display: <?= $compareCount > 0 ? 'block' : 'none' ?>">
                                 <?= $compareCount ?>
-                            </span>*/?>
-                        </div>
+                            </span>
+                        </span>
                     </a>
 
                     <a href="/favorites" class="header__top-item btn-link px-2 mx-2">
-                        <div class="position-relative px-1 text-primary">
+                        <span class="position-relative px-1 text-primary">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 2.42771C0 1.08692 1.08692 0 2.42771 0H15.3755C16.7163 0 17.8032 1.08692 17.8032 2.42771V15.3755C17.8032 16.7163 16.7163 17.8032 15.3755 17.8032H2.42771C1.08692 17.8032 0 16.7163 0 15.3755V2.42771Z" fill="#004989" fill-opacity="0.09"/>
                                 <path d="M8.60803 12.9796L8.60731 12.979C7.3096 11.8247 6.27354 10.9018 5.55589 10.0412C4.84367 9.18702 4.5 8.45711 4.5 7.69755C4.5 6.4721 5.47702 5.5 6.75 5.5C7.47217 5.5 8.17043 5.83219 8.62243 6.35285L9 6.78778L9.37757 6.35285C9.82957 5.83219 10.5278 5.5 11.25 5.5C12.523 5.5 13.5 6.4721 13.5 7.69755C13.5 8.45712 13.1563 9.18705 12.444 10.0419C11.7263 10.9032 10.6904 11.8271 9.39288 12.9837C9.39269 12.9839 9.39249 12.9841 9.39229 12.9843L9.00126 13.3308L8.60803 12.9796Z" stroke="#004989"/>
                             </svg>
                             <span>Избранное</span>
-                            <?/*<span class="position-absolute top-0 start-100 translate-middle favorites-badge badge bg-secondary"
+                            <span class="position-absolute top-0 start-100 translate-middle favorites-badge badge bg-secondary"
                                   style="display: <?= $favoritesCount > 0 ? 'block' : 'none' ?>">
                                 <?= $favoritesCount ?>
-                            </span>*/?>
-                        </div>
+                            </span>
+                        </span>
                     </a>
 
                     <a href="/cart" class="header__top-item btn-link px-2 mx-2">
-                        <div class="position-relative px-1 text-primary">
-                            <div class="basket-icon-background">
+                        <span class="position-relative px-1 text-primary">
+                            <span class="basket-icon-background">
                                 <svg width="18" height="17" viewBox="0 0 18 17" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.1578 9.15255L17.1146 3.89034C17.1311 3.79961 17.1274 3.70636 17.1039 3.61719C17.0804 3.52801 17.0376 3.44509 16.9785 3.37429C16.9194 3.30349 16.8455 3.24653 16.762 3.20744C16.6784 3.16836 16.5873 3.1481 16.4951 3.1481H3.7986L3.41421 1.03399C3.36158 0.743793 3.2087 0.481293 2.98226 0.292313C2.75583 0.103333 2.47021 -0.000123988 2.17528 1.11515e-07H0.75462C0.587634 1.11515e-07 0.427488 0.0663349 0.309411 0.184412C0.191335 0.302488 0.125 0.462634 0.125 0.62962C0.125 0.796606 0.191335 0.956752 0.309411 1.07483C0.427488 1.19291 0.587634 1.25924 0.75462 1.25924H2.1752L4.33606 13.1436C4.02865 13.4143 3.80281 13.7654 3.68391 14.1574C3.565 14.5494 3.55773 14.9667 3.66292 15.3626C3.76811 15.7585 3.98159 16.1172 4.27939 16.3985C4.57718 16.6798 4.9475 16.8725 5.34875 16.9549C5.74999 17.0374 6.16628 17.0063 6.55086 16.8652C6.93543 16.7242 7.27306 16.4787 7.52583 16.1563C7.77859 15.834 7.93649 15.4476 7.98178 15.0405C8.02706 14.6333 7.95795 14.2217 7.7822 13.8516H11.986C11.7814 14.283 11.7225 14.7692 11.8181 15.237C11.9137 15.7048 12.1586 16.1289 12.5161 16.4454C12.8735 16.7619 13.3241 16.9538 13.8 16.9922C14.2759 17.0305 14.7514 16.9132 15.1549 16.658C15.5584 16.4027 15.868 16.0233 16.0373 15.5769C16.2065 15.1304 16.2262 14.6411 16.0933 14.1825C15.9604 13.7239 15.6821 13.3209 15.3004 13.0341C14.9186 12.7474 14.4541 12.5923 13.9766 12.5924H5.51573L5.17227 10.7035H14.2994C14.7418 10.7037 15.1702 10.5486 15.5099 10.2651C15.8495 9.98162 16.0789 9.58786 16.1578 9.15255ZM6.73601 14.7961C6.73601 14.9829 6.68062 15.1655 6.57685 15.3208C6.47307 15.4761 6.32557 15.5971 6.153 15.6686C5.98043 15.7401 5.79053 15.7588 5.60733 15.7224C5.42413 15.6859 5.25585 15.596 5.12377 15.4639C4.99169 15.3318 4.90174 15.1635 4.8653 14.9803C4.82886 14.7971 4.84756 14.6072 4.91904 14.4347C4.99052 14.2621 5.11157 14.1146 5.26688 14.0108C5.42219 13.907 5.60479 13.8516 5.79158 13.8516C6.04198 13.8519 6.28204 13.9515 6.45909 14.1286C6.63615 14.3056 6.73574 14.5457 6.73601 14.7961ZM14.9211 14.7961C14.9211 14.9829 14.8657 15.1655 14.7619 15.3208C14.6581 15.4761 14.5106 15.5971 14.3381 15.6686C14.1655 15.7401 13.9756 15.7588 13.7924 15.7224C13.6092 15.6859 13.4409 15.596 13.3088 15.4639C13.1767 15.3318 13.0868 15.1635 13.0504 14.9803C13.0139 14.7971 13.0326 14.6072 13.1041 14.4347C13.1756 14.2621 13.2966 14.1146 13.4519 14.0108C13.6073 13.907 13.7898 13.8516 13.9766 13.8516C14.227 13.8519 14.4671 13.9515 14.6442 14.1286C14.8212 14.3056 14.9208 14.5457 14.9211 14.7961ZM4.02754 4.40734H15.7407L14.9189 8.92738C14.8925 9.07246 14.8161 9.20369 14.7029 9.29817C14.5897 9.39264 14.4469 9.44436 14.2995 9.4443H4.94332L4.02754 4.40734Z"
                                           fill="currentColor"/>
                                 </svg>
-                            </div>
+                            </span>
                             <span>Корзина</span>
-                            <?/*<span class="position-absolute top-0 start-100 translate-middle basket-badge badge bg-secondary"
+                            <span class="position-absolute top-0 start-100 translate-middle basket-badge badge bg-secondary"
                                   style="display: <?= $basketItemsCount > 0 ? 'block' : 'none' ?>">
                                 <?= $basketItemsCount ?>
-                            </span>*/?>
-                        </div>
+                            </span>
+                        </span>
                     </a>
                 </div>
             </div>
 
-            <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sections_menu", [
+            <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "mega_sections_menu", [
                 "ADD_SECTIONS_CHAIN" => "N",
                 "CACHE_GROUPS" => "N",
                 "CACHE_TIME" => "36000000",
@@ -282,7 +287,8 @@ $curPage = $APPLICATION->GetCurPage();
                     12 => "",
                 ],
                 "SECTION_USER_FIELDS" => [
-                    0 => "UF_ICON"
+                    0 => "UF_ICON",
+                    1 => "UF_BRAND_LINK"
                 ],
                 "SECTION_ID" => false,
                 "SECTION_URL" => "#SECTION_CODE_PATH#/",
@@ -300,12 +306,12 @@ $curPage = $APPLICATION->GetCurPage();
 
     <header class="header header--mobile">
         <a class="header__logo-mobile" href="/">
-            <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo mb-3" alt="QUARTA" />
+            <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo mb-3" alt="QUARTA" >
         </a>
         <div class="row">
             <div class="header__logo-section col">
                 <a href="/">
-                    <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo" alt="QUARTA" />
+                    <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo" alt="QUARTA" >
                 </a>
             </div>
 
@@ -317,19 +323,19 @@ $curPage = $APPLICATION->GetCurPage();
 
             <div class="header__actions col">
                 <button class="btn btn-light text-primary p-2 header__button-mobile">
-                    <div class="position-relative px-1">
+                    <span class="position-relative px-1">
                         <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 13H17M1 1H17H1ZM1 7H9H1Z" stroke="#004989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </div>
+                    </span>
                 </button>
 
                 <button class="btn btn-link p-2 ms-2 header__button-contacts">
-                    <div class="position-relative px-1">
+                    <span class="position-relative px-1">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17.4873 13.9547L13.4223 10.2587C13.2301 10.084 12.9776 9.9909 12.7181 9.99892C12.4585 10.0069 12.2123 10.1155 12.0313 10.3017L9.63828 12.7627C9.06228 12.6527 7.90428 12.2917 6.71228 11.1027C5.52028 9.90969 5.15928 8.74869 5.05228 8.17669L7.51128 5.78269C7.69769 5.60182 7.80642 5.35551 7.81444 5.0959C7.82247 4.83628 7.72917 4.58373 7.55428 4.39169L3.85928 0.327692C3.68432 0.135049 3.44116 0.0181963 3.18143 0.00195179C2.92171 -0.0142928 2.66588 0.0713504 2.46828 0.240692L0.298282 2.10169C0.125393 2.27521 0.0222015 2.50614 0.00828196 2.75069C-0.00671804 3.00069 -0.292718 8.92269 4.29928 13.5167C8.30528 17.5217 13.3233 17.8147 14.7053 17.8147C14.9073 17.8147 15.0313 17.8087 15.0643 17.8067C15.3088 17.793 15.5396 17.6894 15.7123 17.5157L17.5723 15.3447C17.7423 15.1477 17.8286 14.8921 17.8127 14.6324C17.7968 14.3727 17.68 14.1295 17.4873 13.9547Z" fill="currentColor"/>
                         </svg>
-                    </div>
+                    </span>
                 </button>
             </div>
         </div>
@@ -364,7 +370,7 @@ $curPage = $APPLICATION->GetCurPage();
                     false,
                 );*/?>
 
-                <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "sections_menu_mobile", [
+                <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "mega_sections_menu_mobile", [
                     "ADD_SECTIONS_CHAIN" => "N",
                     "CACHE_GROUPS" => "N",
                     "CACHE_TIME" => "36000000",

@@ -20,6 +20,31 @@
   background-color: #fff;
   transition: border-color 0.3s ease;
 }
+ul.checklist {
+  padding: 0;
+  margin: 0;
+}
+ul.checklist li:before {
+  content: "";
+  width: 15px;
+  height: 12px;
+  position: absolute;
+  top: .25em;
+  left: 0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='15' height='12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.657 11.499c.11.155.252.281.418.368a1.155 1.155 0 001.492-.368L14.344.479c.14-.2 0-.479-.24-.479h-1.732c-.377 0-.735.185-.956.502L5.614 8.729 2.984 5a1.173 1.173 0 00-.956-.502H.296c-.24 0-.38.28-.24.48l4.601 6.52z' fill='%23EB5806'/%3E%3C/svg%3E")
+}
+ul.checklist li:last-child {
+  margin-bottom: 0;
+}
+.bx-soa-your-help {
+  margin-bottom: 1rem;
+}
+ul.checklist li {
+  padding-left: calc(15px + 1.5ch);
+  position: relative;
+  display: block;
+  margin-bottom: .6rem;
+}
 #bx-soa-basket.bx-soa-section {
   padding: 0;
   margin-bottom: 0;
