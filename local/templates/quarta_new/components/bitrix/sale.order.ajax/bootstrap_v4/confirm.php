@@ -156,9 +156,17 @@ if (
 								</div>
 							</div>
 							<div class="mb-4 align-items-center payment-info">
-								<span><?=CFile::ShowImage($arPaySystem["LOGOTIP"], 100, 100, "border=0\" style=\"width:100px\"", "", false) ?></span>
+								<? if (!empty($arPaySystem["LOGOTIP"])): ?>
+									<span><?=CFile::ShowImage($arPaySystem["LOGOTIP"], 100, 100, "border=0\" style=\"width:100px\"", "", false) ?></span>
+								<? endif; ?>
 								<span><p><?=$arPaySystem["NAME"] ?></p></span>
+								<? if ($arPaySystem['PAY_SYSTEM_ID'] == UKASSA_CREDIT_ID): ?>
+									<span class="payment-text-credit">
+										<p><?=Loc::getMessage('SOA_ORDER_CREDIT')?></p>
+									</span>
+								<? endif; ?>
 							</div>
+
 							<?php 
 							/** 
 							 * Если заказ оформлен от юр.лица

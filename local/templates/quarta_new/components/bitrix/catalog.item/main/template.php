@@ -37,7 +37,12 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
     <div class="product-card__image">
 
         <? if ($arResult['PARAMS']['SHOW_PRODUCT_TAGS_IN_SECTIONS'] === 'Y') { ?>
-            <div class="product-card__tags">
+            <div 
+                class="product-card__tags <?=$item['SHOW_BTN_LIST_LABELS'] ? 'show-btn-list-labels' : null?>"
+            >
+                <? if ($item['SHOW_CREDIT'] == 'Y') { ?>
+                    <div class="product-card__tag">Рассрочка до 12 мес.</div>
+                <? } ?>
                 <? if ($item['PROPERTIES']['HIT']['VALUE']) { ?>
                     <div class="product-card__tag">Хит</div>
                 <? } ?>
@@ -58,6 +63,17 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
                             <div class="product-card__tag bg-primary">x2</div>
                         </span>
                         <span class="tooltip">Двойные бонусы за покупку</span>
+                    </span>
+                <? } ?>
+                <? if ($item['SHOW_BTN_LIST_LABELS']) { ?>
+                    <span class="product-btn-list-labels">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 512.005 512.005" xml:space="preserve">
+                        <g>
+                            <g>
+                                <path d="M388.418,240.923L153.751,6.256c-8.341-8.341-21.824-8.341-30.165,0s-8.341,21.824,0,30.165L343.17,256.005    L123.586,475.589c-8.341,8.341-8.341,21.824,0,30.165c4.16,4.16,9.621,6.251,15.083,6.251c5.461,0,10.923-2.091,15.083-6.251    l234.667-234.667C396.759,262.747,396.759,249.264,388.418,240.923z"/>
+                            </g>
+                        </g>
+                        </svg>
                     </span>
                 <? } ?>
             </div>

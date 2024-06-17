@@ -2649,7 +2649,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
 
 
       let that = this;
-      console.log(BX('bx-soa-coupon_id'), 'coupon_id');
+
       BX.ajax({
         url: this.templateFolder + "/backend.php",
         data: {},
@@ -3559,9 +3559,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
 
       if (!this.isUserOpt) {
         this.handleClickChoice();
+
         $("#bx-soa-coupon-bonus-block_id").remove();
 
         this.setBlockBonusesCoupons();
+
+        /**
+         * Если текущая плат.система - кредит
+         * Убираем блок с бонусами и промокодом
+         */
+        this.result.PAY_SYSTEM.forEach((paySystem) => {
+          if (paySystem?.ID == this.paysSystem?.UKASSA_CREDIT_ID && paySystem?.CHECKED == 'Y') {
+            $("#bx-soa-coupon-bonus-block_id").remove();
+          }
+        })
 
         setTimeout(() => {
           $("#range")

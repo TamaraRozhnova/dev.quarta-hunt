@@ -1512,3 +1512,87 @@
   color: var(--bs-gray-600);
 }
 /*bonus*/
+
+/* credit */
+.product__credit {
+  font-size: 14px;
+
+}
+
+.product__credit > span:not([class]) {
+  color: #eb5806;
+}
+
+.product__credit .bold {
+  font-weight: 500;
+}
+
+.product__credit {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 1.5em;
+}
+
+.product__credit-ico {
+  position: relative;
+  display: flex;
+}
+
+.product__credit-ico svg {
+  cursor: pointer;
+}
+
+.product__credit-ico-tip {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  top: calc(100% + 18px);
+  width: 360px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1;
+  box-shadow: 0 1px 20px #04061c1a;
+  left: -25px;
+}
+
+.product__credit-ico-tip-title {
+  font-size: 16px;
+  color: black;
+  font-weight: 500;
+}
+
+.product__credit-ico.active .product__credit-ico-tip {
+  display: flex;
+}
+
+.product__credit-ico-tip-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.product__credit-ico-tip-close > svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .product__credit-ico-tip {
+    left: unset;
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .product__credit-ico-tip {
+    left: 50%;
+    right: unset;
+    transform: translateX(-57%);
+  }
+}
+

@@ -130,7 +130,7 @@ $APPLICATION->IncludeComponent(
 			1 => "HIT",
 			2 => "NEW_PRODUCT",
 			3 => "DOUBLE_BONUS",
-			4 => "",
+			4 => "ITS_CREDIT",
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",
@@ -255,7 +255,7 @@ $APPLICATION->IncludeComponent(
 		"GIFTS_MAIN_PRODUCT_DETAIL_PAGE_ELEMENT_COUNT" => "4",
 		"GIFTS_MAIN_PRODUCT_DETAIL_HIDE_BLOCK_TITLE" => "N",
 		"GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE" => "Выберите один из товаров, чтобы получить подарок",
-		"PRODUCTS_TEXT_LICENSE" => array("584", "585", "586", "588", "589", "590", "593", "594", "597", "600", "775", "802", "803", "804", "855", "904"),
+		"PRODUCTS_TEXT_LICENSE" => SECTIONS_LICENSED,
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",

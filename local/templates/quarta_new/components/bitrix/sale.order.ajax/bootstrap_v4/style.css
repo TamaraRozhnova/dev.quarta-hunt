@@ -1953,7 +1953,11 @@ hr.bxe-light {
 }
 .bx-soa-section.confirm .payment-info {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+}
+.payment-text-credit {
+  flex: 1 1 100%;
 }
 #bx-soa-auth .bx-authform .form-group,
 #bx-soa-auth .bx-authform .form-check,
