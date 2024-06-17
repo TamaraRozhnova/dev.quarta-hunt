@@ -123,7 +123,9 @@ $containerName = 'container-'.$navParams['NavNum'];
 $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_THEME'] : '';
 
 ?>
+
 <div class="inner__hero">
+	<?/*
     <? if($arResult['DETAIL_PICTURE']['SRC']):?>
         <div class="inner__hero-img">
             <picture>
@@ -137,6 +139,7 @@ $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_TH
             <?=$arResult['DESCRIPTION']?>
         </div>
     <?endif?>
+*/?>
 </div>
 <div class="inner__catalog catalog"> <? // wrapper ?>
 	<?
@@ -168,7 +171,7 @@ $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_TH
 	}
 	//endregion
 	?>
-		<div class=catalog__list" data-entity="<?=$containerName?>">
+		<div class="catalog__list" data-entity="<?=$containerName?>">
             <!-- items-container -->
             <? foreach ($arResult['ITEMS'] as $index => $arItem)
             {
@@ -184,6 +187,115 @@ $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_TH
             } ?>
             <!-- items-container -->
 		</div>
+
+<section class="section section-plus">
+  <div class="">
+    <div class="section-plus__grid">
+				
+              <div class="section-plus__item">
+                <div class="section-plus__item-title">Выгодные<br>цены</div>
+                <div class="section-plus__item-text">Самая доступная пневматика в России</div>
+                <div class="plus plus--top-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--top-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+              </div>
+ 
+              <div class="section-plus__item">
+                <div class="section-plus__item-title">Высокое<br>качество</div>
+                <div class="section-plus__item-text">Простые и надёжные механизмы пистолетов</div>
+                <div class="plus plus--top-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--top-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+              </div>
+ 
+              <div class="section-plus__item">
+                <div class="section-plus__item-title">Отличное<br>сходство</div>
+                <div class="section-plus__item-text">Основаны на легендарных боевых прототипах</div>
+                <div class="plus plus--top-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--top-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+              </div>
+ 
+              <div class="section-plus__item">
+                <div class="section-plus__item-title">Удобная<br>доставка</div>
+                <div class="section-plus__item-text">Доставка в любой регион в течение 5 дней</div>
+                <div class="plus plus--top-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--top-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-left">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+                <div class="plus plus--bottom-right">
+                  <svg class="icon icon-plus">
+                    <use xlink:href="/local/templates/shottime/img/sprite.svg#icon-plus"></use>
+                  </svg>
+                </div>
+              </div>
+ 
+             </div>
+  </div>
+</section>
+
 		<?
 
 		//region LazyLoad Button
@@ -262,4 +374,5 @@ $themeClass = isset($arParams['TEMPLATE_THEME']) ? ' bx-'.$arParams['TEMPLATE_TH
 
 
 </div> <? //end wrapper?>
+
 <!-- component-end -->

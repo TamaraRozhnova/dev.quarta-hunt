@@ -77,7 +77,7 @@ section.section.section-plus {
     border-bottom: 1px solid black;
 }
 .header__logo .logo img {
-    position: inherit;
+    position: inherit !important;
 }
 .section-about .section__title::before {
     display: none;
@@ -111,8 +111,8 @@ section.section.section-plus {
     border-top: 1px solid #F9F9F9;
 }
 .footer {
-    background-color: rgba(0, 0, 0, 1);
-    border-top: 1px solid rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 1) !important;
+    border-top: 1px solid rgba(0, 0, 0, 1) !important;
 }
 .footer-logo {
     border: none !important;
@@ -133,6 +133,144 @@ section.section.section-plus {
 .footer__social {
     width: 100%;
 }
-
-
-
+.footer__social-title {
+    display: none;
+}
+.soc {
+    display: none !important;
+}
+.footer-bottom {
+    display: none !important;
+}
+.header__catalog {
+    background-color: rgba(0, 0, 0, 1) !important;
+}
+.header__item {
+    height: 70% !important;
+}
+.header__navigation a {
+    color: rgba(0, 0, 0, 1) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 13px !important;
+}
+.icon.lupa svg path, svg.icon.icon-profile {
+    fill: rgba(243, 148, 34, 1);
+    stroke: rgba(243, 148, 34, 1);
+}
+.header__right {
+    border-left: 1px solid rgba(0, 0, 0, 1) !important;
+    height: 70% !important;
+}
+.header__logo .logo img {
+    width: 102px !important;
+    height: 53px !important;
+}
+.header__logo .logo:before {
+    display: none !important;
+}
+.header__cart {
+    padding: 10px 28px !important;
+    border: 1px solid rgba(0, 0, 0, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
+    font-weight: 600 !important;
+}
+.header__compare {
+    display: none;
+}
+.filter__li .nav-link {
+    color: rgba(0, 0, 0, 1) !important;
+    font-size: 16px !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+}
+.catalog__item-buttons .ui-button--dark {
+    background-color: rgba(243, 148, 34, 1) !important;
+    border: none !important;
+}
+.catalog__item-name {
+    font-size: 20px !important;
+    color: rgba(0, 0, 0, 1) !important;
+    text-transform: uppercase;
+    line-height: 25.64px !important;
+}
+.catalog__item-code {
+    line-height: 17.95px !important;
+    color: rgba(243, 148, 34, 1) !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+}
+.catalog__item {
+    background: rgba(255, 255, 255, 1) !important;
+    border-radius: 19px !important;
+    border-color: rgba(255, 255, 255, 1) !important;
+}
+.catalog__item:not(:last-child) {
+    margin-bottom: 30px !important;
+}
+.catalog__item .dot {
+    display: none !important;
+}
+.catalog__item-buttons .ui-button--light {
+    background-color: #ffffff !important;
+    border-color: rgba(0, 0, 0, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
+    border: 1px solid !important;
+    font-weight: 600 !important;
+}
+.characteristic__value {
+    font-weight: 600;
+}
+.smart-filter-slider-track-container {
+    opacity: 0;
+}
+bx-active .smart-filter-parameters-box-title-text {
+    color: rgba(0, 0, 0, 1) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 12px !important;
+}
+.card__code {
+    color: rgba(243, 148, 34, 1) !important;
+    font-weight: 600;
+}
+.card-info__characteristic ul li .value {
+    color: rgba(0, 0, 0, 1);
+    margin-left: 10px;
+    font-weight: 600;
+}
+.card__characteristic-title {
+    color: rgba(0, 0, 0, 1) !important;
+    font-weight: 600 !important;
+    line-height: 20.64px !important;
+}
+.card .dot {
+    display: none;
+}
+.ui-button {
+    background-color: rgba(243, 148, 34, 1) !important;
+    color: white !important;
+    font-size: 18px !important;
+    text-transform: math-auto;
+    text-align: center !important;
+    align-items: center;
+    justify-content: center !important;
+}
+.contacts-info__title {
+    text-transform: uppercase;
+}
+a {
+    color: #f39422 !important;
+}
+.card-info__description, .accordion__item-content {
+    font-family: inherit !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+}
+.accordion__item-content_li {
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    color: #383838;
+}

@@ -102,8 +102,10 @@ if (!empty($rsMarketingBlockSlider)) {
 
 		if (!empty($arSlider['PICTURE_PRODUCT_IN_SLIDER'])) {
 			$tmpPictureProduct = CFile::GetPath($arSlider['PICTURE_PRODUCT_IN_SLIDER']);
+            $arResult['DATA_SLIDER'][$arSliderIndex]["PREVIEW_PICTURE_ID"] = $arSlider['PICTURE_PRODUCT_IN_SLIDER'];
 		} else if (!empty($arSlider['MB_PRODUCTS_IN_SLIDER_PREVIEW_PICTURE'])) {
 			$tmpPictureProduct = CFile::GetPath($arSlider['MB_PRODUCTS_IN_SLIDER_PREVIEW_PICTURE']);
+            $arResult['DATA_SLIDER'][$arSliderIndex]["PREVIEW_PICTURE_ID"] = $arSlider['MB_PRODUCTS_IN_SLIDER_PREVIEW_PICTURE'];
 		}
 
 		$arResult['DATA_SLIDER'][$arSliderIndex]["PREVIEW_PICTURE"] = $tmpPictureProduct;

@@ -18,7 +18,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                                 <div class="category-card__body">
                                     <figure class="category-card__image">
-                                        <img src="<?= $section['PICTURE']['SRC'] ?>" alt="<?= $section['NAME'] ?>"/>
+                                        <img loading="lazy" src="<?= $section['PICTURE']['SRC'] ?>" alt="<?= $section['NAME'] ?>">
                                     </figure>
 
                                     <h2 class="category-card__title">

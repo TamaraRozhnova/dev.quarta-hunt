@@ -20,7 +20,7 @@ $this->setFrameMode( true );
 			<div class="accordion__item-plus"></div>
 		</div>
 		<div class="accordion__item-body" data-accordion-body>
-			<div class="accordion__item-content">
+			<div class="accordion__item-content_li">
 				<?=$arItem['PREVIEW_TEXT']?>
 			</div>
 		</div>

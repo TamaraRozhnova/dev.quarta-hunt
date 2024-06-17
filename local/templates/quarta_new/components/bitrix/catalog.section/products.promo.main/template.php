@@ -40,7 +40,7 @@
                                                             </div>
                                                             <div class="col-6 promo-product-slide__image">
                                                                 <figure>
-                                                                    <img src="<?=$arSlide['PREVIEW_PICTURE']?>" />
+                                                                    <img loading="lazy" src="<?=\CHTTP::urnEncode(CFile::ResizeImageGet($arSlide['PREVIEW_PICTURE_ID'], array('width' => 255, 'height' => 200), BX_RESIZE_IMAGE_PROPORTIONAL_ALT, true)['src'], 'UTF-8')?>" alt="<?=$arSlide['NAME']?>" >
                                                                 </figure>
                                                             </div>
                                                         </div>
@@ -132,7 +132,7 @@
                 <div class="promo-grid__banner col-12 col-md-6">
                     <a  href="<?=$arParams['OTHER_DATA']['OTHER_DATA_SECTION_CATALOG']['URL']?>" class="promo-card promo-card--large">
                         <figure>
-                            <img src="<?=$arParams['OTHER_DATA']['OTHER_DATA_SECTION_CATALOG']['PICTURE']?>" />
+                            <img loading="lazy" src="<?=$arParams['OTHER_DATA']['OTHER_DATA_SECTION_CATALOG']['PICTURE']?>" alt="PICTURE">
                         </figure>
                         <h3>
                             <?=$arParams['OTHER_DATA']['OTHER_DATA_SECTION_CATALOG']['MB_TITLE_FOR_SECTION_CATALOG']?>
