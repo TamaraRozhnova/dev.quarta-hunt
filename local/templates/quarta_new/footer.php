@@ -184,22 +184,22 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 Принимаем к оплате
                 <figure>
                     <div class="img-wrapper-pm">
-                        <img height="25" src="/local/templates/quarta_new/assets/images/payments/visa.svg" alt="Visa" >
+                        <img loading="lazy" width="72" height="25" src="/local/templates/quarta_new/assets/images/payments/visa.svg" alt="Visa" >
                     </div>
                     <div class="img-wrapper-pm">
-                        <img height="25" src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани"  >
+                        <img loading="lazy" width="125" height="25" src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани"  >
                     </div>
                     <div class="img-wrapper-pm">
-                        <img height="25" src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay" >
+                        <img loading="lazy" width="52" height="25" src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay" >
                     </div>
                     <div class="img-wrapper-pm">
-                        <img height="25" src="/local/templates/quarta_new/assets/images/payments/mastercard.svg" alt="Mastercard" >
+                        <img loading="lazy" width="42" height="25" src="/local/templates/quarta_new/assets/images/payments/mastercard.svg" alt="Mastercard" >
                     </div>
                     <div class="img-wrapper-pm">
-                        <img height="25" src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир" >
+                        <img loading="lazy" width="82" height="25" src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир" >
                     </div>
                     <div class="img-wrapper-pm">
-                        <img height="25" src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay"  >
+                        <img loading="lazy" width="52" height="25" src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay" >
                     </div>
                 </figure>
             </div>

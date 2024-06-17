@@ -86,7 +86,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
 
         <a itemprop="url" href="<?= $item['DETAIL_PAGE_URL'] ?>">
             <figure>
-                <img itemprop="image" src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>">
+                <img loading="lazy" itemprop="image" src="<?=$item['IMG_SRC']?>" alt="<?= $item['NAME'] ?>">
             </figure>
         </a>
     </div>

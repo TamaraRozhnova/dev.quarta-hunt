@@ -31,7 +31,6 @@
 			false
 		); ?>
 		<div class="footer-content">
-			<?/*
 			<?php $APPLICATION->IncludeComponent(
 				"bitrix:main.include",
 				"",
@@ -42,7 +41,6 @@
 					"PATH" => "/include/socnet.php",
 				]
 			); ?>
-			*/?>
 			<div class="footer__links">
 
 				<div class="accordion footer__links-column">

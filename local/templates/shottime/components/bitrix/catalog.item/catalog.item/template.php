@@ -113,9 +113,9 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
                         нет в наличии
                     </button>
                 <?}?>
-				<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="ui-button ui-button--light">
+				<?/*<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="ui-button ui-button--light">
 					подробнее
-				</a>
+				</a>*/?>
 				<a href="#" class="ui-button ui-button--light add2compare tip-compare" data-id="<?=$arItem["ID"]?>">
 					<span class="nactive">Сравнить</span>
                     <span class="active">Добавлено для сравнения</span>

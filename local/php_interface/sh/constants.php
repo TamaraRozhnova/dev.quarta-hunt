@@ -2,8 +2,8 @@
 
 const COMPARE_LIST_NAME = 'CATALOG_COMPARE_LIST';
 
-const CATALOG_IBLOCK_ID = 71; // Идентификатор инфоблока каталога
-const CATALOG_IBLOCK_CODE = "1c_catalog"; // Символьный код инфоблока каталога
+const CATALOG_IBLOCK_ID = 84; // Идентификатор инфоблока каталога
+const CATALOG_IBLOCK_CODE = "shottime_1c"; // Символьный код инфоблока каталога
 
 const IBLOCKS = [
     'ib-main-slider' => 73,
@@ -12,7 +12,7 @@ const IBLOCKS = [
     'ib-pistol' => 76,
     'ib-faq' => 77,
     'ib-media' => 78,
-    'ib-catalog' => 71,
+    'ib-catalog' => 84,
     'ib-review' => 79,
     'ib-from' => 80,
     'ib-news' => 81,
