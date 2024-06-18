@@ -10,7 +10,7 @@ const REVIEWS_IBLOCK_ID = 11; // Идентификатор инфоблока �
 const OPT_PRICE_ID = 3;
 const BASE_PRICE_ID = 1;
 
-const OPT_GROUP_ID = 9;
+const OPT_GROUP_ID = 9; // ID Группы пользователей для оптовых покупателей
 
 const OPT_PRICE_CODE = 'OPT';
 const BASE_PRICE_CODE = 'BASE';
@@ -42,3 +42,5 @@ const RESTRICTED_SECTIONS_FOF_FAST_BUY = 'oruzhie_i_patrony'; // Код разд
 const EXCEPTIONS_FOR_FAST_BUY = 'oruzhie_i_patrony'; // Код раздела, в котором не выводится кнопка покупки в 1 клик
 const CDEK_DELIVERY_ID = 11; // ID службы доставки СДЭК. Необхоим для получения списка разшрешённых категорий
 const CDEK_RESTRICTION_SECTIONS_RULE_ID = 35; // ID ограничения со списков разрешённых категорий для доставки
+
+const LEGAL_PERSON_ID = 2; // ID юридического лица
