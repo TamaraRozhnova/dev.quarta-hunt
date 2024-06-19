@@ -311,7 +311,7 @@ if ($arResult["USE_CAPTCHA"] == "Y") {
 	<input type="submit" class="reg-submit-form btn btn-primary btn-lg w-100 mb-3" name="register_submit_button" value="<?=GetMessage("AUTH_REGISTER")?>" />
 </div>
 <small >
-    Нажимая кнопку «Зарегистрироваться»,
+    Нажимая кнопку «Регистрация»,
     <a href="/privacy-statement/" >
       я даю свое согласие на обработку моих персональных данных.
     </a>
