@@ -5,6 +5,11 @@ class ProductCardLabels {
 
         this.productId = this.productElement.dataset.id;
         this.productTags = this.productElement.querySelector('.product-card__tags')
+
+        if (!this.productTags) {
+            return false;
+        }
+
         this.productBtnShowTags = this.productTags.querySelector('.product-btn-list-labels')
 
         this.productImageFigure = this.productElement.querySelector('.product-card__image figure')
