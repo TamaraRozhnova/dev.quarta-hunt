@@ -62,8 +62,9 @@ $main-slider-compact-height-sm: 455px;
         margin-top: 2rem;
 
         .btn-outline-light {
-            color: $white;
+            color: $blue;
             border-color: $white;
+            background-color: $white;
 
             &:hover {
                 color: $gray-900;
