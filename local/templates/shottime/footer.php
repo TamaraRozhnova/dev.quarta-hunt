@@ -45,7 +45,7 @@
 
 				<div class="accordion footer__links-column">
 					<div class="accordion__head" data-accordion-head>
-						Каталог
+						Доставка и Оплата
 						<div class="accordion__arrow"></div>
 					</div>
 					<div class="accordion__body" data-accordion-body>

@@ -137,7 +137,7 @@ $APPLICATION->IncludeComponent(
 		"MESS_BTN_BUY" => "Купить",
 		"MESS_BTN_COMPARE" => "Сравнение",
 		"MESS_BTN_DETAIL" => "Подробнее",
-		"MESS_NOT_AVAILABLE" => "Нет в наличии",
+		"MESS_NOT_AVAILABLE" => "Закончился",
 		"OFFERS_CART_PROPERTIES" => array(
 		),
 		"OFFERS_SORT_FIELD" => "sort",

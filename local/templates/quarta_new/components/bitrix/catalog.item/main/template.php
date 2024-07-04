@@ -127,7 +127,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
         </div>
     <? } else { ?>
         <div class="fs-6 text-dark pb-1 item-not-available" itemscope itemprop="offers" itemtype="http://schema.org/Offer">
-            <b>Нет в наличии</b>
+            <b>Закончился</b>
             <meta itemprop="availability" content="http://schema.org/SoldOut">
         </div>
     <? } ?>
