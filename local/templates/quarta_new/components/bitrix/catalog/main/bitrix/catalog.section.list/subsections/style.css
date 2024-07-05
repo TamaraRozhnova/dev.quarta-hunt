@@ -18,12 +18,12 @@
 .subcategory-selector__container {
   padding-top: 1rem;
   margin-top: -1rem;
-  max-height: 9.7rem;
+  /*max-height: 9.7rem;*/
   overflow: hidden;
 }
-.subcategory-selector__container--more {
+/*.subcategory-selector__container--more {
   max-height: none;
-}
+}*/
 .subcategory-selector__container--mobile {
   display: none;
 }

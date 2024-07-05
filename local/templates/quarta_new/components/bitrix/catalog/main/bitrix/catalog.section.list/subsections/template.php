@@ -30,7 +30,7 @@ $currentPage = $APPLICATION->GetCurPage();
         <? } ?>
     </div>
 
-    <div class="container">
+    <?/*div class="container">
         <? if ($arResult['BACK_URL']) { ?>
             <a href="<?= $arResult['BACK_URL'] ?>" class="btn btn-primary me-2 py-2">
                 Назад
@@ -40,5 +40,5 @@ $currentPage = $APPLICATION->GetCurPage();
         <a class="btn subcategory-selector__more btn-outline-secondary py-2">
             Еще...
         </a>
-    </div>
+    </div*/?>
 </section>
