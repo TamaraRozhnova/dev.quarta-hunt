@@ -20,13 +20,15 @@ if (empty($arResult['LINK'])) {
     return;
 }?>
 
-<a href='<?=$arResult['LINK']?>' class="p2p-line__wrapper hide">
-    <div class="p2p-line__inner">
+<div class="p2p-line__wrapper hide">
+    <a href='<?=$arResult['LINK']?>' class="p2p-line__inner">
         <div class="p2p-line__text">
             <span><?=$arResult['TEXT']?></span>
         </div>
+    </a>
+    <div class="p2p-line__close">
     </div>
-</a>
+</div>
 
 <script>
     var currentPath = '<?=$arResult['DIR']?>';
