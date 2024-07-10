@@ -438,8 +438,7 @@ $curPage = $APPLICATION->GetCurPage();
 
             <a class="header__bottom-item" href="/catalog">
                 <div class="header__bottom-icon">
-                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="21" height="21" rx="5" fill="#E8EFF4" />
+                    <svg width="41" height="41" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8.94189 6.97754H15.9871" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8.94189 10.498H13.3451" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M8.94189 14.0225H15.9871" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
