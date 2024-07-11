@@ -687,4 +687,7 @@ span.bx-authform-starrequired {
     margin-bottom: 0.938rem;
     width: 100%;
   }
+  .interlabs-oneclick__container .modal-container {
+    border-radius: 0;
+  }
 }

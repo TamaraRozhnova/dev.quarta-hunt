@@ -3,7 +3,7 @@
 	bottom: 0;
 	width: 100%;
 	background-color: #004989;
-	z-index: 900000000000;
+	z-index: 500;
 	transition: .4s all ease-in-out;
 	display: flex;
 	align-items: center;
