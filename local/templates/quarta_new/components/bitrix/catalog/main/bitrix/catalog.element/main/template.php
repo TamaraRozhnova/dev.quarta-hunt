@@ -151,7 +151,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             </span>
                             <a href="" data-available-index="1" class="available-window-open available-window-open-1">Посмотреть наличие</a>
                         <? } else { ?>
-                            <span class="me-2">Нет в наличии</span>
+                            <span class="me-2">Закончился</span>
                         <? } ?>
                     </div>
 

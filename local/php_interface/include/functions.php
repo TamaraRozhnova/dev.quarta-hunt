@@ -65,7 +65,14 @@ function showBreadcrumb(): bool {
         '/cabinet/personal/',
         '/cabinet/orders',
         '/cart/',
-        '/brendy/'
+        '/brendy/',
+        '/about/',
+        '/delivery/',
+        '/payment/',
+        '/warranty/',
+        '/promo/',
+        '/landing/masterskaya/',
+        '/contacts/'
     ];
 
     foreach ($notAllowedUrls as $url) {

@@ -215,6 +215,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 );?>
             </div>
 
+            <div class="col-12 col-sm-6 col-lg-4 ">
+                <?=date("Y")?> © QUARTA "Оружейный квартал"
+            </div>
+
         </div>
     </div>
 
