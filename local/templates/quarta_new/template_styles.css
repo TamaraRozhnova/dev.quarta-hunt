@@ -8710,6 +8710,9 @@ input.form-check-input:focus {
   text-align: center;
   font-size: 0.6875rem;
 }
+.header--mobile a.header__bottom-item[href*='/catalog'] .header__bottom-icon{
+  width: 34px;
+}
 .header--mobile .header__bottom-icon {
   position: relative;
   width: 24px;
