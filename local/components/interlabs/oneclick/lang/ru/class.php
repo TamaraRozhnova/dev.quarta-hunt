@@ -9,7 +9,7 @@ $MESS['ERROR_PRODUCT_ID_REQUIRED'] = 'Укажите товар';
 $MESS['ERROR_BASKET_IS_EMPTY'] = 'Корзина пуста';
 
 $MESS['ERROR_ORDER_PROCESS'] = 'Ошибка оформления';
-$MESS['ERROR_ORDER_COMPLETED'] = 'Спасибо, ваш заказ оформлен. Менеджер свяжется с вами в ближайшее время';
+$MESS['ERROR_ORDER_COMPLETED'] = 'Менеджер свяжется с вами в ближайшее время';
 
 
 $MESS['ERROR_SETTING_pay_system_id'] = 'Не указана платежная система [Настройки модуля]';

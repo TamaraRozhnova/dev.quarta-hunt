@@ -18,9 +18,11 @@ use Bitrix\Main\Engine\CurrentUser;
 
 CUtil::InitJSCore(array('interlabs_oneclick_popup'));
 
+$isSuccess = (isset($arResult['success']) && isset($arResult['success']['message'])) || (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0);
+
 ?>
 <div class="interlabs-oneclick__container" id="interlabs-oneclick__container"        
-     style="<?php if ( (isset($arResult['success']) && isset($arResult['success']['message'])) || (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) ) {
+     style="<?php if ($isSuccess) {
      } else {
          echo 'display:none;';
      } ?>">
@@ -28,7 +30,18 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
         <div class="modal-wrapper">
             <div class="modal-container">                 
                 <div class="header">
-                    <label><?php echo Loc::getMessage("buy_in_1_click") ?></label>
+                    <label>
+                        <? if ($isSuccess): ?>
+                            <?=
+                                Loc::getMessage(
+                                    "success_buy_in_1_click", 
+                                    ['#ORDER_ID#' => $arResult['success']['orderId']]
+                                )
+                            ?>
+                        <? else: ?>
+                            <?=Loc::getMessage("buy_in_1_click")?>
+                        <? endif; ?>
+                    </label>
                     <span class="js-interlabs-oneclick__dialog__close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
