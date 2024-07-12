@@ -400,8 +400,9 @@ span.bx-authform-starrequired {
   overflow: auto;
 }
 .interlabs-oneclick__container .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  display: block;
+  height: 100%;
+  align-content: center;
 }
 .interlabs-oneclick__container .modal-container {
   width: 500px;
@@ -677,6 +678,10 @@ span.bx-authform-starrequired {
   .compare__item .interlabs-one-click-buy {
     font-size: 14px;
     padding: 9px;
+  }
+
+  .interlabs-oneclick__container .modal-wrapper {
+    height: unset;
   }
 
   .interlabs-oneclick__container .modal-mask {
