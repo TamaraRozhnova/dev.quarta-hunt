@@ -12,25 +12,22 @@ use CUser;
  */
 class UserUploadForm1c
 {
-    const FILE_CONTENT = [];
-    const USER_GROUPS = [];
-    const USER_GROUPS_IDS = [];
-
-    /** @var CUser */
-    private $user;
+    public const FILE_CONTENT = [];
+    public const USER_GROUPS = [];
+    public const USER_GROUPS_IDS = [];
 
     public function __construct()
     {
         $this->getUserGroups();
 
         global $USER;
-        $this->user = $USER;
     }
 
     /**
      * Загружает пользовательские группы для скидок
+     * @return void
      */
-    private function getUserGroups()
+    private function getUserGroups() : void
     {
         $gprous = GroupTable::getList([
             'select'  => ['NAME', 'ID', 'STRING_ID'],
@@ -45,7 +42,7 @@ class UserUploadForm1c
 
     /**
      * Запускает цепочку действий
-     * @return array
+     * @return void
      */
     public function handleUserFile(): void
     {
@@ -93,7 +90,7 @@ class UserUploadForm1c
      * @param array $client
      * @return void
      */
-    private function handleUser($client = []): void
+    private function handleUser(array $client = []): void
     {
         if (!empty($client)) {
             $phone = $this->formatPhone($client['Штрихкод']);
@@ -119,12 +116,14 @@ class UserUploadForm1c
      * @param array $users
      * @param array $client
      */
-    private function updateUser($users, $client): void
+    private function updateUser(array $users, array $client): void
     {
         foreach ($users as $user) {
             $groups = UserTable::getUserGroupIds($user['ID']);
 
             if (isset($this->USER_GROUPS[$client['Процент']]) && array_search($this->USER_GROUPS[$client['Процент']]['ID'], $groups) === false) {
+                $user = new CUser;
+                $user->Update($user['ID'], ['UF_SOLD_AMOUNT' => $client['СуммаПродаж']]);
                 // Сначала проверим, принадлежит ли пользователь к другим скидочным группам. Если да, удаляем его из этих групп
                 $currentDiscountuserGroups = array_intersect($groups, $this->USER_GROUPS_IDS);
                 if (!empty($currentDiscountuserGroups)) {
@@ -146,7 +145,7 @@ class UserUploadForm1c
      * @param string $groupId
      * @return void
      */
-    private function deleteUserFromGroup($userId, $groupId): void
+    private function deleteUserFromGroup(string $userId, string $groupId): void
     {
         UserGroupTable::delete([
             "USER_ID" => $userId,
@@ -160,7 +159,7 @@ class UserUploadForm1c
      * @param string $groupId
      * @return void
      */
-    private function addUserToGroup($userId, $groupId): void
+    private function addUserToGroup(string $userId, string $groupId): void
     {
         UserGroupTable::add([
             "USER_ID" => $userId,
@@ -174,9 +173,9 @@ class UserUploadForm1c
      * @param array $client
      * @return void
      */
-    private function addUser($phone, $client): void
+    private function addUser(string $phone, array $client): void
     {
-        $fio = explode(' ', $client['Наименование']);
+        list($lastname, $name, $secondname) = explode(' ', $client['Наименование']);
         $password = uniqid();
         $groups[] = REGISTERED_USER_GROUP_ID;
         if (isset($this->USER_GROUPS[$client['Процент']]) && $client['Процент'] != 0) {
@@ -187,12 +186,13 @@ class UserUploadForm1c
             [
                 'LOGIN' => $phone,
                 'PERSONAL_PHONE' => $phone,
-                'NAME' => $fio[0],
-                'LAST_NAME' => $fio[1],
-                'SECOND_NAME' => $fio[3] ? $fio[3] : '',
+                'NAME' => $name,
+                'LAST_NAME' => $lastname,
+                'SECOND_NAME' => $secondname ?: '',
                 'PASSWORD' => $password,
                 'CONFIRM_PASSWORD' => $password,
-                'GROUP_ID' => $groups
+                'GROUP_ID' => $groups,
+                'UF_SOLD_AMOUNT' => $client['СуммаПродаж'],
             ]
         );
     }
@@ -202,7 +202,7 @@ class UserUploadForm1c
      * @param string $phone
      * @return string
      */
-    private function formatPhone($phone = ''): string
+    private function formatPhone(string $phone = ''): string
     {
         if ($phone != '') {
             $arPhone = str_split($phone);
