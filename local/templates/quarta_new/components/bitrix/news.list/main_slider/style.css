@@ -220,7 +220,8 @@
     background-size: cover;
   }
   .main-slider__compact .swiper-wrapper .container {
-    margin-top: 104px;
+    margin-top: 0px;
+    max-width: 100%;
   }
   .main-slider__text {
     margin-top: 1.313rem;
