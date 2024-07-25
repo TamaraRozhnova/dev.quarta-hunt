@@ -95,7 +95,7 @@ body {
   width: 6px;
 }
 *::-webkit-scrollbar-track {
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: #DFE9EB;
 }
 
@@ -108,7 +108,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: #DDE2E6;
   opacity: .4;
   cursor: pointer;
