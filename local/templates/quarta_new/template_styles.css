@@ -85,14 +85,14 @@ body {
 
 /* Firefox */
 * {
-  scrollbar-width: thin;
+  scrollbar-width: auto;
   scrollbar-color: #A3A3A3  #F1F1F1;
 }
 
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
   height: 10px;
-  width: 6px;
+  width: 10px;
 }
 *::-webkit-scrollbar-track {
   border-radius: 3px;
