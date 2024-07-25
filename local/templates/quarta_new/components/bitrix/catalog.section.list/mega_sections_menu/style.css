@@ -154,13 +154,19 @@
 
 .menu-list{
   padding: 0px 20px 0px 0;
-  width: 330px;
+  max-width: 330px;
+  width: 100%;
   overflow-y: auto;
   margin-top: 30px;
   /*-ms-overflow-style: none;*/
   /*scrollbar-width: none;*/
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #A3A3A3  #F1F1F1;
+}
+
+.menu-list:hover{
+  scrollbar-width: thin;
+  padding-right: 9px;
 }
 
 .menu-list::-webkit-scrollbar {
@@ -265,8 +271,13 @@
   width: calc(100% - 330px);
   overflow-y: auto;
   margin-top: 30px;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #A3A3A3  #F1F1F1;
+}
+
+.menu-content:hover{
+  scrollbar-width: thin;
+  padding-right: 29px;
 }
 
 .menu-content::-webkit-scrollbar {
