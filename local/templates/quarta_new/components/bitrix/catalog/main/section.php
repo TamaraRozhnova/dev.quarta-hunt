@@ -8,6 +8,11 @@ use Helpers\Filters\ProductsFilterHelper;
 
 $sectionId = $arResult['VARIABLES']['SECTION_ID'];
 
+//Для модуля Сотбит: SEO умного фильтра
+global $arCurSection;
+$arCurSection = $sectionId;
+//Конец
+
 /**
  * Проверка на существование раздела
  */
@@ -71,7 +76,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
         <div class="container">
             <? if ($filterParams['SECTION_NAME']) { ?>
                 <h1 class="category__header-title">
-                    <?= $filterParams['SECTION_NAME'] ?>
+                    <?$APPLICATION->ShowViewContent('my_code11');?>
                 </h1>
             <? } ?>
         </div>
@@ -130,3 +135,40 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
     ); ?>
 
 </div>
+<?
+//Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
+//начало
+    global $sotbitSeoMetaTitle;
+	$this->SetViewTarget('my_code11');
+    if(!empty($sotbitSeoMetaTitle)){
+        echo $sotbitSeoMetaTitle;
+	} else {
+		echo $filterParams['SECTION_NAME'];
+	}
+    $this->EndViewTarget();
+
+    //Переопределение ключевых слов Keywords
+    global $sotbitSeoMetaKeywords;
+    if(!empty($sotbitSeoMetaKeywords)){
+        $APPLICATION->SetPageProperty("keywords", $sotbitSeoMetaKeywords);
+    }
+    
+    //Переопределение описания страницы Description
+    global $sotbitSeoMetaDescription;
+    if(!empty($sotbitSeoMetaDescription)){
+        $APPLICATION->SetPageProperty("description", $sotbitSeoMetaDescription);
+    } 
+    
+    //Переопределение заголовка H1
+    global $sotbitSeoMetaH1;  
+    if(!empty($sotbitSeoMetaH1)){
+             $APPLICATION->SetTitle($sotbitSeoMetaH1); 
+    }
+        
+    //Добавление пункта хлебных крошек Breadcrumb
+    global $sotbitSeoMetaBreadcrumbTitle;
+    if(!empty($sotbitSeoMetaBreadcrumbTitle)){
+        $APPLICATION->AddChainItem($sotbitSeoMetaBreadcrumbTitle  );
+    }
+//конец
+?>

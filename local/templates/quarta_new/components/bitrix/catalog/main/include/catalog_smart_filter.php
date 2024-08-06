@@ -4,6 +4,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+//Для модуля Сотбит: SEO умного фильтра
+global $arCurSection;
+//Конец
+
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.smart.filter",
     "main",
@@ -19,7 +23,7 @@ $APPLICATION->IncludeComponent(
         "DISPLAY_ELEMENT_COUNT" => 'Y',
         "SAVE_IN_SESSION" => "N",
         "FILTER_VIEW_MODE" => $params["FILTER_VIEW_MODE"],
-        "SECTION_ID" => $currentSection,
+		"SECTION_ID" => $currentSection,
         "SECTION_CODE" => $result['VARIABLES']['SECTION_CODE'],
         "SECTION_TITLE" => "NAME",
         "SECTION_DESCRIPTION" => "DESCRIPTION",
@@ -28,7 +32,7 @@ $APPLICATION->IncludeComponent(
         'CONVERT_CURRENCY' => $params['CONVERT_CURRENCY'],
         'CURRENCY_ID' => $params['CURRENCY_ID'],
         "SEF_RULE" => $params['SEF_URL_TEMPLATES']['smart_filter'],
-//        "SMART_FILTER_PATH" => $params["SMART_FILTER_PATH"],
+		//"SMART_FILTER_PATH" => $params["SMART_FILTER_PATH"],
         "SEF_MODE" => 'Y',
         "PAGER_PARAMS_NAME" => "arrPager",
         "INSTANT_RELOAD" => "Y",
@@ -38,3 +42,20 @@ $APPLICATION->IncludeComponent(
     $component,
     array('HIDE_ICONS' => 'Y')
 );
+
+//Подключение компонента sotbit.seometa модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта" ?>
+<?if(\Bitrix\Main\Loader::includeModule("sotbit.seometa")):?>
+<? 
+  $APPLICATION->IncludeComponent(
+   "sotbit:seo.meta",
+   ".default",
+   Array(
+        "FILTER_NAME" => $params["FILTER_NAME"],
+        "SECTION_ID" => $arCurSection,
+        "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+        "CACHE_TIME" => $arParams["CACHE_TIME"],
+   )
+);
+?>
+<?endif;?>
+<?//Конец
