@@ -11540,3 +11540,46 @@ div[id*="wait_comp"] {
   display: flex;
   gap: 14px;
 }
+
+.compare-popup{
+  position: fixed;
+  bottom: 0;
+  left: 30px;
+  right: 30px;
+  margin-bottom: -75px;
+  z-index: 100000;
+  max-width: 400px;
+  margin: 0 auto;
+  -webkit-transition: .5s all ease-in-out;
+  -o-transition: .5s all ease-in-out;
+  transition: .5s all ease-in-out;
+  opacity: 0;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
+  text-align: center;
+}
+
+.compare-popup__text{
+  color: black;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.compare-popup .btn {
+  color: #fff;
+  margin-top: 20px;
+}
+
+.compare-popup.active {
+  bottom: 50%;
+  opacity: 1;
+}
+
+.compare-popup .compare-popup__clear{
+  color: #808d9a;
+  background-color: #f9f9fa;
+  margin-left: 10px;
+}

@@ -15,8 +15,16 @@ class ProductCompare {
         this.compareAvailableCompareDefault = this.compareAvailableActions.querySelector('.product-card__compare--default')
         this.compareAvailableCompareActive = this.compareAvailableActions.querySelector('.product-card__compare--active')
 
+        this.popupWrap = document.querySelector('.compare-popup');
+
         this.hangEvents();
         this.defineCompare();
+    }
+
+    openPopup(){
+        if(this.compareApi.headerTopCompareBadge.innerText > 1){
+            this.popupWrap.classList.add("active");
+        }
     }
 
     defineCompare() {
@@ -37,7 +45,6 @@ class ProductCompare {
         this.compareAvailableCompareBtn.forEach( (btnComp) => {
             btnComp.addEventListener('click', async() => this.changeCompare())
         })
-
     }
 
     async changeCompare() {
@@ -50,7 +57,6 @@ class ProductCompare {
         }
 
         this.compareButton.style.pointerEvents = 'all';
-
     }
 
     async addCompare() {
@@ -60,6 +66,7 @@ class ProductCompare {
         }
         this.changeStyles(true);
         this.inCompare = true;
+        this.openPopup();
     }
 
     async deleteCompare() {

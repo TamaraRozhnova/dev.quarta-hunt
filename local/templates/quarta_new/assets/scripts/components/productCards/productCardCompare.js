@@ -11,11 +11,18 @@ class ProductCardCompare {
         this.compareList = data.compareList;
 
         this.onDelete = events.onDelete;
+        this.popupWrap = document.querySelector('.compare-popup');
 
         this.compareApi = new CompareApi();
 
         this.hangEvents();
         this.defineCompare();
+    }
+
+    openPopup(){
+        if(this.compareApi.headerTopCompareBadge.innerText > 1){
+            this.popupWrap.classList.add("active");
+        }
     }
 
     defineCompare() {
@@ -47,6 +54,7 @@ class ProductCardCompare {
             return;
         }
         this.changeStyles(true);
+        this.openPopup();
     }
 
     async deleteCompare() {
@@ -62,7 +70,6 @@ class ProductCardCompare {
     }
 
     changeStyles(state = true) {
-
         if (state) {
             this.compareIconDefault.style.display = 'none';
             this.compareIconActive.style.display = 'inline';
