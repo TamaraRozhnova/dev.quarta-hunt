@@ -1,0 +1,46 @@
+#attention-age-modal {
+    max-width: 520px;
+    margin: auto;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%);
+	height: fit-content;
+}
+
+#attention-age-modal .modal__close svg path {
+	fill: grey;
+}
+
+.attention-age-modal__title {
+	color: black;
+    font-size: 16px;
+    text-align: center;
+    line-height: 24px;
+}
+
+#attention-age-modal .modal-body {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	align-items: center;
+}
+
+#maxed-blur {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1051;
+	content: '';
+	backdrop-filter: blur(8px);
+}
+
+#maxed-blur.active {
+	display: block;
+}
+
+#attention-age-modal .modal-content {
+	box-shadow: initial;
+}
