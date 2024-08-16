@@ -16,7 +16,7 @@ class CatalogFilter {
     hangEvents() {
         this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
         this.filterCheckboxes.forEach(checkbox => this.hangChangeCheckboxEvent(checkbox));
-        this.listCountElements.forEach(element => this.hangChangeProductsCountEvent(element));
+        this.hangListCountElements();
         this.hangPaginationEvents();
         this.hangAvailableEvent();
         this.hangFiltersClearEvent();
@@ -46,20 +46,32 @@ class CatalogFilter {
         this.availableCheckbox = this.extraFilters.querySelector('#available');
         this.selectSortElement = this.extraFilters.querySelector('#select-sort');
         this.selectCountElement = this.extraFilters.querySelector('#select-count');
-        this.listCountElements = this.extraFilters.querySelectorAll('#list-count li');
+        this.listCountElements = document.querySelectorAll('#list-count li');
 
-        this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
-        this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
+        if (window.innerWidth > 1024) {
 
-        if (this.viewItems.length > 0) {
-            this.hangViewMode()
+            this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
+            this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
+    
+            if (this.viewItems.length > 0) {
+                this.hangViewMode()
+            }
+
         }
 
     }
-
+    clearViewMode() {
+        this.viewItems.forEach((view) => {
+            view.classList.remove('active')
+        })
+    }
     hangViewMode() {
         this.viewItems.forEach((view) => {
-            view.onclick = () => this.changeViewMode(view.dataset.template)
+            view.onclick = () => {
+                this.clearViewMode()
+                view.classList.add('active')
+                this.changeViewMode(view.dataset.template)
+            }
         })
     }
 
@@ -132,6 +144,7 @@ class CatalogFilter {
     hangChangeProductsCountEvent(element) {
         element.onclick = () => {
             const id = element.dataset.id;
+
             if (this.selectorCount.getValue() == id) {
                 return;
             }
@@ -159,12 +172,16 @@ class CatalogFilter {
                         }
                     })
                 }
-
                 this.insertHtml(html);
+                this.hangListCountElements()
             });
         if (withChangeUrl) {
             this.changeUrl(url);
         }
+    }
+
+    hangListCountElements() {
+        this.listCountElements.forEach(element => this.hangChangeProductsCountEvent(element));
     }
 
     hangAvailableEvent() {
@@ -300,7 +317,7 @@ class CatalogFilter {
     }
 
     changeProductsCountClasses(element) {
-        const currentActiveElement = this.extraFilters.querySelector('#list-count li.active');
+        const currentActiveElement = document.querySelector('#list-count li.active');
         currentActiveElement.classList.remove('active');
         element.classList.add('active');
     }
@@ -343,7 +360,7 @@ class CatalogFilter {
         this.inputMinPrice.clear();
         this.inputMaxPrice.clear();
         this.filterParams.FILTER_ITEMS = {};
-        const newActiveCountElement = this.extraFilters.querySelector(`#list-count li:first-of-type`);
+        const newActiveCountElement = document.querySelector(`#list-count li:first-of-type`);
         this.changeProductsCountClasses(newActiveCountElement);
         this.setBadges();
     }
@@ -416,7 +433,6 @@ class CatalogFilter {
 
 
         urlParams.set('set_filter', 'Y');
-        console.log(`${url.origin}${url.pathname}?${urlParams.toString()}`)
         return `${url.origin}${url.pathname}?${urlParams.toString()}`;
     }
 
@@ -457,7 +473,7 @@ class CatalogFilter {
         this.selectorCount = new Select({
             element: this.selectCountElement,
             onSelect: (id) => {
-                const newActiveElement = this.extraFilters.querySelector(`#list-count li[data-id="${id}"]`);
+                const newActiveElement = document.querySelector(`#list-count li[data-id="${id}"]`);
                 this.changeProductsCountClasses(newActiveElement);
                 this.handleChangeFilters({itemsPerPage: id});
             }

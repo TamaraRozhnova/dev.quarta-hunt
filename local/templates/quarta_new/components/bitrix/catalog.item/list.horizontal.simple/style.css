@@ -378,6 +378,10 @@
     padding: 6px 15px;
   }
 
+  .product-card-horizontal__wrapper .product-card__content-part::after {
+    right: calc(30px + 220px + 15px)
+  }
+
   .product-card-horizontal__wrapper .product-card .product-card__button {
     min-height: 48px;
   }
@@ -386,6 +390,12 @@
     height: 15px;
   }
 
+}
+
+@media (max-width: 1200px) {
+  .product-card-horizontal__wrapper .product-card__content-part::after {
+    right: calc(30px + 190px + 15px);
+  }
 }
 
 @media (max-width: 991px) {

@@ -23,13 +23,10 @@
 .filters-sort__count {
   display: flex;
   align-items: center;
-  justify-self: flex-end;
+  justify-content: flex-end;
   margin-left: auto;
   color: #333333;
-
-  position: absolute;
-  bottom: 5vh;
-  right: 0;
+  margin-top: 34px;
 }
 
 .filters-sort__count ul {
@@ -93,7 +90,8 @@
   fill: #808d9a;
 }
 
-.filters-mode-view__item:hover svg {
+.filters-mode-view__item:hover svg,
+.filters-mode-view__item.active svg {
   fill: #004989;
 }
 
@@ -197,6 +195,13 @@
 
 .products-grid [class*=col-] {
   margin-bottom: 50px;
+}
+
+@media (max-width: 1024px) {
+  /* выключаем для мобилки */
+  .filters-mode-view {
+    display: none;
+  }
 }
 
 @media (max-width: 991px) {
