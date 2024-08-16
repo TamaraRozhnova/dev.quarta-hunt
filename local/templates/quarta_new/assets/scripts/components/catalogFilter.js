@@ -47,6 +47,24 @@ class CatalogFilter {
         this.selectSortElement = this.extraFilters.querySelector('#select-sort');
         this.selectCountElement = this.extraFilters.querySelector('#select-count');
         this.listCountElements = this.extraFilters.querySelectorAll('#list-count li');
+
+        this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
+        this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
+
+        if (this.viewItems.length > 0) {
+            this.hangViewMode()
+        }
+
+    }
+
+    hangViewMode() {
+        this.viewItems.forEach((view) => {
+            view.onclick = () => this.changeViewMode(view.dataset.template)
+        })
+    }
+
+    changeViewMode(viewTemplate) {
+        this.handleChangeFilters({'templateView': viewTemplate})
     }
 
     reinitHangFilter() {
@@ -131,6 +149,17 @@ class CatalogFilter {
                 if (!html) {
                     return;
                 }
+
+                const styleHtml = BX.processHTML(html).STYLE
+
+                if (styleHtml.length > 0) {
+                    Array.from(styleHtml).forEach((script) => {
+                        if (script.includes('catalog.item')) {
+                            BX.loadCSS(script)
+                        }
+                    })
+                }
+
                 this.insertHtml(html);
             });
         if (withChangeUrl) {
@@ -387,6 +416,7 @@ class CatalogFilter {
 
 
         urlParams.set('set_filter', 'Y');
+        console.log(`${url.origin}${url.pathname}?${urlParams.toString()}`)
         return `${url.origin}${url.pathname}?${urlParams.toString()}`;
     }
 
