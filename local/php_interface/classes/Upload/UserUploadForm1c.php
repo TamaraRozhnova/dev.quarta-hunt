@@ -122,8 +122,8 @@ class UserUploadForm1c
             $groups = UserTable::getUserGroupIds($user['ID']);
 
             if (isset($this->USER_GROUPS[$client['Процент']]) && array_search($this->USER_GROUPS[$client['Процент']]['ID'], $groups) === false) {
-                $user = new CUser;
-                $user->Update($user['ID'], ['UF_SOLD_AMOUNT' => $client['СуммаПродаж']]);
+                $obUser = new CUser;
+                $obUser->Update($user['ID'], ['UF_SOLD_AMOUNT' => $client['СуммаПродаж']]);
                 // Сначала проверим, принадлежит ли пользователь к другим скидочным группам. Если да, удаляем его из этих групп
                 $currentDiscountuserGroups = array_intersect($groups, $this->USER_GROUPS_IDS);
                 if (!empty($currentDiscountuserGroups)) {
