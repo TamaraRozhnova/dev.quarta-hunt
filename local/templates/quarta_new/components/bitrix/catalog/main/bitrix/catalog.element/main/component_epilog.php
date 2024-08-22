@@ -22,4 +22,17 @@ $APPLICATION->IncludeComponent(
     )
 );
 
+$APPLICATION->IncludeComponent(
+    "logictim:bonus.catalog",
+    "element",
+    Array(
+        "CACHE_TYPE" => "N",
+        "COMPONENT_TEMPLATE" => "element",
+        "COMPOSITE_FRAME_MODE" => "A",
+        "COMPOSITE_FRAME_TYPE" => "AUTO",
+        "ITEMS" => array("ITEMS"=>$arResult)
+    ),
+    $component
+);
+
 $APPLICATION->SetPageProperty("og:image", SITE_SERVER_PROTOCOL . SITE_SERVER_NAME . $arResult['DETAIL_PICTURE']['SOCIAL']);
