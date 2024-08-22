@@ -98,6 +98,13 @@
   .basket-wrapper .container {
     max-width: 100%;
   }
+  .basket-wrapper #basket-items-list-wrapper #basket-items-list-container #basket-item-list .basket-items-list-item-container > div .basket-item-block-image .basket-item-image-link{
+    align-items: center;
+  }
+  .basket-wrapper #basket-items-list-wrapper #basket-items-list-container #basket-item-list .basket-items-list-item-container{
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .symbol_ruble {

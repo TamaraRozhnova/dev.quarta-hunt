@@ -16,7 +16,7 @@ $currentPage = $APPLICATION->GetCurPage();
     <div class="container"></div>
     <div class="subcategory-selector__container container subcategory-selector__container--desktop">
         <? foreach ($arResult['SECTIONS'] as $section) { ?>
-            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>">
+            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white <?= $section['ID']?> <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>">
                 <?= $section['NAME'] ?>
             </a>
         <? } ?>
@@ -24,7 +24,7 @@ $currentPage = $APPLICATION->GetCurPage();
 
     <div class="subcategory-selector__container subcategory-selector__container--mobile">
         <? foreach ($arResult['SECTIONS'] as $section) { ?>
-            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white" <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>>
+            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white <?= $section['ID']?>" <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>>
                 <?= $section['NAME'] ?>
             </a>
         <? } ?>

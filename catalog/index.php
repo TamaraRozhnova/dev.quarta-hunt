@@ -5,6 +5,10 @@ $APPLICATION->SetPageProperty("title", "Каталог товаров Quarta О�
 
 use General\User;
 
+
+$APPLICATION->IncludeFile('/catalog/_redirect.php');
+
+
 $APPLICATION->SetTitle("Каталог товаров Quarta Оружейный Квартал");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
@@ -259,7 +263,7 @@ $APPLICATION->IncludeComponent(
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",
-			"element" => "#ELEMENT_ID#/#ELEMENT_CODE#/",
+			"element" => "products/#ELEMENT_CODE#/",
 			"compare" => "compare.php?action=#ACTION_CODE#",
 			"smart_filter" => "#SECTION_CODE_PATH#/filter/#SMART_FILTER_PATH#/apply/",
 		),
