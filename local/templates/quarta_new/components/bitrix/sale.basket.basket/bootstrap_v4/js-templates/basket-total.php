@@ -2,6 +2,10 @@
 
 use Bitrix\Main\Localization\Loc;
 
+global $USER;
+
+$isAuth = $USER->IsAuthorized();
+
 /**
  * @var array $arParams
  */
@@ -33,7 +37,7 @@ use Bitrix\Main\Localization\Loc;
 			<div class="basket-checkout-section-inner<?=(($arParams['HIDE_COUPON'] == 'Y') ? ' justify-content-between' : '')?>">
 
                 <div class="basket-checkout-block basket-checkout-block-total-price">
-                    <div class="basket-checkout-block-total-price-inner">
+                    <div class="basket-checkout-block-total-price-inner <?=!$isAuth ? 'hide' : null?>">
 
                         <div class="basket-coupon-block-total-price-current" data-entity="basket-total-price">
                             <div class="basket-checkout-block-total-title"><?=Loc::getMessage('SBB_TOTAL')?> ({{{BASKET_ITEM_COUNT}}} <?= Loc::getMessage('SBB_TOTAL_M') ?>):</div>
@@ -58,8 +62,11 @@ use Bitrix\Main\Localization\Loc;
                 <div class="basket-checkout-block-total__separator"></div>
 
                 <div class="basket-checkout-block-total__description">
-                    Промокоды и баллы будут рассчитаны
-                    на странице оформления заказа
+					<? if ($isAuth): ?>
+						<?=Loc::getMessage('BALLS_TEXT');?>
+					<? else: ?>
+						<?=Loc::getMessage('BALLS_NOAUTH_TEXT');?>
+					<? endif;?>
                 </div>
 
 				<div class="basket-checkout-block basket-checkout-block-btn">
