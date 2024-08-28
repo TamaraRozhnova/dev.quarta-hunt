@@ -117,7 +117,14 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
                 <?if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) {?>
                   <div class="section__desc">
-                    <?=$arResult['DESCRIPTION']?>
+                    <?
+global $sotbitSeoMetaBottomDesc;//для установки нижнего описания
+if(empty($sotbitSeoMetaBottomDesc)) {
+ echo $arResult['DESCRIPTION'];
+} else {
+echo $sotbitSeoMetaBottomDesc;//вывод нижнего описания 
+};
+?>
                   </div>
                 <?}?>
 
