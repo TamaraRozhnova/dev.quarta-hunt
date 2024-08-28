@@ -22,7 +22,7 @@ class PromoPage {
             _this.classList.add('close')
             BX.setCookie("P2P_APPLY", "Y", Date.now() + 3600);
         })
-        console.log(BX.getCookie('P2P_APPLY'));
+
     }
 
 
