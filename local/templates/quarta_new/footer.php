@@ -21,7 +21,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 </a>
                 <ul class="footer__free-call">
                     <li>
-                        <?$APPLICATION->IncludeComponent(
+                        <? $APPLICATION->IncludeComponent(
                             "bitrix:main.include",
                             "",
                             [
@@ -29,10 +29,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "PATH" => "/include/footer/description_phone.php",
                             ],
                             false,
-                        );?>
+                        ); ?>
                     </li>
                     <li>
-                        <?$APPLICATION->IncludeComponent(
+                        <? $APPLICATION->IncludeComponent(
                             "bitrix:main.include",
                             "",
                             [
@@ -40,7 +40,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "PATH" => "/include/footer/main_phone.php",
                             ],
                             false,
-                        );?>
+                        ); ?>
                     </li>
                 </ul>
             </div>
@@ -48,7 +48,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             <div class="col-12 col-lg-3">
                 <div class="footer-collapse">
                     <div class="footer-collapse-header">
-                        <?$APPLICATION->IncludeComponent(
+                        <? $APPLICATION->IncludeComponent(
                             "bitrix:main.include",
                             "",
                             [
@@ -56,12 +56,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "PATH" => "/include/footer/first_toggle/title.php",
                             ],
                             false,
-                        );?>
+                        ); ?>
                     </div>
 
                     <div class="footer-collapse__content">
                         <div class="row">
-                            <?$APPLICATION->IncludeComponent(
+                            <? $APPLICATION->IncludeComponent(
                                 "bitrix:main.include",
                                 "",
                                 [
@@ -69,7 +69,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     "PATH" => "/include/footer/first_toggle/content.php",
                                 ],
                                 false,
-                            );?>
+                            ); ?>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             <div class="col-12 col-lg-3">
                 <div class="footer-collapse">
                     <div class="footer-collapse-header">
-                        <?$APPLICATION->IncludeComponent(
+                        <? $APPLICATION->IncludeComponent(
                             "bitrix:main.include",
                             "",
                             [
@@ -87,12 +87,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 "PATH" => "/include/footer/second_toggle/title.php",
                             ],
                             false,
-                        );?>
+                        ); ?>
                     </div>
 
                     <div class="footer-collapse__content">
                         <div class="row">
-                            <?$APPLICATION->IncludeComponent(
+                            <? $APPLICATION->IncludeComponent(
                                 "bitrix:main.include",
                                 "",
                                 [
@@ -100,7 +100,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     "PATH" => "/include/footer/second_toggle/content.php",
                                 ],
                                 false,
-                            );?>
+                            ); ?>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <div class="footer__nav">
                     <div class="footer-collapse">
                         <div class="footer-collapse-header">
-                            <?$APPLICATION->IncludeComponent(
+                            <? $APPLICATION->IncludeComponent(
                                 "bitrix:main.include",
                                 "",
                                 [
@@ -118,11 +118,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     "PATH" => "/include/footer/third_toggle/title.php",
                                 ],
                                 false,
-                            );?>
+                            ); ?>
                         </div>
 
                         <div class="footer-collapse__content">
-                            <?$APPLICATION->IncludeComponent("bitrix:menu",
+                            <? $APPLICATION->IncludeComponent(
+                                "bitrix:menu",
                                 "menu_vertical_footer",
                                 array(
                                     "ROOT_MENU_TYPE" => "company_footer",
@@ -134,7 +135,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     "DELAY" => "N",
                                     "ALLOW_MULTI_SELECT" => "N",
                                 )
-                            );?>
+                            ); ?>
                         </div>
                     </div>
                 </div>
@@ -144,7 +145,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <div class="footer__nav">
                     <div class="footer-collapse">
                         <div class="footer-collapse-header">
-                            <?$APPLICATION->IncludeComponent(
+                            <? $APPLICATION->IncludeComponent(
                                 "bitrix:main.include",
                                 "",
                                 [
@@ -152,11 +153,12 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     "PATH" => "/include/footer/fourth_toggle/title.php",
                                 ],
                                 false,
-                            );?>
+                            ); ?>
                         </div>
 
                         <div class="footer-collapse__content">
-                            <?$APPLICATION->IncludeComponent("bitrix:menu",
+                            <? $APPLICATION->IncludeComponent(
+                                "bitrix:menu",
                                 "menu_vertical_footer",
                                 array(
                                     "ROOT_MENU_TYPE" => "info_footer",
@@ -168,7 +170,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     "DELAY" => "N",
                                     "ALLOW_MULTI_SELECT" => "N",
                                 )
-                            );?>
+                            ); ?>
                         </div>
                     </div>
                 </div>
@@ -184,27 +186,27 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 Принимаем к оплате
                 <figure>
                     <div class="img-wrapper-pm">
-                        <img loading="lazy" width="72" height="25" src="/local/templates/quarta_new/assets/images/payments/visa.svg" alt="Visa" >
+                        <img loading="lazy" width="72" height="25" src="/local/templates/quarta_new/assets/images/payments/visa.svg" alt="Visa">
                     </div>
                     <div class="img-wrapper-pm">
-                        <img loading="lazy" width="125" height="25" src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани"  >
+                        <img loading="lazy" width="125" height="25" src="/local/templates/quarta_new/assets/images/payments/youmoney.png" alt="ЮМани">
                     </div>
                     <div class="img-wrapper-pm">
-                        <img loading="lazy" width="52" height="25" src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay" >
+                        <img loading="lazy" width="52" height="25" src="/local/templates/quarta_new/assets/images/payments/sberpay.png" alt="Сбер Pay">
                     </div>
                     <div class="img-wrapper-pm">
-                        <img loading="lazy" width="42" height="25" src="/local/templates/quarta_new/assets/images/payments/mastercard.svg" alt="Mastercard" >
+                        <img loading="lazy" width="42" height="25" src="/local/templates/quarta_new/assets/images/payments/mastercard.svg" alt="Mastercard">
                     </div>
                     <div class="img-wrapper-pm">
-                        <img loading="lazy" width="82" height="25" src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир" >
+                        <img loading="lazy" width="82" height="25" src="/local/templates/quarta_new/assets/images/payments/mir.png" alt="Мир">
                     </div>
                     <div class="img-wrapper-pm">
-                        <img loading="lazy" width="52" height="25" src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay" >
+                        <img loading="lazy" width="52" height="25" src="/local/templates/quarta_new/assets/images/payments/tinpay.png" alt="Тинькофф Pay">
                     </div>
                 </figure>
             </div>
             <div class="col-12 col-sm-6 col-lg-4 footer__social">
-                <?$APPLICATION->IncludeComponent(
+                <? $APPLICATION->IncludeComponent(
                     "bitrix:main.include",
                     "",
                     [
@@ -212,38 +214,35 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         "PATH" => "/include/footer/socials.php",
                     ],
                     false,
-                );?>
+                ); ?>
             </div>
 
             <div class="col-12 col-sm-6 col-lg-4 ">
-                <?=date("Y")?> © QUARTA "Оружейный квартал"
+                <?= date("Y") ?> © QUARTA "Оружейный квартал"
             </div>
 
         </div>
     </div>
 
-    <?$APPLICATION->IncludeComponent(
-        "custom:arrow.up",
-        "",
-        []
-    );?>
+    <?php
+        $APPLICATION->IncludeComponent(
+            "custom:arrow.up",
+            "",
+            []
+        );
+    ?>
 
-    <?php 
-    
+    <?php
         if ($APPLICATION->get_cookie('COOKIE_APPLY') != 'Y') {
-
             $APPLICATION->IncludeComponent(
                 "custom:form.cookies",
                 "",
                 []
             );
-
         }
-    
     ?>
 
-    <?php 
-    
+    <?php
         if (IsModuleInstalled('promo2page')) {
             if ($APPLICATION->get_cookie('COOKIE_APPLY') == 'Y') {
                 $APPLICATION->IncludeComponent(
@@ -253,35 +252,41 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 );
             }
         }
-        
     ?>
 
 </footer>
 
-    </div>
+</div>
 
-    <?php 
-    /**
-     * Виджет Б24
-     * 
-     * Второй вызов скрипта решает проблему мультидоменности
-     */
-    ?>
-    <script>
-        (function(w,d,u){
-                var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-                var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-        })(window,document,'https://crm.quarta-hunt.ru/upload/crm/site_button/loader_2_uee9eu.js');
-        
-        window.addEventListener('onBitrixLiveChat', function(event){
-            var widget = event.detail.widget;
-            widget.setOption('checkSameDomain', false);
-        });
-        
-        (function(w,d,u){
-            var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
-            var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-        })(window,document,'https://crm.quarta-hunt.ru/upload/crm/tag/call.tracker.js');
-    </script>
-    </body>
+<?php
+/**
+ * Виджет Б24
+ * 
+ * Второй вызов скрипта решает проблему мультидоменности
+ */
+?>
+<script>
+    (function(w, d, u) {
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = u + '?' + (Date.now() / 60000 | 0);
+        var h = d.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s, h);
+    })(window, document, 'https://crm.quarta-hunt.ru/upload/crm/site_button/loader_2_uee9eu.js');
+
+    window.addEventListener('onBitrixLiveChat', function(event) {
+        var widget = event.detail.widget;
+        widget.setOption('checkSameDomain', false);
+    });
+
+    (function(w, d, u) {
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = u + '?' + (Date.now() / 60000 | 0);
+        var h = d.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s, h);
+    })(window, document, 'https://crm.quarta-hunt.ru/upload/crm/tag/call.tracker.js');
+</script>
+</body>
+
 </html>

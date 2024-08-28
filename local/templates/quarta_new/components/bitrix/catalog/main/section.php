@@ -5,6 +5,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Helpers\Filters\ProductsFilterHelper;
+use Bitrix\Iblock\SectionTable;
+use Bitrix\Main\Application;
 
 $sectionId = $arResult['VARIABLES']['SECTION_ID'];
 
@@ -17,7 +19,7 @@ $arCurSection = $sectionId;
  * Проверка на существование раздела
  */
 
- $rsSection = Bitrix\Iblock\SectionTable::getList([
+ $rsSection = SectionTable::getList([
     "select" => [
         "NAME", "CODE"
     ],
@@ -38,7 +40,7 @@ if (empty($rsSection)) {
 
     if ($APPLICATION->RestartWorkarea())
     {
-        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
+        require(Application::getDocumentRoot() . "/404.php");
         die();
     }
 }
@@ -59,13 +61,16 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
             "component" => $component
         ]
     );
+
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
         [
             "params" => array_merge($arParams, $filterParams),
             "result" => $arResult,
-            "component" => $component
+            "component" => $component,
+            "isAjax" => "Y"
         ]
     );
+
     exit();
 }
 
@@ -111,12 +116,14 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
                     "component" => $component
                 ]
             );
+            
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
                     "params" => array_merge($arParams, $filterParams),
                     "result" => $arResult,
                     "component" => $component
                 ]);
+
             ?>
         </div>
     </div>
