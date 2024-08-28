@@ -244,7 +244,6 @@ class ProductCardBasket {
     }
 
     handleAddOfferToBasket(counterInstance) {
-        console.log(123);
         
         if (this.offersQuantity == counterInstance.getValue()) {
             return;

@@ -84,7 +84,7 @@ class ProductBasket {
         }
 
         this.addToBasketButton.addEventListener('click', () => {
-            console.log(345);
+   
             this.handleAddFirstProductToBasket(id, maxQuantity);
 
             if (window.innerWidth >= 1200) {
