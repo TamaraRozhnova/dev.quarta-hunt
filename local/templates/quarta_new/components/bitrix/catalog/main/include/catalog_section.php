@@ -41,6 +41,10 @@ if (!empty($GLOBALS['arrFilter'])) {
     $GLOBALS['arrFilter'] = $params['PRICES'];
 }
 
+if ($isAjax == 'Y') {
+    $APPLICATION->ShowCSS();
+}
+
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.section",
     "main",
@@ -113,3 +117,4 @@ $APPLICATION->IncludeComponent(
     ],
     $component
 );
+
