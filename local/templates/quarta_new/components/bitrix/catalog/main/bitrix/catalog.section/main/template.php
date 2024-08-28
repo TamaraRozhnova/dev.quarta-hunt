@@ -54,28 +54,26 @@ $strTemplate = match ($_GET['templateView']) {
 
                 <div class="filters-mode-view">
                     <div class="filters-mode-view__items">
-                        <a 
-                            data-template="default" 
-                            title="большой список" 
+                        <a
+                            data-template="default"
+                            title="большой список"
                             class="filters-mode-view__item
-                            <?= 
-                                $_GET['templateView'] == 'default' || empty($_GET['templateView']) 
-                                    ? 'active' 
-                                    : null 
+                            <?=
+                            $_GET['templateView'] == 'default' || empty($_GET['templateView'])
+                                ? 'active'
+                                : null
                             ?>
-                            "
-                        >
+                            ">
                             <i class="svg  svg-inline-type" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" viewBox="0 0 14 10">
                                     <path data-name="Rounded Rectangle 1042" class="cls-1" d="M1502.5,613h-11a1.5,1.5,0,0,1-1.5-1.5v-7a1.5,1.5,0,0,1,1.5-1.5h11a1.5,1.5,0,0,1,1.5,1.5v7A1.5,1.5,0,0,1,1502.5,613Zm-10.5-8v6h1v-6h-1Zm4,0h-1v6h1v-6Zm3,0h-1v6h1v-6Zm3,0h-1v6h1v-6Z" transform="translate(-1490 -603)"></path>
                                 </svg>
                             </i>
                         </a>
                         <span class="filter-mode-view__sep"></span>
-                        <a 
-                            data-template = "list" 
-                            title="списком" 
-                            class="filters-mode-view__item <?= $_GET['templateView'] == 'list' ? 'active' : null ?>"
-                        >
+                        <a
+                            data-template="list"
+                            title="списком"
+                            class="filters-mode-view__item <?= $_GET['templateView'] == 'list' ? 'active' : null ?>">
                             <i class="svg  svg-inline-type" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="10" viewBox="0 0 13 10">
                                     <path data-name="Rounded Rectangle 917" class="cls-1" d="M1594,603h1a1,1,0,0,1,0,2h-1A1,1,0,0,1,1594,603Zm5,0h6a1,1,0,0,1,0,2h-6A1,1,0,0,1,1599,603Zm-5,4h1a1,1,0,0,1,0,2h-1A1,1,0,0,1,1594,607Zm5,0h6a1,1,0,0,1,0,2h-6A1,1,0,0,1,1599,607Zm-5,4h1a1,1,0,0,1,0,2h-1A1,1,0,0,1,1594,611Zm5,0h6a1,1,0,0,1,0,2h-6A1,1,0,0,1,1599,611Z" transform="translate(-1593 -603)"></path>
                                 </svg>
@@ -157,7 +155,14 @@ $strTemplate = match ($_GET['templateView']) {
 
                 <? if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) { ?>
                     <div class="section__desc">
-                        <?= $arResult['DESCRIPTION'] ?>
+                        <?
+                        global $sotbitSeoMetaBottomDesc; //для установки нижнего описания
+                        if (empty($sotbitSeoMetaBottomDesc)) {
+                            echo $arResult['DESCRIPTION'];
+                        } else {
+                            echo $sotbitSeoMetaBottomDesc; //вывод нижнего описания 
+                        };
+                        ?>
                     </div>
                 <? } ?>
 

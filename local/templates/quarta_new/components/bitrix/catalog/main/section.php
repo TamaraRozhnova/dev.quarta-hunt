@@ -146,7 +146,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
 //Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 //начало
     global $sotbitSeoMetaTitle;
-	$this->SetViewTarget('my_code11');
+    $this->SetViewTarget('my_code11');
     if(!empty($sotbitSeoMetaTitle)){
         echo $sotbitSeoMetaTitle;
 	} else {
