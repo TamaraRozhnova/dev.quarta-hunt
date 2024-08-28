@@ -156,6 +156,8 @@ if ($useDefaultMessages || !isset($arParams['MESS_PRICE_FREE']))
 if ($useDefaultMessages || !isset($arParams['MESS_ECONOMY']))
 {
 	$arParams['MESS_ECONOMY'] = Loc::getMessage('ECONOMY_DEFAULT');
+	$arParams['MESS_ECONOMY_PROMOCODE'] = Loc::getMessage('ECONOMY_PROMOCODE');
+	$arParams['MESS_ECONOMU_BONUS'] = Loc::getMessage('ECONOMY_BONUS');
 }
 
 if ($useDefaultMessages || !isset($arParams['MESS_REGISTRATION_REFERENCE']))

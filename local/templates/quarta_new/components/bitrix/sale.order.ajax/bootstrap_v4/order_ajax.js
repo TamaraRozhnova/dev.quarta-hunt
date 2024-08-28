@@ -4777,6 +4777,13 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
                 },
                 text: `На этот заказ Вы можете потратить до ${this.result.LOGICTIM_BONUS?.MAX_BONUS} бонусов`,
               }),
+              BX.create("BR", {}),
+              BX.create("SPAN", {
+                props: {
+                  className: "additional-bonuses"
+                },
+                text: `Бонусные баллы по предыдущей программе лояльности действуют до 31.12.2024`
+              })
             ],
           }),
           BX.create("DIV", {
@@ -9503,7 +9510,16 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
       }
 
       if (this.options.showDiscountPrice) {
-        discText = this.params.MESS_ECONOMY;
+
+        /**
+         * Купон применен
+         */
+        if (this.getCouponsList().length > 0) {
+          discText = this.params.MESS_ECONOMY_PROMOCODE;
+        } else {
+          discText = this.params.MESS_ECONOMY;
+        }
+
         if (
           total.DISCOUNT_PERCENT_FORMATED &&
           parseFloat(total.DISCOUNT_PERCENT_FORMATED) > 0
@@ -9515,6 +9531,7 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
             highlighted: true,
           })
         );
+
       }
 
       if (this.options.showPayedFromInnerBudget) {

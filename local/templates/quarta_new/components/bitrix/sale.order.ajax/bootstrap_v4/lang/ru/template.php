@@ -112,7 +112,11 @@ $MESS["PERIOD_DEFAULT"] = "Срок доставки";
 $MESS["NAV_BACK_DEFAULT"] = "Назад";
 $MESS["NAV_FORWARD_DEFAULT"] = "Вперед";
 $MESS["PRICE_FREE_DEFAULT"] = "бесплатно";
-$MESS["ECONOMY_DEFAULT"] = "Экономия";
+
+$MESS["ECONOMY_DEFAULT"] = "Скидка по программе лояльности";
+$MESS["ECONOMY_BONUS"] = "Бонусы";
+$MESS["ECONOMY_PROMOCODE"] = " Скидка по промокоду";
+
 $MESS["REGISTRATION_REFERENCE_DEFAULT"] = "Если вы впервые на сайте, и хотите, чтобы мы вас помнили, и все ваши заказы сохранялись, заполните регистрационную форму.";
 $MESS["AUTH_REFERENCE_1_DEFAULT"] = "Символом \"звездочка\" (*) отмечены обязательные для заполнения поля.";
 $MESS["AUTH_REFERENCE_2_DEFAULT"] = "После регистрации вы получите информационное письмо.";

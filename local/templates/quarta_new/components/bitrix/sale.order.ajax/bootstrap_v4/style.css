@@ -2131,6 +2131,12 @@ hr.bxe-light {
   color: #808d9a;
 }
 
+.bx-soa-bonus-user-information .additional-bonuses {
+  color: #eb5806;
+  display: block;
+  margin-top: 12px;
+}
+
 .bx-bonus-slider-track {
   display: flex;
   gap: 16px;
