@@ -160,11 +160,11 @@
 }
 
 .product-card-horizontal__wrapper .product-card__preview-text-svg {
-  transform: rotate(0);
+  transform: rotate(180deg);
 }
 
 .product-card-horizontal__wrapper .product-card__preview-text-svg.active {
-  transform: rotate(180deg);
+  transform: rotate(0);
 }
 
 .product-card-horizontal__wrapper .product-card__title {
