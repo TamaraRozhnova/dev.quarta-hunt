@@ -24,11 +24,12 @@ foreach ($arResult['ITEMS'] as $key => $item) {
     }
 }
 
-// Удаляем дубли
-$sectionIds = array_unique($sectionIds);
-
 // Получаем информацию по разделам
 if ($sectionIds) {
+
+    // Удаляем дубли
+    $sectionIds = array_unique($sectionIds);
+
     Loader::includeModule('iblock');
 
     $rsSection = SectionTable::getList(array(
