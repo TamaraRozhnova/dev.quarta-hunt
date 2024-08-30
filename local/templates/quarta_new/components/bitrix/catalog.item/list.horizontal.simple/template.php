@@ -115,7 +115,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
                                 </path>
                             </svg>
                         </div>
-                        Описание
+                        Краткие характеристики
                     </div>
                 </div>
 
