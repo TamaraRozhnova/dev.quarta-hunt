@@ -19,7 +19,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 </div>
                 <div class="row">
                     <? foreach ($arResult['ITEMS'] as $item) { ?>
-                        <div class="col-6 col-md-4 col-lg-3 mb-4 favorites__item" data-id="<?= $item['ID'] ?>">
+                        <div class="mb-4 favorites__item" data-id="<?= $item['ID'] ?>">
                             <? $APPLICATION->IncludeComponent(
                                 'bitrix:catalog.item',
                                 'main',

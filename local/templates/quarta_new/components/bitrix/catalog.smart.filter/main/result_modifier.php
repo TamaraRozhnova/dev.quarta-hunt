@@ -31,12 +31,14 @@ if (!$arResult['SECTION']['IS_PARENT']) {
             continue;
         }
         if (!empty($filter['VALUES']) && count($filter['VALUES'])) {
-            $filters['CHARACTERISTICS'][] =
-                [
-                    'TITLE' => $filter['NAME'],
-                    'CHILDREN' => $filter['VALUES'],
-                    'CODE' => $filter['CODE']
-                ];
+
+				$filters['CHARACTERISTICS'][] =
+					[
+						'TITLE' => $filter['NAME'],
+						'CHILDREN' => $filter['VALUES'],
+						'CODE' => $filter['CODE']
+					];
+
         }
     }
 }
