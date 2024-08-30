@@ -51,8 +51,9 @@ class ProductCardCompare {
 
         this.compareIconDefault.addEventListener('click', async () => this.addCompare());
         this.compareIconActive.addEventListener('click', async () => this.deleteCompare());
-        
-        this.closePopupWrap.addEventListener('click', async () => this.closePopup());
+        if(this.closePopupWrap !== null){
+            this.closePopupWrap.addEventListener('click', async () => this.closePopup());
+        }
     }
 
     async addCompare() {

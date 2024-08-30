@@ -46,8 +46,9 @@ class ProductCompare {
         this.compareIconDefault = this.compareButton.querySelector('.product-compare__default');
         this.compareIconActive = this.compareButton.querySelector('.product-compare__active');
         this.compareButton.addEventListener('click', async() => this.changeCompare())
-
-        this.closePopupWrap.addEventListener('click', async() => this.closePopup())
+        if(this.closePopupWrap !== null){
+            this.closePopupWrap.addEventListener('click', async() => this.closePopup())
+        }
         this.compareAvailableCompareBtn.forEach( (btnComp) => {
             btnComp.addEventListener('click', async() => this.changeCompare())
         })
