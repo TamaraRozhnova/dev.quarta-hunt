@@ -41,19 +41,12 @@ class CompareApi {
     displayCompareCount() {
         if (!window.compareCount) {
             this.headerTopCompareBadge.style.display = 'none';
-
-            if (this.headerBottomCompareBadge) {
-                this.headerBottomCompareBadge.style.display = 'none';
-            }
-
+            //this.headerBottomCompareBadge.style.display = 'none';
             return;
         }
         this.headerTopCompareBadge.textContent = window.compareCount;
         this.headerTopCompareBadge.style.display = 'block';
-
-        if (this.headerBottomCompareBadge) {
-            this.headerBottomCompareBadge.textContent = window.compareCount;
-            this.headerBottomCompareBadge.style.display = 'flex';
-        }
+        //this.headerBottomCompareBadge.textContent = window.compareCount;
+        //this.headerBottomCompareBadge.style.display = 'flex';
     }
 }

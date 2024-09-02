@@ -8,7 +8,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 global $arCurSection;
 //Конец
 
-
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.smart.filter",
     "main",
@@ -29,7 +28,6 @@ $APPLICATION->IncludeComponent(
         "SECTION_TITLE" => "NAME",
         "SECTION_DESCRIPTION" => "DESCRIPTION",
         'HIDE_NOT_AVAILABLE' => $params["ONLY_AVAILABLE"],
-	'HIDE_NOT_AVAILABLE_OFFERS' => 'Y',
         "TEMPLATE_THEME" => $params["TEMPLATE_THEME"],
         'CONVERT_CURRENCY' => $params['CONVERT_CURRENCY'],
         'CURRENCY_ID' => $params['CURRENCY_ID'],

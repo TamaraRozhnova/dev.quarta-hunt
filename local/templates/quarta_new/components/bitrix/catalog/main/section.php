@@ -5,8 +5,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Helpers\Filters\ProductsFilterHelper;
-use Bitrix\Iblock\SectionTable;
-use Bitrix\Main\Application;
 
 $sectionId = $arResult['VARIABLES']['SECTION_ID'];
 
@@ -19,7 +17,7 @@ $arCurSection = $sectionId;
  * Проверка на существование раздела
  */
 
- $rsSection = SectionTable::getList([
+ $rsSection = Bitrix\Iblock\SectionTable::getList([
     "select" => [
         "NAME", "CODE"
     ],
@@ -40,7 +38,7 @@ if (empty($rsSection)) {
 
     if ($APPLICATION->RestartWorkarea())
     {
-        require(Application::getDocumentRoot() . "/404.php");
+        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
         die();
     }
 }
@@ -61,16 +59,13 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
             "component" => $component
         ]
     );
-
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
         [
             "params" => array_merge($arParams, $filterParams),
             "result" => $arResult,
-            "component" => $component,
-            "isAjax" => "Y"
+            "component" => $component
         ]
     );
-
     exit();
 }
 
@@ -116,14 +111,12 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
                     "component" => $component
                 ]
             );
-            
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
                     "params" => array_merge($arParams, $filterParams),
                     "result" => $arResult,
                     "component" => $component
                 ]);
-
             ?>
         </div>
     </div>
@@ -146,7 +139,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
 //Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 //начало
     global $sotbitSeoMetaTitle;
-    $this->SetViewTarget('my_code11');
+	$this->SetViewTarget('my_code11');
     if(!empty($sotbitSeoMetaTitle)){
         echo $sotbitSeoMetaTitle;
 	} else {

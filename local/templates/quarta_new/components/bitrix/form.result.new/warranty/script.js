@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
         isValidData() {
             let isError = false;
             Object.keys(this.requiredInputs).forEach(key => {
-                if (key === 'file') {
+                if (key === 'warranty') {
                     return;
                 }
                 
@@ -93,8 +93,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (!value) {
                     return;
                 }
-
-                if (key === 'file') {
+                if (key === 'warranty') {
                     value = value[0];
                 }
                 formData.append(fieldId, value);
