@@ -42,6 +42,6 @@ logs/
 /tmp
 
 # HUT
-/local/php_interface/ht/
-/local/templates/hut/
+#/local/php_interface/ht/
+#/local/templates/hut/
 
