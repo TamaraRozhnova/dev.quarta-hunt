@@ -170,6 +170,24 @@ class ProductCardBasket {
     }
 
     handleAddProductToBasket(counterInstance) {
+        if (window.innerWidth >= 1200) {
+            
+            if (window.basketPopupActive = true) {
+                const allBasketPopupActive = document.querySelectorAll('.product-basket-popup__wrapper')
+
+                if (allBasketPopupActive.length > 0) {
+                    allBasketPopupActive.forEach((popup) =>  {
+                        popup.parentNode.removeChild(popup)
+                    })
+                    window.productAddedPopupBasket = false
+                }
+            }
+
+            this.lastPopupHtml = this.createPopupIntoBasket()
+            this.insertPopupIntoBasket(this.lastPopupHtml)
+            this.deletePopupIntoBasket(this.lastPopupHtml);
+        }
+
         if (this.productQuantity == counterInstance.getValue()) {
             return;
         }
@@ -226,6 +244,7 @@ class ProductCardBasket {
     }
 
     handleAddOfferToBasket(counterInstance) {
+        
         if (this.offersQuantity == counterInstance.getValue()) {
             return;
         }
