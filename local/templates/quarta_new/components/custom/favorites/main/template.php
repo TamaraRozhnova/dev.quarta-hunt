@@ -11,6 +11,31 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         <? if (!empty($arResult['ITEMS'])) { ?>
             <div class="favorites__main">
                 <h2>Избранное</h2>
+                <? if (!empty($arResult['SECTIONS'])) { ?>
+                    <div class="subcategory-selector">
+                        <div class="subcategory-selector__container subcategory-selector__container--desktop">
+                            <a href="<?= $APPLICATION->GetCurPage(); ?>" class="btn btn-white <?= empty($arResult['CURRENT_SECTION_ID']) ? 'active' : '' ?>">
+                                Все категории
+                            </a>
+                            <? foreach ($arResult['SECTIONS'] as $section) { ?>
+                                <a href="?section=<?= $section['ID'] ?>" class="btn btn-white <?= $arResult['CURRENT_SECTION_ID'] == $section['ID'] ? 'active' : '' ?>">
+                                    <?= $section['NAME'] ?>
+                                </a>
+                            <? } ?>
+                        </div>
+
+                        <div class="subcategory-selector__container subcategory-selector__container--mobile">
+                            <a href="<?= $APPLICATION->GetCurPage(); ?>" class="btn btn-white <?= empty($arResult['CURRENT_SECTION_ID']) ? 'active' : '' ?>">
+                                Все категории
+                            </a>
+                            <? foreach ($arResult['SECTIONS'] as $section) { ?>
+                                <a href="?section=<?= $section['ID'] ?>" class="btn btn-white <?= $arResult['CURRENT_SECTION_ID'] == $section['ID'] ? 'active' : '' ?>">
+                                    <?= $section['NAME'] ?>
+                                </a>
+                            <? } ?>
+                        </div>
+                    </div>
+                <? } ?>
                 <div class="row align-items-center">
                     <p class="favorites__count col-6 my-4"></p>
                     <div class="col-6 text-right">
