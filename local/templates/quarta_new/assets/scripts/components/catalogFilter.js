@@ -497,7 +497,7 @@ class CatalogFilter {
     createElements() {
         this.createSelectorSort()
         this.createSelectorCount()
-        this.createPriceField()
+        // this.createPriceField()
     }
 
     setBadges() {

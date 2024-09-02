@@ -142,7 +142,8 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
     ); ?>
 
 </div>
-<?
+
+<?php
 //Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 //начало
     global $sotbitSeoMetaTitle;
@@ -178,4 +179,3 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
         $APPLICATION->AddChainItem($sotbitSeoMetaBreadcrumbTitle  );
     }
 //конец
-?>
