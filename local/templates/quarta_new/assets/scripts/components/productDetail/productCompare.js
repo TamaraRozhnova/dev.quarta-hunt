@@ -15,21 +15,8 @@ class ProductCompare {
         this.compareAvailableCompareDefault = this.compareAvailableActions.querySelector('.product-card__compare--default')
         this.compareAvailableCompareActive = this.compareAvailableActions.querySelector('.product-card__compare--active')
 
-        this.popupWrap = document.querySelector('.compare-popup');
-        this.closePopupWrap = document.querySelector('.compare-popup_close');
-
         this.hangEvents();
         this.defineCompare();
-    }
-
-    closePopup(){
-        this.popupWrap.classList.remove("active");
-    }
-
-    openPopup(){
-        if(this.compareApi.headerTopCompareBadge.innerText > 1){
-            this.popupWrap.classList.add("active");
-        }
     }
 
     defineCompare() {
@@ -46,12 +33,11 @@ class ProductCompare {
         this.compareIconDefault = this.compareButton.querySelector('.product-compare__default');
         this.compareIconActive = this.compareButton.querySelector('.product-compare__active');
         this.compareButton.addEventListener('click', async() => this.changeCompare())
-        if(this.closePopupWrap !== null){
-            this.closePopupWrap.addEventListener('click', async() => this.closePopup())
-        }
+
         this.compareAvailableCompareBtn.forEach( (btnComp) => {
             btnComp.addEventListener('click', async() => this.changeCompare())
         })
+
     }
 
     async changeCompare() {
@@ -64,6 +50,7 @@ class ProductCompare {
         }
 
         this.compareButton.style.pointerEvents = 'all';
+
     }
 
     async addCompare() {
@@ -73,7 +60,6 @@ class ProductCompare {
         }
         this.changeStyles(true);
         this.inCompare = true;
-        this.openPopup();
     }
 
     async deleteCompare() {
