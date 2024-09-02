@@ -8,7 +8,7 @@ class CompareApi {
         }
 
         this.headerTopCompareBadge = document.querySelector('.header__top-item .compare-badge');
-        this.headerBottomCompareBadge = document.querySelector('.header__bottom-item .compare-badge');
+        //this.headerBottomCompareBadge = document.querySelector('.header__bottom-item .compare-badge');
     }
 
     async addToCompare(productId) {

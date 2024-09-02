@@ -253,6 +253,17 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             }
         }
     ?>
+   
+    <?$APPLICATION->IncludeComponent(
+        "bitrix:main.include",
+        "",
+        [
+            "AREA_FILE_SHOW" => "file",
+            "PATH" => "/include/footer/compare_popup.php",
+        ],
+        false,
+    );?>
+    
 
 </footer>
 
