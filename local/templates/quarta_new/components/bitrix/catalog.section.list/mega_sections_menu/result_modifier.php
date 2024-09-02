@@ -31,7 +31,7 @@ $saleData = ElementpromTable::getList([
         ">=ACTIVE_TO" => new DateTime(),
         'ACTIVE' => 'Y'
     ],
-    'order' => ['ID' => 'DESC']
+    'order' => ['SORT' => 'ASC']
 ])->fetchAll();
 
 foreach ($saleData as &$sale) {
@@ -67,7 +67,7 @@ foreach ($rsBrands as &$arBrand) {
     if (empty($arBrand['PREVIEW_PICTURE'])) {
         continue;
     }
-
+    
     $arBrand['URL'] = CIBlock::ReplaceDetailUrl($arBrand['DETAIL_PAGE_URL'], $arBrand, false, 'E');
 
     $arBrand['IMAGE'] = CFile::ResizeImageGet(
@@ -85,7 +85,7 @@ foreach ($rsBrands as &$arBrand) {
 $rsBrands = array_column($rsBrands, null, 'ID');
 
 /**
- * Формирование ассоциативного массива
+ * Формирование ассоциативного массива  
  * разделов с брендами и фильтрация пустых значений
  */
 $arSectionsIDSWithBrands = array_filter(
@@ -122,7 +122,7 @@ foreach ($arResult['SECTIONS'] as $section) {
      */
     if (!empty($arSectionsIDSWithBrands[$currentSectionID])) {
 
-        $arCurrentBrandsIDS = $arSectionsIDSWithBrands[$currentSectionID];
+        $arCurrentBrandsIDS = $arSectionsIDSWithBrands[$currentSectionID]; 
         foreach ($arCurrentBrandsIDS as $arBrandID) {
             $currentArBrand = $rsBrands[$arBrandID];
             $arBrandsJS[$section['ID']][$currentArBrand['ID']] = $currentArBrand;

@@ -169,8 +169,8 @@ class OnSale{
         if(!isset($arFields["DELIVERY_ID"]) || intval($arFields["DELIVERY_ID"]) < 1){
             $arFields["DELIVERY_ID"] = self::DELIVERY_DEFAULT;
             $arFields['ORDER_PROP'][self::PROP_ZIP] = $arLocation['ZIP'];
-            // $arFields['ORDER_PROP'][self::PROP_LOCATION_NAME] = $userCity;
-            // $arFields['ORDER_PROP'][self::PROP_LOCATION] = CSaleLocation::getLocationCODEbyID($cityId);
+            $arFields['ORDER_PROP'][self::PROP_LOCATION_NAME] = $userCity;
+            $arFields['ORDER_PROP'][self::PROP_LOCATION] = CSaleLocation::getLocationCODEbyID($cityId);
         }
 
 //        file_put_contents($_SERVER["DOCUMENT_ROOT"].'/local/php_interface/st/events.txt', print_r([
