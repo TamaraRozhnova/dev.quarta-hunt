@@ -95,8 +95,7 @@ function getRootProductSection($iblockId, $sectionId) {
     while($sectionId) {
         if ($arSection = \Bitrix\Iblock\SectionTable::getList([
             'filter' => ['IBLOCK_ID' => $iblockId, 'ID' => $sectionId],
-            'select' => ['ID', 'IBLOCK_SECTION_ID', 'CODE'],
-            'cache' => ['ttl' => 36000000]
+            'select' => ['ID', 'IBLOCK_SECTION_ID', 'CODE']
         ])->fetch()) {
             $arSections[] = $arSection;
         }

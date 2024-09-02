@@ -4,45 +4,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-$arCurrentSectionPath = getRootProductSection(
-    $params['IBLOCK_ID'], 
-    $result['VARIABLES']['SECTION_ID']
-);
-
-if (!empty($arCurrentSectionPath)) {
-    $arIdsLicenseSections = array_column($arCurrentSectionPath, 'ID', 'ID');
-
-    foreach (SECTIONS_ATTENTION_MODAL as $arLicenseSectionID) {
-
-        if (!$arIdsLicenseSections[$arLicenseSectionID]) {
-            continue;
-        }
-
-        /**
-         * Вызываем модальное окно с подтверждением возраста,
-         * в случае если в разделе нужно показать модальное окно
-         */
-        $APPLICATION->IncludeComponent(
-            "custom:attention.age",
-            "",
-            []
-        );
-
-        break;
-    }
-
-}
-
-
-
 if (!empty($GLOBALS['arrFilter'])) {
     $GLOBALS['arrFilter'] = array_merge($GLOBALS['arrFilter'], $params['PRICES']);
 } else {
     $GLOBALS['arrFilter'] = $params['PRICES'];
-}
-
-if ($isAjax == 'Y') {
-    $APPLICATION->ShowCSS();
 }
 
 $APPLICATION->IncludeComponent(
@@ -117,4 +82,3 @@ $APPLICATION->IncludeComponent(
     ],
     $component
 );
-

@@ -32,7 +32,6 @@ class WebForm
         }
 
         $result = CFormResult::Add($this->webFormId, $data, 'N');
-        
         if ($result) {
             CFormResult::Mail($result);
             

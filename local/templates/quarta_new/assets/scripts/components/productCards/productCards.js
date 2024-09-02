@@ -33,8 +33,6 @@ class ProductCards {
             );
             new ProductCardLabels(productElement)
 
-            new ProductCardDescriptionAccordeon(productElement)
-
             const tooltipContainers = productElement.querySelectorAll('.product-card__tags .info');
             tooltipContainers.forEach(container => {
                 const wrapperElement = container.querySelector('span:first-child');

@@ -4,16 +4,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Iblock\ElementTable;
-use Bitrix\Iblock\SectionTable;
-
 /**
  * Проверка на существование элемента
  */
 
- $rsElement = ElementTable::getList([
+ $rsElement = Bitrix\Iblock\ElementTable::getList([
     "select" => [
-        "NAME", "CODE", "IBLOCK_SECTION_ID"
+        "NAME", "CODE"
     ],
     "filter" => [
         "IBLOCK_ID" => $arParams['IBLOCK_ID'],
@@ -35,31 +32,6 @@ if (empty($rsElement)) {
         require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
         die();
     }
-}
-
-// Получаем все категории товара вплоть до основной
-$productSections = getRootProductSection($arParams['IBLOCK_ID'], $rsElement['IBLOCK_SECTION_ID']);
-
-$arIdsSectionsProduct = array_column($productSections, 'ID', 'ID');
-
-// // Проверяем все категории, где отображать модальное окно с возрастом
-foreach (SECTIONS_ATTENTION_MODAL as $attentionSectionId) {
-
-    if (!$arIdsSectionsProduct[$attentionSectionId]) {
-        continue;
-    }
-
-    /**
-     * Вызываем модальное окно с подтверждением возраста,
-     * в случае если в разделе нужно показать модальное окно
-     */
-    $APPLICATION->IncludeComponent(
-        "custom:attention.age",
-        "",
-        []
-    );
-
-    break;
 }
 
 $ElementID = $APPLICATION->IncludeComponent(

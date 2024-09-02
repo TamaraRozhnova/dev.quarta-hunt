@@ -1,6 +1,6 @@
 <?php
 $arUrlRewrite=array (
-  27 => 
+  21 => 
   array (
     'CONDITION' => '#^={$params["SEF_URL_TEMPLATES"]["smart_filter"]}\\??(.*)#',
     'RULE' => '&$1',
@@ -80,7 +80,7 @@ $arUrlRewrite=array (
     'PATH' => '/brendy/index.php',
     'SORT' => 100,
   ),
-  28 => 
+  20 => 
   array (
     'CONDITION' => '#^/catalog/#',
     'RULE' => '',
