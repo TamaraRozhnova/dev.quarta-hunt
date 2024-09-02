@@ -9,6 +9,8 @@ $eventManager = EventManager::getInstance();
 
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/constants.php');
 include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/include/functions.php');
+
+
 include($_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php');
 include_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/wsrubi.smtp/classes/general/wsrubismtp.php");
 

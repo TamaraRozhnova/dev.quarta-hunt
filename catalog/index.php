@@ -23,7 +23,7 @@ $priceCode = $user->getUserPriceCode();
 <?
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	"main",
+	"main", 
 	array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -131,10 +131,11 @@ $APPLICATION->IncludeComponent(
 		),
 		"LIST_PROPERTY_CODE" => array(
 			0 => "CML2_ARTICLE",
-			1 => "HIT",
-			2 => "NEW_PRODUCT",
-			3 => "DOUBLE_BONUS",
-			4 => "ITS_CREDIT",
+			1 => "ITS_CREDIT",
+			2 => "HIT",
+			3 => "NEW_PRODUCT",
+			4 => "DOUBLE_BONUS",
+			5 => "",
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",
@@ -165,7 +166,6 @@ $APPLICATION->IncludeComponent(
 		"PRODUCT_DISPLAY_MODE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
 		"PRODUCT_PROPERTIES" => array(
-			0 => 'CML2_ARTICLE'
 		),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",

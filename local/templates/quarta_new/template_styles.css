@@ -8473,7 +8473,7 @@ input.form-check-input:focus {
   color: #004989;
   font-weight: 700;
   font-size: 14px;
-  line-height: 14px;
+  line-height: 16px;
 }
 .header--desktop .header__lists-section > a > span > span.badge {
   min-width: 16px;
@@ -11555,7 +11555,7 @@ div[id*="wait_comp"] {
   transition: .5s all ease-in-out;
   opacity: 0;
   background-color: white;
-  padding: 50px 20px 20px;
+  padding: 20px;
   border-radius: 20px;
   -webkit-box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
@@ -11582,20 +11582,4 @@ div[id*="wait_comp"] {
   color: #808d9a;
   background-color: #f9f9fa;
   margin-left: 10px;
-}
-
-.compare-popup_close {
-  position: absolute;
-  top: 20px;
-  cursor: pointer;
-  right: 20px;
-}
-
-.compare-popup_close svg{
-  width: 24px;
-  height: 24px;
-}
-
-.compare-popup_close:hover svg{
-  fill:#004989;
 }
