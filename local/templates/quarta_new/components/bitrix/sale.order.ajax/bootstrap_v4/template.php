@@ -725,9 +725,10 @@ else
 				if (i > 50)
 					return;
 
-				if (typeof window['yaCounter<?=$arParams['YM_GOALS_COUNTER']?>'] !== 'undefined')
-					BX.Sale.OrderAjaxComponent.reachGoal('initialization');
-				else
+				if (typeof window['yaCounter<?=$arParams['YM_GOALS_COUNTER']?>'] !== 'undefined') {
+                    BX.Sale.OrderAjaxComponent.reachGoal('initialization');
+                    ym(30377432, 'reachGoal', 'form_cart_order');
+                } else
 					setTimeout(function(){bx_counter_waiter(++i)}, 100);
 			})();
 		</script>
