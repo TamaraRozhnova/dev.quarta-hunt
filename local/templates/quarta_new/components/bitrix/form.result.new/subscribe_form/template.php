@@ -100,6 +100,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     <script>
         new Modal({
             modalSelector: "#subscribe-window"
-        }).open();        
+        }).open();
+        ym(30377432, 'reachGoal', 'subscribe');
     </script>
 <?}?>
