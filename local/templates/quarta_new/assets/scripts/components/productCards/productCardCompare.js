@@ -11,11 +11,23 @@ class ProductCardCompare {
         this.compareList = data.compareList;
 
         this.onDelete = events.onDelete;
+        this.popupWrap = document.querySelector('.compare-popup');
+        this.closePopupWrap = document.querySelector('.compare-popup_close');
 
         this.compareApi = new CompareApi();
 
         this.hangEvents();
         this.defineCompare();
+    }
+
+    closePopup(){
+        this.popupWrap.classList.remove("active");
+    }
+
+    openPopup(){
+        if(this.compareApi.headerTopCompareBadge.innerText > 1){
+            this.popupWrap.classList.add("active");
+        }
     }
 
     defineCompare() {
@@ -39,6 +51,9 @@ class ProductCardCompare {
 
         this.compareIconDefault.addEventListener('click', async () => this.addCompare());
         this.compareIconActive.addEventListener('click', async () => this.deleteCompare());
+        if(this.closePopupWrap !== null){
+            this.closePopupWrap.addEventListener('click', async () => this.closePopup());
+        }
     }
 
     async addCompare() {
@@ -47,6 +62,7 @@ class ProductCardCompare {
             return;
         }
         this.changeStyles(true);
+        this.openPopup();
     }
 
     async deleteCompare() {
@@ -62,7 +78,6 @@ class ProductCardCompare {
     }
 
     changeStyles(state = true) {
-
         if (state) {
             this.compareIconDefault.style.display = 'none';
             this.compareIconActive.style.display = 'inline';

@@ -3,6 +3,7 @@
     <a href="https://vk.com/quarta_hunt_official"
        target="_blank"
        rel="nofollow noopener noreferrer"
+       class="social-icons_vk"
     >
         <svg width="28" height="17" viewBox="0 0 28 17" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -13,6 +14,7 @@
     <a href="https://www.youtube.com/channel/UCiZRW21PB-OK1CY6Rrv88nw"
        target="_blank"
        rel="nofollow noopener noreferrer"
+       class="social-icons_youtube"
     >
         <svg width="25" height="19" viewBox="0 0 25 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M24.2501 3.82254C24.0282 2.59797 22.9711 1.70618 21.7444 1.42776C19.9086 1.03842 16.5111 0.76001 12.8352 0.76001C9.16145 0.76001 5.70957 1.03842 3.87162 1.42776C2.64704 1.70618 1.58777 2.54141 1.36591 3.82254C1.14187 5.2146 0.920013 7.16349 0.920013 9.6692C0.920013 12.1749 1.14187 14.1238 1.42029 15.5159C1.64432 16.7404 2.70142 17.6322 3.926 17.9106C5.87488 18.3 9.21583 18.5784 12.8917 18.5784C16.5676 18.5784 19.9086 18.3 21.8575 17.9106C23.0821 17.6322 24.1392 16.797 24.3632 15.5159C24.585 14.1238 24.8635 12.1184 24.92 9.6692C24.8069 7.16349 24.5285 5.2146 24.2501 3.82254ZM9.8292 13.567V5.77143L16.622 9.6692L9.8292 13.567Z"
@@ -22,6 +24,7 @@
     <a href="https://t.me/quarta_hunt_official"
        target="_blank"
        rel="nofollow noopener noreferrer"
+       class="social-icons_t"
     >
         <svg width="23" height="19" viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.4776 0.12005L1.49917 7.55638C0.135727 8.08498 0.143615 8.81915 1.24902 9.14654L6.37828 10.691L18.2459 3.46352C18.8071 3.13396 19.3198 3.31124 18.8983 3.67235L9.28321 12.0484H9.28096L9.28321 12.0495L8.92939 17.1528C9.44773 17.1528 9.67647 16.9233 9.96719 16.6525L12.4586 14.314L17.6408 18.0088C18.5963 18.5167 19.2826 18.2557 19.5203 17.155L22.9222 1.67975C23.2704 0.332144 22.3892 -0.278033 21.4776 0.12005Z"

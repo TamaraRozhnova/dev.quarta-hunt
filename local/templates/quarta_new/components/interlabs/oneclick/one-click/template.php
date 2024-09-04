@@ -38,6 +38,10 @@ $isSuccess = (isset($arResult['success']) && isset($arResult['success']['message
                                     ['#ORDER_ID#' => $arResult['success']['orderId']]
                                 )
                             ?>
+                            <script>
+                                ym(30377432, 'reachGoal', 'form_buy_1_click')
+                            </script>
+
                         <? else: ?>
                             <?=Loc::getMessage("buy_in_1_click")?>
                         <? endif; ?>
