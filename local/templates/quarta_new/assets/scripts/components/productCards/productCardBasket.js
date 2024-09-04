@@ -41,6 +41,7 @@ class ProductCardBasket {
         const basketElement = this.productElement.querySelector('.product-card__add');
         basketElement.classList.remove('placeholder-glow');
         const placeholder = basketElement.querySelector('.placeholder');
+        if (!placeholder) return false;
         placeholder.remove();
     }
 

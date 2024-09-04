@@ -4,6 +4,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+global $APPLICATION;
+
 /**
  * Определяем шаблон для вывода catalog.item
  */
@@ -170,3 +172,9 @@ $strTemplate = match ($_GET['templateView']) {
         </div>
     </div>
 </div>
+
+<script defer>
+    // for ajax standart filter
+    // new ProductsInitializer();
+    // new ModernCatalogFilter();
+</script>

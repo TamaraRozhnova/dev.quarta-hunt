@@ -654,8 +654,4 @@ if (isset($templateData['TEMPLATE_THEME'])) {
 </div>
 <script type="text/javascript">
 	var smartFilter = new JCSmartFilter('<? echo CUtil::JSEscape($arResult["FORM_ACTION"]) ?>', '<?= CUtil::JSEscape($arParams["FILTER_VIEW_MODE"]) ?>', <?= CUtil::PhpToJSObject($arResult["JS_FILTER_PARAMS"]) ?>);
-
-	// window.addEventListener('DOMContentLoaded', () => {
-	// 	new CatalogFilter();
-	// })
 </script>

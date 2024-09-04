@@ -82,6 +82,7 @@ JCSmartFilter.prototype.reload = function(input)
 			}
 
 			this.curFilterinput = input;
+
 			BX.ajax.loadJSON(
 				this.ajaxURL,
 				this.values2post(values),
@@ -89,6 +90,7 @@ JCSmartFilter.prototype.reload = function(input)
 			);
 		}
 	}
+	new ModernCatalogFilter()
 };
 
 JCSmartFilter.prototype.updateItem = function (PID, arItem)
@@ -261,7 +263,13 @@ JCSmartFilter.prototype.bindUrlToButton = function (buttonId, url)
 
 		BX.bind(button, 'click', proxy(url, function(url)
 		{
-			window.location.href = url;
+			const obUrl = new URL(window.location.href);
+			const urlParams = new URLSearchParams(obUrl.search);
+
+			const newUrl = `${url}?${urlParams.toString()}`
+
+			window.location.href = newUrl;
+			
 			return false;
 		}));
 	}

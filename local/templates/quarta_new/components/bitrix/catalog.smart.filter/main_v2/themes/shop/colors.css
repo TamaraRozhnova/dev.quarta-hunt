@@ -65,8 +65,8 @@
 
 .category .category__filter-wrap .filters__clear:focus {
     outline: 0;
-    box-shadow: 0;
-    border: 0;
+    box-shadow: none !important;
+    border: 0 !important;
 }
 
 .category .category__filter-wrap .filters section {
@@ -260,7 +260,7 @@
         border-radius: 0;
     }
 
-    .category .category__filter-wrap--show {
+    .category .category__filter-wrap.show {
         display: block;
     }
 
@@ -274,6 +274,7 @@
         border-radius: 0;
         max-height: 100vh;
         height: 100vh;
+        padding: 10px;
     }
 
     .category .category__filter-wrap .filters .filters__header {

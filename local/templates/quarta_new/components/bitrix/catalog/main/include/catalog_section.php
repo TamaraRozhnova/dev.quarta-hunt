@@ -39,9 +39,11 @@ if (!empty($GLOBALS['arrFilter'])) {
     $GLOBALS['arrFilter'] = $params['PRICES'];
 }
 
+/*
 if ($isAjax == 'Y') {
-    $APPLICATION->ShowCSS();
+    // $APPLICATION->ShowCSS();
 }
+*/
 
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.section",
@@ -87,7 +89,7 @@ $APPLICATION->IncludeComponent(
         "DISPLAY_BOTTOM_PAGER" => $params["DISPLAY_BOTTOM_PAGER"],
         "PAGER_TITLE" => $params["PAGER_TITLE"],
         "PAGER_SHOW_ALWAYS" => $params["PAGER_SHOW_ALWAYS"],
-        "PAGER_TEMPLATE" => 'main',
+        "PAGER_TEMPLATE" => 'main_v2',
         "PAGER_DESC_NUMBERING" => $params["PAGER_DESC_NUMBERING"],
         "PAGER_DESC_NUMBERING_CACHE_TIME" => $params["PAGER_DESC_NUMBERING_CACHE_TIME"],
         "PAGER_SHOW_ALL" => $params["PAGER_SHOW_ALL"],

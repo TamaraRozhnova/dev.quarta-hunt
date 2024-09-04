@@ -37,7 +37,7 @@ $APPLICATION->IncludeComponent(
         "SEF_RULE" => $result["FOLDER"].$result["URL_TEMPLATES"]["smart_filter"],
         "SMART_FILTER_PATH" => $result["VARIABLES"]["SMART_FILTER_PATH"],
         "PAGER_PARAMS_NAME" => $params["PAGER_PARAMS_NAME"],
-        "INSTANT_RELOAD" => "Y",
+        "INSTANT_RELOAD" => "N",
         "USE_FILTER" => "Y",
         "POPUP_POSITION" => "right"
 

@@ -34,7 +34,7 @@ $APPLICATION->IncludeComponent(
 		"AJAX_OPTION_ADDITIONAL" => "N",
 		"AJAX_OPTION_HISTORY" => "N",
 		"AJAX_OPTION_JUMP" => "N",
-		"AJAX_OPTION_STYLE" => "Y",
+		"AJAX_OPTION_STYLE" => "N",
 		"BASKET_URL" => "/personal/cart/",
 		"CACHE_FILTER" => "N",
 		"CACHE_GROUPS" => "N",

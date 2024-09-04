@@ -48,9 +48,9 @@ if (empty($rsSection)) {
 $headers = getallheaders();
 
 $filterHelperInstance = new ProductsFilterHelper($sectionId);
-$filterParams = $filterHelperInstance->getFilters();
+$filterParams = $filterHelperInstance->getFilters() ?? [];
 
-
+/* AJAX old filter
 if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
@@ -73,6 +73,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
 
     exit();
 }
+*/
 
 ?>
 
@@ -116,6 +117,13 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
                     "component" => $component
                 ]
             );
+
+            /**
+             * SORT for standart filter
+             */
+            $APPLICATION->IncludeFile($templateFolder . "/include/catalog_filter_top.php", [
+                "currentSection" => $arCurSection,
+            ]);
             
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
@@ -144,6 +152,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
 </div>
 
 <?php
+
 //Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 //начало
     global $sotbitSeoMetaTitle;
