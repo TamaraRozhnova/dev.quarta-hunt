@@ -45,3 +45,7 @@ const RESTRICTED_SECTIONS_FOF_FAST_BUY = 'oruzhie_i_patrony'; // Код разд
 const EXCEPTIONS_FOR_FAST_BUY = 'oruzhie_i_patrony'; // Код раздела, в котором не выводится кнопка покупки в 1 клик
 const CDEK_DELIVERY_ID = 11; // ID службы доставки СДЭК. Необхоим для получения списка разшрешённых категорий
 const CDEK_RESTRICTION_SECTIONS_RULE_ID = 35; // ID ограничения со списков разрешённых категорий для доставки
+
+/** HUT */
+const IMG_PATH = '/img';
+const ICON_PATH = '/img/icons';
