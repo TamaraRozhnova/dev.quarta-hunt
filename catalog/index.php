@@ -259,7 +259,7 @@ $APPLICATION->IncludeComponent(
 		"GIFTS_MAIN_PRODUCT_DETAIL_PAGE_ELEMENT_COUNT" => "4",
 		"GIFTS_MAIN_PRODUCT_DETAIL_HIDE_BLOCK_TITLE" => "N",
 		"GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE" => "Выберите один из товаров, чтобы получить подарок",
-		"PRODUCTS_TEXT_LICENSE" => '',
+		"PRODUCTS_TEXT_LICENSE" => SECTIONS_LICENSED,
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",
