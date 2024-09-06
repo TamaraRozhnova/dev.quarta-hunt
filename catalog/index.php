@@ -12,9 +12,9 @@ $APPLICATION->IncludeFile('/catalog/_redirect.php');
 $APPLICATION->SetTitle("Каталог товаров Quarta Оружейный Квартал");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
-<h1 class="hidden-on-page unset-margin">
+<div class="hidden-on-page unset-margin">
 <?=$APPLICATION->ShowTitle()?> 
-</h1>
+</div>
 
 <? $user = new User();
 $priceCode = $user->getUserPriceCode();
@@ -259,7 +259,7 @@ $APPLICATION->IncludeComponent(
 		"GIFTS_MAIN_PRODUCT_DETAIL_PAGE_ELEMENT_COUNT" => "4",
 		"GIFTS_MAIN_PRODUCT_DETAIL_HIDE_BLOCK_TITLE" => "N",
 		"GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE" => "Выберите один из товаров, чтобы получить подарок",
-		"PRODUCTS_TEXT_LICENSE" => SECTIONS_LICENSED,
+		"PRODUCTS_TEXT_LICENSE" => '',
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",
