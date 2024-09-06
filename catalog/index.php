@@ -12,9 +12,9 @@ $APPLICATION->IncludeFile('/catalog/_redirect.php');
 $APPLICATION->SetTitle("Каталог товаров Quarta Оружейный Квартал");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
-<h1 class="hidden-on-page unset-margin">
+<div class="hidden-on-page unset-margin">
 <?=$APPLICATION->ShowTitle()?> 
-</h1>
+</div>
 
 <? $user = new User();
 $priceCode = $user->getUserPriceCode();
