@@ -426,7 +426,7 @@ class ModernModalSearch {
 
 		if (!this.isMobileMode()) {
 			selectorModalByMode = '.modal-search-modern__wrapper'
-			console.log('не мобила')
+
 			this.hangClickSearchOut()
 		}
 

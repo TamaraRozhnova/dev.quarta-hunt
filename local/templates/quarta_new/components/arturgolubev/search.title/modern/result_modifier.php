@@ -2,11 +2,9 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use \Bitrix\Main\Loader;
-use \Bitrix\Main\Localization\Loc;
 use Bitrix\Iblock\SectionTable;
 use Bitrix\Iblock\Elements\ElementNewsTable as Blog;
-use Arturgolubev\Smartsearch\Tools;
-use Bitrix\Main\Web\Json;
+use \Bitrix\Main\Entity\ExpressionField;
 
 use \Arturgolubev\Smartsearch\Hl;
 
@@ -290,10 +288,16 @@ $rsBlogSections = Blog::getList([
 		'NAME',
 		'SECTION_MASK' => 'IBLOCK.SECTION_PAGE_URL'
 	],
-	'order' => ['DATE_CREATE' => 'DESC'],
+	'order' => ['RAND' => 'ASC'],
 	'limit' => 5,
 	'filter' => [
 		'=ACTIVE' => 'Y',
+	],
+	'runtime' => [
+		new ExpressionField(
+			'RAND',
+			'RAND()',
+		),
 	]
 ])->fetchAll();
 
