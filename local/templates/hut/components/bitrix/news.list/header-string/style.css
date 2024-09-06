@@ -1,0 +1,18 @@
+.header__string-inner {
+  display: flex;
+  gap: 32px;
+  margin-left: -100%;
+}
+
+.header__string {
+  background-color: var(--color-dark8);
+  padding: 7px 0;
+  margin-bottom: -4px;
+}
+
+.header__string-item {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-dark3);
+  font-weight: 600;
+}
