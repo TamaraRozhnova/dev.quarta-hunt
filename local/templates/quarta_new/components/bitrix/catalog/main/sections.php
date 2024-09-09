@@ -92,6 +92,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         </div>
     </div>
 
+    <h1 class="hidden-on-page unset-margin">
+        <?=$APPLICATION->ShowTitle()?>
+    </h1>
+
     <?
     $APPLICATION->IncludeComponent(
         "bitrix:catalog.section.list",
