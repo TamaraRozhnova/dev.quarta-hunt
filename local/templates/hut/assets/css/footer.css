@@ -1,0 +1,132 @@
+.footer {
+  padding: 650px 0 0 0;
+  background-image: url("../../img/footer-back.png");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.footer__inner {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 64px 64px 0 64px;
+}
+
+.footer__top {
+  display: flex;
+  gap: 64px;
+}
+
+.footer__menu-title {
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-gray5);
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--color-gray5);
+  margin-top: 290px;
+  padding-bottom: 20px;
+}
+
+.footer__credits {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer__credits a {
+  display: flex;
+}
+
+.footer__column:first-child,
+.footer__column:last-child {
+  max-width: 442px;
+  width: 100%;
+}
+
+.footer__column--menu {
+  max-width: 217px;
+  width: 100%;
+}
+
+.footer__slogan {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--color-gray5);
+}
+
+.footer__contacts,
+.footer__social {
+  margin-top: 32px;
+}
+
+.footer__contacts-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.footer__mail {
+  margin-top: 8px;
+}
+
+.footer__time {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-gray5);
+}
+
+.footer__mail a,
+.footer__phone a {
+  font-size: 16px;
+  line-height: 21px;
+  color: white;
+}
+
+@media (max-width: 1600px) {
+  .footer__inner {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .footer__top {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .footer__top {
+    flex-wrap: wrap;
+    gap: 64px;
+  }
+
+  .footer__bottom {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer__inner {
+    padding: 32px 16px 0 16px;
+  }
+
+  .footer__top {
+    flex-direction: column;
+  }
+
+  .footer {
+    background-image: url("../../img/footer-back-mob.png");
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+}

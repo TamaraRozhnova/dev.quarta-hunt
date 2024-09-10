@@ -1,0 +1,13 @@
+.bottom-menu {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.bottom-menu a {
+  color: white;
+  font-size: 18px;
+  line-height: 24px;
+}

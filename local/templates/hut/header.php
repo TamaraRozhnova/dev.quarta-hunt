@@ -20,6 +20,11 @@ global $APPLICATION;
 
     <title><? $APPLICATION->ShowTitle(false); ?></title>
 
+    <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="manifest" href="/manifest.webmanifest">
+
     <? $APPLICATION->ShowHead(); ?>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +33,7 @@ global $APPLICATION;
 
     <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/normalize.css") ?>
     <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css") ?>
+    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/script.js"); ?>
 </head>
 
 <body>
