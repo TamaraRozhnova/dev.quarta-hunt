@@ -11,15 +11,15 @@ class Popup {
   };
 }
 
-let popup = new Popup();
-
 document.addEventListener("DOMContentLoaded", function () {
-  let cookiePopup = document.querySelector(".cookie-popup");
-  let isCookieShowen = localStorage.getItem("cookieShowen");
+  let popup = new Popup();
 
   /**
    * Показать куки
    */
+  let cookiePopup = document.querySelector(".cookie-popup");
+  let isCookieShowen = localStorage.getItem("cookieShowen");
+
   if (cookiePopup && isCookieShowen != "Y") {
     setTimeout(() => {
       popup.show(cookiePopup);

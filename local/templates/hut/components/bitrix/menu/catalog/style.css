@@ -1,0 +1,204 @@
+/**Top menu**/
+#horizontal-catalog-menu,
+#horizontal-catalog-menu ul {
+  margin: 0;
+  padding: 0;
+  background: #bc262c url(images/header_menu_bg.gif) repeat-x;
+  min-height: 27px;
+  width: 100%;
+  list-style: none;
+  font-size: 11px;
+  float: left;
+  /*font-size:90%*/
+}
+
+#horizontal-catalog-menu {
+}
+
+/*Links*/
+#horizontal-catalog-menu a {
+  display: block;
+  padding: 5px 10px;
+  /*padding:0.3em 0.8em;*/
+  text-decoration: none;
+  text-align: center;
+}
+
+#horizontal-catalog-menu li {
+  float: left;
+}
+
+/*Root items*/
+#horizontal-catalog-menu li a.root-item {
+  color: #fff;
+  font-weight: bold;
+  padding: 7px 12px;
+}
+
+/*Root menu selected*/
+#horizontal-catalog-menu li a.root-item-selected {
+  background: #fc8d3d;
+  color: #fff;
+  font-weight: bold;
+  padding: 7px 12px;
+}
+
+/*Root items: hover*/
+#horizontal-catalog-menu li:hover a.root-item,
+#horizontal-catalog-menu li.jshover a.root-item {
+  background: #e26336;
+  color: #fff;
+}
+
+/*Item-parents*/
+#horizontal-catalog-menu a.parent {
+  background: url(images/arrow.gif) center right no-repeat;
+}
+
+/*Denied items*/
+#horizontal-catalog-menu a.denied {
+  background: url(images/lock.gif) center right no-repeat;
+}
+
+/*Child-items: hover*/
+#horizontal-catalog-menu li:hover,
+#horizontal-catalog-menu li.jshover {
+  background: #d6d6d6;
+  color: #fff;
+}
+
+/*Child-items selected*/
+#horizontal-catalog-menu li.item-selected {
+  background: #d6d6d6;
+  color: #fff;
+}
+
+/*Sub-menu box*/
+#horizontal-catalog-menu li ul {
+  position: absolute;
+  /*top:-999em;*/
+  top: auto;
+  display: none;
+  z-index: 500;
+
+  height: auto;
+  /*width:12em;*/
+  width: 135px;
+  background: #f5f5f5;
+  border: 1px solid #c1c1c1;
+}
+
+/*Sub-menu item box*/
+#horizontal-catalog-menu li li {
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+}
+
+/*Item link*/
+#horizontal-catalog-menu li ul a {
+  text-align: left;
+}
+
+/*Items text color & size */
+#horizontal-catalog-menu li a,
+#horizontal-catalog-menu li:hover li a,
+#horizontal-catalog-menu li.jshover li a,
+#horizontal-catalog-menu li:hover li:hover li a,
+#horizontal-catalog-menu li.jshover li.jshover li a,
+#horizontal-catalog-menu li:hover li:hover li:hover li a,
+#horizontal-catalog-menu li.jshover li.jshover li.jshover li a,
+#horizontal-catalog-menu li:hover li:hover li:hover li:hover li a,
+#horizontal-catalog-menu li.jshover li.jshover li.jshover li.jshover li a,
+#horizontal-catalog-menu li:hover li:hover li:hover li:hover li:hover li a,
+#horizontal-catalog-menu
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  li
+  a {
+  color: #4f4f4f;
+  font-weight: bold;
+}
+
+/*Items text color & size: hover*/
+#horizontal-catalog-menu li:hover li:hover a,
+#horizontal-catalog-menu li.jshover li.jshover a,
+#horizontal-catalog-menu li:hover li:hover li:hover a,
+#horizontal-catalog-menu li.jshover li.jshover li.jshover a,
+#horizontal-catalog-menu li:hover li:hover li:hover li:hover a,
+#horizontal-catalog-menu
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  a
+  #horizontal-catalog-menu
+  li:hover
+  li:hover
+  li:hover
+  li:hover
+  li:hover
+  a,
+#horizontal-catalog-menu
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  a
+  #horizontal-catalog-menu
+  li:hover
+  li:hover
+  li:hover
+  li:hover
+  li:hover
+  li:hover
+  a,
+#horizontal-catalog-menu
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  li.jshover
+  a {
+  color: #4f4f4f;
+}
+
+#horizontal-catalog-menu li ul ul {
+  margin: -27px 0 0 132px;
+  /*margin:-1.93em 0 0 11.6em;*/
+}
+
+#horizontal-catalog-menu li:hover ul ul,
+#horizontal-catalog-menu li.jshover ul ul,
+#horizontal-catalog-menu li:hover ul ul ul,
+#horizontal-catalog-menu li.jshover ul ul ul,
+#horizontal-catalog-menu li:hover ul ul ul ul,
+#horizontal-catalog-menu li.jshover ul ul ul ul,
+#horizontal-catalog-menu li:hover ul ul ul ul ul,
+#horizontal-catalog-menu li.jshover ul ul ul ul ul {
+  /*top:-999em;*/
+  display: none;
+}
+
+#horizontal-catalog-menu li:hover ul,
+#horizontal-catalog-menu li.jshover ul,
+#horizontal-catalog-menu li li:hover ul,
+#horizontal-catalog-menu li li.jshover ul,
+#horizontal-catalog-menu li li li:hover ul,
+#horizontal-catalog-menu li li li.jshover ul,
+#horizontal-catalog-menu li li li li:hover ul,
+#horizontal-catalog-menu li li li li.jshover ul,
+#horizontal-catalog-menu li li li li li:hover ul,
+#horizontal-catalog-menu li li li li li.jshover ul {
+  /*z-index:1000;
+	top:auto;*/
+  display: block;
+}
+
+div.menu-clear-left {
+  clear: left;
+}
