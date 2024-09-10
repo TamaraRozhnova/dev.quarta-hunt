@@ -27,7 +27,7 @@ $APPLICATION->IncludeComponent(
         "SECTION_CODE" => $result['VARIABLES']['SECTION_CODE'],
         "SECTION_TITLE" => "NAME",
         "SECTION_DESCRIPTION" => "DESCRIPTION",
-        'HIDE_NOT_AVAILABLE' => $params["ONLY_AVAILABLE"],
+        'HIDE_NOT_AVAILABLE' => 'Y',
         'HIDE_NOT_AVAILABLE_OFFERS' => 'Y',
         "TEMPLATE_THEME" => $params["TEMPLATE_THEME"],
         'CONVERT_CURRENCY' => $params['CONVERT_CURRENCY'],
@@ -40,14 +40,13 @@ $APPLICATION->IncludeComponent(
         "INSTANT_RELOAD" => "N",
         "USE_FILTER" => "Y",
         "POPUP_POSITION" => "right"
-
     ),
     $component,
     array('HIDE_ICONS' => 'Y')
 );
 
 
-//Подключение компонента sotbit.seometa модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта" 
+//Подключение компонента sotbit.seometa модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 ?>
 <? if (\Bitrix\Main\Loader::includeModule("sotbit.seometa")): ?>
 <?
