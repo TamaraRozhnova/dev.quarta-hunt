@@ -26,4 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("cookieShowen", "Y");
     }, 3000);
   }
+
+  /**
+   * Отслеживание скролла
+   */
+  window.addEventListener("scroll", function () {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 50) {
+      document.querySelector("body").classList.add("scrolled");
+    } else {
+      document.querySelector("body").classList.remove("scrolled");
+    }
+  });
 });

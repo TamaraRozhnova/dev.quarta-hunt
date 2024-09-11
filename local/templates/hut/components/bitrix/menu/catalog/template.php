@@ -14,11 +14,13 @@
 			<? if ($arItem["IS_PARENT"]): ?>
 
 				<? if ($arItem["DEPTH_LEVEL"] == 1): ?>
-					<li><a href="<?= $arItem["LINK"] ?>" class="<? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>"><?= $arItem["TEXT"] ?></a>
-						<ul>
+					<li><a href="<?= $arItem["LINK"] ?>" class="is-parent <? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>">
+							<button type="button" class="button parent-back"><?= buildSVG('left', SITE_TEMPLATE_PATH . ICON_PATH) ?></button><?= $arItem["TEXT"] ?>
+						</a>
+						<ul class="second">
 						<? else: ?>
 							<li<? if ($arItem["SELECTED"]): ?> class="item-selected" <? endif ?>><a href="<?= $arItem["LINK"] ?>" class="parent"><?= $arItem["TEXT"] ?></a>
-								<ul>
+								<ul class="third">
 								<? endif ?>
 
 							<? else: ?>

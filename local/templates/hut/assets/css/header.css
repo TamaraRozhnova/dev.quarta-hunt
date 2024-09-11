@@ -10,6 +10,7 @@
   display: flex;
   gap: 64px;
   align-items: center;
+  position: relative;
 }
 
 .menu__logo {
@@ -73,12 +74,12 @@
 
 @media (max-width: 1400px) {
   .menu__inner {
-    padding: 12px;
+    padding: 0 12px;
     gap: 20px;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .menu__left,
   .menu__right,
   .menu__index-link .desktop {

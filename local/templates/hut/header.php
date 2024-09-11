@@ -20,9 +20,9 @@ global $APPLICATION;
 
     <title><? $APPLICATION->ShowTitle(false); ?></title>
 
-    <link rel="icon" href="/favicon.ico" sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.webmanifest">
 
     <? $APPLICATION->ShowHead(); ?>
@@ -99,8 +99,10 @@ global $APPLICATION;
         <div class="menu__wrap scroll">
             <div class="menu__inner">
                 <button type="button" class="button menu-toggler"><?= buildSVG('burger', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
+                <div class="menu__overlay" style="display: none"></div>
                 <div class="menu__catalog" style="display: none">
                     <div class="menu__catalog-inner">
+                        <button type="button" class="button mobile-menu-toggler"><?= buildSVG('close', SITE_TEMPLATE_PATH . ICON_PATH) ?> каталог</button>
                         <div class="menu__catalog-menu">
                             <? $APPLICATION->IncludeComponent(
                                 "bitrix:menu",

@@ -54,6 +54,8 @@
 
 .catalog-opener.showen {
   background-color: var(--color-primary);
+  position: relative;
+  z-index: 3;
 }
 
 @media (max-width: 1400px) {
