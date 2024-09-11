@@ -43,52 +43,20 @@ function JCTitleSearchAG(arParams) {
 			_this.RESULT.innerHTML = result;
 		}
 
+
+		const productElements = _this.RESULT.querySelectorAll('.product-card-search');
+		const productIds = Array.from(productElements).map(element => element.dataset.id);
+		if (productIds.length) {
+			const productsDataApi = new ProductsDataApi();
+			productsDataApi.getData(productIds)
+				.then(response => {
+					new ProductCards(response);
+				})
+		}
+
+		const defaultModal = document.getElementById('defaul-modal');
+		defaultModal.style.display = 'none';
 		_this.RESULT.style.display = _this.RESULT.innerHTML !== '' ? 'block' : 'none';
-		var pos = _this.adjustResultNode();
-
-		//adjust left column to be an outline
-		var res_pos;
-		var th;
-		var tbl = BX.findChild(_this.RESULT, { 'tag': 'table', 'class': 'title-search-result' }, true);
-		if (tbl) {
-			th = BX.findChild(tbl, { 'tag': 'th' }, true);
-		}
-
-		if (th) {
-			var tbl_pos = BX.pos(tbl);
-			tbl_pos.width = tbl_pos.right - tbl_pos.left;
-
-			var th_pos = BX.pos(th);
-			th_pos.width = th_pos.right - th_pos.left;
-			th.style.width = th_pos.width + 'px';
-
-			_this.RESULT.style.width = (pos.width + th_pos.width) + 'px';
-
-			//Move table to left by width of the first column
-			_this.RESULT.style.left = (pos.left - th_pos.width - 1) + 'px';
-
-			//Shrink table when it's too wide
-			if ((tbl_pos.width - th_pos.width) > pos.width)
-				_this.RESULT.style.width = (pos.width + th_pos.width - 1) + 'px';
-
-			//Check if table is too wide and shrink result div to it's width
-			tbl_pos = BX.pos(tbl);
-			res_pos = BX.pos(_this.RESULT);
-			if (res_pos.right > tbl_pos.right) {
-				_this.RESULT.style.width = (tbl_pos.right - tbl_pos.left) + 'px';
-			}
-		}
-
-		var fade;
-		if (tbl) fade = BX.findChild(_this.RESULT, { 'class': 'title-search-fader' }, true);
-		if (fade && th) {
-			res_pos = BX.pos(_this.RESULT);
-			fade.style.left = (res_pos.right - res_pos.left - 18) + 'px';
-			fade.style.width = 18 + 'px';
-			fade.style.top = 0 + 'px';
-			fade.style.height = (res_pos.bottom - res_pos.top) + 'px';
-			fade.style.display = 'block';
-		}
 	};
 
 	this.onKeyPress = function (keyCode) {
@@ -363,22 +331,23 @@ function JCTitleSearchAG(arParams) {
 	// init
 	this.Init = function () {
 		this.CONTAINER = document.getElementById(this.arParams.CONTAINER_ID);
-		BX.addCustomEvent(this.CONTAINER, "OnNodeLayoutChange", this._onContainerLayoutChange);
+		// BX.addCustomEvent(this.CONTAINER, "OnNodeLayoutChange", this._onContainerLayoutChange);
 
-		this.RESULT = document.body.appendChild(document.createElement("DIV"));
-		this.RESULT.className = 'title-search-result';
+		this.RESULT = document.getElementById('result-modal');
+		// this.RESULT = document.body.appendChild(document.createElement("DIV"));
+		// this.RESULT.className = 'title-search-result';
 
 		this.INPUT = document.getElementById(this.arParams.INPUT_ID);
 		BX.bind(this.INPUT, 'focus', function () { _this.onFocusGain() });
-		BX.bind(this.INPUT, 'blur', function (e) {
-			if (!!e.relatedTarget) {
-				if (!BX.hasClass(BX(e.relatedTarget), 'js_search_href')) {
-					_this.onFocusLost();
-				}
-			} else {
-				_this.onFocusLost();
-			}
-		});
+		// BX.bind(this.INPUT, 'blur', function (e) {
+		// 	if (!!e.relatedTarget) {
+		// 		if (!BX.hasClass(BX(e.relatedTarget), 'js_search_href')) {
+		// 			_this.onFocusLost();
+		// 		}
+		// 	} else {
+		// 		_this.onFocusLost();
+		// 	}
+		// });
 		this.INPUT.onkeydown = this.onKeyDown;
 
 		this.startText = this.oldValue = this.INPUT.value;
@@ -405,8 +374,8 @@ function JCTitleSearchAG(arParams) {
 			BX.bind(window, 'scroll', BX.throttle(this.onScroll, 100, this));
 		} */
 
-		BX.bind(window, 'scroll', BX.throttle(this.onScroll, 100, this));
-		BX.bind(window, 'resize', BX.throttle(this.onScroll, 100, this));
+		// BX.bind(window, 'scroll', BX.throttle(this.onScroll, 100, this));
+		// BX.bind(window, 'resize', BX.throttle(this.onScroll, 100, this));
 	};
 	BX.ready(function () {
 		_this.Init(arParams)
@@ -414,7 +383,7 @@ function JCTitleSearchAG(arParams) {
 }
 
 class ModernModalSearch {
-	
+
 	constructor(data = {}) {
 		this.inputId = `#${data?.INPUT_ID}`
 		this.textContainerId = `#${data?.CONTAINER_ID}`

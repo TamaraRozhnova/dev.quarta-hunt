@@ -5,7 +5,10 @@
 <div class="modal-search-modern__wrapper <?= $isMobile ? 'mobile' : '' ?>">
     <div class="modal-search-modern__inner">
         <div class="modal-search-modern">
-            <div class="modal-search-modern__sections">
+
+            <div class="modal-search-modern__result" id="result-modal"></div>
+
+            <div class="modal-search-modern__sections" id="defaul-modal">
                 <div class="modal-search-modern__section">
                     <div class="modal-search-modern__section-name">
                         <span>Каталог товаров</span>

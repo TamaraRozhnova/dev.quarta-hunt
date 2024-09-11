@@ -225,59 +225,74 @@ $isMobile = $mobiledetect->isMobile();
                         <?php
                         if (!$isMobile) {
                             $APPLICATION->IncludeComponent(
-                                "arturgolubev:search.title",
-                                "modern",
-                                array(
-                                    "ANIMATE_HINTS" => array(),
-                                    "ANIMATE_HINTS_SPEED" => "1",
-                                    "CATEGORY_0" => array(
-                                        0 => "iblock_1c_catalog",
-                                        1 => "iblock_news",
-                                    ),
-                                    "CATEGORY_0_TITLE" => "",
-                                    "CATEGORY_0_iblock_1c_catalog" => array(
-                                        0 => "16",
-                                        1 => "37",
-                                    ),
-                                    "CATEGORY_0_iblock_news" => array(
-                                        0 => "1",
-                                    ),
-                                    "CHECK_DATES" => "N",
-                                    "CONTAINER_ID" => "smart-title-search",
-                                    "CONVERT_CURRENCY" => "N",
-                                    "FILTER_NAME" => "",
-                                    "INPUT_ID" => "smart-title-search-input",
-                                    "INPUT_PLACEHOLDER" => "Искать товары...",
-                                    "NUM_CATEGORIES" => "1",
-                                    "ORDER" => "rank",
-                                    "PAGE" => "#SITE_DIR#testsearch/detail/index.php",
-                                    "PREVIEW_HEIGHT_NEW" => "34",
-                                    "PREVIEW_WIDTH_NEW" => "34",
-                                    "PRICE_CODE" => array(
-                                        0 => "BASE",
-                                        1 => "OPT",
-                                    ),
-                                    "PRICE_VAT_INCLUDE" => "Y",
-                                    "SHOW_HISTORY" => "Y",
-                                    "SHOW_INPUT" => "Y",
-                                    "SHOW_LOADING_ANIMATE" => "Y",
-                                    "SHOW_PREVIEW" => "Y",
-                                    "SHOW_PREVIEW_TEXT" => "N",
-                                    "SHOW_PROPS" => array(),
-                                    "SHOW_QUANTITY" => "N",
-                                    "TOP_COUNT" => "5",
-                                    "USE_LANGUAGE_GUESS" => "Y",
-                                    "COMPONENT_TEMPLATE" => "modern",
-                                    "POPULAR_REQUESTS" => array(
-                                        0 => "Патроны",
-                                        1 => "Бинокли",
-                                        2 => "Ружье",
-                                        3 => "Ножи",
-                                        4 => "Пневматика",
-                                    )
-                                ),
-                                false
-                            );
+	"arturgolubev:search.title", 
+	"modern", 
+	array(
+		"ANIMATE_HINTS" => array(
+		),
+		"ANIMATE_HINTS_SPEED" => "1",
+		"CATEGORY_0" => array(
+			0 => "iblock_1c_catalog",
+		),
+		"CATEGORY_0_TITLE" => "Каталог товаров",
+		"CATEGORY_0_iblock_1c_catalog" => array(
+			0 => "16",
+		),
+		"CATEGORY_0_iblock_news" => array(
+			0 => "1",
+		),
+		"CHECK_DATES" => "N",
+		"CONTAINER_ID" => "smart-title-search",
+		"CONVERT_CURRENCY" => "N",
+		"FILTER_NAME" => "",
+		"INPUT_ID" => "smart-title-search-input",
+		"INPUT_PLACEHOLDER" => "Искать товары...",
+		"NUM_CATEGORIES" => "3",
+		"ORDER" => "rank",
+		"PAGE" => "#SITE_DIR#testsearch/detail/index.php",
+		"PREVIEW_HEIGHT_NEW" => "34",
+		"PREVIEW_WIDTH_NEW" => "34",
+		"PRICE_CODE" => array(
+			0 => "BASE",
+			1 => "OPT",
+		),
+		"PRICE_VAT_INCLUDE" => "Y",
+		"SHOW_HISTORY" => "Y",
+		"SHOW_INPUT" => "Y",
+		"SHOW_LOADING_ANIMATE" => "Y",
+		"SHOW_PREVIEW" => "Y",
+		"SHOW_PREVIEW_TEXT" => "N",
+		"SHOW_PROPS" => array(
+		),
+		"SHOW_QUANTITY" => "N",
+		"TOP_COUNT" => "5",
+		"USE_LANGUAGE_GUESS" => "Y",
+		"COMPONENT_TEMPLATE" => "modern",
+		"POPULAR_REQUESTS" => array(
+			0 => "Патроны",
+			1 => "Бинокли",
+			2 => "Ружье",
+			3 => "Ножи",
+			4 => "Пневматика",
+			5 => "",
+		),
+		"CATEGORY_1_TITLE" => "Блог",
+		"CATEGORY_1" => array(
+			0 => "iblock_news",
+		),
+		"CATEGORY_1_iblock_news" => array(
+			0 => "1",
+		),
+		"CATEGORY_2_TITLE" => "Акции",
+		"CATEGORY_2" => array(
+			0 => "iblock_1c_catalog",
+		),
+		"CATEGORY_2_iblock_1c_catalog" => array(
+			0 => "37",
+		)
+	),
+	false
+);
                         }
 
                         ?>
