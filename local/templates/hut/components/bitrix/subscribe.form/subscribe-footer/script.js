@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
         body: new FormData(this),
       });
 
-      let result = await response.text();
+      let result = await response.json();
 
-      if (result == "success") {
+      if (result?.status == "success") {
         resultTitle = "Спасибо за подписку!";
         resultText = "Ссылка для подтверждения отправлена вам на почту";
         resultElement.querySelector("svg").style.display = "block";
-      } else if (result == "fail") {
+      } else if (result?.status == "fail") {
         resultTitle = "Ошибка!";
         resultText = "Такой адрес уже присутствует в подписках";
       } else {

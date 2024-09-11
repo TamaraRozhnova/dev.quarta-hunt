@@ -4,6 +4,7 @@ namespace Form;
 
 use Bitrix\Main\Loader;
 use CSubscription;
+use CUser;
 
 /**
  * Class MailSubscribe
@@ -22,25 +23,25 @@ class MailSubscribe
      */
     public static function subcribeEmailHandler(string $email)
     {
-        global $USER;
+        $USER = new CUser;
         $result = '';
 
         if (Loader::includeModule('subscribe')) {
-            $subscribeFields = array(
+            $subscribeFields = [
                 'USER_ID' => ($USER->IsAuthorized() ? $USER->GetID() : false),
                 'FORMAT' => 'html',
                 'EMAIL' => $email,
                 'ACTIVE' => 'Y',
                 'CONFIRMED' => 'N',
                 'SEND_CONFIRM' => 'Y',
-                'RUB_ID' => array(1)
-            );
+                'RUB_ID' => [1]
+            ];
 
-            $subscr = new CSubscription;
-            $ID = $subscr->Add($subscribeFields);
+            $subscribe = new CSubscription;
+            $subscribeId = $subscribe->Add($subscribeFields);
 
-            if ($ID > 0) {
-                CSubscription::Authorize($ID);
+            if ($subscribeId > 0) {
+                CSubscription::Authorize($subscribeId);
                 $result = 'success';
             } else {
                 $result = 'fail';
@@ -49,6 +50,6 @@ class MailSubscribe
             throw new \Exception('Something went wrong');
         }
 
-        return $result;
+        return json_encode(['status' => $result]);
     }
 }
