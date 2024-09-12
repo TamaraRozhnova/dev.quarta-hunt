@@ -8924,7 +8924,7 @@ input.form-check-input:focus {
 .footer__payment-methods figure {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: center; 
+  justify-content: center;
   gap: 20px;
 }
 
@@ -11547,7 +11547,7 @@ div[id*="wait_comp"] {
   left: 30px;
   right: 30px;
   margin-bottom: -75px;
-  z-index: 100000;
+  z-index: 10000;
   max-width: 400px;
   margin: 0 auto;
   -webkit-transition: .5s all ease-in-out;

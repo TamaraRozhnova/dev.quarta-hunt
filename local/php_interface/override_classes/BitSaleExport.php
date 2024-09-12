@@ -143,9 +143,14 @@ class BitSaleExport extends CSaleExport
 			$paySystems = $arResultPayment['paySystems'] ?? [];
 			$arPayment = $arResultPayment['payment'] ?? [];
 			
+			$changedSumTotal = false;
 			if (!empty($arPayment)) {
 				$firstPayment = reset($arPayment);
 				if (isset($firstPayment['PAY_SYSTEM_ID']) && $firstPayment['PAY_SYSTEM_ID'] == 16) {
+					$changedSumTotal = [
+						'before' => $arOrder['SUM_PAID'],
+						'after' => $firstPayment['PS_SUM']
+					];
 					$arOrder['PRICE'] = $firstPayment['PS_SUM'];
 					$arOrder['SUM_PAID'] = $firstPayment['PS_SUM'];
 				}
@@ -170,7 +175,7 @@ class BitSaleExport extends CSaleExport
 			$xmlResult['SaleStoreList'] = $arStore;
 			$xmlResult['ShipmentsStoreList'] = self::getShipmentsStoreList($order);
 			// self::getXmlSaleStoreBasket($arOrder,$arStore);
-			$basketItems = self::getXmlBasketItems('Order', $arOrder, array('ORDER_ID'=>$arOrder['ID']), array(), $arShipment);
+			$basketItems = self::getXmlBasketItems('Order', $arOrder, array('ORDER_ID'=>$arOrder['ID']), array(), $arShipment, false, $changedSumTotal);
 
             $numberItems = array();
             foreach($basketItems['result'] as $basketItem)
@@ -260,6 +265,182 @@ class BitSaleExport extends CSaleExport
 	</<?=CSaleExport::getTagName("SALE_EXPORT_COM_INFORMATION")?>><?
 
 		return self::$arResultStat;
+	}
+	
+	public static function getXmlBasketItems($type, $arOrder, $arFilter, $arSelect=array(), $arShipment=array(), $order=null, $changedSum = false)
+	{
+		$result = array();
+		$entity = static::getBasketTable();
+		$select = array("ID", "NOTES", "PRODUCT_XML_ID", "CATALOG_XML_ID", "NAME", "PRICE", "QUANTITY", "DISCOUNT_PRICE", "VAT_RATE", "MEASURE_CODE", "SET_PARENT_ID", "TYPE", "VAT_INCLUDED", "MARKING_CODE_GROUP");
+		if(count($arSelect)>0)
+		    $select = array_merge($arSelect, $select);
+		
+		$minusDiscountPrice = 0;
+		if (is_array($changedSum)) {
+			$countItems = 0;
+			$dbBasket = $entity::getList(array(
+				'select' => $select,
+				'filter' => $arFilter,
+				'order' => array("NAME" => "ASC")
+			));
+			while ($arBasket = $dbBasket->fetch()) {
+				if(strval($arBasket['TYPE'])!='' && $arBasket['TYPE']== \Bitrix\Sale\BasketItem::TYPE_SET) continue;
+				$countItems++;
+			}
+			$newPriceBetween = $changedSum['before'] - $changedSum['after'];
+			if ($newPriceBetween > 0) $minusDiscountPrice = $newPriceBetween/$countItems;
+		}
+
+		ob_start();
+		?><<?=CSaleExport::getTagName("SALE_EXPORT_ITEMS")?>><?
+
+		
+
+		$dbBasket = $entity::getList(array(
+			'select' => $select,
+			'filter' => $arFilter,
+			'order' => array("NAME" => "ASC")
+		));
+
+		$basketSum = 0;
+		$priceType = "";
+		$bVat = false;
+		$vatRate = 0;
+		$vatSum = 0;
+		while ($arBasket = $dbBasket->fetch())
+		{
+			if(strval($arBasket['TYPE'])!='' && $arBasket['TYPE']== \Bitrix\Sale\BasketItem::TYPE_SET)
+			    continue;
+			
+			if ($minusDiscountPrice > 0) {
+				$arBasket["PRICE"] -= $minusDiscountPrice;
+				$arBasket["DISCOUNT_PRICE"] += $minusDiscountPrice;
+			}
+
+			$result[] = $arBasket;
+
+			if($priceType == '')
+				$priceType = $arBasket["NOTES"];
+			?>
+			<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_ID")?>><?=htmlspecialcharsbx(static::normalizeExternalCode($arBasket["PRODUCT_XML_ID"]))?></<?=CSaleExport::getTagName("SALE_EXPORT_ID")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_CATALOG_ID")?>><?=htmlspecialcharsbx($arBasket["CATALOG_XML_ID"])?></<?=CSaleExport::getTagName("SALE_EXPORT_CATALOG_ID")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=htmlspecialcharsbx($arBasket["NAME"])?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+				<?
+
+            	static::outputXmlUnit($arBasket);
+            	
+				if($type == 'Order')
+				{
+					static::outputXmlMarkingCodeGroup($arBasket);
+				}
+				elseif($type == 'Shipment')
+				{	
+					static::outputXmlMarkingCode($arBasket['SALE_INTERNALS_BASKET_SHIPMENT_ITEM_ID'], $order);					
+				}
+				
+				if(DoubleVal($arBasket["DISCOUNT_PRICE"]) > 0)
+			 	{
+					?>
+					<<?=CSaleExport::getTagName("SALE_EXPORT_DISCOUNTS")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_DISCOUNT")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_ITEM_DISCOUNT")?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>><?=$arBasket["DISCOUNT_PRICE"]?></<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_IN_PRICE")?>>true</<?=CSaleExport::getTagName("SALE_EXPORT_IN_PRICE")?>>
+						</<?=CSaleExport::getTagName("SALE_EXPORT_DISCOUNT")?>>
+					</<?=CSaleExport::getTagName("SALE_EXPORT_DISCOUNTS")?>>
+					<?
+				}
+				?>
+				<?if(self::getVersionSchema() >= self::PARTIAL_VERSION && $type == 'Shipment')
+				{?>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_PRICE_PER_ITEM")?>><?=$arBasket["PRICE"]?></<?=CSaleExport::getTagName("SALE_EXPORT_PRICE_PER_ITEM")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_QUANTITY")?>><?=$arBasket["SALE_INTERNALS_BASKET_SHIPMENT_ITEM_QUANTITY"]?></<?=CSaleExport::getTagName("SALE_EXPORT_QUANTITY")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>><?=$arBasket["PRICE"]*$arBasket["SALE_INTERNALS_BASKET_SHIPMENT_ITEM_QUANTITY"]?></<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>>
+				<?}
+				else{
+				?>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_PRICE_PER_ITEM")?>><?=$arBasket["PRICE"]?></<?=CSaleExport::getTagName("SALE_EXPORT_PRICE_PER_ITEM")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_QUANTITY")?>><?=$arBasket["QUANTITY"]?></<?=CSaleExport::getTagName("SALE_EXPORT_QUANTITY")?>>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>><?=$arBasket["PRICE"]*$arBasket["QUANTITY"]?></<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>>
+				<?}?>
+				<<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTIES_VALUES")?>>
+					<<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_TYPE_NOMENKLATURA")?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>><?=CSaleExport::getTagName("SALE_EXPORT_ITEM")?></<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>>
+					</<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+					<<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_TYPE_OF_NOMENKLATURA")?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>><?=CSaleExport::getTagName("SALE_EXPORT_ITEM")?></<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>>
+					</<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+
+					<?
+					$number = self::getNumberBasketPosition($arBasket["ID"]);
+					?>
+					<<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_BASKET_NUMBER")?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>><?=$number?></<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>>
+					</<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+					<?
+					$dbProp = CSaleBasket::GetPropsList(Array("SORT" => "ASC", "ID" => "ASC"), Array("BASKET_ID" => $arBasket["ID"]), false, false, array("NAME", "SORT", "VALUE", "CODE"));
+					while($arPropBasket = $dbProp->Fetch())
+					{
+						?>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE_BASKET")?>#<?=($arPropBasket["CODE"] != "" ? $arPropBasket["CODE"]:htmlspecialcharsbx($arPropBasket["NAME"]))?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>><?=htmlspecialcharsbx($arPropBasket["VALUE"])?></<?=CSaleExport::getTagName("SALE_EXPORT_VALUE")?>>
+						</<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTY_VALUE")?>>
+						<?
+					}
+					?>
+				</<?=CSaleExport::getTagName("SALE_EXPORT_PROPERTIES_VALUES")?>>
+				<?if(DoubleVal($arBasket["VAT_RATE"]) > 0)
+				{
+					$bVat = true;
+					$vatRate = DoubleVal($arBasket["VAT_RATE"]);
+					$basketVatSum = (($arBasket["PRICE"] / ($arBasket["VAT_RATE"]+1)) * $arBasket["VAT_RATE"]);
+					$vatSum += roundEx($basketVatSum * $arBasket["QUANTITY"], 2);
+					?>
+					<<?=CSaleExport::getTagName("SALE_EXPORT_TAX_RATES")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_TAX_RATE")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_VAT")?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_RATE")?>><?=$arBasket["VAT_RATE"] * 100?></<?=CSaleExport::getTagName("SALE_EXPORT_RATE")?>>
+						</<?=CSaleExport::getTagName("SALE_EXPORT_TAX_RATE")?>>
+					</<?=CSaleExport::getTagName("SALE_EXPORT_TAX_RATES")?>>
+					<<?=CSaleExport::getTagName("SALE_EXPORT_TAXES")?>>
+						<<?=CSaleExport::getTagName("SALE_EXPORT_TAX")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>><?=CSaleExport::getTagName("SALE_EXPORT_VAT")?></<?=CSaleExport::getTagName("SALE_EXPORT_ITEM_NAME")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_IN_PRICE")?>><?=$arBasket["VAT_INCLUDED"]=="Y"?'true':'false'?></<?=CSaleExport::getTagName("SALE_EXPORT_IN_PRICE")?>>
+							<<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>><?=roundEx($basketVatSum, 2)?></<?=CSaleExport::getTagName("SALE_EXPORT_AMOUNT")?>>
+						</<?=CSaleExport::getTagName("SALE_EXPORT_TAX")?>>
+					</<?=CSaleExport::getTagName("SALE_EXPORT_TAXES")?>>
+					<?
+				}
+				?>
+				<?//=self::getXmlSaleStoreBasket($arOrder,$arStore)?>
+			</<?=CSaleExport::getTagName("SALE_EXPORT_ITEM")?>>
+			<?
+			$basketSum += $arBasket["PRICE"]*$arBasket["QUANTITY"];
+		}
+
+        if(self::getVersionSchema() >= self::PARTIAL_VERSION)
+        {
+            if(count($arShipment)>0)
+            {
+                foreach($arShipment as $shipment)
+                {
+                    self::getOrderDeliveryItem($shipment, $bVat, $vatRate, $vatSum);
+                }
+            }
+        }
+        else
+		    self::getOrderDeliveryItem($arOrder, $bVat, $vatRate, $vatSum);
+
+		?>
+		</<?=CSaleExport::getTagName("SALE_EXPORT_ITEMS")?>><?
+
+		$bufer = ob_get_clean();
+		return array('outputXML'=>$bufer,'result'=>$result);
 	}
 	
 	public static function getPayment($arOrder)
