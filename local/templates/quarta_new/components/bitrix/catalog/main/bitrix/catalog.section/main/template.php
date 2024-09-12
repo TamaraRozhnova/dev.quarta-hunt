@@ -160,7 +160,7 @@ $strTemplate = match ($_GET['templateView']) {
                         if (empty($sotbitSeoMetaBottomDesc)) {
                             echo $arResult['DESCRIPTION'];
                         } else {
-                            echo $sotbitSeoMetaBottomDesc; //вывод нижнего описания 
+                            echo $sotbitSeoMetaBottomDesc; //вывод нижнего описания
                         };
                         ?>
                     </div>

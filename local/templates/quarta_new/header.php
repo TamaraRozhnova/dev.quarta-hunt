@@ -37,7 +37,7 @@ define("SITE_SERVER_PROTOCOL", (CMain::IsHTTPS()) ? "https://" : "http://");
 $curPage = $APPLICATION->GetCurPage();
 ?>
 <!doctype html>
-<html 
+<html
     lang="ru"
     class="<?=$APPLICATION->ShowProperty('not-found-page')?>">
 
@@ -110,13 +110,13 @@ $curPage = $APPLICATION->GetCurPage();
 
 <div class="wrapper">
 
-    
-    
+
+
     <!-- <div class= "teh-obs">
         <h3>На данный момент на сайте действует авторизация и регистрация только по e-mail</h3>
     </div> -->
-    
-    
+
+
 
 
     <header class="header header--desktop">

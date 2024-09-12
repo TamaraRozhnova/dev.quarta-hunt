@@ -1,4 +1,5 @@
 <?
+
 use Bitrix\Sale\BusinessValue;
 use Bitrix\Sale\BusinessValueConsumer1C;
 use Bitrix\Sale;
