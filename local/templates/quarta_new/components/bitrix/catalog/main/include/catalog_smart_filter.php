@@ -39,7 +39,7 @@ $APPLICATION->IncludeComponent(
         "PAGER_PARAMS_NAME" => "arrPager",
         "INSTANT_RELOAD" => "Y",
         "USE_FILTER" => "Y",
-        
+
     ),
     $component,
     array('HIDE_ICONS' => 'Y')
@@ -47,7 +47,7 @@ $APPLICATION->IncludeComponent(
 
 //Подключение компонента sotbit.seometa модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта" ?>
 <?if(\Bitrix\Main\Loader::includeModule("sotbit.seometa")):?>
-<? 
+<?
   $APPLICATION->IncludeComponent(
    "sotbit:seo.meta",
    ".default",
