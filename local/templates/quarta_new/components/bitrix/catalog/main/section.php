@@ -51,7 +51,7 @@ $filterHelperInstance = new ProductsFilterHelper($sectionId);
 $filterParams = $filterHelperInstance->getFilters();
 
 
-if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
+if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y') || (isset($headers["X-Requested-With"]) && $headers["X-Requested-With"] == 'Y')) {
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
         [
