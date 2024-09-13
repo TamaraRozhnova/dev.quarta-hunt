@@ -173,7 +173,8 @@ foreach ($arResult["CATEGORIES"] as $categoryId => $arCategory) { ?>
                         "USE_MAIN_ELEMENT_SECTION" => "N",
                         "USE_PRICE_COUNT" => "N",
                         "USE_PRODUCT_QUANTITY" => "Y"
-                    )
+                    ),
+                    false
                 );
             }
             ?>

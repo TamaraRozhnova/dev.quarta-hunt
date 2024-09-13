@@ -27,8 +27,7 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
 ?>
 
 <div class="col-12">
-
-    <div class="product-card-search"
+    <div class="product-card product-card-search"
         itemscope
         itemprop="itemListElement" itemtype="http://schema.org/Product"
         data-id="<?= $item['ID'] ?>"

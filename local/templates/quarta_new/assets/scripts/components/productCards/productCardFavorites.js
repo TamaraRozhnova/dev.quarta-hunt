@@ -69,6 +69,8 @@ class ProductCardFavorites {
 
     removePlaceholder() {
         const placeholder = this.productElement.querySelector('.placeholder--fav');
-        placeholder.remove();
+        if (placeholder && placeholder != null) {
+            placeholder.remove();
+        }
     }
 }

@@ -89,6 +89,8 @@ class ProductCardCompare {
 
     removePlaceholder() {
         const placeholder = this.productElement.querySelector('.placeholder--compare');
-        placeholder.remove();
+        if (placeholder && placeholder != null) {
+            placeholder.remove();
+        }
     }
 }
