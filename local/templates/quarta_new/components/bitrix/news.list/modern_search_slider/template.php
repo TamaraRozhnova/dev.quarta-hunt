@@ -26,7 +26,7 @@ if (!count($arResult['ITEMS'])) {
                                 <?= $arItem['NAME'] ?>
                             </div>
                             <div class="modern-promo__preview">
-                                <?= $arItem['NAME'] ?>
+                                <?= $arItem['PREVIEW_TEXT'] ?>
                             </div>
                             <div class="modern-promo__btn">
                                 <span>Подробности акции</span>

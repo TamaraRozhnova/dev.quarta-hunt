@@ -1003,3 +1003,10 @@ div.title-search-result td.title-search-price span {
 .search-tabs span.active{
 	border: 1px solid var(--bs-blue);
 }
+
+.search-tab-content {
+	display: none;
+}
+.search-tab-content.active {
+	display: block;
+}

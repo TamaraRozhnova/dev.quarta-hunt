@@ -38,12 +38,15 @@ function JCTitleSearchAG(arParams) {
 	this.INPUT = null;
 	this.WAIT = null;
 
+	this.TABS = null;
+	this.TABS_CONTENT = null;
+
 	this.ShowResult = function (result) {
 		if (BX.type.isString(result)) {
 			_this.RESULT.innerHTML = result;
 		}
 
-
+		/* товары в поиске */
 		const productElements = _this.RESULT.querySelectorAll('.product-card-search');
 		const productIds = Array.from(productElements).map(element => element.dataset.id);
 		if (productIds.length) {
@@ -53,6 +56,37 @@ function JCTitleSearchAG(arParams) {
 					new ProductCards(response);
 				})
 		}
+
+		/* табы в поиске */
+		this.TABS = _this.RESULT.querySelectorAll('.search-tabs-nav');
+		this.TABS_CONTENT = _this.RESULT.querySelectorAll('.search-tab-content');
+
+		this.TABS.forEach((tab) => {
+			tab.addEventListener('click', (e) => {
+				e.preventDefault();
+
+				let targetContendId = e.target.dataset.tab
+
+					this.TABS.forEach((tab) => {
+						let tabId = tab.dataset.tab
+
+						tab.classList.remove('active');
+						if (tabId == targetContendId) {
+							tab.classList.add('active');
+						}
+					})
+
+					this.TABS_CONTENT.forEach((tabContent) => {
+						let tabContendId = tabContent.dataset.tabcontent
+
+						tabContent.classList.remove('active');
+						if (tabContendId == targetContendId) {
+							tabContent.classList.add('active');
+						}
+					})
+
+			})
+		})
 
 		const defaultModal = document.getElementById('defaul-modal');
 		defaultModal.style.display = 'none';

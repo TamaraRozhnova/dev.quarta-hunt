@@ -7,6 +7,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 $this->setFrameMode(true);
 
 $this->addExternalCss('/local/templates/quarta_new/components/bitrix/catalog.item/search_title/style.css');
+$this->addExternalCss('/local/templates/quarta_new/components/bitrix/news.list/modern_search_blog/style.css');
+$this->addExternalCss('/local/templates/quarta_new/components/bitrix/news.list/modern_search_sales/style.css');
 /** @var  $arParams */
 /** @var  $arResult */
 

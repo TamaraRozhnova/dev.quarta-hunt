@@ -1,8 +1,8 @@
 class ProductCardBasket {
     constructor(data = {
-        productElement,
-        basketList
-    }
+                    productElement,
+                    basketList
+                }
     ) {
         this.productElement = data.productElement;
         this.productId = this.productElement.dataset.id;
@@ -39,9 +39,13 @@ class ProductCardBasket {
 
     removePlaceholder() {
         const basketElement = this.productElement.querySelector('.product-card__add');
-        basketElement.classList.remove('placeholder-glow');
+        if (basketElement && basketElement != null) {
+            basketElement.classList.remove('placeholder-glow');
+        }
         const placeholder = basketElement.querySelector('.placeholder');
-        placeholder.remove();
+        if (placeholder && placeholder != null) {
+            placeholder.remove();
+        }
     }
 
     hangNewArrivalsButtonEvents() {
@@ -72,7 +76,7 @@ class ProductCardBasket {
                     const allBasketPopupActive = document.querySelectorAll('.product-basket-popup__wrapper')
 
                     if (allBasketPopupActive.length > 0) {
-                        allBasketPopupActive.forEach((popup) =>  {
+                        allBasketPopupActive.forEach((popup) => {
                             popup.parentNode.removeChild(popup)
                         })
                         window.productAddedPopupBasket = false
@@ -171,12 +175,12 @@ class ProductCardBasket {
 
     handleAddProductToBasket(counterInstance) {
         if (window.innerWidth >= 1200) {
-            
+
             if (window.basketPopupActive = true) {
                 const allBasketPopupActive = document.querySelectorAll('.product-basket-popup__wrapper')
 
                 if (allBasketPopupActive.length > 0) {
-                    allBasketPopupActive.forEach((popup) =>  {
+                    allBasketPopupActive.forEach((popup) => {
                         popup.parentNode.removeChild(popup)
                     })
                     window.productAddedPopupBasket = false
@@ -244,7 +248,7 @@ class ProductCardBasket {
     }
 
     handleAddOfferToBasket(counterInstance) {
-        
+
         if (this.offersQuantity == counterInstance.getValue()) {
             return;
         }

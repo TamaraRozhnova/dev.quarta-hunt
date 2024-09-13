@@ -1,0 +1,70 @@
+
+.modern-promo-sales{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.modern-promo-sales__item{
+  display: flex;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #F0F1F3;
+}
+
+.modern-promo-sales__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 32px;
+  width: 100%;
+}
+
+.modern-promo-sales__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 140%;
+  color: #004989;
+
+}
+
+.modern-promo-sales__img {
+  display: flex;
+}
+
+.modern-promo-sales__img img {
+  border-radius: 8px;
+  object-fit: cover;
+  height: fit-content;
+}
+
+.modern-promo-sales__preview {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: #808D9A;
+
+}
+
+.modern-promo-sales-slider__addit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 0 0;
+}
+
+.modern-promo-sales__btn {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.6px;
+  text-align: center;
+  color: #004989;
+  background-color: #E8EFF4;
+  padding: 12px 8px;
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
