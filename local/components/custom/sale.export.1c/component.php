@@ -106,7 +106,7 @@ elseif(!$USER->IsAuthorized())
 elseif(COption::GetOptionString("sale", "secure_1c_exchange", "N") == "Y" && !check_bitrix_sessid())
 {
 	echo "failure\n".GetMessage("CC_BSC1_ERROR_SOURCE_CHECK");
-} 
+}  
 elseif(!$bUSER_HAVE_ACCESS)
 {
 	echo "failure\n".GetMessage("CC_BSC1_PERMISSION_DENIED");
@@ -284,6 +284,7 @@ else
 
 			$export::setLanguage('en');
 		}
+		
 		/* $arFilter = [];
 		$arParams["ORDER_ID"] = intval($arParams["ORDER_ID"]);
 		if ($arParams["ORDER_ID"] > 0)

@@ -3,8 +3,8 @@
 <?if (!empty($arParams['OTHER_DATA']['OTHER_DATA_SLIDER'])):?>
     <div class="wide-promotion__wrapper bg-gray-200">
         <div class="wide-promotion">
-            <div 
-                class="wide-promotion__image" 
+            <div
+                class="wide-promotion__image"
                 style="background-image: url(<?=reset($arParams['OTHER_DATA']['OTHER_DATA_SLIDER'])['SECTION_PICTURE']?>">
 
             </div>
@@ -88,7 +88,7 @@
                 <div class = "promo-grid__banner col-12 col-md-6">
                     <a href="<?=$arParams['OTHER_DATA']['OTHER_DATA_PROMO']['URL']?>" class="promo-card promo-card--background-image promo-card--large promo-card--stretch">
                         <figure style='background-image: url("<?=$arParams['OTHER_DATA']['OTHER_DATA_PROMO']['PICTURE']?>");'>
-                        
+
                         </figure>
                         <h3>
                             <?=$arParams['OTHER_DATA']['OTHER_DATA_PROMO']['MB_TITLE_FOR_PROMO']?>
@@ -104,7 +104,6 @@
                 <?$counter;?>
                 <?foreach ($arResult['ITEMS'] as $arItemIndex => $arItem):?>
 
-                    <div class="col-6 col-md-3">
                         <? $APPLICATION->IncludeComponent(
                             'bitrix:catalog.item',
                             'main',
@@ -116,7 +115,6 @@
                             ),
                             $component
                         ); ?>
-                    </div>
 
                     <?$counter++?>
 
@@ -124,7 +122,7 @@
                         </div>
                         <div class="row">
                     <?endif;?>
-                    
+
                 <?endforeach;?>
             <?endif;?>
 

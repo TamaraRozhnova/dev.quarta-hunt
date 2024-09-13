@@ -51,7 +51,7 @@ $filterHelperInstance = new ProductsFilterHelper($sectionId);
 $filterParams = $filterHelperInstance->getFilters();
 
 
-if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
+if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y') || (isset($headers["X-Requested-With"]) && $headers["X-Requested-With"] == 'Y')) {
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
         [
@@ -116,7 +116,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
                     "component" => $component
                 ]
             );
-            
+
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
                     "params" => array_merge($arParams, $filterParams),
@@ -159,19 +159,19 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
     if(!empty($sotbitSeoMetaKeywords)){
         $APPLICATION->SetPageProperty("keywords", $sotbitSeoMetaKeywords);
     }
-    
+
     //Переопределение описания страницы Description
     global $sotbitSeoMetaDescription;
     if(!empty($sotbitSeoMetaDescription)){
         $APPLICATION->SetPageProperty("description", $sotbitSeoMetaDescription);
-    } 
-    
-    //Переопределение заголовка H1
-    global $sotbitSeoMetaH1;  
-    if(!empty($sotbitSeoMetaH1)){
-             $APPLICATION->SetTitle($sotbitSeoMetaH1); 
     }
-        
+
+    //Переопределение заголовка H1
+    global $sotbitSeoMetaH1;
+    if(!empty($sotbitSeoMetaH1)){
+             $APPLICATION->SetTitle($sotbitSeoMetaH1);
+    }
+
     //Добавление пункта хлебных крошек Breadcrumb
     global $sotbitSeoMetaBreadcrumbTitle;
     if(!empty($sotbitSeoMetaBreadcrumbTitle)){
