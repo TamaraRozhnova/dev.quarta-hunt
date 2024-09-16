@@ -68,8 +68,11 @@ if (!count($arResult['ITEMS'])) {
                     <div class="subsection-grid">
                         <?php foreach ($topLevelSection['SUBSECTIONS'] as $subSection) { ?>
                             <div class="catalog-category-mobile">
-                                <a href="<?= $subSection['LINK'] ?>" class="catalog-category-mobile__title <?=($subSection['SUBSECTIONS']) ? 'expand' : ''?>">
-                                    <?= $subSection['NAME'] ?>
+                                <a href="<?=($subSection['SUBSECTIONS']) ? '' : $subSection['LINK']?>" class="catalog-category-mobile__title <?=($subSection['SUBSECTIONS']) ? 'expand' : ''?>">
+                                    <span onclick="location.href='<?= $subSection['LINK'] ?>'"><?= $subSection['NAME'] ?></span>
+                                    <?php if ($subSection['SUBSECTIONS']) { ?>
+                                        <i class="expand-arrow"></i>
+                                    <?php }?>
                                 </a>
 
                                 <?php if ($subSection['SUBSECTIONS']) { ?>

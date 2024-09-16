@@ -22,7 +22,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <label class="form-check-label" for="available">
                         В наличии
                     </label>
-                </div>                
+                </div>
                 <div class="select__wrapper select__wrapper--small">
                     <div id="select-sort"
                          class="select select--small"
@@ -84,7 +84,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                 <? if (count($arResult['ITEMS']) > 0) { ?>
                     <div class="row">
                         <? foreach ($arResult['ITEMS'] as $item) { ?>
-                            <div class="col-6 col-md-3">
                                 <? $APPLICATION->IncludeComponent(
                                     'bitrix:catalog.item',
                                     'main',
@@ -96,7 +95,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     ),
                                     $component
                                 ); ?>
-                            </div>
                         <? } ?>
                     </div>
                 <? } else { ?>
