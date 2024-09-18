@@ -9,6 +9,8 @@ use Helpers\IblockHelper;
 
 global $APPLICATION;
 
+$user = new CUser;
+
 ?>
 <!doctype html>
 <html lang="ru">
@@ -34,6 +36,10 @@ global $APPLICATION;
     <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/normalize.css") ?>
     <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css") ?>
     <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/script.js"); ?>
+
+    <? $APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>', true); ?>
+    <? $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" type="text/javascript"></script>', true); ?>
+    <? $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js" type="text/javascript"></script>', true); ?>
 </head>
 
 <body>
@@ -230,7 +236,11 @@ global $APPLICATION;
                 <div class="menu__dop">
                     <a href="#" class="menu__dop-link"><?= buildSVG('search', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
                     <a href="#" class="menu__dop-link"><?= buildSVG('favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?><span>10</span></a>
-                    <a href="#" class="menu__dop-link"><?= buildSVG('user', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
+                    <? if ($user->isAuthorized()) { ?>
+                        <a href="/personal/" class="menu__dop-link"><?= buildSVG('user', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
+                    <? } else { ?>
+                        <a href="#auth" rel="modal:open" class="menu__dop-link"><?= buildSVG('user', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
+                    <? } ?>
                     <a href="#" class="menu__dop-link"><?= buildSVG('cart', SITE_TEMPLATE_PATH . ICON_PATH) ?><span>2</span></a>
                 </div>
             </div>

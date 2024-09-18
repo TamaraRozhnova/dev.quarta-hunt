@@ -9,8 +9,12 @@
   --color-dark1: #e0e4eb;
   --color-dark0: #f0f2f5;
 
+  --color-gray1: #f5f5f5;
+  --color-gray2: #e9e9ea;
   --color-gray3: #dcdcdf;
   --color-gray5: #9b9ea9;
   --color-gray6: #7c808f;
   --color-gray7: #5d6376;
+
+  --color-red5: #ff726b;
 }
