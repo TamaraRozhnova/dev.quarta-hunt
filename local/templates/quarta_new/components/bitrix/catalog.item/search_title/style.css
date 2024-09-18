@@ -1,4 +1,4 @@
-/* Frame 48095729 */
+
 .product-card-search {
   display: flex;
   flex-direction: row;
@@ -8,6 +8,7 @@
   padding: 24px 0 ;
   border-bottom: 1px solid #F0F1F3
 }
+
 .product-card-search__image {
   position: relative;
   background: #fff;
@@ -271,4 +272,31 @@
   .product-card__availability {
     padding: 0 15px;
   }
+}
+
+
+/* --- */
+.product-card-search.mobile {
+  display: grid;
+  grid-template:
+          "a b b b"
+          "a c c c"
+          "d d e e";
+  gap: 16px;
+}
+
+.product-card-search.mobile .product-card-search__image {
+  grid-area: a;
+}
+.product-card-search.mobile > a {
+  grid-area: b;
+}
+.product-card-search.mobile .stars {
+  grid-area: c;
+}
+.product-card-search.mobile .product-card-search__add {
+  grid-area: d;
+}
+.product-card-search .interlabs-one-click-buy{
+  grid-area: e !important;
 }

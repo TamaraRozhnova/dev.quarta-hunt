@@ -24,10 +24,11 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
     $item['IMG_SRC'] = '/upload/cards/photo-not-found.jpg';
 }
 
+global $isMobile;
 ?>
 
 <div class="col-12">
-    <div class="product-card product-card-search"
+    <div class="product-card product-card-search <?=$isMobile ? 'mobile' : ''?>"
         itemscope
         itemprop="itemListElement" itemtype="http://schema.org/Product"
         data-id="<?= $item['ID'] ?>"

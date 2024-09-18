@@ -68,3 +68,35 @@
   align-items: center;
   justify-content: center;
 }
+
+/**/
+.modern-promo-sales.mobile {
+  display: flex;
+  flex-direction: column;
+}
+.modern-promo-sales__item.mobile {
+  display: grid;
+  grid-template:
+          "a b b"
+          "c c c"
+          "d d d";
+  gap: 16px;
+  border-bottom: 1px solid #F0F1F3;
+  padding-bottom: 24px;
+}
+.modern-promo-sales__item.mobile .modern-promo-sales__img {
+  grid-area: a;
+}
+.modern-promo-sales__item.mobile .modern-promo-sales__text {
+  grid-area: b;
+  padding: 0;
+  align-self: baseline;
+}
+.modern-promo-sales__item.mobile .modern-promo-sales__preview {
+  grid-area: c;
+}
+.modern-promo-sales__item.mobile .modern-promo-sales__btn {
+  grid-area: d;
+  width: 100%;
+  max-width: 100%;
+}

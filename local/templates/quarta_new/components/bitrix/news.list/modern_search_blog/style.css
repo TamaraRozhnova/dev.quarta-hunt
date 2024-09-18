@@ -6,7 +6,6 @@
 }
 .modern-promo-blog__item{
   display: flex;
-  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #F0F1F3;
 }
@@ -85,4 +84,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+}
+
+.modern-promo-blog__item.mobile {
+  display: grid;
+  grid-template:
+          "a b b"
+          "c c c"
+          "d d d";
+  gap: 16px;
+  border-bottom: 1px solid #F0F1F3;
+  padding-bottom: 24px;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__img {
+  grid-area: a;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__text {
+  grid-area: b;
+  padding: 0;
+  align-self: baseline;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__preview {
+  grid-area: c;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__btn {
+  grid-area: d;
+  width: 100%;
+  max-width: 100%;
 }
