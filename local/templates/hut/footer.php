@@ -221,6 +221,28 @@ Loc::loadMessages(__FILE__);
     </div>
 </footer>
 
+<? $APPLICATION->IncludeComponent(
+    "bitrix:system.auth.authorize",
+    "flat",
+    array(),
+    false
+); ?>
+
+<? $APPLICATION->IncludeComponent(
+    "custom:main.register",
+    "custom",
+    array(
+        "AUTH" => "Y",
+        "REQUIRED_FIELDS" => array("EMAIL", "NAME", "LAST_NAME", "PERSONAL_PHONE"),
+        "SET_TITLE" => "Y",
+        "SHOW_FIELDS" => array("PERSONAL_PHONE", "NAME", "LAST_NAME", "EMAIL"),
+        "SUCCESS_PAGE" => "",
+        "USER_PROPERTY" => array("UF_TYPE", "UF_PROMO"),
+        "USER_PROPERTY_NAME" => "",
+        "USE_BACKURL" => "N"
+    )
+); ?>
+
 <div class="popup cookie-popup">
     <div class="popup__inner">
         <div class="popup__text">

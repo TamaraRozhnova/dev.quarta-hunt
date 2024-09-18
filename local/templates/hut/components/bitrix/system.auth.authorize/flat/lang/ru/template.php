@@ -1,0 +1,23 @@
+<?
+$MESS["AUTH_PLEASE_AUTH"] = "Вход или регистрация";
+$MESS["AUTH_LOGIN"] = "Email";
+$MESS["AUTH_PASSWORD"] = "Пароль";
+$MESS["AUTH_REMEMBER_ME"] = "Запомнить меня на этом компьютере";
+$MESS["AUTH_AUTHORIZE"] = "Войти";
+$MESS["AUTH_REGISTER"] = "Зарегистрироваться";
+$MESS["AUTH_LOGIN_PHONE"] = "Телефон";
+$MESS["AUTH_LOGIN_PHONE_SUBMIT"] = "Получить код";
+$MESS["AUTH_LOGIN_CODE"] = "Введите код подтверждения";
+$MESS["AUTH_LOGIN_MORE_CODE"] = "Отправить код повторно";
+$MESS["AUTH_FIRST_ONE"] = "Если вы впервые на сайте, заполните, пожалуйста, регистрационную форму.";
+$MESS["AUTH_FORGOT_PASSWORD_2"] = "Забыли свой пароль?";
+$MESS["AUTH_CAPTCHA_PROMT"] = "Введите слово на картинке";
+$MESS["AUTH_TITLE"] = "Войти на сайт";
+$MESS["AUTH_SECURE_NOTE"] = "Перед отправкой формы авторизации пароль будет зашифрован в браузере. Это позволит избежать передачи пароля в открытом виде.";
+$MESS["AUTH_NONSECURE_NOTE"] = "Пароль будет отправлен в открытом виде. Включите JavaScript в браузере, чтобы зашифровать пароль перед отправкой.";
+$MESS["AUTH_EMAIL_FORM"] = "Войти по Email";
+$MESS["AUTH_PHONE_FORM"] = "Войти по телефону";
+$MESS["MULTI_ACCOUNT_TITLE"] = "Мы нашли несколько активных профилей с этим номером телефона";
+$MESS["MULTI_ACCOUNT_SUBTITLE"] = "Выберите профиль из списка, чтобы авторизоваться";
+$MESS['YOUR_MAIL'] = 'Ваш email';
+$MESS['YOUR_CODE'] = 'Код из СМС';

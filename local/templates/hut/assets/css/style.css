@@ -6,6 +6,8 @@
 @import "responsive.css";
 @import "footer.css";
 @import "popup.css";
+@import "modal.css";
+@import "interface.css";
 
 * {
   box-sizing: border-box;
