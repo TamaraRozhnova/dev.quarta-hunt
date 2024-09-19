@@ -11560,6 +11560,7 @@ div[id*="wait_comp"] {
   -webkit-box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
   text-align: center;
+  display: none;
 }
 
 .compare-popup__text{
@@ -11576,6 +11577,7 @@ div[id*="wait_comp"] {
 .compare-popup.active {
   bottom: 50%;
   opacity: 1;
+  display: block;
 }
 
 .compare-popup .compare-popup__clear{
