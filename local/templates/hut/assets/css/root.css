@@ -4,10 +4,17 @@
   --color-dark7: #262c37;
   --color-dark6: #354052;
   --color-dark3: #8e94a0;
+  --color-dark4: #6f7785;
   --color-dark2: #adb2bb;
+  --color-dark1: #e0e4eb;
   --color-dark0: #f0f2f5;
 
+  --color-gray1: #f5f5f5;
+  --color-gray2: #e9e9ea;
+  --color-gray3: #dcdcdf;
   --color-gray5: #9b9ea9;
   --color-gray6: #7c808f;
   --color-gray7: #5d6376;
+
+  --color-red5: #ff726b;
 }
