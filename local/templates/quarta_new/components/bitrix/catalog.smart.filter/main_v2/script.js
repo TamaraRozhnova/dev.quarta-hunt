@@ -74,6 +74,39 @@ JCSmartFilter.prototype.reload = function (input) {
                 BX.delegate(this.postHandler, this)
             );
         }
+
+        let parent = input.closest('.bx-filter-parameters-box-container');
+        let inputs = null;
+        let parentCircle = null;
+
+        if (parent) {
+            inputs = parent.querySelectorAll('.form-check-input');
+            parentCircle = parent.closest('.bx-filter-parameters-box').querySelector('.bx-filter-parameters-box-title');
+        }
+
+        if (input.checked) {
+            if (parentCircle && !parentCircle.classList.contains('active')) {
+                parentCircle.classList.add('active');
+            }
+
+            input.classList.add('active');
+        } else {
+            input.classList.remove('active');
+
+            if (parentCircle && inputs) {
+                let hasActive = false;
+
+                inputs.forEach(elem => {
+                   if (elem.classList.contains('active')) {
+                       hasActive = true;
+                   }
+                });
+
+                if (!hasActive) {
+                    parentCircle.classList.remove('active');
+                }
+            }
+        }
     }
     new ModernCatalogFilter()
 };
@@ -172,7 +205,7 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache) {
                 BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
             } else {
                 if (modef.style.display === 'none') {
-                    modef.style.display = 'inline-block';
+                    modef.style.display = 'inline-flex';
                 }
 
                 if (this.viewMode == "VERTICAL") {
@@ -334,6 +367,10 @@ JCSmartFilter.prototype.hideFilterProps = function (element) {
             step: function (state) {
                 filterBlock.style.opacity = state.opacity;
                 filterBlock.style.height = state.height + "px";
+
+                if (state.height > 190) {
+                    filterBlock.classList.add('hide-props');
+                }
             },
             complete: function () {
             }
@@ -757,3 +794,18 @@ BX.Iblock.SmartFilter = (function () {
 
     return SmartFilter;
 })();
+document.addEventListener('DOMContentLoaded', function(){
+    let btnMobileOpenFilter = document.querySelector('.filters-sort__btn');
+    let filterBlock = document.querySelector('.bx-filter');
+    let filterTitle = document.querySelector('.bx-filter-title');
+
+    if (btnMobileOpenFilter && filterBlock && filterTitle) {
+        btnMobileOpenFilter.addEventListener('click',() => {
+            filterBlock.style.display = 'block';
+        });
+
+        filterTitle.addEventListener('click', () => {
+            filterBlock.style.display = 'none';
+        });
+    }
+});

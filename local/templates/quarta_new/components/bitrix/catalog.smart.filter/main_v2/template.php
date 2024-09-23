@@ -27,7 +27,10 @@ $this->setFrameMode(true);
     <div class="bx-filter-section container-fluid filters">
         <div class="bx-filter-title-wrapper">
             <div class="bx-filter-title">
-                <?= GetMessage("CT_BCSF_FILTER_TITLE") ?>
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.0722 17.3597C12.9691 17.4532 12.8505 17.5 12.7165 17.5C12.5825 17.5 12.4639 17.4532 12.3608 17.3597L5.15464 10.8226C5.05155 10.7291 5 10.6216 5 10.5C5 10.3784 5.05155 10.2709 5.15464 10.1774L12.3608 3.64028C12.4639 3.54676 12.5825 3.5 12.7165 3.5C12.8505 3.5 12.9691 3.54676 13.0722 3.64028L13.8454 4.34168C13.9485 4.4352 14 4.54275 14 4.66433C14 4.78591 13.9485 4.89345 13.8454 4.98697L7.76804 10.5L13.8454 16.013C13.9485 16.1065 14 16.2141 14 16.3357C14 16.4572 13.9485 16.5648 13.8454 16.6583L13.0722 17.3597Z" fill="#A8BEC9"/>
+                </svg>
+                <span><?= GetMessage("CT_BCSF_FILTER_TITLE") ?></span>
             </div>
             <input
                     class="btn btn-link reset-filters filters__clear"
@@ -80,33 +83,6 @@ $this->setFrameMode(true);
                             </div>
                             <div class="bx-filter-block" data-role="bx_filter_block">
                                 <div class="bx-filter-parameters-box-container">
-                                    <div class="col-xs-6 bx-filter-parameters-box-container-block bx-left">
-                                        <i class="bx-ft-sub"><?= GetMessage("CT_BCSF_FILTER_FROM") ?></i>
-                                        <div class="bx-filter-input-container input">
-                                            <input
-                                                    class="min-price form-control"
-                                                    type="text"
-                                                    name="<?php echo $arItem["VALUES"]["MIN"]["CONTROL_NAME"] ?>"
-                                                    id="<?php echo $arItem["VALUES"]["MIN"]["CONTROL_ID"] ?>"
-                                                    value="<?php echo $arItem["VALUES"]["MIN"]["HTML_VALUE"] ?>"
-                                                    size="5"
-                                                    onkeyup="smartFilter.keyup(this)"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 bx-filter-parameters-box-container-block bx-right">
-                                        <i class="bx-ft-sub"><?= GetMessage("CT_BCSF_FILTER_TO") ?></i>
-                                        <div class="bx-filter-input-container input">
-                                            <input
-                                                    class="max-price form-control"
-                                                    type="text"
-                                                    name="<?php echo $arItem["VALUES"]["MAX"]["CONTROL_NAME"] ?>"
-                                                    id="<?php echo $arItem["VALUES"]["MAX"]["CONTROL_ID"] ?>"
-                                                    value="<?php echo $arItem["VALUES"]["MAX"]["HTML_VALUE"] ?>"
-                                                    size="5"
-                                                    onkeyup="smartFilter.keyup(this)"/>
-                                        </div>
-                                    </div>
-
                                     <div class="col-xs-10 bx-ui-slider-track-container">
                                         <div class="bx-ui-slider-track" id="drag_track_<?= $key ?>">
                                             <?php for ($i = 0; $i <= $step_num; $i++): ?>
@@ -126,6 +102,34 @@ $this->setFrameMode(true);
                                                    href="javascript:void(0)" id="left_slider_<?= $key ?>"></a>
                                                 <a class="bx-ui-slider-handle right" style="right:0;"
                                                    href="javascript:void(0)" id="right_slider_<?= $key ?>"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-flex-block">
+                                        <div class="col-xs-6 bx-filter-parameters-box-container-block bx-left">
+                                            <div class="bx-filter-input-container input">
+                                                <input
+                                                        class="min-price form-control"
+                                                        type="text"
+                                                        name="<?php echo $arItem["VALUES"]["MIN"]["CONTROL_NAME"] ?>"
+                                                        id="<?php echo $arItem["VALUES"]["MIN"]["CONTROL_ID"] ?>"
+                                                        value="<?php echo $arItem["VALUES"]["MIN"]["HTML_VALUE"] ?>"
+                                                        placeholder="от #MinPrice"
+                                                        size="5"
+                                                        onkeyup="smartFilter.keyup(this)"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 bx-filter-parameters-box-container-block bx-right">
+                                            <div class="bx-filter-input-container input">
+                                                <input
+                                                        class="max-price form-control"
+                                                        type="text"
+                                                        name="<?php echo $arItem["VALUES"]["MAX"]["CONTROL_NAME"] ?>"
+                                                        id="<?php echo $arItem["VALUES"]["MAX"]["CONTROL_ID"] ?>"
+                                                        value="<?php echo $arItem["VALUES"]["MAX"]["HTML_VALUE"] ?>"
+                                                        placeholder="до #MaxPrice"
+                                                        size="5"
+                                                        onkeyup="smartFilter.keyup(this)"/>
                                             </div>
                                         </div>
                                     </div>
@@ -650,8 +654,9 @@ $this->setFrameMode(true);
 															<span class="bx-filter-param-text form-check-label"
                                                                   title="<?= $ar["VALUE"]; ?>"><?= $ar["VALUE"]; ?><?php
                                                                 if ($arParams["DISPLAY_ELEMENT_COUNT"] !== "N" && isset($ar["ELEMENT_COUNT"])):
-                                                                    ?>&nbsp;(<span
-                                                                        data-role="count_<?= $ar["CONTROL_ID"] ?>"><?php echo $ar["ELEMENT_COUNT"]; ?></span>)<?php
+                                                                    ?>&nbsp;<span
+                                                                        class="elems-count"
+                                                                        data-role="count_<?= $ar["CONTROL_ID"] ?>">[<?php echo $ar["ELEMENT_COUNT"]; ?> шт.]</span><?php
                                                                 endif; ?></span>
 														</span>
                                                 </label>
@@ -680,13 +685,17 @@ $this->setFrameMode(true);
                                     id="set_filter"
                                     name="set_filter"
                                     value="<?= GetMessage("CT_BCSF_SET_FILTER") ?>"/>
+                            <input class="btn btn-link reset-filters filters__clear" type="button" id="del_filter" name="del_filter" value="Сбросить">
 
                             <div class="bx-filter-popup-result <?php if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"] ?>"
                                  id="modef"
                                  <?php if (!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"'; ?>style="display: none;">
-                                <?php echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">' . (int)($arResult["ELEMENT_COUNT"] ?? 0) . '</span>')); ?>
-                                <span class="arrow"></span>
-                                <br/>
+                                <div style="display: none;"><?php echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num" style="display: none;">' . (int)($arResult["ELEMENT_COUNT"] ?? 0) . '</span>')); ?></div>
+                                <span class="arrow">
+                                    <svg width="22" height="44" viewBox="0 0 22 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.5 5C16.5 2.23858 18.7386 0 21.5 0H22V44H21.5C18.7386 44 16.5 41.7614 16.5 39V34.1051C16.5 33.4174 16.1466 32.7779 15.5643 32.4119L1.69384 23.6933C0.446298 22.9091 0.446301 21.0909 1.69384 20.3067L15.5643 11.5881C16.1466 11.2221 16.5 10.5826 16.5 9.89485V5Z" fill="#DEEEFF"/>
+                                    </svg>
+                                </span>
                                 <a href="<?php echo $arResult["FILTER_URL"] ?>"
                                    target=""><?php echo GetMessage("CT_BCSF_FILTER_SHOW") ?></a>
                             </div>
