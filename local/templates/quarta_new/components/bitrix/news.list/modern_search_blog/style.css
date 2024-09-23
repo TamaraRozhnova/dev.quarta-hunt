@@ -1,0 +1,115 @@
+
+.modern-promo-blog{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.modern-promo-blog__item{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F0F1F3;
+}
+
+.modern-promo-blog__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 32px;
+  max-width: 750px;
+}
+
+.modern-promo-blog__date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modern-promo-blog__date span {
+  height: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 11px;
+  display: flex;
+  align-items: center;
+  color: #808D9A;
+  background: #EEEFF3;
+  padding: 5px 8px;
+}
+.modern-promo-blog__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: #333333;
+}
+
+.modern-promo-blog__img {
+  display: flex;
+}
+
+.modern-promo-blog__img img {
+  border-radius: 8px;
+  object-fit: cover;
+  height: fit-content;
+}
+
+.modern-promo-blog__preview {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: #808D9A;
+
+}
+
+.modern-promo-blog-slider__addit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 0 0;
+}
+
+.modern-promo-blog__btn {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.6px;
+  text-align: center;
+  color: #004989;
+  background-color: #E8EFF4;
+  padding: 12px 8px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 285px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.modern-promo-blog__item.mobile {
+  display: grid;
+  grid-template:
+          "a b b"
+          "c c c"
+          "d d d";
+  gap: 16px;
+  border-bottom: 1px solid #F0F1F3;
+  padding-bottom: 24px;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__img {
+  grid-area: a;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__text {
+  grid-area: b;
+  padding: 0;
+  align-self: baseline;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__preview {
+  grid-area: c;
+}
+.modern-promo-blog__item.mobile .modern-promo-blog__btn {
+  grid-area: d;
+  width: 100%;
+  max-width: 100%;
+}
