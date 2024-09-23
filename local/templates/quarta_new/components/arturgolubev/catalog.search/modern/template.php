@@ -4,12 +4,23 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+/** @var $APPLICATION */
+/** @var $arParams */
+/** @var $component */
+
+use Bitrix\Main\Application;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
+use General\User;
 
 $this->setFrameMode(true);
 
 Loader::includeModule("arturgolubev.smartsearch");
+
+/** Тип цены пользователя */
+$user = new User();
+$priceCode = $user->getUserPriceCode();
+$userPriceId = $user->getUserPriceId();
 ?>
 
 <div class="category">
@@ -22,17 +33,17 @@ Loader::includeModule("arturgolubev.smartsearch");
                 "arturgolubev:search.page",
                 "catalog",
                 array(
-                    "RESTART" => $arParams["RESTART"],
-                    "NO_WORD_LOGIC" => $arParams["NO_WORD_LOGIC"],
-                    "USE_LANGUAGE_GUESS" => $arParams["USE_LANGUAGE_GUESS"],
-                    "CHECK_DATES" => $arParams["CHECK_DATES"],
+                    "RESTART" => 'Y',
+                    "NO_WORD_LOGIC" => 'Y',
+                    "USE_LANGUAGE_GUESS" => 'N',
+                    "CHECK_DATES" => 'Y',
                     "arrFILTER" => array("iblock_" . $arParams["IBLOCK_TYPE"]),
                     "arrFILTER_iblock_" . $arParams["IBLOCK_TYPE"] => array($arParams["IBLOCK_ID"]),
                     "USE_TITLE_RANK" => "Y",
                     "DEFAULT_SORT" => "rank",
                     "FILTER_NAME" => "",
                     "SHOW_WHERE" => "N",
-                    "arrWHERE" => array(),
+                    "arrWHERE" => [],
                     "SHOW_WHEN" => "N",
                     "PAGE_RESULT_COUNT" => $bx_search_limit,
                     "DISPLAY_TOP_PAGER" => "N",
@@ -44,9 +55,8 @@ Loader::includeModule("arturgolubev.smartsearch");
                     "SHOW_HISTORY" => $arParams["SHOW_HISTORY"],
                 ),
                 $component,
-                array('HIDE_ICONS' => 'Y')
+                ['HIDE_ICONS' => 'Y']
             );
-
 
             if (!empty($arElements) && is_array($arElements)) {
                 foreach ($arElements as $k => $v) {
@@ -56,18 +66,82 @@ Loader::includeModule("arturgolubev.smartsearch");
 
                 $arElements = array_values($arElements);
 
-
                 if ($arParams["ELEMENT_SORT_FIELD"] == 'rank') {
                     $arParams["ELEMENT_SORT_FIELD"] = "ID";
                     $arParams["ELEMENT_SORT_ORDER"] = $arElements;
                 }
 
                 global $searchFilter;
-                $searchFilter = array(
-                    "ID" => $arElements,
-                );
+                $searchFilter = ['ID' => $arElements];
+
+                $context = Application::getInstance()->getContext();
+                $request = $context->getRequest();
+                $sort = $request->get("sort");
+                $onlyAvailable = $request->get("onlyAvailable");
+                $arParams["PAGE_ELEMENT_COUNT"] = (int)$request->get("itemsPerPage") ?? 20;
+
+                if ($onlyAvailable === 'true') {
+                    $arParams["HIDE_NOT_AVAILABLE"] = 'Y';
+                    $arParams["HIDE_NOT_AVAILABLE_OFFERS"] = 'Y';
+                }
+
+                switch ($sort) {
+                    case 'price_desc':
+                        $sortField = 'SCALED_' . $userPriceId;
+                        $sortOrder = 'DESC';
+                        break;
+
+                    case 'price_asc':
+                        $sortField = 'SCALED_' . $userPriceId;
+                        $sortOrder = 'ASC';
+                        break;
+
+                    case 'discount_desc':
+                        $sortField = 'PROPERTY_SIZE_DISCOUNT';
+                        $sortOrder = 'DESC';
+                        break;
+
+                    case 'discount_asc':
+                        $sortField = 'PROPERTY_SIZE_DISCOUNT';
+                        $sortOrder = 'ASC';
+                        break;
+
+                    case 'relevante':
+                        $sortField = 'SHOWS';
+                        $sortOrder = 'DESC';
+                        break;
+
+                    case 'alphabet_asc':
+                        $sortField = 'NAME';
+                        $sortOrder = 'ASC';
+                        break;
+
+                    case 'alphabet_desc':
+                        $sortField = 'NAME';
+                        $sortOrder = 'DESC';
+                        break;
+
+                    case 'available':
+                        $sortField = 'CATALOG_AVAILABLE';
+                        $sortOrder = 'DESC';
+                        break;
+
+                    case 'rating_desc':
+                        $sortField = 'property_RATING';
+                        $sortOrder = 'DESC';
+                        break;
+
+                    case 'rating_asc':
+                        $sortField = 'property_RATING';
+                        $sortOrder = 'ASC';
+                        break;
+
+                    default:
+                        break;
+                }
 
                 ?>
+
                 <div class="category category__filter-wrap"></div>
 
                 <?php
@@ -78,15 +152,10 @@ Loader::includeModule("arturgolubev.smartsearch");
                         "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
                         "IBLOCK_ID" => $arParams["IBLOCK_ID"],
 
-                        "ELEMENT_SORT_FIELD" => $arParams["ELEMENT_SORT_FIELD"],
-                        "ELEMENT_SORT_ORDER" => $arParams["ELEMENT_SORT_ORDER"],
-
-                        /* For search rank sort for bitrix 19.0.0+ */
-                        // "ELEMENT_SORT_FIELD" => "ID",
-                        // "ELEMENT_SORT_ORDER" => array_values($arElements),
-
-                        "ELEMENT_SORT_FIELD2" => $arParams["ELEMENT_SORT_FIELD2"],
-                        "ELEMENT_SORT_ORDER2" => $arParams["ELEMENT_SORT_ORDER2"],
+                        "ELEMENT_SORT_FIELD" => $sortField ?? '',
+                        "ELEMENT_SORT_FIELD2" => "",
+                        "ELEMENT_SORT_ORDER" => $sortDirection ?? '',
+                        "ELEMENT_SORT_ORDER2" => "",
 
                         "PAGE_ELEMENT_COUNT" => $arParams["PAGE_ELEMENT_COUNT"],
                         "LINE_ELEMENT_COUNT" => $arParams["LINE_ELEMENT_COUNT"],
@@ -110,7 +179,7 @@ Loader::includeModule("arturgolubev.smartsearch");
                         "CACHE_TYPE" => $arParams["CACHE_TYPE"],
                         "CACHE_TIME" => $arParams["CACHE_TIME"],
                         "DISPLAY_COMPARE" => $arParams["DISPLAY_COMPARE"],
-                        "PRICE_CODE" => $arParams["PRICE_CODE"],
+                        "PRICE_CODE" => [$priceCode],
                         "USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
                         "SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
                         "PRICE_VAT_INCLUDE" => $arParams["PRICE_VAT_INCLUDE"],
@@ -144,8 +213,8 @@ Loader::includeModule("arturgolubev.smartsearch");
                         "CACHE_GROUPS" => "N",
                         "COMPATIBLE_MODE" => "Y",
                     ),
-                    $arResult["THEME_COMPONENT"],
-                    array('HIDE_ICONS' => 'Y')
+                    $component,
+                    ['HIDE_ICONS' => 'Y']
                 );
                 ?>
 

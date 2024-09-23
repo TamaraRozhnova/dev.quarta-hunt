@@ -52,10 +52,10 @@ class CatalogSearch {
                 const id = element.dataset.id;
                 const url = new URL(window.location.href);
                 const params = new URLSearchParams(url.search);
-                if (params.get('PAGEN_1') == id) {
+                if (params.get('PAGEN_3') == id) {
                     return;
                 }
-                this.handleChangeFilters({PAGEN_1: id});
+                this.handleChangeFilters({PAGEN_3: id});
             }
         })
     }
@@ -205,6 +205,7 @@ class CatalogSearch {
                 'x-requested-with': 'Y',
             },
         };
+
         try {
             this.setLoader(true);
             const response = await fetch(url, options);
