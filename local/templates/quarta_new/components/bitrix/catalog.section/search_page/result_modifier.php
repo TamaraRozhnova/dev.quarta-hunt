@@ -35,6 +35,7 @@ $context = Application::getInstance()->getContext();
 $request = $context->getRequest();
 $arResult['CURRENT_SORT'] = $request->get("sort");
 
+
 if (!empty($arResult['IBLOCK_SECTION_ID'])) {
     $arSections = [];
     $sectionId = $arResult['ID'];

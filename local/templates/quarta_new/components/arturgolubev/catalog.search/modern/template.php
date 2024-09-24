@@ -6,9 +6,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 
 /** @var $APPLICATION */
 /** @var $arParams */
+
 /** @var $component */
 
+use Bitrix\Iblock\SectionElementTable;
+use Bitrix\Iblock\SectionTable;
 use Bitrix\Main\Application;
+use Bitrix\Main\Diag\Debug;
 use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use General\User;
@@ -24,6 +28,15 @@ $userPriceId = $user->getUserPriceId();
 ?>
 
 <div class="category">
+
+    <section class="category__header">
+        <div class="container">
+            <h1 class="category__header-title">
+                <?= Loc::getMessage('CT_BCSE_TITLE'); ?>
+            </h1>
+        </div>
+    </section>
+
     <div class="container category__main">
         <div class="row">
 
@@ -71,20 +84,37 @@ $userPriceId = $user->getUserPriceId();
                     $arParams["ELEMENT_SORT_ORDER"] = $arElements;
                 }
 
-                global $searchFilter;
-                $searchFilter = ['ID' => $arElements];
-
                 $context = Application::getInstance()->getContext();
                 $request = $context->getRequest();
+                $uriString = $request->getRequestUri();
+
+                $uriString = parse_url($uriString);
+                parse_str($uriString['query'], $output);
+                if (isset($output['categoryid'])) {
+                    unset($output['categoryid']);
+                }
+                $uriString = $uriString['path'] . '?' . http_build_query($output);
+
                 $sort = $request->get("sort");
+                $categoryId = (int)$request->get("categoryid");
                 $onlyAvailable = $request->get("onlyAvailable");
                 $arParams["PAGE_ELEMENT_COUNT"] = (int)$request->get("itemsPerPage") ?? 20;
 
+                /* основной фильтр секции */
+                global $searchFilter;
+                $searchFilter = ['ID' => $arElements];
+
+                if ($categoryId > 0) {
+                    $searchFilter = array_merge($searchFilter, ['SECTION_ID' => $categoryId]);
+                }
+
+                /* доступные */
                 if ($onlyAvailable === 'true') {
                     $arParams["HIDE_NOT_AVAILABLE"] = 'Y';
                     $arParams["HIDE_NOT_AVAILABLE_OFFERS"] = 'Y';
                 }
 
+                /* сортировки */
                 switch ($sort) {
                     case 'price_desc':
                         $sortField = 'SCALED_' . $userPriceId;
@@ -140,9 +170,80 @@ $userPriceId = $user->getUserPriceId();
                         break;
                 }
 
+                /* список разделов товаров из поиска */
+                $arProductCategories = SectionElementTable::query()
+                    ->addSelect('IBLOCK_SECTION_ID')
+                    ->whereIn('IBLOCK_ELEMENT_ID', $arElements)
+                    ->fetchAll();
+
+                $arProductCategories = array_column($arProductCategories, 'IBLOCK_SECTION_ID');
+                $arProductCategories = array_unique($arProductCategories);
+
+                /* данные о разделах товаро */
+                $sectionList = SectionTable::query()
+                    ->addSelect('ID')
+                    ->addSelect('NAME')
+                    ->addSelect('IBLOCK_SECTION_ID')
+                    ->whereIn('ID', $arProductCategories)
+                    ->fetchAll();
+
+                /* родительские разделы */
+                $arSectionParentsIds = array_column($sectionList, 'IBLOCK_SECTION_ID');
+                $arSectionParentsIds = array_unique($arSectionParentsIds);
+
+                $arSectionParents = SectionTable::query()
+                    ->addSelect('ID')
+                    ->addSelect('NAME')
+                    ->whereIn('ID', $arSectionParentsIds)
+                    ->fetchAll();
+
+
+                /* формируем конечный массив для вывода в фильтр */
+                foreach ($arSectionParents as &$parent) {
+                    $childKey = array_search($parent['ID'], array_column($sectionList, 'IBLOCK_SECTION_ID'));
+                    $parent['CHILDREN'][] = $sectionList[$childKey];
+                }
+                unset($parent);
                 ?>
 
-                <div class="category category__filter-wrap"></div>
+                <div class="category category__filter-wrap">
+                    <div class="filters category__filter">
+                        <section class="filters__header">
+                            <h6><?= Loc::getMessage('CT_BCSE_CATEGORIES') ?></h6>
+                            <div class="filters__clear"><a
+                                        href="<?= $uriString ?>"><?= Loc::getMessage('CT_BCSE_CLEAR') ?></a></div>
+                        </section>
+
+                        <span class="filters__wr">
+
+                            <?php foreach ($arSectionParents as $arSection) {
+                                $isActive = false;
+                                if ($categoryId > 0) {
+                                    $isActive = in_array($categoryId, array_column($arSection['CHILDREN'], 'ID'));
+                                }
+                                ?>
+
+                                <div class="filters-section <?= $isActive ? 'filters-section--expanded' : '' ?>">
+                                    <div class="filters-section__header">
+                                        <h6><?= $arSection['NAME'] ?></h6>
+                                    </div>
+                                    <div class="filters-section__body">
+                                        <?php foreach ($arSection['CHILDREN'] as $itemSection) { ?>
+                                            <div>
+                                                <div class="filters-item <?= $isActive ? 'active' : '' ?>">
+                                                    <a href="<?= $uriString ?>&categoryid=<?= $itemSection['ID'] ?>"><?= $itemSection['NAME'] ?></a>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+
+                        </span>
+
+                    </div>
+                </div>
 
                 <?php
                 $APPLICATION->IncludeComponent(

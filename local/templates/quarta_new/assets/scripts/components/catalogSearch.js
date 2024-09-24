@@ -10,6 +10,10 @@ class CatalogSearch {
     }
 
     initDefaultVars() {
+        this.mainFiltersWrapper = document.querySelector('.category__filter-wrap');
+        this.mainFilters = this.mainFiltersWrapper.querySelector('.filters');
+        this.clearFilterButton = this.mainFilters.querySelector('.filters__clear');
+        this.filterSections = this.mainFilters.querySelectorAll('.filters-section');
         this.serachContainer = document.querySelector('.search-page');
         this.productsDataBlock = document.querySelector('.products-data');
         this.mobileFilterOpenButton = document.querySelector('.filters-sort__btn');
@@ -23,6 +27,7 @@ class CatalogSearch {
     }
 
     hangEvents() {
+        this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
         this.hangListCountElements();
         this.hangPaginationEvents();
         this.hangAvailableEvent();
@@ -213,6 +218,13 @@ class CatalogSearch {
         } finally {
             this.setLoader(false);
         }
+    }
+
+    hangExpandSectionEvent(section) {
+        const button = section.querySelector('.filters-section__header');
+        button.addEventListener('click', () => {
+            section.classList.toggle('filters-section--expanded');
+        });
     }
 
     createSelectorSort() {
