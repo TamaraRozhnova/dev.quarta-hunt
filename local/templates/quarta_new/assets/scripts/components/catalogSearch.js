@@ -24,10 +24,13 @@ class CatalogSearch {
         this.selectCountElement = this.extraFilters.querySelector('#select-count');
         this.listCountElements = document.querySelectorAll('#list-count li');
 
+        this.resetSearch = document.querySelector('#resetsearch');
+        this.inputSearch = document.querySelector('#inputsearch');
     }
 
     hangEvents() {
         this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
+        this.hangResetSearch();
         this.hangListCountElements();
         this.hangPaginationEvents();
         this.hangAvailableEvent();
@@ -224,6 +227,13 @@ class CatalogSearch {
         const button = section.querySelector('.filters-section__header');
         button.addEventListener('click', () => {
             section.classList.toggle('filters-section--expanded');
+        });
+    }
+
+    hangResetSearch() {
+        this.resetSearch.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.inputSearch.value = '';
         });
     }
 
