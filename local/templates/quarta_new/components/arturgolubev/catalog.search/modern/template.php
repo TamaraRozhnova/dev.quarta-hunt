@@ -88,11 +88,14 @@ $uriString = $request->getRequestUri();
 
 
             ?>
-                <div class="tabs">
-                    <a class="<?=($tab == null || $tab == 'catalog') ? 'active' : ''?>" href="<?=$uriString?>&tab=catalog"><?=Loc::getMessage('TAB_CATALOG')?></a>
-                    <a class="<?=($tab == 'blog') ? 'active' : ''?>" href="<?=$uriString?>&tab=blog"><?=Loc::getMessage('TAB_BLOG')?></a>
-                    <a class="<?=($tab == 'sales') ? 'active' : ''?>" href="<?=$uriString?>&tab=sales"><?=Loc::getMessage('TAB_SALES')?></a>
-                </div>
+            <div class="tabs">
+                <a class="<?= ($tab == null || $tab == 'catalog') ? 'active' : '' ?>"
+                   href="<?= $uriString ?>&tab=catalog"><?= Loc::getMessage('TAB_CATALOG') ?></a>
+                <a class="<?= ($tab == 'blog') ? 'active' : '' ?>"
+                   href="<?= $uriString ?>&tab=blog"><?= Loc::getMessage('TAB_BLOG') ?></a>
+                <a class="<?= ($tab == 'sales') ? 'active' : '' ?>"
+                   href="<?= $uriString ?>&tab=sales"><?= Loc::getMessage('TAB_SALES') ?></a>
+            </div>
             <?php
 
             if (!empty($arElements) && is_array($arElements)) {
@@ -257,7 +260,7 @@ $uriString = $request->getRequestUri();
 
                                 <div class="filters-section  <?= (!$withCldren) ? 'single-section' : '' ?> <?= ($isActive) ? 'filters-section--expanded' : '' ?>">
                                     <div class="filters-section__header">
-                                        <?php if ($withCldren) {?>
+                                        <?php if ($withCldren) { ?>
                                             <h6><?= $arSection['NAME'] ?></h6>
                                         <?php } else { ?>
                                             <h6><a href="<?= $uriString ?>&categoryid=<?= $arSection['ID'] ?>"><?= $arSection['NAME'] ?></a></h6>
@@ -479,12 +482,9 @@ $uriString = $request->getRequestUri();
                         false
                     );
                 }
-
-
                 ?>
 
                 <?php
-
             } elseif (is_array($arElements)) {
                 echo Loc::getMessage("CT_BCSE_NOT_FOUND");
             }

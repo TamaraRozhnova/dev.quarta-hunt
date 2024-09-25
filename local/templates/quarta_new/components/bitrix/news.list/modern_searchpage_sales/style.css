@@ -15,18 +15,21 @@
   background: var(--bs-white);
   border-radius: 9px;
   filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.13));
-  margin-bottom: 5px;
+  margin: 0;
 }
 
 .modern-promo-page-sales .sale-item img{
   border-radius: 9px;
   width: 100%;
+  height: 100%;
+  max-height: 268px;
 }
 
 .modern-promo-page-sales .sale-item-textblock{
   display: flex;
   flex-direction: column;
   padding: 15px;
+  height: calc(100% - 268px);
 }
 .modern-promo-page-sales .sale-item-title{
   color: var(--bs-primary);
@@ -48,6 +51,7 @@
   display: block;
   text-decoration: none;
   padding: 10px 0;
+  margin-top: auto;
 }
 .modern-promo-page-sales .sale-item-button:hover{
   background: rgba(0, 73, 137, 1);
