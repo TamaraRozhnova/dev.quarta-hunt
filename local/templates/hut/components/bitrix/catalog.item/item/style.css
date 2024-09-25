@@ -1073,6 +1073,10 @@ input::-webkit-inner-spin-button {
     font-size: 14px;
     line-height: 18px;
     padding: 0 8px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    white-space: normal;
   }
 
   .product-item-info-container {
