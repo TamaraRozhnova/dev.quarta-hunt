@@ -14,7 +14,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /** @var CBitrixComponent $component */
 
 $this->setFrameMode(true);
-$this->addExternalCss("/bitrix/css/main/bootstrap.css");
 
 $sectionListParams = array(
 	"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
@@ -24,17 +23,15 @@ $sectionListParams = array(
 	"CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
 	"COUNT_ELEMENTS" => $arParams["SECTION_COUNT_ELEMENTS"],
 	"TOP_DEPTH" => $arParams["SECTION_TOP_DEPTH"],
-	"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
+	"SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
 	"VIEW_MODE" => $arParams["SECTIONS_VIEW_MODE"],
 	"SHOW_PARENT_NAME" => $arParams["SECTIONS_SHOW_PARENT_NAME"],
 	"HIDE_SECTION_NAME" => ($arParams["SECTIONS_HIDE_SECTION_NAME"] ?? "N"),
 	"ADD_SECTIONS_CHAIN" => ($arParams["ADD_SECTIONS_CHAIN"] ?? '')
 );
-if ($sectionListParams["COUNT_ELEMENTS"] === "Y")
-{
+if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 	$sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_ACTIVE";
-	if ($arParams["HIDE_NOT_AVAILABLE"] == "Y")
-	{
+	if ($arParams["HIDE_NOT_AVAILABLE"] == "Y") {
 		$sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_AVAILABLE";
 	}
 }
@@ -47,8 +44,7 @@ $APPLICATION->IncludeComponent(
 );
 unset($sectionListParams);
 
-if ($arParams["USE_COMPARE"] === "Y")
-{
+if ($arParams["USE_COMPARE"] === "Y") {
 	$APPLICATION->IncludeComponent(
 		"bitrix:catalog.compare.list",
 		"",
@@ -56,8 +52,8 @@ if ($arParams["USE_COMPARE"] === "Y")
 			"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 			"IBLOCK_ID" => $arParams["IBLOCK_ID"],
 			"NAME" => $arParams["COMPARE_NAME"],
-			"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
-			"COMPARE_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["compare"],
+			"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
+			"COMPARE_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["compare"],
 			"ACTION_VARIABLE" => (!empty($arParams["ACTION_VARIABLE"]) ? $arParams["ACTION_VARIABLE"] : "action"),
 			"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
 			'POSITION_FIXED' => $arParams['COMPARE_POSITION_FIXED'] ?? '',
@@ -68,14 +64,10 @@ if ($arParams["USE_COMPARE"] === "Y")
 	);
 }
 
-if ($arParams["SHOW_TOP_ELEMENTS"] !== "N")
-{
-	if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] === 'Y')
-	{
+if ($arParams["SHOW_TOP_ELEMENTS"] !== "N") {
+	if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] === 'Y') {
 		$basketAction = $arParams['COMMON_ADD_TO_BASKET_ACTION'] ?? '';
-	}
-	else
-	{
+	} else {
 		$basketAction = $arParams['TOP_ADD_TO_BASKET_ACTION'] ?? '';
 	}
 
@@ -89,8 +81,8 @@ if ($arParams["SHOW_TOP_ELEMENTS"] !== "N")
 			"ELEMENT_SORT_ORDER" => $arParams["TOP_ELEMENT_SORT_ORDER"],
 			"ELEMENT_SORT_FIELD2" => $arParams["TOP_ELEMENT_SORT_FIELD2"],
 			"ELEMENT_SORT_ORDER2" => $arParams["TOP_ELEMENT_SORT_ORDER2"],
-			"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-			"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
+			"SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+			"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
 			"BASKET_URL" => $arParams["BASKET_URL"],
 			"ACTION_VARIABLE" => $arParams["ACTION_VARIABLE"],
 			"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
@@ -155,7 +147,7 @@ if ($arParams["SHOW_TOP_ELEMENTS"] !== "N")
 			'MESS_NOT_AVAILABLE_SERVICE' => $arParams['~MESS_NOT_AVAILABLE_SERVICE'] ?? '',
 			'ADD_TO_BASKET_ACTION' => $basketAction,
 			'SHOW_CLOSE_POPUP' => $arParams['COMMON_SHOW_CLOSE_POPUP'] ?? '',
-			'COMPARE_PATH' => $arResult['FOLDER'].$arResult['URL_TEMPLATES']['compare'],
+			'COMPARE_PATH' => $arResult['FOLDER'] . $arResult['URL_TEMPLATES']['compare'],
 			'USE_COMPARE_LIST' => 'Y',
 
 			'COMPATIBLE_MODE' => ($arParams['COMPATIBLE_MODE'] ?? '')

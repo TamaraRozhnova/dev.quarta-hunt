@@ -234,7 +234,7 @@ Loc::loadMessages(__FILE__);
     array(
         "AUTH" => "Y",
         "REQUIRED_FIELDS" => array("EMAIL", "NAME", "LAST_NAME", "PERSONAL_PHONE"),
-        "SET_TITLE" => "Y",
+        "SET_TITLE" => "N",
         "SHOW_FIELDS" => array("PERSONAL_PHONE", "NAME", "LAST_NAME", "EMAIL"),
         "SUCCESS_PAGE" => "",
         "USER_PROPERTY" => array("UF_TYPE", "UF_PROMO"),
@@ -251,7 +251,10 @@ Loc::loadMessages(__FILE__);
         <button onclick="popup.hide(this)" type="button" class="button popup__close"><?= Loc::GetMessage("OK"); ?></button>
     </div>
 </div>
-
+<? if ($APPLICATION->GetPageProperty("need_slider") == 'Y') {
+    $APPLICATION->AddHeadString('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>', true);
+    $APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>', true);
+} ?>
 </body>
 
 </html>

@@ -1,0 +1,25 @@
+.bx-breadcrumb {
+  display: flex;
+  margin-top: 64px;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--color-gray6);
+}
+
+.bx-breadcrumb-item {
+  display: flex;
+  gap: 8px;
+}
+
+.bx-breadcrumb-item a {
+  text-decoration: underline;
+  color: var(--color-dark6);
+}
+
+@media (max-width: 768px) {
+  .bx-breadcrumb {
+    display: flex;
+    margin-top: 32px;
+  }
+}

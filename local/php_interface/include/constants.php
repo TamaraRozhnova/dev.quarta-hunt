@@ -49,3 +49,4 @@ const CDEK_RESTRICTION_SECTIONS_RULE_ID = 35; // ID ограничения со 
 /** HUT */
 const IMG_PATH = '/img';
 const ICON_PATH = '/img/icons';
+const HUT_CATALOG_IBLOCK_ID = 88;
