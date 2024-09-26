@@ -8,6 +8,7 @@
 @import "popup.css";
 @import "modal.css";
 @import "interface.css";
+@import "main-page.css";
 
 * {
   box-sizing: border-box;

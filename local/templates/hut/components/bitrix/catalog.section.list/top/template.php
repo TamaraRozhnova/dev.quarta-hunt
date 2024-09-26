@@ -23,13 +23,9 @@ Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/modules/scrollbar/overlayscr
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/modules/scrollbar/overlayscrollbars.browser.es5.js");
 ?>
 <div class="sections-top">
-	<?
-	//if (0 < $arResult["SECTIONS_COUNT"]) {
-	?>
-
 	<div class="sections-top__ul-wrap">
 		<ul class="sections-top__list">
-			<li class="<?= !$arResult['isAnyActiveSection'] ? 'active' : '' ?>">
+			<li>
 				<a class="sections-top__title" href="<?= $arResult['ALL_URL'] ? $arResult['ALL_URL'] : $arResult['SECTION']['SECTION_PAGE_URL'] ?>">
 					<span>Все</span>
 				</a>
@@ -38,7 +34,7 @@ Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/modules/scrollbar/overlayscro
 			foreach ($arResult['SECTIONS'] as &$arSection) {
 				$this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
 				$this->AddDeleteAction($arSection['ID'], $arSection['DELETE_LINK'], $strSectionDelete, $arSectionDeleteParams); ?>
-				<li id="<? echo $this->GetEditAreaId($arSection['ID']); ?>" class="<?= $arSection['CODE'] == $arParams['CUR_SECTION_CODE'] ? 'active' : '' ?>">
+				<li id="<? echo $this->GetEditAreaId($arSection['ID']); ?>">
 					<a class="sections-top__title" href="<? echo $arSection['SECTION_PAGE_URL']; ?>">
 
 						<span><? echo $arSection['NAME']; ?></span>
@@ -50,7 +46,4 @@ Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/modules/scrollbar/overlayscro
 			?>
 		</ul>
 	</div>
-	<?
-	//}
-	?>
 </div>
