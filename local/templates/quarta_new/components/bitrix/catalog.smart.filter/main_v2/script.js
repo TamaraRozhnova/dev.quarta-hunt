@@ -808,4 +808,45 @@ document.addEventListener('DOMContentLoaded', function(){
             filterBlock.style.display = 'none';
         });
     }
+
+    let bxFilterParametersBox = document.querySelectorAll('.bx-filter-parameters-box');
+
+    if (bxFilterParametersBox) {
+        bxFilterParametersBox.forEach(box => {
+           let hasCheckedInput = false;
+           let blockTitle = box.querySelector('.bx-filter-parameters-box-title');
+           let boxInputs = box.querySelectorAll('input.form-check-input');
+
+           if (boxInputs) {
+               boxInputs.forEach(input => {
+                   if (input.checked) {
+                       hasCheckedInput = true;
+                   }
+               });
+           }
+
+           if (blockTitle) {
+               if (hasCheckedInput) {
+                   blockTitle.classList.add('active');
+               } else {
+                   blockTitle.classList.remove('active');
+               }
+           }
+        });
+    }
+
+    let bxFilterParametersBoxActive = document.querySelectorAll('.bx-filter-parameters-box.bx-active');
+
+    if (bxFilterParametersBoxActive) {
+        bxFilterParametersBoxActive.forEach(box => {
+            let bxFilterBlock = box.querySelector('.bx-filter-block');
+            if (bxFilterBlock) {
+                if (box.offsetHeight > 240) {
+                    bxFilterBlock.classList.add('hide-props');
+                } else {
+                    bxFilterBlock.classList.remove('hide-props');
+                }
+            }
+        });
+    }
 });

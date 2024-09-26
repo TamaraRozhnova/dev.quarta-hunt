@@ -231,7 +231,7 @@ input.form-check-input:focus {
 }
 
 .bx-filter-parameters-box-container {
-    padding: 20px 0 0 0;
+    padding: 10px 0 0 0;
     gap: 20px;
 }
 
@@ -242,6 +242,10 @@ input.form-check-input:focus {
 .bx-filter .bx-filter-parameters-box-container-block {
     font-size: 11px;
     color: #3f3f3f;
+}
+
+.bx-filter-parameters-box.bx-active .bx-filter-parameters-box-title {
+    margin-bottom: 10px;
 }
 
 /*
