@@ -38,21 +38,6 @@
   }
 }
 
-.bx-no-touch .product-item-container.hover .product-item {
-  position: absolute;
-  right: -15px;
-  left: -15px;
-  padding: 15px 15px 0;
-  width: auto;
-  border: 1px solid transparent;
-  background: #fff;
-  box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.19);
-}
-
-.bx-no-touch .product-item-container.hover .product-item {
-  -webkit-animation: product-item-hover 300ms 1 ease;
-}
-
 @-webkit-keyframes product-item-hover {
   0% {
     position: absolute;
@@ -118,14 +103,6 @@
 .product-item-image-alternative {
   z-index: 13;
   opacity: 0;
-}
-
-.bx-no-touch .product-item-container.hover .product-item-image-original {
-  opacity: 0;
-}
-
-.bx-no-touch .product-item-container.hover .product-item-image-alternative {
-  opacity: 1;
 }
 
 .product-item-big-card .product-item-image-wrapper {
