@@ -16,6 +16,17 @@
   display: block;
 }
 
+.main-section__link {
+  color: var(--color-dark6);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  padding: 30px;
+  border: 1px solid var(--color-dark1);
+  border-radius: 16px;
+}
+
 /* Инпуты */
 .input {
   background-color: var(--color-gray1);
@@ -48,6 +59,14 @@
 .slider-button-prev.swiper-button-disabled,
 .slider-button-next.swiper-button-disabled {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .main-section__link {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 21px 31px;
+  }
 }
 
 @media (max-width: 450px) {
