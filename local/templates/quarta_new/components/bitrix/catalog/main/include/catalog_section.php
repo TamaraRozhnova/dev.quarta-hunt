@@ -45,6 +45,10 @@ if ($isAjax == 'Y') {
     $APPLICATION->ShowCSS();
 }
 
+if ($params["ELEMENT_COUNT"] == 9999) {
+    $params["ELEMENT_COUNT"] = 500;
+}
+
 $APPLICATION->IncludeComponent(
     "bitrix:catalog.section",
     "main",

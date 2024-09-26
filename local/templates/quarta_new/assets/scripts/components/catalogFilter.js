@@ -52,7 +52,7 @@ class CatalogFilter {
 
             this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
 
-            if (this.viewItemsWrapper && this.viewItemsWrapper.length > 0) {
+            if (this.viewItemsWrapper) {
                 this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
 
                 if (this.viewItems.length > 0) {
