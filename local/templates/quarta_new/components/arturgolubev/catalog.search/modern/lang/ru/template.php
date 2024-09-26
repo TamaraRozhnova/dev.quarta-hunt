@@ -4,6 +4,7 @@ $MESS["CT_BCSE_NOT_FOUND"] = "Сожалеем, но ничего не найд�
 $MESS["CT_BCSE_TITLE"] = "Результаты поиска";
 $MESS["CT_BCSE_CATEGORIES"] = "Категории";
 $MESS["CT_BCSE_CLEAR"] = "Сбросить";
+$MESS["CT_BCSE_CLOSE"] = "Закрыть";
 
 $MESS["TAB_CATALOG"] = "Каталог товаров";
 $MESS["TAB_BLOG"] = "Блог";

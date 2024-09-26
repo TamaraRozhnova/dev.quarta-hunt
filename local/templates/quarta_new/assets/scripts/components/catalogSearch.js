@@ -1,11 +1,14 @@
 class CatalogSearch {
-    constructor() {
+    constructor(isCatalog = true) {
 
         this.initDefaultVars();
-
+        this.isCatalog = isCatalog;
         this.productsDataApi = new ProductsDataApi();
 
-        this.createElements();
+        if (this.isCatalog) {
+            this.createElements();
+        }
+
         this.hangEvents();
     }
 
@@ -13,28 +16,38 @@ class CatalogSearch {
         this.mainFiltersWrapper = document.querySelector('.category__filter-wrap');
         this.mainFilters = this.mainFiltersWrapper.querySelector('.filters');
         this.clearFilterButton = this.mainFilters.querySelector('.filters__clear');
+        this.closeFilterButton = this.mainFilters.querySelector('.filters__close-btn');
         this.filterSections = this.mainFilters.querySelectorAll('.filters-section');
         this.serachContainer = document.querySelector('.search-page');
-        this.productsDataBlock = document.querySelector('.products-data');
-        this.mobileFilterOpenButton = document.querySelector('.filters-sort__btn');
         this.loader = document.querySelector('.loading');
-        this.extraFilters = document.querySelector('.filters-sort');
-        this.availableCheckbox = this.extraFilters.querySelector('#available');
-        this.selectSortElement = this.extraFilters.querySelector('#select-sort');
-        this.selectCountElement = this.extraFilters.querySelector('#select-count');
-        this.listCountElements = document.querySelectorAll('#list-count li');
+        this.mobileFilterOpenButton = document.querySelector('.filters-sort__btn');
 
         this.resetSearch = document.querySelector('#resetsearch');
         this.inputSearch = document.querySelector('#inputsearch');
+
+        if (this.isCatalog) {
+            this.productsDataBlock = document.querySelector('.products-data');
+            this.extraFilters = document.querySelector('.filters-sort');
+            this.availableCheckbox = this.extraFilters.querySelector('#available');
+            this.selectSortElement = this.extraFilters.querySelector('#select-sort');
+            this.selectCountElement = this.extraFilters.querySelector('#select-count');
+            this.listCountElements = document.querySelectorAll('#list-count li');
+        }
     }
 
     hangEvents() {
         this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
+
         this.hangResetSearch();
-        this.hangListCountElements();
-        this.hangPaginationEvents();
-        this.hangAvailableEvent();
-        this.hangProductCardsEvents();
+        this.hangOpenMobileFilterEvent();
+        this.hangCloseMobileFilterEvent();
+
+        if (this.isCatalog) {
+            this.hangListCountElements();
+            this.hangPaginationEvents();
+            this.hangAvailableEvent();
+            this.hangProductCardsEvents();
+        }
     }
 
 
@@ -42,6 +55,18 @@ class CatalogSearch {
         this.handleChangeFilters({'templateView': viewTemplate})
     }
 
+
+    hangOpenMobileFilterEvent() {
+        this.mobileFilterOpenButton.onclick = () => {
+            this.mainFiltersWrapper.classList.add('category__filter-wrap--show');
+        }
+    }
+
+    hangCloseMobileFilterEvent() {
+        this.closeFilterButton.onclick = () => {
+            this.mainFiltersWrapper.classList.remove('category__filter-wrap--show');
+        }
+    }
 
     hangCloseAllApplyBnts() {
         if (window.innerWidth >= 991) {
@@ -236,6 +261,7 @@ class CatalogSearch {
             this.inputSearch.value = '';
         });
     }
+
 
     createSelectorSort() {
         this.selectorSort = new Select({

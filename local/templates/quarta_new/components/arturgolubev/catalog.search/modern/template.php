@@ -283,6 +283,12 @@ $uriString = $request->getRequestUri();
 
                         </span>
 
+                        <div class="filters__accept-wrap">
+                            <button type="button" class="filters__close-btn">
+                                <?=Loc::getMessage('CT_BCSE_CLOSE') ?>
+                            </button>
+                        </div>
+
                     </div>
                 </div>
 
