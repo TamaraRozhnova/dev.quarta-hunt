@@ -34,6 +34,7 @@ if (!empty($parentSectionId)) {
 
 if (empty($arResult['SECTIONS'])) {
     $rsSection = SectionTable::getList([
+        'order' => ['NAME' => 'ASC'],
         'filter' => [
             'IBLOCK_ID' => HUT_CATALOG_IBLOCK_ID,
             'IBLOCK_SECTION_ID' => $parentSectionId,
