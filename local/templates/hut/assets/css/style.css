@@ -9,6 +9,7 @@
 @import "modal.css";
 @import "interface.css";
 @import "main-page.css";
+@import "404.css";
 
 * {
   box-sizing: border-box;
