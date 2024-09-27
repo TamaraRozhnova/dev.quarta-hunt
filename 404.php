@@ -12,20 +12,22 @@ define("HIDE_SIDEBAR", true);
 
 $APPLICATION->SetTitle("Страница не найдена");?>
 
-<div class="not-found__wrapper">
-	<div class="error-message__wrapper">		
-		<div class="error-message-content">
-			<div class="error-message">
-				<h2>
-					Упс, что-то пошло не так, похоже, такой страницы не существует!
-				</h2>
-				<p>Попробуйте воспользоваться нашим поиском на сайте.</p>
-				<a href="/" class="btn btn-lg btn-primary">Вернуться на главную</a>
-			</div>
-
-		</div>
+<section class="c404">
+ <div class="c404__container">
+	<img src="<?=SITE_TEMPLATE_PATH ?>/img/404.png" alt="" class="c404__img">
+	<h1 class="c404__title">Такой страницы нет</h1>
+	<p class="c404__text">Попробуйте воспользоваться <a href="#">поиском</a> или посмотрите на других страницах:
+	</p>
+	<div class="c404__links">
+		<a href="/">Главная</a>
+	   <a href="#">Каталог</a>
+	   <a href="#">Товары для охоты</a>
+	   <a href="#">Тактическое снаряжение</a>
+	   <a href="#">Повседневная одежда</a>
+	   <a href="#">Адреса магазинов</a>
 	</div>
-</div>
+ </div>
+</section>
 
 
-<? //require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");
+<? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
