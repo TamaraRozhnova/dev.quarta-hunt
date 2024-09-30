@@ -46,6 +46,8 @@ function JCTitleSearchAG(arParams) {
 			_this.RESULT.innerHTML = result;
 		}
 
+
+
 		/* товары в поиске */
 		const productElements = _this.RESULT.querySelectorAll('.product-card-search');
 		const productIds = Array.from(productElements).map(element => element.dataset.id);
@@ -88,9 +90,17 @@ function JCTitleSearchAG(arParams) {
 			})
 		})
 
+		console.log(_this.INPUT.value)
+
 		const defaultModal = document.getElementById('defaul-modal');
-		defaultModal.style.display = 'none';
-		_this.RESULT.style.display = _this.RESULT.innerHTML !== '' ? 'block' : 'none';
+		if (_this.INPUT.value.length >= _this.arParams.MIN_QUERY_LEN) {
+			defaultModal.style.display = 'none';
+			_this.RESULT.style.display = _this.RESULT.innerHTML !== '' ? 'block' : 'none';
+		} else {
+			_this.RESULT.style.display = 'none';
+			defaultModal.style.display = 'block';
+		}
+
 	};
 
 	this.onKeyPress = function (keyCode) {

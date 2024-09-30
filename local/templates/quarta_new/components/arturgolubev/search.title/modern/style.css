@@ -921,7 +921,7 @@ div.title-search-result td.title-search-price span {
 }
 
 .modal-search-modern__wrapper.mobile .modal-search-modern__section {
-	flex: 1 1 316px;
+	flex: 1 1 auto;
 	gap: 16px;
 }
 
