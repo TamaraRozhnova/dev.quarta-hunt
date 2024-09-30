@@ -17,6 +17,9 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 use General\User;
 
+
+$this->addExternalCss('/local/templates/quarta_new/components/bitrix/news.list/contacts_shops/style.css');
+
 $this->setFrameMode(true);
 
 Loader::includeModule("arturgolubev.smartsearch");
@@ -491,8 +494,112 @@ $uriString = $request->getRequestUri();
                 ?>
 
                 <?php
-            } elseif (is_array($arElements)) {
-                echo Loc::getMessage("CT_BCSE_NOT_FOUND");
+            } elseif (is_array($arElements)) { ?>
+
+                    <div class="not-found-wrapper">
+                        <div class="not-found-wrapper_text">
+                            <p><?=Loc::getMessage('CT_BCSE_NOT_FOUND_TITLE')?></p>
+
+                            <ul>
+                                <li><?=Loc::getMessage('CT_BCSE_NOT_FOUND_LI_1')?></li>
+                                <li><?=Loc::getMessage('CT_BCSE_NOT_FOUND_LI_2')?></li>
+                                <li><?=Loc::getMessage('CT_BCSE_NOT_FOUND_LI_3')?></li>
+                                <li><?=Loc::getMessage('CT_BCSE_NOT_FOUND_LI_4')?></li>
+                                <li><?=Loc::getMessage('CT_BCSE_NOT_FOUND_LI_5')?></li>
+                            </ul>
+                        </div>
+
+                        <div class="not-found-wrapper_image"></div>
+                    </div>
+
+                    <!-- row-->
+                    </div>
+                    <!-- container-->
+                        </div>
+                            <div class="bg-white pb-5 contacts">
+                                    <div class="container pb-5 pt-5">
+                                        <div class="row">
+                                            <div class="col-12 col-md-5">
+                                                <h2>
+                                                    <?php $APPLICATION->IncludeComponent(
+                                                        "bitrix:main.include",
+                                                        "",
+                                                        Array(
+                                                            "AREA_FILE_SHOW" => "file",
+                                                            "AREA_FILE_SUFFIX" => "",
+                                                            "EDIT_TEMPLATE" => "",
+                                                            "PATH" => "/include/contacts/form/title.php"
+                                                        )
+                                                    );?>
+                                                </h2>
+                                            </div>
+                                            <div class = "col-12 col-md-7">
+                                                <ul class="checklist mb-5">
+                                                    <li>
+                                                        <?php $APPLICATION->IncludeComponent(
+                                                            "bitrix:main.include",
+                                                            "",
+                                                            Array(
+                                                                "AREA_FILE_SHOW" => "file",
+                                                                "AREA_FILE_SUFFIX" => "",
+                                                                "EDIT_TEMPLATE" => "",
+                                                                "PATH" => "/include/contacts/form/form-item-1.php"
+                                                            )
+                                                        );?>
+                                                    </li>
+                                                    <li>
+                                                        <?php $APPLICATION->IncludeComponent(
+                                                            "bitrix:main.include",
+                                                            "",
+                                                            Array(
+                                                                "AREA_FILE_SHOW" => "file",
+                                                                "AREA_FILE_SUFFIX" => "",
+                                                                "EDIT_TEMPLATE" => "",
+                                                                "PATH" => "/include/contacts/form/form-item-2.php"
+                                                            )
+                                                        );?>
+                                                    </li>
+                                                    <li>
+                                                        <?php $APPLICATION->IncludeComponent(
+                                                            "bitrix:main.include",
+                                                            "",
+                                                            Array(
+                                                                "AREA_FILE_SHOW" => "file",
+                                                                "AREA_FILE_SUFFIX" => "",
+                                                                "EDIT_TEMPLATE" => "",
+                                                                "PATH" => "/include/contacts/form/form-item-3.php"
+                                                            )
+                                                        );?>
+                                                    </li>
+                                                </ul>
+
+                                                <?php $APPLICATION->IncludeComponent("bitrix:form.result.new", "contacts", Array(
+                                                    "CACHE_TIME" => "3600",
+                                                    "CACHE_TYPE" => "A",
+                                                    "CHAIN_ITEM_LINK" => "",
+                                                    "CHAIN_ITEM_TEXT" => "",
+                                                    "EDIT_URL" => "result_edit.php",
+                                                    "IGNORE_CUSTOM_TEMPLATE" => "N",
+                                                    "LIST_URL" => "",
+                                                    "SEF_MODE" => "N",
+                                                    "SUCCESS_URL" => "",
+                                                    "USE_EXTENDED_ERRORS" => "N",
+                                                    "VACANCY_NAME" => "",
+                                                    "VARIABLE_ALIASES" => array(
+                                                        "RESULT_ID" => "RESULT_ID",
+                                                        "WEB_FORM_ID" => "WEB_FORM_ID",
+                                                    ),
+                                                    "WEB_FORM_ID" => "5",
+                                                ),
+                                                    false
+                                                );?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <div>
+                    <div>
+                        <?php
             }
             ?>
         </div>

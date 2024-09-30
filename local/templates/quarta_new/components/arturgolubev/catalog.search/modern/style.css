@@ -421,3 +421,53 @@
     }
 }
 
+
+/* not found */
+.not-found-wrapper {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    padding: 48px !important;
+}
+
+.not-found-wrapper_text {
+    display: flex;
+    flex-direction: column;
+}
+.not-found-wrapper_text p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 140%;
+    color: #333333;
+}
+
+.not-found-wrapper_text ul {
+    padding-top: 40px;
+}
+.not-found-wrapper_text ul li {
+}
+
+.not-found-wrapper_image {
+    background-image: url("notfound.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    width: 100%;
+    max-width: 350px;
+    height: 276px;
+    align-self: center;
+    margin-left: auto;
+}
+
+@media (max-width: 991px) {
+    .not-found-wrapper {
+        flex-direction: column;
+        padding: 24px !important;
+    }
+    .not-found-wrapper_image {
+        margin: 0;
+    }
+}
+
