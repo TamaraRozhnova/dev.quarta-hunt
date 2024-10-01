@@ -9,6 +9,10 @@
 @import "modal.css";
 @import "interface.css";
 @import "main-page.css";
+@import "404.css";
+@import "privacy.css";
+@import "faq.css";
+@import "guarantees.css";
 
 * {
   box-sizing: border-box;
