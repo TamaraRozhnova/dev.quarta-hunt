@@ -16,7 +16,7 @@
                     "AREA_FILE_SHOW" => "file",
                     "AREA_FILE_SUFFIX" => "",
                     "EDIT_TEMPLATE" => "",
-                    "PATH" => "/include/contacts/opt-item-1-3.php"
+                    "PATH" => "/include/contacts/opt-item-1-3.1.php"
                 )
             );?>
         </li>
