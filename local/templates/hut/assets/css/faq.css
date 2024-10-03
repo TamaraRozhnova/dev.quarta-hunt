@@ -1,17 +1,14 @@
 .faq {
   padding: 32px 64px 128px;
-  padding-top: 0;
 }
 @media (max-width: 1400px) {
   .faq {
     padding: 32px 32px 128px 32px;
-	padding-top: 0;
   }
 }
 @media (max-width: 768px) {
   .faq {
     padding: 32px 16px 64px;
-	padding-top: 0;
   }
 }
 .faq__wrap {
@@ -166,4 +163,4 @@
 .faq__questCont ul {
   margin: 24px 0;
   padding-left: 30px;
-}
+}/*# sourceMappingURL=faq.css.map */
