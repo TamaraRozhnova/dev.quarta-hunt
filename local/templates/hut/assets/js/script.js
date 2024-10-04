@@ -186,7 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } else {
       document.querySelector("body").classList.remove("scrolled");
-      headerWrap.classList.remove("scroll");
+      if (isTransparentHeader) {
+        headerWrap.classList.remove("scroll");
+      }
     }
   });
 });
