@@ -849,4 +849,19 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
     }
+
+    let minPriceInput = document.querySelector('input.min-price');
+    let maxPriceInput = document.querySelector('input.max-price');
+
+    if (minPriceInput) {
+        minPriceInput.addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    }
+
+    if (maxPriceInput) {
+        maxPriceInput.addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    }
 });
