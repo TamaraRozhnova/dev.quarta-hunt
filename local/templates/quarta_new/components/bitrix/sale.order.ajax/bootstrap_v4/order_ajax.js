@@ -9812,7 +9812,20 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
       var info, i;
       var products = [],
         dataVariant,
-        item;
+        item, currentPerson, ecommercePersonFact = 0;
+
+
+      for (i = 0; i < this.result.PERSON_TYPE.length; i++) {
+        if (this.result.PERSON_TYPE[i].CHECKED == "Y") {
+          currentPerson = this.result.PERSON_TYPE[i];
+          break;
+        }
+      }
+
+
+      if(currentPerson.ID == 2) {
+        ecommercePersonFact = 1;
+      }
 
       for (i in this.result.GRID.ROWS) {
         if (this.result.GRID.ROWS.hasOwnProperty(i)) {
@@ -9832,7 +9845,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
               .join("/"),
             variant: dataVariant.join("/"),
             quantity: item.data.QUANTITY,
+            position: ecommercePersonFact,
           });
+
         }
       }
 
