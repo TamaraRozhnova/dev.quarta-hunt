@@ -315,7 +315,13 @@ COLOR
     background-color: var(--bs-blue);
     border-radius: 5px;
     font-family: var(--bs-font-sans-serif) !important;
-    border: none;
+    border: 2ps solid var(--bs-blue);
+    transition: all 0.3s;
+}
+
+#set_filter:hover {
+    background-color: #003E74;
+    border-color: #003E74;
 }
 
 .bx-filter .bx-filter-button-box #del_filter {
@@ -326,12 +332,18 @@ COLOR
     font-weight: 400;
     color: var(--bs-blue);
     border-radius: 5px;
-    border: none;
+    border: 2px solid var(--light-blue);
     background-color: var(--light-blue);
     margin-top: 8px;
     display: block;
     text-decoration: none;
     font-family: var(--bs-font-sans-serif) !important;
+    transition: all 0.3s;
+}
+
+.bx-filter .bx-filter-button-box #del_filter:hover {
+    background-color: #B6DEFF;
+    border-color: #8FAECB;
 }
 
 /*
