@@ -193,7 +193,8 @@ if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 		$sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_AVAILABLE";
 	}
 } ?>
-<div class="catalog__sectoin-title"><? $APPLICATION->ShowTitle(false) ?></div>
+
+<? $APPLICATION->ShowViewContent('catalog_title'); ?>
 <div class="catalog__top">
 
 	<?
