@@ -13,6 +13,11 @@ function JCSmartFilter(ajaxURL, viewMode, params) {
     if (params && params.SEF_DEL_FILTER_URL) {
         this.bindUrlToButton('del_filter', params.SEF_DEL_FILTER_URL);
     }
+
+    let delFilterBottom = document.getElementById('del_filter_bottom');
+    if (delFilterBottom) {
+        this.bindUrlToButton('del_filter_bottom', params.SEF_DEL_FILTER_URL);
+    }
 }
 
 JCSmartFilter.prototype.keyup = function (input) {
