@@ -1023,15 +1023,27 @@ COLOR
     left: auto;
     right: auto;
     bottom: -7px;
+    transition: all 0.3s;
 }
 
 .bx-filter .bx-filter-popup-result a {
     color: #0073a3;
     line-height: 10px;
+    font-weight: 500;
+    transition: none;
+}
+
+.bx-filter .bx-filter-popup-result:hover svg path {
+    fill: #004989;
 }
 
 .bx-filter .bx-filter-popup-result a:hover {
     text-decoration: none;
+}
+
+.bx-filter .bx-filter-popup-result:hover a {
+    color: var(--bs-white);
+    background-color: #004989;
 }
 
 .bx-filter .bx-filter-popup-result-close {
