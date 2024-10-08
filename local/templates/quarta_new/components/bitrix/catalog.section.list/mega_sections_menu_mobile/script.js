@@ -23,6 +23,11 @@ $(document).ready(function () {
             $('.catalog-slide-menu').addClass('active')
             $(this).addClass('active')
             $(".catalog-mobile [data-content='" + contentId + "']").addClass('active');
+            console.log(123123)
+
+            $('.mobile-nav__body').animate({
+                scrollTop: 0
+            }, 150);
         });
 
     $('.header--mobile .mobile-nav__back').on('click', function () {

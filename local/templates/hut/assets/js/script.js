@@ -172,10 +172,23 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   window.addEventListener("scroll", function () {
     const scrollPosition = window.scrollY;
+    const headerWrap = document.querySelector(".menu__wrap");
+    let isTransparentHeader = false;
+
+    if (headerWrap && headerWrap.classList.contains("change")) {
+      isTransparentHeader = true;
+    }
+
     if (scrollPosition > 50) {
       document.querySelector("body").classList.add("scrolled");
+      if (isTransparentHeader) {
+        headerWrap.classList.add("scroll");
+      }
     } else {
       document.querySelector("body").classList.remove("scrolled");
+      if (isTransparentHeader) {
+        headerWrap.classList.remove("scroll");
+      }
     }
   });
 });

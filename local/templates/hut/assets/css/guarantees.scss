@@ -1,0 +1,341 @@
+.guaranteesHead {
+   padding: 64px 64px 32px;
+
+   @media (max-width: 1400px) {
+      padding: 64px 32px 32px;
+   }
+
+   @media (max-width: 768px) {
+      padding: 32px 16px 32px;
+   }
+
+   &__title {
+      color: var(--Dark-Dark-6, #354052);
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 110%;
+      letter-spacing: -0.64px;
+      margin: 16px 0 0;
+
+      @media (max-width: 768px) {
+         font-size: 40px;
+         letter-spacing: -1.6px;
+      }
+
+      @media (max-width: 425px) {
+         font-size: 30px;
+      }
+   }
+}
+
+.guarantees {
+   padding: 0 64px;
+
+   @media (max-width: 1400px) {
+      padding: 0 32px;
+   }
+
+   @media (max-width: 768px) {
+      padding: 0 16px;
+   }
+
+   &--pb {
+      padding-bottom: 64px;
+
+      @media (max-width: 1400px) {
+         padding-bottom: 64px;
+      }
+
+      @media (max-width: 768px) {
+         padding-bottom: 32px;
+      }
+   }
+
+   &__card {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--Gray-Gray-2, #e9e9ea);
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+      counter-increment: card;
+
+      &:last-of-type {
+         border-bottom: none;
+      }
+
+      @media (max-width: 1300px) {
+         flex-direction: column;
+      }
+
+      @media (max-width: 768px) {
+         padding: 32px 0;
+         gap: 24px;
+      }
+   }
+
+   &__name {
+      width: 667px;
+      color: var(--Dark-Dark-6, #354052);
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 120%;
+      letter-spacing: -0.28px;
+      margin: 0;
+      padding-left: 120px;
+      position: relative;
+
+      @media (max-width: 1300px) {
+         width: 100%;
+      }
+
+      @media (max-width: 768px) {
+         padding-left: 96px;
+         font-size: 20px;
+         letter-spacing: -0.8px;
+         line-height: 1.3;
+      }
+
+      @media (max-width: 600px) {
+         padding-left: 0;
+         padding-top: 48px;
+      }
+
+      &::before {
+         content: counter(card, decimal-leading-zero);
+         color: var(--Dark-Dark-4, #6f7785);
+         font-size: 18px;
+         font-weight: 400;
+         line-height: 135%;
+         position: absolute;
+         left: 0;
+         top: 0;
+      }
+
+      &::after {
+         content: attr(data-text);
+         color: var(--Dark-Dark-4, #6F7785);
+         font-size: 16px;
+         font-weight: 400;
+         line-height: 135%;
+         display: block;
+         margin-top: 24px;
+      }
+
+      & span {
+         color: var(--Primary-Primary-6, #ec6624);
+         line-height: inherit;
+         font-weight: inherit;
+         letter-spacing: inherit;
+      }
+   }
+
+   &__text {
+      width: calc(100% - 667px - 48px);
+
+      @media (max-width: 1300px) {
+         padding-left: 120px;
+         width: 100%;
+      }
+
+      @media (max-width: 768px) {
+         padding-left: 96px;
+      }
+
+      @media (max-width: 600px) {
+         padding-left: 0;
+      }
+
+      &>* {
+         &:first-child {
+            margin-top: 0 !important;
+         }
+
+         &:last-child {
+            margin-bottom: 0 !important;
+         }
+      }
+
+      & p {
+         color: var(--Dark-Dark-4, #6f7785);
+         font-size: 16px;
+         font-weight: 400;
+         line-height: 135%;
+         margin: 24px 0;
+
+         @media (max-width: 768px) {
+            margin: 16px 0;
+         }
+
+         & span {
+            color: var(--Dark-Dark-6, #354052);
+         }
+
+         &.big {
+            font-size: 20px;
+            color: var(--Dark-Dark-6, #354052);
+
+            @media (max-width: 768px) {
+               font-size: 16px;
+            }
+         }
+      }
+
+      & a {
+         color: var(--Primary-Primary-6, #ec6624);
+         font-size: 16px;
+         font-weight: 400;
+         line-height: 130%;
+         text-decoration-line: underline;
+
+         &:hover {
+            text-decoration: none;
+         }
+      }
+
+      & ul {
+         margin: 24px 0;
+         padding: 0 0 0 29px;
+
+         @media (max-width: 1400px) {
+            padding-left: 25px;
+         }
+
+         @media (max-width: 768px) {
+            margin: 16px 0;
+         }
+
+         & li {
+            color: var(--Dark-Dark-6, #354052);
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 135%;
+
+            @media (max-width: 1400px) {
+               font-size: 16px;
+            }
+         }
+      }
+
+      & .gal {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 8px;
+
+         & img {
+            display: block;
+            width: auto;
+            height: 55px;
+
+            @media (max-width: 600px) {
+               height: 38px;
+            }
+         }
+      }
+
+      & iframe {
+         display: block;
+         width: 100% !important;
+         height: 587px !important;
+         border-radius: var(--Radius-Modal, 8px);
+         overflow: hidden;
+
+         @media (max-width: 600px) {
+            height: 325px !important;
+         }
+      }
+   }
+}
+
+.guaranteesCard {
+   padding: 32px 64px 128px;
+
+   @media (max-width: 1400px) {
+      padding: 32px 32px 128px;
+   }
+
+   @media (max-width: 768px) {
+      padding: 32px 16px 64px;
+   }
+
+   &__wrap {
+      max-width: 1920px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+   }
+
+   &__card {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      justify-content: space-between;
+      width: calc(25% - 24px / 4);
+      border: 1px solid var(--Dark-Dark-1, #e0e4eb);
+      background: var(--Other-White, #fff);
+      padding: 23px;
+
+      @media (max-width: 1400px) {
+         width: calc(50% - 4px);
+      }
+
+      @media (max-width: 600px) {
+         width: 100%;
+      }
+
+      &--gray {
+         background: var(--Dark-Dark-0, #f0f2f5);
+         border: none;
+         padding: 24px;
+      }
+
+      &--orange {
+         background: url("/img/card.png") no-repeat center / cover;
+         background-color: #ec6624;
+         border: none;
+         padding: 24px;
+
+         & .guaranteesCard__name {
+            color: var(--Other-White, #fff);
+         }
+
+         & .guaranteesCard__text {
+            color: var(--Dark-Dark-0, #f0f2f5);
+         }
+      }
+   }
+
+   &__name {
+      color: var(--Dark-Dark-6, #354052);
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 120%;
+      letter-spacing: -0.28px;
+      margin: 0;
+
+      @media (max-width: 768px) {
+         font-size: 20px;
+         line-height: 1.3;
+         letter-spacing: -0.8px;
+      }
+   }
+
+   &__text {
+      color: var(--Dark-Dark-4, #6f7785);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 135%;
+      margin: 0;
+
+      & a {
+         color: inherit;
+         line-height: inherit;
+         font-size: inherit;
+         text-decoration-line: underline;
+
+         &:hover {
+            text-decoration: none;
+         }
+      }
+   }
+}
