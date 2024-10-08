@@ -155,7 +155,7 @@ JCSmartFilter.prototype.updateItem = function (PID, arItem) {
                     if (value.hasOwnProperty('ELEMENT_COUNT')) {
                         label = document.querySelector('[data-role="count_' + value.CONTROL_ID + '"]');
                         if (label)
-                            label.innerHTML = value.ELEMENT_COUNT;
+                            label.innerHTML = '[' +  value.ELEMENT_COUNT + ' шт.]';
                     }
                 }
             }
