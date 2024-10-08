@@ -1,0 +1,3 @@
+.addr__map > div:not(.active){
+	display: none;
+}
