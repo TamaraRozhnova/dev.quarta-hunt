@@ -1,0 +1,29 @@
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.breadcrumbs a {
+  color: var(--Dark-Dark-6, #354052);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 114.286%;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+.breadcrumbs a:hover {
+  text-decoration: none;
+}
+.breadcrumbs span {
+  color: var(--Gray-Gray-6, #7c808f);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 114.286%;
+  display: inline;
+}
+.breadcrumbs--white a {
+  color: var(--Other-White, #fff);
+}
+.breadcrumbs--white span {
+  color: var(--Gray-Gray-6, #7c808f);
+}/*# sourceMappingURL=breadcrumbs.css.map */

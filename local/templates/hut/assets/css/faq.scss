@@ -1,0 +1,186 @@
+.faq {
+    padding: 32px 64px 128px;
+
+    @media (max-width: 1400px) {
+        padding: 32px 32px 128px 32px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 32px 16px 64px;
+    }
+
+    &__wrap {
+        max-width: 1920px;
+        display: flex;
+        justify-content: space-between;
+        gap: 48px;
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            gap: 24px;
+        }
+    }
+
+    &__info {
+        width: 778px;
+
+        @media (max-width: 1400px) {
+            width: 437px;
+        }
+
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+    }
+
+    &__quests {
+        width: 851px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
+    }
+
+    &__descr {
+        color: var(--Dark-Dark-6, #354052);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 135%;
+
+        & a {
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: 130%;
+            text-decoration-line: underline;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__quest {
+        border: 1px solid var(--Gray-Gray-2, #E9E9EA);
+        border-bottom: none;
+        transition: border .3s;
+
+        &:first-of-type{
+            border-radius: var(--Radius-Modal, 8px) var(--Radius-Modal, 8px) 0px 0px;
+        }
+
+        &:last-of-type {
+            border-bottom: 1px solid var(--Gray-Gray-2, #E9E9EA);
+            border-radius: 0px 0px var(--Radius-Modal, 8px) var(--Radius-Modal, 8px);
+        }
+
+        &:hover {
+            border-color: var(--Primary-Primary-6, #EC6624);
+
+            &+.faq__quest {
+                border-top-color: var(--Primary-Primary-6, #EC6624);
+            }
+        }
+
+        &.active {
+            border-color: var(--Primary-Primary-6, #EC6624);
+
+            &+.faq__quest {
+                border-top-color: var(--Primary-Primary-6, #EC6624);
+            }
+
+            & .faq__questCont {
+                display: block;
+            }
+
+            & .faq__questBtnSvg{
+                & svg:first-child{
+                    opacity: 0;
+                }
+            }
+        }
+    }
+
+    &__questBtn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: space-between;
+        text-align: left;
+        color: var(--Dark-Dark-6, #354052);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 135%;
+        width: 100%;
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        padding: 15px 23px 16px;
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+
+        & span {
+            font-weight: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+    }
+
+    &__questBtnSvg {
+        position: relative;
+        width: 46px;
+        min-width: 46px;
+        height: 46px;
+
+        & svg{
+            display: block;
+            width: 24px;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .3s;
+        }
+    }
+
+    &__questCont {
+        display: none;
+        padding: 8px 23px 23px;
+        color: var(--Dark-Dark-4, #6F7785);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 135%;
+
+        &>* {
+            &:first-child {
+                margin-top: 0 !important;
+            }
+
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        & p{
+            margin: 24px 0;
+
+            & + ul{
+                margin-top: -12px;
+            }
+        }
+
+        & ul{
+            margin: 24px 0;
+            padding-left: 30px;
+        }
+    }
+}

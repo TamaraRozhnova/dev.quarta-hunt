@@ -1,0 +1,135 @@
+.addr {
+  padding: 32px 64px 128px;
+  overflow: hidden;
+}
+@media (max-width: 1400px) {
+  .addr {
+    padding: 32px 32px 128px 32px;
+  }
+}
+@media (max-width: 768px) {
+  .addr {
+    padding: 32px 16px 64px;
+  }
+}
+.addr__wrap {
+  max-width: 1920px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+}
+@media (max-width: 1024px) {
+  .addr__wrap {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .addr__wrap {
+    gap: 24px;
+  }
+}
+.addr__btns {
+  width: 426px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+@media (max-width: 1024px) {
+  .addr__btns {
+    width: 100%;
+    flex-direction: row;
+    overflow: auto;
+    width: 100vw;
+    padding-left: 32px;
+    margin-left: -32px;
+    padding-right: 32px;
+    margin-left: -32px;
+  }
+}
+@media (max-width: 1024px) and (max-width: 768px) {
+  .addr__btns {
+    padding-left: 16px;
+    margin-left: -16px;
+    padding-right: 16px;
+    margin-left: -16px;
+  }
+}
+.addr__btn {
+  border-radius: var(--Radius-Modal, 8px);
+  border: 1px solid var(--Gray-Gray-2, #E9E9EA);
+  display: flex;
+  width: 100%;
+  padding: 17px 15px;
+  transition: all 0.3s;
+  background-color: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+@media (max-width: 1024px) {
+  .addr__btn {
+    width: 426px;
+    min-width: 426px;
+  }
+}
+@media (max-width: 768px) {
+  .addr__btn {
+    width: 320px;
+    min-width: 320px;
+    max-width: calc(100vw - 32px);
+  }
+}
+.addr__btn.active, .addr__btn:hover {
+  border: 1px solid var(--Primary-Primary-6, #EC6624);
+}
+.addr__btnName {
+  color: var(--Dark-Dark-6, #354052);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 135%;
+  margin: 0;
+}
+.addr__btnDescr {
+  color: var(--Gray-Gray-6, #7C808F);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+}
+.addr__btnDescr span {
+  color: var(--Primary-Primary-6, #EC6624);
+}
+.addr__map {
+  width: calc(100% - 48px - 426px);
+}
+@media (max-width: 1024px) {
+  .addr__map {
+    width: 100%;
+  }
+}
+.addr__map iframe {
+  display: block;
+  width: 100% !important;
+  height: 790px !important;
+  border-radius: var(--Radius-Modal, 8px);
+}
+@media (max-width: 1400px) {
+  .addr__map iframe {
+    height: 516px !important;
+  }
+}
+@media (max-width: 1024px) {
+  .addr__map iframe {
+    height: 572px !important;
+  }
+}
+@media (max-width: 768px) {
+  .addr__map iframe {
+    height: 440px !important;
+  }
+}
+@media (max-width: 600px) {
+  .addr__map iframe {
+    height: 204px !important;
+  }
+}/*# sourceMappingURL=addr.css.map */

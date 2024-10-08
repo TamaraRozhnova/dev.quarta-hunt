@@ -10,9 +10,14 @@
 @import "interface.css";
 @import "main-page.css";
 @import "404.css";
-@import "privacy.css";
+@import "policy.css";
 @import "faq.css";
 @import "guarantees.css";
+@import "about.css";
+@import "addr.css";
+@import "breadcrumbs.css";
+@import "contacts.css";
+@import "dop.css";
 
 * {
   box-sizing: border-box;
