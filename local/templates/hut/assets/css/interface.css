@@ -75,4 +75,9 @@
     width: 32px;
     height: 32px;
   }
+
+  .main-section__link {
+    padding: 18px 28px;
+    font-weight: 600;
+  }
 }

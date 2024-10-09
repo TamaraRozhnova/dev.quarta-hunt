@@ -22,6 +22,12 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/modules/scrollbar/overlayscrollbars.min.css");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/modules/scrollbar/overlayscrollbars.browser.es5.js");
 ?>
+<? $this->SetViewTarget('catalog_title'); ?>
+<div class="catalog__sectoin-title">
+	<?= $arResult['SECTION']['NAME']; ?>
+</div>
+<? $this->EndViewTarget(); ?>
+
 <div class="sections-top">
 	<div class="sections-top__ul-wrap">
 		<ul class="sections-top__list">

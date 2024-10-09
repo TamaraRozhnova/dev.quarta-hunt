@@ -50,5 +50,9 @@ const CDEK_RESTRICTION_SECTIONS_RULE_ID = 35; // ID ограничения со 
 const IMG_PATH = '/img';
 const ICON_PATH = '/img/icons';
 const HUT_CATALOG_IBLOCK_ID = 88;
+
 // филтра разделов для блока на главной
 $GLOBALS['mainSectionsFilter'] = ['UF_SHOW_ON_MAIN' => 1];
+
+// фильтр элементов для стартовой страницы каталога
+$GLOBALS['mainCatalogFilter'] = ['PROPERTY_IS_TOP_VALUE' => "Y"];
