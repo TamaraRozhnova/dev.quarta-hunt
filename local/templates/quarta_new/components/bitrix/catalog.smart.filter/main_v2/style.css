@@ -341,7 +341,7 @@ COLOR
     transition: all 0.3s;
 }
 
-.bx-filter .bx-filter-button-box #del_filter:hover {
+.bx-filter .bx-filter-button-box #del_filter_bottom:hover {
     background-color: #B6DEFF;
     border-color: #8FAECB;
 }

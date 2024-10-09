@@ -14,6 +14,11 @@ function JCSmartFilter(ajaxURL, viewMode, params) {
         this.bindUrlToButton('del_filter', params.SEF_DEL_FILTER_URL);
     }
 
+    let delFilterEmpty = document.getElementById('del_filter_empty');
+    if (delFilterEmpty) {
+        this.bindUrlToButton('del_filter_empty', params.SEF_DEL_FILTER_URL);
+    }
+
     let delFilterBottom = document.getElementById('del_filter_bottom');
     if (delFilterBottom) {
         this.bindUrlToButton('del_filter_bottom', params.SEF_DEL_FILTER_URL);

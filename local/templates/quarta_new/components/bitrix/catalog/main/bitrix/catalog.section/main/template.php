@@ -143,7 +143,7 @@ $strTemplate = match ($_GET['templateView']) {
                     <div class="products-not-found my-5 py-5">
                         По Вашему запросу ничего не нашлось.<br />
                         Попробуйте
-                        <a class="products-not-found__button" href="#">сбросить фильтры</a>
+                        <a class="products-not-found__button" id="del_filter_empty" href="#">сбросить фильтры</a>
                     </div>
                 <? } ?>
 
