@@ -685,7 +685,7 @@ $this->setFrameMode(true);
                                     id="set_filter"
                                     name="set_filter"
                                     value="<?= GetMessage("CT_BCSF_SET_FILTER") ?>"/>
-                            <input class="btn btn-link reset-filters filters__clear" type="button" id="del_filter" name="del_filter" value="Сбросить">
+                            <input class="btn btn-link reset-filters filters__clear" type="button" id="del_filter_bottom" name="del_filter" value="Сбросить">
 
                             <div class="bx-filter-popup-result <?php if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"] ?>"
                                  id="modef"

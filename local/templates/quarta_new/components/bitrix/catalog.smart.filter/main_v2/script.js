@@ -18,6 +18,11 @@ function JCSmartFilter(ajaxURL, viewMode, params) {
     if (delFilterEmpty) {
         this.bindUrlToButton('del_filter_empty', params.SEF_DEL_FILTER_URL);
     }
+
+    let delFilterBottom = document.getElementById('del_filter_bottom');
+    if (delFilterBottom) {
+        this.bindUrlToButton('del_filter_bottom', params.SEF_DEL_FILTER_URL);
+    }
 }
 
 JCSmartFilter.prototype.keyup = function (input) {
@@ -160,7 +165,7 @@ JCSmartFilter.prototype.updateItem = function (PID, arItem) {
                     if (value.hasOwnProperty('ELEMENT_COUNT')) {
                         label = document.querySelector('[data-role="count_' + value.CONTROL_ID + '"]');
                         if (label)
-                            label.innerHTML = value.ELEMENT_COUNT;
+                            label.innerHTML = '[' +  value.ELEMENT_COUNT + ' шт.]';
                     }
                 }
             }
@@ -852,6 +857,21 @@ document.addEventListener('DOMContentLoaded', function(){
                     bxFilterBlock.classList.remove('hide-props');
                 }
             }
+        });
+    }
+
+    let minPriceInput = document.querySelector('input.min-price');
+    let maxPriceInput = document.querySelector('input.max-price');
+
+    if (minPriceInput) {
+        minPriceInput.addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    }
+
+    if (maxPriceInput) {
+        maxPriceInput.addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
         });
     }
 });

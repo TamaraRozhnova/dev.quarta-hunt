@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('.mega-menu').toggleClass('open');
         $(this).toggleClass('open');
 
-        $('body').css({'overflow' : 'hidden'});
+        window.addEventListener("wheel", preventScroll, { passive: false });
     });
     $(document).on('click', function (e) {
         let button = $('.mega-menu-opener');
@@ -24,9 +24,18 @@ $(document).ready(function () {
         if ((!container.is(e.target) && container.has(e.target).length === 0) && (!button.is(e.target) && button.has(e.target).length === 0)) {
             container.removeClass('open');
             button.removeClass('open');
-            $('body').css({'overflow' : 'unset'});
+
+            allowScroll();
         }
     });
+
+    function allowScroll() {
+        window.removeEventListener("wheel", preventScroll);
+    }
+
+    function preventScroll(e) {
+        e.preventDefault();
+    }
 
     const brandList = document.querySelector('.mega-menu #manu-brands-list')
 
@@ -73,5 +82,7 @@ $(document).ready(function () {
         $(".mega-menu [data-content='" + contentId + "']").addClass('active');
     });
 
-
+    $('body').on('wheel',function(e){
+        e.preventDefault();
+    });
 });
