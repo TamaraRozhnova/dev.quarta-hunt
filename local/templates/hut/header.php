@@ -236,7 +236,7 @@ $user = new CUser;
                     ); ?>
                 </div>
                 <div class="menu__dop">
-                    <a href="#" class="menu__dop-link"><?= buildSVG('search', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
+                    <a id="search_opener" href="#" class="menu__dop-link"><?= buildSVG('search', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
                     <a href="#" class="menu__dop-link"><?= buildSVG('favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?><span>10</span></a>
                     <? if ($user->isAuthorized()) { ?>
                         <a href="/personal/" class="menu__dop-link"><?= buildSVG('user', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
@@ -247,6 +247,41 @@ $user = new CUser;
                 </div>
             </div>
         </div>
+        <? $APPLICATION->IncludeComponent(
+            "arturgolubev:search.title",
+            "header",
+            array(
+                "ANIMATE_HINTS" => array(""),
+                "ANIMATE_HINTS_SPEED" => "1",
+                "CATEGORY_0" => array("iblock_hut"),
+                "CATEGORY_0_TITLE" => "",
+                "CATEGORY_0_iblock_hut" => IblockHelper::getIdByCode('hutcatalog'),
+                "CHECK_DATES" => "Y",
+                "CONTAINER_ID" => "smart-title-search",
+                "CONVERT_CURRENCY" => "N",
+                "FILTER_NAME" => "",
+                "INPUT_ID" => "smart-title-search-input",
+                "INPUT_PLACEHOLDER" => "Я ищу ...",
+                "NUM_CATEGORIES" => "1",
+                "ORDER" => "rank",
+                "PAGE" => "/search/",
+                "PREVIEW_HEIGHT_NEW" => "",
+                "PREVIEW_WIDTH_NEW" => "",
+                "PRICE_CODE" => array("BASE"),
+                "PRICE_VAT_INCLUDE" => "Y",
+                "SHOW_HISTORY" => "N",
+                "SHOW_HISTORY_POPUP" => "N",
+                "SHOW_INPUT" => "Y",
+                "SHOW_LOADING_ANIMATE" => "N",
+                "SHOW_PREVIEW" => "Y",
+                "SHOW_PREVIEW_TEXT" => "N",
+                "SHOW_PROPS" => array('TYPE', 'FULL_PREVIEW'),
+                "SHOW_QUANTITY" => "N",
+                "TOP_COUNT" => "5",
+                "USE_LANGUAGE_GUESS" => "Y",
+                "VOICE_INPUT" => "N"
+            )
+        ); ?>
     </header>
     <main>
         <? $APPLICATION->ShowViewContent('catalog_banner'); ?>

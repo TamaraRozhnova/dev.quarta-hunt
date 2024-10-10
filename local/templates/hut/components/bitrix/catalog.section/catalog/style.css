@@ -23,7 +23,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 750px) {
   .catalog-section {
     grid-template-columns: repeat(2, 1fr);
     margin-left: -16px;

@@ -1043,9 +1043,11 @@ input::-webkit-inner-spin-button {
     font-size: 18px;
     line-height: 24px;
   }
-}
 
-@media (max-width: 450px) {
+  .product-item-info-container {
+    padding: 0 8px;
+  }
+
   .product-item-title {
     font-size: 14px;
     line-height: 18px;
@@ -1055,7 +1057,9 @@ input::-webkit-inner-spin-button {
     display: -webkit-box;
     white-space: normal;
   }
+}
 
+@media (max-width: 450px) {
   .product-item-info-container {
     padding: 0 8px;
   }
