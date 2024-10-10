@@ -248,7 +248,7 @@ Loc::loadMessages(__FILE__);
         <div class="popup__text">
             <?= Loc::GetMessage("COOKIE_TEXT"); ?>
         </div>
-        <button onclick="popup.hide(this)" type="button" class="button popup__close"><?= Loc::GetMessage("OK"); ?></button>
+        <button type="button" class="button popup__close"><?= Loc::GetMessage("OK"); ?></button>
     </div>
 </div>
 <? if ($APPLICATION->GetPageProperty("need_slider") == 'Y') {

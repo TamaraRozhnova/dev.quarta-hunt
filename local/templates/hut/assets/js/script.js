@@ -11,6 +11,9 @@ class Popup {
   };
 }
 
+/**
+ * Инпуты
+ */
 class Input {
   constructor(
     e = {
@@ -161,6 +164,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let isCookieShowen = localStorage.getItem("cookieShowen");
 
   if (cookiePopup && isCookieShowen != "Y") {
+    cookiePopup.querySelector("button").addEventListener("click", function () {
+      popup.hide(this);
+    });
     setTimeout(() => {
       popup.show(cookiePopup);
       localStorage.setItem("cookieShowen", "Y");
