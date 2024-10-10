@@ -153,7 +153,7 @@ $strTemplate = match ($_GET['templateView']) {
                     </div>
                 <? } ?>
 
-                <? if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) { ?>
+				<? //if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) { ?>
                     <div class="section__desc">
                         <?
                         global $sotbitSeoMetaBottomDesc; //для установки нижнего описания
@@ -164,7 +164,7 @@ $strTemplate = match ($_GET['templateView']) {
                         };
                         ?>
                     </div>
-                <? } ?>
+				<? //} ?>
 
             </div>
         </div>
