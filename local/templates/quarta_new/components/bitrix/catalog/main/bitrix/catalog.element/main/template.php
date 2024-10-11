@@ -37,9 +37,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <? if ($arResult['PROPERTIES']['DOUBLE_BONUS']['VALUE']) { ?>
                                     <span class="info">
                                         <span>
-                                            <div class="product-card__tag bg-primary">x2</div>
+                                            <div class="product-card__tag bg-primary double-bonus">Двойные бонусы за покупку</div>
                                         </span>
-                                        <span class="tooltip">Двойные бонусы за покупку</span>
                                     </span>
                                 <? } ?>
                             </div>
