@@ -242,7 +242,7 @@ $isMobile = $mobiledetect->isMobile();
                                 "CATEGORY_0_iblock_news" => array(
                                     0 => "1",
                                 ),
-                                "CHECK_DATES" => "N",
+                                "CHECK_DATES" => "Y",
                                 "CONTAINER_ID" => "smart-title-search",
                                 "CONVERT_CURRENCY" => "N",
                                 "FILTER_NAME" => "",
@@ -432,7 +432,7 @@ $isMobile = $mobiledetect->isMobile();
                             "CATEGORY_0_iblock_news" => array(
                                 0 => "1",
                             ),
-                            "CHECK_DATES" => "N",
+                            "CHECK_DATES" => "Y",
                             "CONTAINER_ID" => "smart-title-search_mobile",
                             "CONVERT_CURRENCY" => "N",
                             "FILTER_NAME" => "",

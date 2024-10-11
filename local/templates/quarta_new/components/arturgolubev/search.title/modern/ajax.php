@@ -1,6 +1,7 @@
 <?php
 
 use Bitrix\Main\Diag\Debug;
+use Bitrix\Main\Localization\Loc;
 use General\User;
 
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
@@ -180,6 +181,8 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         ),
                         false
                     );
+                } else {
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
                 }
                 ?>
 
@@ -254,6 +257,8 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         ),
                         false
                     );
+                } else {
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
                 }
             }
             /* --- NEWS --- */
@@ -324,6 +329,8 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         ),
                         false
                     );
+                } else {
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
                 }
             }
             /* --- SALES ---*/ ?>
@@ -333,7 +340,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
 else:
     ?>
 		<div class="bx_smart_no_result_find">
-			<?=GetMessage("AG_SMARTIK_NO_RESULT");?>
+			<?=Loc::getMessage("AG_SMARTIK_NO_RESULT");?>
 		</div>
     <?php
 endif;

@@ -84,13 +84,21 @@
   width: 100%;
   max-width: 550px;
 }
+
+.product-card-search-buttons{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 230px;
+}
+
 .product-card-search__add {
   display: flex;
   justify-content: stretch;
   justify-self: flex-end;
   height: 47px;
   width: 100%;
-  max-width: 231px;
   background: #004989;
   border-radius: 4px;
   color: #fff;
@@ -106,7 +114,6 @@
   margin: 0;
   height: 47px;
   width: 100%;
-  max-width: 231px;
   background: #004989;
   border-radius: 4px;
   color: #fff;
@@ -137,6 +144,9 @@
   width: 12px;
   height: 12px;
   border-radius: 0.3125em;
+}
+.product-card-search .stars .star{
+  cursor: auto;
 }
 .product-card-search__tags {
   position: absolute;

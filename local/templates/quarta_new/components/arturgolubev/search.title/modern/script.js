@@ -42,7 +42,7 @@ function JCTitleSearchAG(arParams) {
 	this.TABS_CONTENT = null;
 
 	this.ShowResult = function (result) {
-		if (BX.type.isString(result)) {
+		if (BX.type.isString(result) && result.length > 0) {
 			_this.RESULT.innerHTML = result;
 		}
 
@@ -93,7 +93,7 @@ function JCTitleSearchAG(arParams) {
 		console.log(_this.INPUT.value)
 
 		const defaultModal = document.getElementById('defaul-modal');
-		if (_this.INPUT.value.length >= _this.arParams.MIN_QUERY_LEN) {
+		if (_this.INPUT.value.length >= _this.arParams.MIN_QUERY_LEN && _this.INPUT.value.trim() != '') {
 			defaultModal.style.display = 'none';
 			_this.RESULT.style.display = _this.RESULT.innerHTML !== '' ? 'block' : 'none';
 		} else {
@@ -474,9 +474,16 @@ class ModernModalSearch {
 		this.mobileModalCloseBtn.classList.toggle('show')
 	}
 
+	showModalMobile() {
+		this.mobileModalCloseBtn.classList.add('show')
+	}
+	closeModalMobile() {
+		this.mobileModalCloseBtn.classList.remove('show')
+	}
+
 	hangClickCloseModalMobile() {
 		this.mobileModalCloseBtn.addEventListener('click', (e) => {
-			this.toggleCloseModalMobile()
+			this.closeModalMobile()
 			this.closeModalSearch()
 		})
 	}
@@ -551,7 +558,7 @@ class ModernModalSearch {
 			this.openModalSearch()
 
 			if (this.isMobileMode()) {
-				this.toggleCloseModalMobile()
+				this.showModalMobile()
 			}
 		}
 	}
@@ -570,10 +577,12 @@ class ModernModalSearch {
 
 	openModalSearch() {
 		this.modalSearchWrapper.classList.add('show')
+		this.denyScroll();
 	}
 
 	closeModalSearch() {
 		this.modalSearchWrapper.classList.remove('show')
+		this.allowScroll();
 	}
 
 	createOverlay() {

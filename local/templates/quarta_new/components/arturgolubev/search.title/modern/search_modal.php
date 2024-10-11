@@ -15,16 +15,19 @@
                             <span>Каталог товаров</span>
                         </div>
                         <div class="modal-search-modern__section-links">
-                            <? foreach ($arResult['CATALOG_SECTIONS'] as $arCatalogSection): ?>
-                                <a href="<?= $arCatalogSection['SECTION_URL'] ?>" class="modal-search-modern__section-link">
+                            <?php foreach ($arResult['CATALOG_SECTIONS'] as $arCatalogSection): ?>
+                                <a href="<?= $arCatalogSection['SECTION_URL'] ?>"
+                                   class="modal-search-modern__section-link">
                                     <?= $arCatalogSection['NAME'] ?>
                                 </a>
-                            <? endforeach; ?>
+                            <?php endforeach; ?>
                         </div>
                         <a class="modal-search-modern__all-catalog" href="/catalog/">
                             Смотреть все
-                            <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M-4.47924e-07 1.23883L4.23077 5L-6.33365e-08 8.76117L1.3935 10L7.01777 5L1.3935 -5.2078e-08L-4.47924e-07 1.23883Z" fill="#004989" />
+                            <svg width="8" height="10" viewBox="0 0 8 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-4.47924e-07 1.23883L4.23077 5L-6.33365e-08 8.76117L1.3935 10L7.01777 5L1.3935 -5.2078e-08L-4.47924e-07 1.23883Z"
+                                      fill="#004989"/>
                             </svg>
                         </a>
                     </div>
@@ -33,11 +36,11 @@
                             <span>Новости и статьи</span>
                         </div>
                         <div class="modal-search-modern__section-links">
-                            <? foreach ($arResult['BLOG_SECTIONS'] as $arBlogItem): ?>
+                            <?php foreach ($arResult['BLOG_SECTIONS'] as $arBlogItem): ?>
                                 <a href="<?= $arBlogItem['SECTION_URL'] ?>" class="modal-search-modern__section-link">
                                     <?= $arBlogItem['NAME'] ?>
                                 </a>
-                            <? endforeach; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="modal-search-modern__section">
@@ -45,37 +48,42 @@
                             <span>Популярные запросы</span>
                         </div>
                         <div class="modal-search-modern__section-links non-redirect">
-                            <? foreach ($popularRequests as $popularItem): ?>
+                            <?php foreach ($popularRequests as $popularItem): ?>
                                 <a href="" class="modal-search-modern__section-link">
                                     <?= $popularItem ?>
                                 </a>
-                            <? endforeach; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
+
                     <div class="modal-search-modern__section history">
                         <div class="modal-search-modern__section-name">
                             <span>История запросов</span>
                         </div>
                         <div class="modal-search-modern__section-links non-redirect">
-                            <? foreach ($arResult["SEARCH_HISTORY"] as $historyItem): ?>
+                            <?php foreach ($arResult["SEARCH_HISTORY"] as $historyItem): ?>
                                 <a href="" class="modal-search-modern__section-link">
                                     <?= $historyItem ?>
                                 </a>
-                            <? endforeach; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
-                <a href="#" class="modal-search-modern__clear-history">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18 6L6 18" stroke="#004989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M6 6L18 18" stroke="#004989" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    Очистить историю запросов
-                </a>
+                <?php if (is_array($arResult["SEARCH_HISTORY"]) && count($arResult["SEARCH_HISTORY"]) > 1) { ?>
+                    <a href="#" class="modal-search-modern__clear-history">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#004989" stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            <path d="M6 6L18 18" stroke="#004989" stroke-width="2" stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                        </svg>
+                        Очистить историю запросов
+                    </a>
+                <?php } ?>
                 <span class="modal-search-modern__hr"></span>
                 <div class="modal-search-modern__promo">
                     <!-- news.list promo -->
-                    <? $APPLICATION->IncludeComponent(
+                    <?php $APPLICATION->IncludeComponent(
                         "bitrix:news.list",
                         "modern_search_slider",
                         array(

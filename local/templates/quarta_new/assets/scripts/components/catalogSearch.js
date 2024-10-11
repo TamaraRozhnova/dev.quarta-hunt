@@ -1,8 +1,8 @@
 class CatalogSearch {
     constructor(isCatalog = true) {
 
-        this.initDefaultVars();
         this.isCatalog = isCatalog;
+        this.initDefaultVars();
         this.productsDataApi = new ProductsDataApi();
 
         if (this.isCatalog) {

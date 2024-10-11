@@ -124,40 +124,42 @@ global $isMobile;
             </div>
         <? } ?>
 
-        <? if ($arResult['PARAMS']['ON_COMPARE_PAGE'] == 'Y'): ?>
-            <div class=" product-card-search__add-wrapper product-card__add-wrapper">
-                <div class="product-card__add product-card-search__add placeholder-glow">
+        <div class="product-card-search-buttons">
+            <? if ($arResult['PARAMS']['ON_COMPARE_PAGE'] == 'Y'): ?>
+                <div class=" product-card-search__add-wrapper product-card__add-wrapper">
+                    <div class="product-card__add product-card-search__add placeholder-glow">
+                        <div class="placeholder"></div>
+                    </div>
+                    <div class="product-card__remove-compare">
+                        <button class="btn btn-light ms-2 product-card__remove">
+                            <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
+                                <path d="M4.813 4.813l.859 13.75c.04.794.619 1.375 1.375 1.375h7.906c.76 0 1.327-.581 1.375-1.375l.86-13.75" stroke="#808d9a" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M3.438 4.813h15.124H3.438z" fill="#808d9a"></path>
+                                <path d="M3.438 4.813h15.124" stroke="#808d9a" stroke-miterlimit="10" stroke-linecap="round"></path>
+                                <path
+                                        d="M8.25 4.813v-1.72a1.028 1.028 0 011.031-1.03h3.438a1.029 1.029 0 011.031 1.03v1.72M11 7.563v9.625M7.906 7.563l.344 9.625m5.844-9.625l-.344 9.625"
+                                        stroke="#808d9a"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            <? else: ?>
+                <div class="product-card__add  product-card-search__add placeholder-glow">
                     <div class="placeholder"></div>
                 </div>
-                <div class="product-card__remove-compare">
-                    <button class="btn btn-light ms-2 product-card__remove">
-                        <svg width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
-                            <path d="M4.813 4.813l.859 13.75c.04.794.619 1.375 1.375 1.375h7.906c.76 0 1.327-.581 1.375-1.375l.86-13.75" stroke="#808d9a" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M3.438 4.813h15.124H3.438z" fill="#808d9a"></path>
-                            <path d="M3.438 4.813h15.124" stroke="#808d9a" stroke-miterlimit="10" stroke-linecap="round"></path>
-                            <path
-                                    d="M8.25 4.813v-1.72a1.028 1.028 0 011.031-1.03h3.438a1.029 1.029 0 011.031 1.03v1.72M11 7.563v9.625M7.906 7.563l.344 9.625m5.844-9.625l-.344 9.625"
-                                    stroke="#808d9a"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        <? else: ?>
-            <div class="product-card__add  product-card-search__add placeholder-glow">
-                <div class="placeholder"></div>
-            </div>
-        <? endif; ?>
+            <? endif; ?>
 
-        <? if ($item['AVAILABLE'] && !isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID])) { ?>
-            <a href="javascript:void(0);"
-                class="btn btn-primary interlabs-one-click-buy"
-                data-productid="<?= $item['ID'] ?>"
-                data-data='<?= json_encode(["PRODUCT_ID" => $item['ID']]) ?>'
-                id="one-click-buy-<?= $item['ID'] ?>">
-                <?= GetMessage("BUY_ONE_CLICK") ?>
-            </a>
-        <? } ?>
+            <? if ($item['AVAILABLE'] && !isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID])) { ?>
+                <a href="javascript:void(0);"
+                    class="btn btn-primary interlabs-one-click-buy"
+                    data-productid="<?= $item['ID'] ?>"
+                    data-data='<?= json_encode(["PRODUCT_ID" => $item['ID']]) ?>'
+                    id="one-click-buy-<?= $item['ID'] ?>">
+                    <?= GetMessage("BUY_ONE_CLICK") ?>
+                </a>
+            <? } ?>
+        </div>
     </div>
 </div>
