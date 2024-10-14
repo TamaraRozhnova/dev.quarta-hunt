@@ -4,6 +4,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+global $APPLICATION;
+
 /**
  * Определяем шаблон для вывода catalog.item
  */
@@ -141,7 +143,7 @@ $strTemplate = match ($_GET['templateView']) {
                     <div class="products-not-found my-5 py-5">
                         По Вашему запросу ничего не нашлось.<br />
                         Попробуйте
-                        <a class="products-not-found__button" href="#">сбросить фильтры</a>
+                        <a class="products-not-found__button" id="del_filter_empty" href="#">сбросить фильтры</a>
                     </div>
                 <? } ?>
 
@@ -153,20 +155,26 @@ $strTemplate = match ($_GET['templateView']) {
                     </div>
                 <? } ?>
 
-				<? //if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) { ?>
+                <? if ($arResult['DESCRIPTION'] && !empty($arResult['DESCRIPTION'])) { ?>
                     <div class="section__desc">
                         <?
                         global $sotbitSeoMetaBottomDesc; //для установки нижнего описания
                         if (empty($sotbitSeoMetaBottomDesc)) {
                             echo $arResult['DESCRIPTION'];
                         } else {
-                            echo $sotbitSeoMetaBottomDesc; //вывод нижнего описания
+                            echo $sotbitSeoMetaBottomDesc; //вывод нижнего описания 
                         };
                         ?>
                     </div>
-				<? //} ?>
+                <? } ?>
 
             </div>
         </div>
     </div>
 </div>
+
+<script defer>
+    // for ajax standart filter
+    // new ProductsInitializer();
+    // new ModernCatalogFilter();
+</script>

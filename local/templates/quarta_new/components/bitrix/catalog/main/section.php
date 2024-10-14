@@ -48,10 +48,10 @@ if (empty($rsSection)) {
 $headers = getallheaders();
 
 $filterHelperInstance = new ProductsFilterHelper($sectionId);
-$filterParams = $filterHelperInstance->getFilters();
+$filterParams = $filterHelperInstance->getFilters() ?? [];
 
-
-if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y') || (isset($headers["X-Requested-With"]) && $headers["X-Requested-With"] == 'Y')) {
+/* AJAX old filter
+if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
         [
@@ -73,6 +73,7 @@ if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y')
 
     exit();
 }
+*/
 
 ?>
 
@@ -117,6 +118,13 @@ if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y')
                 ]
             );
 
+            /**
+             * SORT for standart filter
+             */
+            $APPLICATION->IncludeFile($templateFolder . "/include/catalog_filter_top.php", [
+                "currentSection" => $arCurSection,
+            ]);
+            
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
                     "params" => array_merge($arParams, $filterParams),
@@ -142,7 +150,9 @@ if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y')
     ); ?>
 
 </div>
-<?
+
+<?php
+
 //Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 //начало
     global $sotbitSeoMetaTitle;
@@ -159,23 +169,22 @@ if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y')
     if(!empty($sotbitSeoMetaKeywords)){
         $APPLICATION->SetPageProperty("keywords", $sotbitSeoMetaKeywords);
     }
-
+    
     //Переопределение описания страницы Description
     global $sotbitSeoMetaDescription;
     if(!empty($sotbitSeoMetaDescription)){
         $APPLICATION->SetPageProperty("description", $sotbitSeoMetaDescription);
-    }
-
+    } 
+    
     //Переопределение заголовка H1
-    global $sotbitSeoMetaH1;
+    global $sotbitSeoMetaH1;  
     if(!empty($sotbitSeoMetaH1)){
-             $APPLICATION->SetTitle($sotbitSeoMetaH1);
+             $APPLICATION->SetTitle($sotbitSeoMetaH1); 
     }
-
+        
     //Добавление пункта хлебных крошек Breadcrumb
     global $sotbitSeoMetaBreadcrumbTitle;
     if(!empty($sotbitSeoMetaBreadcrumbTitle)){
         $APPLICATION->AddChainItem($sotbitSeoMetaBreadcrumbTitle  );
     }
 //конец
-?>
