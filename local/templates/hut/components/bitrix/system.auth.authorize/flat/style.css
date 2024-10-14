@@ -1,0 +1,111 @@
+.auth__title {
+  padding: 4px 40px 4px 0;
+  color: var(--color-dark6);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+#auth.modal {
+  max-width: 550px;
+}
+
+#form_auth_phone,
+#form_auth {
+  margin-top: 36px;
+}
+
+.bx-authform-input-container {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  margin-bottom: 6px;
+  color: var(--color-dark6);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  display: block;
+}
+
+.input--required label::after {
+  content: "*";
+  color: var(--color-primary);
+  font-size: 1.2em;
+}
+
+.input.is-invalid {
+  border-color: var(--color-red5);
+}
+
+.invalid-feedback {
+  width: 100%;
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-red5);
+}
+
+.button.button-primary.form_auth_phone,
+.button.button-secondary.auth_email_form,
+.button.button-secondary.reg,
+.button.button-primary.enter,
+.button.button-secondary.foggot_pass,
+.button.button-secondary.auth_phone_form,
+.button.button-secondary.more_code_phone,
+.button.button-primary.login_auth_phone {
+  margin-top: 24px;
+  width: 100%;
+  padding: 18px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.button.button-secondary.auth_email_form,
+.button.button-secondary.reg,
+.button.button-secondary.foggot_pass,
+.button.button-secondary.auth_phone_form,
+.button.button-secondary.more_code_phone,
+.button.button-primary.login_auth_phone {
+  margin-top: 12px;
+}
+
+.auth__or {
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--color-dark4);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth__or span {
+  padding: 0 24px;
+  background: white;
+  position: relative;
+}
+
+.auth__or::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-gray2);
+}
+
+@media (max-width: 768px) {
+  #auth.modal {
+    vertical-align: bottom;
+    width: 100%;
+    max-width: unset;
+  }
+
+  #auth.modal {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

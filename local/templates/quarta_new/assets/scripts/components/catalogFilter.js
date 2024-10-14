@@ -51,11 +51,15 @@ class CatalogFilter {
         if (window.innerWidth > 1024) {
 
             this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
-            this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
-    
-            if (this.viewItems.length > 0) {
-                this.hangViewMode()
+
+            if (this.viewItemsWrapper) {
+                this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
+
+                if (this.viewItems.length > 0) {
+                    this.hangViewMode()
+                }
             }
+
 
         }
 
@@ -83,7 +87,7 @@ class CatalogFilter {
 
         this.createPriceField();
         this.initDefaultVars();
-        
+
         this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
         this.filterCheckboxes.forEach(checkbox => this.hangChangeCheckboxEvent(checkbox));
 
@@ -231,7 +235,7 @@ class CatalogFilter {
             const valueForUrl = checkbox.checked ? 'Y' : '';
 
             this.filterParams['MULTI_OBJECT'] = 'Y'
-            
+
             this.filterParams['FILTER_ITEMS'][id] = valueForUrl
             this.setBadges();
 
@@ -244,7 +248,7 @@ class CatalogFilter {
 
                 let checkboxWrapper = checkbox.closest('.filters-item'),
                     checkboxFormWrapper = checkboxWrapper.closest('.filters-section')
- 
+
 
                 let filtersLeftRigtPadding = window.getComputedStyle(checkboxFormWrapper, null).getPropertyValue('padding-left'),
                     filtersLeftRigtPaddingModify = Number(filtersLeftRigtPadding.replace('px', ''))
@@ -261,7 +265,7 @@ class CatalogFilter {
                 }
 
                 setTimeout(() => {
-                    this.hangCloseAllApplyBnts() 
+                    this.hangCloseAllApplyBnts()
                 }, 5000);
 
             }
@@ -271,7 +275,7 @@ class CatalogFilter {
         //     const valueForUrl = checkbox.checked ? 'Y' : '';
 
         //     this.filterParams['MULTI_OBJECT'] = 'Y'
-            
+
         //     this.filterParams['FILTER_ITEMS'][id] = valueForUrl
         //     this.setBadges();
 
@@ -284,7 +288,7 @@ class CatalogFilter {
 
         //         let checkboxWrapper = checkbox.closest('.filters-item'),
         //             checkboxFormWrapper = checkboxWrapper.closest('.filters-section')
- 
+
 
         //         let filtersLeftRigtPadding = window.getComputedStyle(checkboxFormWrapper, null).getPropertyValue('padding-left'),
         //             filtersLeftRigtPaddingModify = Number(filtersLeftRigtPadding.replace('px', ''))
@@ -338,11 +342,11 @@ class CatalogFilter {
                 if (element.classList.contains('filters-section--expanded')) {
                     filtersNew[index].classList.add('filters-section--expanded')
                 }
-                
+
             }
             this.mainFiltersWrapper.innerHTML = dataFilter.innerHTML;
         }
-        
+
         this.productsDataBlock.innerHTML = data.innerHTML;
 
         this.reinitHangFilter();
@@ -420,7 +424,7 @@ class CatalogFilter {
                     }
                 })
 
-            } 
+            }
         } else {
             Object.keys(params).forEach(key => {
                 if (params[key]) {

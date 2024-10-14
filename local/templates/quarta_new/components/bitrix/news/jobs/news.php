@@ -7,7 +7,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 global $jobsFilter;
 $headers = getallheaders();
 
-if (isset($headers['x-requested-with']) || isset($headers['X-Requested-With'])) {
+if ((isset($headers["x-requested-with"]) && $headers["x-requested-with"] == 'Y') || (isset($headers["X-Requested-With"]) && $headers["X-Requested-With"] == 'Y')) {
     $APPLICATION->RestartBuffer();
     $jobsFilter = ['LOGIC' => 'AND', ['NAME' => $_GET['vacancy']], ['PROPERTY_SCHEDULE' => $_GET['schedule']]];
 } else {

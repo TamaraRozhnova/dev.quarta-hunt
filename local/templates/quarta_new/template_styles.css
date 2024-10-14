@@ -8925,7 +8925,7 @@ input.form-check-input:focus {
 .footer__payment-methods figure {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: center; 
+  justify-content: center;
   gap: 20px;
 }
 
@@ -11548,7 +11548,7 @@ div[id*="wait_comp"] {
   left: 30px;
   right: 30px;
   margin-bottom: -75px;
-  z-index: 100000;
+  z-index: 10000;
   max-width: 400px;
   margin: 0 auto;
   -webkit-transition: .5s all ease-in-out;
@@ -11561,6 +11561,7 @@ div[id*="wait_comp"] {
   -webkit-box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 4px 4px 70px 0px rgba(34, 60, 80, 0.2);
   text-align: center;
+  display: none;
 }
 
 .compare-popup__text{
@@ -11577,6 +11578,7 @@ div[id*="wait_comp"] {
 .compare-popup.active {
   bottom: 50%;
   opacity: 1;
+  display: block;
 }
 
 .compare-popup .compare-popup__clear{

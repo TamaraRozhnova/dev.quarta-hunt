@@ -1,0 +1,83 @@
+/* Кнопки */
+.button.button-primary {
+  color: white;
+  text-transform: uppercase;
+  border-radius: 12px;
+  background-color: var(--color-primary);
+  display: block;
+}
+
+.button.button-secondary {
+  background-color: white;
+  border: 1px solid var(--color-dark1);
+  text-transform: uppercase;
+  color: var(--color-dark6);
+  border-radius: 12px;
+  display: block;
+}
+
+.main-section__link {
+  color: var(--color-dark6);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  padding: 30px;
+  border: 1px solid var(--color-dark1);
+  border-radius: 16px;
+}
+
+/* Инпуты */
+.input {
+  background-color: var(--color-gray1);
+  padding: 12px;
+  border-radius: 8px 8px 0 0;
+  border: none;
+  border-bottom: 1px solid var(--color-gray3);
+  color: var(--color-dark6);
+  font-size: 16px;
+  line-height: 21px;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: var(--color-gray5);
+}
+
+/* Слайдер */
+.slider-button-prev,
+.slider-button-next {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+}
+
+.slider-button-prev {
+  transform: rotate(180deg);
+}
+
+.slider-button-prev.swiper-button-disabled,
+.slider-button-next.swiper-button-disabled {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .main-section__link {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 21px 31px;
+  }
+}
+
+@media (max-width: 450px) {
+  .slider-button-prev,
+  .slider-button-next {
+    width: 32px;
+    height: 32px;
+  }
+
+  .main-section__link {
+    padding: 18px 28px;
+    font-weight: 600;
+  }
+}
