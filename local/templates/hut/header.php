@@ -285,7 +285,7 @@ $user = new CUser;
     </header>
     <main>
         <? $APPLICATION->ShowViewContent('catalog_banner'); ?>
-        <? $APPLICATION->IncludeComponent(
+        <? /* $APPLICATION->IncludeComponent(
             "bitrix:breadcrumb",
             "breadcrumb",
             array(
@@ -295,4 +295,4 @@ $user = new CUser;
                 "COMPONENT_TEMPLATE" => "breadcrumb"
             ),
             false
-        ); ?>
+        ); */ ?>
