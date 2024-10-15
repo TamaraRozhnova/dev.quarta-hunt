@@ -291,7 +291,7 @@
   grid-template:
           "a b b b"
           "a c c c"
-          "d d e e";
+          "d d d d";
   gap: 16px;
 }
 
@@ -304,9 +304,10 @@
 .product-card-search.mobile .stars {
   grid-area: c;
 }
-.product-card-search.mobile .product-card-search__add {
+.product-card-search.mobile .product-card-search-buttons {
   grid-area: d;
+  max-width: 100%;
 }
-.product-card-search .interlabs-one-click-buy{
-  grid-area: e !important;
-}
+/*.product-card-search .interlabs-one-click-buy{*/
+/*  grid-area: e !important;*/
+/*}*/
