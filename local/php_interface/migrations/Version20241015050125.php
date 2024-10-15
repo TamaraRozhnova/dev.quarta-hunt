@@ -43,7 +43,7 @@ class Version20241015050125 extends Version
   'IBLOCK_TYPE_ID' => 'hut',
   'LID' => 
   array (
-    0 => 's1',
+    0 => 'ht',
   ),
   'CODE' => 'faq_iblock',
   'API_CODE' => NULL,
