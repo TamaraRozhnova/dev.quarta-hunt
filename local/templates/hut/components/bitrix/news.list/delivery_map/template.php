@@ -26,7 +26,7 @@ $this->setFrameMode(true);
 			});
 
 			var myMap = new ymaps.Map("map-container", {
-				center: [55.755864, 37.617698],
+				center: [59.938848, 30.314809],
 				zoom: 9
 			}, {
 				searchControlProvider: 'yandex#search'
