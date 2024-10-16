@@ -15,6 +15,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 48px;
+        margin: 0 auto;
 
         @media (max-width: 1024px) {
             flex-direction: column;
@@ -52,11 +53,11 @@
 
     &__btn {
         border-radius: var(--Radius-Modal, 8px);
-        border: 1px solid var(--Gray-Gray-2, #E9E9EA);
+        border: 1px solid var(--Gray-Gray-2, #e9e9ea);
         display: flex;
         width: 100%;
         padding: 17px 15px;
-        transition: all .3s;
+        transition: all 0.3s;
         background-color: transparent;
         cursor: pointer;
         flex-direction: column;
@@ -76,7 +77,7 @@
 
         &.active,
         &:hover {
-            border: 1px solid var(--Primary-Primary-6, #EC6624);
+            border: 1px solid var(--Primary-Primary-6, #ec6624);
         }
     }
 
@@ -89,13 +90,13 @@
     }
 
     &__btnDescr {
-        color: var(--Gray-Gray-6, #7C808F);
+        color: var(--Gray-Gray-6, #7c808f);
         font-size: 14px;
         font-weight: 400;
         line-height: 130%;
 
         & span {
-            color: var(--Primary-Primary-6, #EC6624);
+            color: var(--Primary-Primary-6, #ec6624);
         }
     }
 
