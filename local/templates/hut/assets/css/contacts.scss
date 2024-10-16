@@ -14,11 +14,12 @@
         display: flex;
         flex-wrap: wrap;
         gap: 48px;
+        margin: 0 auto;
     }
 
     &__card {
         border-radius: var(--Radius-Modal, 8px);
-        border: 1px solid var(--Dark-Dark-1, #E0E4EB);
+        border: 1px solid var(--Dark-Dark-1, #e0e4eb);
         width: calc(50% - 24px);
         padding: 23px;
         display: flex;
@@ -74,7 +75,7 @@
         min-width: 36px;
         height: 36px;
         border-radius: 100px;
-        border: 1px solid var(--Dark-Dark-1, #E0E4EB);
+        border: 1px solid var(--Dark-Dark-1, #e0e4eb);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -114,7 +115,7 @@
         }
 
         & span {
-            color: var(--Other-White, #FFF);
+            color: var(--Other-White, #fff);
             font-size: 12px;
             font-weight: 400;
             line-height: 130%;
@@ -125,17 +126,17 @@
             justify-content: center;
             width: fit-content;
             border-radius: 100px;
-            background: var(--Primary-Primary-6, #EC6624);
+            background: var(--Primary-Primary-6, #ec6624);
             white-space: nowrap;
         }
     }
 
     &__link {
-        color: var(--Dark-Dark-4, #6F7785);
+        color: var(--Dark-Dark-4, #6f7785);
         font-size: 16px;
         font-weight: 400;
         line-height: 135%;
         margin: 0;
-        transition: all .3s;
+        transition: all 0.3s;
     }
 }
