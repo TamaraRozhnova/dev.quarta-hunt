@@ -264,7 +264,7 @@ $user = new CUser;
                 "INPUT_PLACEHOLDER" => "Я ищу ...",
                 "NUM_CATEGORIES" => "1",
                 "ORDER" => "rank",
-                "PAGE" => "/search/",
+                "PAGE" => "/catalog/",
                 "PREVIEW_HEIGHT_NEW" => "",
                 "PREVIEW_WIDTH_NEW" => "",
                 "PRICE_CODE" => array("BASE"),
@@ -285,14 +285,3 @@ $user = new CUser;
     </header>
     <main>
         <? $APPLICATION->ShowViewContent('catalog_banner'); ?>
-        <? /* $APPLICATION->IncludeComponent(
-            "bitrix:breadcrumb",
-            "breadcrumb",
-            array(
-                "PATH" => "",
-                "SITE_ID" => "ht",
-                "START_FROM" => "0",
-                "COMPONENT_TEMPLATE" => "breadcrumb"
-            ),
-            false
-        ); */ ?>

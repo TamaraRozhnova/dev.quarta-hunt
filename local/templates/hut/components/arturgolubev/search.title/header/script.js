@@ -530,7 +530,7 @@ function JCTitleSearchAG(arParams) {
     let currentStorage = localStorage.getItem("search_history");
     if (!currentStorage) {
       localStorage.setItem("search_history", value);
-    } else {
+    } else if (!currentStorage.includes(value)) {
       localStorage.setItem("search_history", (currentStorage += ";" + value));
     }
     document.querySelector("#" + this.arParams.WRAP_ID + " form").submit();

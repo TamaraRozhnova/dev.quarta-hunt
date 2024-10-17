@@ -62,6 +62,7 @@ if ($isFilter) {
 		$arCurSection = array();
 }
 ?>
+
 <div class="container catalog-container">
 	<?
 	include($_SERVER["DOCUMENT_ROOT"] . "/" . $this->GetFolder() . "/section_inner.php");
