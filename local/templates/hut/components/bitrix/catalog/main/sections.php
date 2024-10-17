@@ -16,6 +16,7 @@ use Helpers\IblockHelper;
 /** @var CBitrixComponent $component */
 
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
+$APPLICATION->SetPageProperty("headerClasses", "change");
 $this->setFrameMode(true);
 
 $this->SetViewTarget('catalog_banner'); ?>
@@ -177,7 +178,3 @@ $this->SetViewTarget('catalog_banner'); ?>
 	}
 }
 ?>
-<script>
-	document.querySelector('.menu__wrap').classList.remove('scroll');
-	document.querySelector('.menu__wrap').classList.add('change');
-</script>

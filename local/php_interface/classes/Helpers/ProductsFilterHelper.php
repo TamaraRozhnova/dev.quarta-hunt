@@ -136,7 +136,7 @@ class ProductsFilterHelper
 
 
     private function defineAvailableParam(): void {
-        if ($_GET['onlyAvailable'] === 'true') {
+        if ($_GET['productsavailable'] === 'true') {
             $this->onlyAvailable = 'Y';
         }
     }
