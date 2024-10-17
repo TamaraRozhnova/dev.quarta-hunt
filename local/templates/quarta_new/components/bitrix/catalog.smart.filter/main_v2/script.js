@@ -809,14 +809,16 @@ document.addEventListener('DOMContentLoaded', function(){
     let filterBlock = document.querySelector('.bx-filter');
     let filterTitle = document.querySelector('.bx-filter-title');
 
-    if (btnMobileOpenFilter && filterBlock && filterTitle) {
-        btnMobileOpenFilter.addEventListener('click',() => {
-            filterBlock.style.display = 'block';
-        });
+    if (window.innerWidth < 768){
+        if (btnMobileOpenFilter && filterBlock && filterTitle) {
+            btnMobileOpenFilter.addEventListener('click',() => {
+                filterBlock.style.display = 'block';
+            });
 
-        filterTitle.addEventListener('click', () => {
-            filterBlock.style.display = 'none';
-        });
+            filterTitle.addEventListener('click', () => {
+                filterBlock.style.display = 'none';
+            });
+        }
     }
 
     let bxFilterParametersBox = document.querySelectorAll('.bx-filter-parameters-box');
