@@ -14,25 +14,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 
-if ($arParams["USE_COMPARE"] == "Y") {
-	$APPLICATION->IncludeComponent(
-		"bitrix:catalog.compare.list",
-		"",
-		[
-			"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-			"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-			"NAME" => $arParams["COMPARE_NAME"],
-			"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
-			"COMPARE_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["compare"],
-			"ACTION_VARIABLE" => (!empty($arParams["ACTION_VARIABLE"]) ? $arParams["ACTION_VARIABLE"] : "action"),
-			"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
-			'POSITION_FIXED' => $arParams['COMPARE_POSITION_FIXED'] ?? '',
-			'POSITION' => $arParams['COMPARE_POSITION'] ?? ''
-		],
-		$component,
-		["HIDE_ICONS" => "Y"]
-	);
-}
+use \Bitrix\Main\Localization\Loc;
+
+$APPLICATION->AddChainItem(Loc::getMessage("CT_BCSE_FOUND", ["#REQUEST#" => $_GET["q"]]));
 
 if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] == 'Y') {
 	$basketAction = ($arParams['COMMON_ADD_TO_BASKET_ACTION'] ?? '');
@@ -41,8 +25,8 @@ if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMO
 }
 
 $APPLICATION->IncludeComponent(
-	"bitrix:catalog.search",
-	"",
+	"arturgolubev:catalog.search",
+	"search",
 	[
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -158,7 +142,8 @@ $APPLICATION->IncludeComponent(
 		'COMPARE_PATH' => $arResult['FOLDER'] . $arResult['URL_TEMPLATES']['compare'],
 		'COMPARE_NAME' => $arParams['COMPARE_NAME'],
 		'USE_COMPARE_LIST' => 'Y',
-		'USE_SEARCH_RESULT_ORDER' => ($arParams['SEARCH_USE_SEARCH_RESULT_ORDER'] ?? 'N')
+		'USE_SEARCH_RESULT_ORDER' => ($arParams['SEARCH_USE_SEARCH_RESULT_ORDER'] ?? 'N'),
+		'SEF_FOLDER' => $arParams['SEF_FOLDER'],
 	],
 	$component,
 	["HIDE_ICONS" => "Y"]
