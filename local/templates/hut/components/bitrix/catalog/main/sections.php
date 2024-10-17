@@ -49,9 +49,9 @@ $this->SetViewTarget('catalog_banner'); ?>
 		</div>
 	</div>
 </div>
-<? $this->EndViewTarget();
+<? $this->EndViewTarget(); ?>
 
-if (!empty($arResult['IBLOCK_UF_PROPS']['UF_CATALOG_START'])) {
+<? if (!empty($arResult['IBLOCK_UF_PROPS']['UF_CATALOG_START'])) {
 	foreach ($arResult['IBLOCK_UF_PROPS']['UF_CATALOG_START'] as $sectionId) {
 		$APPLICATION->IncludeComponent(
 			"bitrix:catalog.section",
