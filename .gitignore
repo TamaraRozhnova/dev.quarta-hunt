@@ -40,6 +40,7 @@ logs/
 /.dev
 .DS_Store
 /tmp
+/.osp
 
 # HUT
 #/local/php_interface/ht/
