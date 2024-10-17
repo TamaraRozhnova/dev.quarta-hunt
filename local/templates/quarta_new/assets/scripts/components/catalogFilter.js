@@ -191,7 +191,7 @@ class CatalogFilter {
     hangAvailableEvent() {
         this.availableCheckbox.onchange = () => {
             const value = !!this.availableCheckbox.checked;
-            this.handleChangeFilters({onlyAvailable: value});
+            this.handleChangeFilters({productsavailable: value});
         }
     }
 
