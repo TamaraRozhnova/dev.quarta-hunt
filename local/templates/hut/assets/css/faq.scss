@@ -14,6 +14,7 @@
         display: flex;
         justify-content: space-between;
         gap: 48px;
+        margin: 0 auto;
 
         @media (max-width: 1024px) {
             flex-direction: column;
@@ -67,40 +68,40 @@
     }
 
     &__quest {
-        border: 1px solid var(--Gray-Gray-2, #E9E9EA);
+        border: 1px solid var(--Gray-Gray-2, #e9e9ea);
         border-bottom: none;
-        transition: border .3s;
+        transition: border 0.3s;
 
-        &:first-of-type{
+        &:first-of-type {
             border-radius: var(--Radius-Modal, 8px) var(--Radius-Modal, 8px) 0px 0px;
         }
 
         &:last-of-type {
-            border-bottom: 1px solid var(--Gray-Gray-2, #E9E9EA);
+            border-bottom: 1px solid var(--Gray-Gray-2, #e9e9ea);
             border-radius: 0px 0px var(--Radius-Modal, 8px) var(--Radius-Modal, 8px);
         }
 
         &:hover {
-            border-color: var(--Primary-Primary-6, #EC6624);
+            border-color: var(--Primary-Primary-6, #ec6624);
 
-            &+.faq__quest {
-                border-top-color: var(--Primary-Primary-6, #EC6624);
+            & + .faq__quest {
+                border-top-color: var(--Primary-Primary-6, #ec6624);
             }
         }
 
         &.active {
-            border-color: var(--Primary-Primary-6, #EC6624);
+            border-color: var(--Primary-Primary-6, #ec6624);
 
-            &+.faq__quest {
-                border-top-color: var(--Primary-Primary-6, #EC6624);
+            & + .faq__quest {
+                border-top-color: var(--Primary-Primary-6, #ec6624);
             }
 
             & .faq__questCont {
                 display: block;
             }
 
-            & .faq__questBtnSvg{
-                & svg:first-child{
+            & .faq__questBtnSvg {
+                & svg:first-child {
                     opacity: 0;
                 }
             }
@@ -140,7 +141,7 @@
         min-width: 46px;
         height: 46px;
 
-        & svg{
+        & svg {
             display: block;
             width: 24px;
             height: auto;
@@ -148,19 +149,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: all .3s;
+            transition: all 0.3s;
         }
     }
 
     &__questCont {
         display: none;
         padding: 8px 23px 23px;
-        color: var(--Dark-Dark-4, #6F7785);
+        color: var(--Dark-Dark-4, #6f7785);
         font-size: 16px;
         font-weight: 400;
         line-height: 135%;
 
-        &>* {
+        & > * {
             &:first-child {
                 margin-top: 0 !important;
             }
@@ -170,15 +171,15 @@
             }
         }
 
-        & p{
+        & p {
             margin: 24px 0;
 
-            & + ul{
+            & + ul {
                 margin-top: -12px;
             }
         }
 
-        & ul{
+        & ul {
             margin: 24px 0;
             padding-left: 30px;
         }
