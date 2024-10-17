@@ -103,7 +103,7 @@ $user = new CUser;
             )
         );
     } ?>
-    <header class="header">
+    <header class="header <?php $APPLICATION->ShowProperty('headerClasses', '') ?>">
         <div class="menu__wrap scroll">
             <div class="menu__inner">
                 <button type="button" class="button menu-toggler"><?= buildSVG('burger', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
