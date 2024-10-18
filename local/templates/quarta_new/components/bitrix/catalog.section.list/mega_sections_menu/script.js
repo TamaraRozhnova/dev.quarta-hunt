@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('.mega-menu').toggleClass('open');
         $(this).toggleClass('open');
 
-        window.addEventListener("wheel", preventScroll, { passive: false });
+        $('body').css({'overflow' : 'hidden'});
     });
     $(document).on('click', function (e) {
         let button = $('.mega-menu-opener');
@@ -25,7 +25,7 @@ $(document).ready(function () {
             container.removeClass('open');
             button.removeClass('open');
 
-            allowScroll();
+            $('body').css({'overflow' : 'unset'});
         }
     });
 
