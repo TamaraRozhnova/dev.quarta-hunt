@@ -1,3 +1,7 @@
+.container.with-sidebar{
+	display: flex;
+	align-items: flex-start;
+}
 .personal-left-menu{
 	border-radius: 8px;
 	border: 1px solid var(--color-gray3);
@@ -21,6 +25,10 @@
 	padding: 24px;
 	display: block;
 	text-transform: uppercase;
+}
+
+.personal-left-menu li a:hover{
+	text-decoration: none;
 }
 
 .personal-left-menu li a.selected{
@@ -62,5 +70,9 @@
 	.personal-left-menu li a.selected{
 		background-color: var(--color-dark6);
 		color: #FFFFFF;
+	}
+
+	.container.with-sidebar{
+		flex-direction: column;
 	}
 }

@@ -1,0 +1,227 @@
+.sale-order-detail{
+	max-width: 100%;
+	width: 100%;
+}
+
+.sale-order-detail-back-to-list-link{
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 22px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	align-items: center;
+	color: var(--color-primary);
+	margin-bottom: 24px;
+}
+
+.sale-order-detail-back-to-list-link svg{
+	margin-right: 8px;
+}
+
+.sale-order-detail-title{
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 32.4px;
+	letter-spacing: -0.006em;
+	margin-bottom: 16px;
+}
+
+.sale-order-detail-status-date{
+	display: flex;
+	align-items: center;
+}
+
+.sale-order-detail-status-wrap{
+	display: flex;
+	padding: 4px 8px;
+	background-color: var(--color-dark0);
+	border-radius: 24px;
+	align-items: center;
+	margin-right: 8px;	
+}
+
+.sale-order-status-color{
+	width: 8px;
+	height: 8px;
+	border-radius: 8px;
+	margin-right: 4px;
+}
+
+.sale-order-status-name{
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.sale-order-detail-general-head{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-bottom: 24px;
+}
+
+.sale-order-detail-general-head-right{
+	margin-left: 16px;
+}
+
+.sale-order-detail-about-order-inner-container-repeat{
+	display: flex;
+}
+
+.sale-order-detail-about-order-inner-container-repeat a{
+	padding: 13px 24px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--color-primary);
+	background-color: var(--color-primary);
+	color: white;
+}
+
+.sale-order-detail-about-order-inner-container-repeat a svg{
+	margin-right: 8px;
+}
+
+.sale-order-detail-about-order-inner-container-repeat a + a{
+	margin-left: 8px;
+}
+
+.sale-order-detail-about-order-inner-container-repeat a.sale-order-detail-about-order-inner-container-repeat-cancel{
+	border: 1px solid var(--color-dark1);
+	background-color: white;
+	color: var(--color-dark6);
+}
+
+.sale-order-detail-order-item-table{
+	border: 1px solid var(--color-dark1);
+	border-radius: 8px;
+	padding: 24px;
+}
+
+.sale-order-detail-order-item-block{
+	display:flex;
+	align-items:flex-start;
+}
+
+.sale-order-detail-order-item-block + .sale-order-detail-order-item-block{
+	margin-top: 24px;
+}
+
+.sale-order-detail-order-item-img-block{
+	margin-right: 16px;
+}
+
+.sale-order-detail-order-item-img-block a{
+	display: flex;
+	max-width: 110px;
+	min-width: 110px;
+	height: 120px;
+}
+
+.sale-order-detail-order-item-img-block img{
+	object-fit: contain;
+}
+
+.sale-order-detail-order-item-title{
+	margin-bottom: 8px;
+}
+
+.sale-order-detail-order-item-title a,
+.sale-order-detail-order-item-section{
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18.2px;
+	text-decoration: none;
+	color: var(--color-dark6);
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+.sale-order-detail-order-item-section{
+	font-weight: 400;
+	color: var(--color-gray5);
+}
+
+.sale-order-detail-total-list{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-top: 24px;
+}
+
+.sale-order-detail-total-list li{
+	max-width: 442px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.sale-order-detail-total-list li span{
+	white-space: nowrap;
+	font-size: 16px;
+	line-height: 23px;
+}
+
+.sale-order-detail-total-list li + li{
+	margin-top: 16px;
+}
+
+.sale-order-detail-total-list li span:nth-child(2){
+	height: 1px;
+	max-width: 100%;
+	width: 100%;
+	background-color: var(--color-gray3);
+	margin: 0 8px;
+}
+
+.sale-order-detail-total-discount{
+	color: var(--color-primary);
+}
+
+.sale-order-detail-total-sum span:nth-child(3){
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 32px;
+	letter-spacing: -0.006em;
+}
+
+.sale-order-detail-order-item-props{
+	margin-top: 16px;
+}
+
+.sale-order-detail-order-item-props+.sale-order-detail-order-item-props{
+	margin-top: 8px;
+}
+
+@media (width <= 1320px) {
+	.personal-left-menu{
+		max-width: 300px;
+	}
+}
+
+@media (width <= 992px) {
+	.sale-order-detail-order-item-table{
+		padding: 16px;
+	}
+
+	.personal-left-menu{
+		max-width: 100%;
+	}
+
+	.sale-order-detail-general-head{
+		flex-direction: column;
+        align-items: flex-start;
+	}
+
+	.sale-order-detail-general-head-right{
+		margin-left: 0;
+		margin-top: 16px;
+	}
+
+	.sale-order-detail-order-item-content{
+		overflow: hidden;
+	}
+}
