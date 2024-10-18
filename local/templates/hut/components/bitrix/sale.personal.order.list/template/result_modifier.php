@@ -23,8 +23,6 @@ if ($cache->initCache($cacheTtl, $cacheKey)){
             $item['PREVIEW_PICTURE'] = $renderImage["src"];
         }
     }  
-
-    echo date("d.m.Y H:i:s");
     
     $cache->endDataCache($arResult);
 }
