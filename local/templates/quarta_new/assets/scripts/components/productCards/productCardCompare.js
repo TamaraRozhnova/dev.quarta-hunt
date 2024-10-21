@@ -1,10 +1,10 @@
 class ProductCardCompare {
     constructor(data = {
-        productElement,
-        compareList
-    }, events = {
-        onDelete
-    }
+                    productElement,
+                    compareList
+                }, events = {
+                    onDelete
+                }
     ) {
         this.productElement = data.productElement;
         this.productId = this.productElement.dataset.id;
@@ -20,12 +20,12 @@ class ProductCardCompare {
         this.defineCompare();
     }
 
-    closePopup(){
+    closePopup() {
         this.popupWrap.classList.remove("active");
     }
 
-    openPopup(){
-        if(this.compareApi.headerTopCompareBadge.innerText > 1){
+    openPopup() {
+        if (this.compareApi.headerTopCompareBadge.innerText > 1) {
             this.popupWrap.classList.add("active");
         }
     }
@@ -49,9 +49,15 @@ class ProductCardCompare {
             this.productElement.querySelector('.product-card__remove-compare').addEventListener('click', async () => this.deleteCompare())
         }
 
-        this.compareIconDefault.addEventListener('click', async () => this.addCompare());
-        this.compareIconActive.addEventListener('click', async () => this.deleteCompare());
-        if(this.closePopupWrap !== null){
+        if (this.compareIconDefault && this.compareIconDefault != null) {
+            this.compareIconDefault.addEventListener('click', async () => this.addCompare());
+        }
+
+        if (this.compareIconActive && this.compareIconActive != null) {
+            this.compareIconActive.addEventListener('click', async () => this.deleteCompare());
+        }
+
+        if (this.closePopupWrap !== null) {
             this.closePopupWrap.addEventListener('click', async () => this.closePopup());
         }
     }
@@ -79,17 +85,26 @@ class ProductCardCompare {
 
     changeStyles(state = true) {
         if (state) {
-            this.compareIconDefault.style.display = 'none';
-            this.compareIconActive.style.display = 'inline';
+            if (this.compareIconDefault && this.compareIconDefault != null) {
+                this.compareIconDefault.style.display = 'none';
+            }
+            if (this.compareIconActive && this.compareIconActive != null) {
+                this.compareIconActive.style.display = 'inline';
+            }
         } else {
-            this.compareIconActive.style.display = 'none';
-            this.compareIconDefault.style.display = 'inline';
+            if (this.compareIconActive && this.compareIconActive != null) {
+                this.compareIconActive.style.display = 'none';
+            }
+            if (this.compareIconDefault && this.compareIconDefault != null) {
+                this.compareIconDefault.style.display = 'inline';
+            }
         }
     }
 
     removePlaceholder() {
         const placeholder = this.productElement.querySelector('.placeholder--compare');
-        if (!placeholder) return false;
-        placeholder.remove();
+        if (placeholder && placeholder != null) {
+            placeholder.remove();
+        }
     }
 }
