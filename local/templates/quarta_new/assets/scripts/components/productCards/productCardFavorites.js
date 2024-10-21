@@ -1,10 +1,10 @@
 class ProductCardFavorites {
     constructor(data = {
-        productElement,
-        favoritesList
-    }, events = {
-        onDelete
-    }
+                    productElement,
+                    favoritesList
+                }, events = {
+                    onDelete
+                }
     ) {
         this.productElement = data.productElement;
         this.productId = this.productElement.dataset.id;
@@ -31,10 +31,14 @@ class ProductCardFavorites {
     hangEvents() {
         this.productId = this.productElement.dataset.id;
         this.favoritesIconDefault = this.productElement.querySelector('.product-card__fav--default');
+        if (this.favoritesIconDefault && this.favoritesIconDefault != null) {
+            this.favoritesIconDefault.addEventListener('click', async () => this.addFavorites());
+        }
         this.favoritesIconActive = this.productElement.querySelector('.product-card__fav--active');
+        if (this.favoritesIconActive && this.favoritesIconActive != null) {
+            this.favoritesIconActive.addEventListener('click', async () => this.deleteFavorites());
+        }
 
-        this.favoritesIconDefault.addEventListener('click', async() => this.addFavorites());
-        this.favoritesIconActive.addEventListener('click', async() => this.deleteFavorites());
     }
 
     async addFavorites() {
@@ -59,17 +63,28 @@ class ProductCardFavorites {
 
     changeStyles(state = true) {
         if (state) {
-            this.favoritesIconDefault.style.display = 'none';
-            this.favoritesIconActive.style.display = 'inline';
+
+            if (this.favoritesIconDefault && this.favoritesIconDefault != null) {
+                this.favoritesIconDefault.style.display = 'none';
+            }
+
+            if (this.favoritesIconActive && this.favoritesIconActive != null) {
+                this.favoritesIconActive.style.display = 'inline';
+            }
         } else {
-            this.favoritesIconActive.style.display = 'none';
-            this.favoritesIconDefault.style.display = 'inline';
+            if (this.favoritesIconActive && this.favoritesIconActive != null) {
+                this.favoritesIconActive.style.display = 'none';
+            }
+            if (this.favoritesIconDefault && this.favoritesIconDefault != null) {
+                this.favoritesIconDefault.style.display = 'inline';
+            }
         }
     }
 
     removePlaceholder() {
         const placeholder = this.productElement.querySelector('.placeholder--fav');
-        if (!placeholder) return false;
-        placeholder.remove();
+        if (placeholder && placeholder != null) {
+            placeholder.remove();
+        }
     }
 }

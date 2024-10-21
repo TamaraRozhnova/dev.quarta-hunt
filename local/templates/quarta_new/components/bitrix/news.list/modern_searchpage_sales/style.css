@@ -1,0 +1,60 @@
+
+.modern-promo-page-sales {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px 30px;
+}
+
+.modern-promo-page-sales.mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.modern-promo-page-sales .sale-item{
+  background: var(--bs-white);
+  border-radius: 9px;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.13));
+  margin: 0;
+}
+
+.modern-promo-page-sales .sale-item img{
+  border-radius: 9px;
+  width: 100%;
+  height: 100%;
+  max-height: 268px;
+}
+
+.modern-promo-page-sales .sale-item-textblock{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  height: calc(100% - 268px);
+}
+.modern-promo-page-sales .sale-item-title{
+  color: var(--bs-primary);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.modern-promo-page-sales .sale-item-preview{
+  color: var(--bs-gray-600);
+}
+
+.modern-promo-page-sales .sale-item-button{
+  color: var(--bs-primary) !important;
+  background: rgba(0, 73, 137, 0.09);
+  border-radius: 9px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 600;
+  display: block;
+  text-decoration: none;
+  padding: 10px 0;
+  margin-top: auto;
+}
+.modern-promo-page-sales .sale-item-button:hover{
+  background: rgba(0, 73, 137, 1);
+  color: var(--bs-white) !important;
+}
+
