@@ -1,0 +1,165 @@
+.container {
+    width: 100% !important;
+}
+
+.bx-soa-section-title {
+    color: var(--color-dark6);
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 600;
+    letter-spacing: -0.001px;
+    padding: 0;
+    margin: 0 0 24px 0;
+}
+
+.bx-soa-section-content {
+    display: block !important;
+}
+
+.bx-soa-section {
+    padding: 24px;
+    border: 1px solid var(--color-gray3);
+    border-radius: 8px;
+    margin-bottom: 48px;
+}
+
+.bx-soa-section .col-xs-12,
+.bx-soa-section .row,
+.bx-soa-section .col-xs-9б
+.container-fluid {
+    padding: 0;
+}
+.bx-soa-section .col-xs-12::before,
+.bx-soa-section .row::before,
+.bx-soa-section .col-xs-9::before,
+.bx-soa-section .col-xs-12::after,
+.bx-soa-section .row::after,
+.bx-soa-section .col-xs-9::after,
+.bx-soa-more-btn,
+.bx-soa-editstep,
+.bx-soa-location-input-container label {
+    display: none !important;
+}
+
+.bx-sls {
+    display: flex;
+    flex-direction: column;
+}
+
+.bx-sls .quick-locations {
+    order: 1;
+    margin: 16px 0 0 0;
+    padding: 0;
+}
+
+.bx-sls .quick-locations {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.bx-sls .quick-locations a {
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--color-dark1);
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21.6px;
+    color: var(--color-dark6);
+    text-decoration: none;
+    height: fit-content;
+}
+
+.bx-soa-reference {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18.2px;
+    color: var(--color-gray6);
+}
+
+.bx-sls .dropdown-block {
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid var(--color-gray3);
+    background-color: var(--color-gray1);
+    padding: 0 40px;
+    font-size: 16px;
+    line-height: 21.6px;
+    color: var(--color-gray5);
+    font-weight: 400;
+}
+
+.bx-sls .dropdown-icon {
+    background: url('/local/templates/hut/components/bitrix/sale.order.ajax/hut_order/images/lupa.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    top: 15px;
+}
+
+.bx-sls .bx-ui-sls-container {
+    min-height: 50px;
+}
+
+.bx-sls .bx-ui-sls-fake,
+.bx-sls .bx-ui-sls-route {
+    height: 50px;
+    font-size: 16px;
+    line-height: 21.6px;
+    color: var(--color-dark6);
+}
+
+.bx-sls .dropdown-fade2white {
+    background: var(--color-gray1);
+    top: 9px;
+}
+
+.bx-sls .bx-ui-sls-clear {
+    background: url('/local/templates/hut/components/bitrix/sale.order.ajax/hut_order/images/clear.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    top: 12px;
+    right: 12px;
+}
+
+.bx-sls .bx-ui-sls-clear:hover {
+    background-position: unset;
+}
+
+.bx-sls .bx-ui-sls-fake::placeholder {
+    opacity: 0.5;
+}
+
+.bx-sls .bx-ui-sls-fake:focus {
+    border-color: var(--color-primary);
+}
+
+.bx-sls .bx-ui-sls-pane {
+    box-shadow: 0px 20px 25px -5px #0000000D;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 4px;
+    border: none;
+}
+
+.bx-sls .dropdown-item {
+    padding: 10px 12px;
+}
+
+.bx-sls .dropdown-item span {
+    font-size: 14px;
+    line-height: 18.2px;
+    font-weight: 400;
+    color: var(--color-dark6);
+}
