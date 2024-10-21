@@ -19,7 +19,7 @@ class ProductCardDescriptionAccordeon {
     }
 
     hangClickAccordeon() {
-        this.productAccordeonBtn.addEventListener('click', () => this.toggleAccordeon())
+        this.productAccordeonBtn.onclick = () => this.toggleAccordeon()
     }
 
     toggleAccordeon() {

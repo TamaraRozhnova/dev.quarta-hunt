@@ -108,19 +108,13 @@ $arParams['MESS_BTN_LAZY_LOAD'] = $arParams['MESS_BTN_LAZY_LOAD'] ?: Loc::getMes
 
 $obName = 'ob' . preg_replace('/[^a-zA-Z0-9_]/', 'x', $this->GetEditAreaId($navParams['NavNum']));
 $containerName = 'container-' . $navParams['NavNum'];
-
-if ($showTopPager) {
 ?>
-	<div data-pagination-num="<?= $navParams['NavNum'] ?>">
-		<!-- pagination-container -->
-		<?= $arResult['NAV_STRING'] ?>
-		<!-- pagination-container -->
+
+<div class="main-prod__section container-no-padding" data-entity="<?= $containerName ?>">
+	<div class="main-prod__top">
+		<div class="main-prod__title"><?= $arParams['BLOCK_TITLE'] ?></div>
+		<a class="main-section__link" href="<?= $arParams['LINK_VALUE'] ?>"><?= $arParams['LINK_TEXT'] ?></a>
 	</div>
-<?
-}
-?>
-
-<div class="main-prod__section" data-entity="<?= $containerName ?>">
 	<?
 	if (!empty($arResult['ITEMS']) && !empty($arResult['ITEM_ROWS'])) {
 		$generalParams = [
@@ -182,36 +176,49 @@ if ($showTopPager) {
 		}
 	?>
 		<!-- items-container -->
-
-		<div class="main-prod__list" data-entity="items-row">
-			<?
-			foreach ($arResult['ITEMS'] as $item) {
-			?>
-				<div class="main-prod__item">
-					<?
-					$APPLICATION->IncludeComponent(
-						'bitrix:catalog.item',
-						'item',
-						array(
-							'RESULT' => array(
-								'ITEM' => $item,
-								'AREA_ID' => $areaIds[$item['ID']],
-								'TYPE' => 'CARD',
-								'BIG_LABEL' => 'N',
-								'BIG_DISCOUNT_PERCENT' => 'N',
-								'BIG_BUTTONS' => 'N',
-								'SCALABLE' => 'N'
+		<div class="swiper main-prod__slider">
+			<div class="main-prod__list swiper-wrapper" data-entity="items-row">
+				<?
+				foreach ($arResult['ITEMS'] as $item) {
+				?>
+					<div class="main-prod__item swiper-slide">
+						<?
+						$APPLICATION->IncludeComponent(
+							'bitrix:catalog.item',
+							'item',
+							array(
+								'RESULT' => array(
+									'ITEM' => $item,
+									'AREA_ID' => $areaIds[$item['ID']],
+									'TYPE' => 'CARD',
+									'BIG_LABEL' => 'N',
+									'BIG_DISCOUNT_PERCENT' => 'N',
+									'BIG_BUTTONS' => 'N',
+									'SCALABLE' => 'N'
+								),
+								'PARAMS' => $generalParams + $itemParameters[$item['ID']],
 							),
-							'PARAMS' => $generalParams + $itemParameters[$item['ID']],
-						),
-						$component,
-						array('HIDE_ICONS' => 'Y')
-					);
-					?>
-				</div>
-			<?
-			}
-			?>
+							$component,
+							array('HIDE_ICONS' => 'Y')
+						);
+						?>
+					</div>
+				<?
+				}
+				?>
+			</div>
+			<div class="slider-button-prev">
+				<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+					<rect width="50" height="50" rx="25" fill="white" />
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M20.7929 17.2929C21.1834 16.9024 21.8166 16.9024 22.2071 17.2929L29.2071 24.2929C29.5976 24.6834 29.5976 25.3166 29.2071 25.7071L22.2071 32.7071C21.8166 33.0976 21.1834 33.0976 20.7929 32.7071C20.4024 32.3166 20.4024 31.6834 20.7929 31.2929L27.0858 25L20.7929 18.7071C20.4024 18.3166 20.4024 17.6834 20.7929 17.2929Z" fill="#354052" />
+				</svg>
+			</div>
+			<div class="slider-button-next">
+				<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+					<rect width="50" height="50" rx="25" fill="white" />
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M20.7929 17.2929C21.1834 16.9024 21.8166 16.9024 22.2071 17.2929L29.2071 24.2929C29.5976 24.6834 29.5976 25.3166 29.2071 25.7071L22.2071 32.7071C21.8166 33.0976 21.1834 33.0976 20.7929 32.7071C20.4024 32.3166 20.4024 31.6834 20.7929 31.2929L27.0858 25L20.7929 18.7071C20.4024 18.3166 20.4024 17.6834 20.7929 17.2929Z" fill="#354052" />
+				</svg>
+			</div>
 		</div>
 		<?
 
@@ -235,26 +242,6 @@ if ($showTopPager) {
 	?>
 </div>
 <?
-if ($showLazyLoad) {
-?>
-	<div class="row bx-<?= $arParams['TEMPLATE_THEME'] ?>">
-		<div class="btn btn-default btn-lg center-block" style="margin: 15px;"
-			data-use="show-more-<?= $navParams['NavNum'] ?>">
-			<?= $arParams['MESS_BTN_LAZY_LOAD'] ?>
-		</div>
-	</div>
-<?
-}
-
-if ($showBottomPager) {
-?>
-	<div data-pagination-num="<?= $navParams['NavNum'] ?>">
-		<!-- pagination-container -->
-		<?= $arResult['NAV_STRING'] ?>
-		<!-- pagination-container -->
-	</div>
-<?
-}
 
 $signer = new \Bitrix\Main\Security\Sign\Signer;
 $signedTemplate = $signer->sign($templateName, 'catalog.section');

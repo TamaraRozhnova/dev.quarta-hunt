@@ -1,0 +1,13 @@
+.pagination {
+  margin-top: 3.125rem;
+}
+.pagination .btn {
+  position: relative;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #fff;
+}
+.pagination .btn:not(.btn-primary) {
+  background-color: #fff;
+  color: #333333;
+}

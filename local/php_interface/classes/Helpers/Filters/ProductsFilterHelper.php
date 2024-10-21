@@ -45,7 +45,7 @@ class ProductsFilterHelper
         $this->defineSectionName($sectionId);
     }
 
-    
+
     public function setOnlyAvailable(bool $value) : void
     {
         $this->onlyAvailable = $value === true ? 'Y' : 'N';
@@ -162,7 +162,7 @@ class ProductsFilterHelper
             break;
 
             case 'available':
-                $this->sortField = 'CATALOG_AVAILABLE'; 
+                $this->sortField = 'CATALOG_AVAILABLE';
                 $this->sortOrder = 'DESC';
             break;
 
@@ -175,10 +175,10 @@ class ProductsFilterHelper
                 $this->sortField = 'property_RATING';
                 $this->sortOrder = 'ASC';
             break;
-            
-            default:                
+
+            default:
             break;
-        }        
+        }
     }
 
 
@@ -195,7 +195,7 @@ class ProductsFilterHelper
 
 
     private function defineAvailableParam(): void {
-        if ($_GET['onlyAvailable'] === 'true') {
+        if ($_GET['productsavailable'] === 'true') {
             $this->onlyAvailable = 'Y';
         }
     }

@@ -30,6 +30,14 @@ $(document).ready(function () {
         }
     });
 
+    function allowScroll() {
+        window.removeEventListener("wheel", preventScroll);
+    }
+
+    function preventScroll(e) {
+        e.preventDefault();
+    }
+
     const brandList = document.querySelector('.mega-menu #manu-brands-list')
 
     /* jq menu hover, click both menu*/
@@ -75,5 +83,7 @@ $(document).ready(function () {
         $(".mega-menu [data-content='" + contentId + "']").addClass('active');
     });
 
-
+    $('body').on('wheel',function(e){
+        e.preventDefault();
+    });
 });

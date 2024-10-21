@@ -8,6 +8,16 @@
 @import "popup.css";
 @import "modal.css";
 @import "interface.css";
+@import "main-page.css";
+@import "404.css";
+@import "policy.css";
+@import "faq.css";
+@import "guarantees.css";
+@import "about.css";
+@import "addr.css";
+@import "breadcrumbs.css";
+@import "contacts.css";
+@import "dop.css";
 
 * {
   box-sizing: border-box;
@@ -20,7 +30,8 @@ a {
   text-decoration: none;
 }
 
-img {
+img,
+svg {
   max-width: 100%;
   height: auto;
 }
@@ -31,4 +42,28 @@ img {
   padding: 0;
   margin: 0;
   cursor: pointer;
+}
+
+.container-no-padding {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1920px;
+  padding: 0 64px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1400px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
 }

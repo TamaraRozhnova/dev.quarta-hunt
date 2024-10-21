@@ -1258,6 +1258,17 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.bg-primary.double-bonus {
+  width: fit-content;
+  margin-left: auto;
+  background-color: #fff !important;
+  box-shadow: 0 4px 33px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  z-index: 1070;
+  inline-size: max-content;
+  color: var(--bs-body-color) !important;
+}
 @media (max-width: 991.98px) {
   .review__response__response {
     padding-left: 0.75rem;

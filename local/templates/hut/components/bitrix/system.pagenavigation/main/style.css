@@ -1,0 +1,41 @@
+div.modern-page-navigation {
+  margin-top: 64px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modern-page-previous {
+  transform: rotate(180deg);
+}
+
+.modern-page-next.disabled svg path,
+.modern-page-previous.disabled svg path {
+  fill: var(--color-gray2);
+}
+
+.modern-page {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gray1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--color-dark6);
+  background-color: var(--color-gray1);
+}
+
+.modern-page.modern-page-current {
+  color: white;
+  background-color: var(--color-dark6);
+  border-color: var(--color-dark6);
+}
+
+.modern-page.modern-page-next.disabled {
+  background-color: white;
+  border-color: var(--color-gray2);
+}

@@ -52,7 +52,7 @@ class CatalogFilter {
 
             this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
 
-            if (this.viewItemsWrapper && this.viewItemsWrapper.length > 0) {
+            if (this.viewItemsWrapper) {
                 this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
 
                 if (this.viewItems.length > 0) {
@@ -191,7 +191,7 @@ class CatalogFilter {
     hangAvailableEvent() {
         this.availableCheckbox.onchange = () => {
             const value = !!this.availableCheckbox.checked;
-            this.handleChangeFilters({onlyAvailable: value});
+            this.handleChangeFilters({productsavailable: value});
         }
     }
 
@@ -501,7 +501,7 @@ class CatalogFilter {
     createElements() {
         this.createSelectorSort()
         this.createSelectorCount()
-        this.createPriceField()
+        // this.createPriceField()
     }
 
     setBadges() {

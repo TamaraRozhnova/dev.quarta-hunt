@@ -59,3 +59,6 @@ if (!empty($arResult['IBLOCK_SECTION_ID'])) {
         $arResult['ROOT_SECTION_DESC'] = $arSections[0]['DESCRIPTION'];
     }
 }
+
+// AJAX for filter catalog
+include 'ajax.php';

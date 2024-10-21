@@ -11,6 +11,9 @@ class Popup {
   };
 }
 
+/**
+ * Инпуты
+ */
 class Input {
   constructor(
     e = {
@@ -161,6 +164,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let isCookieShowen = localStorage.getItem("cookieShowen");
 
   if (cookiePopup && isCookieShowen != "Y") {
+    cookiePopup.querySelector("button").addEventListener("click", function () {
+      popup.hide(this);
+    });
     setTimeout(() => {
       popup.show(cookiePopup);
       localStorage.setItem("cookieShowen", "Y");
@@ -172,10 +178,23 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   window.addEventListener("scroll", function () {
     const scrollPosition = window.scrollY;
+    const headerWrap = document.querySelector(".menu__wrap");
+    let isTransparentHeader = false;
+
+    if (headerWrap && headerWrap.classList.contains("change")) {
+      isTransparentHeader = true;
+    }
+
     if (scrollPosition > 50) {
       document.querySelector("body").classList.add("scrolled");
+      if (isTransparentHeader) {
+        headerWrap.classList.add("scroll");
+      }
     } else {
       document.querySelector("body").classList.remove("scrolled");
+      if (isTransparentHeader) {
+        headerWrap.classList.remove("scroll");
+      }
     }
   });
 });
