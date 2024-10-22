@@ -198,25 +198,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-/**
- * Изменение шапки сайта (/about/)
- */
-document.addEventListener("DOMContentLoaded", function () {
-  if(document.querySelector('.header--about_start')){
-
-    document.querySelector('.header--about_start').classList.add('header--about')
-    document.querySelector('.header--about_start').style.position = 'fixed'
-    document.querySelector('.header--about_start').style.width = '100%'
-
-    window.addEventListener('scroll', function () {
-      if (window.scrollY <= 10) {
-         document.querySelector('.header--about_start').classList.add('header--about')
-      }
-      else {
-         document.querySelector('.header--about_start').classList.remove('header--about')
-      }
-   });
-
-  }
-});
