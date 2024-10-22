@@ -7,7 +7,7 @@
   max-height: 0;
   transition: max-height 0.35s ease;
   z-index: 140;
-  overflow: hidden;
+  overflow: auto;
 
   @include sm-screen {
     max-height: 100vh;

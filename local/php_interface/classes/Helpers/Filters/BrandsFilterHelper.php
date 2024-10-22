@@ -41,7 +41,7 @@ class BrandsFilterHelper
         $this->prepareParams();
     }
 
-    
+
     public function setOnlyAvailable(bool $value) : void
     {
         $this->onlyAvailable = $value === true ? 'Y' : 'N';
@@ -142,7 +142,7 @@ class BrandsFilterHelper
             break;
 
             case 'available':
-                $this->sortField = 'CATALOG_AVAILABLE'; 
+                $this->sortField = 'CATALOG_AVAILABLE';
                 $this->sortOrder = 'DESC';
             break;
 
@@ -155,10 +155,10 @@ class BrandsFilterHelper
                 $this->sortField = 'property_RATING';
                 $this->sortOrder = 'ASC';
             break;
-            
-            default:                
+
+            default:
             break;
-        }        
+        }
     }
 
 
@@ -175,7 +175,7 @@ class BrandsFilterHelper
 
 
     private function defineAvailableParam(): void {
-        if ($_GET['onlyAvailable'] === 'true') {
+        if ($_GET['productsavailable'] === 'true') {
             $this->onlyAvailable = 'Y';
         }
     }
