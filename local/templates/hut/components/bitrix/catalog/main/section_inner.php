@@ -209,8 +209,16 @@ if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 
 	<div class="catalog__buttons">
 		<button type="button" class="button filter-toggler"><span>Фильтры</span> <?= buildSVG('filter', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
-		<button type="button" class="button sort-toggler"><span>По популярности</span> <?= buildSVG('sort', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
-	</div>
+        <div class="dropdown">
+            <button type="button" class="button sort-toggler dropbtn"><span>По популярности</span> <?= buildSVG('sort', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
+            <div class="dropdown-content">
+                <a type="button" class="button sort-toggler" href="?sort=show_counter">По популярности</a>
+                <a type="button" class="button sort-toggler" href="?sort=catalog_PRICE_1&order=asc">Сначала дешевле</a>
+                <a type="button" class="button sort-toggler" href="?sort=catalog_PRICE_1&order=desc">Сначала дороже</a>
+                <a type="button" class="button sort-toggler" href="?sort=created">По новизне</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <? if ($arParams["USE_COMPARE"] === "Y") {
