@@ -5384,11 +5384,14 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (!this.result.DELIVERY || this.result.DELIVERY.length <= 0)
 				return;
 
+			let str = JSON.stringify(this.result.DELIVERY, null, 4);
+
 			var deliveryItemsContainer = BX.create('DIV', {props: {className: 'col-sm-7 bx-soa-pp-item-container'}}),
 				deliveryItemNode, k;
 
 			for (k = 0; k < this.deliveryPagination.currentPage.length; k++)
 			{
+				console.log('k '+ k);
 				deliveryItemNode = this.createDeliveryItem(this.deliveryPagination.currentPage[k]);
 				deliveryItemsContainer.appendChild(deliveryItemNode);
 			}
