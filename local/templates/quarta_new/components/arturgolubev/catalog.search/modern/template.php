@@ -305,9 +305,9 @@ $uriString = $request->getRequestUri();
                             "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
                             "IBLOCK_ID" => $arParams["IBLOCK_ID"],
 
-                            "ELEMENT_SORT_FIELD" => $sortField ?? '',
+                            "ELEMENT_SORT_FIELD" => $sortField ?? 'rank',
                             "ELEMENT_SORT_FIELD2" => "",
-                            "ELEMENT_SORT_ORDER" => $sortDirection ?? '',
+                            "ELEMENT_SORT_ORDER" => $sortDirection ?? 'rank',
                             "ELEMENT_SORT_ORDER2" => "",
 
                             "PAGE_ELEMENT_COUNT" => $arParams["PAGE_ELEMENT_COUNT"],
