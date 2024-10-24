@@ -235,13 +235,13 @@
 
 @media (max-width: 1399px) {
   .product-card-search .product-card__availability {
-    font-size: 14px !important;
-    line-height: 18px;
-    text-align: left;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: center;
     border: none;
-    background-color: #EEEFF3;
-    min-height: 36px;
-    padding: 6px 15px;
+    background-color: inherit;
+    min-height: inherit;
+    padding: 0;
   }
   .product-card-search .product-card__button {
     min-height: 48px;
