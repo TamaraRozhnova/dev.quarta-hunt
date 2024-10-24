@@ -48,7 +48,9 @@
 .bx-soa-section .col-xs-9::after,
 .bx-soa-more-btn,
 .bx-soa-editstep,
-.bx-soa-location-input-container label {
+.bx-soa-location-input-container label,
+.bx-soa-coupon,
+#bx-soa-delivery .bx-soa-section-title-container {
     display: none !important;
 }
 
@@ -173,4 +175,227 @@
     line-height: 18.2px;
     font-weight: 400;
     color: var(--color-dark6);
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 426px 426px;
+    gap: 16px;
+    width: 100%;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company {
+    width: 100%;
+    max-width: 426px;
+    padding: 16px;
+    border: 1px solid var(--color-gray2);
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: start;
+    gap: 12px;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-checkbox,
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-image {
+    display: none !important;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-delivery-cost {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    display: block;
+    border-radius: 4px;
+    padding: 4px 8px;
+    background-color: var(--color-gray2);
+    font-size: 12px;
+    line-height: 15.6px;
+    font-weight: 400;
+    color: var(--color-dark6);
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-graf-container {
+    outline: none;
+    border: 2px solid var(--color-gray2);
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+    min-width: 24px;
+    max-width: 24px;
+    min-height: 24px;
+    max-height: 24px;
+    background-color: #fff;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-smalltitle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 1px;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-smalltitle .bx-soa-pp-company-title {
+    font-size: 16px;
+    line-height: 21.6px;
+    font-weight: 400;
+    color: var(--color-dark6);
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-smalltitle .bx-soa-pp-company-description {
+    font-size: 14px;
+    line-height: 18.2px;
+    color: var(--color-gray6);
+    font-weight: 400;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected {
+    border-color: var(--color-primary);
+    padding: 25px 16px;
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected .bx-soa-pp-company-graf-container {
+    border-width: 6px;
+    border-color: var(--color-primary);
+}
+
+#bx-soa-delivery .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected  .bx-soa-pp-delivery-cost {
+    color: #fff;
+    background-color: var(--color-primary);
+}
+
+#bx-soa-delivery .bx-soa-pp-desc-container {
+    padding: 0;
+    margin-top: 24px;
+}
+
+#bx-soa-delivery .bx-soa-pp-desc-container .bx-soa-pp-company-subTitle,
+#bx-soa-delivery .bx-soa-pp-desc-container .bx-soa-pp-company-logo,
+#bx-soa-delivery .bx-soa-pp-desc-container .bx-soa-pp-list,
+#bx-soa-delivery .bx-soa-pp-desc-container .bx-soa-pp-company-desc {
+    display: none !important;
+}
+
+#bx-soa-delivery .bx-soa-pp-desc-container .bx-soa-pp-company-block div {
+    width: fit-content;
+}
+
+#bx-soa-delivery .bx-soa-pp-desc-container .bx-soa-pp-company-block div a {
+    display: block;
+    width: fit-content;
+    padding: 12px 16px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 16px;
+    line-height: 21.6px;
+    font-weight: 400;
+    border: none;
+}
+
+#bx-soa-delivery {
+    padding: 0;
+    border: none;
+    margin: 24px 0 0 0;
+    display: none;
+}
+
+#bx-soa-paysystem .bx-soa-pp-desc-container {
+    display: none;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 426px 426px;
+    gap: 16px;
+    width: 100%;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company {
+    width: 100%;
+    max-width: 426px;
+    padding: 16px;
+    border: 1px solid var(--color-gray2);
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: start;
+    gap: 12px;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-checkbox,
+#bx-soa-paysystem.bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-image {
+    display: none !important;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-delivery-cost {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    display: block;
+    border-radius: 4px;
+    padding: 4px 8px;
+    background-color: var(--color-gray2);
+    font-size: 12px;
+    line-height: 15.6px;
+    font-weight: 400;
+    color: var(--color-dark6);
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-graf-container {
+    outline: none;
+    border: 2px solid var(--color-gray2);
+    border-radius: 50%;
+    margin: 0;
+    padding: 0;
+    min-width: 24px;
+    max-width: 24px;
+    min-height: 24px;
+    max-height: 24px;
+    background-color: #fff;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-smalltitle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 1px;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-smalltitle .bx-soa-pp-company-title {
+    font-size: 16px;
+    line-height: 21.6px;
+    font-weight: 400;
+    color: var(--color-dark6);
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company .bx-soa-pp-company-smalltitle .bx-soa-pp-company-description {
+    font-size: 14px;
+    line-height: 18.2px;
+    color: var(--color-gray6);
+    font-weight: 400;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected {
+    border-color: var(--color-primary);
+    padding: 25px 16px;
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected .bx-soa-pp-company-graf-container {
+    border-width: 6px;
+    border-color: var(--color-primary);
+}
+
+#bx-soa-paysystem .bx-soa-pp-item-container .bx-soa-pp-company.bx-selected  .bx-soa-pp-delivery-cost {
+    color: #fff;
+    background-color: var(--color-primary);
+}
+
+#bx-promo-block .bx-soa-coupon {
+    display: block !important;
 }

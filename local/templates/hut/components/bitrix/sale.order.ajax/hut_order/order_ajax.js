@@ -1720,11 +1720,11 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			this.checkNotifications();
 
-			if (this.activeSectionId !== this.regionBlockNode.id)
-				this.editFadeRegionContent(this.regionBlockNode.querySelector('.bx-soa-section-content'));
-
-			if (this.activeSectionId != this.propsBlockNode.id)
-				this.editFadePropsContent(this.propsBlockNode.querySelector('.bx-soa-section-content'));
+			// if (this.activeSectionId !== this.regionBlockNode.id)
+			// 	this.editFadeRegionContent(this.regionBlockNode.querySelector('.bx-soa-section-content'));
+			//
+			// if (this.activeSectionId != this.propsBlockNode.id)
+			// 	this.editFadePropsContent(this.propsBlockNode.querySelector('.bx-soa-section-content'));
 		},
 
 		fixLocationsStyle: function(section, hiddenSection)
@@ -2249,17 +2249,17 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				);
 			}
 
-			node.appendChild(
-				BX.create('DIV', {
-					props: {className: 'row bx-soa-more'},
-					children: [
-						BX.create('DIV', {
-							props: {className: 'bx-soa-more-btn col-xs-12'},
-							children: buttons
-						})
-					]
-				})
-			);
+			// node.appendChild(
+			// 	BX.create('DIV', {
+			// 		props: {className: 'row bx-soa-more'},
+			// 		children: [
+			// 			BX.create('DIV', {
+			// 				props: {className: 'bx-soa-more-btn col-xs-12'},
+			// 				children: buttons
+			// 			})
+			// 		]
+			// 	})
+			// );
 		},
 
 		getNewContainer: function(notFluid)
@@ -2475,6 +2475,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			this.showErrors(this.result.ERROR, false);
 			this.showWarnings();
+
+			var editSteps = this.orderBlockNode.querySelectorAll('.bx-soa-editstep'), i; for (i in editSteps) { if (editSteps.hasOwnProperty(i)) { BX.remove(editSteps[i]); } }
 		},
 
 		/**
@@ -2490,24 +2492,24 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			else if (section.id != this.pickUpBlockNode.id)
 				section.style.display = '';
 
-			var active = section.id == this.activeSectionId,
+			var active = true,
 				titleNode = section.querySelector('.bx-soa-section-title-container'),
 				editButton, errorContainer;
 
-			BX.unbindAll(titleNode);
-			if (this.result.SHOW_AUTH)
-			{
-				BX.bind(titleNode, 'click', BX.delegate(function(){
-					this.animateScrollTo(this.authBlockNode);
-					this.addAnimationEffect(this.authBlockNode, 'bx-step-good');
-				}, this));
-			}
-			else
-			{
-				BX.bind(titleNode, 'click', BX.proxy(this.showByClick, this));
-				editButton = titleNode.querySelector('.bx-soa-editstep');
-				editButton && BX.bind(editButton, 'click', BX.proxy(this.showByClick, this));
-			}
+			// BX.unbindAll(titleNode);
+			// if (this.result.SHOW_AUTH)
+			// {
+			// 	BX.bind(titleNode, 'click', BX.delegate(function(){
+			// 		this.animateScrollTo(this.authBlockNode);
+			// 		this.addAnimationEffect(this.authBlockNode, 'bx-step-good');
+			// 	}, this));
+			// }
+			// else
+			// {
+			// 	BX.bind(titleNode, 'click', BX.proxy(this.showByClick, this));
+			// 	editButton = titleNode.querySelector('.bx-soa-editstep');
+			// 	editButton && BX.bind(editButton, 'click', BX.proxy(this.showByClick, this));
+			// }
 
 			errorContainer = section.querySelector('.alert.alert-danger');
 			this.hasErrorSection[section.id] = errorContainer && errorContainer.style.display != 'none';
@@ -4992,14 +4994,29 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				]
 			});
 
+			let grahBlock = '';
+
 			if (this.params.SHOW_PAY_SYSTEM_LIST_NAMES == 'Y')
 			{
-				title = BX.create('DIV', {props: {className: 'bx-soa-pp-company-smalltitle'}, text: item.NAME});
+				let description = BX.create('span', {
+					props: {className: 'bx-soa-pp-company-description'},
+					html: item.DESCRIPTION ? item.DESCRIPTION  : ''
+				});
+
+				title = BX.create('span', {
+					props: {className: 'bx-soa-pp-company-title'},
+					text: item.NAME,
+				});
+
+				grahBlock = BX.create('div', {
+					props: {className: 'bx-soa-pp-company-smalltitle'},
+					children: [title, description]
+				});
 			}
 
 			itemNode = BX.create('DIV', {
 				props: {className: 'bx-soa-pp-company col-lg-4 col-sm-4 col-xs-6'},
-				children: [label, title],
+				children: [label, grahBlock],
 				events: {
 					click: BX.proxy(this.selectPaySystem, this)
 				}
@@ -5653,12 +5670,16 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			if (item.PRICE >= 0 || typeof item.DELIVERY_DISCOUNT_PRICE !== 'undefined')
 			{
+				let itemPrice = typeof item.DELIVERY_DISCOUNT_PRICE !== 'undefined' ? item.DELIVERY_DISCOUNT_PRICE_FORMATED : item.PRICE_FORMATED;
+
+				if (item.PRICE <= 0) {
+					itemPrice = 'Бесплатно';
+				}
+
 				labelNodes.push(
 					BX.create('DIV', {
 						props: {className: 'bx-soa-pp-delivery-cost'},
-						html: typeof item.DELIVERY_DISCOUNT_PRICE !== 'undefined'
-							? item.DELIVERY_DISCOUNT_PRICE_FORMATED
-							: item.PRICE_FORMATED})
+						html: itemPrice})
 				);
 			}
 			else if (deliveryCached && (deliveryCached.PRICE >= 0 || typeof deliveryCached.DELIVERY_DISCOUNT_PRICE !== 'undefined'))
@@ -5679,17 +5700,29 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				children: labelNodes
 			});
 
+			let grahBlock = '';
+
 			if (this.params.SHOW_DELIVERY_LIST_NAMES == 'Y')
 			{
-				title = BX.create('DIV', {
+				let description = BX.create('span', {
+					props: {className: 'bx-soa-pp-company-description'},
+					html: item.DESCRIPTION ? item.DESCRIPTION  : ''
+				});
+
+				title = BX.create('span', {
+					props: {className: 'bx-soa-pp-company-title'},
+					text: this.params.SHOW_DELIVERY_PARENT_NAMES != 'N' ? item.NAME : item.OWN_NAME,
+				});
+
+				grahBlock = BX.create('div', {
 					props: {className: 'bx-soa-pp-company-smalltitle'},
-					text: this.params.SHOW_DELIVERY_PARENT_NAMES != 'N' ? item.NAME : item.OWN_NAME
+					children: [title, description]
 				});
 			}
 
 			itemNode = BX.create('DIV', {
 				props: {className: 'bx-soa-pp-company col-lg-4 col-sm-4 col-xs-6'},
-				children: [label, title],
+				children: [label, grahBlock],
 				events: {click: BX.proxy(this.selectDelivery, this)}
 			});
 			checked && BX.addClass(itemNode, 'bx-selected');

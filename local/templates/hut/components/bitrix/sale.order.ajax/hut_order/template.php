@@ -402,27 +402,27 @@ else
 						<div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
 					</div>
 					<div class="bx-soa-section-content container-fluid"></div>
+                    <!--	DELIVERY BLOCK	-->
+                    <div id="bx-soa-delivery" data-visited="false" class="bx-soa-section bx-active">
+                        <div class="bx-soa-section-title-container">
+                            <h2 class="bx-soa-section-title col-sm-9">
+                                <span class="bx-soa-section-title-count"></span><?=$arParams['MESS_DELIVERY_BLOCK_NAME']?>
+                            </h2>
+                            <div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+                        </div>
+                        <div class="bx-soa-section-content container-fluid"></div>
+                    </div>
+                    <!--	PICKUP BLOCK	-->
+                    <div id="bx-soa-pickup" data-visited="false" class="bx-soa-section" style="display:none">
+                        <div class="bx-soa-section-title-container">
+                            <h2 class="bx-soa-section-title col-sm-9">
+                                <span class="bx-soa-section-title-count"></span>
+                            </h2>
+                            <div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
+                        </div>
+                        <div class="bx-soa-section-content container-fluid"></div>
+                    </div>
 				</div>
-                <!--	DELIVERY BLOCK	-->
-                <div id="bx-soa-delivery" data-visited="false" class="bx-soa-section bx-active">
-                    <div class="bx-soa-section-title-container">
-                        <h2 class="bx-soa-section-title col-sm-9">
-                            <span class="bx-soa-section-title-count"></span><?=$arParams['MESS_DELIVERY_BLOCK_NAME']?>
-                        </h2>
-                        <div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
-                    </div>
-                    <div class="bx-soa-section-content container-fluid"></div>
-                </div>
-                <!--	PICKUP BLOCK	-->
-                <div id="bx-soa-pickup" data-visited="false" class="bx-soa-section" style="display:none">
-                    <div class="bx-soa-section-title-container">
-                        <h2 class="bx-soa-section-title col-sm-9">
-                            <span class="bx-soa-section-title-count"></span>
-                        </h2>
-                        <div class="col-xs-12 col-sm-3 text-right"><a href="" class="bx-soa-editstep"><?=$arParams['MESS_EDIT']?></a></div>
-                    </div>
-                    <div class="bx-soa-section-content container-fluid"></div>
-                </div>
 				<?php
 				if ($arParams['DELIVERY_TO_PAYSYSTEM'] === 'p2d'):
 				?>
@@ -452,6 +452,23 @@ else
 				<?php
 				endif;
 				?>
+                <div id="bx-promo-block" class="bx-soa-section bx-active">
+                    <div class="bx-soa-section-title-container">
+                        <h2 class="bx-soa-section-title col-sm-9">
+                            <?=Loc::getMessage('PROMO_BLOCK_TITLE')?>
+                        </h2>
+                    </div>
+                    <div class="bx-soa-section-content">
+                        <div class="bx-soa-coupon">
+                            <div class="bx-soa-coupon-block">
+                                <div class="bx-soa-coupon-input">
+                                    <input class="form-control bx-ios-fix" type="text">
+                                </div>
+                                <span class="bx-soa-coupon-item"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				<!--	BUYER PROPS BLOCK	-->
 				<div id="bx-soa-properties" data-visited="false" class="bx-soa-section bx-active">
 					<div class="bx-soa-section-title-container">

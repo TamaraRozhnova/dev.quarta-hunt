@@ -442,3 +442,20 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 		});
 	}
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+	let fakeLocationInput = document.querySelector('.bx-ui-sls-fake');
+	let deliveryBlock = document.getElementById('bx-soa-delivery');
+
+	if (fakeLocationInput && deliveryBlock) {
+		let defaultLocationInputTitle = 'Введите название ...';
+
+		fakeLocationInput.addEventListener('keyup', function () {
+			if (this.title == defaultLocationInputTitle || this.title == '') {
+				deliveryBlock.style.display = 'none';
+			} else {
+				deliveryBlock.style.display = 'block';
+			}
+		});
+	}
+});
