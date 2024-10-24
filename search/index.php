@@ -19,8 +19,8 @@ $APPLICATION->IncludeComponent(
 		"ELEMENT_SORT_ORDER" => "desc",
 		"ELEMENT_SORT_FIELD2" => "rank",
 		"ELEMENT_SORT_ORDER2" => "desc",
-		"HIDE_NOT_AVAILABLE" => "Y",
-		"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
+		"HIDE_NOT_AVAILABLE" => "L",
+		"HIDE_NOT_AVAILABLE_OFFERS" => "N",
 		"PAGE_ELEMENT_COUNT" => "20",
 		"LINE_ELEMENT_COUNT" => "1",
         "PROPERTY_CODE" => array(

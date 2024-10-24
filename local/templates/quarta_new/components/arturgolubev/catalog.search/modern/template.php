@@ -296,6 +296,7 @@ $uriString = $request->getRequestUri();
                 </div>
 
                 <?php
+
                 if ($tab == null || $tab == 'catalog') {
                     $APPLICATION->IncludeComponent(
                         "bitrix:catalog.section",
