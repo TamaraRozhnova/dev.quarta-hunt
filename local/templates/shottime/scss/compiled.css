@@ -1065,7 +1065,7 @@ input[type=checkbox]:checked + .ui-radio {
   max-height: 0;
   transition: max-height 0.35s ease;
   z-index: 140;
-  overflow: hidden;
+  overflow: auto;
 }
 @media screen and (max-width: 743px) {
   .nav-catalog {

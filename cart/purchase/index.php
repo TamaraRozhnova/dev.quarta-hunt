@@ -9,7 +9,7 @@ $APPLICATION->SetTitle("Корзина");
 ?>
 
 <?$APPLICATION->IncludeComponent(
-	"bitrix:sale.order.ajax", 
+	"quarta:sale.order.ajax",
 	"bootstrap_v4", 
 	array(
 		"ACTION_VARIABLE" => "soa-action",
