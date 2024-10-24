@@ -110,8 +110,8 @@ $uriString = $request->getRequestUri();
                 $arElements = array_values($arElements);
 
                 if ($arParams["ELEMENT_SORT_FIELD"] == 'rank') {
-                    $arParams["ELEMENT_SORT_FIELD"] = "ID";
-                    $arParams["ELEMENT_SORT_ORDER"] = $arElements;
+                    $sortField = "ID";
+                    $sortDirection = $arElements;
                 }
 
                 $uriString = $request->getRequestUri();
