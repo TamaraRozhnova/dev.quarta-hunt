@@ -23,7 +23,15 @@ if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMO
 } else {
 	$basketAction = ($arParams['SECTION_ADD_TO_BASKET_ACTION'] ?? '');
 }
-
+$APPLICATION->IncludeComponent(
+	"bitrix:breadcrumb",
+	"breadcrumb",
+	array(
+		"PATH" => "",
+		"SITE_ID" => "h1",
+		"START_FROM" => "0"
+	)
+);
 $APPLICATION->IncludeComponent(
 	"arturgolubev:catalog.search",
 	"search",
