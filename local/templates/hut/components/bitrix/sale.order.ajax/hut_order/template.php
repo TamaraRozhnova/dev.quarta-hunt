@@ -462,7 +462,8 @@ else
                         <div class="bx-soa-coupon">
                             <div class="bx-soa-coupon-block">
                                 <div class="bx-soa-coupon-input">
-                                    <input class="form-control bx-ios-fix" type="text">
+                                    <input class="form-control bx-ios-fix" type="text" placeholder="Введите промокод">
+                                    <div id="activate-coupon"><?= Loc::getMessage('ACTIVATE_COUPON_BTN') ?></div>
                                 </div>
                                 <span class="bx-soa-coupon-item"></span>
                             </div>

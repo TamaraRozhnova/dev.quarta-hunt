@@ -114,6 +114,8 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			this.propsBlockNode = BX(parameters.propsBlockId);
 			this.propsHiddenBlockNode = BX(parameters.propsBlockId + '-hidden');
 
+			this.addEventListenerNewCoupon();
+
 			if (this.result.SHOW_AUTH)
 			{
 				this.authBlockNode.style.display = '';
@@ -4095,6 +4097,24 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			);
 		},
 
+		addEventListenerNewCoupon: function ()
+		{
+			let newCouponBlock = document.querySelector('#bx-promo-block input');
+			let activateCouponBtn = document.getElementById('activate-coupon');
+
+			if (newCouponBlock && activateCouponBtn) {
+				let that = this;
+				activateCouponBtn.addEventListener('click', function (event) {
+					let couponValue = newCouponBlock.value;
+
+					if (couponValue) {
+						that.sendRequest('enterCoupon', couponValue);
+						newCouponBlock.value = '';
+					}
+				});
+			}
+		},
+
 		editCouponsFade: function(basketItemsNode)
 		{
 			if (this.result.COUPON_LIST.length < 1)
@@ -4474,9 +4494,9 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				this.regionBlockNotEmpty = true;
 
 				labelHtml = '<label class="bx-soa-custom-label" for="soa-property-' + parseInt(locationId) + '">'
-					+ (currentProperty.REQUIRED == 'Y' ? '<span class="bx-authform-starrequired">*</span> ' : '')
 					+ BX.util.htmlspecialchars(currentProperty.NAME)
 					+ (currentProperty.DESCRIPTION.length ? ' <small>(' + BX.util.htmlspecialchars(currentProperty.DESCRIPTION) + ')</small>' : '')
+					+ (currentProperty.REQUIRED == 'Y' ? '<span class="bx-authform-starrequired">*</span> ' : '')
 					+ '</label>';
 
 				currentLocation = location[0].output;
@@ -6774,12 +6794,21 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 			else
 			{
-				BX.addClass(propsItemNode, "form-group bx-soa-customer-field");
+				let dopClass = 'default';
+
+				if (property.getId() == 2 || property.getId() == 3) {
+					dopClass = 'flex';
+				}
+
+				let className = 'form-group bx-soa-customer-field ' + dopClass;
+
+				BX.addClass(propsItemNode, className);
+
+				textHtml += BX.util.htmlspecialchars(property.getName());
 
 				if (property.isRequired())
 					textHtml += '<span class="bx-authform-starrequired">*</span> ';
 
-				textHtml += BX.util.htmlspecialchars(property.getName());
 				if (propertyDesc.length && propertyType != 'STRING' && propertyType != 'NUMBER' && propertyType != 'DATE')
 					textHtml += ' <small>(' + BX.util.htmlspecialchars(propertyDesc) + ')</small>';
 
