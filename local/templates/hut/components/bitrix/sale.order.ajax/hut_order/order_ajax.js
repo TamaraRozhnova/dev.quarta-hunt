@@ -7962,30 +7962,30 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 		editPropsComment: function(propsNode)
 		{
-			var propsCommentContainer, label, input, div;
-
-			propsCommentContainer = BX.create('DIV', {props: {className: 'col-sm-12'}});
-			label = BX.create('LABEL', {
-				attrs: {for: 'orderDescription'},
-				props: {className: 'bx-soa-customer-label'},
-				html: this.params.MESS_ORDER_DESC
-			});
-			input = BX.create('TEXTAREA', {
-				props: {
-					id: 'orderDescription',
-					cols: '4',
-					className: 'form-control bx-soa-customer-textarea bx-ios-fix',
-					name: 'ORDER_DESCRIPTION'
-				},
-				text: this.result.ORDER_DESCRIPTION ? this.result.ORDER_DESCRIPTION : ''
-			});
-			div = BX.create('DIV', {
-				props: {className: 'form-group bx-soa-customer-field'},
-				children: [label, input]
-			});
-
-			propsCommentContainer.appendChild(div);
-			propsNode.appendChild(propsCommentContainer);
+			// var propsCommentContainer, label, input, div;
+			//
+			// propsCommentContainer = BX.create('DIV', {props: {className: 'col-sm-12'}});
+			// label = BX.create('LABEL', {
+			// 	attrs: {for: 'orderDescription'},
+			// 	props: {className: 'bx-soa-customer-label'},
+			// 	html: this.params.MESS_ORDER_DESC
+			// });
+			// input = BX.create('TEXTAREA', {
+			// 	props: {
+			// 		id: 'orderDescription',
+			// 		cols: '4',
+			// 		className: 'form-control bx-soa-customer-textarea bx-ios-fix',
+			// 		name: 'ORDER_DESCRIPTION'
+			// 	},
+			// 	text: this.result.ORDER_DESCRIPTION ? this.result.ORDER_DESCRIPTION : ''
+			// });
+			// div = BX.create('DIV', {
+			// 	props: {className: 'form-group bx-soa-customer-field'},
+			// 	children: [label, input]
+			// });
+			//
+			// propsCommentContainer.appendChild(div);
+			// propsNode.appendChild(propsCommentContainer);
 		},
 
 		editTotalBlock: function()

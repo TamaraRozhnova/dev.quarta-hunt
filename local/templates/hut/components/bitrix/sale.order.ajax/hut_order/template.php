@@ -497,7 +497,10 @@ else
 				<?php
 				endif;
 				?>
-
+                <div id="bx-soa-total">
+                    <div class="bx-soa-cart-total-ghost"></div>
+                    <div class="bx-soa-cart-total"></div>
+                </div>
 				<!--	ORDER SAVE BLOCK	-->
 				<div id="bx-soa-orderSave">
 					<div class="checkbox">
@@ -541,10 +544,14 @@ else
 			</div>
 
 			<!--	SIDEBAR BLOCK	-->
-			<div id="bx-soa-total" class="col-sm-3 bx-soa-sidebar">
-				<div class="bx-soa-cart-total-ghost"></div>
-				<div class="bx-soa-cart-total"></div>
-			</div>
+            <div class="col-sm-3 bx-soa-sidebar back-to-cart-block">
+                <a href="/cart/">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.2071 4.29289C13.5976 4.68342 13.5976 5.31658 13.2071 5.70711L8.91421 10L13.2071 14.2929C13.5976 14.6834 13.5976 15.3166 13.2071 15.7071C12.8166 16.0976 12.1834 16.0976 11.7929 15.7071L6.79289 10.7071C6.40237 10.3166 6.40237 9.68342 6.79289 9.29289L11.7929 4.29289C12.1834 3.90237 12.8166 3.90237 13.2071 4.29289Z" fill="#EC6624"/>
+                    </svg>
+                    <span><?= Loc::getMessage('BACK_TO_CART') ?></span>
+                </a>
+            </div>
 		</div>
 	</form>
 

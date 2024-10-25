@@ -50,7 +50,8 @@
 .bx-soa-editstep,
 .bx-soa-location-input-container label,
 .bx-soa-coupon,
-#bx-soa-delivery .bx-soa-section-title-container {
+#bx-soa-delivery .bx-soa-section-title-container,
+#bonus_payment_block {
     display: none !important;
 }
 
@@ -510,4 +511,17 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 21.6px;
+}
+
+.back-to-cart-block a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21.6px;
+    width: fit-content;
 }
