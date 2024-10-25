@@ -26,7 +26,12 @@ $this->setFrameMode(true);
 					<img src="<?=SITE_TEMPLATE_PATH?>/img/map.svg" alt="">
 				</div>
 				<div class="contacts__inf">
-					<div class="contacts__addr"><?=$arItem['NAME']?></div>
+					<div class="contacts__addr">
+						<?=$arItem['NAME']?>
+						<?if(isset($arItem['PROPERTIES']['OPENING_SOON']['VALUE']) && $arItem['PROPERTIES']['OPENING_SOON']['VALUE'] =='Да'):?>
+						<span>Скоро открытие</span>
+						<?endif?>
+					</div>
 					<?if(isset($arItem['PROPERTIES']['PHONE']['VALUE']) && !empty($arItem['PROPERTIES']['PHONE']['VALUE'])):?>
 					<a href="tel:<?=$arItem['PROPERTIES']['PHONE']['VALUE']?>" class="contacts__link"><?=$arItem['PROPERTIES']['PHONE']['VALUE']?></a>
 					<?endif?>

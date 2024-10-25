@@ -98,7 +98,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                             "ELEMENT_SORT_ORDER2" => "",
                             "ENLARGE_PRODUCT" => "STRICT",
                             "FILTER_NAME" => "arrProductFilter",
-                            "HIDE_NOT_AVAILABLE" => "Y",
+                            "HIDE_NOT_AVAILABLE" => "L",
                             "HIDE_NOT_AVAILABLE_OFFERS" => "N",
                             "IBLOCK_ID" => "16",
                             "IBLOCK_TYPE" => "1c_catalog",

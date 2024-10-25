@@ -1,6 +1,11 @@
-<?php use General\User;
+<?php
+
+/** @var  $APPLICATION */
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+
+use General\User;
+
 $APPLICATION->SetPageProperty("title", "Результаты поиска по сайту quarta-hunt.ru");
 
 $APPLICATION->SetTitle("Результаты поиска по сайту quarta-hunt.ru");
@@ -8,6 +13,7 @@ $APPLICATION->AddChainItem('Результаты поиска');
 
 $user = new User();
 $priceCode = $user->getUserPriceCode();
+
 $APPLICATION->IncludeComponent(
 	"arturgolubev:catalog.search",
 	"modern",
@@ -15,12 +21,12 @@ $APPLICATION->IncludeComponent(
 		"COMPONENT_TEMPLATE" => ".default",
 		"IBLOCK_TYPE" => "1c_catalog",
 		"IBLOCK_ID" => "16",
-		"ELEMENT_SORT_FIELD" => "CATALOG_AVAILABLE",
+		"ELEMENT_SORT_FIELD" => "rank",
 		"ELEMENT_SORT_ORDER" => "desc",
-		"ELEMENT_SORT_FIELD2" => "rank",
+		"ELEMENT_SORT_FIELD2" => "CATALOG_AVAILABLE",
 		"ELEMENT_SORT_ORDER2" => "desc",
-		"HIDE_NOT_AVAILABLE" => "Y",
-		"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
+		"HIDE_NOT_AVAILABLE" => "L",
+		"HIDE_NOT_AVAILABLE_OFFERS" => "N",
 		"PAGE_ELEMENT_COUNT" => "20",
 		"LINE_ELEMENT_COUNT" => "1",
         "PROPERTY_CODE" => array(
@@ -53,7 +59,7 @@ $APPLICATION->IncludeComponent(
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
 		"DISPLAY_COMPARE" => "N",
-		"PRICE_CODE" => array($priceCode),
+        "PRICE_CODE" => [$priceCode],
 		"USE_PRICE_COUNT" => "N",
 		"SHOW_PRICE_COUNT" => "1",
 		"PRICE_VAT_INCLUDE" => "Y",
