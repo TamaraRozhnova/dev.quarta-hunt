@@ -124,18 +124,18 @@ use \Bitrix\Main\Localization\Loc;
 						<span class="product-item-price-current <?= ($price['RATIO_PRICE'] < $price['RATIO_BASE_PRICE'] ? 'new-price' : '') ?>" id="<?= $itemIds['PRICE'] ?>">
 							<?
 							if (!empty($price)) {
-								if ($arParams['PRODUCT_DISPLAY_MODE'] === 'N' && $haveOffers) {
-									echo Loc::getMessage(
-										'CT_BCI_TPL_MESS_PRICE_SIMPLE_MODE',
-										array(
-											'#PRICE#' => $price['PRINT_RATIO_PRICE'],
-											'#VALUE#' => $measureRatio,
-											'#UNIT#' => $minOffer['ITEM_MEASURE']['TITLE']
-										)
-									);
-								} else {
-									echo $price['PRINT_RATIO_PRICE'];
-								}
+								// if ($arParams['PRODUCT_DISPLAY_MODE'] === 'N' && $haveOffers) {
+								// 	echo Loc::getMessage(
+								// 		'CT_BCI_TPL_MESS_PRICE_SIMPLE_MODE',
+								// 		array(
+								// 			'#PRICE#' => $price['PRINT_RATIO_PRICE'],
+								// 			'#VALUE#' => $measureRatio,
+								// 			'#UNIT#' => $minOffer['ITEM_MEASURE']['TITLE']
+								// 		)
+								// 	);
+								// } else {
+								echo $price['PRINT_RATIO_PRICE'];
+								// }
 							}
 							?>
 						</span>

@@ -149,6 +149,7 @@
     this.obBasketActions = null;
     this.obNotAvail = null;
     this.obSubscribe = null;
+    this.priceBlock = null;
     this.obSkuProps = null;
     this.obDescription = null;
     this.obMainSkuProps = null;
@@ -446,6 +447,8 @@
       if (this.config.useSubscribe) {
         this.obSubscribe = BX(this.visual.SUBSCRIBE_LINK);
       }
+
+      this.priceBlock = document.querySelector(".element__price");
 
       this.obTabs = BX(this.visual.TABS_ID);
       this.obTabContainers = BX(this.visual.TAB_CONTAINERS_ID);
@@ -761,6 +764,7 @@
       }
 
       this.bindSizeChangeLoggler();
+      this.bindCopyLinkHandler();
     },
 
     bindSizeChangeLoggler: function () {
@@ -789,6 +793,20 @@
           });
         });
       }
+    },
+
+    bindCopyLinkHandler: function () {
+      let button = document.querySelector(".copy-link");
+      let tooltip = document.querySelector(".element__tooltip");
+
+      button.addEventListener("click", function (evt) {
+        evt.preventDefault();
+        navigator.clipboard.writeText(this.href);
+        tooltip.style.display = "inline-flex";
+        setTimeout(() => {
+          tooltip.style.display = "none";
+        }, 3000);
+      });
     },
 
     initConfig: function () {
@@ -2023,6 +2041,7 @@
             BX.style(this.smallCardNodes.notAvailableButton, "display", "none");
 
           this.obSubscribe && BX.style(this.obSubscribe, "display", "none");
+          this.priceBlock.classList.remove("gray");
         } else {
           this.node.quantity && BX.style(this.node.quantity, "display", "none");
 
@@ -2042,8 +2061,10 @@
               BX.style(this.obSubscribe, "display", "");
               this.obSubscribe.setAttribute("data-item", newOffer.ID);
               BX(this.visual.SUBSCRIBE_LINK + "_hidden").click();
+              this.priceBlock.classList.add("gray");
             } else {
               BX.style(this.obSubscribe, "display", "none");
+              this.priceBlock.classList.remove("gray");
             }
           }
         }

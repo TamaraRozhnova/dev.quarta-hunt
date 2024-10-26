@@ -500,8 +500,8 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 									<?= buildSVG('tg', SITE_TEMPLATE_PATH . ICON_PATH) ?>
 								</a>
 							</li>
-							<li>
-								<a href="#" class="copy-link">
+							<li class="element__share-item">
+								<a href="https://<?= $_SERVER['HTTP_HOST'] . $APPLICATION->getCurPage() ?>" class="copy-link">
 									<?= buildSVG('link', SITE_TEMPLATE_PATH . ICON_PATH) ?>
 								</a>
 								<span class="element__tooltip" style="display: none">

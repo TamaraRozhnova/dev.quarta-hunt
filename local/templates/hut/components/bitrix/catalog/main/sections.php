@@ -163,7 +163,7 @@ $this->SetViewTarget('catalog_banner'); ?>
 				"SHOW_MAX_QUANTITY" => "N",
 				"SHOW_OLD_PRICE" => $arParams['SHOW_OLD_PRICE'],
 				"SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
-				"SHOW_SLIDER" => $arParams['TOP_SHOW_SLIDER'],
+				"SHOW_SLIDER" => 'N',
 				"SLIDER_INTERVAL" => $arParams['TOP_SLIDER_INTERVAL'] ?? '',
 				"SLIDER_PROGRESS" => $arParams['TOP_SLIDER_PROGRESS'] ?? '',
 				"TEMPLATE_THEME" => ($arParams['TEMPLATE_THEME'] ?? ''),
