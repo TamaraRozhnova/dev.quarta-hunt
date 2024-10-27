@@ -42,3 +42,4 @@ $MESS['LINK_COPYED'] = 'Ссылка скопирована';
 $MESS['DELIVERY_TIME'] = 'Доставим <span>DATE</span> или позже';
 $MESS['DELIVERY_POINT'] = 'В пункт выдачи — бесплатно при заказе от ';
 $MESS['DELIVERY_COURIER'] = 'Курьером по адресу — бесплатно от ';
+$MESS["CATALOG_RECOMMENDED_BY_LINK"] = "Весь комплект";

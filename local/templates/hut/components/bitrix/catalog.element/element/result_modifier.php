@@ -40,3 +40,24 @@ $arResult['HUT_SETTINGS'] = \Bitrix\Iblock\Elements\ElementHutsettingsTable::get
     'select' => ['ID', 'FREE_POINT_DELIVERY_' => 'FREE_POINT_DELIVERY', 'FREE_COURIER_DELIVERY_' => 'FREE_COURIER_DELIVERY'],
     'filter' => ['=ACTIVE' => 'Y'],
 ])->fetch();
+
+// Температурный режим
+if ($arResult['PROPERTIES']['TEMPERATURE']['VALUE']) {
+    $entity =  HighloadBlockTable::compileEntity(TEMPERATURE_HL_ENTITY)->getDataClass();
+
+    $query =  $entity::query()
+        ->addSelect('UF_FILE')
+        ->where('UF_XML_ID', $arResult['PROPERTIES']['TEMPERATURE']['VALUE'])
+        ?->fetch();
+
+    if (!empty($query)) {
+        $arResult['TEMP_IMG'] = CFile::GetPath($query['UF_FILE']);
+    }
+}
+
+// Таблица размеров
+if ($arResult['PROPERTIES']['SIZE_TABLE']['VALUE']) {
+    $arResult['SIZE_TABLE'] = \Bitrix\Iblock\Elements\ElementHutsizesTable::getByPrimary($arResult['PROPERTIES']['SIZE_TABLE']['VALUE'], [
+        'select' => ['ID', 'NAME', 'DETAIL_TEXT'],
+    ])->fetch();
+}
