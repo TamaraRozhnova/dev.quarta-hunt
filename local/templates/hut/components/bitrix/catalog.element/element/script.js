@@ -160,7 +160,6 @@
       value: null,
     };
     this.obCompare = null;
-    this.obTabsPanel = null;
 
     this.node = {};
     // top panel small card
@@ -452,7 +451,6 @@
 
       this.obTabs = BX(this.visual.TABS_ID);
       this.obTabContainers = BX(this.visual.TAB_CONTAINERS_ID);
-      this.obTabsPanel = BX(this.visual.TABS_PANEL_ID);
 
       this.smallCardNodes.panel = BX(this.visual.SMALL_CARD_PANEL_ID);
       if (this.smallCardNodes.panel) {
@@ -1225,14 +1223,11 @@
     },
 
     initTabs: function () {
-      var tabs = this.getEntities(this.obTabs, "tab"),
-        panelTabs = this.getEntities(this.obTabsPanel, "tab");
+      var tabs = this.getEntities(this.obTabs, "tab");
 
       var tabValue,
         targetTab,
         haveActive = false;
-
-      if (tabs.length !== panelTabs.length) return;
 
       for (var i in tabs) {
         if (tabs.hasOwnProperty(i) && BX.type.isDomNode(tabs[i])) {
@@ -1243,16 +1238,13 @@
             );
             if (BX.type.isDomNode(targetTab)) {
               BX.bind(tabs[i], "click", BX.proxy(this.changeTab, this));
-              BX.bind(panelTabs[i], "click", BX.proxy(this.changeTab, this));
 
               if (!haveActive) {
                 BX.addClass(tabs[i], "active");
-                BX.addClass(panelTabs[i], "active");
                 BX.show(targetTab);
                 haveActive = true;
               } else {
                 BX.removeClass(tabs[i], "active");
-                BX.removeClass(panelTabs[i], "active");
                 BX.hide(targetTab);
               }
             }
@@ -1410,8 +1402,7 @@
       var targetTabValue =
           BX.proxy_context && BX.proxy_context.getAttribute("data-value"),
         containers,
-        tabs,
-        panelTabs;
+        tabs;
 
       if (!BX.hasClass(BX.proxy_context, "active") && targetTabValue) {
         containers = this.getEntities(this.obTabContainers, "tab-container");
@@ -1429,16 +1420,13 @@
         }
 
         tabs = this.getEntities(this.obTabs, "tab");
-        panelTabs = this.getEntities(this.obTabsPanel, "tab");
 
         for (i in tabs) {
           if (tabs.hasOwnProperty(i) && BX.type.isDomNode(tabs[i])) {
             if (tabs[i].getAttribute("data-value") === targetTabValue) {
               BX.addClass(tabs[i], "active");
-              BX.addClass(panelTabs[i], "active");
             } else {
               BX.removeClass(tabs[i], "active");
-              BX.removeClass(panelTabs[i], "active");
             }
           }
         }
