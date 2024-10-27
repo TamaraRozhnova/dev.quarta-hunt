@@ -8001,6 +8001,10 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			BX.cleanNode(this.totalInfoBlockNode);
 
+			let basketPositionCount = total.BASKET_POSITIONS + ' шт';
+
+			this.totalInfoBlockNode.appendChild(this.createTotalUnit(BX.message('TOTAL_BASKET_COUNT'), basketPositionCount));
+
 			if (parseFloat(total.ORDER_PRICE) === 0)
 			{
 				priceHtml = this.params.MESS_PRICE_FREE;
@@ -8008,12 +8012,11 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 			else
 			{
-				priceHtml = total.ORDER_PRICE_FORMATED;
-			}
-
-			if (this.options.showPriceWithoutDiscount)
-			{
-				priceHtml += '<br><span class="bx-price-old">' + total.PRICE_WITHOUT_DISCOUNT + '</span>';
+				if (this.options.showPriceWithoutDiscount) {
+					priceHtml = '<span class="bx-price-old">' + total.PRICE_WITHOUT_DISCOUNT + '</span>';
+				} else {
+					priceHtml = '<span class="bx-price">' + total.ORDER_PRICE_FORMATED + '</span>';
+				}
 			}
 
 			this.totalInfoBlockNode.appendChild(this.createTotalUnit(BX.message('SOA_SUM_SUMMARY'), priceHtml, params));
@@ -8067,18 +8070,18 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				}
 			}
 
-			if (this.result.DELIVERY.length)
-			{
-				this.totalInfoBlockNode.appendChild(this.createTotalUnit(BX.message('SOA_SUM_DELIVERY'), deliveryValue, params));
-			}
-
 			if (this.options.showDiscountPrice)
 			{
 				discText = this.params.MESS_ECONOMY;
 				if (total.DISCOUNT_PERCENT_FORMATED && parseFloat(total.DISCOUNT_PERCENT_FORMATED) > 0)
 					discText += total.DISCOUNT_PERCENT_FORMATED;
 
-				this.totalInfoBlockNode.appendChild(this.createTotalUnit(discText + ':', total.DISCOUNT_PRICE_FORMATED, {highlighted: true}));
+				this.totalInfoBlockNode.appendChild(this.createTotalUnit(discText, '-' + total.DISCOUNT_PRICE_FORMATED, {highlighted: true}));
+			}
+
+			if (this.result.DELIVERY.length)
+			{
+				this.totalInfoBlockNode.appendChild(this.createTotalUnit(BX.message('SOA_SUM_DELIVERY'), deliveryValue, params));
 			}
 
 			if (this.options.showPayedFromInnerBudget)

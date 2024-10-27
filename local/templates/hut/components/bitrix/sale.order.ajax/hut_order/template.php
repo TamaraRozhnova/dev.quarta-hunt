@@ -503,31 +503,18 @@ else
                 </div>
 				<!--	ORDER SAVE BLOCK	-->
 				<div id="bx-soa-orderSave">
-					<div class="checkbox">
-						<?php
-						if ($arParams['USER_CONSENT'] === 'Y')
-						{
-							$APPLICATION->IncludeComponent(
-								'bitrix:main.userconsent.request',
-								'',
-								array(
-									'ID' => $arParams['USER_CONSENT_ID'],
-									'IS_CHECKED' => $arParams['USER_CONSENT_IS_CHECKED'],
-									'IS_LOADED' => $arParams['USER_CONSENT_IS_LOADED'],
-									'AUTO_SAVE' => 'N',
-									'SUBMIT_EVENT_NAME' => 'bx-soa-order-save',
-									'REPLACE' => array(
-										'button_caption' => $arParams['~MESS_ORDER'] ?? $arParams['MESS_ORDER'],
-										'fields' => $arResult['USER_CONSENT_PROPERTY_DATA']
-									)
-								)
-							);
-						}
-						?>
-					</div>
-					<a href="javascript:void(0)" style="margin: 10px 0" class="pull-right btn btn-default btn-lg hidden-xs" data-save-button="true">
-						<?=$arParams['MESS_ORDER']?>
-					</a>
+					<div class="personal-request">
+                        <?= Loc::getMessage('PERSONAL_REQUEST') ?>
+                    </div>
+                    <div class="buttons-block">
+                        <a href="javascript:void(0)" style="margin: 10px 0" class="btn btn-default btn-lg hidden-xs" data-save-button="true">
+                            <?=$arParams['MESS_ORDER']?>
+                        </a>
+                        <div class="need-call">
+                            <input type="checkbox" checked id="need-call" name="need-call" class="checkbox-order">
+                            <label for="need-call"><?= Loc::getMessage('NEED_CALL_TITLE') ?></label>
+                        </div>
+                    </div>
 				</div>
 
 				<div style="display: none;">
