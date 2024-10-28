@@ -141,6 +141,9 @@
   text-align: left;
   color: #004989;
   height: 100%;
+  max-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modern-promo-slider__title {
@@ -178,6 +181,9 @@
   line-height: 16.8px;
   text-align: left;
   color: #808D9A;
+  max-height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modern-promo-slider__addit {
