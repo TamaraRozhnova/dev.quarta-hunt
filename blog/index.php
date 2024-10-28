@@ -16,7 +16,6 @@ if ($arUser && $arUser['UF_TYPE'] == 'wholesale') {
 if ($itsUrFace) {
 	$GLOBALS['arrFilterNews'] = ['!PROPERTY_HIDE_ON_UR_VALUE' => 'Y'];
 }
-
 ?>
 
 <?$APPLICATION->IncludeComponent(
