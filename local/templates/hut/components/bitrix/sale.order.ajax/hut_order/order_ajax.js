@@ -3386,7 +3386,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			if (this.params.SHOW_BASKET_HEADERS === 'Y')
 			{
-				this.editBasketItemsHeader(basketItemsNode);
+				// this.editBasketItemsHeader(basketItemsNode);
 			}
 
 			for (i in this.result.GRID.ROWS)
@@ -3689,13 +3689,16 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				}
 			}
 
+			let sectionName = data.SECTION;
+
 			return BX.create('DIV', {
 				props: {className: 'bx-soa-item-content'},
 				children: propsNodes.length ? [
 					BX.create('DIV', {props: {className: 'bx-soa-item-title'}, html: titleHtml}),
 					BX.create('DIV', {props: {className: 'bx-scu-container'}, children: propsNodes})
 				] : [
-					BX.create('DIV', {props: {className: 'bx-soa-item-title'}, html: titleHtml})
+					BX.create('DIV', {props: {className: 'bx-soa-item-title'}, html: titleHtml}),
+					BX.create('DIV', {props: {className: 'bx-soa-item-section'}, html: sectionName})
 				]
 			});
 		},
@@ -3812,7 +3815,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			}
 
 			return BX.create('DIV', {
-				props: {className: 'bx-soa-item-td bx-soa-item-properties' + (toRight ? ' bx-text-right' : '')},
+				props: {className: 'bx-soa-item-td bx-soa-item-properties' + (toRight ? ' bx-text-right' : '') + ' ' + column.id},
 				children: [
 					BX.create('DIV', {
 						props: {className: 'bx-soa-item-td-title visible-xs visible-sm'},

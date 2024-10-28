@@ -457,5 +457,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				deliveryBlock.style.display = 'block';
 			}
 		});
+
+		if (this.title != defaultLocationInputTitle || this.title != '') {
+			deliveryBlock.style.display = 'block';
+		}
 	}
 });

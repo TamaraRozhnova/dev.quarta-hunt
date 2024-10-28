@@ -662,3 +662,12 @@
     background-color: var(--color-green6);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.3751 5.12688C17.7656 5.5174 17.7656 6.15057 17.3751 6.54109L9.04174 14.8744C8.85421 15.062 8.59985 15.1673 8.33464 15.1673C8.06942 15.1673 7.81506 15.062 7.62753 14.8744L3.46086 10.7078C3.07034 10.3172 3.07034 9.68407 3.46086 9.29354C3.85139 8.90302 4.48455 8.90302 4.87508 9.29354L8.33464 12.7531L15.9609 5.12688C16.3514 4.73635 16.9846 4.73635 17.3751 5.12688Z' fill='white'/%3e%3c/svg%3e");
 }
+
+#bx-soa-basket .bx-soa-section-title {
+    width: 100% !important;
+}
+
+#bx-soa-basket .container-fluid::before,
+#bx-soa-basket .container-fluid::after {
+    display: none !important;
+}
