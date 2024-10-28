@@ -3305,7 +3305,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 						props: {className: 'bx-soa-table-fade'},
 						children: [
 							BX.create('DIV', {
-								style: {overflowX: 'auto', overflowY: 'hidden'},
 								children: [basketTable]
 							})
 						]
@@ -3468,25 +3467,25 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			if (this.options.showPreviewPicInBasket || this.options.showDetailPicInBasket)
 				mainColumns.push(this.createBasketItemImg(item.data));
 
-			mainColumns.push(this.createBasketItemContent(item.data));
+			mainColumns.push(this.createBasketItemContent(item.data, item, this.result.GRID.HEADERS));
 
 			for (i = 0; i < this.result.GRID.HEADERS.length; i++)
 			{
 				currentColumn = this.result.GRID.HEADERS[i];
 
-				if (currentColumn.id === 'NAME' || currentColumn.id === 'PREVIEW_PICTURE' || currentColumn.id === 'PROPS' || currentColumn.id === 'NOTES')
-					continue;
+				if (
+					currentColumn.id == 'DETAIL_PICTURE' ||
+					currentColumn.id == 'PRICE_FORMATED' ||
+					currentColumn.id == 'QUANTITY'
+				) {
+					otherColumns.push(this.createBasketItemColumn(currentColumn, item, active));
 
-				if (currentColumn.id === 'DETAIL_PICTURE' && !this.options.showPreviewPicInBasket)
-					continue;
-
-				otherColumns.push(this.createBasketItemColumn(currentColumn, item, active));
-
-				++basketColumnIndex;
-				if (basketColumnIndex == 4 && this.result.GRID.HEADERS[i + 1])
-				{
-					otherColumns.push(BX.create('DIV', {props: {className: 'bx-soa-item-nth-4p1'}}));
-					basketColumnIndex = 0;
+					++basketColumnIndex;
+					if (basketColumnIndex == 4 && this.result.GRID.HEADERS[i + 1])
+					{
+						otherColumns.push(BX.create('DIV', {props: {className: 'bx-soa-item-nth-4p1'}}));
+						basketColumnIndex = 0;
+					}
 				}
 			}
 
@@ -3505,7 +3504,6 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			cols = [
 				BX.create('DIV', {
 					props: {className: 'bx-soa-item-td'},
-					style: {minWidth: '300px'},
 					children: [
 						BX.create('DIV', {
 							props: {className: 'bx-soa-item-block'},
@@ -3650,57 +3648,75 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 			});
 		},
 
-		createBasketItemContent: function(data)
+		createBasketItemContent: function(data, item, collumns)
 		{
 			var itemName = data.NAME || '',
 				titleHtml = this.htmlspecialcharsEx(itemName),
 				props = data.PROPS || [],
-				propsNodes = [];
+				propsNodes = [],
+				itemCollumns = item.columns;
 
 			if (this.params.HIDE_DETAIL_PAGE_URL !== 'Y' && data.DETAIL_PAGE_URL && data.DETAIL_PAGE_URL.length)
 			{
 				titleHtml = '<a href="' + data.DETAIL_PAGE_URL + '">' + titleHtml + '</a>';
 			}
 
-			if (this.options.showPropsInBasket && props.length)
-			{
-				for (var i in props)
-				{
-					if (props.hasOwnProperty(i))
-					{
-						var name = props[i].NAME || '',
-							value = props[i].VALUE || '';
+			let propses = [];
 
-						propsNodes.push(
-							BX.create('DIV', {
-								props: {className: 'bx-soa-item-td-title'},
-								style: {textAlign: 'left'},
-								text: name
-							})
-						);
-						propsNodes.push(
-							BX.create('DIV', {
-								props: {className: 'bx-soa-item-td-text'},
-								style: {textAlign: 'left'},
-								text: value
-							})
-						);
+			for (let i = 0; i < collumns.length; i++) {
+				let currentCollumn = collumns[i];
+
+				if (
+					currentCollumn.id == 'NAME' ||
+					currentCollumn.id == 'PREVIEW_PICTURE' ||
+					currentCollumn.id == 'DETAIL_PICTURE' ||
+					currentCollumn.id == 'PROPS' ||
+					currentCollumn.id == 'PRICE_FORMATED' ||
+					currentCollumn.id == 'QUANTITY' ||
+					currentCollumn.id == 'SUM' ||
+					currentCollumn.id == 'PROPERTY_COLOR_CODE_VALUE'
+				) {
+					continue;
+				}
+
+				if (itemCollumns[currentCollumn.id][0] && itemCollumns[currentCollumn.id][0].value) {
+					let children = '';
+					if (currentCollumn.id == 'PROPERTY_COLOR_VALUE' && itemCollumns['PROPERTY_COLOR_CODE_VALUE'][0].value) {
+						children = BX.create('DIV', {props: {className: 'bx-soa-item-props-item_children'}, html: '', style: {backgroundColor: itemCollumns['PROPERTY_COLOR_CODE_VALUE'][0].value}});
 					}
+
+					let propsBlock = BX.create('DIV', {
+						props: {className: 'bx-soa-item-props-item'},
+						children: [
+							BX.create('DIV', {props: {className: 'bx-soa-item-props-item_title'}, html: currentCollumn.name + ':'}),
+							children,
+							BX.create('DIV', {props: {className: 'bx-soa-item-props-item_value'}, html: itemCollumns[currentCollumn.id][0].value})
+						]
+					});
+
+					propses.push(propsBlock);
 				}
 			}
 
 			let sectionName = data.SECTION;
 
-			return BX.create('DIV', {
+			let returnBlock = BX.create('DIV', {
 				props: {className: 'bx-soa-item-content'},
-				children: propsNodes.length ? [
+				children: [
 					BX.create('DIV', {props: {className: 'bx-soa-item-title'}, html: titleHtml}),
-					BX.create('DIV', {props: {className: 'bx-scu-container'}, children: propsNodes})
-				] : [
-					BX.create('DIV', {props: {className: 'bx-soa-item-title'}, html: titleHtml}),
-					BX.create('DIV', {props: {className: 'bx-soa-item-section'}, html: sectionName})
+					BX.create('DIV', {props: {className: 'bx-soa-item-section'}, html: sectionName}),
+					propses
 				]
 			});
+
+			returnBlock.appendChild(
+				BX.create('DIV', {
+					props: {className: 'bx-item-props'},
+					children: propses
+				})
+			);
+
+			return returnBlock;
 		},
 
 		createBasketItemColumn: function(column, allData, active)
@@ -3715,10 +3731,15 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 
 			if (column.id === 'PRICE_FORMATED')
 			{
-				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price'}, html: data.PRICE_FORMATED}));
+				let addDopClass = '';
+
+				if (parseFloat(data.DISCOUNT_PRICE) > 0) {
+					addDopClass = 'have-sale';
+				}
+
+				textNode.appendChild(BX.create('STRONG', {props: {className: 'bx-price ' + addDopClass}, html: data.PRICE_FORMATED}));
 				if (parseFloat(data.DISCOUNT_PRICE) > 0)
 				{
-					textNode.appendChild(BX.create('BR'));
 					textNode.appendChild(BX.create('STRONG', {
 						props: {className: 'bx-price-old'},
 						html: data.BASE_PRICE_FORMATED

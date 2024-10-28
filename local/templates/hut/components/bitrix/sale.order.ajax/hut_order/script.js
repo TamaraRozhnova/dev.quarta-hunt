@@ -462,4 +462,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			deliveryBlock.style.display = 'block';
 		}
 	}
+
+	let clearSlsBtn = document.querySelector('.bx-ui-sls-clear');
+
+	if (clearSlsBtn && deliveryBlock) {
+		clearSlsBtn.addEventListener('click', function () {
+			deliveryBlock.style.display = 'none';
+		});
+	}
 });
