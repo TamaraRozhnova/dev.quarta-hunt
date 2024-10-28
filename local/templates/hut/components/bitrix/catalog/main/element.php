@@ -309,7 +309,7 @@ $isSidebar = ($arParams['SIDEBAR_DETAIL_SHOW'] == 'Y' && !empty($arParams['SIDEB
 			$obCache->EndDataCache($recommendedData);
 		}
 
-		if (!empty($recommendedData)) {
+		/*if (!empty($recommendedData)) {
 			if (!empty($recommendedData['IBLOCK_LINK']) || !empty($recommendedData['ALL_LINK'])) {
 				$APPLICATION->IncludeComponent(
 					'bitrix:catalog.section',
@@ -649,7 +649,7 @@ $isSidebar = ($arParams['SIDEBAR_DETAIL_SHOW'] == 'Y' && !empty($arParams['SIDEB
 				</div>
 	<?
 			}
-		}
+		}*/
 	}
 	?>
 </div>

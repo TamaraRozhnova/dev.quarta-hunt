@@ -24,6 +24,7 @@
 }
 
 body {
+  color: var(--color-dark6);
 }
 
 a {

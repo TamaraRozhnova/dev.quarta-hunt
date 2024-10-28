@@ -74,8 +74,7 @@ $itemIds = array(
 	'SUBSCRIBE_LINK' => $mainId . '_subscribe',
 	'TABS_ID' => $mainId . '_tabs',
 	'TAB_CONTAINERS_ID' => $mainId . '_tab_containers',
-	'SMALL_CARD_PANEL_ID' => $mainId . '_small_card_panel',
-	'TABS_PANEL_ID' => $mainId . '_tabs_panel'
+	'SMALL_CARD_PANEL_ID' => $mainId . '_small_card_panel'
 );
 $obName = $templateData['JS_OBJ'] = 'ob' . preg_replace('/[^a-zA-Z0-9_]/', 'x', $mainId);
 $name = !empty($arResult['IPROPERTY_VALUES']['ELEMENT_PAGE_TITLE'])
@@ -705,155 +704,81 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<?php
-			if ($haveOffers) {
-				if ($arResult['OFFER_GROUP']) {
-					foreach ($arResult['OFFER_GROUP_VALUES'] as $offerId) {
-			?>
-						<span id="<?= $itemIds['OFFER_GROUP'] . $offerId ?>" style="display: none;">
-							<?php
-							$APPLICATION->IncludeComponent(
-								'bitrix:catalog.set.constructor',
-								'.default',
-								array(
-									'CUSTOM_SITE_ID' => $arParams['CUSTOM_SITE_ID'] ?? null,
-									'IBLOCK_ID' => $arResult['OFFERS_IBLOCK'],
-									'ELEMENT_ID' => $offerId,
-									'PRICE_CODE' => $arParams['PRICE_CODE'],
-									'BASKET_URL' => $arParams['BASKET_URL'],
-									'OFFERS_CART_PROPERTIES' => $arParams['OFFERS_CART_PROPERTIES'],
-									'CACHE_TYPE' => $arParams['CACHE_TYPE'],
-									'CACHE_TIME' => $arParams['CACHE_TIME'],
-									'CACHE_GROUPS' => $arParams['CACHE_GROUPS'],
-									'TEMPLATE_THEME' => $arParams['~TEMPLATE_THEME'],
-									'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
-									'CURRENCY_ID' => $arParams['CURRENCY_ID']
-								),
-								$component,
-								array('HIDE_ICONS' => 'Y')
-							);
-							?>
-						</span>
-			<?php
-					}
-				}
-			} else {
-				if ($arResult['MODULES']['catalog'] && $arResult['OFFER_GROUP']) {
-					$APPLICATION->IncludeComponent(
-						'bitrix:catalog.set.constructor',
-						'.default',
-						array(
-							'CUSTOM_SITE_ID' => $arParams['CUSTOM_SITE_ID'] ?? null,
-							'IBLOCK_ID' => $arParams['IBLOCK_ID'],
-							'ELEMENT_ID' => $arResult['ID'],
-							'PRICE_CODE' => $arParams['PRICE_CODE'],
-							'BASKET_URL' => $arParams['BASKET_URL'],
-							'CACHE_TYPE' => $arParams['CACHE_TYPE'],
-							'CACHE_TIME' => $arParams['CACHE_TIME'],
-							'CACHE_GROUPS' => $arParams['CACHE_GROUPS'],
-							'TEMPLATE_THEME' => $arParams['~TEMPLATE_THEME'],
-							'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
-							'CURRENCY_ID' => $arParams['CURRENCY_ID']
-						),
-						$component,
-						array('HIDE_ICONS' => 'Y')
-					);
-				}
-			}
-			?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-8 col-md-9">
-			<div class="row" id="<?= $itemIds['TABS_ID'] ?>">
-				<div class="col-xs-12">
-					<div class="product-item-detail-tabs-container">
-						<ul class="product-item-detail-tabs-list">
-							<?php
-							if ($showDescription) {
-							?>
-								<li class="product-item-detail-tab active" data-entity="tab" data-value="description">
-									<a href="javascript:void(0);" class="product-item-detail-tab-link">
-										<span><?= $arParams['MESS_DESCRIPTION_TAB'] ?></span>
-									</a>
-								</li>
-							<?php
-							}
 
-							if (!empty($arResult['DISPLAY_PROPERTIES']) || $arResult['SHOW_OFFERS_PROPS']) {
-							?>
-								<li class="product-item-detail-tab" data-entity="tab" data-value="properties">
-									<a href="javascript:void(0);" class="product-item-detail-tab-link">
-										<span><?= $arParams['MESS_PROPERTIES_TAB'] ?></span>
-									</a>
-								</li>
-							<?php
-							}
-
-							if ($arParams['USE_COMMENTS'] === 'Y') {
-							?>
-								<li class="product-item-detail-tab" data-entity="tab" data-value="comments">
-									<a href="javascript:void(0);" class="product-item-detail-tab-link">
-										<span><?= $arParams['MESS_COMMENTS_TAB'] ?></span>
-									</a>
-								</li>
-							<?php
-							}
-							?>
-						</ul>
-					</div>
-				</div>
+	<div class="container element__middle">
+		<div class="element__detail-info">
+			<div class="element__tab-togglers" id="<?= $itemIds['TABS_ID'] ?>">
+				<ul class="product-item-detail-tabs-list">
+					<li class="product-item-detail-tab active" data-entity="tab" data-value="description">
+						<a href="javascript:void(0);" class="product-item-detail-tab-link">
+							<span><?= $arParams['MESS_DESCRIPTION_TAB'] ?></span>
+						</a>
+					</li>
+					<li class="product-item-detail-tab" data-entity="tab" data-value="comments">
+						<a href="javascript:void(0);" class="product-item-detail-tab-link">
+							<span><?= $arParams['MESS_COMMENTS_TAB'] ?></span>
+						</a>
+					</li>
+					<li class="product-item-detail-tab" data-entity="tab" data-value="properties">
+						<a href="javascript:void(0);" class="product-item-detail-tab-link">
+							<span><?= $arParams['MESS_PROPERTIES_TAB'] ?></span>
+						</a>
+					</li>
+				</ul>
 			</div>
-			<div class="row" id="<?= $itemIds['TAB_CONTAINERS_ID'] ?>">
-				<div class="col-xs-12">
-					<?php
-					if ($showDescription) {
-					?>
-						<div class="product-item-detail-tab-content active" data-entity="tab-container" data-value="description"
-							itemprop="description" id="<?= $itemIds['DESCRIPTION_ID'] ?>">
-							<?php
-							if (
-								$arResult['PREVIEW_TEXT'] != ''
-								&& (
-									$arParams['DISPLAY_PREVIEW_TEXT_MODE'] === 'S'
-									|| ($arParams['DISPLAY_PREVIEW_TEXT_MODE'] === 'E' && $arResult['DETAIL_TEXT'] == '')
-								)
-							) {
-								echo $arResult['PREVIEW_TEXT_TYPE'] === 'html' ? $arResult['PREVIEW_TEXT'] : '<p>' . $arResult['PREVIEW_TEXT'] . '</p>';
-							}
+			<div class="element__tab-content" id="<?= $itemIds['TAB_CONTAINERS_ID'] ?>">
+				<div class="product-item-detail-tab-content active" data-entity="tab-container" data-value="description"
+					itemprop="description" id="<?= $itemIds['DESCRIPTION_ID'] ?>">
+					<div class="element__tab-inner">
+						<div class="element__desc-block">
+							<p class="element__tab-title"><?= $arParams['MESS_DESCRIPTION_TAB'] ?></p>
+							<div class="element__tab-desc">
+								<?php
+								if (
+									$arResult['PREVIEW_TEXT'] != ''
+									&& (
+										$arParams['DISPLAY_PREVIEW_TEXT_MODE'] === 'S'
+										|| ($arParams['DISPLAY_PREVIEW_TEXT_MODE'] === 'E' && $arResult['DETAIL_TEXT'] == '')
+									)
+								) {
+									echo $arResult['PREVIEW_TEXT_TYPE'] === 'html' ? $arResult['PREVIEW_TEXT'] : '<p>' . $arResult['PREVIEW_TEXT'] . '</p>';
+								}
 
-							if ($arResult['DETAIL_TEXT'] != '') {
-								echo $arResult['DETAIL_TEXT_TYPE'] === 'html' ? $arResult['DETAIL_TEXT'] : '<p>' . $arResult['DETAIL_TEXT'] . '</p>';
-							}
-							?>
-						</div>
-					<?php
-					}
-
-					if (!empty($arResult['DISPLAY_PROPERTIES']) || $arResult['SHOW_OFFERS_PROPS']) {
-					?>
-						<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="properties">
+								if ($arResult['DETAIL_TEXT'] != '') {
+									echo $arResult['DETAIL_TEXT_TYPE'] === 'html' ? $arResult['DETAIL_TEXT'] : '<p>' . $arResult['DETAIL_TEXT'] . '</p>';
+								}
+								?>
+							</div>
+							<? if ($arResult['PROPERTIES']['TAGS']['VALUE']) { ?>
+								<ul class="element__tags">
+									<? foreach ($arResult['PROPERTIES']['TAGS']['VALUE'] as $tag) { ?>
+										<li><?= $tag ?></li>
+									<?	} ?>
+								</ul>
+							<? } ?>
 							<?php
 							if (!empty($arResult['DISPLAY_PROPERTIES'])) {
 							?>
-								<dl class="product-item-detail-properties">
+								<div class="element__chars">
 									<?php
 									foreach ($arResult['DISPLAY_PROPERTIES'] as $property) {
 									?>
-										<dt><?= $property['NAME'] ?></dt>
-										<dd><?= (
-												is_array($property['DISPLAY_VALUE'])
-												? implode(' / ', $property['DISPLAY_VALUE'])
-												: $property['DISPLAY_VALUE']
-											) ?>
-										</dd>
+										<div class="element__chars-element">
+											<span class="element__chars-title"><?= $property['NAME'] ?></span>
+											<span class="element__chars-delimiter"></span>
+											<span class="element__chars-value">
+												<?= (
+													is_array($property['DISPLAY_VALUE'])
+													? implode(' / ', $property['DISPLAY_VALUE'])
+													: $property['DISPLAY_VALUE']
+												) ?>
+											</span>
+										</div>
 									<?php
 									}
 									unset($property);
 									?>
-								</dl>
+								</div>
 							<?php
 							}
 
@@ -863,91 +788,79 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 							<?php
 							}
 							?>
-						</div>
-					<?php
-					}
+							<?
+							$propNotNull = false;
+							$segmentProps = [
+								'STRETCHABILITY',
+								'MOISTURE_WICKING',
+								'WIND_PROTECTION',
+								'THERMOREGULATION',
+								'STRENGTH',
+								'WATER_RESISTANCE',
+								'FABRIC_NOISE'
+							];
+							foreach ($segmentProps as $prop) {
+								if ($arResult['PROPERTIES'][$prop]['VALUE'] != '') {
+									$propNotNull = true;
+								}
+							}
+							if ($propNotNull) { ?>
+								<div class="element__props">
+									<p class="element__props-title"><?= Loc::getMessage('CT_BCE_CATALOG_PROPERTIES_TAB') ?></p>
+									<?
+									foreach ($segmentProps as $key => $prop) {
+										if ($arResult['PROPERTIES'][$prop]['VALUE'] != '') { ?>
+											<div class="element__props-item">
+												<img src="<?= SITE_TEMPLATE_PATH . '/img/icons/' . $arResult['PROPERTIES'][$prop]['CODE'] . '.svg' ?>" alt="">
+												<span class="element__props-item-title"><?= $arResult['PROPERTIES'][$prop]['NAME'] ?></span>
+												<div class="element__props-values">
+													<? for ($i = 1; $i < 11; $i++) { ?>
+														<span class="element__props-segment <?= $arResult['PROPERTIES'][$prop]['VALUE'] >= $i ? 'active' : '' ?>"></span>
+													<? } ?>
+												</div>
+											</div>
+									<? }
+									} ?>
 
-					if ($arParams['USE_COMMENTS'] === 'Y') {
-					?>
-						<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="comments" style="display: none;">
-							<?php
-							$componentCommentsParams = array(
-								'ELEMENT_ID' => $arResult['ID'],
-								'ELEMENT_CODE' => '',
-								'IBLOCK_ID' => $arParams['IBLOCK_ID'],
-								'SHOW_DEACTIVATED' => $arParams['SHOW_DEACTIVATED'],
-								'URL_TO_COMMENT' => '',
-								'WIDTH' => '',
-								'COMMENTS_COUNT' => '5',
-								'BLOG_USE' => $arParams['BLOG_USE'],
-								'FB_USE' => $arParams['FB_USE'],
-								'FB_APP_ID' => $arParams['FB_APP_ID'],
-								'VK_USE' => $arParams['VK_USE'],
-								'VK_API_ID' => $arParams['VK_API_ID'],
-								'CACHE_TYPE' => $arParams['CACHE_TYPE'],
-								'CACHE_TIME' => $arParams['CACHE_TIME'],
-								'CACHE_GROUPS' => $arParams['CACHE_GROUPS'],
-								'BLOG_TITLE' => '',
-								'BLOG_URL' => $arParams['BLOG_URL'],
-								'PATH_TO_SMILE' => '',
-								'EMAIL_NOTIFY' => $arParams['BLOG_EMAIL_NOTIFY'],
-								'AJAX_POST' => 'Y',
-								'SHOW_SPAM' => 'Y',
-								'SHOW_RATING' => 'N',
-								'FB_TITLE' => '',
-								'FB_USER_ADMIN_ID' => '',
-								'FB_COLORSCHEME' => 'light',
-								'FB_ORDER_BY' => 'reverse_time',
-								'VK_TITLE' => '',
-								'TEMPLATE_THEME' => $arParams['~TEMPLATE_THEME']
-							);
-							if (isset($arParams["USER_CONSENT"]))
-								$componentCommentsParams["USER_CONSENT"] = $arParams["USER_CONSENT"];
-							if (isset($arParams["USER_CONSENT_ID"]))
-								$componentCommentsParams["USER_CONSENT_ID"] = $arParams["USER_CONSENT_ID"];
-							if (isset($arParams["USER_CONSENT_IS_CHECKED"]))
-								$componentCommentsParams["USER_CONSENT_IS_CHECKED"] = $arParams["USER_CONSENT_IS_CHECKED"];
-							if (isset($arParams["USER_CONSENT_IS_LOADED"]))
-								$componentCommentsParams["USER_CONSENT_IS_LOADED"] = $arParams["USER_CONSENT_IS_LOADED"];
-							$APPLICATION->IncludeComponent(
-								'bitrix:catalog.comments',
-								'',
-								$componentCommentsParams,
-								$component,
-								array('HIDE_ICONS' => 'Y')
-							);
-							?>
+								</div>
+							<? } ?>
+							<? if ($arResult['TEMP_IMG']) { ?>
+								<div class="element__temperature-wrap">
+									<div class="element__temperature">
+										<span class="corner top-left"></span>
+										<span class="corner top-right"></span>
+										<span class="corner bottom-right"></span>
+										<span class="corner bottom-left"></span>
+										<p class="element__temperature-title"><?= $arResult['PROPERTIES']['TEMPERATURE']['NAME'] ?></p>
+										<img src="<?= $arResult['TEMP_IMG'] ?>" alt="">
+									</div>
+									<div class="element__detail-img element__detail-img--mob">
+										<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="Фото товара" width="531">
+									</div>
+								</div>
+							<? } ?>
 						</div>
-					<?php
-					}
-					?>
+						<div class="element__detail-img element__detail-img--desc">
+							<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="Фото товара" width="531">
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-sm-4 col-md-3">
-			<div>
-				<?php
-				if ($arParams['BRAND_USE'] === 'Y') {
-					$APPLICATION->IncludeComponent(
-						'bitrix:catalog.brandblock',
-						'.default',
-						array(
-							'IBLOCK_TYPE' => $arParams['IBLOCK_TYPE'],
-							'IBLOCK_ID' => $arParams['IBLOCK_ID'],
-							'ELEMENT_ID' => $arResult['ID'],
-							'ELEMENT_CODE' => '',
-							'PROP_CODE' => $arParams['BRAND_PROP_CODE'],
-							'CACHE_TYPE' => $arParams['CACHE_TYPE'],
-							'CACHE_TIME' => $arParams['CACHE_TIME'],
-							'CACHE_GROUPS' => $arParams['CACHE_GROUPS'],
-							'WIDTH' => '',
-							'HEIGHT' => ''
-						),
-						$component,
-						array('HIDE_ICONS' => 'Y')
-					);
-				}
-				?>
+
+				<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="comments" style="display: none;">
+					<p class="element__tab-title"><?= $arParams['MESS_COMMENTS_TAB'] ?></p>
+				</div>
+
+				<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="properties">
+					<p class="element__tab-title"><?= $arParams['MESS_PROPERTIES_TAB'] ?></p>
+					<div class="element__size-talbe-wrap">
+						<p class="element__size-table-title"><?= $arResult['SIZE_TABLE']['NAME'] ?></p>
+						<div class="element__size-table">
+							<? if ($arResult['SIZE_TABLE']) {
+								echo ($arResult['SIZE_TABLE']['DETAIL_TEXT']);
+							} ?>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1193,42 +1106,135 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 	</div>
 </div>
 
-<!--Top tabs-->
-<div class="product-item-detail-tabs-container-fixed hidden-xs" id="<?= $itemIds['TABS_PANEL_ID'] ?>">
-	<ul class="product-item-detail-tabs-list">
-		<?php
-		if ($showDescription) {
-		?>
-			<li class="product-item-detail-tab active" data-entity="tab" data-value="description">
-				<a href="javascript:void(0);" class="product-item-detail-tab-link">
-					<span><?= $arParams['MESS_DESCRIPTION_TAB'] ?></span>
-				</a>
-			</li>
-		<?php
-		}
-
-		if (!empty($arResult['DISPLAY_PROPERTIES']) || $arResult['SHOW_OFFERS_PROPS']) {
-		?>
-			<li class="product-item-detail-tab" data-entity="tab" data-value="properties">
-				<a href="javascript:void(0);" class="product-item-detail-tab-link">
-					<span><?= $arParams['MESS_PROPERTIES_TAB'] ?></span>
-				</a>
-			</li>
-		<?php
-		}
-
-		if ($arParams['USE_COMMENTS'] === 'Y') {
-		?>
-			<li class="product-item-detail-tab" data-entity="tab" data-value="comments">
-				<a href="javascript:void(0);" class="product-item-detail-tab-link">
-					<span><?= $arParams['MESS_COMMENTS_TAB'] ?></span>
-				</a>
-			</li>
-		<?php
-		}
-		?>
-	</ul>
-</div>
+<?
+if ($arResult['PROPERTIES']['COMPLECT']['VALUE']) {
+	$GLOBALS['elementComplectFilter'] = ['ID' => $arResult['PROPERTIES']['COMPLECT']['VALUE']];
+	$APPLICATION->IncludeComponent(
+		"bitrix:catalog.section",
+		"main-page",
+		array(
+			"ACTION_VARIABLE" => $arParams["ACTION_VARIABLE"],
+			"ADD_PICT_PROP" => $arParams['ADD_PICT_PROP'] ?? '',
+			"ADD_PROPERTIES_TO_BASKET" => ($arParams["ADD_PROPERTIES_TO_BASKET"] ?? ''),
+			"ADD_SECTIONS_CHAIN" => 'N',
+			"ADD_TO_BASKET_ACTION" => "ADD",
+			"AJAX_MODE" => "N",
+			"AJAX_OPTION_ADDITIONAL" => "",
+			"AJAX_OPTION_HISTORY" => "N",
+			"AJAX_OPTION_JUMP" => "N",
+			"AJAX_OPTION_STYLE" => "Y",
+			"BACKGROUND_IMAGE" => "-",
+			"BASKET_URL" => $arParams["BASKET_URL"],
+			"BROWSER_TITLE" => "-",
+			"CACHE_FILTER" => "N",
+			"CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+			"CACHE_TIME" => $arParams["CACHE_TIME"],
+			"CACHE_TYPE" => $arParams["CACHE_TYPE"],
+			"COMPATIBLE_MODE" => ($arParams['COMPATIBLE_MODE'] ?? ''),
+			"CONVERT_CURRENCY" => $arParams['CONVERT_CURRENCY'],
+			"CUSTOM_FILTER" => "",
+			"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
+			"DISABLE_INIT_JS_IN_COMPONENT" => "N",
+			"DISPLAY_BOTTOM_PAGER" => "Y",
+			"DISPLAY_COMPARE" => $arParams["USE_COMPARE"],
+			"DISPLAY_TOP_PAGER" => "N",
+			"ELEMENT_SORT_FIELD" => $arParams["TOP_ELEMENT_SORT_FIELD"],
+			"ELEMENT_SORT_ORDER" => $arParams["TOP_ELEMENT_SORT_ORDER"],
+			"ELEMENT_SORT_FIELD2" => $arParams["TOP_ELEMENT_SORT_FIELD2"],
+			"ELEMENT_SORT_ORDER2" => $arParams["TOP_ELEMENT_SORT_ORDER2"],
+			"ENLARGE_PRODUCT" => $arParams['TOP_ENLARGE_PRODUCT'],
+			"FILTER_NAME" => "elementComplectFilter",
+			'HIDE_NOT_AVAILABLE' => $arParams['HIDE_NOT_AVAILABLE'],
+			"HIDE_NOT_AVAILABLE_OFFERS" => "N",
+			"IBLOCK_ID" => $arParams['IBLOCK_ID'],
+			"IBLOCK_TYPE" => "hut",
+			"INCLUDE_SUBSECTIONS" => "Y",
+			"LABEL_PROP" => $arParams['LABEL_PROP'] ?? '',
+			"LABEL_PROP_MOBILE" => $arParams['LABEL_PROP_MOBILE'] ?? '',
+			"LABEL_PROP_POSITION" => $arParams['LABEL_PROP_POSITION'] ?? '',
+			"LAZY_LOAD" => "N",
+			"LINE_ELEMENT_COUNT" => "3",
+			"LOAD_ON_SCROLL" => "N",
+			"MESSAGE_404" => "",
+			"MESS_BTN_ADD_TO_BASKET" => $arParams['~MESS_BTN_ADD_TO_BASKET'],
+			"MESS_BTN_BUY" => $arParams['~MESS_BTN_BUY'],
+			"MESS_BTN_DETAIL" => $arParams['~MESS_BTN_DETAIL'],
+			"MESS_BTN_LAZY_LOAD" => "Показать ещё",
+			"MESS_BTN_SUBSCRIBE" => $arParams['~MESS_BTN_SUBSCRIBE'],
+			'MESS_NOT_AVAILABLE' => $arParams['~MESS_NOT_AVAILABLE'] ?? '',
+			'MESS_NOT_AVAILABLE_SERVICE' => $arParams['~MESS_NOT_AVAILABLE_SERVICE'] ?? '',
+			"META_DESCRIPTION" => "-",
+			"META_KEYWORDS" => "-",
+			"OFFERS_CART_PROPERTIES" => ($arParams["OFFERS_CART_PROPERTIES"] ?? []),
+			"OFFERS_FIELD_CODE" => $arParams["TOP_OFFERS_FIELD_CODE"] ?? [],
+			"OFFERS_LIMIT" => ($arParams["TOP_OFFERS_LIMIT"] ?? 0),
+			"OFFERS_PROPERTY_CODE" => ($arParams["TOP_OFFERS_PROPERTY_CODE"] ?? []),
+			"OFFERS_SORT_FIELD" => $arParams["OFFERS_SORT_FIELD"],
+			"OFFERS_SORT_ORDER" => $arParams["OFFERS_SORT_ORDER"],
+			"OFFERS_SORT_FIELD2" => $arParams["OFFERS_SORT_FIELD2"],
+			"OFFERS_SORT_ORDER2" => $arParams["OFFERS_SORT_ORDER2"],
+			"PAGER_BASE_LINK_ENABLE" => "N",
+			"PAGER_DESC_NUMBERING" => "N",
+			"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+			"PAGER_SHOW_ALL" => "N",
+			"PAGER_SHOW_ALWAYS" => "N",
+			"PAGER_TEMPLATE" => ".default",
+			"PAGER_TITLE" => "Товары",
+			"PAGE_ELEMENT_COUNT" => "24",
+			"PARTIAL_PRODUCT_PROPERTIES" => ($arParams["PARTIAL_PRODUCT_PROPERTIES"] ?? ''),
+			"PRICE_CODE" => $arParams["~PRICE_CODE"],
+			"PRICE_VAT_INCLUDE" => $arParams["PRICE_VAT_INCLUDE"],
+			"PRODUCT_BLOCKS_ORDER" => $arParams['TOP_PRODUCT_BLOCKS_ORDER'],
+			"PRODUCT_DISPLAY_MODE" => $arParams['PRODUCT_DISPLAY_MODE'],
+			"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
+			"PRODUCT_PROPERTIES" => ($arParams["PRODUCT_PROPERTIES"] ?? []),
+			"PRODUCT_PROPS_VARIABLE" => $arParams["PRODUCT_PROPS_VARIABLE"],
+			"PRODUCT_QUANTITY_VARIABLE" => $arParams["PRODUCT_QUANTITY_VARIABLE"],
+			"PRODUCT_ROW_VARIANTS" => $arParams['TOP_PRODUCT_ROW_VARIANTS'],
+			"PRODUCT_SUBSCRIPTION" => $arParams['PRODUCT_SUBSCRIPTION'],
+			"PROPERTY_CODE" => ($arParams["TOP_PROPERTY_CODE"] ?? []),
+			"PROPERTY_CODE_MOBILE" => $arParams["TOP_PROPERTY_CODE_MOBILE"] ?? [],
+			"RCM_PROD_ID" => $_REQUEST["PRODUCT_ID"],
+			"RCM_TYPE" => "personal",
+			"SECTION_CODE" => "",
+			"SECTION_ID" => $sectionId,
+			"SECTION_ID_VARIABLE" => "SECTION_ID",
+			"SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+			"SECTION_USER_FIELDS" => array(
+				0 => "",
+				1 => "",
+			),
+			"SEF_MODE" => "N",
+			"SET_BROWSER_TITLE" => "N",
+			"SET_LAST_MODIFIED" => "N",
+			"SET_META_DESCRIPTION" => "N",
+			"SET_META_KEYWORDS" => "N",
+			"SET_STATUS_404" => "N",
+			"SET_TITLE" => "N",
+			"SHOW_404" => "N",
+			"SHOW_ALL_WO_SECTION" => "N",
+			"SHOW_CLOSE_POPUP" => $arParams['COMMON_SHOW_CLOSE_POPUP'] ?? '',
+			"SHOW_DISCOUNT_PERCENT" => $arParams['SHOW_DISCOUNT_PERCENT'],
+			"SHOW_FROM_SECTION" => "N",
+			"SHOW_MAX_QUANTITY" => "N",
+			"SHOW_OLD_PRICE" => $arParams['SHOW_OLD_PRICE'],
+			"SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
+			"SHOW_SLIDER" => 'N',
+			"SLIDER_INTERVAL" => $arParams['TOP_SLIDER_INTERVAL'] ?? '',
+			"SLIDER_PROGRESS" => $arParams['TOP_SLIDER_PROGRESS'] ?? '',
+			"TEMPLATE_THEME" => ($arParams['TEMPLATE_THEME'] ?? ''),
+			"USE_ENHANCED_ECOMMERCE" => "N",
+			"USE_MAIN_ELEMENT_SECTION" => "N",
+			"USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
+			"USE_PRODUCT_QUANTITY" => $arParams['USE_PRODUCT_QUANTITY'],
+			"COMPONENT_TEMPLATE" => "main-catalog",
+			"BLOCK_TITLE" => GetMessage('CATALOG_RECOMMENDED_BY_LINK'),
+		),
+		$component,
+		false
+	);
+}
+?>
 
 <meta itemprop="name" content="<?= $name ?>" />
 <meta itemprop="category" content="<?= $arResult['CATEGORY_PATH'] ?>" />
