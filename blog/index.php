@@ -2,10 +2,26 @@
 
 $APPLICATION->SetTitle("Блог");?>
 
+<?php
+
+$itsUrFace = false;
+global $USER;
+$rsUser = CUser::GetByID($USER->GetID());
+$arUser = $rsUser->Fetch();
+
+if ($arUser && $arUser['UF_TYPE'] == 'wholesale') {
+	$itsUrFace = true;
+}
+
+if ($itsUrFace) {
+	$GLOBALS['arrFilterNews'] = ['!PROPERTY_HIDE_ON_UR_VALUE' => 'Y'];
+}
+
+?>
 
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
-	"news",
+	"news", 
 	array(
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_SECTIONS_CHAIN" => "N",
@@ -46,7 +62,7 @@ $APPLICATION->SetTitle("Блог");?>
 			0 => "",
 			1 => "",
 		),
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilterNews",
 		"FILTER_PROPERTY_CODE" => array(
 			0 => "",
 			1 => "",
@@ -91,7 +107,7 @@ $APPLICATION->SetTitle("Блог");?>
 		"STRICT_SECTION_CHECK" => "N",
 		"TEMPLATE_THEME" => "blue",
 		"USE_CATEGORIES" => "N",
-		"USE_FILTER" => "N",
+		"USE_FILTER" => "Y",
 		"USE_PERMISSIONS" => "N",
 		"USE_RATING" => "N",
 		"USE_REVIEW" => "N",

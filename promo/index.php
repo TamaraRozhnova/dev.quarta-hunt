@@ -19,6 +19,19 @@ if (!empty($_GET['type'])) {
 	];
 }
 
+$itsUrFace = false;
+global $USER;
+$rsUser = CUser::GetByID($USER->GetID());
+$arUser = $rsUser->Fetch();
+
+if ($arUser && $arUser['UF_TYPE'] == 'wholesale') {
+    $itsUrFace = true;
+}
+
+if ($itsUrFace) {
+    $GLOBALS['arrFilterPromo'] = array_merge($GLOBALS['arrFilterPromo'], ['!PROPERTY_HIDE_ON_UR_VALUE' => 'Y']);
+}
+
 $APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"promo", 
