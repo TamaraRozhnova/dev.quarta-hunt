@@ -52,7 +52,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
         <div class="search-tab-content <?=($categoryId == 0) ? 'active' : ''?>" data-tabcontent="<?= $categoryId ?>">
             <?php
             /* CATALOG */
-            if ($categoryId == $arCatalogItemFilter['CATEGORY']) {
+            if (isset($arCatalogItemFilter['CATEGORY']) && $categoryId == $arCatalogItemFilter['CATEGORY']) {
                 /* CATALOG */
 
                 global $arrProductFilter;
@@ -182,7 +182,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         false
                     );
                 } else {
-                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT") . '1';
                 }
                 ?>
 
@@ -192,7 +192,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
             /* --- CATALOG ---*/
 
             /* NEWS */
-            if ($categoryId == $arNewsItemFilter['CATEGORY']) {
+            if (isset($arNewsItemFilter['CATEGORY']) && $categoryId == $arNewsItemFilter['CATEGORY']) {
                 global $arrNewsFilter;
                 $arrNewsFilter = [
                     '=ID' => $arNewsItemFilter['ID']
@@ -258,13 +258,13 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         false
                     );
                 } else {
-                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT") . '2';
                 }
             }
             /* --- NEWS --- */
 
             /* SALES */
-            if ($categoryId == $arSalesItemFilter['CATEGORY']) {
+            if (isset($arSalesItemFilter['CATEGORY']) && $categoryId == $arSalesItemFilter['CATEGORY']) {
                 global $arrSalesFilter;
                 $arrSalesFilter = [
                     '=ID' => $arSalesItemFilter['ID']
@@ -330,7 +330,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         false
                     );
                 } else {
-                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT") . '3';
                 }
             }
             /* --- SALES ---*/ ?>
