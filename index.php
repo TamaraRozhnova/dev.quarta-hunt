@@ -479,7 +479,7 @@ $APPLICATION->IncludeComponent("bitrix:form.result.new","subscribe_form", [
         Телефон:<span itemprop="telephone">8 (800) 775-03-04</span>,
         Электронная почта: <span itemprop="email">shop@quarta-hunt.ru</span>
     </div>
-<?
+<?php
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
 
