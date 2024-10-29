@@ -1,6 +1,5 @@
 <?php
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
-{
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 	die();
 }
 /** @var array $arParams */
@@ -15,41 +14,27 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 
-$this->addExternalCss("/bitrix/css/main/bootstrap.css");
+use \Bitrix\Main\Localization\Loc;
 
-if ($arParams["USE_COMPARE"]=="Y")
-{
-	$APPLICATION->IncludeComponent(
-		"bitrix:catalog.compare.list",
-		"",
-		[
-			"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-			"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-			"NAME" => $arParams["COMPARE_NAME"],
-			"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
-			"COMPARE_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["compare"],
-			"ACTION_VARIABLE" => (!empty($arParams["ACTION_VARIABLE"]) ? $arParams["ACTION_VARIABLE"] : "action"),
-			"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
-			'POSITION_FIXED' => $arParams['COMPARE_POSITION_FIXED'] ?? '',
-			'POSITION' => $arParams['COMPARE_POSITION'] ?? ''
-		],
-		$component,
-		["HIDE_ICONS" => "Y"]
-	);
-}
+$APPLICATION->AddChainItem(Loc::getMessage("CT_BCSE_FOUND", ["#REQUEST#" => $_GET["q"]]));
 
-if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] == 'Y')
-{
+if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] == 'Y') {
 	$basketAction = ($arParams['COMMON_ADD_TO_BASKET_ACTION'] ?? '');
-}
-else
-{
+} else {
 	$basketAction = ($arParams['SECTION_ADD_TO_BASKET_ACTION'] ?? '');
 }
-
 $APPLICATION->IncludeComponent(
-	"bitrix:catalog.search",
-	"",
+	"bitrix:breadcrumb",
+	"breadcrumb",
+	array(
+		"PATH" => "",
+		"SITE_ID" => "h1",
+		"START_FROM" => "0"
+	)
+);
+$APPLICATION->IncludeComponent(
+	"arturgolubev:catalog.search",
+	"search",
 	[
 		"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 		"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -69,8 +54,8 @@ $APPLICATION->IncludeComponent(
 		"OFFERS_SORT_FIELD2" => $arParams["OFFERS_SORT_FIELD2"],
 		"OFFERS_SORT_ORDER2" => $arParams["OFFERS_SORT_ORDER2"],
 		"OFFERS_LIMIT" => ($arParams["LIST_OFFERS_LIMIT"] ?? 0),
-		"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-		"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
+		"SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+		"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
 		"BASKET_URL" => $arParams["BASKET_URL"],
 		"ACTION_VARIABLE" => (!empty($arParams["ACTION_VARIABLE"]) ? $arParams["ACTION_VARIABLE"] : "action"),
 		"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
@@ -162,10 +147,11 @@ $APPLICATION->IncludeComponent(
 		'TEMPLATE_THEME' => ($arParams['TEMPLATE_THEME'] ?? ''),
 		'ADD_TO_BASKET_ACTION' => $basketAction,
 		'SHOW_CLOSE_POPUP' => $arParams['COMMON_SHOW_CLOSE_POPUP'] ?? '',
-		'COMPARE_PATH' => $arResult['FOLDER'].$arResult['URL_TEMPLATES']['compare'],
+		'COMPARE_PATH' => $arResult['FOLDER'] . $arResult['URL_TEMPLATES']['compare'],
 		'COMPARE_NAME' => $arParams['COMPARE_NAME'],
 		'USE_COMPARE_LIST' => 'Y',
-		'USE_SEARCH_RESULT_ORDER' => ($arParams['SEARCH_USE_SEARCH_RESULT_ORDER'] ?? 'N')
+		'USE_SEARCH_RESULT_ORDER' => ($arParams['SEARCH_USE_SEARCH_RESULT_ORDER'] ?? 'N'),
+		'SEF_FOLDER' => $arParams['SEF_FOLDER'],
 	],
 	$component,
 	["HIDE_ICONS" => "Y"]

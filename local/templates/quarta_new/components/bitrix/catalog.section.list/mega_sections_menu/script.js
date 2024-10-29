@@ -15,17 +15,18 @@ $(document).ready(function () {
         $('.mega-menu').toggleClass('open');
         $(this).toggleClass('open');
 
-        window.addEventListener("wheel", preventScroll, { passive: false });
+        $('body').css({'overflow' : 'hidden'});
     });
     $(document).on('click', function (e) {
         let button = $('.mega-menu-opener');
         let container = $('.mega-menu');
 
-        if ((!container.is(e.target) && container.has(e.target).length === 0) && (!button.is(e.target) && button.has(e.target).length === 0)) {
+        if ((!container.is(e.target) && container.has(e.target).length === 0)
+            && (!button.is(e.target) && button.has(e.target).length === 0)) {
+
             container.removeClass('open');
             button.removeClass('open');
-
-            allowScroll();
+            // $('body').css({'overflow' : 'unset'});
         }
     });
 
@@ -66,17 +67,17 @@ $(document).ready(function () {
                 if (iSection == contentId) {
                     const brand = document.createElement('span')
                     const brandImg = document.createElement('img')
-            
+
                     brandImg.setAttribute('src', iBrandAr?.IMAGE)
                     brandImg.setAttribute('alt', iBrandAr?.NAME)
                     brand.appendChild(brandImg)
-        
+
                     brandList.appendChild(brand)
                 }
 
             })
 
-        })  
+        })
 
         $(this).addClass('active')
         $(".mega-menu [data-content='" + contentId + "']").addClass('active');
