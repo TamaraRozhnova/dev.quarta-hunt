@@ -16,6 +16,18 @@
   display: block;
 }
 
+.button.button-tertiary {
+  color: var(--color-dark6);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: var(--color-dark0);
+  border-radius: 12px;
+  padding: 16px 24px;
+  display: block;
+}
+
 .main-section__link {
   color: var(--color-dark6);
   font-weight: 600;

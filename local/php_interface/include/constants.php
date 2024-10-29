@@ -51,8 +51,17 @@ const IMG_PATH = '/img';
 const ICON_PATH = '/img/icons';
 const HUT_CATALOG_IBLOCK_ID = 88;
 
-// филтра разделов для блока на главной
+// филттр разделов для блока на главной
 $GLOBALS['mainSectionsFilter'] = ['UF_SHOW_ON_MAIN' => 1];
 
 // фильтр элементов для стартовой страницы каталога
 $GLOBALS['mainCatalogFilter'] = ['PROPERTY_IS_TOP_VALUE' => "Y"];
+
+// Справочник размеров одежды
+const CLOTHES_SIZE_HL_ENTITY = 'Hutclothessize';
+
+// Справочник температурных режимов
+const TEMPERATURE_HL_ENTITY = 'Temperature';
+
+// Код свойства каталога торговых предложений для размера одежды
+const OFFERS_CLOTHES_SIZE_PROP_CODE = 'CLOTHES_SIZE';
