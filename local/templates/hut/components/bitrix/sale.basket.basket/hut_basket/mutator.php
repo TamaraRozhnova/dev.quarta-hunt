@@ -36,7 +36,7 @@ foreach ($this->basketItems as &$row)
     $circleColor = '';
 
     if (!empty($row['PROPS'])) {
-        $hlbl = 14;
+        $hlbl = HUT_OFFERS_COLOR_HL_ID;
         $hlblock = HL\HighloadBlockTable::getById($hlbl)->fetch();
         $entity = HL\HighloadBlockTable::compileEntity($hlblock);
         $entityDataClass = $entity->getDataClass();

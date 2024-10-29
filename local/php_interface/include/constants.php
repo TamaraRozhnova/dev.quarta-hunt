@@ -56,3 +56,7 @@ $GLOBALS['mainSectionsFilter'] = ['UF_SHOW_ON_MAIN' => 1];
 
 // фильтр элементов для стартовой страницы каталога
 $GLOBALS['mainCatalogFilter'] = ['PROPERTY_IS_TOP_VALUE' => "Y"];
+
+// ID HL блока Цветов торговых предложений HUT
+
+const HUT_OFFERS_COLOR_HL_ID = 14;
