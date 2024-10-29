@@ -41,9 +41,7 @@ if (!empty($arResult['JS_DATA']['GRID']['ROWS'])) {
         $row['data']['SECTION'] = $rowSection;
 
         if (!empty($row['data']['PROPS'])) {
-            $hlbl = HUT_OFFERS_COLOR_HL_ID;
-            $hlblock = HL\HighloadBlockTable::getById($hlbl)->fetch();
-            $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+            $entity = HL\HighloadBlockTable::compileEntity(HUT_OFFERS_COLOR_HL_CODE);
             $entityDataClass = $entity->getDataClass();
 
             foreach ($row['data']['PROPS'] as $key => &$prop) {
