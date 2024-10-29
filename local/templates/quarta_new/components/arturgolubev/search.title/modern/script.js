@@ -88,6 +88,16 @@ function JCTitleSearchAG(arParams) {
 					})
 
 			})
+
+			tab.addEventListener('dblclick', (e) => {
+				e.preventDefault();
+
+				let targetLink = e.target.dataset.href
+
+				if (targetLink != '') {
+					window.location.href = targetLink;
+				}
+			})
 		})
 
 		console.log(_this.INPUT.value)
