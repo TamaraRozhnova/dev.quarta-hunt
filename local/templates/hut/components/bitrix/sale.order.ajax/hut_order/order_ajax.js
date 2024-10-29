@@ -3656,6 +3656,16 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 				propsNodes = [],
 				itemCollumns = item.columns;
 
+			let colorPropValue = '';
+			let itemProps = item.data.PROPS;
+			for (let j = 0; j < itemProps.length; j++) {
+				let currentProp = itemProps[j];
+
+				if (currentProp.CODE == 'COLOR' && currentProp.COLOR_VALUE) {
+					colorPropValue = currentProp.COLOR_VALUE;
+				}
+			}
+
 			if (this.params.HIDE_DETAIL_PAGE_URL !== 'Y' && data.DETAIL_PAGE_URL && data.DETAIL_PAGE_URL.length)
 			{
 				titleHtml = '<a href="' + data.DETAIL_PAGE_URL + '">' + titleHtml + '</a>';
@@ -3679,10 +3689,11 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 					continue;
 				}
 
-				if (itemCollumns[currentCollumn.id][0] && itemCollumns[currentCollumn.id][0].value) {
+				if (itemCollumns[currentCollumn.id] && itemCollumns[currentCollumn.id][0] && itemCollumns[currentCollumn.id][0].value) {
 					let children = '';
-					if (currentCollumn.id == 'PROPERTY_COLOR_VALUE' && itemCollumns['PROPERTY_COLOR_CODE_VALUE'][0].value) {
-						children = BX.create('DIV', {props: {className: 'bx-soa-item-props-item_children'}, html: '', style: {backgroundColor: itemCollumns['PROPERTY_COLOR_CODE_VALUE'][0].value}});
+
+					if (currentCollumn.id == 'PROPERTY_COLOR_VALUE') {
+						children = BX.create('DIV', {props: {className: 'bx-soa-item-props-item_children'}, html: '', style: {backgroundImage: 'url(' + colorPropValue + ')'}});
 					}
 
 					let propsBlock = BX.create('DIV', {
