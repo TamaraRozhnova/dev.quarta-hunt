@@ -167,8 +167,11 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             {{#PROPS}}
                                             <div data-prop-code="{{CODE}}" class="prop-info basket-item-property<?=(!isset($mobileColumns['PROPS']) ? ' hidden-xs' : '')?>">
                                                 <span class="basket-item-property-name prop-name">
-                                                    {{{NAME}}}
+                                                    {{{NAME}}}:
                                                 </span>
+                                                {{#CIRCLE_COLOR}}
+                                                <span class="color-circle" style="background-image: url({{CIRCLE_COLOR}})"></span>
+                                                {{/CIRCLE_COLOR}}
                                                 <span class="basket-item-property-value prop-value"
                                                      data-entity="basket-item-property-value" data-property-code="{{CODE}}">
                                                     {{{VALUE}}}
@@ -178,79 +181,6 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                             <?
                                         }
 
-                                        break;
-                                    case 'sku':
-                                        ?>
-                                        {{#SKU_BLOCK_LIST}}
-                                        {{#IS_IMAGE}}
-                                        <div class="basket-item-property basket-item-property-scu-image"
-                                             data-entity="basket-item-sku-block">
-                                            <div class="basket-item-property-name">{{NAME}}</div>
-                                            <div class="basket-item-property-value">
-                                                <ul class="basket-item-scu-list">
-                                                    {{#SKU_VALUES_LIST}}
-                                                    <li class="basket-item-scu-item{{#SELECTED}} selected{{/SELECTED}}
-																		{{#NOT_AVAILABLE_OFFER}} not-available{{/NOT_AVAILABLE_OFFER}}"
-                                                        title="{{NAME}}"
-                                                        data-entity="basket-item-sku-field"
-                                                        data-initial="{{#SELECTED}}true{{/SELECTED}}{{^SELECTED}}false{{/SELECTED}}"
-                                                        data-value-id="{{VALUE_ID}}"
-                                                        data-sku-name="{{NAME}}"
-                                                        data-property="{{PROP_CODE}}">
-																				<span class="basket-item-scu-item-inner"
-                                                                                      style="background-image: url({{PICT}});"></span>
-                                                    </li>
-                                                    {{/SKU_VALUES_LIST}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        {{/IS_IMAGE}}
-
-                                        {{^IS_IMAGE}}
-                                        <div class="basket-item-property basket-item-property-scu-text"
-                                             data-entity="basket-item-sku-block">
-                                            <div class="basket-item-property-name">{{NAME}}</div>
-                                            <div class="basket-item-property-value">
-                                                <ul class="basket-item-scu-list">
-                                                    {{#SKU_VALUES_LIST}}
-                                                    <li class="basket-item-scu-item{{#SELECTED}} selected{{/SELECTED}}
-																		{{#NOT_AVAILABLE_OFFER}} not-available{{/NOT_AVAILABLE_OFFER}}"
-                                                        title="{{NAME}}"
-                                                        data-entity="basket-item-sku-field"
-                                                        data-initial="{{#SELECTED}}true{{/SELECTED}}{{^SELECTED}}false{{/SELECTED}}"
-                                                        data-value-id="{{VALUE_ID}}"
-                                                        data-sku-name="{{NAME}}"
-                                                        data-property="{{PROP_CODE}}">
-                                                        <span class="basket-item-scu-item-inner">{{NAME}}</span>
-                                                    </li>
-                                                    {{/SKU_VALUES_LIST}}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        {{/IS_IMAGE}}
-                                        {{/SKU_BLOCK_LIST}}
-
-                                        {{#HAS_SIMILAR_ITEMS}}
-                                        <div class="basket-items-list-item-double" data-entity="basket-item-sku-notification">
-                                            <div class="alert alert-info alert-dismissable text-center">
-                                                {{#USE_FILTER}}
-                                                <a href="javascript:void(0)"
-                                                   class="basket-items-list-item-double-anchor"
-                                                   data-entity="basket-item-show-similar-link">
-                                                    {{/USE_FILTER}}
-                                                    <?=Loc::getMessage('SBB_BASKET_ITEM_SIMILAR_P1')?>{{#USE_FILTER}}</a>{{/USE_FILTER}}
-                                                <?=Loc::getMessage('SBB_BASKET_ITEM_SIMILAR_P2')?>
-                                                {{SIMILAR_ITEMS_QUANTITY}} {{MEASURE_TEXT}}
-                                                <br>
-                                                <a href="javascript:void(0)" class="basket-items-list-item-double-anchor"
-                                                   data-entity="basket-item-merge-sku-link">
-                                                    <?=Loc::getMessage('SBB_BASKET_ITEM_SIMILAR_P3')?>
-                                                    {{TOTAL_SIMILAR_ITEMS_QUANTITY}} {{MEASURE_TEXT}}?
-                                                </a>
-                                            </div>
-                                        </div>
-                                        {{/HAS_SIMILAR_ITEMS}}
-                                        <?
                                         break;
                                     case 'columns':
                                         ?>
@@ -275,10 +205,10 @@ if (!empty($arParams['LABEL_PROP_POSITION']))
                                         {{#IS_TEXT}}
                                         <div data-prop-code="{{CODE}}" class="basket-item-property-custom prop-info basket-item-property-custom-text
 														{{#HIDE_MOBILE}}hidden-xs{{/HIDE_MOBILE}}"
-                                             data-entity="basket-item-property">
+                                             data-entity="basket-item-property_w">
                                             <span class="basket-item-property-custom-name prop-name">{{NAME}}:</span>
                                             {{#CIRCLE_COLOR}}
-                                                <span class="color-circle" style="background-color: {{CIRCLE_COLOR}}"></span>
+                                                <span class="color-circle" style="background-image: url({{CIRCLE_COLOR}})"></span>
                                             {{/CIRCLE_COLOR}}
                                             <span class="basket-item-property-custom-value prop-value"
                                                  data-column-property-code="{{CODE}}"

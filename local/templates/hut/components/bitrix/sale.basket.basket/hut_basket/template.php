@@ -296,7 +296,7 @@ if (empty($arResult['ERROR_MESSAGE']))
 
         $APPLICATION->IncludeComponent(
             "bitrix:catalog.section",
-            "basket_recomend",
+            "main-page",
             array(
                 "ACTION_VARIABLE" => "action",
                 "ADD_PICT_PROP" => "-",
@@ -430,8 +430,8 @@ if (empty($arResult['ERROR_MESSAGE']))
                 "USE_PRODUCT_QUANTITY" => "N",
                 "COMPONENT_TEMPLATE" => "main-page",
                 "LINK_VALUE" => "/catalog/novinki/",
-                "LINK_TEXT" => "Все новинки",
-                "BLOCK_TITLE" => "Новинки",
+                "LINK_TEXT" => "",
+                "BLOCK_TITLE" => "Рекомендуем",
             ),
             $component
         );

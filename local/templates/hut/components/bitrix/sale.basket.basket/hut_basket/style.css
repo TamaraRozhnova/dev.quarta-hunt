@@ -166,7 +166,7 @@
 	flex-wrap: wrap;
 }
 
-.basket-item .item-info-block .item-prop-info-block .prop-info[data-prop-code="PROPERTY_COLOR_VALUE"] .color-circle {
+.basket-item .item-info-block .item-prop-info-block .prop-info[data-prop-code="COLOR"] .color-circle {
 	display: block !important;
 }
 
@@ -176,6 +176,8 @@
 	min-height: 20px;
 	max-height: 20px;
 	border: 1px solid var(--color-dark6);
+	background-repeat: no-repeat;
+	background-size: cover;
 	border-radius: 50%;
 	display: none;
 }
@@ -510,6 +512,12 @@
 	.basket-container h1 {
 		font-size: 40px;
 		line-height: 44px;
+	}
+}
+
+@media (max-width: 767px) {
+	.basket-item-property-custom.prop-info.hidden-xs {
+		display: flex !important;
 	}
 }
 

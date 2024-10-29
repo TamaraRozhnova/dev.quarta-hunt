@@ -2,6 +2,9 @@
 
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Sale\PriceMaths;
+use Bitrix\Main\Loader;
+use Bitrix\Highloadblock as HL;
+use Bitrix\Main\Entity;
 
 /**
  *
@@ -10,6 +13,8 @@ use Bitrix\Sale\PriceMaths;
  *
  * @var array $result
  */
+
+Loader::includeModule("highloadblock");
 
 $this->arParams['BRAND_PROPERTY'] ??= '';
 
@@ -28,12 +33,31 @@ foreach ($this->basketItems as &$row)
         }
     }
 
-    if ($row['PROPERTY_COLOR_CODE_VALUE']) {
-        $circleColor = $row['PROPERTY_COLOR_CODE_VALUE'];
-        unset($row['PROPERTY_COLOR_CODE_VALUE']);
-        unset($row['~PROPERTY_COLOR_CODE_VALUE']);
-        unset($row['PROPERTY_COLOR_CODE_VALUE_ID']);
-        unset($row['~PROPERTY_COLOR_CODE_VALUE_ID']);
+    $circleColor = '';
+
+    if (!empty($row['PROPS'])) {
+        $hlbl = 14;
+        $hlblock = HL\HighloadBlockTable::getById($hlbl)->fetch();
+        $entity = HL\HighloadBlockTable::compileEntity($hlblock);
+        $entityDataClass = $entity->getDataClass();
+
+        foreach ($row['PROPS'] as $prop) {
+            if ($prop['CODE'] == 'COLOR') {
+                $rsData = $entityDataClass::getList([
+                    'select' => ['UF_FILE'],
+                    'order' => [],
+                    'filter' => [
+                        'UF_NAME' => $prop['VALUE']
+                    ]
+                ]);
+
+                while($arData = $rsData->Fetch()){
+                    if ($arData['UF_FILE']) {
+                        $circleColor = CFile::GetPath($arData['UF_FILE']);
+                    }
+                }
+            }
+        }
     }
 
 	$rowData = array(

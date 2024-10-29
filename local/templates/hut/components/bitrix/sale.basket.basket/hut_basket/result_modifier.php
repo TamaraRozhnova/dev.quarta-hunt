@@ -23,6 +23,15 @@ if (!empty($arResult['GRID']['ROWS'])) {
     }
 
     if (!empty($productsId)) {
+
+        foreach ($productsId as $key => $id) {
+            $mxResult = CCatalogSku::GetProductInfo($id);
+
+            if (is_array($mxResult)) {
+                $productsId[$key] = $mxResult['ID'];
+            }
+        }
+
         $elems = ElementHutcatalogTable::getList([
             'select' => [
                 'RECOMMENDED'
