@@ -57,6 +57,7 @@ $GLOBALS['mainSectionsFilter'] = ['UF_SHOW_ON_MAIN' => 1];
 // фильтр элементов для стартовой страницы каталога
 $GLOBALS['mainCatalogFilter'] = ['PROPERTY_IS_TOP_VALUE' => "Y"];
 
+
 // Справочник размеров одежды
 const CLOTHES_SIZE_HL_ENTITY = 'Hutclothessize';
 
