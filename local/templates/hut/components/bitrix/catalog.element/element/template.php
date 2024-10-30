@@ -167,12 +167,17 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 	}
 }
 
+if (!empty($actualItem['MORE_PHOTO'])) {
+	$APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>', true);
+	$APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>', true);
+}
+
 ?>
 <div class="bx-catalog-element" id="<?= $itemIds['ID'] ?>"
 	itemscope itemtype="http://schema.org/Product">
 	<div class="element__top container-no-padding">
 		<div class="element__galery">
-			<div class="product-item-detail-slider-container" id="<?= $itemIds['BIG_SLIDER_ID'] ?>">
+			<?/*<div class="product-item-detail-slider-container" id="<?= $itemIds['BIG_SLIDER_ID'] ?>">
 				<span class="product-item-detail-slider-close" data-entity="close-popup"></span>
 				<div class="product-item-detail-slider-block
 						<?= ($arParams['IMAGE_RESOLUTION'] === '1by1' ? 'product-item-detail-slider-block-square' : '') ?>"
@@ -262,7 +267,40 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 			<?php
 				}
 			}
-			?>
+			?>*/ ?>
+			<? if (!empty($arResult['PROPERTIES']['MORE_PHOTO']['VALUE'])) { ?>
+				<div class="element__galery-list">
+					<? foreach ($actualItem['MORE_PHOTO'] as $key => $photo) {
+					?>
+						<a class="element__galery-item" data-fancybox="gallery" href="<?= $photo['SRC'] ?>">
+							<img src="<?= $photo['SRC'] ?>">
+						</a>
+					<?	} ?>
+					<? if ($arResult['PROPERTIES']['VIDEO']['VALUE']) { ?>
+						<a class="element__galery-item element__galery-item--video" data-fancybox="gallery" data-thumb-src="<?= $arResult['PROPERTIES']['VIDEO_POSTER']['VALUE'] ? CFile::GetPath($arResult['PROPERTIES']['VIDEO_POSTER']['VALUE']) : '' ?>" href="<?= CFile::GetPath($arResult['PROPERTIES']['VIDEO']['VALUE']) ?>">
+							<video src="<?= CFile::GetPath($arResult['PROPERTIES']['VIDEO']['VALUE']) ?>" <?= $arResult['PROPERTIES']['VIDEO_POSTER']['VALUE'] ? 'poster="' . CFile::GetPath($arResult['PROPERTIES']['VIDEO_POSTER']['VALUE']) . '"' : '' ?> muted></video>
+							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+								<rect width="40" height="40" rx="20" fill="white" />
+								<path d="M15 12V28L28 20L15 12Z" fill="#354052" />
+							</svg>
+						</a>
+					<? } ?>
+					<button class="button element__galery-close" type="button">
+						<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+							<rect width="36" height="36" rx="18" fill="white" />
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 12.2929C12.6834 11.9024 13.3166 11.9024 13.7071 12.2929L18 16.5858L22.2929 12.2929C22.6834 11.9024 23.3166 11.9024 23.7071 12.2929C24.0976 12.6834 24.0976 13.3166 23.7071 13.7071L19.4142 18L23.7071 22.2929C24.0976 22.6834 24.0976 23.3166 23.7071 23.7071C23.3166 24.0976 22.6834 24.0976 22.2929 23.7071L18 19.4142L13.7071 23.7071C13.3166 24.0976 12.6834 24.0976 12.2929 23.7071C11.9024 23.3166 11.9024 22.6834 12.2929 22.2929L16.5858 18L12.2929 13.7071C11.9024 13.3166 11.9024 12.6834 12.2929 12.2929Z" fill="#354052" />
+						</svg>
+					</button>
+				</div>
+			<? } elseif ($arResult['DETAIL_PICTURE']['SRC']) { ?>
+				<div class="element__no-gallery">
+					<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="">
+				</div>
+			<? } else { ?>
+				<div class="element__no-gallery">
+					<img src="<?= $arResult['PREVIEW_PICTURE']['SRC'] ?>" alt="">
+				</div>
+			<? } ?>
 		</div>
 		<div class="element__info">
 			<div class="col-sm-6">
@@ -835,13 +873,17 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 										<img src="<?= $arResult['TEMP_IMG'] ?>" alt="">
 									</div>
 									<div class="element__detail-img element__detail-img--mob">
-										<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="Фото товара" width="531">
+										<? if ($arResult['DETAIL_PICTURE']['SRC']) { ?>
+											<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="Фото товара" width="531">
+										<? } ?>
 									</div>
 								</div>
 							<? } ?>
 						</div>
 						<div class="element__detail-img element__detail-img--desc">
-							<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="Фото товара" width="531">
+							<? if ($arResult['DETAIL_PICTURE']['SRC']) { ?>
+								<img src="<?= $arResult['DETAIL_PICTURE']['SRC'] ?>" alt="Фото товара" width="531">
+							<? } ?>
 						</div>
 					</div>
 				</div>

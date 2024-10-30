@@ -114,7 +114,7 @@ $this->setFrameMode(true);
                                                         name="<?php echo $arItem["VALUES"]["MIN"]["CONTROL_NAME"] ?>"
                                                         id="<?php echo $arItem["VALUES"]["MIN"]["CONTROL_ID"] ?>"
                                                         value="<?php echo $arItem["VALUES"]["MIN"]["HTML_VALUE"] ?>"
-                                                        placeholder="от #MinPrice"
+                                                        placeholder="от <?php echo $arItem["VALUES"]["MIN"]["VALUE"] ?>"
                                                         size="5"
                                                         onkeyup="smartFilter.keyup(this)"/>
                                             </div>
@@ -127,7 +127,7 @@ $this->setFrameMode(true);
                                                         name="<?php echo $arItem["VALUES"]["MAX"]["CONTROL_NAME"] ?>"
                                                         id="<?php echo $arItem["VALUES"]["MAX"]["CONTROL_ID"] ?>"
                                                         value="<?php echo $arItem["VALUES"]["MAX"]["HTML_VALUE"] ?>"
-                                                        placeholder="до #MaxPrice"
+                                                        placeholder="до <?php echo $arItem["VALUES"]["MAX"]["VALUE"] ?>"
                                                         size="5"
                                                         onkeyup="smartFilter.keyup(this)"/>
                                             </div>

@@ -43,8 +43,26 @@ foreach ($arResult["CATEGORIES"] as $categoryId => $arCategory) {
 if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSalesItemFilter)): ?>
     <div class="search-tabs"><?php
         foreach ($arResult["CATEGORIES"] as $categoryId => $arCategory) {
-            if ($categoryId == 'all') { continue ;} ?>
-            <span data-tab="<?= $categoryId ?>" class="search-tabs-nav <?=($categoryId == 0) ? 'active' : ''?>"><?= $arCategory['TITLE'] ?></span>
+
+            if ($categoryId == 'all') {
+                continue ;
+            }
+
+            $categoryLink = '';
+            switch ($arCategory['TITLE']) {
+                case 'Каталог товаров':
+                    $categoryLink = '/catalog';
+                    break;
+                case 'Блог':
+                    $categoryLink = '/blog';
+                    break;
+                case 'Акции':
+                    $categoryLink = '/promo';
+                    break;
+            }
+
+            ?>
+            <span data-tab="<?= $categoryId ?>" data-href="<?=$categoryLink?>" class="search-tabs-nav <?=($categoryId == 0) ? 'active' : ''?>"><?= $arCategory['TITLE'] ?></span>
         <?php } ?>
     </div><?php
 
@@ -52,7 +70,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
         <div class="search-tab-content <?=($categoryId == 0) ? 'active' : ''?>" data-tabcontent="<?= $categoryId ?>">
             <?php
             /* CATALOG */
-            if ($categoryId == $arCatalogItemFilter['CATEGORY']) {
+            if (isset($arCatalogItemFilter['CATEGORY']) && $categoryId == $arCatalogItemFilter['CATEGORY']) {
                 /* CATALOG */
 
                 global $arrProductFilter;
@@ -182,7 +200,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         false
                     );
                 } else {
-                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT") . '1';
                 }
                 ?>
 
@@ -192,7 +210,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
             /* --- CATALOG ---*/
 
             /* NEWS */
-            if ($categoryId == $arNewsItemFilter['CATEGORY']) {
+            if (isset($arNewsItemFilter['CATEGORY']) && $categoryId == $arNewsItemFilter['CATEGORY']) {
                 global $arrNewsFilter;
                 $arrNewsFilter = [
                     '=ID' => $arNewsItemFilter['ID']
@@ -258,13 +276,13 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         false
                     );
                 } else {
-                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT") . '2';
                 }
             }
             /* --- NEWS --- */
 
             /* SALES */
-            if ($categoryId == $arSalesItemFilter['CATEGORY']) {
+            if (isset($arSalesItemFilter['CATEGORY']) && $categoryId == $arSalesItemFilter['CATEGORY']) {
                 global $arrSalesFilter;
                 $arrSalesFilter = [
                     '=ID' => $arSalesItemFilter['ID']
@@ -330,7 +348,7 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                         false
                     );
                 } else {
-                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT");
+                    echo Loc::getMessage("AG_SMARTIK_NO_RESULT") . '3';
                 }
             }
             /* --- SALES ---*/ ?>
