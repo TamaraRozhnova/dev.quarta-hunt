@@ -3504,7 +3504,6 @@
         }
 
         let main = document.querySelector('main');
-
         if (main) {
           main.appendChild(resultBlock);
         }
