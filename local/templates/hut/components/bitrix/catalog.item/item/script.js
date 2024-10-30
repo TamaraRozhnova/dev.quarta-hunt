@@ -664,6 +664,8 @@
           );
         }
       }
+
+      this.favoritesEventHandlers();
     },
 
     setAnalyticsDataLayer: function (action) {
@@ -2544,6 +2546,47 @@
           className: this.templateTheme ? "bx-" + this.templateTheme : "",
         }
       );
+    },
+
+    favoritesEventHandlers: function () {
+        let productFavoritesButton = document.querySelector('#' + this.visual.ID + ' .product__favorites');
+
+        if (productFavoritesButton) {
+          let productId = productFavoritesButton.dataset.productId;
+
+          if (productId) {
+            productFavoritesButton.addEventListener('click', () => {
+              let mode = 'ADD';
+
+              if (productFavoritesButton.classList.contains('favorites-add')) {
+                mode = 'DELETE';
+              }
+
+              this.favoritesAjax(productId, mode);
+
+              if (mode == 'ADD') {
+                productFavoritesButton.classList.add('favorites-add');
+              } else {
+                productFavoritesButton.classList.remove('favorites-add');
+              }
+            });
+          }
+        }
+    },
+
+    favoritesAjax: function (productId, mode) {
+      let ajaxUrl = '/ajax/favorites/favorites.php';
+
+      BX.ajax({
+        method: 'POST',
+        dataType: 'json',
+        url: ajaxUrl,
+        data: {
+          'productId': productId,
+          'action': mode
+        },
+        onsuccess: function (result) {}
+      });
     },
   };
 })(window);

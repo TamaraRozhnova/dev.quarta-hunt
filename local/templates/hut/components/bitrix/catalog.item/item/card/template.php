@@ -114,7 +114,7 @@ use \Bitrix\Main\Localization\Loc;
 	<? else: ?>
 		</span>
 	<? endif; ?>
-	<button type="button" class="button product__favorites"><?= buildSVG('product-favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
+	<button data-product-id="<?= $item['ID'] ?>" type="button" class="button product__favorites <?= ($item['IS_FAVORITES']) ? 'favorites-add' : '' ?>"><?= buildSVG('product-favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
 	<?
 	if (!empty($arParams['PRODUCT_BLOCKS_ORDER'])) {
 		foreach ($arParams['PRODUCT_BLOCKS_ORDER'] as $blockName) {

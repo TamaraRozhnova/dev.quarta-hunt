@@ -149,7 +149,7 @@ class Favorites
      * @param _CIBElement $element - элемент инфоблока избранных товаров пользователя
      * @return int[] - возвращает массив ID избранных товаров
      */
-    private function getProductsIdsInFavorites(_CIBElement $element): array
+    public function getProductsIdsInFavorites(_CIBElement $element): array
     {
         $props = $element->GetProperties();
         $productIds = $props['PRODUCT_ID']['VALUE'];

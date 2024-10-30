@@ -873,6 +873,12 @@ input::-webkit-inner-spin-button {
   right: 12px;
 }
 
+.button.product__favorites.favorites-add svg path {
+  stroke: var(--color-primary);
+  fill: var(--color-primary);
+  stroke-opacity: 1;
+}
+
 .product__favorites:hover svg path {
   stroke: var(--color-primary);
   stroke-opacity: 1;
