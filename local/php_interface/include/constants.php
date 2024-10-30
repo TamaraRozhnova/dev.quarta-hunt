@@ -19,7 +19,7 @@ const OPT_PRICE_CODE_ID = 'PRICE_3';
 const BASE_PRICE_CODE_ID = 'PRICE_1';
 
 // Лицензионные разделы каталога
-const SECTIONS_LICENSED = array("584", "585", "586", "588", "589", "590", "593", "594", "597", "600", "775", "802", "803", "804", "855", "904");
+const SECTIONS_LICENSED = array("584", "585", "586", "588", "589", "590", "593", "594", "597", "600", "775", "802", "803", "804", "855", "904", '808');
 
 // Разделы, где выводить модальное окно с подтвержденеим возраста
 const SECTIONS_ATTENTION_MODAL = [583];
@@ -65,3 +65,6 @@ const TEMPERATURE_HL_ENTITY = 'Temperature';
 
 // Код свойства каталога торговых предложений для размера одежды
 const OFFERS_CLOTHES_SIZE_PROP_CODE = 'CLOTHES_SIZE';
+
+// код HL блока Цветов торговых предложений HUT
+const HUT_OFFERS_COLOR_HL_CODE = 'Hutcolors';
