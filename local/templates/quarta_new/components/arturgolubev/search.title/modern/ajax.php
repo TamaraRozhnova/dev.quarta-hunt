@@ -43,8 +43,26 @@ foreach ($arResult["CATEGORIES"] as $categoryId => $arCategory) {
 if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSalesItemFilter)): ?>
     <div class="search-tabs"><?php
         foreach ($arResult["CATEGORIES"] as $categoryId => $arCategory) {
-            if ($categoryId == 'all') { continue ;} ?>
-            <span data-tab="<?= $categoryId ?>" class="search-tabs-nav <?=($categoryId == 0) ? 'active' : ''?>"><?= $arCategory['TITLE'] ?></span>
+
+            if ($categoryId == 'all') {
+                continue ;
+            }
+
+            $categoryLink = '';
+            switch ($arCategory['TITLE']) {
+                case 'Каталог товаров':
+                    $categoryLink = '/catalog';
+                    break;
+                case 'Блог':
+                    $categoryLink = '/blog';
+                    break;
+                case 'Акции':
+                    $categoryLink = '/promo';
+                    break;
+            }
+
+            ?>
+            <span data-tab="<?= $categoryId ?>" data-href="<?=$categoryLink?>" class="search-tabs-nav <?=($categoryId == 0) ? 'active' : ''?>"><?= $arCategory['TITLE'] ?></span>
         <?php } ?>
     </div><?php
 
