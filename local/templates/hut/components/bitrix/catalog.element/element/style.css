@@ -2,10 +2,13 @@
   margin-top: 32px;
   display: grid;
   grid-template-columns: 61.5% 38.5%;
+  align-items: start;
 }
 
 .element__info {
   padding: 24px 64px;
+  position: sticky;
+  top: 80px;
 }
 
 .element__title {
@@ -644,68 +647,10 @@
   margin-bottom: 20px;
 }
 
-/* Slider Mobile*/
-@media (max-width: 767px) {
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-images-container {
-    right: 0;
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-block {
-    padding-top: 0;
-    height: calc(100vh - 111px);
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-image {
-    width: 90%;
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-image
-    img {
-    max-width: 100%;
-    max-height: calc(100vh - 115px);
-    width: auto;
-    cursor: default;
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-controls-block {
-    position: absolute;
-    top: auto;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow-x: auto;
-    max-height: 111px;
-    border-top: 1px solid #d3d3d3;
-    border-left: none;
-    white-space: nowrap;
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-controls-image {
-    display: inline-block;
-    margin-bottom: 0;
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-close {
-    right: 10px;
-    z-index: 200;
-  }
-
-  .product-item-detail-slider-left,
-  .product-item-detail-slider-right {
-    max-width: 75px;
-  }
-
-  .product-item-detail-slider-container.popup
-    .product-item-detail-slider-right {
-    right: 0;
-  }
+.element__galery-item--video svg {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
 }
 
 /* Tabs */
@@ -1055,6 +1000,87 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+.element__galery-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.element__galery-item {
+  aspect-ratio: 590/632;
+  display: flex;
+  background-color: var(--color-dark0);
+  cursor: pointer;
+  position: relative;
+}
+
+.element__no-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.with-fancybox .fancybox__container {
+  --fancybox-bg: var(--color-dark0);
+}
+
+.with-fancybox .f-button {
+  margin: 24px 24px 0 0;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.with-fancybox .f-button svg {
+  stroke: var(--color-dark6);
+  filter: none;
+}
+
+.with-fancybox .f-thumbs.is-classic {
+  --f-thumb-width: 120px;
+  --f-thumb-height: 80px;
+  --f-thumb-gap: 8px;
+
+  --f-thumb-opacity: 1;
+  --f-thumb-selected-opacity: 1;
+
+  --f-thumb-outline: 2px;
+  --f-thumb-outline-color: var(--color-primary);
+
+  --f-button-next-pos: 8px;
+  --f-button-prev-pos: 8px;
+}
+
+.with-fancybox .f-thumbs.is-classic.is-vertical {
+  padding: 24px 0;
+}
+
+.with-fancybox .fancybox__container {
+  flex-direction: row-reverse;
+}
+
+.with-fancybox .fancybox__thumbs.is-classic.is-vertical {
+  --f-thumb-width: 78px;
+  --f-thumb-height: 83px;
+  width: 134px;
+}
+
+.with-fancybox .fancybox__thumbs.is-classic.is-vertical .f-thumbs__track {
+  padding: 0 28px;
+}
+
+.with-fancybox .fancybox__carousel {
+  min-width: 0;
+  min-height: 0;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.element__galery-close {
+  display: none;
+}
+
 @media (max-width: 1400px) {
   .element__info {
     padding: 24px 32px;
@@ -1216,6 +1242,21 @@ input::-webkit-inner-spin-button {
   .element__size-table table tr td:not(:first-child) {
     width: 12%;
   }
+
+  .element__galery-item {
+    aspect-ratio: 253 / 271;
+    width: 253px;
+    height: 271px;
+  }
+
+  .element__galery-list {
+    grid-template-columns: auto;
+    grid-auto-flow: column;
+  }
+
+  .element__galery {
+    overflow: auto;
+  }
 }
 
 @media (max-width: 450px) {
@@ -1243,6 +1284,31 @@ input::-webkit-inner-spin-button {
 
   .element__size-table {
     overflow: auto;
+  }
+
+  .element__galery-list.open {
+    position: fixed;
+    grid-auto-flow: row;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .element__galery-list.open .element__galery-item {
+    width: 100%;
+    aspect-ratio: auto;
+    height: auto;
+  }
+
+  .element__galery-list.open .element__galery-close {
+    display: flex;
+    position: fixed;
+    right: 8px;
+    top: 8px;
   }
 }
 
