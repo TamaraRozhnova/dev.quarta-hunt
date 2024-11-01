@@ -23,7 +23,7 @@ global $USER;
 
 $itsUrFace = false;
 $itsPrivatePerson = false;
-$itsGuest = $USER->IsAuthorized();
+$itsGuest = !$USER->IsAuthorized();
 
 $rsUser = CUser::GetByID($USER->GetID());
 $arUser = $rsUser->Fetch();
@@ -35,13 +35,13 @@ if ($arUser && $arUser['UF_TYPE'] == 'wholesale') {
 }
 
 if ($itsUrFace) {
-	$GLOBALS['arrFilterPromo'] = ['!PROPERTY_HIDE_ON_UR_VALUE' => 'Y'];
+	$GLOBALS['arrFilterPromo']['!PROPERTY_HIDE_ON_UR_VALUE'] = 'Y';
 } else if ($itsPrivatePerson) {
-	$GLOBALS['arrFilterPromo'] = ['!PROPERTY_HIDE_ON_PRIVATE_PERSON_VALUE' => 'Y'];
+	$GLOBALS['arrFilterPromo']['!PROPERTY_HIDE_ON_PRIVATE_PERSON_VALUE'] = 'Y';
 }
 
 if($itsGuest) {
-	$GLOBALS['arrFilterPromo'] = ['!PROPERTY_HIDE_ON_GUEST_VALUE' => 'Y'];
+	$GLOBALS['arrFilterPromo']['!PROPERTY_HIDE_ON_GUEST_VALUE'] = 'Y';
 }
 
 $APPLICATION->IncludeComponent(
