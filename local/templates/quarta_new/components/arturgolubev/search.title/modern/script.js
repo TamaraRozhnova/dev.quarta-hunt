@@ -582,6 +582,7 @@ class ModernModalSearch {
 	allowScroll() {
 		setTimeout(() => {
 			document.querySelector('body').style.overflow = 'unset'
+			document.querySelector('body').style.overflowX = 'hidden'
 		}, 0);
 	}
 
