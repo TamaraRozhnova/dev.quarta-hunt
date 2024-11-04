@@ -110,8 +110,8 @@ $uriString = $request->getRequestUri();
                 $arElements = array_values($arElements);
 
                 if ($arParams["ELEMENT_SORT_FIELD"] == 'rank') {
-                    $arParams["ELEMENT_SORT_FIELD"] = "ID";
-                    $arParams["ELEMENT_SORT_ORDER"] = $arElements;
+                    $sortField = "ID";
+                    $sortDirection = $arElements;
                 }
 
                 $uriString = $request->getRequestUri();
@@ -296,6 +296,7 @@ $uriString = $request->getRequestUri();
                 </div>
 
                 <?php
+
                 if ($tab == null || $tab == 'catalog') {
                     $APPLICATION->IncludeComponent(
                         "bitrix:catalog.section",
@@ -304,9 +305,9 @@ $uriString = $request->getRequestUri();
                             "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
                             "IBLOCK_ID" => $arParams["IBLOCK_ID"],
 
-                            "ELEMENT_SORT_FIELD" => $sortField ?? '',
+                            "ELEMENT_SORT_FIELD" => $sortField ?? 'rank',
                             "ELEMENT_SORT_FIELD2" => "",
-                            "ELEMENT_SORT_ORDER" => $sortDirection ?? '',
+                            "ELEMENT_SORT_ORDER" => $sortDirection ?? 'rank',
                             "ELEMENT_SORT_ORDER2" => "",
 
                             "PAGE_ELEMENT_COUNT" => $arParams["PAGE_ELEMENT_COUNT"],

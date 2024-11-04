@@ -772,8 +772,7 @@ div.title-search-result td.title-search-price span {
 
 .modal-search-modern__overlay {
 	position: fixed;
-	/* добавляем отступ от инпута к ширине оверлея */
-	width: calc(100vw + 75px);
+	width: 110vw;
 	height: 100vh;
 	content: ' ';
 	background: #00000078;

@@ -113,7 +113,9 @@ $containerName = 'container-' . $navParams['NavNum'];
 <div class="main-prod__section container-no-padding" data-entity="<?= $containerName ?>">
 	<div class="main-prod__top">
 		<div class="main-prod__title"><?= $arParams['BLOCK_TITLE'] ?></div>
-		<a class="main-section__link" href="<?= $arParams['LINK_VALUE'] ?>"><?= $arParams['LINK_TEXT'] ?></a>
+		<? if ($arParams['LINK_TEXT'] && $arParams['LINK_VALUE']) { ?>
+			<a class="main-section__link" href="<?= $arParams['LINK_VALUE'] ?>"><?= $arParams['LINK_TEXT'] ?></a>
+		<? } ?>
 	</div>
 	<?
 	if (!empty($arResult['ITEMS']) && !empty($arResult['ITEM_ROWS'])) {

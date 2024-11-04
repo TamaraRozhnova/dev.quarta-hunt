@@ -62,7 +62,15 @@ if ($isFilter) {
 		$arCurSection = array();
 }
 ?>
-
+<? $APPLICATION->IncludeComponent(
+	"bitrix:breadcrumb",
+	"breadcrumb",
+	array(
+		"PATH" => "",
+		"SITE_ID" => "h1",
+		"START_FROM" => "0"
+	)
+); ?>
 <div class="container catalog-container">
 	<?
 	include($_SERVER["DOCUMENT_ROOT"] . "/" . $this->GetFolder() . "/section_inner.php");

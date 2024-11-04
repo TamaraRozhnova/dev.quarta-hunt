@@ -1,8 +1,3 @@
-.container.personal-page{
-	display: flex;
-	align-items: flex-start;
-}
-
 .bx-auth-profile{
 	position: relative;
 	max-width: 100%;
@@ -121,10 +116,4 @@
 
 .errortext{
 	color: var(--color-primary);
-}
-
-@media (width <= 992px) {
-	.container.personal-page{
-		flex-direction: column;
-	}
 }
