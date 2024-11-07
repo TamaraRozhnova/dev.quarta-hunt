@@ -68,5 +68,4 @@ const TEMPERATURE_HL_ENTITY = 'Temperature';
 const OFFERS_CLOTHES_SIZE_PROP_CODE = 'CLOTHES_SIZE';
 
 // код HL блока Цветов торговых предложений HUT
-
 const HUT_OFFERS_COLOR_HL_CODE = 'Hutcolors';

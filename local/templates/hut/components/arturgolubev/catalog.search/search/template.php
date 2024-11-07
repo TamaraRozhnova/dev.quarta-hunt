@@ -64,43 +64,51 @@ $bx_search_limit = COption::GetOptionString('search', 'max_result_size', 50); ?>
 			"ID" => $arElements,
 		);
 
-		/*if (\Arturgolubev\Smartsearch\Unitools::checkModuleVersion('iblock', '18.6.200')) {
-		$APPLICATION->IncludeComponent(
-			"bitrix:catalog.smart.filter",
-			"",
-			array(
-				"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-				"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-				"SECTION_ID" => $arCurSection['ID'],
-				"PREFILTER_NAME" => 'searchFilter',
-				"FILTER_NAME" => 'searchFilter',
-				"PRICE_CODE" => $arParams["~PRICE_CODE"],
-				"CACHE_TYPE" => $arParams["CACHE_TYPE"],
-				"CACHE_TIME" => $arParams["CACHE_TIME"],
-				"CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
-				"SAVE_IN_SESSION" => "N",
-				"FILTER_VIEW_MODE" => $arParams["FILTER_VIEW_MODE"],
-				"XML_EXPORT" => "N",
-				"SECTION_TITLE" => "NAME",
-				"SECTION_DESCRIPTION" => "DESCRIPTION",
-				'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
-				"TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
-				'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
-				'CURRENCY_ID' => $arParams['CURRENCY_ID'],
-				"SEF_MODE" => $arParams["SEF_MODE"],
-				"SEF_RULE" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["smart_filter"],
-				"SMART_FILTER_PATH" => $arResult["VARIABLES"]["SMART_FILTER_PATH"],
-				"PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
-				"INSTANT_RELOAD" => $arParams["INSTANT_RELOAD"],
-			),
-			$component,
-			array('HIDE_ICONS' => 'Y')
-		);
-	}*/ ?>
+		if (\Arturgolubev\Smartsearch\Unitools::checkModuleVersion('iblock', '18.6.200')) { ?>
+			<div id="filter_modal" class="modal">
+				<? $APPLICATION->IncludeComponent(
+					"custom:catalog.smart.filter",
+					"filter",
+					array(
+						"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+						"IBLOCK_ID" => $arParams["IBLOCK_ID"],
+						"SECTION_ID" => $arCurSection['ID'],
+						"PREFILTER_NAME" => 'searchFilter',
+						"FILTER_NAME" => 'searchFilter',
+						"PRICE_CODE" => $arParams["~PRICE_CODE"],
+						"CACHE_TYPE" => $arParams["CACHE_TYPE"],
+						"CACHE_TIME" => $arParams["CACHE_TIME"],
+						"CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+						"SAVE_IN_SESSION" => "N",
+						"FILTER_VIEW_MODE" => $arParams["FILTER_VIEW_MODE"],
+						"XML_EXPORT" => "N",
+						"SECTION_TITLE" => "NAME",
+						"SECTION_DESCRIPTION" => "DESCRIPTION",
+						'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
+						"TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
+						'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
+						'CURRENCY_ID' => $arParams['CURRENCY_ID'],
+						"SEF_MODE" => $arParams["SEF_MODE"],
+						"SEF_RULE" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["smart_filter"],
+						"SMART_FILTER_PATH" => $arResult["VARIABLES"]["SMART_FILTER_PATH"],
+						"PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
+						"INSTANT_RELOAD" => $arParams["INSTANT_RELOAD"],
+					),
+					$component,
+					array('HIDE_ICONS' => 'Y')
+				); ?>
+			</div>
+		<? } ?>
+
 		<div class="catalog__buttons">
-			<button type="button" class="button filter-toggler"><span>Фильтры</span> <?= buildSVG('filter', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
-			<button type="button" class="button sort-toggler"><span>По популярности</span> <?= buildSVG('sort', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
+			<button type="button" class="button filter-toggler">
+				<span>Фильтры</span>
+				<span class="filter-icon"><?= buildSVG('filter', SITE_TEMPLATE_PATH . ICON_PATH) ?></span>
+			</button>
+			<? include_once($_SERVER['DOCUMENT_ROOT'] . '/include/catalog/sort.php') ?>
 		</div>
+
+		<? debug($arParams["ELEMENT_SORT_FIELD"]) ?>
 
 	<? $APPLICATION->IncludeComponent(
 			"bitrix:catalog.section",

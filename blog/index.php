@@ -4,18 +4,31 @@ $APPLICATION->SetTitle("Блог");?>
 
 <?php
 
-$itsUrFace = false;
 global $USER;
+
+$itsUrFace = false;
+$itsPrivatePerson = false;
+$itsGuest = $USER->IsAuthorized();
+
 $rsUser = CUser::GetByID($USER->GetID());
 $arUser = $rsUser->Fetch();
 
 if ($arUser && $arUser['UF_TYPE'] == 'wholesale') {
 	$itsUrFace = true;
+} else if ($arUser && $arUser['UF_TYPE'] == 'retail') {
+	$itsPrivatePerson = true;
 }
 
 if ($itsUrFace) {
 	$GLOBALS['arrFilterNews'] = ['!PROPERTY_HIDE_ON_UR_VALUE' => 'Y'];
+} else if ($itsPrivatePerson) {
+	$GLOBALS['arrFilterNews'] = ['!PROPERTY_HIDE_ON_PRIVATE_PERSON_VALUE' => 'Y'];
 }
+
+if($itsGuest) {
+	$GLOBALS['arrFilterNews'] = ['!PROPERTY_HIDE_ON_GUEST_VALUE' => 'Y'];
+}
+
 ?>
 
 <?$APPLICATION->IncludeComponent(

@@ -3369,6 +3369,10 @@
 
       if (arResult.STATUS === "OK") {
         this.setAnalyticsDataLayer("addToCart");
+
+        if (window.innerWidth > 768) {
+          this.addProductToBasketSuccess();
+        }
       }
 
       if (arResult.STATUS === "OK" && this.basketMode === "BUY") {
@@ -3453,6 +3457,40 @@
       }
     },
 
+    addProductToBasketSuccess: function () {
+      let ajaxUrl = '/ajax/addProductToBasket/addProductToBasket.php';
+      let that = this;
+
+      BX.ajax({
+        url: ajaxUrl,
+        method: 'POST',
+        onsuccess: function(data) {
+          that.addProductToBasketSuccessAjaxResult(data);
+        }
+      });
+    },
+
+    addProductToBasketSuccessAjaxResult: function (result) {
+      if (result) {
+        let resultBlock = document.createElement('div');
+        resultBlock.innerHTML = result;
+
+        resultBlock.classList.add('basket-products-modal-block');
+
+        let closeModalButton = resultBlock.querySelector('a.close-modal-button');
+        if (closeModalButton) {
+          closeModalButton.addEventListener('click', function () {
+            resultBlock.remove();
+          });
+        }
+
+        let main = document.querySelector('main');
+        if (main) {
+          main.appendChild(resultBlock);
+        }
+      }
+    },
+
     basketRedirect: function () {
       location.href = this.basketData.basketUrl
         ? this.basketData.basketUrl
@@ -3460,6 +3498,8 @@
     },
 
     initPopupWindow: function () {
+      return false;
+
       if (this.obPopupWin) return;
 
       this.obPopupWin = BX.PopupWindowManager.create(

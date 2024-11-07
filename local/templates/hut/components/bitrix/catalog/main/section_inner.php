@@ -19,11 +19,11 @@ if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMO
 ?>
 
 <? if ($isFilter): ?>
-	<div class="">
+	<div id="filter_modal" class="modal">
 		<?
 		$APPLICATION->IncludeComponent(
-			"bitrix:catalog.smart.filter",
-			"",
+			"custom:catalog.smart.filter",
+			"filter",
 			array(
 				"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
 				"IBLOCK_ID" => $arParams["IBLOCK_ID"],
@@ -208,8 +208,11 @@ if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
 	unset($sectionListParams); ?>
 
 	<div class="catalog__buttons">
-		<button type="button" class="button filter-toggler"><span>Фильтры</span> <?= buildSVG('filter', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
-		<button type="button" class="button sort-toggler"><span>По популярности</span> <?= buildSVG('sort', SITE_TEMPLATE_PATH . ICON_PATH) ?></button>
+		<button type="button" class="button filter-toggler">
+			<span>Фильтры</span>
+			<span class="filter-icon"><?= buildSVG('filter', SITE_TEMPLATE_PATH . ICON_PATH) ?></span>
+		</button>
+		<? include_once($_SERVER['DOCUMENT_ROOT'] . '/include/catalog/sort.php') ?>
 	</div>
 </div>
 

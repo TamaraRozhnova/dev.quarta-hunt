@@ -114,6 +114,25 @@
   color: white;
 }
 
+.filter-toggler .filter-icon {
+  display: flex;
+}
+
+.filter-toggler.active .filter-icon {
+  position: relative;
+}
+
+.filter-toggler.active .filter-icon::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 @media (max-width: 768px) {
   .catalog__sectoin-title {
     font-size: 40px;

@@ -567,7 +567,7 @@
 .product-item-line-card
   .product-item-container
   .product-item-info-container.product-item-hidden {
-  display: block;
+  display: none;
   opacity: 1;
 }
 
