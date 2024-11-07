@@ -51,12 +51,11 @@ const IMG_PATH = '/img';
 const ICON_PATH = '/img/icons';
 const HUT_CATALOG_IBLOCK_ID = 88;
 
-// филттр разделов для блока на главной
+// фильтр разделов для блока на главной
 $GLOBALS['mainSectionsFilter'] = ['UF_SHOW_ON_MAIN' => 1];
 
 // фильтр элементов для стартовой страницы каталога
 $GLOBALS['mainCatalogFilter'] = ['PROPERTY_IS_TOP_VALUE' => "Y"];
-
 
 // Справочник размеров одежды
 const CLOTHES_SIZE_HL_ENTITY = 'Hutclothessize';
@@ -69,3 +68,5 @@ const OFFERS_CLOTHES_SIZE_PROP_CODE = 'CLOTHES_SIZE';
 
 // код HL блока Цветов торговых предложений HUT
 const HUT_OFFERS_COLOR_HL_CODE = 'Hutcolors';
+
+const HUT_FAVORITES_COOCKIE_NAME = 'hut_favorites';

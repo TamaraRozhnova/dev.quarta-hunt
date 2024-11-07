@@ -873,7 +873,7 @@ input::-webkit-inner-spin-button {
   right: 12px;
 }
 
-.button.product__favorites.favorites-add svg path {
+.button.product__favorites.in-favorites svg path {
   stroke: var(--color-primary);
   fill: var(--color-primary);
   stroke-opacity: 1;

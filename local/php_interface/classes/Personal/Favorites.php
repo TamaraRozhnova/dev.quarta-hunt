@@ -13,13 +13,14 @@ use _CIBElement;
  */
 class Favorites
 {
-    const FAVORITES_IBLOCK_ID = 21;
 
     /** @var int */
     private $userId = 0;
 
+    private $favoritesIblockId;
+    private $favoritesCoockieName;
 
-    public function __construct()
+    public function __construct(int $favoritesIblockId = 21, string $favoritesCoockieName = 'favorites')
     {
         CModule::IncludeModule('iblock');
 
@@ -27,13 +28,16 @@ class Favorites
         if ($USER->IsAuthorized()) {
             $this->userId = $USER->GetID();
         }
+
+        $this->favoritesIblockId = $favoritesIblockId;
+        $this->favoritesCoockieName = $favoritesCoockieName;
     }
 
 
     public function getFavoritesCount()
     {
         if (!$this->userId) {
-            $favorites = json_decode($_COOKIE['favorites']);
+            $favorites = json_decode($_COOKIE[$this->favoritesCoockieName]);
             if (is_array($favorites)) {
                 return count($favorites);
             }
@@ -117,7 +121,7 @@ class Favorites
      */
     public function getFavoritesElement(): _CIBElement
     {
-        $resource = CIBlockElement::GetList([], ['IBLOCK_ID' => self::FAVORITES_IBLOCK_ID, 'PROPERTY_USER_ID' => $this->userId]);
+        $resource = CIBlockElement::GetList([], ['IBLOCK_ID' => $this->favoritesIblockId, 'PROPERTY_USER_ID' => $this->userId]);
         if ($element = $resource->GetNextElement()) {
             return $element;
         }
@@ -135,7 +139,7 @@ class Favorites
             return $this->getProductsIdsInFavorites($element);
         }
 
-        $cookieFavorites = json_decode($_COOKIE['favorites']);
+        $cookieFavorites = json_decode($_COOKIE[$this->favoritesCoockieName]);
 
         if (!is_array($cookieFavorites)) {
             return [];
@@ -167,7 +171,7 @@ class Favorites
         $name = 'fav_' . $this->userId;
         $element = new CIBlockElement();
         $element->Add([
-            'IBLOCK_ID' => Favorites::FAVORITES_IBLOCK_ID,
+            'IBLOCK_ID' => $this->favoritesIblockId,
             'NAME' => $name,
             'CODE' => $name,
             'XML_ID' => $name,

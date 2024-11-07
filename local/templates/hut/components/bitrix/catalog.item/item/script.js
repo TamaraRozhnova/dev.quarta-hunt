@@ -19,6 +19,7 @@
   BX.extend(BasketButton, BX.PopupWindowButton);
 
   window.JCCatalogItem = function (arParams) {
+    this.favoritesApi = new FavoritesApi();
     this.productType = 0;
     this.showQuantity = true;
     this.showAbsent = true;
@@ -2549,44 +2550,31 @@
     },
 
     favoritesEventHandlers: function () {
-        let productFavoritesButton = document.querySelector('#' + this.visual.ID + ' .product__favorites');
+      let productFavoritesButton = document.querySelector(
+        "#" + this.visual.ID + " .product__favorites"
+      );
 
-        if (productFavoritesButton) {
-          let productId = productFavoritesButton.dataset.productId;
+      if (productFavoritesButton) {
+        let productId = productFavoritesButton.dataset.productId;
 
-          if (productId) {
-            productFavoritesButton.addEventListener('click', () => {
-              let mode = 'ADD';
+        if (productId) {
+          productFavoritesButton.addEventListener("click", () => {
+            let mode = "ADD";
 
-              if (productFavoritesButton.classList.contains('favorites-add')) {
-                mode = 'DELETE';
-              }
+            if (productFavoritesButton.classList.contains("in-favorites")) {
+              mode = "DELETE";
+            }
 
-              this.favoritesAjax(productId, mode);
-
-              if (mode == 'ADD') {
-                productFavoritesButton.classList.add('favorites-add');
-              } else {
-                productFavoritesButton.classList.remove('favorites-add');
-              }
-            });
-          }
+            if (mode == "ADD") {
+              productFavoritesButton.classList.add("in-favorites");
+              this.favoritesApi.addToFavorites(productId);
+            } else {
+              productFavoritesButton.classList.remove("in-favorites");
+              this.favoritesApi.deleteFromFavorites(productId);
+            }
+          });
         }
-    },
-
-    favoritesAjax: function (productId, mode) {
-      let ajaxUrl = '/ajax/favorites/favorites.php';
-
-      BX.ajax({
-        method: 'POST',
-        dataType: 'json',
-        url: ajaxUrl,
-        data: {
-          'productId': productId,
-          'action': mode
-        },
-        onsuccess: function (result) {}
-      });
+      }
     },
   };
 })(window);

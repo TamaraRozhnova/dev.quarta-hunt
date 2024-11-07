@@ -19,3 +19,13 @@ foreach ($arSections as $section) {
     $section['SECTION_PAGE_URL'] = \CIBlock::ReplaceDetailUrl($section['SECTION_PAGE_URL_RAW'], $section, true, 'S');
     $arResult['INNER_SECTIONS'][] = $section;
 }
+
+global $APPLICATION;
+$cp = $this->__component;
+if (is_object($cp)) {
+    foreach ($arResult['ITEMS'] as $item) {
+        $itemIds[] = $item['ID'];
+    }
+    $cp->arResult['ITEM_IDS'] = $itemIds;
+    $cp->SetResultCacheKeys(array('ITEM_IDS'));
+}
