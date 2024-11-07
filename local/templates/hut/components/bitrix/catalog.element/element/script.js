@@ -20,6 +20,7 @@
 
   window.JCCatalogElement = function (arParams) {
     this.productType = 0;
+    this.favoritesApi = new FavoritesApi();
 
     this.config = {
       useCatalog: true,
@@ -763,6 +764,7 @@
 
       this.bindSizeChangeLoggler();
       this.bindCopyLinkHandler();
+      this.favoritesEventHandlers();
     },
 
     bindSizeChangeLoggler: function () {
@@ -3458,33 +3460,35 @@
     },
 
     addProductToBasketSuccess: function () {
-      let ajaxUrl = '/ajax/addProductToBasket/addProductToBasket.php';
+      let ajaxUrl = "/ajax/addProductToBasket/addProductToBasket.php";
       let that = this;
 
       BX.ajax({
         url: ajaxUrl,
-        method: 'POST',
-        onsuccess: function(data) {
+        method: "POST",
+        onsuccess: function (data) {
           that.addProductToBasketSuccessAjaxResult(data);
-        }
+        },
       });
     },
 
     addProductToBasketSuccessAjaxResult: function (result) {
       if (result) {
-        let resultBlock = document.createElement('div');
+        let resultBlock = document.createElement("div");
         resultBlock.innerHTML = result;
 
-        resultBlock.classList.add('basket-products-modal-block');
+        resultBlock.classList.add("basket-products-modal-block");
 
-        let closeModalButton = resultBlock.querySelector('a.close-modal-button');
+        let closeModalButton = resultBlock.querySelector(
+          "a.close-modal-button"
+        );
         if (closeModalButton) {
-          closeModalButton.addEventListener('click', function () {
+          closeModalButton.addEventListener("click", function () {
             resultBlock.remove();
           });
         }
 
-        let main = document.querySelector('main');
+        let main = document.querySelector("main");
         if (main) {
           main.appendChild(resultBlock);
         }
@@ -3558,11 +3562,39 @@
         this.incViewedCounter();
       }
     },
+
+    favoritesEventHandlers: function () {
+      let productFavoritesButton = document.querySelector(
+        "#" + this.visual.ID + " .element__favorite-button"
+      );
+
+      if (productFavoritesButton) {
+        let productId = productFavoritesButton.dataset.productId;
+
+        if (productId) {
+          productFavoritesButton.addEventListener("click", () => {
+            let mode = "ADD";
+
+            if (productFavoritesButton.classList.contains("in-favorites")) {
+              mode = "DELETE";
+            }
+
+            if (mode == "ADD") {
+              productFavoritesButton.classList.add("in-favorites");
+              this.favoritesApi.addToFavorites(productId);
+            } else {
+              productFavoritesButton.classList.remove("in-favorites");
+              this.favoritesApi.deleteFromFavorites(productId);
+            }
+          });
+        }
+      }
+    },
   };
 })(window);
 
 BX.ready(function () {
-  if (window.innerWidth > 450) {
+  if (window.innerWidth > 450 && typeof Fancybox !== "undefined") {
     Fancybox.bind('[data-fancybox="gallery"]', {
       compact: false,
       idle: false,

@@ -167,10 +167,10 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 	}
 }
 
-if (!empty($actualItem['MORE_PHOTO'])) {
-	$APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>', true);
-	$APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>', true);
-}
+
+$APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>', true);
+$APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>', true);
+
 
 ?>
 <div class="bx-catalog-element" id="<?= $itemIds['ID'] ?>"
@@ -507,7 +507,7 @@ if (!empty($actualItem['MORE_PHOTO'])) {
 							?>
 						</div>
 						<div class="element__faforite">
-							<button class="button element__favorite-button" type="button">
+							<button data-product-id="<?= $arResult['ID'] ?>" class="button element__favorite-button" type="button">
 								<?= buildSVG('favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?>
 							</button>
 						</div>

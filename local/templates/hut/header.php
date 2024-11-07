@@ -6,10 +6,15 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use Bitrix\Main\Page\Asset;
 use Helpers\IblockHelper;
+use Personal\Favorites;
 
 global $APPLICATION;
 
 $user = new CUser;
+$isAuth = $user->isAuthorized();
+
+$favorites = new Favorites(IblockHelper::getIdByCode("hutfavorites"), HUT_FAVORITES_COOCKIE_NAME);
+$favoritesCount = $favorites->getFavoritesCount();
 
 ?>
 <!doctype html>
@@ -35,12 +40,19 @@ $user = new CUser;
 
     <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/normalize.css") ?>
     <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css") ?>
+    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/jsCookie.min.js"); ?>
     <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/script.js"); ?>
     <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/request.js"); ?>
+    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/favoritesApi.js"); ?>
 
     <? $APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>', true); ?>
     <? $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" type="text/javascript"></script>', true); ?>
     <? $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js" type="text/javascript"></script>', true); ?>
+
+    <script>
+        window.isAuth = '<?= boolval($isAuth) ?>';
+        window.favoritesCount = <?= $favoritesCount ?>;
+    </script>
 </head>
 
 <body>
@@ -238,8 +250,8 @@ $user = new CUser;
                 </div>
                 <div class="menu__dop">
                     <a id="search_opener" href="#" class="menu__dop-link"><?= buildSVG('search', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
-                    <a href="#" class="menu__dop-link"><?= buildSVG('favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?><span>10</span></a>
-                    <? if ($user->isAuthorized()) { ?>
+                    <a href="/favorites/" class="menu__dop-link menu__dop-link--favorites"><?= buildSVG('favorite', SITE_TEMPLATE_PATH . ICON_PATH) ?><span style="display: <?= $favoritesCount > 0 ? 'flex' : 'none' ?>"><?= $favoritesCount ?></span></a>
+                    <? if ($isAuth) { ?>
                         <a href="/personal/" class="menu__dop-link"><?= buildSVG('user', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>
                     <? } else { ?>
                         <a href="#auth" rel="modal:open" class="menu__dop-link"><?= buildSVG('user', SITE_TEMPLATE_PATH . ICON_PATH) ?></a>

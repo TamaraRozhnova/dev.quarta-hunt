@@ -19,6 +19,7 @@
   BX.extend(BasketButton, BX.PopupWindowButton);
 
   window.JCCatalogItem = function (arParams) {
+    this.favoritesApi = new FavoritesApi();
     this.productType = 0;
     this.showQuantity = true;
     this.showAbsent = true;
@@ -664,6 +665,8 @@
           );
         }
       }
+
+      this.favoritesEventHandlers();
     },
 
     setAnalyticsDataLayer: function (action) {
@@ -2544,6 +2547,34 @@
           className: this.templateTheme ? "bx-" + this.templateTheme : "",
         }
       );
+    },
+
+    favoritesEventHandlers: function () {
+      let productFavoritesButton = document.querySelector(
+        "#" + this.visual.ID + " .product__favorites"
+      );
+
+      if (productFavoritesButton) {
+        let productId = productFavoritesButton.dataset.productId;
+
+        if (productId) {
+          productFavoritesButton.addEventListener("click", () => {
+            let mode = "ADD";
+
+            if (productFavoritesButton.classList.contains("in-favorites")) {
+              mode = "DELETE";
+            }
+
+            if (mode == "ADD") {
+              productFavoritesButton.classList.add("in-favorites");
+              this.favoritesApi.addToFavorites(productId);
+            } else {
+              productFavoritesButton.classList.remove("in-favorites");
+              this.favoritesApi.deleteFromFavorites(productId);
+            }
+          });
+        }
+      }
     },
   };
 })(window);

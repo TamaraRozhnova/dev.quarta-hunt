@@ -14,7 +14,7 @@
 			<? if ($arItem["IS_PARENT"]): ?>
 
 				<? if ($arItem["DEPTH_LEVEL"] == 1): ?>
-					<li><a href="<?= $arItem["LINK"] ?>" class="is-parent <? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>">
+					<li><a href="<?= $arItem["LINK"] ?>" class="is-parent root-item <? if ($arItem["SELECTED"]): ?>root-item-selected<? endif ?>">
 							<button type="button" class="button parent-back"><?= buildSVG('left', SITE_TEMPLATE_PATH . ICON_PATH) ?></button><?= $arItem["TEXT"] ?>
 						</a>
 						<ul class="second">
@@ -28,7 +28,7 @@
 								<? if ($arItem["PERMISSION"] > "D"): ?>
 
 									<? if ($arItem["DEPTH_LEVEL"] == 1): ?>
-										<li><a href="<?= $arItem["LINK"] ?>" class="<? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>"><?= $arItem["TEXT"] ?></a></li>
+										<li><a href="<?= $arItem["LINK"] ?>" class="root-item <? if ($arItem["SELECTED"]): ?>root-item-selected<? endif ?>"><?= $arItem["TEXT"] ?></a></li>
 									<? else: ?>
 										<li<? if ($arItem["SELECTED"]): ?> class="item-selected" <? endif ?>><a href="<?= $arItem["LINK"] ?>"><?= $arItem["TEXT"] ?></a>
 					</li>
@@ -37,7 +37,7 @@
 			<? else: ?>
 
 				<? if ($arItem["DEPTH_LEVEL"] == 1): ?>
-					<li><a href="" class="<? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>" title="<?= GetMessage("MENU_ITEM_ACCESS_DENIED") ?>"><?= $arItem["TEXT"] ?></a></li>
+					<li><a href="" class="root-item <? if ($arItem["SELECTED"]): ?>root-item-selected<? endif ?>" title="<?= GetMessage("MENU_ITEM_ACCESS_DENIED") ?>"><?= $arItem["TEXT"] ?></a></li>
 				<? else: ?>
 					<li><a href="" class="denied" title="<?= GetMessage("MENU_ITEM_ACCESS_DENIED") ?>"><?= $arItem["TEXT"] ?></a></li>
 				<? endif ?>
