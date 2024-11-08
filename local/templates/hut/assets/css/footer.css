@@ -87,6 +87,12 @@
   font-size: 16px;
   line-height: 21px;
   color: white;
+  display: block;
+  width: auto;
+}
+
+.footer__mail a + a{
+  margin-top: 4px;
 }
 
 @media (max-width: 1600px) {
