@@ -111,6 +111,15 @@ section.contacts.bottom {
   color: var(--color-gray5)
 }
 
+.contacts-form__agree a{
+  color: var(--color-gray5);
+  text-decoration: underline;
+}
+
+.contacts-form__agree a:hover{
+  text-decoration: none;
+}
+
 .contacts.bottom .contacts__submit {
   display: inline-block;
   border-radius: 12px;
