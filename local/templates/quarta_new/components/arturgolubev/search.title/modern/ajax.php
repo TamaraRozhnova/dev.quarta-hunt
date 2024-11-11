@@ -116,8 +116,16 @@ if (count($arCatalogItemFilter) > 0 || count($arNewsItemFilter) || count($arSale
                             "ELEMENT_SORT_ORDER2" => "",
                             "ENLARGE_PRODUCT" => "STRICT",
                             "FILTER_NAME" => "arrProductFilter",
+                            
+                            /**
+                             * Переопределяем параметры каталога по показу товаров
+                             * Ставим параметры как у каталога
+                             * 
+                             * @see /catalog/index.php
+                             */
                             "HIDE_NOT_AVAILABLE" => "L",
-                            "HIDE_NOT_AVAILABLE_OFFERS" => "N",
+                            "HIDE_NOT_AVAILABLE_OFFERS" => "Y",
+
                             "IBLOCK_ID" => "16",
                             "IBLOCK_TYPE" => "1c_catalog",
                             "INCLUDE_SUBSECTIONS" => "Y",
