@@ -736,7 +736,7 @@ div.title-search-result td.title-search-price span {
 }
 
 .bx-searchtitle-preloader {
-  display: none;
+  display: none !important;
 }
 
 .bx-input-group-btn {

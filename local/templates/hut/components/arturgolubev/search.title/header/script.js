@@ -448,6 +448,7 @@ function JCTitleSearchAG(arParams) {
         _this.RESULT.style.display = "none";
         _this.srartBlock.style.display = "block";
         _this.INPUT.value = "";
+        _this.INPUT.focus();
         _this.onChange();
       });
     }
@@ -606,12 +607,12 @@ function JCTitleSearchAG(arParams) {
         _this.onChange();
       }, 200);
     });
-    
-    this.toggler.forEach((toggler)=> {
+
+    this.toggler.forEach((toggler) => {
       BX.bind(toggler, "click", function (e) {
         _this.showSearch(e);
       });
-    })
+    });
 
     BX.bind(this.overlay, "click", function (e) {
       _this.hideSearch(e);
