@@ -1,13 +1,13 @@
 <?php
 
-namespace CustomEvents;
+namespace CustomEvents\Hut;
+
+use Bitrix\Main\Diag\Debug;
 
 class OnBeforeIBlockElementUpdate
 {
     public static function OnBeforeIBlockElementUpdateHandler(&$arFields)
     {
-        if ($_REQUEST['mode'] == 'import') {
-            unset($arFields['CODE']);
-        }
+        //Debug::writeToFile($arFields, "arFields");
     }
 }
