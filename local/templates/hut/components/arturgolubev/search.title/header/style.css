@@ -981,4 +981,10 @@ div.title-search-result td.title-search-price span {
   .search-title__popular-wrap {
     margin-top: 24px;
   }
+
+  .search-title__popular {
+    overflow: auto;
+    width: calc(100% + 16px);
+    padding-right: 16px;
+  }
 }
