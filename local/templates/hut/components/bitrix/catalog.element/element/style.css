@@ -1505,3 +1505,11 @@ video {
 main {
   position: relative;
 }
+
+.element__comments-list {
+  margin-top: 48px;
+}
+
+.element-tab-inner--comment {
+  gap: 64px;
+}

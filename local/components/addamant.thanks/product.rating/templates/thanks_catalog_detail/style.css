@@ -1,0 +1,56 @@
+.star-block {
+  width: fit-content;
+}
+
+.star-block .click-star,
+.star-block.active .default-star {
+  display: none;
+}
+
+.star-block.active .click-star,
+.star-block .default-star {
+  display: flex;
+}
+
+.star-block > div {
+  align-items: center;
+  gap: 8px;
+}
+
+.star-block > div a {
+  text-decoration: none;
+  color: var(--color-dark6);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.star-block > div.click-star a {
+  color: var(--color-dark6);
+}
+
+.star-block > div .stars-block {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-block > div .stars-block span {
+  color: var(--main_dark_color);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.star-block > div.click-star .stars-block {
+  cursor: pointer;
+}
+
+.star-block > div.click-star .stars-block:hover svg.active-star-setted path {
+  fill: var(--color-gray2);
+}
+
+.star-block > div.click-star .stars-block:hover svg.active-star path,
+.star-block > div.click-star .stars-block svg.active-star-setted path {
+  fill: var(--color-primary);
+}

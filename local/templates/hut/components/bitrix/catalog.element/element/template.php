@@ -889,7 +889,40 @@ $APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.n
 				</div>
 
 				<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="comments" style="display: none;">
-					<p class="element__tab-title"><?= $arParams['MESS_COMMENTS_TAB'] ?></p>
+					<div class="element__tab-inner element-tab-inner--comment">
+						<div class="element__comment-left">
+							<p class="element__tab-title"><?= $arParams['MESS_COMMENTS_TAB'] ?></p>
+							<div class="element__comments-list">
+								<?php
+								$APPLICATION->IncludeComponent(
+									'addamant.thanks:product.comments',
+									'',
+									[
+										'BLOG_URL' => 'reviews',
+										'IBLOCK_ID' => $arParams['IBLOCK_ID'],
+										'ELEMENT_ID' => $arResult['ID'],
+										'BLOG_GROUP_ID' => 1,
+										'ELEMENT_COUNT' => $arParams['COMMENTS_COUNT']
+									],
+									$component,
+								);
+								?>
+							</div>
+						</div>
+						<div class="element__comment-right">
+							<?php
+							$APPLICATION->IncludeComponent(
+								'addamant.thanks:product.rating',
+								'thanks_catalog_detail',
+								[
+									'IBLOCK_ID' => $arParams['IBLOCK_ID'],
+									'ELEMENT_ID' => $arResult['ID'],
+								],
+								$component,
+							);
+							?>
+						</div>
+					</div>
 				</div>
 
 				<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="properties">

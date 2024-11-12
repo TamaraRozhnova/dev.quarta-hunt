@@ -1,0 +1,11 @@
+.button.button-secondary,
+.button.button-primary {
+  padding: 12px 16px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  color: var(--main-dark700);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  display: block;
+}
