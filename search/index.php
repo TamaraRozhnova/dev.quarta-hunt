@@ -25,8 +25,13 @@ $APPLICATION->IncludeComponent(
 		"ELEMENT_SORT_ORDER" => "desc",
 		"ELEMENT_SORT_FIELD2" => "CATALOG_AVAILABLE",
 		"ELEMENT_SORT_ORDER2" => "desc",
+
+		/**
+		 * @see /catalog/index.php
+		 */
 		"HIDE_NOT_AVAILABLE" => "L",
-		"HIDE_NOT_AVAILABLE_OFFERS" => "N",
+		"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
+		
 		"PAGE_ELEMENT_COUNT" => "20",
 		"LINE_ELEMENT_COUNT" => "1",
         "PROPERTY_CODE" => array(

@@ -22,7 +22,7 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 	?>
 		<ul class="main-sections__list">
 			<?
-			$intCurrentDepth = 1;
+			$intCurrentDepth = 2;
 			$boolFirst = true;
 			foreach ($arResult['SECTIONS'] as &$arSection) {
 				$this->AddEditAction($arSection['ID'], $arSection['EDIT_LINK'], $strSectionEdit);
@@ -43,7 +43,7 @@ $arSectionDeleteParams = array("CONFIRM" => GetMessage('CT_BCSL_ELEMENT_DELETE_C
 				}
 
 				echo (!$boolFirst ? "\n" : ''), str_repeat("\t", $arSection['RELATIVE_DEPTH_LEVEL']);
-			?><li id="<?= $this->GetEditAreaId($arSection['ID']); ?>" <?= $arSection['RELATIVE_DEPTH_LEVEL'] == 1 ? 'style="background-image:url(' . CFile::GetPath($arSection['UF_MAIN_IMG']) . ')"' : '' ?> class="<?= $arSection['RELATIVE_DEPTH_LEVEL'] == 1 ? 'parent' : 'child' ?>">
+			?><li id="<?= $this->GetEditAreaId($arSection['ID']); ?>" <?= $arSection['RELATIVE_DEPTH_LEVEL'] == 2 ? 'style="background-image:url(' . CFile::GetPath($arSection['UF_MAIN_IMG']) . ')"' : '' ?> class="<?= $arSection['RELATIVE_DEPTH_LEVEL'] == 2 ? 'parent' : 'child' ?>">
 					<div class="main-sections__title">
 						<a href="<? echo $arSection["SECTION_PAGE_URL"]; ?>"><? echo $arSection["NAME"]; ?>
 							<? if ($arSection['RELATIVE_DEPTH_LEVEL'] == 1) {

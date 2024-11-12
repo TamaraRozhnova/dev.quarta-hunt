@@ -140,6 +140,16 @@ $uriString = $request->getRequestUri();
                 if ($onlyAvailable === 'true') {
                     $arParams["HIDE_NOT_AVAILABLE"] = 'Y';
                     $arParams["HIDE_NOT_AVAILABLE_OFFERS"] = 'Y';
+                } else {
+                    
+                    /**
+                     * Переопределяем параметры каталога по показу товаров
+                     * Ставим параметры как у каталога
+                     * 
+                     * @see /catalog/index.php
+                     */
+                    $arParams["HIDE_NOT_AVAILABLE"] = 'L';
+                    $arParams["HIDE_NOT_AVAILABLE_OFFERS"] = 'Y';
                 }
 
                 /* сортировки */

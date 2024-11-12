@@ -16,7 +16,7 @@ $entity = \Bitrix\Iblock\Model\Section::compileEntityByIblock(HUT_CATALOG_IBLOCK
 $arSections = $entity::getList(array(
     "order" => ['SORT' => 'ASC'],
     "select" => ["ID", "NAME", "PICTURE", 'SECTION_PAGE_URL_RAW' => 'IBLOCK.SECTION_PAGE_URL', 'UF_*'],
-    "filter" => ["IBLOCK_ID" => HUT_CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "UF_SHOW_ON_MAIN" => 1, 'DEPTH_LEVEL' => 1]
+    "filter" => ["IBLOCK_ID" => HUT_CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "UF_SHOW_ON_MAIN" => 1, 'DEPTH_LEVEL' => 2]
 ))->fetchAll();
 
 foreach ($arSections as $section) {

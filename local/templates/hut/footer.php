@@ -17,7 +17,7 @@ Loc::loadMessages(__FILE__);
         <div class="footer__top">
             <div class="footer__column">
                 <div class="footer__logo">
-                    <?= buildSVG('logo', SITE_TEMPLATE_PATH . IMG_PATH) ?>
+                    <a href="/"><?= buildSVG('logo', SITE_TEMPLATE_PATH . IMG_PATH) ?></a>
                 </div>
                 <div class="footer__slogan">
                     <?= Loc::GetMessage("SLOGAN"); ?>

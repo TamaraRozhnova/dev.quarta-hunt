@@ -72,6 +72,10 @@
   width: 100%;
 }
 
+#horizontal-multilevel-menu li li:not(:first-child) {
+  margin-top: 16px;
+}
+
 /*Item link*/
 #horizontal-multilevel-menu li ul a {
   text-align: left;
