@@ -46,7 +46,7 @@ function JCTitleSearchAG(arParams) {
   this.CONTAINER = null;
   this.INPUT = null;
   this.WAIT = null;
-  this.toggler = document.getElementById("search_opener");
+  this.toggler = document.querySelectorAll("#search_opener");
   this.overlay = document.querySelector(".search-title__overlay");
   this.submit = document.querySelector(".search-title__submit");
   this.historyWrap = document.querySelector(
@@ -448,6 +448,7 @@ function JCTitleSearchAG(arParams) {
         _this.RESULT.style.display = "none";
         _this.srartBlock.style.display = "block";
         _this.INPUT.value = "";
+        _this.INPUT.focus();
         _this.onChange();
       });
     }
@@ -607,8 +608,10 @@ function JCTitleSearchAG(arParams) {
       }, 200);
     });
 
-    BX.bind(this.toggler, "click", function (e) {
-      _this.showSearch(e);
+    this.toggler.forEach((toggler) => {
+      BX.bind(toggler, "click", function (e) {
+        _this.showSearch(e);
+      });
     });
 
     BX.bind(this.overlay, "click", function (e) {

@@ -129,7 +129,7 @@
   width: -moz-fit-content;
   width: fit-content;
   border-radius: var(--Mobile, 16px);
-  border: 1px solid var(--Dark-Dark-1, #e0e4eb);
+  border: 1px solid var(--color-dark6);
   color: var(--Dark-Dark-6, #354052);
   font-size: 14px;
   font-weight: 600;
