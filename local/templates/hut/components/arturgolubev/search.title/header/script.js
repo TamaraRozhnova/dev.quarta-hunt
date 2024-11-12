@@ -46,7 +46,8 @@ function JCTitleSearchAG(arParams) {
   this.CONTAINER = null;
   this.INPUT = null;
   this.WAIT = null;
-  this.toggler = document.querySelectorAll("#search_opener");
+  this.toggler = document.getElementById("search_opener");
+  this.inputSearch = document.getElementById("smart-title-search-input");
   this.overlay = document.querySelector(".search-title__overlay");
   this.submit = document.querySelector(".search-title__submit");
   this.historyWrap = document.querySelector(
@@ -355,6 +356,10 @@ function JCTitleSearchAG(arParams) {
   };
 
   this.onKeyDown = function (e) {
+    if (this.value === " " && this.value.length === 0) {
+      this.value = "";
+    }
+
     if (!e) e = window.event;
 
     if (_this.RESULT.style.display == "block") {
@@ -585,6 +590,12 @@ function JCTitleSearchAG(arParams) {
     //     _this.onFocusLost();
     //   }
     // });
+
+    this.INPUT.oninput = () => {
+      if (this.INPUT.value.charAt(0) === " ") {
+        this.INPUT.value = "";
+      }
+    };
     this.INPUT.onkeydown = this.onKeyDown;
 
     this.startText = this.oldValue = this.INPUT.value;
