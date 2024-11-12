@@ -453,6 +453,7 @@ function JCTitleSearchAG(arParams) {
         _this.RESULT.style.display = "none";
         _this.srartBlock.style.display = "block";
         _this.INPUT.value = "";
+        _this.INPUT.focus();
         _this.onChange();
       });
     }
@@ -591,10 +592,10 @@ function JCTitleSearchAG(arParams) {
     // });
 
     this.INPUT.oninput = () => {
-      if(this.INPUT.value.charAt(0) === ' ') {
-        this.INPUT.value = '';
+      if (this.INPUT.value.charAt(0) === " ") {
+        this.INPUT.value = "";
       }
-    }
+    };
     this.INPUT.onkeydown = this.onKeyDown;
 
     this.startText = this.oldValue = this.INPUT.value;
@@ -618,8 +619,10 @@ function JCTitleSearchAG(arParams) {
       }, 200);
     });
 
-    BX.bind(this.toggler, "click", function (e) {
-      _this.showSearch(e);
+    this.toggler.forEach((toggler) => {
+      BX.bind(toggler, "click", function (e) {
+        _this.showSearch(e);
+      });
     });
 
     BX.bind(this.overlay, "click", function (e) {

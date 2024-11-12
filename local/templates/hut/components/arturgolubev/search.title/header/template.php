@@ -46,8 +46,8 @@ if ($arParams["SHOW_INPUT"] !== "N"): ?>
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M8.33333 3.5C5.66396 3.5 3.5 5.66396 3.5 8.33333C3.5 11.0027 5.66396 13.1667 8.33333 13.1667C11.0027 13.1667 13.1667 11.0027 13.1667 8.33333C13.1667 5.66396 11.0027 3.5 8.33333 3.5ZM1.5 8.33333C1.5 4.55939 4.55939 1.5 8.33333 1.5C12.1073 1.5 15.1667 4.55939 15.1667 8.33333C15.1667 9.85959 14.6663 11.269 13.8206 12.4064L18.2071 16.7929C18.5976 17.1834 18.5976 17.8166 18.2071 18.2071C17.8166 18.5976 17.1834 18.5976 16.7929 18.2071L12.4064 13.8206C11.269 14.6663 9.85959 15.1667 8.33333 15.1667C4.55939 15.1667 1.5 12.1073 1.5 8.33333Z" fill="#354052" />
 								</svg>
 							</span>
-							<input id="<? echo $INPUT_ID ?>" placeholder="<?= $arParams["INPUT_PLACEHOLDER"] ?>" type="text" name="q" value="<?= htmlspecialcharsbx($_REQUEST["q"]) ?>" autocomplete="off" class="bx-form-control" />
-							<span class="bx-searchtitle-clear" id="<? echo $CLEAR_ID ?>">
+							<input id="<? echo $INPUT_ID ?>" maxlength="64" placeholder="<?= $arParams["INPUT_PLACEHOLDER"] ?>" type="text" name="q" value="<?= htmlspecialcharsbx($_REQUEST["q"]) ?>" autocomplete="off" class="bx-form-control" />
+							<span <?= htmlspecialcharsbx($_REQUEST["q"]) ? 'style="display: block"' : '' ?> class="bx-searchtitle-clear" id="<? echo $CLEAR_ID ?>">
 								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 4.29289C4.68342 3.90237 5.31658 3.90237 5.70711 4.29289L10 8.58579L14.2929 4.29289C14.6834 3.90237 15.3166 3.90237 15.7071 4.29289C16.0976 4.68342 16.0976 5.31658 15.7071 5.70711L11.4142 10L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L10 11.4142L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L8.58579 10L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289Z" fill="#354052" />
 								</svg>

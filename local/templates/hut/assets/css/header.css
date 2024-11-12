@@ -14,8 +14,13 @@
   position: relative;
 }
 
+.menu__left {
+  width: calc(50% - 128px);
+}
+
 .menu__logo {
   margin: auto;
+  margin: auto auto auto 0;
 }
 
 .menu__dop {
@@ -77,6 +82,9 @@
   .menu__inner {
     padding: 0 12px;
     gap: 20px;
+  }
+  .menu__left {
+    width: calc(50% - 84px);
   }
 }
 

@@ -9,10 +9,13 @@
 
 .search__title {
   margin-top: 16px;
-  font-size: 64px;
-  line-height: 70px;
+  font-size: 48px;
+  line-height: 52px;
   font-weight: 600;
   color: var(--color-dark6);
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .search__title span {
@@ -45,6 +48,13 @@
 
 .button.search__not-found-link {
   margin-top: 16px;
+}
+
+.bx-breadcrumb-item.bx-breadcrumb-item--last,
+.bx-breadcrumb-item.bx-breadcrumb-item--last span:last-child {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
