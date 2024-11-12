@@ -52,7 +52,7 @@ CJSCore::Init(['masked_input', 'jquery']);
 			<div class="profile-block-item">
 				<label class="form-label"><?=GetMessage('USER_PHONE')?><?if($arResult["PHONE_REQUIRED"]):?><span class="starrequired">*</span><?endif?></label>
 				<span class="input__container phone">
-					<input type="text" id="phone" class="form-control input" placeholder="<?=GetMessage('YOUR_PHONE')?>" name="PERSONAL_PHONE" maxlength="255" value="<?=$arResult["arUser"]["PERSONAL_PHONE"]?>" />
+					<input type="text" id="phone" class="form-control input" <?= $arResult["arUser"]["PERSONAL_PHONE"] !== ''? 'placeholder="' .$arResult['arUser']['PERSONAL_PHONE'] . '"': 'placeholder="' . GetMessage('YOUR_PHONE') . '"'?> name="PERSONAL_PHONE" maxlength="255" value="<?=$arResult["arUser"]["PERSONAL_PHONE"]?>" />
 				</span>
 			</div>
 			<div class="profile-block-item">
@@ -94,12 +94,11 @@ CJSCore::Init(['masked_input', 'jquery']);
 			<div class="profile-block-item gender">
 				<label class="form-label"><?=GetMessage('USER_GENDER')?></label>
 				<span class="input__container">
-					<input type="radio" name="gender" id="M" value="M"<?=$arResult["arUser"]["PERSONAL_GENDER"] == "M" ? " SELECTED=\"SELECTED\"" : ""?>><label for="M"><?=GetMessage("USER_MALE")?></label>
-					<input type="radio" name="gender" id="F" value="F"<?=$arResult["arUser"]["PERSONAL_GENDER"] == "F" ? " SELECTED=\"SELECTED\"" : ""?>><label for="F"><?=GetMessage("USER_FEMALE")?></label>
+					<input type="radio" name="PERSONAL_GENDER" id="M" value="M"<?=$arResult["arUser"]["PERSONAL_GENDER"] == "M" ? " checked=\"checked\"" : ""?>><label for="M"><?=GetMessage("USER_MALE")?></label>
+					<input type="radio" name="PERSONAL_GENDER" id="F" value="F"<?=$arResult["arUser"]["PERSONAL_GENDER"] == "F" ? " checked=\"checked\"" : ""?>><label for="F"><?=GetMessage("USER_FEMALE")?></label>
 				</span>
 			</div>
 		</div>
 		<input class="button button-primary enter personal-submit-form" type="submit" name="save" value="<?=GetMessage("SAVE");?>">
 	</form>
 </div>
-
