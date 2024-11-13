@@ -167,11 +167,6 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 	}
 }
 
-
-$APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>', true);
-$APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>', true);
-
-
 ?>
 <div class="bx-catalog-element" id="<?= $itemIds['ID'] ?>"
 	itemscope itemtype="http://schema.org/Product">

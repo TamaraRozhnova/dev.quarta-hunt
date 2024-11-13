@@ -17,6 +17,9 @@ use Bitrix\Main\ModuleManager;
 
 $this->setFrameMode(true);
 
+$APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>', true);
+$APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>', true);
+
 if (isset($arParams['USE_COMMON_SETTINGS_BASKET_POPUP']) && $arParams['USE_COMMON_SETTINGS_BASKET_POPUP'] == 'Y') {
 	$basketAction = (isset($arParams['COMMON_ADD_TO_BASKET_ACTION']) ? array($arParams['COMMON_ADD_TO_BASKET_ACTION']) : array());
 } else {
