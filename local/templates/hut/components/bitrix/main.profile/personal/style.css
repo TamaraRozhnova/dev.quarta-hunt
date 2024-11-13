@@ -33,6 +33,7 @@
 	align-items: center;
 	bottom: 24px;
 	right: 24px;
+	z-index: 1;
 }
 
 .change-success:before{
