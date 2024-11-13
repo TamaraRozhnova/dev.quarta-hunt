@@ -240,12 +240,20 @@ class RatingManager
         $sumRating = 0;
         $ratingProductId = 0;
         $ratingIblockId = 0;
+        $ratingDispence = [
+            1 => 0,
+            2 => 0,
+            3 => 0,
+            4 => 0,
+            5 => 0
+        ];
 
         while ($rating = $ratingQuery->fetch()) {
             $ratingProductId = $rating['PRODUCT_ID'];
             $ratingIblockId = $rating['IBLOCK_ID'];
             $sumRating += $rating['GRADE'];
             $countRating++;
+            $ratingDispence[$rating['GRADE']] += 1;
         }
 
         $averageRating = ($countRating === 0) ? 0 : round($sumRating / $countRating, 1);
@@ -257,6 +265,7 @@ class RatingManager
                 'AVERAGE_RATING' => $averageRating,
                 'COUNT_RATING' => $countRating,
                 'SUM_RATING' => $sumRating,
+                'RATING_DISPENCE' => $ratingDispence,
             ];
     }
 

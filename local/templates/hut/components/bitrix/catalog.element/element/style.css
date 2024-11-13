@@ -241,14 +241,14 @@
 
 .product-item-scu-item-color-block {
   position: relative;
-  padding-top: 100%;
-  outline: 1px solid var(--color-dark1);
+  padding-top: calc(100% - 2px);
+  border: 1px solid var(--color-dark1);
   cursor: pointer;
   border-radius: 50%;
 }
 
 .bx-no-touch .product-item-scu-item-color-block {
-  transition: outline 200ms ease;
+  transition: all 200ms ease;
 }
 
 .bx-retina .product-item-scu-item-color-block {
@@ -257,7 +257,7 @@
 
 .product-item-scu-item-color-container.selected
   .product-item-scu-item-color-block {
-  outline-color: var(--color-dark6);
+  border-color: var(--color-dark6);
 }
 
 .bx-retina .product-item-scu-item.selected .product-item-scu-item-color-block {
@@ -279,13 +279,13 @@
 .product-item-scu-item-text-block {
   position: relative;
   padding: 8px 16px;
-  outline: 1px solid var(--color-dark1);
+  border: 1px solid var(--color-dark1);
   cursor: pointer;
   border-radius: 12px;
 }
 
 .bx-no-touch .product-item-scu-item-text-block {
-  transition: outline 300ms ease;
+  transition: all 300ms ease;
 }
 
 .bx-retina .product-item-scu-item-text-block {
@@ -294,7 +294,8 @@
 
 .product-item-scu-item-text-container.selected
   .product-item-scu-item-text-block {
-  outline-color: var(--color-dark6);
+  border-color: var(--color-dark6);
+  background-color: var(--color-dark0);
 }
 
 .bx-retina .product-item-scu-item.selected .product-item-scu-item-text-block {
@@ -675,8 +676,10 @@
 
 .product-item-detail-tab-link {
   width: 100%;
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   padding: 36px;
   height: auto;
   font-size: 16px;
@@ -1512,4 +1515,39 @@ main {
 
 .element-tab-inner--comment {
   gap: 64px;
+  grid-template-columns: calc(62.6% - 32px) calc(37.4% - 32px);
+}
+
+.element__stars {
+  display: flex;
+  gap: 1px;
+}
+
+.element__reviews-count {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-gray6);
+}
+
+.element__stars-block {
+  position: relative;
+}
+
+.element__stars--color .element__stars {
+  width: max-content;
+}
+
+.element__stars--color {
+  position: absolute;
+  width: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .element-tab-inner--comment {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 32px;
+    align-items: stretch;
+  }
 }

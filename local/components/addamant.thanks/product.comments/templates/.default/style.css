@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 24px;
   margin-bottom: 24px;
-  max-height: 300px;
+  max-height: 1000px;
   overflow: auto;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .reviews-list-block .reviews-item .reviews-content .delete-block {
-  display: none;
+  display: none !important;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -162,7 +162,6 @@
 }
 
 .button-add-review-block {
-  margin-left: 46px;
   margin-top: 16px;
   display: flex;
   gap: 8px;

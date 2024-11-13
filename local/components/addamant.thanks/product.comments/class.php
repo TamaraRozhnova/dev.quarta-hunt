@@ -111,6 +111,7 @@ class ProductCommentsComponent extends CBitrixComponent implements Controllerabl
             [
                 'COMMENT_TEXT_AREA_MAX' => self::COMMENT_TEXT_AREA_MAX,
                 'COMMENT_TEXT_AREA_MIN' => self::COMMENT_TEXT_AREA_MIN,
+                'COMMENTS_COUNT' => count($this->arResult['COMMENTS']),
             ];
 
         $this->IncludeComponentTemplate();
@@ -385,6 +386,7 @@ class ProductCommentsComponent extends CBitrixComponent implements Controllerabl
         }
 
         $this->arResult['USERS'] = $this->getUsers($usersId);
+        $this->arResult['USER_IDS_WITH_COMMENTS'] = $usersId;
         $this->arResult['RATING_COMMENTS'] = $this->getRating(array_keys($comments));
         $this->arResult['COMMENTS_COUNT'] = $commentQuery->NavRecordCount;
 

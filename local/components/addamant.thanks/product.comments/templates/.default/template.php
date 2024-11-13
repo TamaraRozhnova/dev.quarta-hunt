@@ -19,22 +19,16 @@ Extension::load('ui.notification');
 Extension::load('addamant_thanks.global');
 
 $this->addExternalCss($this->GetFolder() . '/styles/buttons/buttons.css');
-
-$defaultUserImage = '/bitrix/components/bitrix/blog/templates/.default/images/noavatar.gif';
 ?>
 <div class="reviews-list-block">
     <?php foreach ($arResult['COMMENTS'] as $commentId => $comment) : ?>
         <?php
-        $userImage = $arResult['USERS'][$comment['AUTHOR_ID']]['PERSONAL_PHOTO_SRC'] ?: $defaultUserImage;
         $ratingComment = $arResult['RATING_COMMENTS'][$comment['ID']];
         $isCurrentUserLiked = $ratingComment['USER_REACTION_LIST'][$comment['AUTHOR_ID']] === 'like';
         $isCurrentUserComment = $comment['AUTHOR_ID'] === $arResult['CURRENT_USER']['ID']
         ?>
         <div class="reviews-item<?= $isCurrentUserComment ? ' my-review-item' : '' ?>"
             data-comment-id="<?= $commentId ?>">
-            <div class="reviews-avatar">
-                <img src="<?= $userImage ?>" alt="">
-            </div>
             <div class="reviews-content">
                 <div class="top-review-content">
                     <p class="name"><?= $arResult['USERS'][$comment['AUTHOR_ID']]['FIO'] ?></p>
@@ -74,11 +68,16 @@ $defaultUserImage = '/bitrix/components/bitrix/blog/templates/.default/images/no
         <span class="reviews-list-block__more"><?= Loc::getMessage('MORE_BUTTON') ?></span>
     <?php endif; ?>
 </div>
-<div class="reviews-add-block">
-    <img src="<?= $arResult['CURRENT_USER']['PERSONAL_PHOTO_SRC'] ?: $defaultUserImage ?>" alt="">
+
+<div class="reviews-add-block" <?= $arParams['USER_ID'] == 0 || in_array($arParams['USER_ID'], $arResult['USER_IDS_WITH_COMMENTS']) ? 'style="display: none"' : '' ?>>
     <textarea class="reviews-add-block__textarea" rows="1" type="text" placeholder="Напишите отзыв"></textarea>
     <span class="length-input-block">29/200</span>
 </div>
+
+<? if ($arParams['USER_ID'] == 0) { ?>
+    <div class="reviews__no-auth">Авторизуйтесь, чтобы оставить отзыв</div>
+<? } ?>
+
 <div class="button-add-review-block hidden">
     <button class="button button-secondary button-review-clear"><?= Loc::getMessage('CANCEL') ?></button>
     <button class="button button-primary red-background button-review-add"><?= Loc::getMessage('SEND') ?></button>

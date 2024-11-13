@@ -313,14 +313,25 @@ $APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.n
 					}
 					?>
 					<div class="element__rating">
-						<div class="element__stars">
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+						<div class="element__stars-block">
+							<div class="element__stars--color" <?= $arResult['PROPERTIES']['AVERAGE_RATING']['VALUE'] ? 'style="width:' . (floatval($arResult['PROPERTIES']['AVERAGE_RATING']['VALUE']) / 5 * 100) . '%"' : '' ?>>
+								<div class="element__stars">
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								</div>
+							</div>
+							<div class="element__stars">
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+							</div>
 						</div>
-						<a href="#" class="element__rating-link">21 отзыв</a>
+						<a href="#" class="element__rating-link">0 оценок</a>
 					</div>
 					<div class="element__price">
 						<div class="element__price-container">
@@ -755,6 +766,7 @@ $APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.n
 					<li class="product-item-detail-tab" data-entity="tab" data-value="comments">
 						<a href="javascript:void(0);" class="product-item-detail-tab-link">
 							<span><?= $arParams['MESS_COMMENTS_TAB'] ?></span>
+							<span class="element__reviews-count"></span>
 						</a>
 					</li>
 					<li class="product-item-detail-tab" data-entity="tab" data-value="properties">
@@ -898,11 +910,12 @@ $APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.n
 									'addamant.thanks:product.comments',
 									'',
 									[
-										'BLOG_URL' => 'reviews',
+										'BLOG_URL' => $arParams['BLOG_URL'],
 										'IBLOCK_ID' => $arParams['IBLOCK_ID'],
 										'ELEMENT_ID' => $arResult['ID'],
-										'BLOG_GROUP_ID' => 1,
-										'ELEMENT_COUNT' => $arParams['COMMENTS_COUNT']
+										'BLOG_GROUP_ID' => $arParams['BLOG_GROUP_ID'],
+										'ELEMENT_COUNT' => $arParams['COMMENTS_COUNT'],
+										'USER_ID' => $arParams['USER_ID'],
 									],
 									$component,
 								);
@@ -917,6 +930,7 @@ $APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.n
 								[
 									'IBLOCK_ID' => $arParams['IBLOCK_ID'],
 									'ELEMENT_ID' => $arResult['ID'],
+									'USER_ID' => $arParams['USER_ID'],
 								],
 								$component,
 							);

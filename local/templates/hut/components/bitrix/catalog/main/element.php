@@ -203,6 +203,9 @@ $isSidebar = ($arParams['SIDEBAR_DETAIL_SHOW'] == 'Y' && !empty($arParams['SIDEB
 		'GIFTS_MAIN_PRODUCT_DETAIL_PAGE_ELEMENT_COUNT' => $arParams['GIFTS_MAIN_PRODUCT_DETAIL_PAGE_ELEMENT_COUNT'],
 		'GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE' => $arParams['GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE'],
 		'GIFTS_MAIN_PRODUCT_DETAIL_HIDE_BLOCK_TITLE' => $arParams['GIFTS_MAIN_PRODUCT_DETAIL_HIDE_BLOCK_TITLE'],
+		'USER_ID' => \Bitrix\Main\Engine\CurrentUser::get()->getId(),
+		'BLOG_URL' => $arParams['BLOG_URL'],
+		'BLOG_GROUP_ID' => $arParams['BLOG_GROUP_ID'],
 	);
 
 	if (isset($arParams['USER_CONSENT'])) {
