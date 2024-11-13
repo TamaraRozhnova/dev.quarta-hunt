@@ -1,6 +1,5 @@
 <?php
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)
-{
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 	die();
 }
 
@@ -25,8 +24,7 @@ $iblockExists = (!empty($arCurrentValues['IBLOCK_ID']) && (int)$arCurrentValues[
 
 $arSKU = false;
 $boolSKU = false;
-if ($boolCatalog && $iblockExists)
-{
+if ($boolCatalog && $iblockExists) {
 	$arSKU = CCatalogSKU::GetInfoByProductIBlock($arCurrentValues['IBLOCK_ID']);
 	$boolSKU = !empty($arSKU) && is_array($arSKU);
 }
@@ -34,8 +32,7 @@ if ($boolCatalog && $iblockExists)
 $defaultValue = array('-' => GetMessage('CP_BC_TPL_PROP_EMPTY'));
 
 $arThemes = array();
-if (ModuleManager::isModuleInstalled('bitrix.eshop'))
-{
+if (ModuleManager::isModuleInstalled('bitrix.eshop')) {
 	$arThemes['site'] = GetMessage('CPT_BC_TPL_THEME_SITE');
 }
 
@@ -78,8 +75,7 @@ $arTemplateParameters = array(
 	)
 );
 
-if (isset($arCurrentValues['SECTIONS_VIEW_MODE']) && 'TILE' == $arCurrentValues['SECTIONS_VIEW_MODE'])
-{
+if (isset($arCurrentValues['SECTIONS_VIEW_MODE']) && 'TILE' == $arCurrentValues['SECTIONS_VIEW_MODE']) {
 	$arTemplateParameters['SECTIONS_HIDE_SECTION_NAME'] = array(
 		'PARENT' => 'SECTIONS_SETTINGS',
 		'NAME' => GetMessage('CPT_BC_SECTIONS_HIDE_SECTION_NAME'),
@@ -160,43 +156,35 @@ $arListPropList = array();
 $arHighloadPropList = array();
 $arFilePropList = $defaultValue;
 
-if ($iblockExists)
-{
+if ($iblockExists) {
 	$rsProps = CIBlockProperty::GetList(
 		array('SORT' => 'ASC', 'ID' => 'ASC'),
 		array('IBLOCK_ID' => $arCurrentValues['IBLOCK_ID'], 'ACTIVE' => 'Y')
 	);
-	while ($arProp = $rsProps->Fetch())
-	{
-		$strPropName = '['.$arProp['ID'].']'.('' != $arProp['CODE'] ? '['.$arProp['CODE'].']' : '').' '.$arProp['NAME'];
-		if ('' == $arProp['CODE'])
-		{
+	while ($arProp = $rsProps->Fetch()) {
+		$strPropName = '[' . $arProp['ID'] . ']' . ('' != $arProp['CODE'] ? '[' . $arProp['CODE'] . ']' : '') . ' ' . $arProp['NAME'];
+		if ('' == $arProp['CODE']) {
 			$arProp['CODE'] = $arProp['ID'];
 		}
 
 		$arAllPropList[$arProp['CODE']] = $strPropName;
 
-		if ('F' == $arProp['PROPERTY_TYPE'])
-		{
+		if ('F' == $arProp['PROPERTY_TYPE']) {
 			$arFilePropList[$arProp['CODE']] = $strPropName;
 		}
 
-		if ('L' == $arProp['PROPERTY_TYPE'])
-		{
+		if ('L' == $arProp['PROPERTY_TYPE']) {
 			$arListPropList[$arProp['CODE']] = $strPropName;
 		}
 
-		if ('S' == $arProp['PROPERTY_TYPE'] && 'directory' == $arProp['USER_TYPE'] && CIBlockPriceTools::checkPropDirectory($arProp))
-		{
+		if ('S' == $arProp['PROPERTY_TYPE'] && 'directory' == $arProp['USER_TYPE'] && CIBlockPriceTools::checkPropDirectory($arProp)) {
 			$arHighloadPropList[$arProp['CODE']] = $strPropName;
 		}
 	}
 
 	$showedProperties = [];
-	if ($usePropertyFeatures)
-	{
-		if ($iblockExists)
-		{
+	if ($usePropertyFeatures) {
+		if ($iblockExists) {
 			$showedProperties = Iblock\Model\PropertyFeature::getListPageShowPropertyCodes(
 				$arCurrentValues['IBLOCK_ID'],
 				['CODE' => 'Y']
@@ -204,22 +192,16 @@ if ($iblockExists)
 			if ($showedProperties === null)
 				$showedProperties = [];
 		}
-	}
-	else
-	{
-		if (!empty($arCurrentValues['LIST_PROPERTY_CODE']) && is_array($arCurrentValues['LIST_PROPERTY_CODE']))
-		{
+	} else {
+		if (!empty($arCurrentValues['LIST_PROPERTY_CODE']) && is_array($arCurrentValues['LIST_PROPERTY_CODE'])) {
 			$showedProperties = $arCurrentValues['LIST_PROPERTY_CODE'];
 		}
 	}
-	if (!empty($showedProperties))
-	{
+	if (!empty($showedProperties)) {
 		$selected = array();
 
-		foreach ($showedProperties as $code)
-		{
-			if (isset($arAllPropList[$code]))
-			{
+		foreach ($showedProperties as $code) {
+			if (isset($arAllPropList[$code])) {
 				$selected[$code] = $arAllPropList[$code];
 			}
 		}
@@ -286,8 +268,7 @@ if ($iblockExists)
 		)
 	);
 
-	if (isset($arCurrentValues['LIST_ENLARGE_PRODUCT']) && $arCurrentValues['LIST_ENLARGE_PRODUCT'] === 'PROP')
-	{
+	if (isset($arCurrentValues['LIST_ENLARGE_PRODUCT']) && $arCurrentValues['LIST_ENLARGE_PRODUCT'] === 'PROP') {
 		$arTemplateParameters['LIST_ENLARGE_PROP'] = array(
 			'PARENT' => 'LIST_SETTINGS',
 			'NAME' => GetMessage('CP_BC_TPL_ENLARGE_PROP'),
@@ -308,8 +289,7 @@ if ($iblockExists)
 		'DEFAULT' => 'Y'
 	);
 
-	if (!isset($arCurrentValues['LIST_SHOW_SLIDER']) || $arCurrentValues['LIST_SHOW_SLIDER'] === 'Y')
-	{
+	if (!isset($arCurrentValues['LIST_SHOW_SLIDER']) || $arCurrentValues['LIST_SHOW_SLIDER'] === 'Y') {
 		$arTemplateParameters['LIST_SLIDER_INTERVAL'] = array(
 			'PARENT' => 'LIST_SETTINGS',
 			'NAME' => GetMessage('CP_BC_TPL_SLIDER_INTERVAL'),
@@ -348,18 +328,14 @@ if ($iblockExists)
 		'VALUES' => $arListPropList
 	);
 
-	if (!empty($arCurrentValues['LABEL_PROP']))
-	{
-		if (!is_array($arCurrentValues['LABEL_PROP']))
-		{
+	if (!empty($arCurrentValues['LABEL_PROP'])) {
+		if (!is_array($arCurrentValues['LABEL_PROP'])) {
 			$arCurrentValues['LABEL_PROP'] = array($arCurrentValues['LABEL_PROP']);
 		}
 
 		$selected = array();
-		foreach ($arCurrentValues['LABEL_PROP'] as $name)
-		{
-			if (isset($arListPropList[$name]))
-			{
+		foreach ($arCurrentValues['LABEL_PROP'] as $name) {
+			if (isset($arListPropList[$name])) {
 				$selected[$name] = $arListPropList[$name];
 			}
 		}
@@ -384,9 +360,15 @@ if ($iblockExists)
 			'JS_DATA' => Json::encode(
 				array(
 					'positions' => array(
-						'top-left', 'top-center', 'top-right',
-						'middle-left', 'middle-center', 'middle-right',
-						'bottom-left', 'bottom-center', 'bottom-right'
+						'top-left',
+						'top-center',
+						'top-right',
+						'middle-left',
+						'middle-center',
+						'middle-right',
+						'bottom-left',
+						'bottom-center',
+						'bottom-right'
 					),
 					'className' => ''
 				)
@@ -395,8 +377,7 @@ if ($iblockExists)
 		);
 	}
 
-	if ($boolSKU)
-	{
+	if ($boolSKU) {
 		$arTemplateParameters['PRODUCT_DISPLAY_MODE'] = array(
 			'PARENT' => 'VISUAL',
 			'NAME' => GetMessage('CP_BC_TPL_PRODUCT_DISPLAY_MODE'),
@@ -421,12 +402,11 @@ if ($iblockExists)
 			array('SORT' => 'ASC', 'ID' => 'ASC'),
 			array('IBLOCK_ID' => $arSKU['IBLOCK_ID'], 'ACTIVE' => 'Y')
 		);
-		while ($arProp = $rsProps->Fetch())
-		{
+		while ($arProp = $rsProps->Fetch()) {
 			if ($arProp['ID'] == $arSKU['SKU_PROPERTY_ID'])
 				continue;
 			$arProp['USER_TYPE'] = (string)$arProp['USER_TYPE'];
-			$strPropName = '['.$arProp['ID'].']'.('' != $arProp['CODE'] ? '['.$arProp['CODE'].']' : '').' '.$arProp['NAME'];
+			$strPropName = '[' . $arProp['ID'] . ']' . ('' != $arProp['CODE'] ? '[' . $arProp['CODE'] . ']' : '') . ' ' . $arProp['NAME'];
 			if ('' == $arProp['CODE'])
 				$arProp['CODE'] = $arProp['ID'];
 			$arAllOfferPropList[$arProp['CODE']] = $strPropName;
@@ -451,8 +431,7 @@ if ($iblockExists)
 			'DEFAULT' => '-',
 			'VALUES' => $arFileOfferPropList
 		);
-		if (!$usePropertyFeatures)
-		{
+		if (!$usePropertyFeatures) {
 			$arTemplateParameters['OFFER_TREE_PROPS'] = array(
 				'PARENT' => 'VISUAL',
 				'NAME' => GetMessage('CP_BC_TPL_OFFER_TREE_PROPS'),
@@ -467,10 +446,8 @@ if ($iblockExists)
 	}
 
 	$showedProperties = [];
-	if ($usePropertyFeatures)
-	{
-		if ($iblockExists)
-		{
+	if ($usePropertyFeatures) {
+		if ($iblockExists) {
 			$showedProperties = Iblock\Model\PropertyFeature::getDetailPageShowProperties(
 				$arCurrentValues['IBLOCK_ID'],
 				['CODE' => 'Y']
@@ -478,22 +455,16 @@ if ($iblockExists)
 			if ($showedProperties === null)
 				$showedProperties = [];
 		}
-	}
-	else
-	{
-		if (!empty($arCurrentValues['DETAIL_PROPERTY_CODE']) && is_array($arCurrentValues['DETAIL_PROPERTY_CODE']))
-		{
+	} else {
+		if (!empty($arCurrentValues['DETAIL_PROPERTY_CODE']) && is_array($arCurrentValues['DETAIL_PROPERTY_CODE'])) {
 			$showedProperties = $arCurrentValues['DETAIL_PROPERTY_CODE'];
 		}
 	}
-	if (!empty($showedProperties))
-	{
+	if (!empty($showedProperties)) {
 		$selected = array();
 
-		foreach ($showedProperties as $code)
-		{
-			if (isset($arAllPropList[$code]))
-			{
+		foreach ($showedProperties as $code) {
+			if (isset($arAllPropList[$code])) {
 				$selected[$code] = $arAllPropList[$code];
 			}
 		}
@@ -510,33 +481,25 @@ if ($iblockExists)
 	unset($showedProperties);
 }
 
-if ($boolSKU)
-{
+if ($boolSKU) {
 	$showedProperties = [];
-	if ($usePropertyFeatures)
-	{
+	if ($usePropertyFeatures) {
 		$showedProperties = Iblock\Model\PropertyFeature::getDetailPageShowProperties(
 			$arSKU['IBLOCK_ID'],
 			['CODE' => 'Y']
 		);
 		if ($showedProperties === null)
 			$showedProperties = [];
-	}
-	else
-	{
-		if (!empty($arCurrentValues['DETAIL_OFFERS_PROPERTY_CODE']) && is_array($arCurrentValues['DETAIL_OFFERS_PROPERTY_CODE']))
-		{
+	} else {
+		if (!empty($arCurrentValues['DETAIL_OFFERS_PROPERTY_CODE']) && is_array($arCurrentValues['DETAIL_OFFERS_PROPERTY_CODE'])) {
 			$showedProperties = $arCurrentValues['DETAIL_OFFERS_PROPERTY_CODE'];
 		}
 	}
-	if (!empty($showedProperties))
-	{
+	if (!empty($showedProperties)) {
 		$selected = array();
 
-		foreach ($showedProperties as $code)
-		{
-			if (isset($arAllOfferPropList[$code]))
-			{
+		foreach ($showedProperties as $code) {
+			if (isset($arAllOfferPropList[$code])) {
 				$selected[$code] = $arAllOfferPropList[$code];
 			}
 		}
@@ -561,8 +524,7 @@ $arTemplateParameters['DETAIL_USE_VOTE_RATING'] = array(
 	'REFRESH' => 'Y'
 );
 
-if (isset($arCurrentValues['DETAIL_USE_VOTE_RATING']) && 'Y' == $arCurrentValues['DETAIL_USE_VOTE_RATING'])
-{
+if (isset($arCurrentValues['DETAIL_USE_VOTE_RATING']) && 'Y' == $arCurrentValues['DETAIL_USE_VOTE_RATING']) {
 	$arTemplateParameters['DETAIL_VOTE_DISPLAY_AS_RATING'] = array(
 		'PARENT' => 'DETAIL_SETTINGS',
 		'NAME' => GetMessage('CP_BC_TPL_DETAIL_VOTE_DISPLAY_AS_RATING'),
@@ -583,10 +545,8 @@ $arTemplateParameters['DETAIL_USE_COMMENTS'] = array(
 	'REFRESH' => 'Y'
 );
 
-if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['DETAIL_USE_COMMENTS'])
-{
-	if (ModuleManager::isModuleInstalled("blog"))
-	{
+if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['DETAIL_USE_COMMENTS']) {
+	if (ModuleManager::isModuleInstalled("blog")) {
 		$arTemplateParameters['DETAIL_BLOG_USE'] = array(
 			'PARENT' => 'DETAIL_SETTINGS',
 			'NAME' => GetMessage('CP_BC_TPL_DETAIL_BLOG_USE'),
@@ -594,8 +554,7 @@ if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['D
 			'DEFAULT' => 'N',
 			'REFRESH' => 'Y'
 		);
-		if (isset($arCurrentValues['DETAIL_BLOG_USE']) && $arCurrentValues['DETAIL_BLOG_USE'] == 'Y')
-		{
+		if (isset($arCurrentValues['DETAIL_BLOG_USE']) && $arCurrentValues['DETAIL_BLOG_USE'] == 'Y') {
 			$arTemplateParameters['DETAIL_BLOG_URL'] = array(
 				'PARENT' => 'DETAIL_SETTINGS',
 				'NAME' => GetMessage('CP_BC_DETAIL_TPL_BLOG_URL'),
@@ -612,14 +571,12 @@ if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['D
 	}
 
 	$boolRus = false;
-	$rsLangs = CLanguage::GetList('id', 'asc', array('ID' => 'ru',"ACTIVE" => "Y"));
-	if ($arLang = $rsLangs->Fetch())
-	{
+	$rsLangs = CLanguage::GetList('id', 'asc', array('ID' => 'ru', "ACTIVE" => "Y"));
+	if ($arLang = $rsLangs->Fetch()) {
 		$boolRus = true;
 	}
 
-	if ($boolRus)
-	{
+	if ($boolRus) {
 		$arTemplateParameters['DETAIL_VK_USE'] = array(
 			'PARENT' => 'DETAIL_SETTINGS',
 			'NAME' => GetMessage('CP_BC_TPL_DETAIL_VK_USE'),
@@ -628,8 +585,7 @@ if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['D
 			'REFRESH' => 'Y'
 		);
 
-		if (isset($arCurrentValues['DETAIL_VK_USE']) && 'Y' == $arCurrentValues['DETAIL_VK_USE'])
-		{
+		if (isset($arCurrentValues['DETAIL_VK_USE']) && 'Y' == $arCurrentValues['DETAIL_VK_USE']) {
 			$arTemplateParameters['DETAIL_VK_API_ID'] = array(
 				'PARENT' => 'DETAIL_SETTINGS',
 				'NAME' => GetMessage('CP_BC_TPL_DETAIL_VK_API_ID'),
@@ -647,8 +603,7 @@ if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['D
 		'REFRESH' => 'Y'
 	);
 
-	if (isset($arCurrentValues['DETAIL_FB_USE']) && 'Y' == $arCurrentValues['DETAIL_FB_USE'])
-	{
+	if (isset($arCurrentValues['DETAIL_FB_USE']) && 'Y' == $arCurrentValues['DETAIL_FB_USE']) {
 		$arTemplateParameters['DETAIL_FB_APP_ID'] = array(
 			'PARENT' => 'DETAIL_SETTINGS',
 			'NAME' => GetMessage('CP_BC_TPL_DETAIL_FB_APP_ID'),
@@ -658,8 +613,7 @@ if (isset($arCurrentValues['DETAIL_USE_COMMENTS']) && 'Y' == $arCurrentValues['D
 	}
 }
 
-if (ModuleManager::isModuleInstalled("highloadblock"))
-{
+if (ModuleManager::isModuleInstalled("highloadblock")) {
 	$arTemplateParameters['DETAIL_BRAND_USE'] = array(
 		'PARENT' => 'DETAIL_SETTINGS',
 		'NAME' => GetMessage('CP_BC_TPL_DETAIL_BRAND_USE'),
@@ -668,8 +622,7 @@ if (ModuleManager::isModuleInstalled("highloadblock"))
 		'REFRESH' => 'Y'
 	);
 
-	if (isset($arCurrentValues['DETAIL_BRAND_USE']) && 'Y' == $arCurrentValues['DETAIL_BRAND_USE'])
-	{
+	if (isset($arCurrentValues['DETAIL_BRAND_USE']) && 'Y' == $arCurrentValues['DETAIL_BRAND_USE']) {
 		$arTemplateParameters['DETAIL_BRAND_PROP_CODE'] = array(
 			'PARENT' => 'DETAIL_SETTINGS',
 			"NAME" => GetMessage("CP_BC_TPL_DETAIL_PROP_CODE"),
@@ -734,8 +687,7 @@ $arTemplateParameters['DETAIL_SHOW_SLIDER'] = array(
 	'DEFAULT' => 'N'
 );
 
-if (isset($arCurrentValues['DETAIL_SHOW_SLIDER']) && $arCurrentValues['DETAIL_SHOW_SLIDER'] === 'Y')
-{
+if (isset($arCurrentValues['DETAIL_SHOW_SLIDER']) && $arCurrentValues['DETAIL_SHOW_SLIDER'] === 'Y') {
 	$arTemplateParameters['DETAIL_SLIDER_INTERVAL'] = array(
 		'PARENT' => 'DETAIL_SETTINGS',
 		'NAME' => GetMessage('CP_BC_TPL_DETAIL_SLIDER_INTERVAL'),
@@ -784,8 +736,7 @@ $arTemplateParameters['DETAIL_DISPLAY_PREVIEW_TEXT_MODE'] = array(
 	'DEFAULT' => 'E'
 );
 
-if ($boolCatalog)
-{
+if ($boolCatalog) {
 	$arTemplateParameters['USE_COMMON_SETTINGS_BASKET_POPUP'] = array(
 		'PARENT' => 'BASKET',
 		'NAME' => GetMessage('CP_BC_TPL_USE_COMMON_SETTINGS_BASKET_POPUP'),
@@ -869,19 +820,15 @@ if ($boolCatalog)
 		'HIDDEN' => (!$useCommonSettingsBasketPopup ? 'N' : 'Y')
 	);
 
-	if (!$useCommonSettingsBasketPopup && !empty($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION']))
-	{
+	if (!$useCommonSettingsBasketPopup && !empty($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION'])) {
 		$selected = array();
 
-		if (!is_array($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION']))
-		{
+		if (!is_array($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION'])) {
 			$arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION'] = array($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION']);
 		}
 
-		foreach ($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION'] as $action)
-		{
-			if (isset($addToBasketActions[$action]))
-			{
+		foreach ($arCurrentValues['DETAIL_ADD_TO_BASKET_ACTION'] as $action) {
+			if (isset($addToBasketActions[$action])) {
 				$selected[$action] = $addToBasketActions[$action];
 			}
 		}
@@ -912,8 +859,7 @@ if ($boolCatalog)
 		'REFRESH' => 'Y',
 	);
 
-	if (isset($arCurrentValues['SHOW_DISCOUNT_PERCENT']) && $arCurrentValues['SHOW_DISCOUNT_PERCENT'] === 'Y')
-	{
+	if (isset($arCurrentValues['SHOW_DISCOUNT_PERCENT']) && $arCurrentValues['SHOW_DISCOUNT_PERCENT'] === 'Y') {
 		$arTemplateParameters['DISCOUNT_PERCENT_POSITION'] = array(
 			'PARENT' => 'VISUAL',
 			'NAME' => GetMessage('CP_BC_TPL_DISCOUNT_PERCENT_POSITION'),
@@ -923,9 +869,15 @@ if ($boolCatalog)
 			'JS_DATA' => Json::encode(
 				array(
 					'positions' => array(
-						'top-left', 'top-center', 'top-right',
-						'middle-left', 'middle-center', 'middle-right',
-						'bottom-left', 'bottom-center', 'bottom-right'
+						'top-left',
+						'top-center',
+						'top-right',
+						'middle-left',
+						'middle-center',
+						'middle-right',
+						'bottom-left',
+						'bottom-center',
+						'bottom-right'
 					),
 					'className' => 'bx-pos-parameter-block-circle'
 				)
@@ -954,10 +906,8 @@ if ($boolCatalog)
 		'DEFAULT' => array('N')
 	);
 
-	if (isset($arCurrentValues['SHOW_MAX_QUANTITY']))
-	{
-		if ($arCurrentValues['SHOW_MAX_QUANTITY'] !== 'N')
-		{
+	if (isset($arCurrentValues['SHOW_MAX_QUANTITY'])) {
+		if ($arCurrentValues['SHOW_MAX_QUANTITY'] !== 'N') {
 			$arTemplateParameters['MESS_SHOW_MAX_QUANTITY'] = array(
 				'PARENT' => 'VISUAL',
 				'NAME' => GetMessage('CP_BC_TPL_MESS_SHOW_MAX_QUANTITY'),
@@ -966,8 +916,7 @@ if ($boolCatalog)
 			);
 		}
 
-		if ($arCurrentValues['SHOW_MAX_QUANTITY'] === 'M')
-		{
+		if ($arCurrentValues['SHOW_MAX_QUANTITY'] === 'M') {
 			$arTemplateParameters['RELATIVE_QUANTITY_FACTOR'] = array(
 				'PARENT' => 'VISUAL',
 				'NAME' => GetMessage('CP_BC_TPL_RELATIVE_QUANTITY_FACTOR'),
@@ -1064,8 +1013,7 @@ $arTemplateParameters['MESS_BTN_SUBSCRIBE'] = array(
 	'DEFAULT' => GetMessage('CP_BC_TPL_MESS_BTN_SUBSCRIBE_DEFAULT')
 );
 
-if (ModuleManager::isModuleInstalled("sale"))
-{
+if (ModuleManager::isModuleInstalled("sale")) {
 	$arTemplateParameters['USE_SALE_BESTSELLERS'] = array(
 		'NAME' => GetMessage('CP_BC_TPL_USE_SALE_BESTSELLERS'),
 		'TYPE' => 'CHECKBOX',
@@ -1079,8 +1027,7 @@ if (ModuleManager::isModuleInstalled("sale"))
 		'DEFAULT' => 'Y',
 		'REFRESH' => 'Y'
 	);
-	if (!isset($arCurrentValues['USE_BIG_DATA']) || $arCurrentValues['USE_BIG_DATA'] == 'Y')
-	{
+	if (!isset($arCurrentValues['USE_BIG_DATA']) || $arCurrentValues['USE_BIG_DATA'] == 'Y') {
 		$rcmTypeList = array(
 			'personal' => GetMessage('CP_BC_TPL_RCM_PERSONAL'),
 			'bestsell' => GetMessage('CP_BC_TPL_RCM_BESTSELLERS'),
@@ -1102,8 +1049,7 @@ if (ModuleManager::isModuleInstalled("sale"))
 	}
 }
 
-if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHOW_TOP_ELEMENTS'])
-{
+if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHOW_TOP_ELEMENTS']) {
 	$arTemplateParameters['TOP_VIEW_MODE'] = array(
 		'PARENT' => 'TOP_SETTINGS',
 		'NAME' => GetMessage('CPT_BC_TPL_TOP_VIEW_MODE'),
@@ -1118,8 +1064,7 @@ if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHO
 		'REFRESH' => 'Y'
 	);
 
-	if (isset($arCurrentValues['TOP_VIEW_MODE']) && ('SLIDER' == $arCurrentValues['TOP_VIEW_MODE'] || 'BANNER' == $arCurrentValues['TOP_VIEW_MODE']))
-	{
+	if (isset($arCurrentValues['TOP_VIEW_MODE']) && ('SLIDER' == $arCurrentValues['TOP_VIEW_MODE'] || 'BANNER' == $arCurrentValues['TOP_VIEW_MODE'])) {
 		$arTemplateParameters['TOP_ROTATE_TIMER'] = array(
 			'PARENT' => 'TOP_SETTINGS',
 			'NAME' => GetMessage('CPT_BC_TPL_TOP_ROTATE_TIMER'),
@@ -1128,16 +1073,12 @@ if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHO
 		);
 	}
 
-	if (isset($arCurrentValues['TOP_VIEW_MODE']) && $arCurrentValues['TOP_VIEW_MODE'] === 'SECTION')
-	{
-		if (!empty($arCurrentValues['TOP_PROPERTY_CODE']))
-		{
+	if (isset($arCurrentValues['TOP_VIEW_MODE']) && $arCurrentValues['TOP_VIEW_MODE'] === 'SECTION') {
+		if (!empty($arCurrentValues['TOP_PROPERTY_CODE'])) {
 			$selected = array();
 
-			foreach ($arCurrentValues['TOP_PROPERTY_CODE'] as $code)
-			{
-				if (isset($arAllPropList[$code]))
-				{
+			foreach ($arCurrentValues['TOP_PROPERTY_CODE'] as $code) {
+				if (isset($arAllPropList[$code])) {
 					$selected[$code] = $arAllPropList[$code];
 				}
 			}
@@ -1203,8 +1144,7 @@ if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHO
 			)
 		);
 
-		if (isset($arCurrentValues['TOP_ENLARGE_PRODUCT']) && $arCurrentValues['TOP_ENLARGE_PRODUCT'] === 'PROP')
-		{
+		if (isset($arCurrentValues['TOP_ENLARGE_PRODUCT']) && $arCurrentValues['TOP_ENLARGE_PRODUCT'] === 'PROP') {
 			$arTemplateParameters['TOP_ENLARGE_PROP'] = array(
 				'PARENT' => 'TOP_SETTINGS',
 				'NAME' => GetMessage('CP_BC_TPL_ENLARGE_PROP'),
@@ -1225,8 +1165,7 @@ if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHO
 			'DEFAULT' => 'Y'
 		);
 
-		if (!isset($arCurrentValues['TOP_SHOW_SLIDER']) || $arCurrentValues['TOP_SHOW_SLIDER'] === 'Y')
-		{
+		if (!isset($arCurrentValues['TOP_SHOW_SLIDER']) || $arCurrentValues['TOP_SHOW_SLIDER'] === 'Y') {
 			$arTemplateParameters['TOP_SLIDER_INTERVAL'] = array(
 				'PARENT' => 'TOP_SETTINGS',
 				'NAME' => GetMessage('CP_BC_TPL_SLIDER_INTERVAL'),
@@ -1247,8 +1186,7 @@ if (isset($arCurrentValues['SHOW_TOP_ELEMENTS']) && 'Y' == $arCurrentValues['SHO
 	}
 }
 
-if (isset($arCurrentValues['USE_COMPARE']) && $arCurrentValues['USE_COMPARE'] == 'Y')
-{
+if (isset($arCurrentValues['USE_COMPARE']) && $arCurrentValues['USE_COMPARE'] == 'Y') {
 	$arTemplateParameters['COMPARE_POSITION_FIXED'] = array(
 		'PARENT' => 'COMPARE_SETTINGS',
 		'NAME' => GetMessage('CPT_BC_TPL_COMPARE_POSITION_FIXED'),
@@ -1256,8 +1194,7 @@ if (isset($arCurrentValues['USE_COMPARE']) && $arCurrentValues['USE_COMPARE'] ==
 		'DEFAULT' => 'Y',
 		'REFRESH' => 'Y'
 	);
-	if (!isset($arCurrentValues['COMPARE_POSITION_FIXED']) || $arCurrentValues['COMPARE_POSITION_FIXED'] == 'Y')
-	{
+	if (!isset($arCurrentValues['COMPARE_POSITION_FIXED']) || $arCurrentValues['COMPARE_POSITION_FIXED'] == 'Y') {
 		$positionList = array(
 			'top left' => GetMessage('CPT_BC_TPL_PARAM_COMPARE_POSITION_TOP_LEFT'),
 			'top right' => GetMessage('CPT_BC_TPL_PARAM_COMPARE_POSITION_TOP_RIGHT'),
@@ -1304,8 +1241,7 @@ $arTemplateParameters['USE_ENHANCED_ECOMMERCE'] = array(
 	'DEFAULT' => 'N'
 );
 
-if (isset($arCurrentValues['USE_ENHANCED_ECOMMERCE']) && $arCurrentValues['USE_ENHANCED_ECOMMERCE'] === 'Y')
-{
+if (isset($arCurrentValues['USE_ENHANCED_ECOMMERCE']) && $arCurrentValues['USE_ENHANCED_ECOMMERCE'] === 'Y') {
 	$arTemplateParameters['DATA_LAYER_NAME'] = array(
 		'PARENT' => 'ANALYTICS_SETTINGS',
 		'NAME' => GetMessage('CP_BC_TPL_DATA_LAYER_NAME'),
@@ -1337,3 +1273,14 @@ $arTemplateParameters['DETAIL_SHOW_VIEWED'] = array(
 
 // hack to hide component parameters by templates
 $arTemplateParameters['HIDE_USE_ALSO_BUY'] = array();
+
+$arTemplateParameters['BLOG_URL'] = array(
+	'PARENT' => 'ADDITIONAL_SETTINGS',
+	'NAME' => GetMessage('CP_BC_TPL_BLOG_URL'),
+	'TYPE' => 'STRING',
+);
+$arTemplateParameters['BLOG_GROUP_ID'] = array(
+	'PARENT' => 'ADDITIONAL_SETTINGS',
+	'NAME' => GetMessage('CP_BC_TPL_BLOG_GROUP_ID'),
+	'TYPE' => 'STRING',
+);

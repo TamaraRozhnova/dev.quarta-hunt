@@ -308,14 +308,25 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 					}
 					?>
 					<div class="element__rating">
-						<div class="element__stars">
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
-							<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+						<div class="element__stars-block">
+							<div class="element__stars--color" <?= $arResult['PROPERTIES']['AVERAGE_RATING']['VALUE'] ? 'style="width:' . (floatval($arResult['PROPERTIES']['AVERAGE_RATING']['VALUE']) / 5 * 100) . '%"' : '' ?>>
+								<div class="element__stars">
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+									<?= buildSVG('star', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								</div>
+							</div>
+							<div class="element__stars">
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+								<?= buildSVG('star-gray', SITE_TEMPLATE_PATH . ICON_PATH) ?>
+							</div>
 						</div>
-						<a href="#" class="element__rating-link">21 отзыв</a>
+						<a href="#" class="element__rating-link">0 оценок</a>
 					</div>
 					<div class="element__price">
 						<div class="element__price-container">
@@ -750,6 +761,7 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 					<li class="product-item-detail-tab" data-entity="tab" data-value="comments">
 						<a href="javascript:void(0);" class="product-item-detail-tab-link">
 							<span><?= $arParams['MESS_COMMENTS_TAB'] ?></span>
+							<span class="element__reviews-count"></span>
 						</a>
 					</li>
 					<li class="product-item-detail-tab" data-entity="tab" data-value="properties">
@@ -884,7 +896,42 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 				</div>
 
 				<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="comments" style="display: none;">
-					<p class="element__tab-title"><?= $arParams['MESS_COMMENTS_TAB'] ?></p>
+					<div class="element__tab-inner element-tab-inner--comment">
+						<div class="element__comment-left">
+							<p class="element__tab-title"><?= $arParams['MESS_COMMENTS_TAB'] ?></p>
+							<div class="element__comments-list">
+								<?php
+								$APPLICATION->IncludeComponent(
+									'addamant.thanks:product.comments',
+									'',
+									[
+										'BLOG_URL' => $arParams['BLOG_URL'],
+										'IBLOCK_ID' => $arParams['IBLOCK_ID'],
+										'ELEMENT_ID' => $arResult['ID'],
+										'BLOG_GROUP_ID' => $arParams['BLOG_GROUP_ID'],
+										'ELEMENT_COUNT' => $arParams['COMMENTS_COUNT'],
+										'USER_ID' => $arParams['USER_ID'],
+									],
+									$component,
+								);
+								?>
+							</div>
+						</div>
+						<div class="element__comment-right">
+							<?php
+							$APPLICATION->IncludeComponent(
+								'addamant.thanks:product.rating',
+								'thanks_catalog_detail',
+								[
+									'IBLOCK_ID' => $arParams['IBLOCK_ID'],
+									'ELEMENT_ID' => $arResult['ID'],
+									'USER_ID' => $arParams['USER_ID'],
+								],
+								$component,
+							);
+							?>
+						</div>
+					</div>
 				</div>
 
 				<div class="product-item-detail-tab-content" data-entity="tab-container" data-value="properties">
