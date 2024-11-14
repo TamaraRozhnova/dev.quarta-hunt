@@ -17,6 +17,7 @@ Loader::registerAutoLoadClasses(null, [
     'Catalog\Rating\ORM\RatingTable' => '/local/php_interface/classes/Catalog/Rating/ORM/RatingTable.php',
     'Catalog\Rating\DTO\RatingDTO' => '/local/php_interface/classes/Catalog/Rating/DTO/RatingDTO.php',
     'Catalog\Rating\Service\RatingManager' => '/local/php_interface/classes/Catalog/Rating/Service/RatingManager.php',
+    'Catalog\Orders\OrderHelper' => '/local/php_interface/classes/Catalog/Orders.php',
 ]);
 
 function debug($var)
