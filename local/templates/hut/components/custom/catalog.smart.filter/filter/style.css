@@ -24,6 +24,10 @@
   overflow: hidden;
 }
 
+.bx-filter-parameters-box-title {
+  cursor: pointer;
+}
+
 #filter_modal.modal {
   height: 100vh;
   max-width: 506px;

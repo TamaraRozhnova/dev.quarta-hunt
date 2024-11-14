@@ -108,8 +108,6 @@ $bx_search_limit = COption::GetOptionString('search', 'max_result_size', 50); ?>
 			<? include_once($_SERVER['DOCUMENT_ROOT'] . '/include/catalog/sort.php') ?>
 		</div>
 
-		<? debug($arParams["ELEMENT_SORT_FIELD"]) ?>
-
 	<? $APPLICATION->IncludeComponent(
 			"bitrix:catalog.section",
 			"catalog",

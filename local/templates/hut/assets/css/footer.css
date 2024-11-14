@@ -4,6 +4,7 @@
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-top: 128px;
 }
 
 .footer__inner {
@@ -91,7 +92,7 @@
   width: auto;
 }
 
-.footer__mail a + a{
+.footer__mail a + a {
   margin-top: 4px;
 }
 
@@ -126,13 +127,16 @@
     flex-direction: column;
   }
 
-  .footer {
-    background-image: url("../../img/footer-back-mob.png");
-  }
-
   .footer__bottom {
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    background-image: url("../../img/footer-back-mob.png");
+    margin-top: 64px;
   }
 }
