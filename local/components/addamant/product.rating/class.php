@@ -15,6 +15,7 @@ use Bitrix\Main\SystemException;
 use Bitrix\Main\Errorable;
 use Bitrix\Main\Engine\Contract\Controllerable;
 use Bitrix\Main\Error;
+use Bitrix\Main\Application;
 
 class ProductRatingComponent extends CBitrixComponent implements Controllerable, Errorable
 {
@@ -129,6 +130,9 @@ class ProductRatingComponent extends CBitrixComponent implements Controllerable,
                     'AVERAGE_RATING' => $setRatingResult->getData()['AVERAGE_RATING'],
                 ];
             }
+
+            $taggedCache = Application::getInstance()->getTaggedCache();
+            $taggedCache->clearByTag('iblock_id_' . $this->arParams['IBLOCK_ID']);
 
             return ['RESULT' => Loc::getMessage('SUCCESS_SET_RATING'),];
         } catch (Throwable $throwable) {

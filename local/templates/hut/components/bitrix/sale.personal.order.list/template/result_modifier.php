@@ -1,28 +1,37 @@
 <?php
 
-$cache = \Bitrix\Main\Data\Cache::createInstance();  
-$cacheTtl = 36000; 
-$cacheKey = 'getpicture'; 
-if ($cache->initCache($cacheTtl, $cacheKey)){
+use Helpers\IblockHelper;
 
-    $arResult = $cache->getVars(); 
+$cache = \Bitrix\Main\Data\Cache::createInstance();
+$cacheTtl = 36000;
+$cacheKey = 'getpicture';
+if ($cache->initCache($cacheTtl, $cacheKey)) {
+
+    $arResult = $cache->getVars();
     $cache->output();
+} elseif ($cache->startDataCache()) {
 
-}elseif ($cache->startDataCache()){
+    foreach ($arResult['ORDERS'] as $key => &$order) {
 
-    foreach ($arResult['ORDERS'] as $key => &$order){
+        foreach ($order['BASKET_ITEMS'] as &$item) {
 
-        foreach($order['BASKET_ITEMS'] as &$item){
-            //ElementHutcatalogTable
+            if (str_contains($item['PRODUCT_XML_ID'], '#')) {
+                $parentId = CCatalogSku::GetProductInfo(
+                    $item['PRODUCT_ID'],
+                    IblockHelper::getIdByCode("hutcatalogoffers")
+                )['ID'];
+            } else {
+                $parentId = $item['PRODUCT_ID'];
+            }
 
-            $element = \Bitrix\Iblock\Elements\ElementHutCatalogTable::getByPrimary($item['PRODUCT_ID'], [
+            $element = \Bitrix\Iblock\Elements\ElementHutCatalogTable::getByPrimary($parentId, [
                 'select' => ['PREVIEW_PICTURE'],
             ])->fetch();
-            
-            $renderImage = CFile::ResizeImageGet($element["PREVIEW_PICTURE"], Array("width" => 75, "height" => 82), BX_RESIZE_IMAGE_EXACT, false);    
+
+            $renderImage = CFile::ResizeImageGet($element["PREVIEW_PICTURE"], array("width" => 75, "height" => 82), BX_RESIZE_IMAGE_EXACT, false);
             $item['PREVIEW_PICTURE'] = $renderImage["src"];
         }
-    }  
-    
+    }
+
     $cache->endDataCache($arResult);
 }

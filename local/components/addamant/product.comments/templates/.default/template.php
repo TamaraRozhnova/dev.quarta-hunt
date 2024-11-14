@@ -69,13 +69,13 @@ $this->addExternalCss($this->GetFolder() . '/styles/buttons/buttons.css');
     <?php endif; ?>
 </div>
 
-<div class="reviews-add-block" <?= $arParams['USER_ID'] == 0 || in_array($arParams['USER_ID'], $arResult['USER_IDS_WITH_COMMENTS']) ? 'style="display: none"' : '' ?>>
+<div class="reviews-add-block" <?= $arParams['USER_ID'] == 0 || !in_array($arParams['ELEMENT_ID'], $arParams['PURCHASED_PRODUCTS']) || in_array($arParams['USER_ID'], $arResult['USER_IDS_WITH_COMMENTS']) ? 'style="display: none"' : '' ?>>
     <textarea class="reviews-add-block__textarea" rows="1" type="text" placeholder="Напишите отзыв"></textarea>
     <span class="length-input-block">29/200</span>
 </div>
 
-<? if ($arParams['USER_ID'] == 0) { ?>
-    <div class="reviews__no-auth">Авторизуйтесь, чтобы оставить отзыв</div>
+<? if ($arParams['USER_ID'] == 0 || !in_array($arParams['ELEMENT_ID'], $arParams['PURCHASED_PRODUCTS'])) { ?>
+    <div class="reviews__no-auth">Приобретите товар, чтобы оставить отзыв</div>
 <? } ?>
 
 <div class="button-add-review-block hidden">

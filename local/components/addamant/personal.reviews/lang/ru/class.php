@@ -1,6 +1,5 @@
 <?php
 
-$MESS['NO_ELEMENT_ID'] = 'Не указан идентификатор товара';
-$MESS['NO_IBLOCK_ID'] = 'Не указан идентификатор каталога';
-$MESS['ERROR_SET_RATING'] = 'Ошибка при установке оценки товару';
-$MESS['SUCCESS_SET_RATING'] = 'Товар успешно оценен';
+$MESS['NO_USER'] = 'Пользователь не авторизован';
+$MESS['NO_CATALOG_ID'] = 'Не указан ID каталога';
+$MESS['NO_OFFERS_CATALOG_ID'] = 'Не указан ID каталога торговых предложений';

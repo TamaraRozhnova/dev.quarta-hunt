@@ -911,6 +911,7 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 										'BLOG_GROUP_ID' => $arParams['BLOG_GROUP_ID'],
 										'ELEMENT_COUNT' => $arParams['COMMENTS_COUNT'],
 										'USER_ID' => $arParams['USER_ID'],
+										'PURCHASED_PRODUCTS' => $arParams['PURCHASED_PRODUCTS'],
 									],
 									$component,
 								);
@@ -926,6 +927,7 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 									'IBLOCK_ID' => $arParams['IBLOCK_ID'],
 									'ELEMENT_ID' => $arResult['ID'],
 									'USER_ID' => $arParams['USER_ID'],
+									'PURCHASED_PRODUCTS' => $arParams['PURCHASED_PRODUCTS'],
 								],
 								$component,
 							);

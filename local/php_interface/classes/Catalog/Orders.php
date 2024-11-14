@@ -4,6 +4,7 @@ namespace Catalog\Orders;
 
 use Bitrix\Main\Engine\CurrentUser;
 use Bitrix\Sale;
+use Helpers\IblockHelper;
 
 /**
  * Работа с заказами
@@ -11,10 +12,13 @@ use Bitrix\Sale;
 class OrderHelper
 {
     private int $userId;
+    private int $offersCatalogId;
+    public array $products;
 
-    public function __construct(CurrentUser $currentUser)
+    public function __construct(CurrentUser $currentUser, string $offersCatalogId)
     {
         $this->userId = $currentUser->getId();
+        $this->offersCatalogId = $offersCatalogId;
     }
 
     /**
@@ -32,7 +36,12 @@ class OrderHelper
 
         $result = Sale\Basket::getList([
             'select' => [
-                'PRODUCT_ID'
+                'ID',
+                'PRODUCT_ID',
+                'PRODUCT_XML_ID',
+                'DETAIL_PAGE_URL',
+                'NAME',
+                'PRICE',
             ],
             'filter' => [
                 'ORDER_ID' => $orderIds,
@@ -43,7 +52,26 @@ class OrderHelper
             return [];
         }
 
-        return array_column($result, 'PRODUCT_ID');
+        foreach ($result as &$item) {
+            // Проверяем, предложение это или товар
+            // Если предложение, ищем ID основного товара
+            if (str_contains($item['PRODUCT_XML_ID'], '#')) {
+                $parentId = \CCatalogSku::GetProductInfo(
+                    $item['PRODUCT_ID'],
+                    $this->offersCatalogId,
+                )['ID'];
+                $prodIds[] = $parentId;
+
+                $item['OFFER_ID'] = $item['PRODUCT_ID'];
+                $item['PRODUCT_ID'] = $parentId;
+            } else {
+                $prodIds[] = $item['PRODUCT_ID'];
+            }
+
+            $this->products[] = $item;
+        }
+
+        return $prodIds;
     }
 
     /**

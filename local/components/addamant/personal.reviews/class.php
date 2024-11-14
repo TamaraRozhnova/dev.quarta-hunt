@@ -1,8 +1,5 @@
 <?php
 
-use Catalog\Rating\DTO\RatingDTO;
-use Catalog\Rating\Enum\RatingGrade;
-use Catalog\Rating\Service\RatingManager;
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\ArgumentNullException;
 use Bitrix\Main\Engine\CurrentUser;
@@ -15,8 +12,14 @@ use Bitrix\Main\SystemException;
 use Bitrix\Main\Errorable;
 use Bitrix\Main\Engine\Contract\Controllerable;
 use Bitrix\Main\Error;
+use Bitrix\Iblock\Iblock;
+use Bitrix\Main\Entity;
+use Catalog\Orders\OrderHelper;
 
-class ProductRatingComponent extends CBitrixComponent implements Controllerable, Errorable
+Loader::includeModule('iblock');
+Loader::includeModule('highloadblock');
+
+class ProductPersonalReviewsComponent extends CBitrixComponent implements Controllerable, Errorable
 {
     /** @var ErrorCollection $errorCollection */
     protected ErrorCollection $errorCollection;
@@ -24,8 +27,8 @@ class ProductRatingComponent extends CBitrixComponent implements Controllerable,
     /** @var CurrentUser $currentUser */
     private CurrentUser $currentUser;
 
-    /** @var RatingManager $ratingManager */
-    private RatingManager $ratingManager;
+    private array $productIds;
+    private array $products = [];
 
     /**
      * @param CBitrixComponent|null $component
@@ -35,11 +38,7 @@ class ProductRatingComponent extends CBitrixComponent implements Controllerable,
     public function __construct(CBitrixComponent $component = null)
     {
         parent::__construct($component);
-
-        Loader::includeModule('addamant.thanks');
-
         $this->currentUser = CurrentUser::get();
-        $this->ratingManager = new RatingManager();
     }
 
     /**
@@ -49,10 +48,6 @@ class ProductRatingComponent extends CBitrixComponent implements Controllerable,
      */
     public function onPrepareComponentParams($arParams): array
     {
-        $arParams['ELEMENT_ID'] = (int)($arParams['ELEMENT_ID'] ?? 0);
-        $arParams['IBLOCK_ID'] = (int)($arParams['IBLOCK_ID'] ?? 0);
-
-        /* ------------------------------------------------ Кеширование --------------------------------------------- */
         $arParams['CACHE_TIME'] = (int)($arParams['CACHE_TIME'] ?? 36000000);
 
         $this->errorCollection = new ErrorCollection();
@@ -69,71 +64,103 @@ class ProductRatingComponent extends CBitrixComponent implements Controllerable,
      */
     public function executeComponent(): void
     {
-        if (empty($this->arParams['ELEMENT_ID'])) {
-            ShowError(Loc::getMessage('NO_ELEMENT_ID'));
+        if (empty($this->arParams['CATALOG_ID'])) {
+            ShowError(Loc::getMessage('NO_CATALOG_ID'));
             return;
         }
 
-        if (empty($this->arParams['IBLOCK_ID'])) {
-            ShowError(Loc::getMessage('NO_IBLOCK_ID'));
+        if (empty($this->arParams['OFFERS_CATALOG_ID'])) {
+            ShowError(Loc::getMessage('NO_OFFERS_CATALOG_ID'));
             return;
         }
 
-        $this->arResult = $this->ratingManager->getProductRatingInfo(
-            0,
-            $this->arParams['IBLOCK_ID'],
-            $this->arParams['ELEMENT_ID'],
-        );
-        $this->arResult['CURRENT_USER_RATING'] = $this->ratingManager->getRatingByUserId(
-            $this->currentUser->getId(),
-            $this->arParams['IBLOCK_ID'],
-            $this->arParams['ELEMENT_ID'],
-        );
+        if ($this->currentUser->getId() == 0) {
+            ShowError(Loc::getMessage('NO_USER'));
+            return;
+        }
+
+        $this->getProducts();
+        $this->getProductsInfo();
+
+        $this->arResult['PROD_IDS'] = $this->productIds;
+        $this->arResult['PRODUCTS'] = $this->products;
+        $this->arResult['USER_ID'] = $this->currentUser->getId();
 
         $this->IncludeComponentTemplate();
     }
 
     /**
-     * @param int $grade
+     * Получает ID купленных товаров и некоторую информацию по ним
      *
-     * @return array
+     * @return void
      */
-    public function setRatingAction(int $grade): array
+    private function getProducts()
     {
-        try {
-            $grade = RatingGrade::from($grade);
+        $orders = new OrderHelper($this->currentUser, $this->arParams['OFFERS_CATALOG_ID']);
+        $this->productIds = $orders->getUserPurchasedProducts();
 
-            $currentUserRating = $this->ratingManager->getRatingByUserId(
-                $this->currentUser->getId(),
-                $this->arParams['IBLOCK_ID'],
-                $this->arParams['ELEMENT_ID'],
-            );
+        if (!empty($this->productIds)) {
+            $this->products = $orders->products;
+        }
+    }
 
-            if ($ratingId = $currentUserRating['ID']) {
-                $setRatingResult = $this->ratingManager->updateRating($ratingId, $grade);
-            } else {
-                $setRatingResult = $this->ratingManager->addRating(
-                    new RatingDTO(
-                        $this->currentUser->getId(),
-                        $this->arParams['IBLOCK_ID'],
-                        $this->arParams['ELEMENT_ID'],
-                        $grade
-                    ),
-                );
-            }
+    /**
+     * Получает свойства товара
+     *
+     * @return void
+     */
+    private function getProductsInfo()
+    {
+        if (empty($this->products)) {
+            return;
+        }
 
-            if (!$setRatingResult->isSuccess()) {
-                $this->errorCollection->add($setRatingResult->getErrors());
-                return [
-                    'RESULT' => Loc::getMessage('ERROR_SET_RATING'),
-                    'AVERAGE_RATING' => $setRatingResult->getData()['AVERAGE_RATING'],
+        $catalogEntity = Iblock::wakeUp($this->arParams['CATALOG_ID'])->getEntityDataClass();
+        $offersEntity = Iblock::wakeUp($this->arParams['OFFERS_CATALOG_ID'])->getEntityDataClass();
+
+        foreach ($this->products as &$prod) {
+            if (isset($prod['OFFER_ID'])) {
+                $element = $offersEntity::getByPrimary($prod['OFFER_ID'], [
+                    'select' => [
+                        'NAME',
+                        'HL_COLOR',
+                        'HL_SIZE',
+                        'COLOR_NAME' => 'HL_COLOR.UF_NAME',
+                        'CLOTHES_SIZE_NAME' => 'HL_SIZE.UF_NAME',
+                        'COLOR_FILE' => 'HL_COLOR.UF_FILE',
+                        'COLOR_XML' => 'COLOR.VALUE',
+                        'CLOTHES_SIZE_XML' => 'CLOTHES_SIZE.VALUE',
+                    ],
+                    'runtime' => [
+                        new Entity\ReferenceField(
+                            'HL_COLOR',
+                            'Local\ORM\HutcolorsTable',
+                            ['=this.COLOR.VALUE' => 'ref.UF_XML_ID']
+                        ),
+                        new Entity\ReferenceField(
+                            'HL_SIZE',
+                            'Local\ORM\HutclothessizeTable',
+                            ['=this.CLOTHES_SIZE.VALUE' => 'ref.UF_XML_ID']
+                        )
+                    ]
+                ])->fetch();
+
+                $prod['PROPS'] = [
+                    'COLOR' => $element['COLOR_NAME'],
+                    'COLOR_FILE' => CFile::GetPath($element['COLOR_FILE']),
+                    'SIZE' => $element['CLOTHES_SIZE_NAME'],
                 ];
             }
 
-            return ['RESULT' => Loc::getMessage('SUCCESS_SET_RATING'),];
-        } catch (Throwable $throwable) {
-            $this->errorCollection->add([new Error($throwable->getMessage())]);
-            return ['RESULT' => Loc::getMessage('ERROR_SET_RATING')];
+            $element = $catalogEntity::getByPrimary($prod['PRODUCT_ID'], [
+                'select' => [
+                    'PREVIEW_PICTURE',
+                    'IS_FULL_PREVIEW' => 'FULL_PREVIEW.VALUE'
+                ],
+            ])->fetch();
+
+            $prod['IMG'] = CFile::GetPath($element['PREVIEW_PICTURE']);
+            $prod['IS_FULL'] = $element['IS_FULL_PREVIEW'] ? "Y" : 'N';
         }
     }
 
@@ -159,17 +186,5 @@ class ProductRatingComponent extends CBitrixComponent implements Controllerable,
     public function getErrorByCode($code): Error
     {
         return $this->errorCollection->getErrorByCode($code);
-    }
-
-    /**
-     * @return string[]
-     */
-    protected function listKeysSignedParameters(): array
-    {
-        return
-            [
-                'ELEMENT_ID',
-                'IBLOCK_ID',
-            ];
     }
 }

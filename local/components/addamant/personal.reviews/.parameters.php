@@ -10,12 +10,12 @@ $arComponentParameters =
     [
         'PARAMETERS' =>
         [
-            // 'ELEMENT_ID' =>
-            //     [
-            //         'PARENT' => 'BASE',
-            //         'NAME' => Loc::getMessage('ELEMENT_ID'),
-            //         'TYPE' => 'STRING',
-            //     ],
+            'OFFERS_CATALOG_CODE' =>
+            [
+                'PARENT' => 'BASE',
+                'NAME' => Loc::getMessage('OFFERS_CATALOG_CODE'),
+                'TYPE' => 'STRING',
+            ],
             'IBLOCK_ID' =>
             [
                 'PARENT' => 'BASE',
