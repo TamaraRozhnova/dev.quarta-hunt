@@ -5637,7 +5637,7 @@ BX.namespace('BX.Sale.OrderAjaxComponent');
 										BX.create('SPAN', {props: {className: "ui-radio__name"}, html: 'Самовывоз'}),
 										BX.create('SPAN', {
 											props: {class: "ui-radio__desc"},
-											html: 'Вы можете самостоятельно забрать заказ из нашего магазина.'
+											html: 'Вы можете самостоятельно забрать заказ из наших магазинов.'
 										}),
 									]
 								})
