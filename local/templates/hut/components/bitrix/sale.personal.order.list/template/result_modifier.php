@@ -15,7 +15,7 @@ if ($cache->initCache($cacheTtl, $cacheKey)){
         foreach($order['BASKET_ITEMS'] as &$item){
             //ElementHutcatalogTable
 
-            $element = \Bitrix\Iblock\Elements\ElementCatalog1cTable::getByPrimary($item['PRODUCT_ID'], [
+            $element = \Bitrix\Iblock\Elements\ElementHutCatalogTable::getByPrimary($item['PRODUCT_ID'], [
                 'select' => ['PREVIEW_PICTURE'],
             ])->fetch();
             
