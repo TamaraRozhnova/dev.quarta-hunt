@@ -1,5 +1,8 @@
-<?
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+<?php
+
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
+    die();
+}
 
 use \Bitrix\Main\Loader;
 use Bitrix\Iblock\SectionTable;
@@ -283,10 +286,12 @@ array_walk($rsCatalogSections, function (&$arCatalogCurrentSection) {
 
 $rsBlogSections = Blog::getList([
 	'select' => [
-		'ID',
-		'CODE',
+		'ELEMENT_ID' => 'ID',
+		'ELEMENT_CODE' => 'CODE',
+		'IBLOCK_ID',
 		'NAME',
-		'SECTION_MASK' => 'IBLOCK.SECTION_PAGE_URL'
+		'SECTION_MASK' => 'IBLOCK.DETAIL_PAGE_URL',
+		'IBLOCK_SECTION_ID'
 	],
 	'order' => ['RAND' => 'ASC'],
 	'limit' => 5,
@@ -302,11 +307,13 @@ $rsBlogSections = Blog::getList([
 ])->fetchAll();
 
 array_walk($rsBlogSections, function (&$arBlogCurrentSection) {
-	$arBlogCurrentSection['SECTION_URL'] = CIBlock::ReplaceSectionUrl(
+
+    $arBlogCurrentSection['SECTION_CODE'] = SectionTable::getById($arBlogCurrentSection['IBLOCK_SECTION_ID'])->fetch()['CODE'] ?? '';
+
+	$arBlogCurrentSection['SECTION_URL'] = CIBlock::ReplaceDetailUrl(
 		$arBlogCurrentSection['SECTION_MASK'],
 		$arBlogCurrentSection,
-		true,
-		'S'
+		true
 	);
 });
 

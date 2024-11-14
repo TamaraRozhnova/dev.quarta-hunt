@@ -46,7 +46,7 @@ function JCTitleSearchAG(arParams) {
   this.CONTAINER = null;
   this.INPUT = null;
   this.WAIT = null;
-  this.toggler = document.getElementById("search_opener");
+  this.toggler = document.querySelectorAll("#search_opener");
   this.inputSearch = document.getElementById("smart-title-search-input");
   this.overlay = document.querySelector(".search-title__overlay");
   this.submit = document.querySelector(".search-title__submit");
