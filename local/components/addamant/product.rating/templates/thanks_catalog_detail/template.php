@@ -71,7 +71,7 @@ $starDeclension = new Declension('звезда', 'звезды', 'звёзд');
                 </div>
             <? } ?>
         </div>
-        <a class="default-star__estimate" href="javascript:void(0);" <?= count($arResult['CURRENT_USER_RATING']) || $arParams['USER_ID'] == 0 ? 'style="display: none"' : '' ?>><?= Loc::getMessage('ESTIMATE') ?></a>
+        <a class="default-star__estimate" href="javascript:void(0);" <?= !in_array($arParams['ELEMENT_ID'], $arParams['PURCHASED_PRODUCTS']) || count($arResult['CURRENT_USER_RATING']) || $arParams['USER_ID'] == 0 ? 'style="display: none"' : '' ?>><?= Loc::getMessage('ESTIMATE') ?></a>
     </div>
     <div class="click-star">
         <div class="stars-block">

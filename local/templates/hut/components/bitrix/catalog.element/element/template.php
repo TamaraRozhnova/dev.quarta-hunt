@@ -902,7 +902,7 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 							<div class="element__comments-list">
 								<?php
 								$APPLICATION->IncludeComponent(
-									'addamant.thanks:product.comments',
+									'addamant:product.comments',
 									'',
 									[
 										'BLOG_URL' => $arParams['BLOG_URL'],
@@ -911,6 +911,7 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 										'BLOG_GROUP_ID' => $arParams['BLOG_GROUP_ID'],
 										'ELEMENT_COUNT' => $arParams['COMMENTS_COUNT'],
 										'USER_ID' => $arParams['USER_ID'],
+										'PURCHASED_PRODUCTS' => $arParams['PURCHASED_PRODUCTS'],
 									],
 									$component,
 								);
@@ -920,12 +921,13 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 						<div class="element__comment-right">
 							<?php
 							$APPLICATION->IncludeComponent(
-								'addamant.thanks:product.rating',
+								'addamant:product.rating',
 								'thanks_catalog_detail',
 								[
 									'IBLOCK_ID' => $arParams['IBLOCK_ID'],
 									'ELEMENT_ID' => $arResult['ID'],
 									'USER_ID' => $arParams['USER_ID'],
+									'PURCHASED_PRODUCTS' => $arParams['PURCHASED_PRODUCTS'],
 								],
 								$component,
 							);

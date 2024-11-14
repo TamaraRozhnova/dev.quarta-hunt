@@ -14,6 +14,7 @@ use Bitrix\Main\Errorable;
 use Bitrix\Main\ErrorCollection;
 use Bitrix\Main\Engine\Contract\Controllerable;
 use Bitrix\Main\Error;
+use Bitrix\Main\Application;
 
 class ProductCommentsComponent extends CBitrixComponent implements Controllerable, Errorable
 {
@@ -66,9 +67,6 @@ class ProductCommentsComponent extends CBitrixComponent implements Controllerabl
         $arParams['IBLOCK_ID'] = (int)($arParams['IBLOCK_ID'] ?? 0);
         $arParams['BLOG_GROUP_ID'] = (int)($arParams['BLOG_GROUP_ID'] ?? 0);
         $arParams['ELEMENT_COUNT'] = (int)($arParams['ELEMENT_COUNT'] ?? 10);
-
-        /* ------------------------------------------------ Кеширование --------------------------------------------- */
-        $arParams['CACHE_TIME'] = (int)($arParams['CACHE_TIME'] ?? 36000000);
 
         $this->errorCollection = new ErrorCollection();
 
@@ -188,6 +186,9 @@ class ProductCommentsComponent extends CBitrixComponent implements Controllerabl
                 $this->arParams['IBLOCK_ID'],
                 ['BLOG_COMMENTS_CNT' => $productCommentsCount],
             );
+
+            $taggedCache = Application::getInstance()->getTaggedCache();
+            $taggedCache->clearByTag('iblock_id_' . $this->arParams['IBLOCK_ID']);
 
             return
                 [
