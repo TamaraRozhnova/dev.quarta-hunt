@@ -23,7 +23,7 @@
 }
 
 .search__not-found {
-  margin-top: 162px;
+  margin: 162px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,7 +64,7 @@
   }
 
   .search__not-found {
-    margin-top: 130px;
+    margin: 130px auto;
   }
 
   .search__not-found-subtitle {
