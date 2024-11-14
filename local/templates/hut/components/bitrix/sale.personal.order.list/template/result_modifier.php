@@ -1,28 +1,15 @@
 <?php
 
-$cache = \Bitrix\Main\Data\Cache::createInstance();  
-$cacheTtl = 36000; 
-$cacheKey = 'getpicture'; 
-if ($cache->initCache($cacheTtl, $cacheKey)){
+foreach ($arResult['ORDERS'] as $key => &$order) {
 
-    $arResult = $cache->getVars(); 
-    $cache->output();
+    foreach ($order['BASKET_ITEMS'] as &$item) {
+        //ElementHutcatalogTable
 
-}elseif ($cache->startDataCache()){
+        $element = \Bitrix\Iblock\Elements\ElementHutCatalogTable::getByPrimary($item['PRODUCT_ID'], [
+            'select' => ['PREVIEW_PICTURE'],
+        ])->fetch();
 
-    foreach ($arResult['ORDERS'] as $key => &$order){
-
-        foreach($order['BASKET_ITEMS'] as &$item){
-            //ElementHutcatalogTable
-
-            $element = \Bitrix\Iblock\Elements\ElementHutCatalogTable::getByPrimary($item['PRODUCT_ID'], [
-                'select' => ['PREVIEW_PICTURE'],
-            ])->fetch();
-            
-            $renderImage = CFile::ResizeImageGet($element["PREVIEW_PICTURE"], Array("width" => 75, "height" => 82), BX_RESIZE_IMAGE_EXACT, false);    
-            $item['PREVIEW_PICTURE'] = $renderImage["src"];
-        }
-    }  
-    
-    $cache->endDataCache($arResult);
+        $renderImage = CFile::ResizeImageGet($element["PREVIEW_PICTURE"], array("width" => 75, "height" => 82), BX_RESIZE_IMAGE_EXACT, false);
+        $item['PREVIEW_PICTURE'] = $renderImage["src"];
+    }
 }
