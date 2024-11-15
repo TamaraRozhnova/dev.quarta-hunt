@@ -270,6 +270,31 @@ $APPLICATION->IncludeComponent(
 
 $GLOBALS['arrPromotionsFilter'] = ['>=DATE_ACTIVE_TO' => date('d.m.Y H:i:s')];
 
+global $USER;
+
+$itsUrFace = false;
+$itsPrivatePerson = false;
+$itsGuest = !$USER->IsAuthorized();
+
+$rsUser = CUser::GetByID($USER->GetID());
+$arUser = $rsUser->Fetch();
+
+if ($arUser && $arUser['UF_TYPE'] == 'wholesale') {
+	$itsUrFace = true;
+} else if ($arUser && $arUser['UF_TYPE'] == 'retail') {
+	$itsPrivatePerson = true;
+}
+
+if ($itsUrFace) {
+	$GLOBALS['arrPromotionsFilter']['!PROPERTY_HIDE_ON_UR_VALUE'] = 'Y';
+} else if ($itsPrivatePerson) {
+	$GLOBALS['arrPromotionsFilter']['!PROPERTY_HIDE_ON_PRIVATE_PERSON_VALUE'] = 'Y';
+}
+
+if($itsGuest) {
+	$GLOBALS['arrPromotionsFilter']['!PROPERTY_HIDE_ON_GUEST_VALUE'] = 'Y';
+}
+
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"promotions", 
@@ -362,6 +387,18 @@ $APPLICATION->IncludeComponent(
 Array()
 );
 
+$GLOBALS['arrFilterNews'] = [];
+
+if ($itsUrFace) {
+	$GLOBALS['arrFilterNews']['!PROPERTY_HIDE_ON_UR_VALUE'] = 'Y';
+} else if ($itsPrivatePerson) {
+	$GLOBALS['arrFilterNews']['!PROPERTY_HIDE_ON_PRIVATE_PERSON_VALUE'] = 'Y';
+}
+
+if($itsGuest) {
+	$GLOBALS['arrFilterNews']['!PROPERTY_HIDE_ON_GUEST_VALUE'] = 'Y';
+}
+
 $APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
 	"news_slider", 
@@ -405,7 +442,7 @@ $APPLICATION->IncludeComponent(
 			16 => "IBLOCK_NAME",
 			17 => "",
 		),
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilterNews",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "1",
 		"IBLOCK_TYPE" => "",

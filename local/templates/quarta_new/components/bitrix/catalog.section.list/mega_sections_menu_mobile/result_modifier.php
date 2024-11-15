@@ -24,7 +24,7 @@ $saleData = \Bitrix\Iblock\Elements\ElementpromTable::getList([
         ">=ACTIVE_TO" => new \Bitrix\Main\Type\DateTime(),
         'ACTIVE' => 'Y'
     ],
-    'order' => ['SORT' => 'ASC']
+    'order' => ['ID' => 'DESC']
 ])->fetchAll();
 
 foreach ($saleData as &$sale) {

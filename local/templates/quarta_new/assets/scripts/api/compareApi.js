@@ -8,7 +8,7 @@ class CompareApi {
         }
 
         this.headerTopCompareBadge = document.querySelector('.header__top-item .compare-badge');
-        this.headerBottomCompareBadge = document.querySelector('.header__bottom-item .compare-badge');
+        //this.headerBottomCompareBadge = document.querySelector('.header__bottom-item .compare-badge');
     }
 
     async addToCompare(productId) {
@@ -41,12 +41,19 @@ class CompareApi {
     displayCompareCount() {
         if (!window.compareCount) {
             this.headerTopCompareBadge.style.display = 'none';
-            this.headerBottomCompareBadge.style.display = 'none';
+
+            if (this.headerBottomCompareBadge) {
+                this.headerBottomCompareBadge.style.display = 'none';
+            }
+
             return;
         }
         this.headerTopCompareBadge.textContent = window.compareCount;
         this.headerTopCompareBadge.style.display = 'block';
-        this.headerBottomCompareBadge.textContent = window.compareCount;
-        this.headerBottomCompareBadge.style.display = 'flex';
+
+        if (this.headerBottomCompareBadge) {
+            this.headerBottomCompareBadge.textContent = window.compareCount;
+            this.headerBottomCompareBadge.style.display = 'flex';
+        }
     }
 }

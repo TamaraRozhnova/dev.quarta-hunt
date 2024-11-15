@@ -5,6 +5,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Helpers\Filters\ProductsFilterHelper;
+use Bitrix\Iblock\SectionTable;
+use Bitrix\Main\Application;
 
 $sectionId = $arResult['VARIABLES']['SECTION_ID'];
 
@@ -17,7 +19,7 @@ $arCurSection = $sectionId;
  * Проверка на существование раздела
  */
 
- $rsSection = Bitrix\Iblock\SectionTable::getList([
+ $rsSection = SectionTable::getList([
     "select" => [
         "NAME", "CODE"
     ],
@@ -38,7 +40,7 @@ if (empty($rsSection)) {
 
     if ($APPLICATION->RestartWorkarea())
     {
-        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
+        require(Application::getDocumentRoot() . "/404.php");
         die();
     }
 }
@@ -46,9 +48,9 @@ if (empty($rsSection)) {
 $headers = getallheaders();
 
 $filterHelperInstance = new ProductsFilterHelper($sectionId);
-$filterParams = $filterHelperInstance->getFilters();
+$filterParams = $filterHelperInstance->getFilters() ?? [];
 
-
+/* AJAX old filter
 if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
@@ -59,15 +61,19 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
             "component" => $component
         ]
     );
+
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
         [
             "params" => array_merge($arParams, $filterParams),
             "result" => $arResult,
-            "component" => $component
+            "component" => $component,
+            "isAjax" => "Y"
         ]
     );
+
     exit();
 }
+*/
 
 ?>
 
@@ -111,12 +117,21 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
                     "component" => $component
                 ]
             );
+
+            /**
+             * SORT for standart filter
+             */
+            $APPLICATION->IncludeFile($templateFolder . "/include/catalog_filter_top.php", [
+                "currentSection" => $arCurSection,
+            ]);
+            
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
                     "params" => array_merge($arParams, $filterParams),
                     "result" => $arResult,
                     "component" => $component
                 ]);
+
             ?>
         </div>
     </div>
@@ -135,11 +150,13 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
     ); ?>
 
 </div>
-<?
+
+<?php
+
 //Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
 //начало
     global $sotbitSeoMetaTitle;
-	$this->SetViewTarget('my_code11');
+    $this->SetViewTarget('my_code11');
     if(!empty($sotbitSeoMetaTitle)){
         echo $sotbitSeoMetaTitle;
 	} else {
@@ -171,4 +188,3 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
         $APPLICATION->AddChainItem($sotbitSeoMetaBreadcrumbTitle  );
     }
 //конец
-?>

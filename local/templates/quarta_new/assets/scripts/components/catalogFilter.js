@@ -16,7 +16,7 @@ class CatalogFilter {
     hangEvents() {
         this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
         this.filterCheckboxes.forEach(checkbox => this.hangChangeCheckboxEvent(checkbox));
-        this.listCountElements.forEach(element => this.hangChangeProductsCountEvent(element));
+        this.hangListCountElements();
         this.hangPaginationEvents();
         this.hangAvailableEvent();
         this.hangFiltersClearEvent();
@@ -46,14 +46,48 @@ class CatalogFilter {
         this.availableCheckbox = this.extraFilters.querySelector('#available');
         this.selectSortElement = this.extraFilters.querySelector('#select-sort');
         this.selectCountElement = this.extraFilters.querySelector('#select-count');
-        this.listCountElements = this.extraFilters.querySelectorAll('#list-count li');
+        this.listCountElements = document.querySelectorAll('#list-count li');
+
+        if (window.innerWidth > 1024) {
+
+            this.viewItemsWrapper = this.extraFilters.querySelector('.filters-mode-view')
+
+            if (this.viewItemsWrapper) {
+                this.viewItems = this.viewItemsWrapper.querySelectorAll('.filters-mode-view__item')
+
+                if (this.viewItems.length > 0) {
+                    this.hangViewMode()
+                }
+            }
+
+
+        }
+
+    }
+    clearViewMode() {
+        this.viewItems.forEach((view) => {
+            view.classList.remove('active')
+        })
+    }
+    hangViewMode() {
+        this.viewItems.forEach((view) => {
+            view.onclick = () => {
+                this.clearViewMode()
+                view.classList.add('active')
+                this.changeViewMode(view.dataset.template)
+            }
+        })
+    }
+
+    changeViewMode(viewTemplate) {
+        this.handleChangeFilters({'templateView': viewTemplate})
     }
 
     reinitHangFilter() {
 
         this.createPriceField();
         this.initDefaultVars();
-        
+
         this.filterSections.forEach(section => this.hangExpandSectionEvent(section));
         this.filterCheckboxes.forEach(checkbox => this.hangChangeCheckboxEvent(checkbox));
 
@@ -114,6 +148,7 @@ class CatalogFilter {
     hangChangeProductsCountEvent(element) {
         element.onclick = () => {
             const id = element.dataset.id;
+
             if (this.selectorCount.getValue() == id) {
                 return;
             }
@@ -131,17 +166,32 @@ class CatalogFilter {
                 if (!html) {
                     return;
                 }
+
+                const styleHtml = BX.processHTML(html).STYLE
+
+                if (styleHtml.length > 0) {
+                    Array.from(styleHtml).forEach((script) => {
+                        if (script.includes('catalog.item')) {
+                            BX.loadCSS(script)
+                        }
+                    })
+                }
                 this.insertHtml(html);
+                this.hangListCountElements()
             });
         if (withChangeUrl) {
             this.changeUrl(url);
         }
     }
 
+    hangListCountElements() {
+        this.listCountElements.forEach(element => this.hangChangeProductsCountEvent(element));
+    }
+
     hangAvailableEvent() {
         this.availableCheckbox.onchange = () => {
             const value = !!this.availableCheckbox.checked;
-            this.handleChangeFilters({onlyAvailable: value});
+            this.handleChangeFilters({productsavailable: value});
         }
     }
 
@@ -185,7 +235,7 @@ class CatalogFilter {
             const valueForUrl = checkbox.checked ? 'Y' : '';
 
             this.filterParams['MULTI_OBJECT'] = 'Y'
-            
+
             this.filterParams['FILTER_ITEMS'][id] = valueForUrl
             this.setBadges();
 
@@ -198,7 +248,7 @@ class CatalogFilter {
 
                 let checkboxWrapper = checkbox.closest('.filters-item'),
                     checkboxFormWrapper = checkboxWrapper.closest('.filters-section')
- 
+
 
                 let filtersLeftRigtPadding = window.getComputedStyle(checkboxFormWrapper, null).getPropertyValue('padding-left'),
                     filtersLeftRigtPaddingModify = Number(filtersLeftRigtPadding.replace('px', ''))
@@ -215,7 +265,7 @@ class CatalogFilter {
                 }
 
                 setTimeout(() => {
-                    this.hangCloseAllApplyBnts() 
+                    this.hangCloseAllApplyBnts()
                 }, 5000);
 
             }
@@ -225,7 +275,7 @@ class CatalogFilter {
         //     const valueForUrl = checkbox.checked ? 'Y' : '';
 
         //     this.filterParams['MULTI_OBJECT'] = 'Y'
-            
+
         //     this.filterParams['FILTER_ITEMS'][id] = valueForUrl
         //     this.setBadges();
 
@@ -238,7 +288,7 @@ class CatalogFilter {
 
         //         let checkboxWrapper = checkbox.closest('.filters-item'),
         //             checkboxFormWrapper = checkboxWrapper.closest('.filters-section')
- 
+
 
         //         let filtersLeftRigtPadding = window.getComputedStyle(checkboxFormWrapper, null).getPropertyValue('padding-left'),
         //             filtersLeftRigtPaddingModify = Number(filtersLeftRigtPadding.replace('px', ''))
@@ -271,7 +321,7 @@ class CatalogFilter {
     }
 
     changeProductsCountClasses(element) {
-        const currentActiveElement = this.extraFilters.querySelector('#list-count li.active');
+        const currentActiveElement = document.querySelector('#list-count li.active');
         currentActiveElement.classList.remove('active');
         element.classList.add('active');
     }
@@ -292,11 +342,11 @@ class CatalogFilter {
                 if (element.classList.contains('filters-section--expanded')) {
                     filtersNew[index].classList.add('filters-section--expanded')
                 }
-                
+
             }
             this.mainFiltersWrapper.innerHTML = dataFilter.innerHTML;
         }
-        
+
         this.productsDataBlock.innerHTML = data.innerHTML;
 
         this.reinitHangFilter();
@@ -314,7 +364,7 @@ class CatalogFilter {
         this.inputMinPrice.clear();
         this.inputMaxPrice.clear();
         this.filterParams.FILTER_ITEMS = {};
-        const newActiveCountElement = this.extraFilters.querySelector(`#list-count li:first-of-type`);
+        const newActiveCountElement = document.querySelector(`#list-count li:first-of-type`);
         this.changeProductsCountClasses(newActiveCountElement);
         this.setBadges();
     }
@@ -374,7 +424,7 @@ class CatalogFilter {
                     }
                 })
 
-            } 
+            }
         } else {
             Object.keys(params).forEach(key => {
                 if (params[key]) {
@@ -427,7 +477,7 @@ class CatalogFilter {
         this.selectorCount = new Select({
             element: this.selectCountElement,
             onSelect: (id) => {
-                const newActiveElement = this.extraFilters.querySelector(`#list-count li[data-id="${id}"]`);
+                const newActiveElement = document.querySelector(`#list-count li[data-id="${id}"]`);
                 this.changeProductsCountClasses(newActiveElement);
                 this.handleChangeFilters({itemsPerPage: id});
             }
@@ -451,7 +501,7 @@ class CatalogFilter {
     createElements() {
         this.createSelectorSort()
         this.createSelectorCount()
-        this.createPriceField()
+        // this.createPriceField()
     }
 
     setBadges() {

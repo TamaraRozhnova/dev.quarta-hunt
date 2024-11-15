@@ -10,7 +10,8 @@ use Skyweb24\YandexCaptcha\YandexCaptcha;
 use Skyweb24\YandexCaptcha\YandexCaptchaOption;
 use Upload\UserUploadForm1c;
 
-function getUserFullNameOrEmail(): string {
+function getUserFullNameOrEmail(): string
+{
     global $USER;
     $fullName = $USER->GetFullName();
 
@@ -21,18 +22,21 @@ function getUserFullNameOrEmail(): string {
     return $USER->GetEmail();
 }
 
-function getSearchString(): string {
+function getSearchString(): string
+{
     if (CSite::InDir('/search/')) {
         return filter_var($_GET['q'], FILTER_SANITIZE_STRING);
     }
     return '';
 }
 
-function refreshPage() {
-    header('Location: '.$_SERVER['REQUEST_URI']);
+function refreshPage()
+{
+    header('Location: ' . $_SERVER['REQUEST_URI']);
 }
 
-function checkRequestLogout() {
+function checkRequestLogout()
+{
     global $USER;
     if (
         $_GET['logout'] == 'yes'
@@ -41,17 +45,18 @@ function checkRequestLogout() {
     ) {
         runLogout();
     }
-
 }
 
-function runLogout() {
+function runLogout()
+{
     global $USER;
     $USER->Logout();
 
     refreshPage();
 }
 
-function showBreadcrumb(): bool {
+function showBreadcrumb(): bool
+{
     $notAllowedUrls = ['/catalog/index.php'];
     $allowedUrls = [
         '/catalog/',
@@ -91,12 +96,14 @@ function showBreadcrumb(): bool {
     return false;
 }
 
-function getRootProductSection($iblockId, $sectionId) {
+function getRootProductSection($iblockId, $sectionId)
+{
     $arSections = [];
-    while($sectionId) {
+    while ($sectionId) {
         if ($arSection = \Bitrix\Iblock\SectionTable::getList([
             'filter' => ['IBLOCK_ID' => $iblockId, 'ID' => $sectionId],
-            'select' => ['ID', 'IBLOCK_SECTION_ID', 'CODE']
+            'select' => ['ID', 'IBLOCK_SECTION_ID', 'CODE'],
+            'cache' => ['ttl' => 36000000]
         ])->fetch()) {
             $arSections[] = $arSection;
         }
@@ -106,7 +113,8 @@ function getRootProductSection($iblockId, $sectionId) {
     return $arSections;
 }
 
-function checkCustomCaptcha($post) {
+function checkCustomCaptcha($post)
+{
     if (Loader::includeModule('twim.recaptchafree')) {
         parse_str($post, $output);
 
@@ -116,18 +124,31 @@ function checkCustomCaptcha($post) {
 
         return (new YandexCaptcha($output['smart-token'], $optionCaptcha->getServerKey()))->checkCaptcha();
         //google
-//        $moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
-//        $word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
-//        $captcha = new CCaptcha();
-//        return $captcha->CheckCode($word, $_REQUEST["captcha_sid"]);
+        //        $moduleParams = unserialize(Option::get("twim.recaptchafree", "settings", false, SITE_ID));
+        //        $word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
+        //        $captcha = new CCaptcha();
+        //        return $captcha->CheckCode($word, $_REQUEST["captcha_sid"]);
     } else {
         return false;
     }
 }
 
-function getUsersFrom1cXmlAgent() {
+function getUsersFrom1cXmlAgent()
+{
     $xmlHandler = new UserUploadForm1c;
     $xmlHandler->handleUserFile();
 
     return 'getUsersFrom1cXmlAgent();';
+}
+
+/**
+ * Функция добавления svg файла в html
+ *
+ * @param string $svg_name Название файла.
+ * @param string $base     Папка с фалом относительно корня сайта.
+ * @return string Добавление содержимого файла.
+ */
+function buildSVG(string $svg_name, string $base = 'image')
+{
+    return file_get_contents($_SERVER['DOCUMENT_ROOT'] . $base . '/' . $svg_name . '.svg');
 }

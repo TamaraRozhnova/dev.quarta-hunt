@@ -1,0 +1,120 @@
+.bx-auth-profile{
+	position: relative;
+	max-width: 100%;
+	width: 100%;
+}
+
+.bx-auth-profile form{
+	max-width: 667px;
+	width: 100%;
+}
+
+.bx-auth-profile form .button.button-primary.personal-submit-form{
+	display: inline-block;
+	width: fit-content;
+	margin-top: 48px;
+	padding: 13px 24px;
+}
+
+.profile-block-item:not(:first-child){
+	margin-top: 24px;
+}
+
+.change-success{
+	padding: 10px 5px 10px 22px;
+	position: fixed;
+	max-width: 450px;
+	width: 100%;
+	display: flex;
+	border-radius: 8px;
+	border: 1px solid var(--color-gray2);
+	background-color: #FFFFFF;
+	box-shadow: 0px 28px 23px -7px #0000000D;
+	align-items: center;
+	bottom: 24px;
+	right: 24px;
+	z-index: 1;
+}
+
+.change-success:before{
+	display: block;
+	background-color: var(--color-dark6);
+	border-radius: 4px;
+	width: 6px;
+	height: 46px;
+	content: '';
+	position: absolute;
+	left: 5px;
+	top: 10px;
+}
+
+.change-success p{
+	margin: 0;
+}
+
+.change-success p font{
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18.2px;
+	color: var(--color-dark6);
+}
+
+.change-success p:last-child font{
+	font-weight: 400;
+	color: var(--color-gray6);
+}
+
+.change-close{
+	margin-left: auto;
+	cursor: pointer;
+}
+
+.profile-block-item.gender>label{
+	font-weight: 700;
+}
+
+.profile-block-item.gender input{
+	margin-right: 12px;
+	height: 24px;
+	width: 24px;
+	accent-color: var(--color-primary);
+	cursor: pointer;
+}
+
+.profile-block-item.gender .input__container{
+	display: flex;
+	align-items: center;
+}
+
+.profile-block-item.gender .input__container label{
+	margin-right: 16px;
+	font-size: 16px;
+	line-height: 21.6px;
+	text-align: left;
+	margin-top: 3px;
+	color: var(--color-dark6);
+	cursor: pointer;
+}
+
+.profile-block-item.birthday .input__container{
+	position: relative;
+}
+
+.profile-block-item.birthday input{
+	padding-left: 42px;
+}
+
+.profile-block-item.birthday img{
+	position: absolute;
+	top: 1px;
+	left: 12px;
+}
+
+.profile-block-item.birthday img.calendar-icon-hover{
+	border: 1px solid transparent;
+	background-color: transparent;
+}
+
+.errortext{
+	color: var(--color-primary);
+}

@@ -12,9 +12,9 @@ $APPLICATION->IncludeFile('/catalog/_redirect.php');
 $APPLICATION->SetTitle("Каталог товаров Quarta Оружейный Квартал");
 $APPLICATION->AddChainItem('Каталог', '/catalog/');?>
 
-<h1 class="hidden-on-page unset-margin">
+<div class="hidden-on-page unset-margin">
 <?=$APPLICATION->ShowTitle()?> 
-</h1>
+</div>
 
 <? $user = new User();
 $priceCode = $user->getUserPriceCode();
@@ -23,7 +23,7 @@ $priceCode = $user->getUserPriceCode();
 <?
 $APPLICATION->IncludeComponent(
 	"bitrix:catalog", 
-	"main",
+	"main", 
 	array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -104,11 +104,16 @@ $APPLICATION->IncludeComponent(
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_ELEMENT_SELECT_BOX" => "N",
 		"DISPLAY_TOP_PAGER" => "N",
-		"ELEMENT_SORT_FIELD" => "CATALOG_AVAILABLE",
-		"ELEMENT_SORT_FIELD2" => "",
-		"ELEMENT_SORT_ORDER" => "DESC",
-		"ELEMENT_SORT_ORDER2" => "",
-		"FILTER_NAME" => "",
+//        "ELEMENT_SORT_FIELD" => "CATALOG_QUANTITY",
+//        "ELEMENT_SORT_FIELD2" => "CATALOG_AVAILABLE",
+//        "ELEMENT_SORT_ORDER" => "DESC",
+//        "ELEMENT_SORT_ORDER2" => "DESC",
+        "ELEMENT_SORT_FIELD" => "CATALOG_AVAILABLE",
+        "ELEMENT_SORT_FIELD2" => "",
+        "ELEMENT_SORT_ORDER" => "DESC",
+        "ELEMENT_SORT_ORDER2" => "",
+
+		"FILTER_NAME" => "arFilterCatalog",
 		"HIDE_NOT_AVAILABLE" => "L",
 		"HIDE_NOT_AVAILABLE_OFFERS" => "Y",
 		"IBLOCK_ID" => "16",
@@ -135,6 +140,7 @@ $APPLICATION->IncludeComponent(
 			2 => "NEW_PRODUCT",
 			3 => "DOUBLE_BONUS",
 			4 => "ITS_CREDIT",
+			5 => "",
 		),
 		"MESSAGE_404" => "",
 		"MESS_BTN_ADD_TO_BASKET" => "В корзину",
@@ -155,17 +161,16 @@ $APPLICATION->IncludeComponent(
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
 		"PAGER_SHOW_ALL" => "Y",
 		"PAGER_SHOW_ALWAYS" => "N",
-		"PAGER_TEMPLATE" => "catalog_navigation",
+		"PAGER_TEMPLATE" => "main",
 		"PAGER_TITLE" => "Товары",
 		"PAGE_ELEMENT_COUNT" => "24",
 		"PARTIAL_PRODUCT_PROPERTIES" => "Y",
-		"PRICE_CODE" => array($priceCode),
+		"PRICE_CODE" => [$priceCode],
 		"PRICE_VAT_INCLUDE" => "Y",
 		"PRICE_VAT_SHOW_VALUE" => "Y",
 		"PRODUCT_DISPLAY_MODE" => "N",
 		"PRODUCT_ID_VARIABLE" => "id",
 		"PRODUCT_PROPERTIES" => array(
-			0 => 'CML2_ARTICLE'
 		),
 		"PRODUCT_PROPS_VARIABLE" => "prop",
 		"PRODUCT_QUANTITY_VARIABLE" => "quantity",
@@ -220,8 +225,7 @@ $APPLICATION->IncludeComponent(
 			0 => "",
 			1 => "",
 		),
-		"FILTER_PRICE_CODE" => array(
-		),
+		"FILTER_PRICE_CODE" => [$priceCode],
 		"FILTER_OFFERS_FIELD_CODE" => array(
 			0 => "",
 			1 => "",
@@ -260,6 +264,51 @@ $APPLICATION->IncludeComponent(
 		"GIFTS_MAIN_PRODUCT_DETAIL_HIDE_BLOCK_TITLE" => "N",
 		"GIFTS_MAIN_PRODUCT_DETAIL_BLOCK_TITLE" => "Выберите один из товаров, чтобы получить подарок",
 		"PRODUCTS_TEXT_LICENSE" => SECTIONS_LICENSED,
+		"TEMPLATE_THEME" => "shop",
+		"LABEL_PROP_MOBILE" => "",
+		"LABEL_PROP_POSITION" => "top-left",
+		"PRODUCT_SUBSCRIPTION" => "Y",
+		"DISCOUNT_PERCENT_POSITION" => "bottom-right",
+		"SHOW_MAX_QUANTITY" => "N",
+		"MESS_NOT_AVAILABLE_SERVICE" => "Недоступно",
+		"MESS_BTN_SUBSCRIBE" => "Подписаться",
+		"SIDEBAR_SECTION_POSITION" => "right",
+		"SIDEBAR_DETAIL_POSITION" => "right",
+		"FILTER_VIEW_MODE" => "VERTICAL",
+		"FILTER_HIDE_ON_MOBILE" => "N",
+		"INSTANT_RELOAD" => "N",
+		"SEARCH_PAGE_RESULT_COUNT" => "50",
+		"SEARCH_RESTART" => "N",
+		"SEARCH_NO_WORD_LOGIC" => "Y",
+		"SEARCH_USE_LANGUAGE_GUESS" => "Y",
+		"SEARCH_CHECK_DATES" => "Y",
+		"SEARCH_USE_SEARCH_RESULT_ORDER" => "N",
+		"LIST_PROPERTY_CODE_MOBILE" => "",
+		"LIST_PRODUCT_BLOCKS_ORDER" => "price,props,sku,quantityLimit,quantity,buttons",
+		"LIST_PRODUCT_ROW_VARIANTS" => "[{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false}]",
+		"LIST_ENLARGE_PRODUCT" => "STRICT",
+		"LIST_SHOW_SLIDER" => "Y",
+		"LIST_SLIDER_INTERVAL" => "3000",
+		"LIST_SLIDER_PROGRESS" => "N",
+		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => "",
+		"DETAIL_MAIN_BLOCK_OFFERS_PROPERTY_CODE" => "",
+		"DETAIL_FB_USE" => "N",
+		"DETAIL_IMAGE_RESOLUTION" => "16by9",
+		"DETAIL_PRODUCT_INFO_BLOCK_ORDER" => "sku,props",
+		"DETAIL_PRODUCT_PAY_BLOCK_ORDER" => "rating,price,priceRanges,quantityLimit,quantity,buttons",
+		"DETAIL_SHOW_SLIDER" => "N",
+		"MESS_PRICE_RANGES_TITLE" => "Цены",
+		"MESS_DESCRIPTION_TAB" => "Описание",
+		"MESS_PROPERTIES_TAB" => "Характеристики",
+		"MESS_COMMENTS_TAB" => "Комментарии",
+		"DETAIL_SHOW_POPULAR" => "Y",
+		"DETAIL_SHOW_VIEWED" => "Y",
+		"USE_BIG_DATA" => "Y",
+		"BIG_DATA_RCM_TYPE" => "personal",
+		"USE_ENHANCED_ECOMMERCE" => "N",
+		"LAZY_LOAD" => "N",
+		"MESS_BTN_LAZY_LOAD" => "Показать ещё",
+		"LOAD_ON_SCROLL" => "N",
 		"SEF_URL_TEMPLATES" => array(
 			"sections" => "",
 			"section" => "#SECTION_CODE_PATH#/",

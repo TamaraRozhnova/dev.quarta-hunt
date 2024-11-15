@@ -1,0 +1,236 @@
+/* .news-slider {
+  background-color: #fff;
+}
+
+@media (max-width: 991.98px) {
+  .news-slider__more {
+    height: 18.75rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .news-slider__more {
+    height: 20rem;
+  }
+}
+
+.news-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+  height: 27.75rem;
+  padding: 2.75rem 1.5625rem;
+  border-radius: 0.875rem;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.news-slide__date,
+.news-slide__title {
+  position: relative;
+  z-index: 2;
+}
+
+.news-slide__date {
+  color: #808d9a;
+  margin-bottom: 1.375rem;
+}
+
+.news-slide__title {
+  max-width: 40%;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.news-slide__background {
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s;
+}
+
+.news-slide__background--multiple {
+  background-size: cover, 0;
+}
+
+.news-slide::before,
+.news-slide__background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.news-slide::before {
+  content: "";
+  top: 50%;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  z-index: 1;
+}
+
+.news-slide:hover .news-slide__background {
+  transform: scale(1.1);
+}
+
+@media (max-width: 991.98px) {
+  .news-slide {
+    height: 18.75rem;
+  }
+
+  .news-slide__title {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .news-slide__title {
+    max-width: unset;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .news-slide {
+    height: 20rem;
+  }
+
+  .news-slide__title {
+    font-size: 0.875rem;
+  }
+
+  .news-slide__background--multiple {
+    background-size: 0, cover;
+  }
+} */
+
+.modern-promo__more {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  background-color: #004989;
+  border-radius: 0.875rem;
+  padding: 2.75rem 1.5625rem;
+  color: #fff !important;
+}
+
+.modern-promo__more h2 {
+  color: #fff;
+}
+
+/*  */
+
+.modern-promo {
+  display: flex;
+  max-width: 466px;
+}
+
+.modern-promo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.modern-promo__title {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 26.6px;
+  text-align: left;
+  color: #004989;
+  height: 100%;
+  max-height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modern-promo-slider__title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+  color: #333333;
+  margin: 0 0 32px 0;
+}
+
+.modern-promo-slider__addit>.swiper-pagination {
+  height: 2px;
+  position: initial;
+  width: 82%;
+}
+
+.modern-promo-slider__addit>.swiper-pagination .swiper-pagination-progressbar-fill {
+  background-color: #004989 !important;
+}
+
+.modern-promo__img {
+  display: flex;
+}
+
+.modern-promo__img img {
+  border-radius: 8px;
+  object-fit: cover;
+  height: fit-content;
+}
+
+.modern-promo__preview {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+  color: #808D9A;
+  max-height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modern-promo-slider__addit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 0 0;
+}
+
+.modern-promo-slider__arrows {
+	display: flex;
+}
+
+.modern-promo-slider__arrows {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.modern-promo-slider__prev,
+.modern-promo-slider__next {
+	width: 6px;
+	height: 10px;
+	cursor: pointer;
+	background-image: url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 8.76117L2.38281 5L6 1.23883L4.80859 -5.2078e-08L-6.95394e-07 5L4.80859 10L6 8.76117Z' fill='%23808D9A'/%3E%3C/svg%3E%0A");
+}
+
+.modern-promo-slider__prev:hover,
+.modern-promo-slider__next:hover {
+	background-image: url("data:image/svg+xml,%3Csvg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 8.76117L2.38281 5L6 1.23883L4.80859 -5.2078e-08L-5.24749e-07 5L4.80859 10L6 8.76117Z' fill='%23004989'/%3E%3C/svg%3E%0A");
+}
+
+.modern-promo-slider__next {
+	transform: rotate(180deg);
+}
+.modern-promo__btn {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.6px;
+  text-align: center;
+  color: #004989;
+  background-color: #E8EFF4;
+  padding: 12px 8px;
+  border-radius: 8px;
+  width: 100%;
+  margin: 8px auto auto auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

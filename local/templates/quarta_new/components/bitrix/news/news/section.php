@@ -110,8 +110,9 @@ if (empty($rsSection)) {
         ); ?>
     <? endif ?>
 
+    
     <? if ($arParams["USE_FILTER"] == "Y"): ?>
-        <? $APPLICATION->IncludeComponent(
+        <? /* $APPLICATION->IncludeComponent(
             "bitrix:catalog.filter",
             "bootstrap_v4",
             array(
@@ -127,7 +128,7 @@ if (empty($rsSection)) {
                 "TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"]
             ),
             $component
-        );
+        ); */
         ?>
     <? endif ?>
 

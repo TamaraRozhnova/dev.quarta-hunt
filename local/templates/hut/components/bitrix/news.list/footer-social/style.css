@@ -1,0 +1,15 @@
+.social-list {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.social-list a {
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--color-gray5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

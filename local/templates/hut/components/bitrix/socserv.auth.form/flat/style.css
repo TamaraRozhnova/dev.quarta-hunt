@@ -1,0 +1,29 @@
+.bx-authform-social ul {
+  margin: 24px 0 0 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0;
+}
+
+.bx-authform-social ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--color-dark1);
+  font-weight: 600;
+  line-height: 14px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--color-dark6);
+}
+
+@media (max-width: 450px) {
+  .bx-authform-social ul {
+    grid-template-columns: 1fr;
+  }
+}

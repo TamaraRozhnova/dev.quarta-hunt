@@ -1,0 +1,94 @@
+.registration__form-wr .input {
+  position: relative;
+}
+.password-eye {
+  background-image: url(images/eye.svg);
+  position: absolute;
+  right: 15px;
+  top: 43px;
+  width: 20px;
+  height: 16px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+.password-eye.active {
+  background-image: url(images/eye-active.svg);
+}
+
+.registration__form-wr .input.is-invalid .password-eye {
+  bottom: 47px;
+}
+
+.re-pass-reg,
+.re-conf-pass-reg {
+  position: relative;
+}
+
+.reg__title {
+  padding: 4px 40px 4px 0;
+  color: var(--color-dark6);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+#reg.modal {
+  max-width: 550px;
+}
+
+.re-phone-reg {
+  margin-top: 36px;
+}
+
+#reg .input--required {
+  margin-bottom: 24px;
+}
+
+.reg__back.button.button-secondary,
+.reg-submit-form.button.button-primary {
+  margin-top: 12px;
+  width: 100%;
+  padding: 18px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.reg-submit-form.button.button-primary {
+  margin: 0;
+}
+
+.reg__agree {
+  margin-top: 12px;
+  color: var(--color-gray5);
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.reg__agree a {
+  color: var(--color-gray5);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  #reg.modal {
+    height: 90vh;
+    vertical-align: bottom;
+    width: 100%;
+    max-width: unset;
+  }
+
+  #reg.modal {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .reg__form {
+    height: calc(90vh - 246px);
+    overflow-y: scroll;
+  }
+}
