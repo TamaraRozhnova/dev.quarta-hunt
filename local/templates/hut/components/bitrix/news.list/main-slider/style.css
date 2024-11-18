@@ -106,6 +106,8 @@
   margin-top: 64px;
   display: flex;
   gap: 16px;
+  position: relative;
+  z-index: 3;
 }
 
 .main-slider__item-buttons .button.button-primary {
@@ -140,7 +142,6 @@
 .container.main-slider__buttons-wrap {
   position: relative;
   bottom: 150px;
-  z-index: 2;
   display: flex;
   justify-content: flex-end;
 }

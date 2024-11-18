@@ -74,7 +74,7 @@ foreach ($arPost as $key => $value) {
 			$onclick = ($service["ONCLICK"] <> '' ? $service["ONCLICK"] : "BxSocServPopup('" . $service["ID"] . "')");
 		?>
 			<li>
-				<a id="bx_socserv_icon_<?= $service["ID"] ?>" class="<?= \Bitrix\Main\Text\HtmlFilter::encode($service["ICON"]) ?> bx-authform-social-icon" href="javascript:void(0)" onclick="<?= \Bitrix\Main\Text\HtmlFilter::encode($onclick) ?>" title="<?= \Bitrix\Main\Text\HtmlFilter::encode($service["NAME"]) ?>">
+				<a id="bx_socserv_icon_<?= $service["ID"] ?>" class="hover_2 <?= \Bitrix\Main\Text\HtmlFilter::encode($service["ICON"]) ?> bx-authform-social-icon" href="javascript:void(0)" onclick="<?= \Bitrix\Main\Text\HtmlFilter::encode($onclick) ?>" title="<?= \Bitrix\Main\Text\HtmlFilter::encode($service["NAME"]) ?>">
 					<img src="<?= $templateFolder . '/images/' . \Bitrix\Main\Text\HtmlFilter::encode($service["ICON"]) . '.svg' ?>" alt=""><?= GetMessage(\Bitrix\Main\Text\HtmlFilter::encode($service["ICON"])) ?>
 				</a>
 				<? if ($service["ONCLICK"] == '' && $service["FORM_HTML"] <> ''): ?>

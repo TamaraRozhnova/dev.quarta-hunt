@@ -41,7 +41,8 @@ input[type="radio"].visually-hidden {
   overflow: hidden;
 }
 
-a {
+a,
+a:hover {
   text-decoration: none;
 }
 

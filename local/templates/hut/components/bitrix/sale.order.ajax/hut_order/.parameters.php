@@ -758,12 +758,12 @@ $arTemplateParameters["USE_CUSTOM_ERROR_MESSAGES"] =  array(
 
 if (isset($arCurrentValues['USE_CUSTOM_ERROR_MESSAGES']) && $arCurrentValues['USE_CUSTOM_ERROR_MESSAGES'] === 'Y')
 {
-	$arTemplateParameters["MESS_SUCCESS_PRELOAD_TEXT"] =  array(
+	/*$arTemplateParameters["MESS_SUCCESS_PRELOAD_TEXT"] =  array(
 		"NAME" => GetMessage("SUCCESS_PRELOAD_TEXT"),
 		"TYPE" => "STRING",
 		"DEFAULT" => GetMessage("SUCCESS_PRELOAD_TEXT_DEFAULT"),
 		"PARENT" => "ERROR_MESSAGE_SETTINGS"
-	);
+	);*/
 	$arTemplateParameters["MESS_FAIL_PRELOAD_TEXT"] =  array(
 		"NAME" => GetMessage("FAIL_PRELOAD_TEXT"),
 		"TYPE" => "STRING",
