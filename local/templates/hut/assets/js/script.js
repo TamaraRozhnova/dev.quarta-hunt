@@ -198,3 +198,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+let btnAlertNotif = document.querySelector("#bx-soa-main-notifications");
+if (btnAlertNotif) {
+  btnAlertNotif.addEventListener("click", function () {
+    this.style.display = "none";
+  });
+}

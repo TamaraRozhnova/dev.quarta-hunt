@@ -255,12 +255,12 @@ if ($arResult["SHOW_SMS_FIELD"] == true) {
 
 			<div class="reg__bottom">
 				<div>
-					<input type="submit" class="reg-submit-form button button-primary" name="register_submit_button" value="<?= GetMessage("AUTH_REGISTER") ?>" />
+					<input type="submit" class="reg-submit-form button button-primary hover_1" name="register_submit_button" value="<?= GetMessage("AUTH_REGISTER") ?>" />
 				</div>
 				<div class="reg__agree">
 					<?= GetMessage("AGREE", array("#LINK#" => "/policy/")) ?>
 				</div>
-				<a href="#auth" class="reg__back button button-secondary" rel="modal:open"><?= GetMessage("BACK") ?></a>
+				<a href="#auth" class="reg__back button button-secondary hover_2" rel="modal:open"><?= GetMessage("BACK") ?></a>
 			</div>
 
 		<? endif ?>

@@ -24,7 +24,7 @@
 			</label>
 		<? endforeach; ?>
 		<input required class="input white subscribe__input" type="email" name="sf_EMAIL" size="20" value="<?= $arResult["EMAIL"] ?>" placeholder="<?= GetMessage("subscr_form_email_title") ?>" title="<?= GetMessage("subscr_form_email_title") ?>" />
-		<input class="button subscribe__submit" type="submit" name="OK" value="<?= GetMessage("subscr_form_button") ?>" /></td>
+		<input class="button subscribe__submit hover_1" type="submit" name="OK" value="<?= GetMessage("subscr_form_button") ?>" /></td>
 	</form>
 	<div class="subscribe-form__agree"><?= GetMessage("subscr_form_agree") ?></div>
 	<?
@@ -37,7 +37,7 @@
 			</label><br />
 		<? endforeach; ?>
 		<input class="subscribe__input" required type="text" name="sf_EMAIL" size="20" value="" placeholder="<?= GetMessage("subscr_form_email_title") ?>" title="<?= GetMessage("subscr_form_email_title") ?>" /></td>
-		<input class="button subscribe__submit" type="submit" name="OK" value="<?= GetMessage("subscr_form_button") ?>" /></td>
+		<input class="button subscribe__submit hover_1" type="submit" name="OK" value="<?= GetMessage("subscr_form_button") ?>" /></td>
 	</form>
 	<?
 	$frame->end();
