@@ -234,6 +234,15 @@
   min-width: 48px;
 }
 
+.product-item-scu-item-text-container:not(.selected):hover
+  .product-item-scu-item-text {
+  color: white;
+}
+.product-item-scu-item-text-container:hover .product-item-scu-item-text-block {
+  background-color: var(--color-dark6);
+  border-color: var(--color-dark6);
+}
+
 .product-item-scu-item-color-container {
   max-width: 38px;
   width: 25%;

@@ -17,7 +17,7 @@ $this->setFrameMode(false); ?>
 
 <div id="auth" class="modal">
 	<div class="bx-authform-wrap mb-4">
-		<div class="container">
+		<div class="">
 			<div class="bx-authform-container">
 				<div class="bx-authform">
 					<?
@@ -75,9 +75,9 @@ $this->setFrameMode(false); ?>
 							</div>
 						<? endif; ?>
 						<div class="bx-authform-formgroup-container">
-							<input type="submit" class="button button-primary form_auth_phone" name="send_account_info" value="<?= GetMessage("AUTH_LOGIN_PHONE_SUBMIT") ?>" />
-							<input type="submit" class="button button-primary login_auth_phone" style="display:none" name="send_account_info" value="<?= GetMessage("AUTH_AUTHORIZE") ?>" />
-							<input type="submit" class="button button-secondary more_code_phone" style="display:none" name="send_account_info" value="<?= GetMessage("AUTH_LOGIN_MORE_CODE") ?>" />
+							<input type="submit" class="button button-primary form_auth_phone hover_1" name="send_account_info" value="<?= GetMessage("AUTH_LOGIN_PHONE_SUBMIT") ?>" />
+							<input type="submit" class="button button-primary login_auth_phone hover_1" style="display:none" name="send_account_info" value="<?= GetMessage("AUTH_AUTHORIZE") ?>" />
+							<input type="submit" class="button button-secondary more_code_phone hover_2" style="display:none" name="send_account_info" value="<?= GetMessage("AUTH_LOGIN_MORE_CODE") ?>" />
 						</div>
 					</form>
 
@@ -121,7 +121,7 @@ $this->setFrameMode(false); ?>
 						</div>
 
 						<div class="bx-authform-formgroup-container au-email-login-btn">
-							<input type="submit" class="button button-primary enter" name="Login" value="<?= GetMessage("AUTH_AUTHORIZE") ?>" />
+							<input type="submit" class="button button-primary enter hover_1" name="Login" value="<?= GetMessage("AUTH_AUTHORIZE") ?>" />
 						</div>
 					</form>
 
@@ -129,7 +129,7 @@ $this->setFrameMode(false); ?>
 						<noindex>
 							<a
 								style="display: none;"
-								class="button button-secondary foggot_pass"
+								class="button button-secondary foggot_pass hover_2"
 								href="<?= $arResult["AUTH_FORGOT_PASSWORD_URL"] ?>" rel="nofollow">
 								<?= GetMessage("AUTH_FORGOT_PASSWORD_2") ?>
 							</a>
@@ -139,19 +139,19 @@ $this->setFrameMode(false); ?>
 					<a
 						style="display:none"
 						href="#"
-						class="button button-secondary auth_phone_form">
+						class="button button-secondary auth_phone_form hover_2">
 						<?= GetMessage("AUTH_PHONE_FORM") ?>
 					</a>
 
 					<a
 						href="#"
-						class="button button-secondary auth_email_form">
+						class="button button-secondary auth_email_form hover_2">
 						<?= GetMessage("AUTH_EMAIL_FORM") ?>
 					</a>
 
 					<? if ($arParams["NOT_SHOW_LINKS"] != "Y" && $arResult["NEW_USER_REGISTRATION"] == "Y" && $arParams["AUTHORIZE_REGISTRATION"] != "Y"): ?>
 						<noindex>
-							<a class="button button-secondary reg" href="#">
+							<a class="button button-secondary reg hover_2" href="#">
 								<?= GetMessage("AUTH_REGISTER") ?>
 							</a>
 						</noindex>

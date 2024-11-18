@@ -18,7 +18,7 @@ $MESS["SOA_MAP_COORDS"] = "Координаты на карте";
 $MESS["SOA_DISTANCE_KM"] = "км";
 $MESS["SOA_ORDER_PROPS"] = "Свойства заказа";
 $MESS["SOA_FIELD"] = "Поле";
-$MESS["SOA_REQUIRED"] = "обязательно для заполнения";
+$MESS["SOA_REQUIRED"] = "обязательно для заполнения <span class='alert-close'></span>";
 $MESS["SOA_INVALID_EMAIL"] = "Введен неверный e-mail";
 $MESS["SOA_MIN_LENGTH"] = "Минимальная длина поля";
 $MESS["SOA_MAX_LENGTH"] = "Максимальная длина поля";
@@ -123,13 +123,11 @@ $MESS["SELECT_PICKUP_DEFAULT"] = "Выбрать";
 $MESS["INNER_PS_BALANCE_DEFAULT"] = "На вашем пользовательском счете:";
 $MESS["ORDER_DESC_DEFAULT"] = "Комментарии к заказу:";
 $MESS["SELECT_FILE_DEFAULT"] = "Выбрать";
-$MESS["SUCCESS_PRELOAD_TEXT_DEFAULT"] = "Вы заказывали в нашем интернет-магазине, поэтому мы заполнили все данные автоматически.<br />
-Если все заполнено верно, нажмите кнопку \"#ORDER_BUTTON#\".
-";
+$MESS["SUCCESS_PRELOAD_TEXT_DEFAULT"] = "<span>Вы заказывали в нашем интернет-магазине, поэтому мы заполнили все данные автоматически.</span>
+<span>Если все заполнено верно, нажмите кнопку \"#ORDER_BUTTON#\".</span><span class='alert-close'></span>";
 $MESS["FAIL_PRELOAD_TEXT_DEFAULT"] = "Вы заказывали в нашем интернет-магазине, поэтому мы заполнили все данные автоматически.<br />
 Обратите внимание на развернутый блок с информацией о заказе. Здесь вы можете внести необходимые изменения или 
-оставить как есть и нажать кнопку \"#ORDER_BUTTON#\".
-";
+оставить как есть и нажать кнопку \"#ORDER_BUTTON#\".";
 $MESS["DELIVERY_CALC_ERROR_TITLE_DEFAULT"] = "Не удалось рассчитать стоимость доставки.";
 $MESS["DELIVERY_CALC_ERROR_TEXT_DEFAULT"] = "Вы можете продолжить оформление заказа, а чуть позже менеджер магазина свяжется с вами и уточнит информацию по доставке.";
 $MESS["EMPTY_BASKET_TITLE"] = "Ваша корзина пуста";
