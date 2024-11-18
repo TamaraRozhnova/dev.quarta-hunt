@@ -160,6 +160,11 @@ div.menu-clear-left {
   line-height: 21px;
   font-weight: 600;
   color: var(--color-dark6);
+  transition: all 0.25s;
+}
+
+#horizontal-catalog-menu li ul.second li a:hover {
+  color: var(--color-primary7);
 }
 
 #horizontal-catalog-menu li ul.second li ul.third {
@@ -172,6 +177,11 @@ div.menu-clear-left {
 #horizontal-catalog-menu li ul.second li ul.third a {
   font-weight: 400;
   color: var(--color-gray5);
+  transition: all 0.25s;
+}
+
+#horizontal-catalog-menu li ul.second li ul.third a:hover {
+  color: var(--color-primary7);
 }
 
 .mobile-menu-toggler,

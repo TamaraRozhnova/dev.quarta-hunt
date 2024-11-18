@@ -65,6 +65,12 @@
 
 .menu__wrap.scroll .left-menu a {
   color: var(--color-dark6);
+  transition: all 0.25s;
+}
+
+.menu__wrap.scroll .left-menu a:hover {
+  color: var(--color-primary7);
+  text-decoration: none;
 }
 
 .menu__wrap.scroll .menu__dop-link svg path,

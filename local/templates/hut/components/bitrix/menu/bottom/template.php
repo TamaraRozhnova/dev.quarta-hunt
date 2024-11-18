@@ -9,7 +9,7 @@
 				continue;
 		?>
 			<li>
-				<a href="<?= $arItem["LINK"] ?>" class="<?= $arItem["SELECTED"] ? 'selected' : '' ?>">
+				<a href="<?= $arItem["LINK"] ?>" class="link_hover_1 <?= $arItem["SELECTED"] ? 'selected' : '' ?>">
 					<?= $arItem["TEXT"] ?>
 				</a>
 			</li>
