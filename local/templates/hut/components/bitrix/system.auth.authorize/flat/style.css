@@ -97,6 +97,10 @@
   background-color: var(--color-gray2);
 }
 
+.button.button-secondary.foggot_pass {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   #auth.modal {
     vertical-align: bottom;

@@ -67,13 +67,42 @@ class MenuHandler {
           });
         });
       }
+    } else {
+      if (this.menuParents.length) {
+        this.menuParents.forEach((element) => {
+          element.addEventListener("click", (evt) => {
+            evt.preventDefault();
+            this.hideAllChidren();
+            evt.target.closest("li").classList.add("jshover");
+          });
+        });
+      }
     }
   }
+
+  hideAllChidren = function () {
+    this.menuParents.forEach((element) => {
+      element.closest("li").classList.remove("jshover");
+    });
+  };
+
+  showFirstChildren = function () {
+    let menuLinks = document.querySelectorAll(
+      "#horizontal-catalog-menu > li > a"
+    );
+    if (menuLinks[0].classList.contains("root-item")) {
+      menuLinks[0].closest("li").classList.add("jshover");
+    }
+  };
 
   menuHandler = function () {
     if (this.menuElement.classList.contains("showen")) {
       this.hide();
+      this.hideAllChidren();
     } else {
+      if (window.innerWidth >= 1025) {
+        this.showFirstChildren();
+      }
       this.show();
     }
   };

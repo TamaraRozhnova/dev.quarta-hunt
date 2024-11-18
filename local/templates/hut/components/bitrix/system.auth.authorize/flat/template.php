@@ -158,9 +158,8 @@ $this->setFrameMode(false); ?>
 					<? endif ?>
 				</div>
 
+				<?/* if ($arResult["AUTH_SERVICES"]): ?>
 				<div class="auth__or"><span>или</span></div>
-
-				<? if ($arResult["AUTH_SERVICES"]): ?>
 					<?
 					$APPLICATION->IncludeComponent(
 						"bitrix:socserv.auth.form",
@@ -174,7 +173,7 @@ $this->setFrameMode(false); ?>
 						array("HIDE_ICONS" => "Y")
 					);
 					?>
-				<? endif ?>
+				<? endif */ ?>
 			</div>
 		</div>
 	</div>
