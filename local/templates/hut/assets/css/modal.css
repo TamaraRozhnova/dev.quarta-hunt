@@ -54,6 +54,11 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-image: url("../../img/close.svg");
+  transition: all 0.25s;
+}
+
+.modal a.close-modal:hover {
+  background-image: url("../../img/icons/close-hover.svg");
 }
 
 .modal-spinner {

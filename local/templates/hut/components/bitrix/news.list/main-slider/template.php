@@ -27,10 +27,10 @@ $this->setFrameMode(true);
 							<div class="main-slider__item-subtitle"><?= $arItem['PREVIEW_TEXT'] ?></div>
 							<div class="main-slider__item-buttons">
 								<? if ($arItem['PROPERTIES']['MAIN_BUTTON_TEXT']['VALUE']) { ?>
-									<a href="<?= $arItem['PROPERTIES']['MAIN_BUTTON_LINK']['VALUE'] ?>" class="button button-primary"><?= $arItem['PROPERTIES']['MAIN_BUTTON_TEXT']['VALUE'] ?></a>
+									<a href="<?= $arItem['PROPERTIES']['MAIN_BUTTON_LINK']['VALUE'] ?>" class="button button-primary hover_1"><?= $arItem['PROPERTIES']['MAIN_BUTTON_TEXT']['VALUE'] ?></a>
 								<? } ?>
 								<? if ($arItem['PROPERTIES']['SECOND_BUTTON_TEXT']['VALUE']) { ?>
-									<a href="<?= $arItem['PROPERTIES']['SECOND_BUTTON_LINK']['VALUE'] ?>" class="button button-secondary"><?= $arItem['PROPERTIES']['SECOND_BUTTON_TEXT']['VALUE'] ?></a>
+									<a href="<?= $arItem['PROPERTIES']['SECOND_BUTTON_LINK']['VALUE'] ?>" class="button button-secondary hover_2"><?= $arItem['PROPERTIES']['SECOND_BUTTON_TEXT']['VALUE'] ?></a>
 								<? } ?>
 							</div>
 						</div>

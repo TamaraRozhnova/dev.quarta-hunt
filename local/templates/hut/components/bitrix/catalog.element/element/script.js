@@ -3663,4 +3663,15 @@ BX.ready(function () {
       });
     }
   }
+
+  let tableSizeLink = document.querySelector(".element__size-table-link");
+
+  if (tableSizeLink) {
+    tableSizeLink.addEventListener("click", function (evt) {
+      evt.preventDefault();
+      let element = document.querySelector('[data-value="properties"] a');
+      element.click();
+      element.scrollIntoView({ behavior: "smooth" });
+    });
+  }
 });
