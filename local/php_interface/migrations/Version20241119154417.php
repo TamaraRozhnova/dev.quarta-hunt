@@ -2,7 +2,7 @@
 
 namespace Sprint\Migration;
 
-class Version20241119154214 extends Version
+class Version20241119154417 extends Version
 {
     protected $description   = "116955 | Сайт / Добавление данных магазин Санкт-Петербурга | ИБ Магазины, новый магазин";
     protected $moduleVersion = "4.2.4";
@@ -21,7 +21,7 @@ class Version20241119154214 extends Version
              ->execute(function ($item) {
                  $this->getHelperManager()
                       ->Iblock()
-                      ->saveElement(
+                      ->addElement(
                           $item['iblock_id'],
                           $item['fields'],
                           $item['properties']
@@ -36,17 +36,5 @@ class Version20241119154214 extends Version
      */
     public function down()
     {
-        $this->getExchangeManager()
-             ->IblockElementsImport()
-             ->setExchangeResource('iblock_elements.xml')
-             ->setLimit(10)
-             ->execute(function ($item) {
-                 $this->getHelperManager()
-                      ->Iblock()
-                      ->deleteElementByCode(
-                          $item['iblock_id'],
-                          $item['fields']['CODE']
-                 );
-             });
     }
 }
