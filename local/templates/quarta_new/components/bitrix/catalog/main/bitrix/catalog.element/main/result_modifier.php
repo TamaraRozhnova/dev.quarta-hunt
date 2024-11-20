@@ -170,7 +170,7 @@ if (!empty($rsStoreElement)) {
 
     if (!empty($arStoreElementAmount)) {
 
-        $arResult['COUNT_STORES_ELEMENT'] = 1;
+        $arResult['COUNT_STORES_ELEMENT'] = 0;
 
         foreach ($arStoreElementAmount as $arStoreAmountKey => $arStoreAmount) {
             foreach ($arResult['STORES_ELEMENT'] as $arStoreElementIndex => $arStoreElement) {
