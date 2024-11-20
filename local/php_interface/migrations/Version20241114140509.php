@@ -40,7 +40,8 @@ class Version20241114140509 extends Version
     {
         $rsDeliveries = Table::getList(array('filter' => ['XML_ID' => 'bx_61921d9830e1e'],))->fetch();
         CSaleDelivery::Update($rsDeliveries['ID'], [
-            'LOGOTIP' => CFile::MakeFileArray('/include/images/migrations/moscow_delivery.jpg')
+            'LOGOTIP' => CFile::MakeFileArray('/include/images/migrations/moscow_delivery.jpg'),
+            'DESCRIPTION' => 'Вы можете самостоятельно забрать заказ из наших магазинов.'
         ]);
     }
 
