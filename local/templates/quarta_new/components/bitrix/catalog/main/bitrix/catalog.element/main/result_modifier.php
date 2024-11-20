@@ -164,13 +164,13 @@ if (!empty($rsStoreElement)) {
     }
 
     $arResult['STORES_ELEMENT'] = $rsStore = StoreTable::getList(array(
-        'filter' => array('=ID' => $arStoreElementIDS),
+        'filter' => array('=ID' => $arStoreElementIDS, 'ACTIVE' => 'Y'),
         'select' => array('ID', 'TITLE', 'ADDRESS', 'SCHEDULE', '*')
     ))->fetchAll();
 
     if (!empty($arStoreElementAmount)) {
 
-        $arResult['COUNT_STORES_ELEMENT'] = 0;
+        $arResult['COUNT_STORES_ELEMENT'] = 1;
 
         foreach ($arStoreElementAmount as $arStoreAmountKey => $arStoreAmount) {
             foreach ($arResult['STORES_ELEMENT'] as $arStoreElementIndex => $arStoreElement) {
