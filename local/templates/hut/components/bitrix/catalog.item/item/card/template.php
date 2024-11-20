@@ -76,7 +76,7 @@ use \Bitrix\Main\Localization\Loc;
 					if (!empty($item['LABEL_ARRAY_VALUE'])) {
 						foreach ($item['LABEL_ARRAY_VALUE'] as $code => $value) {
 					?>
-							<div class="item__label">
+							<div class="item__label" doing="<?= $arResult['ITEM']['DOING_LINK'] ?>" onclick="event.preventDefault(); location.href = this.getAttribute('doing');">
 								<?= $item['LABEL_IMG'] ? buildSVG($item['LABEL_IMG'], SITE_TEMPLATE_PATH . ICON_PATH) : '' ?>
 								<span title="<?= $value ?>"><?= $value ?></span>
 							</div>
@@ -152,7 +152,7 @@ use \Bitrix\Main\Localization\Loc;
 					</div>
 					<div class="product-item-title">
 						<? if ($itemHasDetailUrl): ?>
-							<a href="<?= $item['DETAIL_PAGE_URL'] ?>" title="<?= $productTitle ?>">
+							<a href="<?= $item['DETAIL_PAGE_URL'] ?>" title="<?= $productTitle ?>" class="link_hover_1">
 							<? endif; ?>
 							<?= $productTitle ?>
 							<? if ($itemHasDetailUrl): ?>

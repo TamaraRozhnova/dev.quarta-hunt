@@ -4,7 +4,11 @@
 
 		<?
 		$previousLevel = 0;
-		foreach ($arResult as $arItem): ?>
+		foreach ($arResult as $arItem):
+			if ($arItem['PARAMS']['NOT_SHOW_IN_MENU'] == 1) {
+				continue;
+			}
+		?>
 
 			<? if ($previousLevel && $arItem["DEPTH_LEVEL"] < $previousLevel): ?>
 				<?= str_repeat("</ul></li>", ($previousLevel - $arItem["DEPTH_LEVEL"])); ?>

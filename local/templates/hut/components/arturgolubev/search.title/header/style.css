@@ -349,6 +349,11 @@ div.title-search-result td.title-search-price span {
   font-size: 16px;
   line-height: 21px;
   color: var(--color-dark6);
+  transition: all 0.25s;
+}
+
+.bx_smart_searche .bx_item_block_item_name_flex_align:hover {
+  color: var(--color-primary7);
 }
 .bx_smart_searche .bx_item_block_item_simple_name {
   color: #333;
@@ -792,6 +797,11 @@ div.title-search-result td.title-search-price span {
   text-transform: uppercase;
   padding: 18px 28px;
   border-radius: 12px;
+  transition: all 0.25s;
+}
+
+.button.search-title__submit:hover {
+  background-color: var(--color-primary7);
 }
 
 .search-title__popular-wrap {
@@ -825,6 +835,11 @@ div.title-search-result td.title-search-price span {
   font-size: 16px;
   color: var(--color-dark6);
   background-color: var(--color-gray1);
+  transition: all 0.25s;
+}
+
+.search-title__popular a:hover {
+  background-color: var(--color-dark1);
 }
 
 .search-item__top {

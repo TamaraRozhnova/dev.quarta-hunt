@@ -40,6 +40,7 @@
   justify-content: space-between;
   font-weight: 600;
   color: white;
+  transition: all 0.25s;
 }
 
 .main-sections__list .child > .main-sections__title a {
@@ -48,6 +49,12 @@
   text-transform: lowercase;
   color: white;
   opacity: 0.75;
+  transition: all 0.25s;
+}
+
+.main-sections__list .parent > .main-sections__title a:hover,
+.main-sections__list .child > .main-sections__title a:hover {
+  color: var(--color-primary7);
 }
 
 .main-sections__inner-list {
