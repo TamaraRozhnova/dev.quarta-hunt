@@ -20,6 +20,26 @@
                 )
             );?>
         </li>
+        <li>
+            <a href="tel:+7 (900) 199-13-66">+7 (900) 199-13-66</a>
+        </li>
+        <li>Наб Петроградская, д. 18</li>
+
+        <li>
+            <a href="mailto:shop@quarta-hunt.ru">shop@quarta-hunt.ru</a>
+        </li>
+        <li>
+            <?$APPLICATION->IncludeComponent(
+                "bitrix:main.include",
+                "",
+                Array(
+                    "AREA_FILE_SHOW" => "file",
+                    "AREA_FILE_SUFFIX" => "",
+                    "EDIT_TEMPLATE" => "",
+                    "PATH" => "/include/contacts/opt-item-1-3.1.php"
+                )
+            );?>
+        </li>
     </ul>
 </div>
 <div class="col-12 col-sm-6 col-lg-12">
