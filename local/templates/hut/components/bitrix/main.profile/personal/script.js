@@ -14,7 +14,7 @@ $( document ).ready(function() {
         const emailPersonal = new Input({
             wrapperSelector: `.input__container.email`,
             required: true,
-            validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+            validMask: /^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
             errorMessage: "Введите email в корректном формате",
         });
     

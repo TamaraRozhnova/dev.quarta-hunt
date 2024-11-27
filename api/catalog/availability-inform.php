@@ -23,7 +23,7 @@ if (!preg_grep('/^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/', [$_REQUEST
 	$result['phone'] = $_REQUEST['phone'];
 }
 
-if (!preg_grep('/^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$_REQUEST['email']])) {
+if (!preg_grep('/^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$_REQUEST['email']])) {
     $result['error'] = true;
     $result['message'] = 'Неверный email';
 }

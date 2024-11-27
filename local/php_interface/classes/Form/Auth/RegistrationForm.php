@@ -156,7 +156,7 @@ class RegistrationForm
         if (!$this->phone || !preg_grep('/^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/', [$this->phone])) {
             $this->errors['phone'] = 'Некорректный номер телефона';
         }
-        if (!$this->email || !preg_grep('/^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$this->email])) {
+        if (!$this->email || !preg_grep('/^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$this->email])) {
             $this->errors['email'] = 'Неверный email';
         }
         if (!$this->password || strlen($this->password) < $minPasswordLength) {
