@@ -1,4 +1,4 @@
-function JCTitleSearchAG(arParams) {
+function JCTitleSearchAGMobile(arParams) {
 	var _this = this;
 
 	this.arParams = {
@@ -100,7 +100,7 @@ function JCTitleSearchAG(arParams) {
 			})
 		})
 
-		const defaultModal = document.getElementById('defaul-modal');
+		const defaultModal = document.getElementById('defaul-modal-mobile');
 		if (_this.INPUT.value.length >= _this.arParams.MIN_QUERY_LEN && _this.INPUT.value.trim() != '') {
 			defaultModal.style.display = 'none';
 			_this.RESULT.style.display = _this.RESULT.innerHTML !== '' ? 'block' : 'none';
@@ -385,7 +385,7 @@ function JCTitleSearchAG(arParams) {
 		this.CONTAINER = document.getElementById(this.arParams.CONTAINER_ID);
 		// BX.addCustomEvent(this.CONTAINER, "OnNodeLayoutChange", this._onContainerLayoutChange);
 
-		this.RESULT = document.getElementById('result-modal');
+		this.RESULT = document.getElementById('result-modal-mobile');
 		// this.RESULT = document.body.appendChild(document.createElement("DIV"));
 		// this.RESULT.className = 'title-search-result';
 
@@ -434,7 +434,7 @@ function JCTitleSearchAG(arParams) {
 	});
 }
 
-class ModernModalSearch {
+class ModernModalSearchMobile {
 
 	constructor(data = {}) {
 		this.inputId = `#${data?.INPUT_ID}`
@@ -442,6 +442,7 @@ class ModernModalSearch {
 
 		this.containerId = document.querySelector(this.textContainerId)
 		this.searchId = this.containerId.querySelector(this.inputId)
+		this.clearInputValueBtn = this.containerId.querySelector('#smart-title-search_mobile_clear_item')
 
 		let selectorModalByMode = '.mobile.modal-search-modern__wrapper'
 
@@ -493,6 +494,7 @@ class ModernModalSearch {
 		this.mobileModalCloseBtn.addEventListener('click', (e) => {
 			this.closeModalMobile()
 			this.closeModalSearch()
+			BX.hide(this.clearInputValueBtn);
 		})
 	}
 
