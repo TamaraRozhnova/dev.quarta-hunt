@@ -209,9 +209,7 @@ class SaleOrderAjaxEventsO2K
         &$arResult, 
         &$arDeliveryServiceAll, 
         &$arPaySystemServiceAll
-    ) 
-    {
-
+    ) {
         $basket = $order->getBasket();
  
         if ($arUserResult['PAY_SYSTEM_ID'] == UKASSA_CREDIT_ID) {
@@ -222,7 +220,7 @@ class SaleOrderAjaxEventsO2K
             $arResult['ADD_BONUS'] = 0;
 
             $propertyCollection = $order->getPropertyCollection();
-            $bonusesPropValue = $propertyCollection->getItemByOrderPropertyId(3);
+            $bonusesPropValue = $propertyCollection->getItemByOrderPropertyCode('LOGICTIM_ADD_BONUS');
             $bonusesPropValue->setValue(0);
 
             foreach ($basket as $basketItem) {
@@ -235,11 +233,8 @@ class SaleOrderAjaxEventsO2K
                 $basketItem->setField('BASE_PRICE', $arItem["BASE_PRICE"]);
                 $basketItem->setField('DISCOUNT_PRICE', 0);
 
-
             }
-            
         }
-
     }
 
     /**
