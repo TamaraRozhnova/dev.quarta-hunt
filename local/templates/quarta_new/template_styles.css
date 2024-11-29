@@ -8973,8 +8973,8 @@ input.form-check-input:focus {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
 }
 .footer__made-by {
   display: flex;
@@ -8999,8 +8999,8 @@ input.form-check-input:focus {
     justify-content: space-between;
   }
   .footer__social-icons a {
-    width: 3rem;
-    color: #fff !important;
+    /* width: 3rem; */
+    /* color: #fff !important; */
   }
   .footer__payment-methods {
     font-weight: 500;

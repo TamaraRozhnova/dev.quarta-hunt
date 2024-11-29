@@ -14,7 +14,7 @@
 			<? if ($arItem["IS_PARENT"]): ?>
 
 				<? if ($arItem["DEPTH_LEVEL"] == 1): ?>
-					<li><a href="<?= $arItem["LINK"] ?>" class="<? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>"><?= $arItem["TEXT"] ?>
+					<li><a href="#" onclick="event.preventDefault();" class="<? if ($arItem["SELECTED"]): ?>root-item-selected<? else: ?>root-item<? endif ?>"><?= $arItem["TEXT"] ?>
 							<?= buildSVG('chevron', SITE_TEMPLATE_PATH . ICON_PATH) ?>
 						</a>
 						<ul>
