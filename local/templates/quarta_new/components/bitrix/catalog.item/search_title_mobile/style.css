@@ -213,6 +213,18 @@
   border-radius: 0.25rem;
 }
 
+#smart-title-search_mobile .product-card-search-buttons {
+  flex-direction: initial;
+  flex-wrap: wrap;
+}
+
+#smart-title-search_mobile .product-card-search-buttons > div,
+#smart-title-search_mobile .product-card-search-buttons > a {
+  flex: 1 0 49%;
+  min-height: 38px;
+  height: fit-content;
+}
+
 @media (max-width: 767.98px) {
   .product-card-search__title {
     height: 2.4rem;
