@@ -256,6 +256,23 @@
 .product__tab--active {
   display: block;
 }
+.product__analog-link {
+  display: inline-block;
+  font-size: 1rem;
+  color: #004989;
+  cursor: pointer;
+  border-bottom: 1px solid #004989;
+  border-bottom-style: dashed;
+  margin-bottom: 1.5rem;
+}
+.product__analog-link:hover {
+  color: #EB5806;
+  border-bottom: 1px solid #EB5806;
+  border-bottom-style: dashed;
+}
+.product__analog-link:hover svg path {
+  stroke: #EB5806;
+}
 @media (max-width: 1199.98px) {
   .product__add {
     flex-wrap: wrap;
@@ -1331,6 +1348,14 @@
   padding: 6rem 0;
 }
 .recommendations .base-slider .swiper-container {
+  overflow: hidden;
+}
+
+.analogs {
+  background-color: #f9f9fa;
+  padding: 6rem 0;
+}
+.analogs .base-slider .swiper-container {
   overflow: hidden;
 }
 /* MODAL DETAIL CARD PHOTO */

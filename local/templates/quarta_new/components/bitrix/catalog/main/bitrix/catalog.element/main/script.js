@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', () => {
             new Tabs();
             new DescriptionBlock();
             new RecommendedProductsSlider();
+            new AnalogProductsSlider();
+            new Analogs();
             new VideoReviewsSlider();
             this.hangPersonalProductDataEvents();
             this.hangShareNetworkEvents();

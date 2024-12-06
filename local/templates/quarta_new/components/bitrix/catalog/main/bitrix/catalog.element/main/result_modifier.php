@@ -8,6 +8,7 @@ use Helpers\DiscountsHelper;
 use Helpers\FileSizeHelper;
 use General\User;
 use Helpers\RecommendedProductsHelper;
+use Helpers\AnalogProductsHelper;
 use Helpers\VideoReviewsHelper;
 use Bitrix\Main\Grid\Declension;
 use Bitrix\Sale\Internals\ServiceRestrictionTable;
@@ -136,6 +137,8 @@ $sectionId = $arResult['SECTION']['IBLOCK_SECTION_ID'];
 if (is_array($recommendedProductIds) && count($recommendedProductIds) > 0) {
     $arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedProducts($recommendedProductIds, $sectionId, 4, $arParams['DETAIL_URL']);
 }
+
+$arResult['ANALOG_PRODUCTS'] = AnalogProductsHelper::getAnalogProducts($arResult['ID'], $arResult['SECTION']['ID'], $arParams['DETAIL_URL']);
 
 $arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECTION']['ID']);
 
