@@ -34,6 +34,7 @@ Loader::registerAutoLoadClasses(null, [
     'Helpers\NumWordHelper' => '/local/php_interface/classes/Helpers/NumWordHelper.php',
     'Helpers\ProductsDataHelper' => '/local/php_interface/classes/Helpers/ProductsDataHelper.php',
     'Helpers\RecommendedProductsHelper' => '/local/php_interface/classes/Helpers/RecommendedProductsHelper.php',
+    'Helpers\AnalogProductsHelper' => '/local/php_interface/classes/Helpers/AnalogProductsHelper.php',
     'Helpers\VideoReviewsHelper' => '/local/php_interface/classes/Helpers/VideoReviewsHelper.php',
     'Helpers\VideoUrlHelper' => '/local/php_interface/classes/Helpers/VideoUrlHelper.php',
     'Helpers\WorkProsHelper' => '/local/php_interface/classes/Helpers/WorkProsHelper.php',

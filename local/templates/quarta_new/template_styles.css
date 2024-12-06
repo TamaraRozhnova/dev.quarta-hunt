@@ -11151,6 +11151,10 @@ h1.small-h2 {
   height: auto;
 }
 
+.swiper-container_analogs .swiper-slide {
+  height: auto;
+}
+
 /* 404 PAGE */
 .not-found__wrapper {
   background-image: url(/upload/404/404.jpg);
