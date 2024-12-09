@@ -20,28 +20,28 @@ CModule::IncludeModule('iblock');
 
             <div class="section-plus__item">
                 <div class="section-plus_line">
-                    <img src="/local/templates/gaut-optics/images/main/plus_01.svg" alt="plus">
-                    <div class="section-plus__item-title">Выгодные<br>цены</div>
+                    <img src="/local/templates/gaut-optics/images/main/plus_02.svg" alt="plus">
+                    <div class="section-plus__item-title">Высокое<br>качество</div>
                 </div>
-                <div class="section-plus__item-text">Самые доступные пневматические пистолеты в России.</div>
+                <div class="section-plus__item-text">Качественные материалы и надёжные конструкции</div>
 
             </div>
 
             <div class="section-plus__item">
                 <div class="section-plus_line">
-                    <img src="/local/templates/gaut-optics/images/main/plus_02.svg" alt="plus">
-                    <div class="section-plus__item-title">Высокое<br>качество</div>
+                    <img src="/local/templates/gaut-optics/images/main/plus_01.svg" alt="plus">
+                    <div class="section-plus__item-title">СВЕТЛАЯ<br>ОПТИКА</div>
                 </div>
-                <div class="section-plus__item-text">Простые и надёжные механизмы пистолетов. Длительная гарантия.</div>
+                <div class="section-plus__item-text">Линзы с многослойным просветляющим покрытием</div>
 
             </div>
 
             <div class="section-plus__item">
                 <div class="section-plus_line">
                     <img src="/local/templates/gaut-optics/images/main/plus_03.svg" alt="plus">
-                    <div class="section-plus__item-title">Широкий<br> ассортимент</div>
+                    <div class="section-plus__item-title">ВЫГОДНЫЕ<br>ЦЕНЫ</div>
                 </div>
-                <div class="section-plus__item-text">Точные копии боевых реальных аналогов.</div>
+                <div class="section-plus__item-text">Самая доступные оптические приборы в России</div>
             </div>
 
             <div class="section-plus__item">
@@ -50,7 +50,7 @@ CModule::IncludeModule('iblock');
                     <div class="section-plus__item-title">Удобная<br>доставка</div>
                 </div>
 
-                <div class="section-plus__item-text">Доставка в любой регион в течение 5 дней</div>
+                <div class="section-plus__item-text">Доставка в любой регион России в течение 5 дней</div>
 
             </div>
 
