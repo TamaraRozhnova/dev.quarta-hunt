@@ -5,9 +5,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 ?>
-<?
-if (isset($result['RECOMMENDED_PRODUCTS']) && count($result['RECOMMENDED_PRODUCTS']) > 0) {
-?>
+
 <div class="recommendations">
     <div class="container">
         <h2 class="mb-4"><?=GetMessage("RECOMMEND_TITLE")?></h2>
@@ -36,6 +34,3 @@ if (isset($result['RECOMMENDED_PRODUCTS']) && count($result['RECOMMENDED_PRODUCT
         </div>
     </div>
 </div>
-<?
-}
-?>
