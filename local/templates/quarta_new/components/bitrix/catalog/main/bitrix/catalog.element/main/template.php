@@ -269,6 +269,15 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                         </button>
                     </div>
                     <hr/>
+                    <? if (isset($arResult['ANALOG_PRODUCTS']) && count($arResult['ANALOG_PRODUCTS']) > 0) { ?>
+                        <div class="product__analog-link">
+                            Смотреть аналогичные товары <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14" viewBox="0 0 11 14" fill="none">
+                                    <path d="M5.69298 0.809036L5.68892 12.1908M5.68892 12.1908L10.433 7.4501M5.68892 12.1908L0.71117 7.20951" stroke="#004989" stroke-width="1.5"/>
+                                </svg>
+                            </span>
+                        </div>
+                    <? } ?>
                     <div class="product__delivery mb-3">
                         <?/*<div class="product__delivery-option">
                             <div class="product__delivery-icon">
@@ -314,6 +323,13 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     ], ['SHOW_BORDER' => false]); ?>
 
     <? $APPLICATION->IncludeFile($templateFolder . '/partials/recommendedProducts.php', [
+        'templateFolder' => $templateFolder,
+        'result' => $arResult,
+        'params' => $arParams,
+        'component' => $component
+    ], ['SHOW_BORDER' => false]); ?>
+
+    <? $APPLICATION->IncludeFile($templateFolder . '/partials/analogProducts.php', [
         'templateFolder' => $templateFolder,
         'result' => $arResult,
         'params' => $arParams,

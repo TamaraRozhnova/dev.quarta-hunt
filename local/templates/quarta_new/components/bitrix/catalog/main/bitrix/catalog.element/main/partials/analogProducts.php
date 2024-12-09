@@ -6,21 +6,21 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 ?>
 <?
-if (isset($result['RECOMMENDED_PRODUCTS']) && count($result['RECOMMENDED_PRODUCTS']) > 0) {
+if (isset($result['ANALOG_PRODUCTS']) && count($result['ANALOG_PRODUCTS']) > 0) {
 ?>
-<div class="recommendations">
+<div class="analogs">
     <div class="container">
-        <h2 class="mb-4"><?=GetMessage("RECOMMEND_TITLE")?></h2>
+        <h2 class="mb-4"><?=GetMessage("ANALOG_TITLE")?></h2>
     </div>
     <div class="base-slider">
         <div class="container">
-            <div class="swiper-container swiper-container_recommended">
+            <div class="swiper-container swiper-container_analogs">
                 <div class="swiper-wrapper" itemscope itemtype="http://schema.org/ItemList">
-                    <? foreach ($result['RECOMMENDED_PRODUCTS'] as $product) { ?>
+                    <? foreach ($result['ANALOG_PRODUCTS'] as $product) { ?>
                         <div class="swiper-slide" >
                             <? $APPLICATION->IncludeComponent(
                                 'bitrix:catalog.item',
-                                'main',
+                                'main_slide',
                                 array(
                                     'RESULT' => array(
                                         'ITEM' => $product,
