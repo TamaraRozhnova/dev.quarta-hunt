@@ -146,7 +146,7 @@ class BitSaleExport extends CSaleExport
 			$changedSumTotal = false;
 			if (!empty($arPayment)) {
 				$firstPayment = reset($arPayment);
-				if (isset($firstPayment['PAY_SYSTEM_ID']) && $firstPayment['PAY_SYSTEM_ID'] == 16) {
+				if ((isset($firstPayment['PAY_SYSTEM_ID']) && $firstPayment['PAY_SYSTEM_ID'] == 16) || (isset($firstPayment['PAY_SYSTEM_ID']) && $firstPayment['PAY_SYSTEM_ID'] == 28)) {
 					$changedSumTotal = [
 						'before' => $arOrder['SUM_PAID'],
 						'after' => $firstPayment['PS_SUM']
@@ -493,7 +493,7 @@ class BitSaleExport extends CSaleExport
 			    }
 			}
 			
-			if ($arPayment['PAY_SYSTEM_ID'] == 16 && $arPayment['PS_SUM'] != '') {
+			if (($arPayment['PAY_SYSTEM_ID'] == 16 && $arPayment['PS_SUM'] != '') || ($arPayment['PAY_SYSTEM_ID'] == 28 && $arPayment['PS_SUM'] != '')) {
 				$arPayment['SUM'] = $arPayment['PS_SUM'];
 			}
 
