@@ -4,24 +4,7 @@
             <a href="tel:+78007750304">+7 (800) 775-03-04</a>
         </li>
         <li>Московский проспект, д.222А</li>
-
-        <li>
-            <a href="mailto:shop@quarta-hunt.ru">shop@quarta-hunt.ru</a>
-        </li>
-        <li>
-            <?$APPLICATION->IncludeComponent(
-                "bitrix:main.include",
-                "",
-                Array(
-                    "AREA_FILE_SHOW" => "file",
-                    "AREA_FILE_SUFFIX" => "",
-                    "EDIT_TEMPLATE" => "",
-                    "PATH" => "/include/contacts/opt-item-1-3.1.php"
-                )
-            );?>
-        </li>
         <li>Наб Петроградская, д. 18</li>
-
         <li>
             <a href="mailto:shop@quarta-hunt.ru">shop@quarta-hunt.ru</a>
         </li>
