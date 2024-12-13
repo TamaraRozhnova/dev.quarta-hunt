@@ -37,6 +37,31 @@
   padding: 30px;
   border: 1px solid var(--color-dark1);
   border-radius: 16px;
+  transition: all 0.25s;
+}
+
+/* Ховеры */
+.hover_1,
+.hover_2,
+.link_hover_1,
+.link_hover_2 {
+  transition: all 0.25s;
+}
+.hover_1:hover,
+.button.button-primary:hover {
+  background-color: var(--color-primary7);
+}
+
+.hover_2:hover,
+.main-section__link:hover,
+.button.button-secondary:hover {
+  background-color: var(--color-dark6);
+  border-color: var(--color-dark6);
+  color: white;
+}
+
+.link_hover_1:hover {
+  color: var(--color-primary7);
 }
 
 /* Инпуты */
@@ -50,6 +75,7 @@
   font-size: 16px;
   line-height: 21px;
   width: 100%;
+  outline: none;
 }
 
 .input::placeholder {
@@ -62,6 +88,16 @@
   cursor: pointer;
   display: inline-block;
   position: absolute;
+}
+
+.slider-button-prev svg path,
+.slider-button-next svg path {
+  transition: all 0.25s;
+}
+
+.slider-button-prev:hover svg path,
+.slider-button-next:hover svg path {
+  fill: var(--color-primary7);
 }
 
 .slider-button-prev {

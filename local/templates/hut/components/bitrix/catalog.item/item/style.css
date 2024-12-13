@@ -294,7 +294,11 @@
   line-height: 18px;
 }
 
-.product-item-image-wrapper:hover .item__label span {
+.item__label:hover span {
+  transition: all 0.25s;
+}
+
+.item__label:hover span {
   color: var(--color-primary);
 }
 

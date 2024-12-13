@@ -8,23 +8,23 @@ $result['message'] = '';
 
 if (empty($_REQUEST['name'])) {
     $result['error'] = true;
-    $result['message'] = 'Имя не может быть пустой строкой';
+    $result['message'] = 'пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 }
 
 if (!preg_grep('/^\+7\s\([0-9]{3}\)\s[0-9]{3}\-[0-9]{2}\-[0-9]{2}$/', [$_REQUEST['phone']])) {
     $result['error'] = true;
-    $result['message'] = 'Неверный номер телефона';
+    $result['message'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 	$result['phone'] = $_REQUEST['phone'];
 }
 
-if (!preg_grep('/^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$_REQUEST['email']])) {
+if (!preg_grep('/^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$_REQUEST['email']])) {
     $result['error'] = true;
-    $result['message'] = 'Неверный email';
+    $result['message'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ email';
 }
 
 if (empty($_REQUEST['address'])) {
     $result['error'] = true;
-    $result['message'] = 'Адрес не может быть пустой строкой';
+    $result['message'] = 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 }
 
 if (!$result['error']) {
@@ -58,7 +58,7 @@ if (!$result['error']) {
 	$event->SendImmediate("WARRANTY", SITE_ID, $arEventFields, "Y", "", $arFiles, "");
 	
 	$result['error'] = false;
-	$result['message'] = 'Ваше сообщение обрабатывается';
+	$result['message'] = 'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 
 }
 

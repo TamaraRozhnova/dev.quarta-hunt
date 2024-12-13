@@ -89,7 +89,13 @@
   line-height: 21px;
   color: white;
   display: block;
-  width: auto;
+  width: fit-content;
+  transition: all 0.25s;
+}
+
+.footer__mail a:hover,
+.footer__phone a:hover {
+  color: var(--color-primary7);
 }
 
 .footer__mail a + a {

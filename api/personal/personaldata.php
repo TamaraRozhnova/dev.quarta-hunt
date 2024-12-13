@@ -24,7 +24,7 @@ if (mb_strlen($_REQUEST['secondName']) < 2) {
 	$arResult['secondName'] = $_REQUEST['secondName'];
 }
 
-if (preg_grep('/^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$_REQUEST['email']]) === false) {
+if (preg_grep('/^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/', [$_REQUEST['email']]) === false) {
 	$arResult['error'] = true;
 	$arResult['message'] = 'Неверный email';
 	$arResult['email'] = $_REQUEST['email'];

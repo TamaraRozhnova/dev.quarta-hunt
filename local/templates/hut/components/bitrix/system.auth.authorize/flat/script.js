@@ -12,7 +12,7 @@ window.addEventListener("load", (e) => {
   const emailLogin = new Input({
     wrapperSelector: ".au-email-login",
     required: true,
-    validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+    validMask: /^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
     errorMessage: "Введите email в корректном формате",
   });
 

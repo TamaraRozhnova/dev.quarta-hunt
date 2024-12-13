@@ -12,7 +12,7 @@ $(document).ready(function() {
 	const emailForgot = new Input({
 		wrapperSelector: '.fo-email-recovery',
 		required: true,
-		validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+		validMask: /^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
 		errorMessage: 'Введите email в корректном формате'
 	});
 

@@ -100,8 +100,6 @@ function JCTitleSearchAG(arParams) {
 			})
 		})
 
-		console.log(_this.INPUT.value)
-
 		const defaultModal = document.getElementById('defaul-modal');
 		if (_this.INPUT.value.length >= _this.arParams.MIN_QUERY_LEN && _this.INPUT.value.trim() != '') {
 			defaultModal.style.display = 'none';

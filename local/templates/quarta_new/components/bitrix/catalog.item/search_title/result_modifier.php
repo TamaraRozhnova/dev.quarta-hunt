@@ -18,7 +18,7 @@ $priceCode = $user->getUserPriceCode();
 
 if (is_array($item['OFFERS']) && count($item['OFFERS']) > 0) {
 
-    foreach ($item['OFFERS'] as $offer) {
+    foreach ($item['OFFERS'] as $key => $offer) {
 
         if (!empty($offer['PRICES'][$priceCode])) {
             if ($offer['PRICES'][$priceCode]['VALUE'] == 0) {
@@ -29,6 +29,8 @@ if (is_array($item['OFFERS']) && count($item['OFFERS']) > 0) {
         if ($offer['CAN_BUY'] == true) {
             $arResult['ITEM']['AVAILABLE'] = true;
             $arResult['ITEM']['OFFERS_QUANTITY'] += (int)$offer['PRODUCT']['QUANTITY'];
+        } else {
+            unset($item['OFFERS'][$key]);
         }
 
     }

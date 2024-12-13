@@ -33,11 +33,11 @@ const BASE_PRICE_CODE = 'BASE';
 const OPT_PRICE_CODE_ID = 'PRICE_3';
 const BASE_PRICE_CODE_ID = 'PRICE_1';
 
-const UKASSA_ID = 3; // Идентификатор платежной системы Юкасса
+const UKASSA_ID = 25; //3 == 25 Идентификатор платежной системы Юкасса
 const PANYWAY_ID = 4; // Идентификатор платежной системы Банковская карта PANYWAY
-const BANK_TRANSFER_ID = 8; // Идентификатор платежной системы перевод БК
-const DEBET_CARD_PERSONALLY_ID = 2; // Идентификатор платежной системы Банковские карты (при получении)
-const CASH_PERSONALLY_ID = 1; // Идентификатор платежной системы Наличные (при получении)
+const BANK_TRANSFER_ID = 22; //8 == 22 Идентификатор платежной системы перевод БК
+const DEBET_CARD_PERSONALLY_ID = 24; //2 == 24 Идентификатор платежной системы Банковские карты (при получении)
+const CASH_PERSONALLY_ID = 23; //1 == 23 Идентификатор платежной системы Наличные (при получении)
 
 const DELIVERY_PICKUP_ID = 3; // Идентификатор службы доставки Самовывоз
 
