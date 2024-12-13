@@ -180,8 +180,8 @@ $this->setFrameMode(true);
                     ?>
                     <div class="<?php if ($arParams["FILTER_VIEW_MODE"] == "HORIZONTAL"): ?>col-sm-6 col-md-4<?php else: ?>col-lg-12<?php endif ?> bx-filter-parameters-box <?php if ($arItem["DISPLAY_EXPANDED"] == "Y"): ?>bx-active<?php endif ?>">
                         <span class="bx-filter-container-modef"></span>
-                        <div class="bx-filter-parameters-box-title" onclick="smartFilter.hideFilterProps(this)">
-							<span class="bx-filter-parameters-box-hint">
+                        <div class="bx-filter-parameters-box-title"  onclick="smartFilter.hideFilterProps(this)">
+							<span class="bx-filter-parameters-box-hint" <?php echo $arItem["ID"] ?>>
 								<h6><?= $arItem["NAME"] ?></h6>
 								<?php if ($arItem["FILTER_HINT"] <> ""): ?>
                                     <i id="item_title_hint_<?php echo $arItem["ID"] ?>"
