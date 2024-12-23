@@ -2428,7 +2428,21 @@ body.bx-theme-yellow .catalog-block-header {
 .bx-sbb-empty-cart-container {
   padding-bottom: 24px;
 }
-
+.basket-free-delivery{
+  display: flex;
+  padding: 14px 24px 14px 60px;
+  border: 1px solid #eb5806;
+  border-radius: 4px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: #eb5806;
+  margin-bottom: 20px;
+  background-image: url("images/basket-free-delivery.svg");
+  background-repeat: no-repeat;
+  background-position: 24px 50%;
+}
 @media (max-width: 980px) {
   .basket-wrapper .basket-title {
     margin-bottom: 1.25rem;
