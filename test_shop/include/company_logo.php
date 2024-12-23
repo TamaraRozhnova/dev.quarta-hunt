@@ -1,0 +1,1 @@
+<img src="/test_shop/include/logo.png"  srcset="/test_shop/include/logo_retina.png" />

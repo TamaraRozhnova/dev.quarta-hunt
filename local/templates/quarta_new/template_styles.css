@@ -8426,13 +8426,16 @@ input.form-check-input:focus {
 
 .header--desktop .header__location,
 .header--desktop .header__logo-section {
-  min-width: 248px;
-  max-width: 248px;
+  min-width: 265px;
+  max-width: 265px;
 }
 .header--desktop .header__logo-section {
   display: flex;
   align-items: center;
   padding: 0;
+}
+.select-location-block {
+  white-space: nowrap;
 }
 @media (max-width: 1399.98px) {
   .header--desktop .header__location,
@@ -8532,6 +8535,7 @@ input.form-check-input:focus {
 }
 .header--desktop .header__spot {
   position: relative;
+  white-space: nowrap;
 }
 .header--desktop .header__spot .icon {
   transition: transform 0.2s, color 0.2s;

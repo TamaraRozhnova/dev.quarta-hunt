@@ -1,5 +1,13 @@
 <?php
 $arUrlRewrite=array (
+  27 => 
+  array (
+    'CONDITION' => '#^={$params["SEF_URL_TEMPLATES"]["smart_filter"]}\\??(.*)#',
+    'RULE' => '&$1',
+    'ID' => 'bitrix:catalog.smart.filter',
+    'PATH' => '/local/templates/quarta_new/components/bitrix/catalog/main/include/catalog_smart_filter.php',
+    'SORT' => 100,
+  ),
   2 => 
   array (
     'CONDITION' => '#^/online/([\\.\\-0-9a-zA-Z]+)(/?)([^/]*)#',
@@ -24,6 +32,14 @@ $arUrlRewrite=array (
     'PATH' => '/bitrix/services/mobileapp/jn.php',
     'SORT' => 100,
   ),
+  31 => 
+  array (
+    'CONDITION' => '#^/test_shop/personal/order/#',
+    'RULE' => '',
+    'ID' => 'bitrix:sale.personal.order',
+    'PATH' => '/test_shop/personal/order/index.php',
+    'SORT' => 100,
+  ),
   6 => 
   array (
     'CONDITION' => '#^/bitrix/services/ymarket/#',
@@ -40,6 +56,14 @@ $arUrlRewrite=array (
     'PATH' => '/brendy/brand/index.php',
     'SORT' => 100,
   ),
+  32 => 
+  array (
+    'CONDITION' => '#^/test_shop/personal/#',
+    'RULE' => '',
+    'ID' => 'bitrix:sale.personal.section',
+    'PATH' => '/test_shop/personal/index.php',
+    'SORT' => 100,
+  ),
   3 => 
   array (
     'CONDITION' => '#^/online/(/?)([^/]*)#',
@@ -48,12 +72,36 @@ $arUrlRewrite=array (
     'PATH' => '/desktop_app/router.php',
     'SORT' => 100,
   ),
+  34 => 
+  array (
+    'CONDITION' => '#^/test_shop/catalog/#',
+    'RULE' => '',
+    'ID' => 'bitrix:catalog',
+    'PATH' => '/test_shop/catalog/index.php',
+    'SORT' => 100,
+  ),
   0 => 
   array (
     'CONDITION' => '#^/stssync/calendar/#',
     'RULE' => '',
     'ID' => 'bitrix:stssync.server',
     'PATH' => '/bitrix/services/stssync/calendar/index.php',
+    'SORT' => 100,
+  ),
+  33 => 
+  array (
+    'CONDITION' => '#^/test_shop/store/#',
+    'RULE' => '',
+    'ID' => 'bitrix:catalog.store',
+    'PATH' => '/test_shop/store/index.php',
+    'SORT' => 100,
+  ),
+  29 => 
+  array (
+    'CONDITION' => '#^/test_shop/news/#',
+    'RULE' => '',
+    'ID' => 'bitrix:news',
+    'PATH' => '/test_shop/news/index.php',
     'SORT' => 100,
   ),
   16 => 
@@ -118,14 +166,6 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:news',
     'PATH' => '/blog/index.php',
-    'SORT' => 100,
-  ),
-  29 => 
-  array (
-    'CONDITION' => '#^/lp/#',
-    'RULE' => NULL,
-    'ID' => 'bitrix:landing.pub',
-    'PATH' => '/lp/index.php',
     'SORT' => 100,
   ),
 );

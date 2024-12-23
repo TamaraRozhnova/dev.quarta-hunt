@@ -1,0 +1,1 @@
+<a href="/test_shop/personal/">Персональный раздел</a>
