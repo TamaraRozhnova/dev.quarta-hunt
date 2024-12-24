@@ -1,5 +1,6 @@
 .news-slider {
   background-color: #fff;
+  padding: 3rem 0 0 0;
 }
 .news-slider__more {
   display: flex;
@@ -38,7 +39,8 @@
   text-decoration: none;
   overflow: hidden;
 }
-.news-slide__date, .news-slide__title {
+.news-slide__date,
+.news-slide__title {
   position: relative;
   z-index: 2;
 }
@@ -59,7 +61,8 @@
 .news-slide__background--multiple {
   background-size: cover, 0;
 }
-.news-slide::before, .news-slide__background {
+.news-slide::before,
+.news-slide__background {
   position: absolute;
   top: 0;
   bottom: 0;

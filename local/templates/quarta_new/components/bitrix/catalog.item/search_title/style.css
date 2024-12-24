@@ -212,6 +212,7 @@
   color: #fff;
   border-radius: 0.25rem;
 }
+
 @media (max-width: 767.98px) {
   .product-card-search__title {
     height: 2.4rem;

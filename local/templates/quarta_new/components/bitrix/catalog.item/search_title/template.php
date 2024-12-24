@@ -28,7 +28,7 @@ global $isMobile;
 ?>
 
 <div class="col-12">
-    <div class="product-card product-card-search <?=$isMobile ? 'mobile' : ''?>"
+    <div class="product-card product-card-search"
         itemscope
         itemprop="itemListElement" itemtype="http://schema.org/Product"
         data-id="<?= $item['ID'] ?>"

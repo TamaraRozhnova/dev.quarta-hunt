@@ -225,7 +225,7 @@ $isMobile = $mobiledetect->isMobile();
 
                 <div class="header__search-section col">
                     <?php
-                    if (!$isMobile) {
+
                         $APPLICATION->IncludeComponent(
                             "arturgolubev:search.title",
                             "modern",
@@ -293,7 +293,7 @@ $isMobile = $mobiledetect->isMobile();
                             ),
                             false
                         );
-                    }
+
 
                     ?>
                 </div>
@@ -404,7 +404,7 @@ $isMobile = $mobiledetect->isMobile();
         <a class="header__logo-mobile" href="/">
             <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo mb-3" alt="QUARTA">
         </a>
-        <div class="row">
+        <div class="row header__logo-mobile-wrap">
             <div class="header__logo-section col">
                 <a href="/">
                     <img src="<?= SITE_TEMPLATE_PATH ?>/assets/images/logo.svg" class="header__logo" alt="QUARTA">
@@ -413,10 +413,10 @@ $isMobile = $mobiledetect->isMobile();
 
             <div class="header__search-section col">
                 <?php
-                if ($isMobile) {
+
                     $APPLICATION->IncludeComponent(
                         "arturgolubev:search.title",
-                        "modern",
+                        "mobile",
                         array(
                             "ANIMATE_HINTS" => array(),
                             "ANIMATE_HINTS_SPEED" => "1",
@@ -457,7 +457,7 @@ $isMobile = $mobiledetect->isMobile();
                             "SHOW_QUANTITY" => "N",
                             "TOP_COUNT" => "5",
                             "USE_LANGUAGE_GUESS" => "Y",
-                            "COMPONENT_TEMPLATE" => "modern",
+                            "COMPONENT_TEMPLATE" => "mobile",
                             "POPULAR_REQUESTS" => array(
                                 0 => "Патроны",
                                 1 => "Бинокли",
@@ -484,7 +484,6 @@ $isMobile = $mobiledetect->isMobile();
                         ),
                         false
                     );
-                }
 
                 ?>
             </div>

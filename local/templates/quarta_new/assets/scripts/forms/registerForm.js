@@ -132,7 +132,7 @@ class RegisterForm {
         this.inputEmail = new Input({
             wrapperSelector: `${this.formSelector} .input--email`,
             required: true,
-            validMask: /^([a-z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
+            validMask: /^([a-zA-Z0-9_\-\.]+)@([a-z0-9_\-\.]+)$/,
             errorMessage: 'Введите email в корректном формате'
         });
         this.inputPassword = new Input({
