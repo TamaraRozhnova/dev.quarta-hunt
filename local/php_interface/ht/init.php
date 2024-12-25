@@ -12,7 +12,6 @@ Loader::registerAutoLoadClasses(null, [
     'Form\MailSubscribe' => '/local/php_interface/classes/Form/MailSubscribe.php',
     'Personal\Favorites' => '/local/php_interface/classes/Personal/Favorites.php',
     'Form\WebForm' => '/local/php_interface/classes/Form/WebForm.php',
-    'CustomEvents\Hut\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/Hut/OnBeforeIBlockElementUpdate.php',
     'Catalog\Rating\Enum\RatingGrade' => '/local/php_interface/classes/Catalog/Rating/Enum/RatingGrade.php',
     'Catalog\Rating\ORM\RatingTable' => '/local/php_interface/classes/Catalog/Rating/ORM/RatingTable.php',
     'Catalog\Rating\DTO\RatingDTO' => '/local/php_interface/classes/Catalog/Rating/DTO/RatingDTO.php',

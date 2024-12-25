@@ -69,4 +69,13 @@ const OFFERS_CLOTHES_SIZE_PROP_CODE = 'CLOTHES_SIZE';
 // код HL блока Цветов торговых предложений HUT
 const HUT_OFFERS_COLOR_HL_CODE = 'Hutcolors';
 
+// код HL блока Цветов торговых предложений HUT из 1С
+const HUT_OFFERS_COLOR_HL_CODE_ONE_C = 'TSVET';
+
 const HUT_FAVORITES_COOCKIE_NAME = 'hut_favorites';
+
+// ID свойства Размер торговых предложений, приходящих из 1С
+const HUT_SIZE_PROP_ID_1C = 1506;
+
+// ID каталога торговых предложений
+const HUT_CATALOG_OFFERS_IBLOCK_ID = 108;
