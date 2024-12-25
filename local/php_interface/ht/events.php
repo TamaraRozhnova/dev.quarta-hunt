@@ -10,6 +10,12 @@ $eventManager = EventManager::getInstance();
 
 $eventManager->addEventHandler(
     'iblock',
-    'OnBeforeIBlockElementUpdate',
-    ['CustomEvents\Hut\OnBeforeIBlockElementUpdate', 'OnBeforeIBlockElementUpdateHandler']
+    'OnAfterIBlockElementUpdate',
+    ['CustomEvents\Hut\OneCImportHandler', 'IBlockElementUpdateHandler']
+);
+
+$eventManager->addEventHandler(
+    'iblock',
+    'OnAfterIBlockElementAdd',
+    ['CustomEvents\Hut\OneCImportHandler', 'IBlockElementUpdateHandler']
 );

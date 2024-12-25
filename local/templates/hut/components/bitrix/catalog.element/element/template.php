@@ -349,9 +349,8 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 					foreach ($arParams['PRODUCT_INFO_BLOCK_ORDER'] as $blockName) {
 						switch ($blockName) {
 							case 'sku':
-								if ($haveOffers && !empty($arResult['OFFERS_PROP'])) {
-					?>
-									<div class="element__sku" id="<?= $itemIds['TREE_ID'] ?>">
+								if (($haveOffers && !empty($arResult['OFFERS_PROP'])) || $arResult['SIMILAR_PRODS']) { ?>
+									<div class="element__sku" <? if ($haveOffers && !empty($arResult['OFFERS_PROP'])) { ?> id="<?= $itemIds['TREE_ID'] ?>" <? } ?>>
 										<?php
 										foreach ($arResult['SKU_PROPS'] as $skuProperty) {
 											if (!isset($arResult['OFFERS_PROP'][$skuProperty['CODE']]))
@@ -418,6 +417,30 @@ if ($arParams['SHOW_DISCOUNT_PERCENT'] === 'Y' && !empty($arParams['DISCOUNT_PER
 										<?php
 										}
 										?>
+										<? if ($arResult['SIMILAR_PRODS']) { ?>
+											<div class="element__sku-item">
+												<div class="element__skup-prop-title-wrap">
+													<span class="element__sku-prop-title">Цвет</span>
+												</div>
+												<div class="product-item-scu-container">
+													<div class="product-item-scu-block">
+														<div class="product-item-scu-list">
+															<ul class="product-item-scu-item-list COLOR">
+																<? foreach ($arResult['SIMILAR_PRODS'] as $keySim => $similar) { ?>
+																	<li class="product-item-scu-item-color-container <?= $similar['CURRENT'] ? 'selected' : '' ?>" title="<?= $similar['COLOR_NAME'] ?>">
+																		<div onclick="location.href='<?= $similar['DETAIL_PAGE_URL'] ?>'" class="product-item-scu-item-color-block">
+																			<div class="product-item-scu-item-color" title="<?= $similar['COLOR_NAME'] ?>" style="background-image: url('<?= CFile::getPath($similar['FILE']) ?>');">
+																			</div>
+																		</div>
+																	</li>
+																<? } ?>
+															</ul>
+															<div style="clear: both;"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										<? } ?>
 									</div>
 								<?php
 								}
