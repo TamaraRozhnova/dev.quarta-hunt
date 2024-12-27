@@ -36,7 +36,7 @@
     border-color: #B20E04;
 }
 .nav-catalog-cont2__tab:hover .ico{
-    filter: brightness(0) saturate(100%) invert(68%) sepia(20%) saturate(3295%) hue-rotate(345deg) brightness(99%) contrast(93%);
+    filter: brightness(0) saturate(100%) invert(15%) sepia(98%) saturate(3748%) hue-rotate(17deg) brightness(83%) contrast(122%);
 }
 .nav-catalog-cont2__tab.active{
     cursor: auto;
