@@ -27,7 +27,7 @@ const SECTIONS_ATTENTION_MODAL = [583];
 const LINK_CREDIT_ARTICLE = '/blog/news/rassrochka/'; // Ссылка на кнопку "Подробнее" в тултипе кредита
 
 const UKASSA_ID = 25; //3 == 25 Идентификатор платежной системы Юкасса
-const UKASSA_CREDIT_ID = 16; //16 == 28Идентификатор платежной системы Юкасса.Рассрочка
+const UKASSA_CREDIT_ID = 28; //16 == 28Идентификатор платежной системы Юкасса.Рассрочка
 const PANYWAY_ID = 4; // Идентификатор платежной системы Банковская карта PANYWAY
 const BANK_TRANSFER_ID = 22; //8 == 22 Идентификатор платежной системы перевод БК
 const DEBET_CARD_PERSONALLY_ID = 24; //2 == 24 Идентификатор платежной системы Банковские карты (при получении)
