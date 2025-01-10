@@ -78,12 +78,12 @@
     border-bottom: 1px solid #bfbfbf;
     margin-bottom: 24px;
 }
-.nav-catalog-cont2__tab_cont .title span{
+.nav-catalog-cont2__tab_cont .title > a{
     font-weight: 700;
     font-size: 16px;
     line-height: 140%;
     text-transform: uppercase;
-    color: #2a2b2b;
+    color: #2a2b2b !important;
     display: inline-block;
     padding-right: 24px;
 }
