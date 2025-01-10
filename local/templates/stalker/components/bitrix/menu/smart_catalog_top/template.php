@@ -94,7 +94,7 @@ while ($arSection = $resSections->GetNext())
                     <?=$arItem['NAME']?>
                 </div>
                 <div class="nav-catalog-cont2__mob">
-                    <div class="title"><span><?=$arItem['NAME']?></span> <?=$arItem['ELEMENT_CNT']?> товаров</div>
+                    <div class="title"><a href="<?=$arItem['SECTION_PAGE_URL']?>"><?=$arItem['NAME']?></a> <?=$arItem['ELEMENT_CNT']?> товаров</div>
                     <div class="menu_block">
                         <? foreach($arItem['UNDER'] as $v) { ?>
                             <div class="menu_block__item">
