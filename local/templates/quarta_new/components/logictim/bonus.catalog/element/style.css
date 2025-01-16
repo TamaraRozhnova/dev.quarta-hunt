@@ -1,0 +1,70 @@
+.product__bonus-ico-tip {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 18px);
+    width: 360px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 0 1px 20px #04061c1a;
+    left: -25px;
+    font-size: 14px;
+}
+
+.product__bonus-ico{
+    position: relative;
+}
+
+.product__bonus-ico>svg {
+    cursor: pointer;
+}
+
+.product__bonus-ico-tip-title {
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+}
+
+.product__bonus-ico.active .product__bonus-ico-tip {
+    display: flex;
+}
+
+.product__bonus-ico-tip-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+}
+
+.product__bonus-ico-tip-close>svg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .product__bonus-ico-tip {
+        left: unset;
+        right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .product__bonus-ico-tip {
+        left: 50%;
+        right: unset;
+        transform: translateX(-57%);
+    }
+}
+
+@media (max-width: 414px) {
+    .product__bonus-ico-tip {
+        left: 50%;
+        right: unset;
+        transform: translateX(-80%);
+        max-width: 300px;
+    }
+}
