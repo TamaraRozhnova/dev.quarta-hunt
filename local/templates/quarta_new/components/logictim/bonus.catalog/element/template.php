@@ -71,7 +71,7 @@ $this->setFrameMode(true); ?>
 			});
 
 			$('.product__bonus-ico-tip-close').on('click', function() {
-				$(this).parent('.product__bonus-ico').removeClass('active');
+				$(this).parents('.product__bonus-ico').removeClass('active');
 			});
 
 		});
