@@ -165,6 +165,36 @@ $isMobile = $mobiledetect->isMobile();
                             ); ?>
                         </div>
                     </div>
+                    <div class="select-location-block">
+                        <?$APPLICATION->IncludeComponent(
+                            "ammina:regions.selector",
+                            "template1",
+                            array(
+                                "CACHE_TIME" => "86400",
+                                "CACHE_TYPE" => "A",
+                                "CHANGE_CITY_MANUAL" => "Y",
+                                "CITY_VERIFYCATION" => "Y",
+                                "INCLUDE_JQUERY" => "Y",
+                                "COUNT_SHOW_CITY" => "24",
+                                "IP" => "",
+                                "SEARCH_CITY_TYPE" => "Q",
+                                "SHOW_CITY_TYPE" => "R",
+                                "USE_GPS" => "Y",
+                                "COMPONENT_TEMPLATE" => ".default",
+                                "SEPARATE_SETTINGS_MOBILE" => "N",
+                                "PRIORITY_DOMAIN" => "N",
+                                "ALLOW_REDIRECT" => "N",
+                                "MOBILE_CHANGE_CITY_MANUAL" => "Y",
+                                "MOBILE_CITY_VERIFYCATION" => "N",
+                                "MOBILE_USE_GPS" => "Y",
+                                "MOBILE_SHOW_CITY_TYPE" => "R",
+                                "MOBILE_SEARCH_CITY_TYPE" => "Q",
+                                "MOBILE_COUNT_SHOW_CITY" => "24"
+                            ),
+                            false
+                        );
+                        ?>
+                    </div>
                 </div>
 
                 <? $APPLICATION->IncludeComponent(

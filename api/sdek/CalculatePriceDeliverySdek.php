@@ -207,29 +207,3 @@ class CalculatePriceDeliverySdek {
         return $this;
     }
 }
-
-
-$result['test'] = 1;
-
-$sdek_calc = new CalculatePriceDeliverySdek();
-
-$sdek_calc->setAuth('XOlAxGCIfVdenTUIIjS4rHfjup5tviyx', 'ATttW2E6ACWWyXd75R1L6nL52eKP2UIV');
-$sdek_calc->setSenderCityId(137);
-$sdek_calc->setReceiverCityId(44);
-$sdek_calc->setTariffId(136);
-$sdek_calc->addGoodsItemBySize(1, 20, 30, 40);
-$sdek_calc->setServices([['id' => '2', 'param' => '1000']]);
-//$sdek_calc->goodsList[] = array('weight' => 1, 'lenght' => 20, 'width' => 30, 'height' => 40);
-
-$result['sdek'] = $sdek_calc->calculate();
-$result['error'] = $sdek_calc->getError();
-$result['result'] = $sdek_calc->getResult();
-
-echo '<pre>';
-print_r($result);
-echo '</pre>';
-
-
-?>
-
-

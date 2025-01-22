@@ -14,6 +14,7 @@ use Bitrix\Sale\Internals\ServiceRestrictionTable;
 use Bitrix\Sale\Services\PaySystem\Restrictions\Manager;
 use Bitrix\Currency\CurrencyManager;
 use Bitrix\Main\Loader;
+use Classes\DeliverySettings\DeliverySettings;
 
 Loader::includeModule('currency');
 
@@ -254,6 +255,10 @@ if ($arResult['RESTRICTED_SECTION'] !== 'Y') {
             }    
         }
     }
+}
+
+if ($arResult['AVAILABLE']) {
+    $deliveryMethods = DeliverySettings::getDeliveryMethods($arResult['ID']);
 }
 
 /*

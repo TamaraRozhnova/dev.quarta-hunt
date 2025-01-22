@@ -1,5 +1,6 @@
 {
     "require": {
-        "olegpro/bitrix-sphinx": "^0.3.0"
+        "olegpro/bitrix-sphinx": "^0.3.0",
+        "hflabs/dadata": "^24.4"
     }
 }

@@ -1,0 +1,104 @@
+<?
+/** @global CMain $APPLICATION */
+define('STOP_STATISTICS', true);
+define('PUBLIC_AJAX_MODE', true);
+define('NOT_CHECK_PERMISSIONS', true);
+
+use Bitrix\Main,
+	Bitrix\Catalog;
+
+require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/prolog_before.php');
+if (isset($_REQUEST['AJAX']) && $_REQUEST['AJAX'] == 'Y') {
+	if (!defined("BX_UTF") || BX_UTF !== true) {
+		$_REQUEST = $APPLICATION->ConvertCharsetArray($_REQUEST, "utf-8", "windows-1251");
+	}
+	if ($_REQUEST['action'] == "setPreventCity" && $_REQUEST['PREVENT_CITY'] > 0) {
+		$APPLICATION->IncludeComponent(
+			"ammina:regions.selector",
+			"",
+			array()
+		);
+		$APPLICATION->RestartBuffer();
+		$arData = array("STATUS" => "SUCCESS");
+		if (COption::GetOptionString("ammina.regions", "use_one_domain", "N") != "Y") {
+			$iDomain = \Ammina\Regions\DomainTable::doFindDomainByCity($_REQUEST['PREVENT_CITY'], $_REQUEST['sid']);
+			if ($iDomain > 0) {
+				$strReferer = $_SERVER['HTTP_REFERER'];
+				if (strlen($strReferer) > 0) {
+					$ar = parse_url($strReferer);
+					if ($ar['host'] == $_SERVER[\COption::GetOptionString("ammina.regions", "host_var_name", "HTTP_HOST")]) {
+						$strReferer = $ar['path'];
+						if (strlen($ar['query']) > 0) {
+							$strReferer .= '?' . $ar['query'];
+						}
+					} else {
+						$strReferer = '/';
+					}
+				}
+				$strLocation = \Ammina\Regions\DomainTable::doGetRedirectLinkByDomainId($iDomain, $_REQUEST['PREVENT_CITY'], $strReferer);
+				if (strlen($strLocation) > 0) {
+					$arData['LOCATION'] = $strLocation;
+				}
+			}
+		} elseif (COption::GetOptionString("ammina.regions", "use_one_domain", "N") == "Y" && COption::GetOptionString("ammina.regions", "use_path_domain", "N") == "Y") {
+			$iDomain = \Ammina\Regions\DomainTable::doFindDomainByCity($_REQUEST['PREVENT_CITY'], $_REQUEST['sid']);
+			if ($iDomain > 0) {
+				$strReferer = $_SERVER['HTTP_REFERER'];
+				if (strlen($strReferer) > 0) {
+					$ar = parse_url($strReferer);
+					if ($ar['host'] == $_SERVER[\COption::GetOptionString("ammina.regions", "host_var_name", "HTTP_HOST")]) {
+						$strReferer = $ar['path'];
+						if (strlen($ar['query']) > 0) {
+							$strReferer .= '?' . $ar['query'];
+						}
+					} else {
+						$strReferer = '/';
+					}
+				}
+				$strReferer = \Ammina\Regions\DomainTable::doGetOriginalUrl($strReferer);
+				$strLocation = \Ammina\Regions\DomainTable::doGetRedirectLinkByDomainId($iDomain, $_REQUEST['PREVENT_CITY'], $strReferer);
+				if (strlen($strLocation) > 0) {
+					$arData['LOCATION'] = $strLocation;
+				}
+			}
+		}
+
+        global $USER;
+
+        if ($USER->IsAuthorized() && $_REQUEST['PREVENT_CITY']) {
+            $user = new CUser;
+            $fields = [
+                'UF_SELECTED_USER_CITY' => $_REQUEST['PREVENT_CITY']
+            ];
+
+            $user->Update($USER->GetID(), $fields);
+        }
+
+		header('Content-Type: application/json');
+		echo Main\Web\Json::encode($arData);
+		//require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/epilog_after.php');
+		CMain::FinalActions();
+		die();
+	} elseif ($_REQUEST['action'] == "getCityForm") {
+		$arParams = array();
+		foreach ($_REQUEST as $k => $v) {
+			if (strpos($k, '~') === 0) {
+				$arParams[mb_substr($k, 1)] = $v;
+			}
+		}
+		$arParams['PREVENT_CITY'] = $_REQUEST['PREVENT_CITY'];
+		$arResult = $APPLICATION->IncludeComponent(
+			"ammina:regions.selector",
+			"",
+			$arParams
+		);
+		$APPLICATION->RestartBuffer();
+		header('Content-Type: application/json');
+		echo Main\Web\Json::encode(array("STATUS" => "SUCCESS", "RESULT" => $arResult));
+		//require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/modules/main/include/epilog_after.php');
+		CMain::FinalActions();
+		die();
+	}
+
+	die();
+}
