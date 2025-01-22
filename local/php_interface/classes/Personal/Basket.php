@@ -23,6 +23,8 @@ use Exception;
 use General\Product;
 use General\Section;
 use General\User;
+use Bitrix\Catalog\VatTable;
+use Bitrix\Main\Application;
 
 
 /**
@@ -224,7 +226,7 @@ class Basket
         if (isset($data['NOTES'])) {
             $atFields['NOTES'] = serialize($data['NOTES']);
         }
-        
+
         if (isset($data['PRICE'])) {
             $atFields['PRICE'] = $data['PRICE'];
             $atFields['BASE_PRICE'] = $data['PRICE'];
@@ -237,7 +239,11 @@ class Basket
         if (isset($data['NAME'])) {
             $atFields['NAME'] = $data['NAME'];
         }
- 
+
+        if (isset($data['VAT_RATE'])) {
+            $atFields['VAT_RATE'] = $data['VAT_RATE'];
+        }
+
         $atFields['WEIGHT'] = (float) $data['WEIGHT'];
 
         $atFields['CATALOG_XML_ID'] = \Bitrix\Iblock\IblockTable::getList([
@@ -266,7 +272,7 @@ class Basket
 
         $iblockDataClass = Iblock::wakeUp($iblockId)->getEntityDataClass();
         $elementPropertyData = $iblockDataClass::getByPrimary($productId, [
-            'select' => ['*' , 'CML2_ARTICLE_' => 'CML2_ARTICLE']
+            'select' => ['*', 'CML2_ARTICLE_' => 'CML2_ARTICLE']
         ])->fetchAll();
 
         $basketPropertyCollection = $basketItem->getPropertyCollection();
@@ -314,26 +320,46 @@ class Basket
             $basketItem = $this->getBasketItem($productId);
 
             $isOpt = $this->user->isWholesaler();
-            $product = new Product($productId);            
+            $product = new Product($productId);
             $price = $product->getFieldValue('PRICE_1');
             $price3 = $product->getFieldValue('PRICE_3');
-
+            $vat = $this->getVat($product->getFieldValue('VAT_ID'), $productId);
 
             if ($basketItem) {
                 $basketItem->setField('WEIGHT', (float) $basketItem->getWeight());
-                $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);                
+                $basketItem->setField('QUANTITY', $basketItem->getQuantity() + $quantity);
                 $basketItem->setField('PRICE', !$isOpt ? $price : $price3);
+                $basketItem->setField('VAT_RATE', $vat);
                 $this->basket->save();
             } else {
-                $this->createBasketItem($productId, $quantity, [                    
+                $this->createBasketItem($productId, $quantity, [
                     'PRICE' => !$isOpt ? $price : $price3,
-                    'NAME' => $product->getFieldValue('NAME')
+                    'NAME' => $product->getFieldValue('NAME'),
+                    'VAT_RATE' => $vat,
                 ]);
             }
             return true;
         } catch (Exception $e) {
             return false;
         }
+    }
+
+    /**
+     * Получает ставку НДС по ID
+     *
+     * @param  int|null $vatId
+     * @return float
+     */
+    private function getVat(int|null $vatId): float
+    {
+        if ($vatId === null) {
+            $connection = Application::getConnection();
+            $result = $connection->query('SELECT `VAT_ID` FROM `b_catalog_iblock` WHERE `IBLOCK_ID` = ' . CATALOG_IBLOCK_ID)->fetch();
+            if ($result) {
+                $vatId = $result['VAT_ID'];
+            }
+        }
+        return floatval(VatTable::getById($vatId)->fetch()['RATE']) / 100;
     }
 
     private function isProductAvailable(int $productId, int $quantity): bool
@@ -394,6 +420,4 @@ class Basket
     {
         return $this->basket->copy();
     }
-
 }
-
