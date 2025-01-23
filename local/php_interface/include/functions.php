@@ -8,6 +8,7 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Config\Option;
 use Skyweb24\YandexCaptcha\YandexCaptcha;
 use Skyweb24\YandexCaptcha\YandexCaptchaOption;
+use Upload\UserUploadForm1c;
 
 function getUserFullNameOrEmail(): string
 {
@@ -130,6 +131,14 @@ function checkCustomCaptcha($post)
     } else {
         return false;
     }
+}
+
+function getUsersFrom1cXmlAgent()
+{
+    $xmlHandler = new UserUploadForm1c;
+    $xmlHandler->handleUserFile();
+
+    return 'getUsersFrom1cXmlAgent();';
 }
 
 /**

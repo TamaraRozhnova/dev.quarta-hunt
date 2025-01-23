@@ -46,6 +46,9 @@ const EXCEPTIONS_FOR_FAST_BUY = 'oruzhie_i_patrony'; // Код раздела, �
 const CDEK_DELIVERY_ID = 113; // ID службы доставки СДЭК. Необхоим для получения списка разшрешённых категорий
 const CDEK_RESTRICTION_SECTIONS_RULE_ID = 210; // ID ограничения со списков разрешённых категорий для доставки
 
+const USER_FILE_PATH_FROM_1C = '/upload/users/DiscountsLoyaltyCards.xml';
+const REGISTERED_USER_GROUP_ID = 6;
+
 /** HUT */
 const IMG_PATH = '/img';
 const ICON_PATH = '/img/icons';
