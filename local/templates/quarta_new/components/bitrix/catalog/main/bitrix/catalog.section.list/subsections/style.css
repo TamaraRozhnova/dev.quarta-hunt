@@ -5,9 +5,16 @@
   background-color: #fff;
   color: #212529;
   margin: 0 0.6875rem 1.1875rem 0;
+  border: 1px solid #004989;
+  padding: 0.62em 1em;
 }
-.subcategory-selector .btn.btn-white:hover, .subcategory-selector .btn.btn-white.active {
+.subcategory-selector .btn.btn-white:hover{
   background-color: #eeeff3;
+  border-color: transparent;
+}
+.subcategory-selector .btn.btn-white.active {
+  background-color: #004989;
+  color: #fff;
 }
 .subcategory-selector .btn.btn-white.active {
   border-color: #004989;

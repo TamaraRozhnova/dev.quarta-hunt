@@ -148,7 +148,7 @@ class CatalogFilter {
     hangChangeProductsCountEvent(element) {
         element.onclick = () => {
             const id = element.dataset.id;
-
+            
             if (this.selectorCount.getValue() == id) {
                 return;
             }
@@ -160,6 +160,7 @@ class CatalogFilter {
 
     handleChangeFilters(params = null, withChangeUrl = true) {
         const url = this.createNewUrl(params);
+        
         this.changeScroll();
         this.fetchProducts(url)
             .then(html => {
@@ -399,8 +400,13 @@ class CatalogFilter {
     createNewUrl(params = null) {
         const url = new URL(window.location.href);
         const urlParams = new URLSearchParams(url.search);
-        urlParams.set('minPrice', this.inputMinPrice.getValue());
-        urlParams.set('maxPrice', this.inputMaxPrice.getValue());
+        
+        if(this.inputMinPrice){
+            urlParams.set('minPrice', this.inputMinPrice.getValue());
+        }
+        if(this.inputMinPrice){
+            urlParams.set('maxPrice', this.inputMaxPrice.getValue());
+        }
         this.filterApplied = true;
         if (params === false) {
             return `${url.origin}${url.pathname}?${urlParams.toString()}`;
@@ -415,7 +421,7 @@ class CatalogFilter {
 
         if (params.MULTI_OBJECT == 'Y') {
             if (params.FILTER_ITEMS) {
-
+            
                 Object.keys(params.FILTER_ITEMS).forEach(key => {
                     if (params.FILTER_ITEMS[key]) {
                         urlParams.set(key, params.FILTER_ITEMS[key]);
@@ -423,7 +429,7 @@ class CatalogFilter {
                         urlParams.delete(key);
                     }
                 })
-
+            
             }
         } else {
             Object.keys(params).forEach(key => {

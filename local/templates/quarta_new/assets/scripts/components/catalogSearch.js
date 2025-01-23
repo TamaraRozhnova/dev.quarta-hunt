@@ -201,9 +201,9 @@ class CatalogSearch {
         if (!params) {
             return `${url.origin}${url.pathname}`;
         }
-        if (!params.hasOwnProperty('PAGEN_1')) {
+        /*if (!params.hasOwnProperty('PAGEN_1')) {
             urlParams.set('PAGEN_1', '1');
-        }
+        }*/
 
         if (params.MULTI_OBJECT == 'Y') {
             if (params.FILTER_ITEMS) {

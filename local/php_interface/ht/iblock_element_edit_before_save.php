@@ -1,8 +1,8 @@
 <?
 
-use CustomEvents\Hut\OnBeforeIBlockElementUpdate;
+use CustomEvents\Hut\OneCImportHandler;
 
 function BXIBlockAfterSave(&$arFields)
 {
-    OnBeforeIBlockElementUpdate::OnBeforeIBlockElementUpdateHandler($arFields);
+    OneCImportHandler::IBlockElementUpdateHandler($arFields);
 }

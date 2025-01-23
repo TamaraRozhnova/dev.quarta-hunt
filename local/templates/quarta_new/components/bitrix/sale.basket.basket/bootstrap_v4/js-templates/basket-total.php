@@ -12,6 +12,11 @@ $isAuth = $USER->IsAuthorized();
 ?>
 <script id="basket-total-template" type="text/html">
 	<div class="basket-checkout-container" data-entity="basket-checkout-aligner">
+
+        <div class="basket-free-delivery">
+            <? $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-text.php'); ?>
+        </div>
+
 		<?
 		if ($arParams['HIDE_COUPON'] !== 'Y')
 		{

@@ -2,6 +2,9 @@
 
 use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Loader;
+use Bitrix\Iblock\Elements\ElementHutCatalogTable;
+use Bitrix\Main\Entity;
+use Bitrix\Main\ORM\Query\Join;
 
 Loader::includeModule('highloadblock');
 
@@ -60,4 +63,43 @@ if ($arResult['PROPERTIES']['SIZE_TABLE']['VALUE']) {
     $arResult['SIZE_TABLE'] = \Bitrix\Iblock\Elements\ElementHutsizesTable::getByPrimary($arResult['PROPERTIES']['SIZE_TABLE']['VALUE'], [
         'select' => ['ID', 'NAME', 'DETAIL_TEXT'],
     ])->fetch();
+}
+
+// Ищем товары с одинаковой первой чать артикула
+if ($arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']) {
+    $searchValue = explode('-', $arResult['PROPERTIES']['CML2_ARTICLE']['VALUE'])[0];
+    if ($searchValue) {
+        $entity =  HighloadBlockTable::compileEntity(HUT_OFFERS_COLOR_HL_CODE_ONE_C)->getDataClass();
+
+        $similarElements = ElementHutCatalogTable::getList([
+            'select' => [
+                'NAME',
+                'ID',
+                'FILE' => 'HL_PROPERTY.UF_FILE',
+                'COLOR_NAME' => 'HL_PROPERTY.UF_NAME',
+                'COLOR' => 'TSVET.VALUE',
+                'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
+                'IBLOCK_ID',
+                'CODE',
+                'IBLOCK_SECTION_ID',
+            ],
+            'order' => ['SORT' => 'ASC'],
+            'filter' => ['%CML2_ARTICLE.VALUE' => $searchValue],
+            'runtime' => [
+                new Entity\ReferenceField(
+                    'HL_PROPERTY',
+                    $entity,
+                    Join::on('this.COLOR', 'ref.UF_XML_ID')
+                )
+            ]
+        ]);
+
+        while ($arItem = $similarElements->fetch()) {
+            $arItem['DETAIL_PAGE_URL'] = CIBlock::ReplaceDetailUrl($arItem['DETAIL_PAGE_URL'], $arItem, false, 'E');
+            if ($arItem['ID'] == $arResult['ID']) {
+                $arItem['CURRENT'] = 'Y';
+            }
+            $arResult['SIMILAR_PRODS'][] = $arItem;
+        }
+    }
 }

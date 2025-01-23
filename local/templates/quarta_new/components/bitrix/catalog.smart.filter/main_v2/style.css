@@ -1030,14 +1030,15 @@ COLOR
 }
 
 .bx-filter .bx-filter-popup-result a {
-    color: #0073a3;
+    color: white;
+    background-color: #eb5806;
     line-height: 10px;
     font-weight: 500;
     transition: none;
 }
 
-.bx-filter .bx-filter-popup-result:hover svg path {
-    fill: #004989;
+.bx-filter .bx-filter-popup-result svg path {
+    fill: #eb5806;
 }
 
 .bx-filter .bx-filter-popup-result a:hover {
@@ -1045,8 +1046,12 @@ COLOR
 }
 
 .bx-filter .bx-filter-popup-result:hover a {
-    color: var(--bs-white);
+    color: white;
     background-color: #004989;
+}
+
+.bx-filter .bx-filter-popup-result:hover svg path {
+    fill: #004989;
 }
 
 .bx-filter .bx-filter-popup-result-close {
