@@ -1,6 +1,6 @@
 <?php
 
-namespace Classes\DeliverySettings;
+namespace Classes;
 
 use CModule;
 use \Bitrix\Iblock\Elements\ElementBaseSettingsTable;

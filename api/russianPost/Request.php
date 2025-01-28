@@ -1,8 +1,7 @@
 <?php
 
-namespace Lib\Russianpost\Post;
+namespace RussianPostApi;
 
-use Bitrix\Main\Diag\Debug;
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\Text\Encoding;
 use Bitrix\Sale\Result;

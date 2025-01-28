@@ -50,11 +50,6 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/OnBeforeIBlockElementUpdate.php',
 ]);
 
-// Подключение настроек доставки
-
-include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/classes/DeliverySettings/DeliverySettings.php');
-include($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/classes/DeliverySettings/IblockDeliverySettings.php');
-
 function AddBonusPoints($order_id, $status) {
 	$order = \Bitrix\Sale\Order::load($order_id);
 	$user = new CUser;

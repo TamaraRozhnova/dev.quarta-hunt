@@ -1612,3 +1612,29 @@
   }
 }
 
+.delivery-methods-block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.delivery-methods-block .delivery-methods-item {
+  width: 100%;
+  color: #000000;
+  font-size: 14px;
+  line-height: 120%;
+  margin-bottom: 4px;
+}
+
+.delivery-methods-block .delivery-methods-item:last-child {
+  margin-bottom: 0;
+}
+
+.delivery-methods-block .delivery-methods-title {
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 120%;
+  font-weight: 700;
+  color: #000000;
+}
