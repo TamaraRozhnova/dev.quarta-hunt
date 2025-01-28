@@ -86,6 +86,16 @@ $arResult['JS_DATA']['DEBUG_IP'] = $_SERVER['REMOTE_ADDR'];
 /** Передаем бонусы пользователя */
 $arResult['JS_DATA']['USER_POINTS'] = $userFields['UF_LOGICTIM_BONUS'];
 
+$arResult['JS_DATA']['AUTOCOMPLETE']['EMAIL'] = User::getUserEmail();
+
+$userPhone = User::getUserPhone();
+if ($userPhone) {
+    $userPhone =  preg_replace('/[^0-9]/', '', $userPhone);
+    $userPhone = ltrim($userPhone, '7');
+}
+
+$arResult['JS_DATA']['AUTOCOMPLETE']['PHONE'] = $userPhone;
+
 /** Передаем PAYSYSTEMID в script */
 $arResult['JS_DATA']['PAY_SYSTEMS']["UKASSA_ID"] = (int) UKASSA_ID;
 $arResult['JS_DATA']['PAY_SYSTEMS']["UKASSA_CREDIT_ID"] = (int) UKASSA_CREDIT_ID;
