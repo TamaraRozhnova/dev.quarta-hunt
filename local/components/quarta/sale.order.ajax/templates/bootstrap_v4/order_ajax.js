@@ -194,7 +194,11 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
             mask: "+7 (999) 999-99-99",
           });
 
-          $(phoneInput).val("");
+          if (this.result.AUTOCOMPLETE.PHONE) {
+            $(phoneInput).val(this.result.AUTOCOMPLETE.PHONE);
+          } else {
+            $(phoneInput).val("");
+          }
         });
       }
     },
@@ -9097,6 +9101,9 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
           );
 
         if (arProperty.IS_EMAIL === "Y") {
+          if (this.result.AUTOCOMPLETE.EMAIL) {
+            value = this.result.AUTOCOMPLETE.EMAIL;
+          }
           input.value = value = BX.util.trim(value);
           if (value.length) {
             re =

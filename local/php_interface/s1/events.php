@@ -121,3 +121,9 @@ $eventManager->addEventHandler(
     'OnEndBufferContent',
     'removeType'
 );
+
+$eventManager->addEventHandler(
+    'sale',
+    'OnSaleOrderSaved',
+    ['User', 'saleOrderSaved']
+);
