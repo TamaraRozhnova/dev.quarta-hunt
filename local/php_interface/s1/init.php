@@ -50,7 +50,6 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/OnBeforeIBlockElementUpdate.php',
 ]);
 
-
 function AddBonusPoints($order_id, $status) {
 	$order = \Bitrix\Sale\Order::load($order_id);
 	$user = new CUser;

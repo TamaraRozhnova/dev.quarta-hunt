@@ -4,6 +4,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
 ?>
 
 <div>
@@ -289,6 +292,18 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 </a>
                             </div> 
                         <?}?>
+                        <?php if ($arResult['DELIVERY_METHODS']) : ?>
+                            <div class="delivery-methods-block">
+                                <div class="delivery-methods-title">
+                                    <?= Loc::getMessage('DELIVERY_SETTING_METHODS_TITLE') ?>
+                                </div>
+                                <?php foreach ($arResult['DELIVERY_METHODS'] as $item) : ?>
+                                    <div class="delivery-methods-item">
+                                        <?= $item ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>                    
                     <?if (isset($arResult['RESTRICTED_SECTION'])) {?>
                         <div class="product__restiction mb-3">
