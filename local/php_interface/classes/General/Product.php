@@ -16,9 +16,30 @@ class Product
 
     public function __construct(int $id)
     {
-        $base_pr_res = \CIBlockElement::GetList([], ['ID' => $id], false, false,
-            ['ID', 'NAME', 'CODE', 'XML_ID', 'PRICE_1', 'PRICE_2', 'PRICE_3', 'IBLOCK_ID', 'IBLOCK_SECTION_ID', 'DETAIL_PAGE_URL',
-                'PROPERTY_CML2_ARTICLE', 'PROPERTY_CML2_TAXES', 'PROPERTY_CML2_TRAITS', 'PROPERTY_CML2_MANUFACTURER', 'PROPERTY_CML2_BASE_UNIT']);
+        $base_pr_res = \CIBlockElement::GetList(
+            [],
+            ['ID' => $id],
+            false,
+            false,
+            [
+                'ID',
+                'NAME',
+                'CODE',
+                'XML_ID',
+                'PRICE_1',
+                'PRICE_2',
+                'PRICE_3',
+                'IBLOCK_ID',
+                'IBLOCK_SECTION_ID',
+                'DETAIL_PAGE_URL',
+                'PROPERTY_CML2_ARTICLE',
+                'PROPERTY_CML2_TAXES',
+                'PROPERTY_CML2_TRAITS',
+                'PROPERTY_CML2_MANUFACTURER',
+                'PROPERTY_CML2_BASE_UNIT',
+                'VAT_ID'
+            ]
+        );
 
         if ($base_pr = $base_pr_res->GetNext()) {
             $this->product = $base_pr;
