@@ -24,17 +24,16 @@ class ProductCardBasket {
     }
 
     hangEvents() {
-        this.removePlaceholder();
         if (!this.productAvailable) {
-            this.createNewArrivalsButton();
+            this.hangNewArrivalsButtonEvents();
             return;
         }
         const productInBasket = this.basketList[this.productId];
         if (productInBasket) {
             this.createCounter(productInBasket.QUANTITY);
-        } else {
-            this.createAddToBasketButton();
         }
+
+        this.hangAddToBasketButtonEvents();
     }
 
     removePlaceholder() {
@@ -53,6 +52,7 @@ class ProductCardBasket {
         if (!newArrivalsButton) {
             return;
         }
+        newArrivalsButton.disabled = false;
         newArrivalsButton.addEventListener('click', (event) => {
             event.stopPropagation();
             new ProductSubscribeModal(this.productId);
@@ -64,6 +64,7 @@ class ProductCardBasket {
         if (!addToBasketButton) {
             return;
         }
+        addToBasketButton.disabled = false;
         addToBasketButton.addEventListener('click', () => {
             if (this.offersQuantity > 0) {
                 this.handleAddFirstOfferToBasket();
