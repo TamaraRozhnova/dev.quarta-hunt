@@ -63,6 +63,9 @@ if(!function_exists('showBreadcrumb')){
         ];
         $allowedUrls = [
             '/catalog/',
+            '/about/questions/',
+            '/about/contacts/',
+            '/about/guaranty/',
             '/search/',
             '/blog/',
             '/favorites/',

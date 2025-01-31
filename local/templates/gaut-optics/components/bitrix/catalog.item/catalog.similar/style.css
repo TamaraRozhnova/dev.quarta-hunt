@@ -52,20 +52,20 @@
 .section-similar .catalog__item {
     flex-flow: column;
 }
-.catalog__item-img {
+.section-similar .catalog__item-img {
     position: relative;
     max-width: 100%;
     height: auto;
     width: 100%;
 }
-.catalog__item-img:before {
+.section-similar .catalog__item-img:before {
     content: "";
     position: relative;
     display: block;
     width: 100%;
     padding-top: 66.6666666667%;
 }
-.catalog__item-img img {
+.section-similar .catalog__item-img img {
     max-width: 100%;
     position: absolute;
     top: 0;
@@ -76,7 +76,7 @@
     object-position: center;
 }
 @media screen and (max-width: 3840px) {
-    .catalog__item-img img {
+    .section-similar .catalog__item-img img {
         max-width: 88%;
         left: 12%;
     }

@@ -40,7 +40,7 @@ else
 
 			<div class="inner__wrapper">
                 <div class="inner__left">
-                    <div class="filter__title">СОРТИРОВКА</div>
+                    <div class="filter__title">Сортировка</div>
                 </div>
                 <div class="inner__right">
                     <div class="filter">
