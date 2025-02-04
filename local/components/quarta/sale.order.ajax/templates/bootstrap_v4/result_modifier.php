@@ -23,10 +23,35 @@ while ($arRestr = $dbRestr->fetch()) {
 }
 
  if (!empty($arResult['BASKET_ITEMS'])) {
+     $countLicenceProduct = 0;
+     $arResult['COUNT_PRODUCTS'] = count($arResult['BASKET_ITEMS']);
+
     foreach ($arResult['BASKET_ITEMS'] as $arItem) {        
         $arProductsIDS[$arItem['PRODUCT_ID']] = $arItem['PRODUCT_ID'];
         $arResult['JS_DATA']['PRODUCTS_RESTRICT_INFO'][$arItem['PRODUCT_ID']]['NAME'] = $arItem['NAME'];
+
+        $res = CIBlockElement::GetByID($arItem['PRODUCT_ID']);
+
+        if ($element = $res->GetNext()) {
+            $rsSection = CIBlockSection::GetList([],
+                [
+                    'ID' => $element['IBLOCK_SECTION_ID'],
+                    'IBLOCK_ID' => CATALOG_IBLOCK_ID
+                ],
+                false,
+                [
+                    'ID',
+                    'UF_LISENCE_PRODUCTS'
+                ]
+            )->GetNext();
+
+            if ($rsSection['UF_LISENCE_PRODUCTS'] == 1) {
+                $countLicenceProduct++;
+            }
+        }
     }
+
+     $arResult['COUNT_LICENCE_PRODUCTS'] = $countLicenceProduct;
  }
 
  foreach ($arProductsIDS as $arProduct) {
@@ -73,10 +98,10 @@ $userId = \Bitrix\Main\Engine\CurrentUser::get()->getId();
 
 if ($userId) {
 
-    $userFields = \Bitrix\Main\UserTable::getList([
-        'select' => ['ID', 'NAME', 'UF_LOGICTIM_BONUS'],
-        'filter' => ['ID' => $userId],
-    ])->fetch();
+//    $userFields = \Bitrix\Main\UserTable::getList([
+//        'select' => ['ID', 'NAME', 'UF_LOGICTIM_BONUS'],
+//        'filter' => ['ID' => $userId],
+//    ])->fetch();
 
 }
 
@@ -84,7 +109,7 @@ if ($userId) {
 $arResult['JS_DATA']['DEBUG_IP'] = $_SERVER['REMOTE_ADDR'];
 
 /** Передаем бонусы пользователя */
-$arResult['JS_DATA']['USER_POINTS'] = $userFields['UF_LOGICTIM_BONUS'];
+//$arResult['JS_DATA']['USER_POINTS'] = $userFields['UF_LOGICTIM_BONUS'];
 
 /** Передаем PAYSYSTEMID в script */
 $arResult['JS_DATA']['PAY_SYSTEMS']["UKASSA_ID"] = (int) UKASSA_ID;

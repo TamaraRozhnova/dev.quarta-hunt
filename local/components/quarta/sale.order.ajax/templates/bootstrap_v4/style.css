@@ -1845,6 +1845,7 @@ hr.bxe-light {
   color: #808d9a;
   font-weight: 500;
   margin-bottom: 1rem;
+  margin-top: 20px;
 }
 .bx-sls .dropdown-block {
   display: block;
@@ -2250,7 +2251,7 @@ hr.bxe-light {
   font-size: 16px;
   line-height: 130%;
   color: #eb5806;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   background-image: url("images/basket-free-delivery.svg");
   background-repeat: no-repeat;
   background-position: 24px 50%;

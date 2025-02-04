@@ -543,9 +543,14 @@ else
 			<!--	SIDEBAR BLOCK	-->
 			<div class="col-lg-4 col-md-5 bx-soa-sidebar ">
 
-                <div class="basket-free-delivery">
-                    <? $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-text.php'); ?>
-                </div>
+                <?php if ($arResult['COUNT_PRODUCTS'] != $arResult['COUNT_LICENCE_PRODUCTS']) : ?>
+                    <div class="basket-free-delivery">
+                        <?php $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-text.php'); ?>
+                    </div>
+                    <?php if ($arResult['COUNT_LICENCE_PRODUCTS'] > 0) : ?>
+                        <?php $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-more_text.php'); ?>
+                    <?php endif; ?>
+                <?php endif; ?>
 
 				<div class="bx-soa-line-content"><?= getMessage("SOA_IN_ORDER", array('#QUANTITY_TEXT#' => $quantityText, '#PRICE_TEXT#' => $orderPriceText));?></div>
 				<div id="bx-soa-basket" class="bx-soa-section bx-active">
