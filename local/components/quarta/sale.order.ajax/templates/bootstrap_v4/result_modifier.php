@@ -97,10 +97,10 @@ $userId = \Bitrix\Main\Engine\CurrentUser::get()->getId();
 
 if ($userId) {
 
-//    $userFields = \Bitrix\Main\UserTable::getList([
-//        'select' => ['ID', 'NAME', 'UF_LOGICTIM_BONUS'],
-//        'filter' => ['ID' => $userId],
-//    ])->fetch();
+    $userFields = \Bitrix\Main\UserTable::getList([
+        'select' => ['ID', 'NAME', 'UF_LOGICTIM_BONUS'],
+        'filter' => ['ID' => $userId],
+    ])->fetch();
 
 }
 
@@ -108,7 +108,7 @@ if ($userId) {
 $arResult['JS_DATA']['DEBUG_IP'] = $_SERVER['REMOTE_ADDR'];
 
 /** Передаем бонусы пользователя */
-//$arResult['JS_DATA']['USER_POINTS'] = $userFields['UF_LOGICTIM_BONUS'];
+$arResult['JS_DATA']['USER_POINTS'] = $userFields['UF_LOGICTIM_BONUS'];
 
 /** Передаем PAYSYSTEMID в script */
 $arResult['JS_DATA']['PAY_SYSTEMS']["UKASSA_ID"] = (int) UKASSA_ID;
