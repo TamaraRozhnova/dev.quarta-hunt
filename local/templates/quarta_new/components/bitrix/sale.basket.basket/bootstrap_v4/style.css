@@ -265,7 +265,6 @@
   -webkit-box-flex: 5;
   -ms-flex: 5;
   flex: 5;
-  margin-top: 20px;
 }
 
 .basket-checkout-section-inner {
@@ -2439,7 +2438,7 @@ body.bx-theme-yellow .catalog-block-header {
   font-size: 16px;
   line-height: 130%;
   color: #eb5806;
-  margin-bottom: 6px;
+  margin-bottom: 20px;
   background-image: url("images/basket-free-delivery.svg");
   background-repeat: no-repeat;
   background-position: 24px 50%;

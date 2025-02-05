@@ -14,8 +14,7 @@ if (
     $arResult['GRID'] &&
     $arResult['GRID']['ROWS']
 ) {
-    $countLicenceProduct = 0;
-    $arResult['COUNT_PRODUCTS'] = count($arResult['GRID']['ROWS']);
+    $haveLicenceProducts = false;
 
     foreach ($arResult['GRID']['ROWS'] as $basketId => $item) {
         $res = CIBlockElement::GetByID($item['PRODUCT_ID']);
@@ -34,10 +33,11 @@ if (
             )->GetNext();
 
             if ($rsSection['UF_LISENCE_PRODUCTS'] == 1) {
-                $countLicenceProduct++;
+                $haveLicenceProducts = true;
+                break;
             }
         }
     }
 
-    $arResult['COUNT_LICENCE_PRODUCTS'] = $countLicenceProduct;
+    $arResult['HAVE_LICENCE_PRODUCTS'] = $haveLicenceProducts;
 }

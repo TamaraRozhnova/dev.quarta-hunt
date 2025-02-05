@@ -12,13 +12,10 @@ global $APPLICATION;
 <script id="basket-total-template" type="text/html">
 	<div class="basket-checkout-container" data-entity="basket-checkout-aligner">
 
-        <?php if ($arResult['COUNT_PRODUCTS'] != $arResult['COUNT_LICENCE_PRODUCTS']) : ?>
+        <?php if (!$arResult['HAVE_LICENCE_PRODUCTS']) : ?>
             <div class="basket-free-delivery">
                 <?php $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-text.php'); ?>
             </div>
-            <?php if ($arResult['COUNT_LICENCE_PRODUCTS'] > 0) : ?>
-                <?php $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-more_text.php'); ?>
-            <?php endif; ?>
         <?php endif; ?>
 
 		<?

@@ -23,8 +23,7 @@ while ($arRestr = $dbRestr->fetch()) {
 }
 
  if (!empty($arResult['BASKET_ITEMS'])) {
-     $countLicenceProduct = 0;
-     $arResult['COUNT_PRODUCTS'] = count($arResult['BASKET_ITEMS']);
+     $haveLicenceProducts = false;
 
     foreach ($arResult['BASKET_ITEMS'] as $arItem) {        
         $arProductsIDS[$arItem['PRODUCT_ID']] = $arItem['PRODUCT_ID'];
@@ -46,12 +45,12 @@ while ($arRestr = $dbRestr->fetch()) {
             )->GetNext();
 
             if ($rsSection['UF_LISENCE_PRODUCTS'] == 1) {
-                $countLicenceProduct++;
+                $haveLicenceProducts = true;
             }
         }
     }
 
-     $arResult['COUNT_LICENCE_PRODUCTS'] = $countLicenceProduct;
+     $arResult['HAVE_LICENCE_PRODUCTS'] = $haveLicenceProducts;
  }
 
  foreach ($arProductsIDS as $arProduct) {
