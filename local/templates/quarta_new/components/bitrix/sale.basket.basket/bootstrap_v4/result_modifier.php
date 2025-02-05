@@ -17,24 +17,34 @@ if (
     $haveLicenceProducts = false;
 
     foreach ($arResult['GRID']['ROWS'] as $basketId => $item) {
+        foreach ($list as $arSectionPath){
+            echo '<pre>';print_r($arSectionPath);echo '</pre>';
+        }
+
         $res = CIBlockElement::GetByID($item['PRODUCT_ID']);
 
         if ($element = $res->GetNext()) {
-            $rsSection = CIBlockSection::GetList([],
-                [
-                    'ID' => $element['IBLOCK_SECTION_ID'],
-                    'IBLOCK_ID' => CATALOG_IBLOCK_ID
-                ],
-                false,
-                [
-                    'ID',
-                    'UF_LISENCE_PRODUCTS'
-                ]
-            )->GetNext();
+            $sectionsList = CIBlockSection::GetNavChain(CATALOG_IBLOCK_ID, $element['IBLOCK_SECTION_ID'], ['ID'], true);
 
-            if ($rsSection['UF_LISENCE_PRODUCTS'] == 1) {
-                $haveLicenceProducts = true;
-                break;
+            if (!empty($sectionsList)) {
+                foreach ($sectionsList as $section) {
+                    $rsSection = CIBlockSection::GetList([],
+                        [
+                            'ID' => $section['ID'],
+                            'IBLOCK_ID' => CATALOG_IBLOCK_ID
+                        ],
+                        false,
+                        [
+                            'ID',
+                            'UF_LISENCE_PRODUCTS'
+                        ]
+                    )->GetNext();
+
+                    if ($rsSection['UF_LISENCE_PRODUCTS'] == 1) {
+                        $haveLicenceProducts = true;
+                        break;
+                    }
+                }
             }
         }
     }
