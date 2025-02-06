@@ -35,11 +35,11 @@ else
 		<div class="container">
 
 
-            <img class="catalog_bnr" src="/local/templates/gaut-optics/images/catalog_bnr.png" alt="" >
+            <? $APPLICATION->IncludeFile(SITE_TEMPLATE_PATH . '/inc/section_bnr.php'); ?>
 
 
-			<div class="inner__wrapper">
-                <div class="inner__left">
+			<div class="inner__wrapper inner__wrapper-sort">
+                <div class="inner__left inner__left-sort">
                     <div class="filter__title">Сортировка</div>
                 </div>
                 <div class="inner__right">

@@ -7,7 +7,8 @@
 }
 .card__slider {
     position: relative;
-    border: 1px solid #E2E2E2;
+    border-radius: 12px;
+    overflow: hidden;
 }
 .card__slider-img {
     position: relative;
@@ -28,7 +29,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
 }
 .card__slider-navigation {
@@ -77,7 +78,7 @@
     left: 5px;
     width: 90%;
     height: 90%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     border-radius: 8px;
 }
@@ -143,7 +144,7 @@ input[type=number] {
 }
 .card__basket {
     max-width: 326px;
-    margin: 0 10px;
+    margin: 0 0 0 15px;
     background: #000;
 }
 .card__characteristic {
@@ -202,6 +203,7 @@ input[type=number] {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
+    overflow: hidden;
 }
 .card-info__description h2{
     font-size: 1.5rem;
@@ -716,17 +718,48 @@ input[type=number] {
         white-space: nowrap;
         overflow: hidden;
     }
+    .main {
+        padding-top: 38px !important;
+    }
+    .card__slider {
+        overflow: unset;
+
+        box-shadow: 50px 0 0 0 #fff, -50px 0 0 0 #fff;
+    }
+    .card__slider .swiper {
+        padding-bottom: 50px;
+        background-color: #fff;
+    }
     .card__slider-navigation {
+        display: flex;
+        top: unset;
+        bottom: 0;
+    }
+    .card__slider-navigation .ui-swiper-button {
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        border: none;
+        background-image: url("img/arrow.svg");
+        background-position: 50%;
+        background-repeat: no-repeat;
+
+    }
+    .card__slider-navigation .ui-swiper-button.swiper-button-next {
+        transform: rotateY(180deg);
+
+    }
+    .card__slider-navigation .ui-swiper-button svg{
         display: none;
     }
     .card__thumbnail {
         display: none;
     }
     .price-new {
-        font-size: 13px;
+        font-size: 18px;
     }
     .price-new .value {
-        font-size: 16px;
+        font-size: 18px;
     }
     .card__characteristic {
         grid-template-columns: repeat(2, 1fr);
@@ -743,6 +776,34 @@ input[type=number] {
     }
     .section__slider-navigation {
         display: none;
+    }
+    .product-about__tabs{
+        gap: 48px;
+        margin-top: 40px;
+        margin-bottom: 0;
+    }
+    .product-about__tab {
+        padding: 15px 0 16px 0;
+        font-size: 14px;
+    }
+    .card__count.count input{
+        background-color: #fff;
+        border: 1px solid #bdbdbd;
+        border-radius: 8px;
+    }
+    .card-info__characteristic {
+        border-top: none;
+        padding-top: 0;
+    }
+    .card-info__review {
+        border-top: unset;
+        margin-top: 0;
+        padding: 20px 0;
+    }
+    .card-info__characteristic .title, .card-info__review h2 {
+        font-size: 18px;
+        text-align: left;
+        margin-bottom: 16px;
     }
 }
 @media screen and (max-width: 575px) {

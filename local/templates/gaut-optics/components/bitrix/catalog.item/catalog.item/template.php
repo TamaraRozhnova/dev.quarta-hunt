@@ -106,7 +106,7 @@ if (!$arItem['DETAIL_PICTURE']['SRC'])
 			<div class="catalog__item-buttons">
                 <?if($arItem['CAN_BUY']){?>
                     <button class="ui-button ui-button--dark" data-add-basket="<?=$arItem['ID']?>">
-                        в корзину
+                        В корзину
                     </button>
                 <?}else{?>
                     <button class="ui-button ui-button--light" disabled="disabled">

@@ -224,7 +224,7 @@ if(isset($arResult['PROPERTIES']) && isset($arResult['PROPERTIES']['MORE_PHOTO']
 <div class="card-info custom-text">
 
     <div class="product-about__tabs">
-        <a class="product-about__tab product-about__tab--selected" href="description">Описание</a>
+        <a class="product-about__tab product-about__tab--selected" href="#description">Описание</a>
         <a class="product-about__tab" href="#characteristic">Характеристики</a>
         <?/*<a class="product-about__tab" href="#">Обзор</a>*/?>
         <a class="product-about__tab" href="#review">Отзывы</a>
