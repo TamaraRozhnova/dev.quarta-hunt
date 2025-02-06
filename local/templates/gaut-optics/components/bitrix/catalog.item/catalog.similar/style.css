@@ -163,10 +163,59 @@
     font-size: 10px;
     border: 2px solid rgb(169, 169, 169);
 }
+.recomm__text{
+    display: none;
+}
 
 @media (max-width: 1279px) {
     .section-similar .section__slider-navigation .section__title{
+        font-size: 18px !important;
+    }
+}
+@media (max-width: 743px) {
+    .section__body.recomm .catalog__item-buttons .ui-button--transparent{
+        display: none;
+    }
+    .section__body.recomm .catalog__item-name {
+        font-size: 16px;
+        text-transform: unset;
+    }
+    .section__body.recomm .price-new .value, .section__body.recomm .catalog__item .price-new {
+        font-size: 18px;
+    }
+    .section__body.recomm .ui-swiper-button{
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
 
-        font-size: 16px !important;
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        border: none;
+        background-image: url("img/arrow.svg");
+        background-position: 50%;
+        background-repeat: no-repeat;
+    }
+    .section__body.recomm .ui-swiper-button svg{
+        display: none;
+    }
+    .section__body.recomm .ui-swiper-button.swiper-button-next{
+        right: 0;
+        transform: rotateY(180deg);
+    }
+    .section-similar .section__slider-navigation .section__title {
+        align-self: flex-start !important;
+        text-transform: none !important;
+    }
+    .section__body.recomm .swiper{
+        padding-bottom: 40px;
+    }
+    .recomm__text{
+        display: block;
+        position: relative;
+        top: -20px;
+        font-weight: 400;
+        font-size: 14px;
+        color: #323232;
     }
 }

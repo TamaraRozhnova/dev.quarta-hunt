@@ -831,3 +831,8 @@
 	height: 40px;
 	margin-right: 8px;
 }
+
+
+.smart-filter-block .form-check-input:checked[type="checkbox"] {
+	background-image: url('images/check-square-check.svg');
+}

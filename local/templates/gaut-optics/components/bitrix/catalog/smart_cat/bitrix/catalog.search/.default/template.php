@@ -18,6 +18,9 @@ $this->setFrameMode(true);
 
 global $searchFilter;
 
+$assets = \Bitrix\Main\Page\Asset::getInstance();
+$assets->addCss('/local/templates/gaut-optics/components/bitrix/catalog.section/orig/style.css');
+
 $elementOrder = [];
 if ($arParams['USE_SEARCH_RESULT_ORDER'] === 'N')
 {
