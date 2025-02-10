@@ -73,6 +73,7 @@ class SaleOrderAjax extends \CBitrixComponent
 	protected $context;
 	protected $checkSession = true;
 	protected $isRequestViaAjax;
+    protected $isUserOpt = false;
 
 	public function onPrepareComponentParams($arParams)
 	{
@@ -3836,7 +3837,12 @@ class SaleOrderAjax extends \CBitrixComponent
 		{
 			if ($personTypeId === intval($personType["ID"]) || !array_key_exists($personTypeId, $personTypes))
 			{
-				$personTypeId = intval($personType["ID"]);
+                if ($personTypeIdOld == 0 && $this->isUserOpt) {
+                    $personTypeId = LEGAL_PERSON_ID;
+                } else {
+                    $personTypeId = intval($personType["ID"]);
+                }
+
 				$order->setPersonTypeId($personTypeId);
 				$this->arUserResult['PERSON_TYPE_ID'] = $personTypeId;
 				$personType["CHECKED"] = "Y";
@@ -5986,7 +5992,11 @@ class SaleOrderAjax extends \CBitrixComponent
 		$order = $orderClassName::create($this->getSiteId(), $userId);
 		$order->isStartField();
 
-		$this->initLastOrderData($order);
+        $this->checkUserGroup($userId);
+
+        if (!$this->isUserOpt) {
+            $this->initLastOrderData($order);
+        }
 
 		$order->setField('STATUS_ID', Sale\OrderStatus::getInitialStatus());
 
@@ -6045,6 +6055,19 @@ class SaleOrderAjax extends \CBitrixComponent
 
 		return $order;
 	}
+
+    /**
+     * Проверяем пользователя на принадлежность к группе оптовых покупателей
+     *
+     * @param $userId
+     * @return $this->isUserOpt
+     */
+    protected function checkUserGroup($userId)
+    {
+        if (in_array(OPT_GROUP_ID, Bitrix\Main\UserTable::getUserGroupIds($userId))) {
+            $this->isUserOpt = true;
+        };
+    }
 
 	/**
 	 * Initializes companies for payment and shipment
