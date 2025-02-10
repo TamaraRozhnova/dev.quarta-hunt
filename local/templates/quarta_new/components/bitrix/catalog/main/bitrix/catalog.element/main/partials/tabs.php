@@ -6,6 +6,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use General\User;
 
+/**
+ * @var $arResult
+ */
+
 $user = new User();
 $isUserAuth = $user->isAuthorized();
 
@@ -109,12 +113,27 @@ $isUserAuth = $user->isAuthorized();
                                     <?endif;?>
                                 </div>
                             </div>
-                            <div class="col-2 product-availability__cell">
-                                <?/*if ($arStore['AMOUNT'] > 0):?>
-                                    <button class="btn">Выбрать</button>
-                                <?else:?>
-                                    <button class="btn" disabled>Выбрать</button>
-                                <?endif;*/?>
+                            <div class="col-2 product-availability__cell store-add-block">
+                                <?php if ($arStore['PICKUP'] === 'Y') : ?>
+                                    <?php if ($arStore['AMOUNT'] <= 0) : ?>
+                                        <span>доставка товара в точку выдачи может занять до 4х дней, если он приедет раньше - мы уведомим Вас</span>
+                                    <?php else : ?>
+                                        <button class="product-basket btn btn-primary px-5 product-card__add-basket-store"
+                                                data-store-id="<?= $arStore['ID'] ?>"
+                                                data-amount="<?= $arStore['AMOUNT'] ?>"
+                                                data-id="<?= $arResult['ID'] ?>"
+                                        >
+                                            В корзину
+                                        </button>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <button class="product-basket btn btn-primary px-5 product-card__add-basket-store"
+                                            data-amount="<?= $arStore['AMOUNT'] ?>"
+                                            data-id="<?= $arResult['ID'] ?>"
+                                    >
+                                        В корзину
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?endforeach;?>

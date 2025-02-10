@@ -4,6 +4,8 @@ namespace Classes;
 
 use CModule;
 use \Bitrix\Iblock\Elements\ElementBaseSettingsTable;
+use Local\Util\IblockHelper;
+use CIBlockElement;
 
 class IblockDeliverySettings
 {
@@ -133,7 +135,7 @@ class IblockDeliverySettings
         return static::$defaultCourierDeliveryDate;
     }
 
-    public static function getStoreView() : array
+    public static function getStoreDefaultView() : array
     {
         if (!CModule::IncludeModule('iblock')) {
             return [];
@@ -141,7 +143,7 @@ class IblockDeliverySettings
 
         $settingElement = ElementBaseSettingsTable::getList([
             'select' => [
-                'STORE_VIEW_DEFAULT'
+                'ID'
             ],
             'filter' => [
                 'ACTIVE' => 'Y'
@@ -149,15 +151,23 @@ class IblockDeliverySettings
         ])->fetchObject();
 
         if ($settingElement &&
-            $settingElement->getCourierDelivery() &&
-            $settingElement->getCourierDelivery()->getAll()) {
-            $storeIds = [];
+            $settingElement->getId()) {
 
-            foreach ($settingElement->getCourierDelivery()->getAll() as $id) {
-                $storeIds[] = $id->getValue();
+            $iblockBaseSettingsId = IblockHelper::getIdByCode('baseSettings');
+
+            if ($iblockBaseSettingsId) {
+                $storeIds = [];
+
+                $dbPropsStoreId = CIBlockElement::GetProperty($iblockBaseSettingsId, $settingElement->getId(), [], ['CODE' => 'STORE_VIEW_DEFAULT']);
+
+                if ($dbPropsStoreId && is_array($dbPropsStoreId->arResult)) {
+                    foreach ($dbPropsStoreId->arResult as $storeId) {
+                        $storeIds[] = $storeId['VALUE'];
+                    }
+                }
+
+                return $storeIds;
             }
-
-            return $storeIds;
         }
 
         return [];

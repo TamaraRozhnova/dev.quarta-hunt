@@ -61,7 +61,7 @@ class DeliverySettings
         return $result;
     }
 
-    private static function getUserSelectedCity(): string
+    public static function getUserSelectedCity(): string
     {
         if (!CModule::IncludeModule('ammina.regions')) {
             return '';

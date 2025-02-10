@@ -69,7 +69,7 @@ class SdekApi
             $sdekId = '';
             $result = $DB->Query("SELECT * FROM `ipol_sdekcities` WHERE BITRIX_ID = " . $bitrixId);
 
-            while($row = $result->Fetch()) {
+            while ($row = $result->Fetch()) {
                 $sdekId = $row['SDEK_ID'];
             }
 

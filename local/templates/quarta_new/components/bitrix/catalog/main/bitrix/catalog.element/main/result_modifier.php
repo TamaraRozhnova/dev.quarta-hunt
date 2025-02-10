@@ -15,6 +15,7 @@ use Bitrix\Sale\Services\PaySystem\Restrictions\Manager;
 use Bitrix\Currency\CurrencyManager;
 use Bitrix\Main\Loader;
 use Classes\DeliverySettings;
+use Classes\LinkCityToStore;
 
 Loader::includeModule('currency');
 
@@ -193,6 +194,23 @@ if (!empty($rsStoreElement)) {
 
     }
 
+    $selectedUserCity = DeliverySettings::getUserSelectedCity();
+    $linkCityList = LinkCityToStore::getIblockLinkElement($selectedUserCity);
+
+    if (!empty($linkCityList) && !empty($linkCityList['STORE_ID'])) {
+        $havePickup = false;
+
+        foreach ($linkCityList['STORE_ID'] as $storeId) {
+            foreach ($arResult['STORES_ELEMENT'] as $key => &$store) {
+                if ($storeId == $store['ID']) {
+                    $store['PICKUP'] = 'Y';
+                    $havePickup = true;
+                }
+            }
+        }
+
+        $arResult['HAVE_PICKUP'] = $havePickup;
+    }
 }
 
 // Получаем ограничения для сервиса через запрос к таблице ограничений
