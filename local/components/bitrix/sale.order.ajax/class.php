@@ -73,7 +73,7 @@ class SaleOrderAjax extends \CBitrixComponent
 	protected $context;
 	protected $checkSession = true;
 	protected $isRequestViaAjax;
-    protected $isUserOpt = false;
+	protected $isUserOpt = false;
 
 	public function onPrepareComponentParams($arParams)
 	{
@@ -3837,16 +3837,17 @@ class SaleOrderAjax extends \CBitrixComponent
 		{
 			if ($personTypeId === intval($personType["ID"]) || !array_key_exists($personTypeId, $personTypes))
 			{
-                if ($personTypeIdOld == 0 && $this->isUserOpt) {
-                    $personTypeId = LEGAL_PERSON_ID;
-                } else {
-                    $personTypeId = intval($personType["ID"]);
-                }
+				if ($personTypeIdOld == 0 && $this->isUserOpt) {
+					$personTypeId = LEGAL_PERSON_ID;
+				} else {
+					$personTypeId = intval($personType["ID"]);
+				}
 
 				$order->setPersonTypeId($personTypeId);
 				$this->arUserResult['PERSON_TYPE_ID'] = $personTypeId;
 				$personType["CHECKED"] = "Y";
 			}
+
 			$arResult["PERSON_TYPE"][$personType["ID"]] = $personType;
 		}
 
@@ -5375,23 +5376,10 @@ class SaleOrderAjax extends \CBitrixComponent
 
 		if (!empty($actualValues) && is_array($actualValues))
 		{
-            $session = \Bitrix\Main\Application::getInstance()->getSession();
-
-            if (!$session->has('selectedCity')) {
-                $session->set('selectedCity', $actualValues[0]);
-            }
-
-            $isAjaxRequest = \Bitrix\Main\Context::getCurrent()->getRequest()->isAjaxRequest();
-
 			foreach ($actualValues as $key => $value)
 			{
-                $setValue = $value;
-                if ($session->has('selectedCity') && $session['selectedCity'] == $value && !$isAjaxRequest) {
-                    $setValue = '';
-                }
-
 				$parameters = [
-					'CODE' => $setValue,
+					'CODE' => $value,
 					'INPUT_NAME' => 'ORDER_PROP_'.$propertyId.($isMultiple ? '['.$key.']' : ''),
 					'CACHE_TYPE' => 'A',
 					'CACHE_TIME' => '36000000',
@@ -5992,11 +5980,11 @@ class SaleOrderAjax extends \CBitrixComponent
 		$order = $orderClassName::create($this->getSiteId(), $userId);
 		$order->isStartField();
 
-        $this->checkUserGroup($userId);
+		$this->checkUserGroup($userId);
 
-        if (!$this->isUserOpt) {
-            $this->initLastOrderData($order);
-        }
+		if (!$this->isUserOpt) {
+			$this->initLastOrderData($order);
+		}
 
 		$order->setField('STATUS_ID', Sale\OrderStatus::getInitialStatus());
 
@@ -6056,18 +6044,18 @@ class SaleOrderAjax extends \CBitrixComponent
 		return $order;
 	}
 
-    /**
-     * Проверяем пользователя на принадлежность к группе оптовых покупателей
-     *
-     * @param $userId
-     * @return $this->isUserOpt
-     */
-    protected function checkUserGroup($userId)
-    {
-        if (in_array(OPT_GROUP_ID, Bitrix\Main\UserTable::getUserGroupIds($userId))) {
-            $this->isUserOpt = true;
-        };
-    }
+	/**
+	 * Проверяем пользователя на принадлежность к группе оптовых покупателей	 
+	 *
+	 * @param $userId
+	 * @return $this->isUserOpt
+	 */
+	protected function checkUserGroup($userId)
+	{
+		if (in_array(OPT_GROUP_ID, Bitrix\Main\UserTable::getUserGroupIds($userId))) {
+			$this->isUserOpt = true;
+		};
+	}
 
 	/**
 	 * Initializes companies for payment and shipment
