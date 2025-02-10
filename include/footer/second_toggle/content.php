@@ -7,6 +7,18 @@
         <li>
             <a href="mailto:shop@quarta-hunt.ru">shop@quarta-hunt.ru</a>
         </li>
+        <li>
+            <?$APPLICATION->IncludeComponent(
+                "bitrix:main.include",
+                "",
+                Array(
+                    "AREA_FILE_SHOW" => "file",
+                    "AREA_FILE_SUFFIX" => "",
+                    "EDIT_TEMPLATE" => "",
+                    "PATH" => "/include/contacts/opt-item-2-3.3.php"
+                )
+            );?>
+        </li>
     </ul>
 </div>
 <div class="col-12 col-sm-6 col-lg-12">
@@ -19,6 +31,18 @@
         </li>
         <li>
             <a href="mailto:moscow@quarta-hunt.ru">moscow@quarta-hunt.ru</a>
+        </li>
+        <li>
+            <?$APPLICATION->IncludeComponent(
+                "bitrix:main.include",
+                "",
+                Array(
+                    "AREA_FILE_SHOW" => "file",
+                    "AREA_FILE_SUFFIX" => "",
+                    "EDIT_TEMPLATE" => "",
+                    "PATH" => "/include/contacts/opt-item-2-3.php"
+                )
+            );?>
         </li>
     </ul>
 </div>

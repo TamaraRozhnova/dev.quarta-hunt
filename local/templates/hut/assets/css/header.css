@@ -1,0 +1,139 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.menu__inner {
+  max-width: 1920px;
+  padding: 0 64px;
+  margin: 0 auto;
+  display: flex;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+}
+
+.menu__left {
+  width: calc(50% - 128px);
+}
+
+.menu__logo {
+  margin: auto;
+  margin: auto auto auto 0;
+}
+
+.menu__dop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu__dop-link {
+  display: flex;
+  position: relative;
+}
+
+.menu__dop-link span {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  color: white;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -4px;
+  right: -4px;
+}
+
+.button.menu-toggler {
+  display: none;
+}
+
+.menu__wrap.scroll {
+  background-image: url("../../img/header-back.png");
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.menu__wrap.scroll .left-menu a {
+  color: var(--color-dark6);
+  transition: all 0.25s;
+}
+
+.menu__wrap.scroll .left-menu a:hover {
+  color: var(--color-primary7);
+  text-decoration: none;
+}
+
+.menu__wrap.scroll .menu__dop-link svg path,
+.menu__wrap.scroll .menu__index-link svg path.letter,
+.menu__wrap.scroll .burger svg path,
+.menu__wrap.scroll .menu-toggler svg path {
+  fill: var(--color-dark6);
+}
+
+.menu__wrap.scroll .catalog-opener .burger.closer svg path {
+  fill: white;
+}
+
+@media (max-width: 1400px) {
+  .menu__inner {
+    padding: 0 12px;
+    gap: 20px;
+  }
+  .menu__left {
+    width: calc(50% - 84px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .menu__left,
+  .menu__right,
+  .menu__index-link .desktop {
+    display: none;
+  }
+
+  .menu__index-link .mobile {
+    display: flex;
+  }
+
+  .menu__logo {
+    margin: 0 auto 0 0;
+  }
+
+  .menu__dop-link svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menu__inner {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .menu__dop {
+    gap: 4px;
+  }
+
+  .button.menu-toggler {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .menu__wrap.scroll {
+    background-image: url("../../img/header-back-mob.png");
+  }
+}

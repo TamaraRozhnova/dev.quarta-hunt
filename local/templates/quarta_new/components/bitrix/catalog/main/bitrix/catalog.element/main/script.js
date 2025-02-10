@@ -69,7 +69,10 @@ window.addEventListener('DOMContentLoaded', () => {
             tooltipContainers.forEach(container => {
                 const wrapperElement = container.querySelector('span:first-child');
                 const tooltipElement = container.querySelector('.tooltip');
-                new Tooltip(wrapperElement, tooltipElement)
+
+                if (wrapperElement && tooltipElement) {
+                    new Tooltip(wrapperElement, tooltipElement)
+                }
             })
         }
 

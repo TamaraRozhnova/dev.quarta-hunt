@@ -30,7 +30,7 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Вакансии", 
-		"/jobs/", 
+		"https://spb.hh.ru/search/vacancy?from=employerPage&employer_id=1514720&hhtmFrom=employer", 
 		Array(), 
 		Array(), 
 		"" 

@@ -1,5 +1,13 @@
 <?php
 $arUrlRewrite=array (
+  27 => 
+  array (
+    'CONDITION' => '#^={$params["SEF_URL_TEMPLATES"]["smart_filter"]}\\??(.*)#',
+    'RULE' => '&$1',
+    'ID' => 'bitrix:catalog.smart.filter',
+    'PATH' => '/local/templates/quarta_new/components/bitrix/catalog/main/include/catalog_smart_filter.php',
+    'SORT' => 100,
+  ),
   2 => 
   array (
     'CONDITION' => '#^/online/([\\.\\-0-9a-zA-Z]+)(/?)([^/]*)#',
@@ -72,7 +80,7 @@ $arUrlRewrite=array (
     'PATH' => '/brendy/index.php',
     'SORT' => 100,
   ),
-  20 => 
+  28 => 
   array (
     'CONDITION' => '#^/catalog/#',
     'RULE' => '',
@@ -118,6 +126,14 @@ $arUrlRewrite=array (
     'RULE' => '',
     'ID' => 'bitrix:news',
     'PATH' => '/blog/index.php',
+    'SORT' => 100,
+  ),
+  29 => 
+  array (
+    'CONDITION' => '#^/lp/#',
+    'RULE' => NULL,
+    'ID' => 'bitrix:landing.pub',
+    'PATH' => '/lp/index.php',
     'SORT' => 100,
   ),
 );

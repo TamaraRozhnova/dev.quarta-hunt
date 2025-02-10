@@ -16,7 +16,7 @@ $currentPage = $APPLICATION->GetCurPage();
     <div class="container"></div>
     <div class="subcategory-selector__container container subcategory-selector__container--desktop">
         <? foreach ($arResult['SECTIONS'] as $section) { ?>
-            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>">
+            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white <?= $section['ID']?> <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>">
                 <?= $section['NAME'] ?>
             </a>
         <? } ?>
@@ -24,13 +24,13 @@ $currentPage = $APPLICATION->GetCurPage();
 
     <div class="subcategory-selector__container subcategory-selector__container--mobile">
         <? foreach ($arResult['SECTIONS'] as $section) { ?>
-            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white" <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>>
+            <a href="<?= $section['SECTION_PAGE_URL'] ?>" class="btn btn-white <?= $section['ID']?> <?= $currentPage === $section['SECTION_PAGE_URL'] ? 'active' : '' ?>" >
                 <?= $section['NAME'] ?>
             </a>
         <? } ?>
     </div>
 
-    <div class="container">
+    <?/*div class="container">
         <? if ($arResult['BACK_URL']) { ?>
             <a href="<?= $arResult['BACK_URL'] ?>" class="btn btn-primary me-2 py-2">
                 Назад
@@ -40,5 +40,5 @@ $currentPage = $APPLICATION->GetCurPage();
         <a class="btn subcategory-selector__more btn-outline-secondary py-2">
             Еще...
         </a>
-    </div>
+    </div*/?>
 </section>

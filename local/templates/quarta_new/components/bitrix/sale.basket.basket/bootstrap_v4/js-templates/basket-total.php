@@ -4,10 +4,20 @@ use Bitrix\Main\Localization\Loc;
 
 /**
  * @var array $arParams
+ * @var array $arResult
  */
+
+global $APPLICATION;
 ?>
 <script id="basket-total-template" type="text/html">
 	<div class="basket-checkout-container" data-entity="basket-checkout-aligner">
+
+        <?php if (!$arResult['HAVE_LICENCE_PRODUCTS']) : ?>
+            <div class="basket-free-delivery">
+                <?php $APPLICATION->IncludeFile('/include/cart/basket-free-delivery-text.php'); ?>
+            </div>
+        <?php endif; ?>
+
 		<?
 		if ($arParams['HIDE_COUPON'] !== 'Y')
 		{

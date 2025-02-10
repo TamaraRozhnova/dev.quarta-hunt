@@ -37,9 +37,8 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                 <? if ($arResult['PROPERTIES']['DOUBLE_BONUS']['VALUE']) { ?>
                                     <span class="info">
                                         <span>
-                                            <div class="product-card__tag bg-primary">x2</div>
+                                            <div class="product-card__tag bg-primary double-bonus">Двойные бонусы за покупку</div>
                                         </span>
-                                        <span class="tooltip">Двойные бонусы за покупку</span>
                                     </span>
                                 <? } ?>
                             </div>
@@ -151,7 +150,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                             </span>
                             <a href="" data-available-index="1" class="available-window-open available-window-open-1">Посмотреть наличие</a>
                         <? } else { ?>
-                            <span class="me-2">Нет в наличии</span>
+                            <span class="me-2">Закончился</span>
                         <? } ?>
                     </div>
 

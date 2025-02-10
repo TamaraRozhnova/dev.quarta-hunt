@@ -89,3 +89,9 @@
 .btn-primary.btn-color-inverse:hover {
   background-color: #f9f9f9;
 }
+@media screen and (max-width:1023px){
+  .bx-authform-container{
+    margin: 0 0rem;
+    padding: 1rem;
+  }
+}

@@ -18,17 +18,34 @@ use Bitrix\Main\Engine\CurrentUser;
 
 CUtil::InitJSCore(array('interlabs_oneclick_popup'));
 
+$isSuccess = (isset($arResult['success']) && isset($arResult['success']['message'])) || (!isset($arResult['validateErrors']) && count($arResult['validateErrors']) < 1);
+
 ?>
 <div class="interlabs-oneclick__container" id="interlabs-oneclick__container"        
-     style="<?php if ( (isset($arResult['success']) && isset($arResult['success']['message'])) || (isset($arResult['validateErrors']) && count($arResult['validateErrors']) > 0) ) {
+     style="<?php if ($isSuccess) {
      } else {
          echo 'display:none;';
      } ?>">
-    <div class="interlabs-oneclick__container__dialog modal-mask">
+    <div class="interlabs-oneclick__container__dialog modal-mask <?=$isSuccess ? 'success-oneclick' : null?>">
         <div class="modal-wrapper">
             <div class="modal-container">                 
                 <div class="header">
-                    <label><?php echo Loc::getMessage("buy_in_1_click") ?></label>
+                    <label>
+                        <? if ($isSuccess): ?>
+                            <?=
+                                Loc::getMessage(
+                                    "success_buy_in_1_click", 
+                                    ['#ORDER_ID#' => $arResult['success']['orderId']]
+                                )
+                            ?>
+                            <script>
+                                ym(30377432, 'reachGoal', 'form_buy_1_click')
+                            </script>
+
+                        <? else: ?>
+                            <?=Loc::getMessage("buy_in_1_click")?>
+                        <? endif; ?>
+                    </label>
                     <span class="js-interlabs-oneclick__dialog__close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
@@ -64,20 +81,19 @@ CUtil::InitJSCore(array('interlabs_oneclick_popup'));
                             <div class="error error-NAME"></div>
                         </div>
 
-                        <div class="form-group">
-                            <label><?php echo Loc::getMessage("phone"); ?><span class="bx-authform-starrequired">*</span></label>
+                        <div class="form-group phone-wrapper-click">
+                            <label><?php echo Loc::getMessage("phone"); ?></label>
                             <input id="click_phone" name="PHONE" type="text" class="form-control"
                                    value="<?php echo Oneclick::reqInputByProduct("PHONE", $arResult['user']['PHONE'], $arResult['PRODUCT_ID']); ?>" required>
                             <div class="error error-PHONE"></div>
                         </div>
                         <?php if ($arResult['USE_FIELD_EMAIL'] === 'Y') { ?>
-                            <div class="form-group">
+                            <div class="form-group email-wrapper-click">
                                 <label>
                                     <?php echo Loc::getMessage("email"); ?>
                                     <span class="email-warning-more">
                                         <?php echo Loc::getMessage("email_more"); ?>
                                     </span>
-                                    <span class="bx-authform-starrequired">*</span>
                                 </label>
                                 <input name="EMAIL" type="text" class="form-control"
                                        value="<?php echo Oneclick::reqInputByProduct("EMAIL", $arResult['user']['EMAIL'], $arResult['PRODUCT_ID']); ?>" required>

@@ -1,0 +1,162 @@
+/**Top menu**/
+#horizontal-multilevel-menu,
+#horizontal-multilevel-menu ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+#horizontal-multilevel-menu {
+  display: flex;
+  gap: 32px;
+}
+
+/*Links*/
+#horizontal-multilevel-menu a {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+
+#horizontal-multilevel-menu li {
+  position: relative;
+}
+
+/*Root items*/
+#horizontal-multilevel-menu li a.root-item,
+#horizontal-multilevel-menu li a.root-item-selected {
+  color: #fff;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: lowercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s;
+}
+
+#horizontal-multilevel-menu li a:hover.root-item,
+#horizontal-multilevel-menu li a:hover.root-item-selected {
+  color: var(--color-primary7);
+}
+
+/*Root menu selected*/
+#horizontal-multilevel-menu li a.root-item-selected {
+}
+
+/*Root items: hover*/
+#horizontal-multilevel-menu li:hover a.root-item,
+#horizontal-multilevel-menu li.jshover a.root-item {
+}
+
+/*Child-items: hover*/
+#horizontal-multilevel-menu li:hover,
+#horizontal-multilevel-menu li.jshover {
+}
+
+/*Child-items selected*/
+#horizontal-multilevel-menu li.item-selected {
+}
+
+/*Sub-menu box*/
+#horizontal-multilevel-menu li ul {
+  position: absolute;
+  top: auto;
+  display: none;
+  z-index: 500;
+  height: auto;
+  width: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*Sub-menu item box*/
+#horizontal-multilevel-menu li li {
+  width: 100%;
+  background-color: white;
+  padding: 8px 24px;
+}
+
+#horizontal-multilevel-menu li li:last-child {
+  padding-bottom: 16px;
+}
+
+/*Item link*/
+#horizontal-multilevel-menu li ul a {
+  text-align: left;
+  color: var(--color-dark6);
+  font-size: 18px;
+  line-height: 24px;
+  transition: all 0.25s;
+}
+
+#horizontal-multilevel-menu li ul a:hover {
+  color: var(--color-primary7);
+}
+
+#horizontal-multilevel-menu li ul ul {
+  margin: -27px 0 0 132px;
+}
+
+#horizontal-multilevel-menu li:hover ul ul,
+#horizontal-multilevel-menu li.jshover ul ul,
+#horizontal-multilevel-menu li:hover ul ul ul,
+#horizontal-multilevel-menu li.jshover ul ul ul,
+#horizontal-multilevel-menu li:hover ul ul ul ul,
+#horizontal-multilevel-menu li.jshover ul ul ul ul,
+#horizontal-multilevel-menu li:hover ul ul ul ul ul,
+#horizontal-multilevel-menu li.jshover ul ul ul ul ul {
+  display: none;
+}
+
+#horizontal-multilevel-menu li:hover ul,
+#horizontal-multilevel-menu li.jshover ul,
+#horizontal-multilevel-menu li li:hover ul,
+#horizontal-multilevel-menu li li.jshover ul,
+#horizontal-multilevel-menu li li li:hover ul,
+#horizontal-multilevel-menu li li li.jshover ul,
+#horizontal-multilevel-menu li li li li:hover ul,
+#horizontal-multilevel-menu li li li li.jshover ul,
+#horizontal-multilevel-menu li li li li li:hover ul,
+#horizontal-multilevel-menu li li li li li.jshover ul {
+  display: block;
+  padding-top: 28px;
+  width: max-content;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+#horizontal-multilevel-menu li:hover > a svg {
+  transform: rotate(180deg);
+}
+
+div.menu-clear-left {
+  clear: left;
+}
+
+.menu__wrap.scroll #horizontal-multilevel-menu li a.root-item,
+.menu__wrap.scroll #horizontal-multilevel-menu li a.root-item-selected {
+  color: var(--color-dark6);
+  transition: all 0.25s;
+}
+
+.menu__wrap.scroll #horizontal-multilevel-menu li a:hover.root-item,
+.menu__wrap.scroll #horizontal-multilevel-menu li a:hover.root-item-selected {
+  color: var(--color-primary7);
+}
+
+.menu__wrap.scroll #horizontal-multilevel-menu li a.root-item svg path {
+  fill: var(--color-dark6);
+}
+
+#horizontal-multilevel-menu li li:first-child {
+  padding-top: 16px;
+}
+
+@media (max-width: 1400px) {
+  #horizontal-multilevel-menu {
+    gap: 20px;
+  }
+}

@@ -1,0 +1,1 @@
+<img class="catalog_bnr" src="/local/templates/gaut-optics/images/catalog_bnr.png" alt="" >

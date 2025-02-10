@@ -5,14 +5,21 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 }
 
 use Helpers\Filters\ProductsFilterHelper;
+use Bitrix\Iblock\SectionTable;
+use Bitrix\Main\Application;
 
 $sectionId = $arResult['VARIABLES']['SECTION_ID'];
+
+//Для модуля Сотбит: SEO умного фильтра
+global $arCurSection;
+$arCurSection = $sectionId;
+//Конец
 
 /**
  * Проверка на существование раздела
  */
 
- $rsSection = Bitrix\Iblock\SectionTable::getList([
+ $rsSection = SectionTable::getList([
     "select" => [
         "NAME", "CODE"
     ],
@@ -33,7 +40,7 @@ if (empty($rsSection)) {
 
     if ($APPLICATION->RestartWorkarea())
     {
-        require(\Bitrix\Main\Application::getDocumentRoot() . "/404.php");
+        require(Application::getDocumentRoot() . "/404.php");
         die();
     }
 }
@@ -41,9 +48,9 @@ if (empty($rsSection)) {
 $headers = getallheaders();
 
 $filterHelperInstance = new ProductsFilterHelper($sectionId);
-$filterParams = $filterHelperInstance->getFilters();
+$filterParams = $filterHelperInstance->getFilters() ?? [];
 
-
+/* AJAX old filter
 if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))) {
     $APPLICATION->RestartBuffer();
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_smart_filter.php",
@@ -54,15 +61,19 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
             "component" => $component
         ]
     );
+
     $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
         [
             "params" => array_merge($arParams, $filterParams),
             "result" => $arResult,
-            "component" => $component
+            "component" => $component,
+            "isAjax" => "Y"
         ]
     );
+
     exit();
 }
+*/
 
 ?>
 
@@ -71,7 +82,7 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
         <div class="container">
             <? if ($filterParams['SECTION_NAME']) { ?>
                 <h1 class="category__header-title">
-                    <?= $filterParams['SECTION_NAME'] ?>
+                    <?$APPLICATION->ShowViewContent('my_code11');?>
                 </h1>
             <? } ?>
         </div>
@@ -106,12 +117,21 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
                     "component" => $component
                 ]
             );
+
+            /**
+             * SORT for standart filter
+             */
+            $APPLICATION->IncludeFile($templateFolder . "/include/catalog_filter_top.php", [
+                "currentSection" => $arCurSection,
+            ]);
+            
             $APPLICATION->IncludeFile($templateFolder . "/include/catalog_section.php",
                 [
                     "params" => array_merge($arParams, $filterParams),
                     "result" => $arResult,
                     "component" => $component
                 ]);
+
             ?>
         </div>
     </div>
@@ -130,3 +150,41 @@ if ((isset($headers["x-requested-with"]) || isset($headers["X-Requested-With"]))
     ); ?>
 
 </div>
+
+<?php
+
+//Переопределение метаинформации для модуля "Сотбит: SEO умного фильтра – мета-теги, заголовки, карта сайта"
+//начало
+    global $sotbitSeoMetaTitle;
+    $this->SetViewTarget('my_code11');
+    if(!empty($sotbitSeoMetaTitle)){
+        echo $sotbitSeoMetaTitle;
+	} else {
+		echo $filterParams['SECTION_NAME'];
+	}
+    $this->EndViewTarget();
+
+    //Переопределение ключевых слов Keywords
+    global $sotbitSeoMetaKeywords;
+    if(!empty($sotbitSeoMetaKeywords)){
+        $APPLICATION->SetPageProperty("keywords", $sotbitSeoMetaKeywords);
+    }
+    
+    //Переопределение описания страницы Description
+    global $sotbitSeoMetaDescription;
+    if(!empty($sotbitSeoMetaDescription)){
+        $APPLICATION->SetPageProperty("description", $sotbitSeoMetaDescription);
+    } 
+    
+    //Переопределение заголовка H1
+    global $sotbitSeoMetaH1;  
+    if(!empty($sotbitSeoMetaH1)){
+             $APPLICATION->SetTitle($sotbitSeoMetaH1); 
+    }
+        
+    //Добавление пункта хлебных крошек Breadcrumb
+    global $sotbitSeoMetaBreadcrumbTitle;
+    if(!empty($sotbitSeoMetaBreadcrumbTitle)){
+        $APPLICATION->AddChainItem($sotbitSeoMetaBreadcrumbTitle  );
+    }
+//конец

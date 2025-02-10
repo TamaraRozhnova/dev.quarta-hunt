@@ -75,7 +75,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
         "SORT_ORDER1" => "ASC",
         "SORT_ORDER2" => "",
         "STRICT_SECTION_CHECK" => "N",
-        "COMPACT" => "Y"
+        "COMPACT" => "N"
     ],
         false
     ); ?>
@@ -91,6 +91,10 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
             ); ?>
         </div>
     </div>
+
+    <h1 class="hidden-on-page unset-margin">
+        <?=$APPLICATION->ShowTitle()?>
+    </h1>
 
     <?
     $APPLICATION->IncludeComponent(

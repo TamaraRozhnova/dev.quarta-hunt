@@ -10,16 +10,16 @@ use Bitrix\Main\Application;
 DiscountsHelper::fillProductsWithBonuses($arResult['ITEMS']);
 
 $arResult['SORT_OPTIONS'] = [
-    'relevante' => 'по релевантности',
-    'available' => 'по наличию',
-    'rating_asc' => 'по возрастанию рейтинга',
-    'rating_desc' => 'по убыванию рейтинга',
-    'discount_asc' => 'по возрастанию скидки',
-    'discount_desc' => 'по убыванию скидки',
+//    'relevante' => 'по релевантности',
+//    'available' => 'по наличию',
+//    'rating_asc' => 'по возрастанию рейтинга',
+//    'rating_desc' => 'по убыванию рейтинга',
     'price_asc' => 'по возрастанию цены',
     'price_desc' => 'по убыванию цены',
     'alphabet_asc' => 'по алфавиту А-Я',
     'alphabet_desc' => 'по алфавиту Я-А',
+    'discount_asc' => 'по возрастанию скидки',
+    'discount_desc' => 'по убыванию скидки',
 ];
 
 $arResult['ELEMENT_COUNT_OPTIONS'] = [
@@ -50,7 +50,7 @@ if (!empty($arResult['IBLOCK_SECTION_ID'])) {
             $sectionId = $arSection['IBLOCK_SECTION_ID'];
         } else {
             $sectionId = '';
-        }    
+        }
     }
 
     $arSections = array_reverse($arSections);
@@ -59,3 +59,6 @@ if (!empty($arResult['IBLOCK_SECTION_ID'])) {
         $arResult['ROOT_SECTION_DESC'] = $arSections[0]['DESCRIPTION'];
     }
 }
+
+// AJAX for filter catalog
+include 'ajax.php';

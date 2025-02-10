@@ -1,0 +1,35 @@
+.breadcrumbs {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px;
+
+   & a {
+      color: var(--Dark-Dark-6, #354052);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 114.286%;
+      text-decoration-line: underline;
+
+      &:hover {
+         text-decoration: none;
+      }
+   }
+
+   & span {
+      color: var(--Gray-Gray-6, #7c808f);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 114.286%;
+      display: inline;
+   }
+
+   &--white {
+      & a {
+         color: var(--Other-White, #fff);
+      }
+
+      & span {
+         color: var(--Gray-Gray-6, #7c808f);
+      }
+   }
+}

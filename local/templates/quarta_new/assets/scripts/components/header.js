@@ -25,30 +25,30 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (document.querySelector('.modal-overlay') != null) {
                     return false;
                 }
-    
+
                 if (
-                    document.documentElement.scrollTop > headerDesktop.offsetHeight + 50 
-                    && headerDesktop.style.position == 'initial' 
+                    document.documentElement.scrollTop > headerDesktop.offsetHeight + 50
+                    && headerDesktop.style.position == 'initial'
                     || headerDesktop.style.position == ''
                 ) {
                     headerDesktopNavItems.style.display = 'none';
-    
+
                     headerDesktop.style.transform = 'translateY(-100%)'
-    
+
                     setTimeout(() => {
                         headerDesktop.style.position = 'sticky';
                         headerDesktop.style.transform = 'initial'
                     }, 250);
-                    
+
                 }
-                
-            } 
-    
+
+            }
+
             if (document.documentElement.scrollTop < headerDesktop.offsetHeight - 100) {
                 headerDesktopNavItems.style.display = 'flex'
                 headerDesktop.style.position = 'initial';
             }
-    
+
         })
     }
 
@@ -68,11 +68,12 @@ window.addEventListener('DOMContentLoaded', () => {
     categories.forEach(category => {
         const button = category.querySelector('.catalog-category-mobile__title');
         button.addEventListener('click', (e) => {
-            if (e.target.classList.contains('expand')) {
+            let parent = e.target.parentElement;
+            if (parent.classList.contains('expand')) {
                 category.classList.remove('catalog-category-mobile--expanded');
-                e.target.classList.remove('expand')
+                parent.classList.remove('expand')
 
-                let children = e.target.nextSibling;
+                let children = parent.nextSibling;
                 if (children) {
                     children.nextSibling.style.display = 'block';
                 }
@@ -80,9 +81,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
             } else {
                 category.classList.toggle('catalog-category-mobile--expanded');
-                e.target.classList.toggle('expand')
+                parent.classList.toggle('expand')
 
-                let children = e.target.nextSibling;
+                let children = parent.nextSibling;
                 if (children) {
                     children.nextSibling.style.display = 'none';
                 }

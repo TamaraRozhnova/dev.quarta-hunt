@@ -18,6 +18,7 @@
  */
 
 use Bitrix\Main\Security\Random;
+use \Bitrix\Main\UserTable;
 
 if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)
 	die();
@@ -123,7 +124,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_REQUEST["register_submit_button"] 
 
 				if (strlen($numbersOnly) != 11) {
 					$arResult["ERRORS"][$key] = GetMessage("REGISTER_FIELD_REQUIRED");
-				}
+				} elseif (isset($_REQUEST["REGISTER"][$key]) && $_REQUEST["REGISTER"][$key] != '') {
+                    $user = UserTable::getList([
+                        'filter' => [
+                            'PERSONAL_PHONE' => $_REQUEST["REGISTER"][$key]
+                        ],
+                        'limit' => 1,
+                        'select'=> ['ID'],
+                    ])->fetch();
+
+                    if (is_array($user) && count($user) > 0) {
+                        $arResult['ERRORS'][$key] = GetMessage('USER_WITH_THIS_PHONE_EXIST');
+                    }
+                }
 
 			}
 

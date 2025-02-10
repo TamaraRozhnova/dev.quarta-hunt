@@ -1,0 +1,239 @@
+.main-slider {
+  margin-top: -81px;
+  min-height: 600px;
+  height: calc(100vh - 31px);
+  max-height: 1080px;
+}
+
+.main-slider__slide {
+  min-height: 600px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main-slider__slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 15%,
+      rgba(0, 0, 0, 0.8)
+    ),
+    linear-gradient(0deg, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.8));
+}
+
+.main-slider__progress {
+  background-color: #888887;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.main-slider__percent {
+  position: absolute;
+  height: 4px;
+  left: 0;
+  top: 0;
+  width: 0;
+  background-color: var(--color-primary);
+}
+
+.main-slider .swiper-wrapper {
+  height: calc(100% - 4px);
+}
+
+.main-slider__right,
+.main-slider__left {
+  cursor: pointer;
+  display: flex;
+}
+
+.main-slider__buttons {
+  z-index: 2;
+  padding-right: 163px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+.main-slider__count {
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-gray5);
+}
+
+.main-slider__current {
+  color: white;
+}
+
+.main-slider__slide .container {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.main-slider__item-title {
+  font-size: 64px;
+  line-height: 70px;
+  font-weight: 600;
+  color: white;
+}
+
+.main-slider__item-subtitle {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--color-gray5);
+}
+
+.main-slider__item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 64px;
+  width: 100%;
+}
+
+.main-slider__item-buttons {
+  margin-top: 64px;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  z-index: 3;
+}
+
+.main-slider__item-buttons .button.button-primary {
+  border-radius: 16px;
+  padding: 31px 32px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+.main-slider__item-buttons .button.button-secondary {
+  padding: 30px 32px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+}
+
+.main-slider__item-right {
+  max-width: 442px;
+}
+
+.main-slider__item-text {
+  font-size: 24px;
+  line-height: 32px;
+  color: white;
+}
+
+.container.main-slider__buttons-wrap {
+  position: relative;
+  bottom: 150px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1200px) {
+  .main-slider__item-right {
+    max-width: 381px;
+  }
+
+  .main-slider__buttons {
+    padding-right: 102px;
+  }
+
+  .main-slider__item {
+    padding-bottom: 32px;
+  }
+
+  .container.main-slider__buttons-wrap {
+    bottom: 120px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-slider {
+    margin-top: -57px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .main-slider__item-right {
+    max-width: 248px;
+  }
+
+  .main-slider__item-text {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  .main-slider__buttons {
+    padding-right: 0;
+    gap: 16px;
+  }
+
+  .main-slider__left svg,
+  .main-slider__right svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .container.main-slider__buttons-wrap {
+    bottom: 82px;
+  }
+
+  .main-slider__item-title {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .main-slider__item-subtitle {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  .main-slider__item-buttons {
+    margin-top: 32px;
+  }
+
+  .main-slider__item-buttons .button.button-primary {
+    padding: 22px 32px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .main-slider__item-buttons .button.button-secondary {
+    padding: 21px 22px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-slider__item {
+    flex-direction: column;
+    padding-bottom: 106px;
+    gap: 32px;
+  }
+
+  .container.main-slider__buttons-wrap {
+    justify-content: flex-start;
+  }
+
+  .main-slider__item-buttons .button.button-secondary {
+    display: none;
+  }
+}

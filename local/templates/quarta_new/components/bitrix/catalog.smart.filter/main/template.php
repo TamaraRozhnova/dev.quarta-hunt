@@ -35,7 +35,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                                     <div class="filters-section__body">
                                         <? foreach ($filter['CHILDREN'] as $child) { ?>
                                             <div>
-                                                <div 
+                                                <div
                                                     class="filters-item
                                                     <?=
                                                         $child['ELEMENT_COUNT'] == 0
@@ -77,7 +77,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
                     <div class="filters-section__body">
                         <? foreach ($arResult['FILTERS']['BRANDS']['CHILDREN'] as $child) { ?>
                             <div>
-                                <div 
+                                <div
                                     class="filters-item
                                     <?=
                                         $child['ELEMENT_COUNT'] == 0

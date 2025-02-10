@@ -164,7 +164,7 @@ if (!empty($rsStoreElement)) {
     }
 
     $arResult['STORES_ELEMENT'] = $rsStore = StoreTable::getList(array(
-        'filter' => array('=ID' => $arStoreElementIDS),
+        'filter' => array('=ID' => $arStoreElementIDS, 'ACTIVE' => 'Y'),
         'select' => array('ID', 'TITLE', 'ADDRESS', 'SCHEDULE', '*')
     ))->fetchAll();
 

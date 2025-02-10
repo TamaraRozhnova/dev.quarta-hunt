@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
             this.form.insertAdjacentHTML('afterend', this.createSuccessHtml());
             this.form.remove();
             this.scrollToSuccessElement();
+            ym(30377432, 'reachGoal', 'form_contacts');
         }
 
         scrollToSuccessElement() {

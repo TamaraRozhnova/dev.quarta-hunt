@@ -1,0 +1,55 @@
+/* Общие */
+.popup {
+  display: none;
+}
+
+/* Куки */
+.cookie-popup {
+  border-radius: 12px;
+  max-width: 667px;
+  background-color: var(--color-dark8);
+  padding: 16px 24px;
+  position: fixed;
+  bottom: 43px;
+  right: 64px;
+}
+
+.cookie-popup .popup__inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cookie-popup .popup__text {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--color-dark0);
+}
+
+.button.popup__close {
+  padding: 18px 28px;
+  border-radius: 12px;
+  background-color: var(--color-dark6);
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: white;
+}
+
+@media (max-width: 450px) {
+  .cookie-popup {
+    right: 16px;
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .popup__inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .button.popup__close {
+    width: 100%;
+    border-radius: 8px;
+  }
+}

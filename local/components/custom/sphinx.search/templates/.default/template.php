@@ -93,14 +93,6 @@ Loc::loadMessages(__FILE__);?>
                 </div>
             </div>
 
-            <? if (!empty($arResult['BLOG'])): ?>
-                <?$APPLICATION->IncludeComponent(
-                    "bitrix:news.list",
-                    "news_search_result",
-                    $arResult['PARAMS_BLOG']
-                );?>
-            <? endif; ?>
-
             <?$APPLICATION->IncludeComponent(
                 "bitrix:main.pagenavigation",
                 "main",
@@ -110,6 +102,14 @@ Loc::loadMessages(__FILE__);?>
                 ),
                 false
             );?>
+
+            <? if (!empty($arResult['BLOG'])): ?>
+                <?$APPLICATION->IncludeComponent(
+                    "bitrix:news.list",
+                    "news_search_result",
+                    $arResult['PARAMS_BLOG']
+                );?>
+            <? endif; ?>            
 
         <? endif; ?>
         

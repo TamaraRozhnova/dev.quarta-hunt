@@ -39,7 +39,7 @@ $APPLICATION->SetTitle('Контакты');
 
     <? $APPLICATION->IncludeComponent("bitrix:news.list", "contacts_shops", [
         "ACTIVE_DATE_FORMAT" => "d.m.Y",
-        "ADD_SECTIONS_CHAIN" => "N",
+        "ADD_SECTIONS_CHAIN" => "Y",
         "AJAX_MODE" => "N",
         "AJAX_OPTION_ADDITIONAL" => "",
         "AJAX_OPTION_HISTORY" => "N",
@@ -74,7 +74,7 @@ $APPLICATION->SetTitle('Контакты');
         "HIDE_LINK_WHEN_NO_DETAIL" => "N",
         "IBLOCK_ID" => "30",
         "IBLOCK_TYPE" => "about",
-        "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+        "INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
         "INCLUDE_SUBSECTIONS" => "N",
         "MESSAGE_404" => "",
         "NEWS_COUNT" => "100",
@@ -108,7 +108,7 @@ $APPLICATION->SetTitle('Контакты');
         false
     ); ?>
 
-    
+
     <div class="bg-gray-100">
         <div class="container">
             <div  class="row">
@@ -162,7 +162,19 @@ $APPLICATION->SetTitle('Контакты');
                                 "PATH" => "/include/contacts/opt-item-1-2.php"
                             )
                         );?>
-                    </p> 
+                    </p>
+                    <p class="mb-2">
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:main.include",
+                            "",
+                            Array(
+                                "AREA_FILE_SHOW" => "file",
+                                "AREA_FILE_SUFFIX" => "",
+                                "EDIT_TEMPLATE" => "",
+                                "PATH" => "/include/contacts/opt-item-1-3.php"
+                            )
+                        );?>
+                    </p>
                     <h3 class="mt-5 mb-4">
                         <?$APPLICATION->IncludeComponent(
                             "bitrix:main.include",
@@ -196,6 +208,18 @@ $APPLICATION->SetTitle('Контакты');
                                 "AREA_FILE_SUFFIX" => "",
                                 "EDIT_TEMPLATE" => "",
                                 "PATH" => "/include/contacts/opt-item-2-2.php"
+                            )
+                        );?>
+                    </p>
+                    <p class="mb-2">
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:main.include",
+                            "",
+                            Array(
+                                "AREA_FILE_SHOW" => "file",
+                                "AREA_FILE_SUFFIX" => "",
+                                "EDIT_TEMPLATE" => "",
+                                "PATH" => "/include/contacts/opt-item-2-3.php"
                             )
                         );?>
                     </p>

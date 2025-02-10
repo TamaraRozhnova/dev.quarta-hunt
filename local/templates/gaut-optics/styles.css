@@ -1,0 +1,62 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,a,span {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset,img {
+    border: 0;
+}
+ol,ul {
+    list-style: none;
+}
+caption,th {
+    text-align: left;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+*:focus{
+    outline: none;
+}
+a{
+    text-decoration: none;
+    color: #5476ff;
+}
+img, video{
+    max-width: 100%;
+}
+html {
+    height: 100%;
+    background-color: #F9F9F9 !important;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+body, input, textarea {
+    font: 16px/22px "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    height: 100%;
+    background-color: #F9F9F9 !important;
+}
+button, select{
+    font-family: 'Montserrat', sans-serif;
+}
+.noscroll {
+    overflow: hidden;
+}
+select{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.dn{
+    display: none !important;
+}
+.underline{
+    text-decoration: underline;
+}

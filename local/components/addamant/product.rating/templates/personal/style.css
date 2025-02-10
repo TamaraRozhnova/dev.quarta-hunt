@@ -1,0 +1,125 @@
+.star-block .click-star,
+.star-block.active .default-star .default-star__estimate {
+  display: none;
+}
+
+.star-block.active .click-star {
+  display: flex;
+  align-items: center;
+}
+
+.star-block .default-star {
+}
+
+.star-block > div {
+  align-items: center;
+  gap: 8px;
+}
+
+.default-star__estimate {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: var(--color-dark6);
+  text-align: center;
+  background-color: var(--color-dark0);
+  border-radius: 12px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.star-block > div.click-star a {
+  color: var(--color-dark6);
+}
+
+.star-block > div .stars-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.rating__overall {
+  font-size: 28px;
+  line-height: 33px;
+  font-weight: 600;
+  color: var(--color-dark2);
+}
+
+.rating-grade {
+  color: var(--color-dark6);
+}
+
+.star-block > div.click-star:not(.rated) .stars-block {
+  cursor: pointer;
+}
+
+.star-block
+  > div.click-star:not(.rated)
+  .stars-block:hover
+  svg.active-star-setted
+  path {
+  fill: var(--color-gray2);
+}
+
+.star-block > div.click-star .stars-block:hover svg.active-star path,
+.star-block > div.click-star .stars-block svg.active-star-setted path {
+  fill: var(--color-primary);
+}
+
+.rating__dispence {
+  padding-top: 16px;
+  border-top: 1px solid var(--color-gray2);
+  display: grid;
+  gap: 16px;
+}
+
+.rating__level {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.rating__level-title {
+  width: 72px;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--color-dark2);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.rating__level-draw {
+  width: 100%;
+  position: relative;
+  height: 8px;
+  background-color: var(--color-gray2);
+  border-radius: 32px;
+}
+
+.rating__level-num {
+  width: 30px;
+  flex-shrink: 0;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--color-dark6);
+  font-weight: 600;
+}
+
+.rating__level-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8px;
+  background-color: var(--color-primary);
+  border-radius: 32px;
+}
+
+.click-star.rated {
+  display: flex;
+}
+
+.click-star.rated .click-star__cancel {
+  display: none;
+}

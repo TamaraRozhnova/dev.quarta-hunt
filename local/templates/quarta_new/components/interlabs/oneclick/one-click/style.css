@@ -394,13 +394,15 @@ span.bx-authform-starrequired {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  display: table;
+  display: block;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
+  overflow: auto;
 }
 .interlabs-oneclick__container .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  display: block;
+  height: 100%;
+  align-content: center;
 }
 .interlabs-oneclick__container .modal-container {
   width: 500px;
@@ -678,6 +680,10 @@ span.bx-authform-starrequired {
     padding: 9px;
   }
 
+  .interlabs-oneclick__container .modal-wrapper {
+    height: unset;
+  }
+
   .interlabs-oneclick__container .modal-mask {
     z-index: 99999;
   }
@@ -685,5 +691,8 @@ span.bx-authform-starrequired {
   .product .interlabs-one-click-buy {
     margin-bottom: 0.938rem;
     width: 100%;
+  }
+  .interlabs-oneclick__container .modal-container {
+    border-radius: 0;
   }
 }

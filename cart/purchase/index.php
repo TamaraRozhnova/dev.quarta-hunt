@@ -9,7 +9,7 @@ $APPLICATION->SetTitle("Корзина");
 ?>
 
 <?$APPLICATION->IncludeComponent(
-	"bitrix:sale.order.ajax", 
+	"quarta:sale.order.ajax",
 	"bootstrap_v4", 
 	array(
 		"ACTION_VARIABLE" => "soa-action",
@@ -85,14 +85,20 @@ $APPLICATION->SetTitle("Корзина");
 		"USE_CUSTOM_ADDITIONAL_MESSAGES" => "N",
 		"USE_CUSTOM_ERROR_MESSAGES" => "N",
 		"USE_CUSTOM_MAIN_MESSAGES" => "N",
-		"USE_ENHANCED_ECOMMERCE" => "N",
+		"USE_ENHANCED_ECOMMERCE" => "Y",
 		"USE_PHONE_NORMALIZATION" => "Y",
 		"USE_PRELOAD" => "Y",
 		"USE_PREPAYMENT" => "N",
 		"USE_YM_GOALS" => "N",
 		"COMPONENT_TEMPLATE" => "bootstrap_v4",
 		"SHOW_MAP_FOR_DELIVERIES" => array(
-		)
+		),
+		"ADDITIONAL_PICT_PROP_45" => "-",
+		"ADDITIONAL_PICT_PROP_46" => "-",
+		"ADDITIONAL_PICT_PROP_84" => "-",
+		"ADDITIONAL_PICT_PROP_85" => "-",
+		"DATA_LAYER_NAME" => "dataLayer",
+		"BRAND_PROPERTY" => "PROPERTY_BREND"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

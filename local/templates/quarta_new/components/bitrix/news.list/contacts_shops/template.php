@@ -94,6 +94,12 @@ if (!count($arResult['ITEMS'])) {
                                         </div>
                                     <?endif;?>
                                 <?endforeach;?>
+                                <div class = "col-12 mb-3 col-md-6 d-flex mb-lg-5">
+                                    <div class="ms-2">
+                                        <?$APPLICATION->IncludeFile('/include/footer/socials.php', false); ?>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

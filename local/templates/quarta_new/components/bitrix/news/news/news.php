@@ -80,27 +80,6 @@ $this->setFrameMode(true);
         ); ?>
     <? endif ?>
 
-    <? if ($arParams["USE_FILTER"] == "Y"): ?>
-        <? $APPLICATION->IncludeComponent(
-            "bitrix:catalog.filter",
-            "bootstrap_v4",
-            array(
-                "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-                "IBLOCK_ID" => $arParams["IBLOCK_ID"],
-                "FILTER_NAME" => $arParams["FILTER_NAME"],
-                "FIELD_CODE" => $arParams["FILTER_FIELD_CODE"],
-                "PROPERTY_CODE" => $arParams["FILTER_PROPERTY_CODE"],
-                "CACHE_TYPE" => $arParams["CACHE_TYPE"],
-                "CACHE_TIME" => $arParams["CACHE_TIME"],
-                "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
-                "PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
-                "TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"]
-            ),
-            $component
-        );
-        ?>
-    <? endif ?>
-
     <? $APPLICATION->IncludeComponent(
         "bitrix:news.list",
         "bootstrap_v4",
@@ -114,7 +93,8 @@ $this->setFrameMode(true);
             "SORT_BY2" => $arParams["SORT_BY2"],
             "SORT_ORDER2" => $arParams["SORT_ORDER2"],
 
-            "FILTER_NAME" => $arParams["FILTER_NAME"],
+            "FILTER_NAME" => 'arrFilterNews',
+            "USE_FILTER" => "Y",
             "FIELD_CODE" => $arParams["LIST_FIELD_CODE"],
             "PROPERTY_CODE" => $arParams["LIST_PROPERTY_CODE"],
             "CHECK_DATES" => $arParams["CHECK_DATES"],
