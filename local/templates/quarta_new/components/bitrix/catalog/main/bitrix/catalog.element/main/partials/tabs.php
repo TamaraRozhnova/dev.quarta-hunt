@@ -6,10 +6,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 use General\User;
 
-/**
- * @var $arResult
- */
-
 $user = new User();
 $isUserAuth = $user->isAuthorized();
 
@@ -121,7 +117,8 @@ $isUserAuth = $user->isAuthorized();
                                         <button class="product-basket btn btn-primary px-5 product-card__add-basket-store"
                                                 data-store-id="<?= $arStore['ID'] ?>"
                                                 data-amount="<?= $arStore['AMOUNT'] ?>"
-                                                data-id="<?= $arResult['ID'] ?>"
+                                                data-id="<?= $result['ID'] ?>"
+                                                data-mode="ADD"
                                         >
                                             В корзину
                                         </button>
@@ -129,7 +126,8 @@ $isUserAuth = $user->isAuthorized();
                                 <?php else : ?>
                                     <button class="product-basket btn btn-primary px-5 product-card__add-basket-store"
                                             data-amount="<?= $arStore['AMOUNT'] ?>"
-                                            data-id="<?= $arResult['ID'] ?>"
+                                            data-id="<?= $result['ID'] ?>"
+                                            data-mode="ADD"
                                     >
                                         В корзину
                                     </button>
