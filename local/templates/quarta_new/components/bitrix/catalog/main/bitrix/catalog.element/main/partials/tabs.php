@@ -110,6 +110,14 @@ $isUserAuth = $user->isAuthorized();
                                 </div>
                             </div>
                             <div class="col-2 product-availability__cell store-add-block">
+                                <?php if ($arStore['PRODUCT_IN_BASKET'] && $arStore['PRODUCT_IN_BASKET_QUANTITY'] > 0) : ?>
+                                    <div class="product-count">
+                                        <span class="product-count__add-minus">-</span>
+                                        <span class="product-count__add-plus">+</span>
+                                        <input type="number" value="<?= $arStore['PRODUCT_IN_BASKET_QUANTITY'] ?>" class="form-control" />
+                                    </div>
+                                <?php endif; ?>
+
                                 <?php if ($arStore['PICKUP'] === 'Y') : ?>
                                     <?php if ($arStore['AMOUNT'] <= 0) : ?>
                                         <span>доставка товара в точку выдачи может занять до 4х дней, если он приедет раньше - мы уведомим Вас</span>
@@ -119,15 +127,18 @@ $isUserAuth = $user->isAuthorized();
                                                 data-amount="<?= $arStore['AMOUNT'] ?>"
                                                 data-id="<?= $result['ID'] ?>"
                                                 data-mode="ADD"
+                                                <?= ($arStore['PRODUCT_IN_BASKET'] && $arStore['PRODUCT_IN_BASKET_QUANTITY'] > 0) ? 'style="display: none;"' : '' ?>
                                         >
                                             В корзину
                                         </button>
                                     <?php endif; ?>
-                                <?php else : ?>
+                                <?php elseif ($arStore['AMOUNT'] > 0) : ?>
                                     <button class="product-basket btn btn-primary px-5 product-card__add-basket-store"
                                             data-amount="<?= $arStore['AMOUNT'] ?>"
                                             data-id="<?= $result['ID'] ?>"
                                             data-mode="ADD"
+                                            data-store-id="<?= $arStore['ID'] ?>"
+                                            <?= ($arStore['PRODUCT_IN_BASKET'] && $arStore['PRODUCT_IN_BASKET_QUANTITY'] > 0) ? 'style="display: none;"' : '' ?>
                                     >
                                         В корзину
                                     </button>

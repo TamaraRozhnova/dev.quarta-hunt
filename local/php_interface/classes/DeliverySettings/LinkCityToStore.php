@@ -107,6 +107,14 @@ class LinkCityToStore
                     $elementInfo['STORE_VIEW'][] = $storeId['VALUE'];
                 }
             }
+
+            $dbDeliveries = CIBlockElement::GetProperty($iblockLinkId, $elementInfo['ID'], [], ['CODE' => 'DELIVERY_LIST']);
+
+            if ($dbDeliveries && is_array($dbDeliveries->arResult)) {
+                foreach ($dbDeliveries->arResult as $deliveryId) {
+                    $elementInfo['DELIVERIES'][] = $deliveryId['VALUE'];
+                }
+            }
         }
 
         return $elementInfo;

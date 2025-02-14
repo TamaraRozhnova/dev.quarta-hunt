@@ -16,6 +16,8 @@ use Bitrix\Currency\CurrencyManager;
 use Bitrix\Main\Loader;
 use Classes\DeliverySettings;
 use Classes\LinkCityToStore;
+use Local\Util\HighloadblockManager;
+use \Bitrix\Sale\Fuser;
 
 Loader::includeModule('currency');
 
@@ -210,6 +212,44 @@ if (!empty($rsStoreElement)) {
         }
 
         $arResult['HAVE_PICKUP'] = $havePickup;
+    }
+
+    $customBasketsHl = new HighloadblockManager('CustomBaskets');
+    $userId = 0;
+    $fUser = 0;
+
+    global $USER;
+
+    if ($USER->IsAuthorized()) {
+        $userId = $USER->GetID();
+    } else {
+        $fUser = Fuser::getId();
+    }
+
+    foreach ($arResult['STORES_ELEMENT'] as &$store) {
+        if ($store['AMOUNT'] > 0) {
+            $customBasketsHl->prepareParamsQuery(
+                [
+                    'ID',
+                    'UF_QUANTITY'
+                ],
+                [],
+                [
+                    'UF_FUSER' => $fUser,
+                    'UF_PRODUCT_ID' => $arResult['ID'],
+                    'UF_ORDER_ID' => 0,
+                    'UF_STORE_ID' => $store['ID'],
+                    'UF_USER_ID' => $userId
+                ]
+            );
+
+            $product = $customBasketsHl->getData();
+
+            if (!empty($product)) {
+                $store['PRODUCT_IN_BASKET'] = true;
+                $store['PRODUCT_IN_BASKET_QUANTITY'] = $product['UF_QUANTITY'];
+            }
+        }
     }
 }
 
