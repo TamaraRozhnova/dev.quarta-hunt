@@ -18,16 +18,7 @@ class OnSaleOrderSaved
             is_array($_SESSION['PRODUCTS_IN_ORDER']) &&
             !empty($_SESSION['PRODUCTS_IN_ORDER'])
         ) {
-            $userId = 0;
-            $fUser = 0;
-
-            global $USER;
-
-            if ($USER->IsAuthorized()) {
-                $userId = $USER->GetID();
-            } else {
-                $fUser = Fuser::getId();
-            }
+            $fUser = Fuser::getId();
 
             foreach ($_SESSION['PRODUCTS_IN_ORDER'] as $product) {
                 if (is_array($product['STORE_ID'])) {
@@ -41,7 +32,6 @@ class OnSaleOrderSaved
                                 'UF_FUSER' => $fUser,
                                 'UF_PRODUCT_ID' => $product['ID'],
                                 'UF_ORDER_ID' => 0,
-                                'UF_USER_ID' => $userId,
                                 'UF_STORE_ID' => $storeId
                             ]
                         );

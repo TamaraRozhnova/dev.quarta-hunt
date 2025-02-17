@@ -28,15 +28,7 @@ if (
 
 $storeIds = explode(',', $storeIds);
 $userId = 0;
-$fUser = 0;
-
-global $USER;
-
-if ($USER->IsAuthorized()) {
-    $userId = $USER->GetID();
-} else {
-    $fUser = Fuser::getId();
-}
+$fUser = Fuser::getId();
 
 switch ($mode) {
     case 'store' :
@@ -49,7 +41,6 @@ switch ($mode) {
                 'UF_FUSER' => $fUser,
                 'UF_PRODUCT_ID' => $productId,
                 'UF_ORDER_ID' => 0,
-                'UF_USER_ID' => $userId,
                 'UF_STORE_ID' => $storeIds[0]
             ]
         );
@@ -92,7 +83,6 @@ switch ($mode) {
                         'UF_FUSER' => $fUser,
                         'UF_PRODUCT_ID' => $productId,
                         'UF_ORDER_ID' => 0,
-                        'UF_USER_ID' => $userId,
                         'UF_STORE_ID' => $storeId
                     ]
                 );
@@ -119,7 +109,6 @@ switch ($mode) {
                         'UF_FUSER' => $fUser,
                         'UF_PRODUCT_ID' => $productId,
                         'UF_ORDER_ID' => 0,
-                        'UF_USER_ID' => $userId,
                         'UF_STORE_ID' => $storeId
                     ]
                 );
@@ -148,7 +137,6 @@ switch ($mode) {
                     'UF_FUSER' => $fUser,
                     'UF_PRODUCT_ID' => $productId,
                     'UF_ORDER_ID' => 0,
-                    'UF_USER_ID' => $userId,
                     'UF_STORE_ID' => $storeIds[0]
                 ]
             );

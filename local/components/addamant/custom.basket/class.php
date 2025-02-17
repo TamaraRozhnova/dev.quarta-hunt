@@ -20,16 +20,7 @@ class CustomBasketComponent extends CBitrixComponent
 
     private function getUserBasket() : void
     {
-        global $USER;
-
-        $userId = 0;
-        $fUserId = 0;
-
-        if ($USER->IsAuthorized()) {
-            $userId = $USER->GetID();
-        } else {
-            $fUserId = Fuser::getId();
-        }
+        $fUserId = Fuser::getId();
 
         $customBasketsHl = new HighloadblockManager('CustomBaskets');
 
@@ -43,8 +34,7 @@ class CustomBasketComponent extends CBitrixComponent
             [],
             [
                 'UF_FUSER' => $fUserId,
-                'UF_ORDER_ID' => 0,
-                'UF_USER_ID' => $userId
+                'UF_ORDER_ID' => 0
             ]
         );
 
@@ -153,9 +143,22 @@ class CustomBasketComponent extends CBitrixComponent
 
         foreach ($this->result['ITEMS'] as $key => $items) {
             $allStore = false;
+            $pickUpStore = false;
 
             if ($key == 'all') {
                 $allStore = true;
+            } else {
+                $selectedUserCity = DeliverySettings::getUserSelectedCity();
+                $linkCityList = LinkCityToStore::getIblockLinkElement($selectedUserCity);
+
+                if (!empty($linkCityList) && !empty($linkCityList['STORE_ID'])) {
+                    foreach ($linkCityList['STORE_ID'] as $storeId) {
+                        if ($storeId == $key) {
+                            $pickUpStore = true;
+                            break;
+                        }
+                    }
+                }
             }
 
             if (is_array($items)) {
@@ -187,7 +190,11 @@ class CustomBasketComponent extends CBitrixComponent
                         ])->fetch();
 
                         if ($store) {
-                            $productInfo['AMOUNT'] = $store['AMOUNT'];
+                            if ($pickUpStore) {
+                                $productInfo['AMOUNT'] = $store['AMOUNT'] - 1;
+                            } else {
+                                $productInfo['AMOUNT'] = $store['AMOUNT'];
+                            }
                         }
                     }
 

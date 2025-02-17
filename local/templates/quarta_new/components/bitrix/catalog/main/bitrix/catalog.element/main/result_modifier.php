@@ -200,31 +200,21 @@ if (!empty($rsStoreElement)) {
     $linkCityList = LinkCityToStore::getIblockLinkElement($selectedUserCity);
 
     if (!empty($linkCityList) && !empty($linkCityList['STORE_ID'])) {
-        $havePickup = false;
-
         foreach ($linkCityList['STORE_ID'] as $storeId) {
             foreach ($arResult['STORES_ELEMENT'] as $key => &$store) {
                 if ($storeId == $store['ID']) {
                     $store['PICKUP'] = 'Y';
-                    $havePickup = true;
+
+                    if ($store['AMOUNT'] === '1') {
+                        $store['AMOUNT'] = '0';
+                    }
                 }
             }
         }
-
-        $arResult['HAVE_PICKUP'] = $havePickup;
     }
 
     $customBasketsHl = new HighloadblockManager('CustomBaskets');
-    $userId = 0;
-    $fUser = 0;
-
-    global $USER;
-
-    if ($USER->IsAuthorized()) {
-        $userId = $USER->GetID();
-    } else {
-        $fUser = Fuser::getId();
-    }
+    $fUser = Fuser::getId();
 
     foreach ($arResult['STORES_ELEMENT'] as &$store) {
         if ($store['AMOUNT'] > 0) {
@@ -238,8 +228,7 @@ if (!empty($rsStoreElement)) {
                     'UF_FUSER' => $fUser,
                     'UF_PRODUCT_ID' => $arResult['ID'],
                     'UF_ORDER_ID' => 0,
-                    'UF_STORE_ID' => $store['ID'],
-                    'UF_USER_ID' => $userId
+                    'UF_STORE_ID' => $store['ID']
                 ]
             );
 

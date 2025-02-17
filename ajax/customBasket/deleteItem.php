@@ -23,16 +23,7 @@ if (
 }
 
 $storeIds = explode(',', $storeIds);
-$userId = 0;
-$fUser = 0;
-
-global $USER;
-
-if ($USER->IsAuthorized()) {
-    $userId = $USER->GetID();
-} else {
-    $fUser = Fuser::getId();
-}
+$fUser = Fuser::getId();
 
 if (is_array($storeIds)) {
     foreach ($storeIds as $storeId) {
@@ -45,7 +36,6 @@ if (is_array($storeIds)) {
                 'UF_FUSER' => $fUser,
                 'UF_PRODUCT_ID' => $productId,
                 'UF_ORDER_ID' => 0,
-                'UF_USER_ID' => $userId,
                 'UF_STORE_ID' => $storeId
             ]
         );

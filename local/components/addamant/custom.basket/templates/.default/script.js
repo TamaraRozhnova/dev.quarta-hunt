@@ -63,6 +63,7 @@ class CustomBasket
         let mainBlock = btn.closest('.basket-store-block');
 
         if (mainBlock) {
+            mainBlock.classList.add('overlay');
             let products = mainBlock.querySelectorAll('.product-item-card:not(.cant-buy)');
             let productsToOrder = [];
 
@@ -83,20 +84,22 @@ class CustomBasket
                     }
                 });
 
-                this.runAjax(
-                    this.createOrderAjaxUrl,
-                    {
-                        products: productsToOrder
-                    },
-                    response => {
-                        let res = JSON.parse(response);
+                if (productsToOrder.length > 0) {
+                    this.runAjax(
+                        this.createOrderAjaxUrl,
+                        {
+                            products: productsToOrder
+                        },
+                        response => {
+                            let res = JSON.parse(response);
 
-                        if (res.SUCCESS === true) {
-                            window.location.href = '/cart/purchase/';
-                        }
-                    },
-                    () => {}
-                );
+                            if (res.SUCCESS === true) {
+                                window.location.href = '/cart/purchase/';
+                            }
+                        },
+                        () => {}
+                    );
+                }
             }
         }
     }
@@ -198,7 +201,7 @@ class CustomBasket
         input.addEventListener('change', () => {
             quantity = input.value;
 
-            if (parseInt(quantity) >= parseInt(maxQuantity)) {
+            if (parseInt(quantity) >= parseInt(maxQuantity) && parseInt(maxQuantity) > 0) {
                 input.value = maxQuantity;
                 quantity = maxQuantity;
                 plus.style.pointerEvents = 'none';
@@ -207,13 +210,13 @@ class CustomBasket
                 quantity = input.value;
                 plus.style.pointerEvents = 'all';
 
-                mainBlock.querySelector('.basket-btn-checkout').disabled = false;
-                block.classList.remove('cant-buy');
-
                 if (quantity > 1) {
                     minus.style.pointerEvents = 'all';
                 }
             }
+
+            mainBlock.querySelector('.basket-btn-checkout').disabled = false;
+            block.classList.remove('cant-buy');
 
             this.updateProduct(productId, storeIds, quantity, block, mode);
         });

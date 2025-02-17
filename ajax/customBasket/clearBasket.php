@@ -18,16 +18,7 @@ if (empty($products)) {
     die(json_encode(['SUCCESS' => false]));
 }
 
-$userId = 0;
-$fUser = 0;
-
-global $USER;
-
-if ($USER->IsAuthorized()) {
-    $userId = $USER->GetID();
-} else {
-    $fUser = Fuser::getId();
-}
+$fUser = Fuser::getId();
 
 foreach ($products as $key => $product) {
     $store = explode(',', $product['STORE_ID']);
@@ -43,7 +34,6 @@ foreach ($products as $key => $product) {
                     'UF_FUSER' => $fUser,
                     'UF_PRODUCT_ID' => $product['ID'],
                     'UF_ORDER_ID' => 0,
-                    'UF_USER_ID' => $userId,
                     'UF_STORE_ID' => $storeId
                 ]
             );

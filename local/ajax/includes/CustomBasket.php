@@ -21,16 +21,8 @@ if ($productId == '0') {
 $storeId = $request->getPost('storeId') ?: '0';
 $mode = $request->getPost('mode') ?: 'ADD';
 $quantity = $request->getPost('quantity') ?: '1';
-$userId = 0;
-$fUser = 0;
 
-global $USER;
-
-if ($USER->IsAuthorized()) {
-    $userId = $USER->GetID();
-} else {
-    $fUser = Fuser::getId();
-}
+$fUser = Fuser::getId();
 
 $customBasketsHl = new HighloadblockManager('CustomBaskets');
 
@@ -44,8 +36,7 @@ $customBasketsHl->prepareParamsQuery(
         'UF_FUSER' => $fUser,
         'UF_PRODUCT_ID' => $productId,
         'UF_ORDER_ID' => 0,
-        'UF_STORE_ID' => $storeId,
-        'UF_USER_ID' => $userId
+        'UF_STORE_ID' => $storeId
     ]
 );
 
@@ -58,8 +49,7 @@ switch ($mode) {
             'UF_PRODUCT_ID' => $productId,
             'UF_QUANTITY' => $quantity,
             'UF_ORDER_ID' => 0,
-            'UF_STORE_ID' => $storeId,
-            'UF_USER_ID' => $userId
+            'UF_STORE_ID' => $storeId
         ];
 
         $customBasketsHl->add($fields);

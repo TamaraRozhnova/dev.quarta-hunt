@@ -61,7 +61,7 @@ Loc::loadMessages(__FILE__); ?>
                                     <div class="basket-item-block-amount">
                                         <span class="basket-item-amount-btn-minus <?= $item['QUANTITY'] == 1 ? 'disabled' : '' ?>"></span>
                                         <div class="basket-item-amount-filed-block">
-                                            <input type="text" class="basket-item-amount-filed" data-max-quantity="<?= $item['AMOUNT'] ?>" value="<?= $item['QUANTITY'] ?>" data-value="2">
+                                            <input type="text" class="basket-item-amount-filed" <?= ($item['AMOUNT'] == 0) ? 'disabled' : '' ?> data-max-quantity="<?= $item['AMOUNT'] ?>" value="<?= $item['QUANTITY'] ?>">
                                         </div>
                                         <span class="basket-item-amount-btn-plus <?= $item['QUANTITY'] == $item['AMOUNT'] ? 'disabled' : '' ?>"></span>
                                     </div>
