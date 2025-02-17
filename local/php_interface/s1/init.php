@@ -48,6 +48,7 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\RulesBasket' => '/local/php_interface/classes/Events/RulesBasket.php',
     'CustomEvents\OnDiscount' => '/local/php_interface/classes/Events/OnDiscount.php',
     'CustomEvents\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/OnBeforeIBlockElementUpdate.php',
+    'CustomEvents\OnOrder' => '/local/php_interface/classes/Events/OnOrder.php',
 ]);
 
 
