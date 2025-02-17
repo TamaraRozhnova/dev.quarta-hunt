@@ -11603,3 +11603,56 @@ div[id*="wait_comp"] {
 .compare-popup_close:hover svg{
   fill:#004989;
 }
+
+.empty-user-email-modal {
+  position: fixed;
+  top: 45%;
+  background-color: white;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1022;
+  max-width: 400px;
+  width: 100%;
+}
+
+.empty-user-email-modal .close-empty-email-modal {
+  display: block;
+  margin-left: auto;
+  font-size: 20px;
+  line-height: 1px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.empty-user-email-modal .close-empty-email-modal:hover {
+  transform: rotate(180deg);
+}
+
+.empty-user-email-modal span:not(.close-empty-email-modal) {
+  font-size: 14px;
+  line-height: 130%;
+}
+
+.empty-user-email-modal a {
+  padding: 10px 12px;
+}
+
+.background-empty-email-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1021;
+}
+
+@media (max-width: 450px) {
+  .empty-user-email-modal {
+    max-width: 300px;
+  }

@@ -37,3 +37,6 @@ $MESS['BONUS_TEXT'] = "Бонусные баллы";
 $MESS['BONUS_DEC_1'] = "балл";
 $MESS['BONUS_DEC_2'] = "балла";
 $MESS['BONUS_DEC_3'] = "баллов";
+
+$MESS['EMPTY_EMAIL_TEXT'] = 'Остался 1 шаг до программы лояльности. Заполните email, и скидки будут применяться автоматически.';
+$MESS['EMPTY_EMAIL_BTN_TEXT'] = 'Добавить email';

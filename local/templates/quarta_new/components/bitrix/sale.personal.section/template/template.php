@@ -88,6 +88,12 @@ if (empty($availablePages)){
 					<? } ?>
 				</div>*/?>
 				<div class="sale-personal-section-half">
+                    <?php if (!$arResult['USER']['EMAIL']) : ?>
+                        <div class="empty-user-email-block">
+                            <span><?= Loc::getMessage('EMPTY_EMAIL_TEXT') ?></span>
+                            <a href="/cabinet/personal/" class="btn btn-primary"><?= Loc::getMessage('EMPTY_EMAIL_BTN_TEXT') ?></a>
+                        </div>
+                    <?php endif; ?>
 				<div class="cabinet-section">
 					<div class="cabinet-section__header">
 						<span>
