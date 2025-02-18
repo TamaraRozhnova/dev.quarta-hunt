@@ -18,10 +18,4 @@ Loader::registerAutoLoadClasses(null, [
 	'CustomEvents\Hut\OneCImportHandler' => '/local/php_interface/classes/Events/Hut/OneCImportHandler.php',
 ]);
 
-$eventManager = EventManager::getInstance();
-
-$eventManager->addEventHandler(
-	"iblock",
-	"OnBeforeIBlockElementUpdate",
-	["CustomEvents\OnBeforeIBlockElementUpdate", "OnBeforeIBlockElementUpdateHandler"]
-);
+include 'events.php';
