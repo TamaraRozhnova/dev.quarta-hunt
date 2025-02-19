@@ -181,6 +181,30 @@ BX.namespace("BX.Sale.OrderAjaxComponent");
       if (this.params.USER_CONSENT === "Y") {
         this.initUserConsent();
       }
+
+      this.closeEmptyModalBlock();
+    },
+
+    closeEmptyModalBlock: function () {
+      let modal = document.querySelector('.empty-user-email-modal');
+      let backgroundModal = document.querySelector('.background-empty-email-modal');
+      let closeBtn = document.querySelector('.close-empty-email-modal');
+
+      if (
+          modal &&
+          backgroundModal &&
+          closeBtn
+      ) {
+        closeBtn.addEventListener('click', () => {
+          modal.remove();
+          backgroundModal.remove();
+        });
+
+        backgroundModal.addEventListener('click', () => {
+          modal.remove();
+          backgroundModal.remove();
+        });
+      }
     },
 
     initPhoneMask: function () {

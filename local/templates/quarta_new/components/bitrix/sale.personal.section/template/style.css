@@ -119,6 +119,18 @@
     align-items: center;
     justify-content: space-between;
 }
+.empty-user-email-block {
+    margin-bottom: 16px;
+}
+.empty-user-email-block > span {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 130%;
+}
+.empty-user-email-block > a {
+    padding: 12px 16px;
+}
 @media (max-width: 1240px) {
     .bonuses-cabinet-text, .bonuses-cabinet-count {
         font-size: 20px;
@@ -189,5 +201,9 @@
     .personal-wrap.cabinet-page .container {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .empty-user-email-block {
+        padding: 0 18px;
     }
 }

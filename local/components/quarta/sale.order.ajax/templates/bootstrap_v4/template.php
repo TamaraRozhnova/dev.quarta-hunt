@@ -742,3 +742,12 @@ else
 		<?
 	}
 }
+
+if (!$arResult['USER']['EMAIL']) : ?>
+    <div class="empty-user-email-modal">
+        <span class="close-empty-email-modal">&#215;</span>
+        <span><?= Loc::getMessage('EMPTY_EMAIL_TEXT') ?></span>
+        <a href="/cabinet/personal/" class="btn btn-primary"><?= Loc::getMessage('EMPTY_EMAIL_BTN_TEXT') ?></a>
+    </div>
+    <div class="background-empty-email-modal"></div>
+<?php endif;

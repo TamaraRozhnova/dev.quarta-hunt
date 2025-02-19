@@ -133,6 +133,7 @@ $component::scaleImages($arResult['JS_DATA'], $arParams['SERVICES_IMAGES_SCALING
 global $USER;
 $arGroups = CUser::GetUserGroup($USER->GetId());
 $isUserOpt = array_search(OPT_GROUP_ID, $arGroups);
+$arResult['USER']['EMAIL'] = $USER->GetEmail();
 
 if ($isUserOpt !== false) {
     $arResult['JS_DATA']['IS_USER_OPT'] = true;
