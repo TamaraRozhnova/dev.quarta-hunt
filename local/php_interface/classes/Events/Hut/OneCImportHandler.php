@@ -16,19 +16,19 @@ class OneCImportHandler
 
     public static function IBlockElementUpdateHandler(&$arFields)
     {
-        Debug::writeToFile(var_export($arFields, true), 'IBlockElementUpdateHandler','_CLMLog.log');
         if ($arFields['IBLOCK_ID'] == self::$HUT_CATALOG_OFFERS_IBLOCK_ID) {
             Loader::includeModule('iblock');
 
-            $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0]['VALUE'];
-            Debug::writeToFile(var_export($oneCSize, true), '$oneCSize','_CLMLog.log');
+            $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0]['VALUE'] ?? $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]['n0']['VALUE'] ;
+
+            Debug::writeToFile(var_export($arFields, true), 'arFields');
+            Debug::writeToFile(var_export($oneCSize, true), 'IBlockElementUpdateHandler');
             if ($oneCSize) {
                 $sizeProp = PropertyEnumerationTable::getList([
                     'select' => ['ID', 'VALUE'],
                     'filter' => ['=ID' => $oneCSize],
                 ])->fetch();
 
-                Debug::writeToFile(var_export($sizeProp, true), '$sizeProp','_CLMLog.log');
                 if (is_array($sizeProp) && count($sizeProp)) {
                     $entitySize = HL\HighloadBlockTable::compileEntity(self::$CLOTHES_SIZE_HL_ENTITY);
                     $entityDataClassSize = $entitySize->getDataClass();

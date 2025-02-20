@@ -8,6 +8,9 @@ Loader::includeModule('sale');
 
 $eventManager = EventManager::getInstance();
 
+
+//HUT размеры для сайта, доработка по обмену.
+// Обмен не определяет сайт, поэтому евент должен быть в сайте по умолчнию
 $eventManager->addEventHandler(
     'iblock',
     'OnAfterIBlockElementUpdate',
@@ -19,3 +22,4 @@ $eventManager->addEventHandler(
     'OnAfterIBlockElementAdd',
     ['CustomEvents\Hut\OneCImportHandler', 'IBlockElementUpdateHandler']
 );
+
