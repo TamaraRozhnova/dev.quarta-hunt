@@ -19,6 +19,7 @@ Loader::registerAutoLoadClasses(null, [
     'Catalog\Orders\OrderHelper' => '/local/php_interface/classes/Catalog/Orders.php',
     'Local\ORM\HutcolorsTable' => '/local/php_interface/classes/ORM/HutcolorsTable.php',
     'Local\ORM\HutclothessizeTable' => '/local/php_interface/classes/ORM/HutclothessizeTable.php',
+    'CustomEvents\Hut\OneCImportHandler' => '/local/php_interface/classes/Events/Hut/OneCImportHandler.php',
 ]);
 
 function debug($var)

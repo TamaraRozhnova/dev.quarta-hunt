@@ -19,8 +19,10 @@ class OneCImportHandler
         if ($arFields['IBLOCK_ID'] == self::$HUT_CATALOG_OFFERS_IBLOCK_ID) {
             Loader::includeModule('iblock');
 
-            $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0]['VALUE'];
+            $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0]['VALUE'] ?? $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]['n0']['VALUE'] ;
 
+            Debug::writeToFile(var_export($arFields, true), 'arFields');
+            Debug::writeToFile(var_export($oneCSize, true), 'IBlockElementUpdateHandler');
             if ($oneCSize) {
                 $sizeProp = PropertyEnumerationTable::getList([
                     'select' => ['ID', 'VALUE'],

@@ -14,8 +14,7 @@ include_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/wsrubi.smtp/classes/ge
 
 Loader::registerAutoLoadClasses(null, [
 	'CustomEvents\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/OnBeforeIBlockElementUpdate.php',
-	'BitSaleExport' => '/local/php_interface/override_classes/BitSaleExport.php',
-	'CustomEvents\Hut\OneCImportHandler' => '/local/php_interface/classes/Events/Hut/OneCImportHandler.php',
+	'BitSaleExport' => '/local/php_interface/override_classes/BitSaleExport.php'
 ]);
 
 include 'events.php';
