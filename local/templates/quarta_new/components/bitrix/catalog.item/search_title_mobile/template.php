@@ -1,5 +1,7 @@
 <?php
 
+use Bitrix\Main\Localization\Loc;
+
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
@@ -147,7 +149,15 @@ global $isMobile;
                 </div>
             <? else: ?>
                 <div class="product-card__add  product-card-search__add placeholder-glow">
-                    <div class="placeholder"></div>
+                    <?php if ($item['AVAILABLE']) : ?>
+                        <button onclick="ym(30377432,'reachGoal','product-card__add-basket')" class="btn btn-primary product-card__button product-card__add-basket" disabled>
+                            <?= Loc::getMessage('ADD_TO_BASKET_BTN_TEXT') ?>
+                        </button>
+                    <?php else : ?>
+                        <button class="btn btn-outline-primary product-card__availability" disabled>
+                            <?= Loc::getMessage('NO_AVAILABLE_BTN_TEXT') ?>
+                        </button>
+                    <?php endif; ?>
                 </div>
             <? endif; ?>
 
