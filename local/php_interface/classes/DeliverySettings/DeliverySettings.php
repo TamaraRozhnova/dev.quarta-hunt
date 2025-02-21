@@ -2,15 +2,28 @@
 
 namespace Classes;
 
-use CModule;
+use \Bitrix\Main\Loader;
 use \Bitrix\Main\Application;
+use Bitrix\Main\LoaderException;
 use CUser;
 use \Ammina\Regions\BlockTable;
 use \Bitrix\Catalog\ProductTable;
 use CCatalogProduct;
+use \Bitrix\Main\Engine\CurrentUser;
 
+/**
+ * Класс собирающий информацию о времени доставки
+ * товара в город клиента
+ */
 class DeliverySettings
 {
+    /**
+     * Получение информации о доставке
+     *
+     * @param string $productId
+     * @return array
+     * @throws \Bitrix\Main\Db\SqlQueryException
+     */
     public static function getDeliveryMethods(string $productId): array
     {
         if (!$productId) {
@@ -61,21 +74,25 @@ class DeliverySettings
         return $result;
     }
 
+    /**
+     * Получение выбранного города пользователя
+     *
+     * @return string
+     * @throws LoaderException
+     */
     public static function getUserSelectedCity(): string
     {
-        if (!CModule::IncludeModule('ammina.regions')) {
-            return '';
+        if (!Loader::includeModule('ammina.regions')) {
+            throw new LoaderException('Не удалось подключить модуль ammina.');
         }
 
         $request = Application::getInstance()->getContext()->getRequest();
         $cityId = intval($request->getCookie('ARG_CITY'));
 
-        global $USER;
-
         if ($cityId > 0) {
             return (string)$cityId;
-        } elseif ($USER->IsAuthorized()) {
-            $rsUser = CUser::GetByID($USER->GetID());
+        } elseif (CurrentUser::get()->getId()) {
+            $rsUser = CUser::GetByID(CurrentUser::get()->getId());
             $arUser = $rsUser->Fetch();
 
             if ($arUser['UF_SELECTED_USER_CITY']) {
@@ -89,9 +106,19 @@ class DeliverySettings
             }
         }
 
-        return '';
+        // По умолчанию возвращать Питер
+        return '2978';
     }
 
+    /**
+     * Получение полной информации о товаре
+     *
+     * @param string $productId
+     * @return array
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \Bitrix\Main\ObjectPropertyException
+     * @throws \Bitrix\Main\SystemException
+     */
     private static function getProductInfo(string $productId): array
     {
         if (!$productId) {

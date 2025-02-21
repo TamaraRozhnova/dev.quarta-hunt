@@ -13,15 +13,15 @@ use \Bitrix\Catalog\StoreProductTable;
 
 $request = Application::getInstance()->getContext()->getRequest();
 
-$productId = $request->getPost('productId') ?: '0';
-$storeIds = $request->getPost('storeIds') ?: null;
-$quantity = $request->getPost('quantity') ?: '0';
+$productId = intval($request->getPost('productId')) ?: 0;
+$storeIds = (string)$request->getPost('storeIds') ?: '';
+$quantity = intval($request->getPost('quantity')) ?: 0;
 $mode = $request->getPost('mode') ?: 'all';
 
 if (
-    $productId == '0' ||
-    $storeIds == null ||
-    $quantity == '0'
+    $productId === 0 ||
+    $storeIds === '' ||
+    $quantity === 0
 ) {
     die(json_encode(['SUCCESS' => false]));
 }
@@ -32,7 +32,11 @@ $fUser = Fuser::getId();
 
 switch ($mode) {
     case 'store' :
-        $customBasketsHl = new HighloadblockManager('CustomBaskets');
+        if (!$storeIds[0]) {
+            die(json_encode(['SUCCESS' => false]));
+        }
+
+        $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
         $customBasketsHl->prepareParamsQuery(
             ['ID'],
@@ -51,22 +55,29 @@ switch ($mode) {
             $field = [
                 'UF_QUANTITY' => $quantity
             ];
-            $customBasketsHl->update($item['ID'], $field);
 
-            die(json_encode(['SUCCESS' => true]));
+            try {
+                $customBasketsHl->update($item['ID'], $field);
+                die(json_encode(['SUCCESS' => true]));
+            } catch (Exception $error) {
+                die(json_encode([
+                    'SUCCESS' => false,
+                    'ERROR_MESSAGE' => $error->getMessage()
+                ]));
+            }
         }
 
         die(json_encode(['SUCCESS' => false]));
     case 'all' :
         foreach ($storeIds as $storeId) {
             $store = StoreProductTable::getList([
-                'select' => ['*'],
+                'select' => ['AMOUNT'],
                 'filter' => [
                     'PRODUCT_ID' => $productId,
                     'STORE.ACTIVE' => 'Y',
                     'STORE.ID' => $storeId
                 ]
-            ])->fetch();
+            ])?->fetch();
 
             $maxStoreAmount = 0;
             if ($store) {
@@ -74,7 +85,7 @@ switch ($mode) {
             }
 
             if ($maxStoreAmount >= $quantity) {
-                $customBasketsHl = new HighloadblockManager('CustomBaskets');
+                $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
                 $customBasketsHl->prepareParamsQuery(
                     ['ID'],
@@ -93,14 +104,20 @@ switch ($mode) {
                     $field = [
                         'UF_QUANTITY' => $quantity
                     ];
-                    $customBasketsHl->update($item['ID'], $field);
-
-                    die(json_encode(['SUCCESS' => true]));
+                    try {
+                        $customBasketsHl->update($item['ID'], $field);
+                        die(json_encode(['SUCCESS' => true]));
+                    } catch (Exception $error) {
+                        die(json_encode([
+                            'SUCCESS' => false,
+                            'ERROR_MESSAGE' => $error->getMessage()
+                        ]));
+                    }
                 }
             } else {
                 $quantity = $quantity - $maxStoreAmount;
 
-                $customBasketsHl = new HighloadblockManager('CustomBaskets');
+                $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
                 $customBasketsHl->prepareParamsQuery(
                     ['ID'],
@@ -119,13 +136,20 @@ switch ($mode) {
                     $field = [
                         'UF_QUANTITY' => $maxStoreAmount
                     ];
-                    $customBasketsHl->update($item['ID'], $field);
+                    try {
+                        $customBasketsHl->update($item['ID'], $field);
+                    } catch (Exception $error) {
+                        die(json_encode([
+                            'SUCCESS' => false,
+                            'ERROR_MESSAGE' => $error->getMessage()
+                        ]));
+                    }
                 }
             }
         }
 
         if ($quantity > 0) {
-            $customBasketsHl = new HighloadblockManager('CustomBaskets');
+            $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
             $customBasketsHl->prepareParamsQuery(
                 [
@@ -147,10 +171,17 @@ switch ($mode) {
                 $field = [
                     'UF_QUANTITY' => $quantity + $item['UF_QUANTITY']
                 ];
-                $customBasketsHl->update($item['ID'], $field);
-            }
 
-            die(json_encode(['SUCCESS' => true]));
+                try {
+                    $customBasketsHl->update($item['ID'], $field);
+                    die(json_encode(['SUCCESS' => true]));
+                } catch (Exception $error) {
+                    die(json_encode([
+                        'SUCCESS' => false,
+                        'ERROR_MESSAGE' => $error->getMessage()
+                    ]));
+                }
+            }
         }
 
         die(json_encode(['SUCCESS' => false]));

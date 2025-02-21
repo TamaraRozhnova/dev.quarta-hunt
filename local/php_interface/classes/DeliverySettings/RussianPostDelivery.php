@@ -3,16 +3,30 @@
 namespace Classes;
 
 use Ammina\Regions\BlockTable;
+use Bitrix\Main\Diag\Debug;
 use DateTime;
+use GuzzleHttp\Exception\GuzzleException;
 use Local\Util\HelperMethods;
 use Local\Util\HighloadblockManager;
 
+/**
+ * Класс по получению и форматированию информации
+ *  о времени доставки товара с помощью Почты России
+ */
 class RussianPostDelivery
 {
     private static string $userSelectedCityId = '';
     private static array $productInfo = [];
     private static array $fullCityInfo = [];
 
+    /**
+     * Собирающий и обрабатывающий итог метод
+     *
+     * @param string $userSelectedCityId
+     * @param array $productInfo
+     * @return string
+     * @throws GuzzleException
+     */
     public static function getDelivery(string $userSelectedCityId, array $productInfo) : string
     {
         if (
@@ -36,6 +50,12 @@ class RussianPostDelivery
         return '';
     }
 
+    /**
+     * Получение и обработка информации из api Почты России
+     *
+     * @return array
+     * @throws GuzzleException
+     */
     private static function getRussianPostApiInfo() : array
     {
         $result = [];
@@ -78,13 +98,21 @@ class RussianPostDelivery
         return $result;
     }
 
+    /**
+     * Получение информации из HL блока
+     *
+     * @param string $productId
+     * @param string $cityName
+     * @param string $cityZip
+     * @return array
+     */
     private static function getInfoFromBD(string $productId, string $cityName, string $cityZip) : array
     {
         if (!$productId) {
             return [];
         }
 
-        $russianPostDeliveryDates = new HighloadblockManager('RussianPostDeliveryDates');
+        $russianPostDeliveryDates = new HighloadblockManager(QUARTA_HL_RUSSIAN_POST_DELIVERY_DATES_BLOCK_CODE);
 
         $russianPostDeliveryDates->prepareParamsQuery(
             [
@@ -118,6 +146,12 @@ class RussianPostDelivery
         return $russianPostDeliveryDates->getData();
     }
 
+    /**
+     * Получение полной информации о адрессе пользователя
+     *
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     private static function getFullAddressInfo() : array
     {
         $cityInfo = [];
@@ -136,6 +170,12 @@ class RussianPostDelivery
         return $cityInfo;
     }
 
+    /**
+     * Проверка даты обновления записи в HL блоке
+     *
+     * @param string $date
+     * @return bool
+     */
     private static function checkLastUpdateDate(string $date) : bool
     {
         if (!$date) {
@@ -153,6 +193,13 @@ class RussianPostDelivery
         return false;
     }
 
+    /**
+     * Обновление информации в HL блоке
+     *  если записи не обновлялась больше недели
+     *
+     * @param string $id
+     * @return void
+     */
     private static function updateHlInfo(string $id) : void
     {
         if (!$id) {
@@ -165,7 +212,7 @@ class RussianPostDelivery
             return;
         }
 
-        $russianPostDeliveryDates = new HighloadblockManager('RussianPostDeliveryDates');
+        $russianPostDeliveryDates = new HighloadblockManager(QUARTA_HL_RUSSIAN_POST_DELIVERY_DATES_BLOCK_CODE);
 
         $fields = [
             'UF_LAST_UPDATE_DATE' => date('d.m.Y'),
@@ -176,16 +223,26 @@ class RussianPostDelivery
             'UF_DELIVERY_PERIOD_MIN' => $russianPostInfo['min_days']
         ];
 
-        $russianPostDeliveryDates->update($id, $fields);
+        try {
+            $russianPostDeliveryDates->update($id, $fields);
+        } catch (\Exception $error) {
+            Debug::dumpToFile(var_export($error->getMessage(), true), 'ERROR MESSAGE ' . __FILE__, 'deliverySettings.log');
+        }
     }
 
+    /**
+     * Добавление элемент в HL блок
+     *
+     * @param array $russianPostInfo
+     * @return void
+     */
     private static function addHlItem(array $russianPostInfo) : void
     {
         if (empty($russianPostInfo)) {
             return;
         }
 
-        $russianPostDeliveryDates = new HighloadblockManager('RussianPostDeliveryDates');
+        $russianPostDeliveryDates = new HighloadblockManager(QUARTA_HL_RUSSIAN_POST_DELIVERY_DATES_BLOCK_CODE);
 
         $fields = [
             'UF_LAST_UPDATE_DATE' => date('d.m.Y'),
@@ -196,6 +253,10 @@ class RussianPostDelivery
             'UF_DELIVERY_PERIOD_MIN' => $russianPostInfo['min_days']
         ];
 
-        $russianPostDeliveryDates->add($fields);
+        try {
+            $russianPostDeliveryDates->add($fields);
+        } catch (\Exception $error) {
+            Debug::dumpToFile(var_export($error->getMessage(), true), 'ERROR MESSAGE ' . __FILE__, 'deliverySettings.log');
+        }
     }
 }

@@ -3,11 +3,21 @@
 namespace CustomEvents;
 
 use Bitrix\Main;
+use Bitrix\Main\Diag\Debug;
 use Local\Util\HighloadblockManager;
 use \Bitrix\Sale\Fuser;
 
+/**
+ * Класс обработчик события OnSaleOrderSaved
+ */
 class OnSaleOrderSaved
 {
+    /**
+     * Функция обновляет элементы (HL блока кастомной корзины), которые оформлены в заказе
+     *
+     * @param Main\Event $event
+     * @return void
+     */
     public static function deleteProductFromCustomBasket(Main\Event $event) : void
     {
         $order = $event->getParameter('ENTITY');
@@ -23,7 +33,7 @@ class OnSaleOrderSaved
             foreach ($_SESSION['PRODUCTS_IN_ORDER'] as $product) {
                 if (is_array($product['STORE_ID'])) {
                     foreach ($product['STORE_ID'] as $storeId) {
-                        $customBasketsHl = new HighloadblockManager('CustomBaskets');
+                        $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
                         $customBasketsHl->prepareParamsQuery(
                             ['ID'],
@@ -43,7 +53,11 @@ class OnSaleOrderSaved
                                 'UF_ORDER_ID' => $order->getId()
                             ];
 
-                            $customBasketsHl->update($item['ID'], $field);
+                            try {
+                                $customBasketsHl->update($item['ID'], $field);
+                            } catch (\Exception $error) {
+                                Debug::dumpToFile(var_export($error->getMessage(), true), 'ERROR MESSAGE ' . __FILE__, 'deliverySettings.log');
+                            }
                         }
                     }
                 }

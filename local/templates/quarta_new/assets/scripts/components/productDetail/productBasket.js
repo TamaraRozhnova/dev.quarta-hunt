@@ -92,6 +92,8 @@ class ProductBasket {
 
                         this.createStoreCounter(productId, maxQuantity, quantity, btn);
                     }
+                } else {
+                    console.log('ERROR MESSAGE: ' + res.ERROR_MESSAGE);
                 }
             },
             () => {}

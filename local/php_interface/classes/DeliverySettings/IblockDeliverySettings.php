@@ -2,11 +2,15 @@
 
 namespace Classes;
 
-use CModule;
+use \Bitrix\Main\Loader;
 use \Bitrix\Iblock\Elements\ElementBaseSettingsTable;
+use Bitrix\Main\LoaderException;
 use Local\Util\IblockHelper;
 use CIBlockElement;
 
+/**
+ * Класс по получению настроек из ИБ
+ */
 class IblockDeliverySettings
 {
     private static string $defaultSenderCityId = '2978';
@@ -23,9 +27,15 @@ class IblockDeliverySettings
 
     private static string $defaultCourierDeliveryDate = '2 - 3';
 
+    /**
+     * Получение города - отправителя (для СДЭКа нужен)
+     *
+     * @return string
+     * @throws LoaderException
+     */
     public static function getSenderCityId() : string
     {
-        if (!CModule::IncludeModule('iblock')) {
+        if (!Loader::IncludeModule('iblock')) {
             return static::$defaultSenderCityId;
         }
 
@@ -36,7 +46,7 @@ class IblockDeliverySettings
             'filter' => [
                 'ACTIVE' => 'Y'
             ]
-        ])->fetchObject();
+        ])?->fetchObject();
 
         if ($settingElement &&
             $settingElement->getDefaultSenderCity() &&
@@ -47,9 +57,15 @@ class IblockDeliverySettings
         return static::$defaultSenderCityId;
     }
 
+    /**
+     * Получение данный для интеграции с СДЭКом
+     *
+     * @return array|string[]
+     * @throws LoaderException
+     */
     public static function getSdekIntegrationInfo() : array
     {
-        if (!CModule::IncludeModule('iblock')) {
+        if (!Loader::IncludeModule('iblock')) {
             return static::$defaultSdekAccess;
         }
 
@@ -61,7 +77,7 @@ class IblockDeliverySettings
             'filter' => [
                 'ACTIVE' => 'Y'
             ]
-        ])->fetchObject();
+        ])?->fetchObject();
 
         if (
             $settingElement &&
@@ -79,9 +95,15 @@ class IblockDeliverySettings
         return static::$defaultSdekAccess;
     }
 
+    /**
+     * Получение данный для интеграции с Dadata
+     *
+     * @return array|string[]
+     * @throws LoaderException
+     */
     public static function getDadataIntegrationInfo() : array
     {
-        if (!CModule::IncludeModule('iblock')) {
+        if (!Loader::IncludeModule('iblock')) {
             return static::$defaultDadataAccess;
         }
 
@@ -93,7 +115,7 @@ class IblockDeliverySettings
             'filter' => [
                 'ACTIVE' => 'Y'
             ]
-        ])->fetchObject();
+        ])?->fetchObject();
 
         if (
             $settingElement &&
@@ -111,9 +133,15 @@ class IblockDeliverySettings
         return static::$defaultDadataAccess;
     }
 
+    /**
+     * Получение стандартной информации о времени курьерской доставки
+     *
+     * @return string
+     * @throws LoaderException
+     */
     public static function getCourierDeliveryDate() : string
     {
-        if (!CModule::IncludeModule('iblock')) {
+        if (!Loader::IncludeModule('iblock')) {
             return static::$defaultCourierDeliveryDate;
         }
 
@@ -124,7 +152,7 @@ class IblockDeliverySettings
             'filter' => [
                 'ACTIVE' => 'Y'
             ]
-        ])->fetchObject();
+        ])?->fetchObject();
 
         if ($settingElement &&
             $settingElement->getCourierDelivery() &&
@@ -135,9 +163,15 @@ class IblockDeliverySettings
         return static::$defaultCourierDeliveryDate;
     }
 
+    /**
+     * Полчение, какие склады отображать пользователю стандартно
+     *
+     * @return array
+     * @throws LoaderException
+     */
     public static function getStoreDefaultView() : array
     {
-        if (!CModule::IncludeModule('iblock')) {
+        if (!Loader::IncludeModule('iblock')) {
             return [];
         }
 
@@ -148,7 +182,7 @@ class IblockDeliverySettings
             'filter' => [
                 'ACTIVE' => 'Y'
             ]
-        ])->fetchObject();
+        ])?->fetchObject();
 
         if ($settingElement &&
             $settingElement->getId()) {

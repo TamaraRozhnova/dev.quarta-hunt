@@ -2,12 +2,17 @@
 
 namespace Classes;
 
-use CModule;
+use \Bitrix\Main\Loader;
 use \Bitrix\Iblock\Elements\ElementLinkCityToStoreTable;
 use \Bitrix\Catalog\StoreProductTable;
+use Bitrix\Main\LoaderException;
 use Local\Util\IblockHelper;
 use CIBlockElement;
 
+/**
+ * Класс по получению информации о доставке товара курьером или самовывоз
+ * в зависимости от местоположения
+ */
 class LinkCityToStore
 {
     private static string $availableProductText = '1 рабочий день';
@@ -15,6 +20,13 @@ class LinkCityToStore
     private static string $defaultStoreName = 'Оружейный квартал';
     private static string $defaultCourierDeliveryInCityShop = '1 - 2';
 
+    /**
+     * Собирающий и обрабатывающий итог метод
+     *
+     * @param string $selectedUserCity
+     * @param array $productInfo
+     * @return array
+     */
     public static function getLinkCityToStore(string $selectedUserCity, array $productInfo) : array
     {
         $result = [];
@@ -44,9 +56,16 @@ class LinkCityToStore
         return $result;
     }
 
+    /**
+     * Получение инфы из ИБ с условием местоположения
+     *
+     * @param string $selectedUserCity
+     * @return array
+     * @throws LoaderException
+     */
     public static function getIblockLinkElement(string $selectedUserCity) : array
     {
-        if (!CModule::IncludeModule('iblock') || !$selectedUserCity) {
+        if (!Loader::IncludeModule('iblock') || !$selectedUserCity) {
             return [];
         }
 
@@ -65,7 +84,7 @@ class LinkCityToStore
                 'CITY.VALUE' => $selectedUserCity
             ],
             'limit' => 1
-        ])->fetchObject();
+        ])?->fetchObject();
 
         if (!$element) {
             return [];
@@ -120,6 +139,16 @@ class LinkCityToStore
         return $elementInfo;
     }
 
+    /**
+     * Проверяет есть ли товар в указанном складе
+     *
+     * @param array $productInfo
+     * @param array $linkElement
+     * @return bool
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \Bitrix\Main\ObjectPropertyException
+     * @throws \Bitrix\Main\SystemException
+     */
     private static function haveProductInStore(array $productInfo, array $linkElement) : bool
     {
         if (empty($productInfo) || empty($linkElement) || !$linkElement['STORE_ID']) {
@@ -135,7 +164,7 @@ class LinkCityToStore
                 'select' => [
                     'AMOUNT'
                 ]
-            ])->fetch();
+            ])?->fetch();
 
             if (
                 $storeInfo &&

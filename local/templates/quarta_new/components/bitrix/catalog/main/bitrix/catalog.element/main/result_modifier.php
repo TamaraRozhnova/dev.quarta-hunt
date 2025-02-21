@@ -213,7 +213,7 @@ if (!empty($rsStoreElement)) {
         }
     }
 
-    $customBasketsHl = new HighloadblockManager('CustomBaskets');
+    $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
     $fUser = Fuser::getId();
 
     foreach ($arResult['STORES_ELEMENT'] as &$store) {

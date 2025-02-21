@@ -58,6 +58,13 @@ class CustomBasket
         }
     }
 
+    /**
+     * Функция по созданию заказа
+     * Получаем все товары (которые доступны) из блока, в котором находится кликнутая кнопка
+     * И передаем их в ajax файл
+     *
+     * @param btn
+     */
     createOrder(btn)
     {
         let mainBlock = btn.closest('.basket-store-block');
@@ -95,6 +102,8 @@ class CustomBasket
 
                             if (res.SUCCESS === true) {
                                 window.location.href = '/cart/purchase/';
+                            } else {
+                                console.log('ERROR MESSAGE: ' . res.ERROR_MESSAGE);
                             }
                         },
                         () => {}
@@ -104,6 +113,11 @@ class CustomBasket
         }
     }
 
+    /**
+     * Функция по очистке всей корзины
+     * Собираем все товары из корзины
+     * И передаем их в ajax файл
+     */
     clearAllBasket()
     {
         if (this.productItemCard) {
@@ -129,6 +143,14 @@ class CustomBasket
         }
     }
 
+    /**
+     * Функция по добавлению событий на блок - счётчик
+     *
+     * @param amountBlock
+     * @param storeIds
+     * @param productId
+     * @param block
+     */
     amountEventsHandler(amountBlock, storeIds, productId, block)
     {
         let plus = amountBlock.querySelector('.basket-item-amount-btn-plus');
@@ -222,6 +244,11 @@ class CustomBasket
         });
     }
 
+    /**
+     * Функция по калькуляции суммы товаров при изменении
+     *
+     * @param mainBlock
+     */
     recalcPrice(mainBlock)
     {
         if (!mainBlock) {
@@ -250,23 +277,51 @@ class CustomBasket
         }
     }
 
+    /**
+     * Вспомогательная функция, которая добавляет проблелы тысячам
+     * Например входит 1000, выходит 1 000
+     *
+     * @param num
+     * @returns {string}
+     */
     numberWithSpaces(num)
     {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
 
+    /**
+     * Функция по обновлению количества товара
+     *
+     * @param productId
+     * @param storeIds
+     * @param quantity
+     * @param block
+     * @param mode
+     */
     updateProduct(productId, storeIds, quantity, block, mode)
     {
         block.closest('.basket-store-block').classList.add('overlay');
         this.runUpdateProductComponentAjax(productId, storeIds, quantity, block, mode);
     }
 
+    /**
+     * Функция по удалению товара из корзины
+     *
+     * @param productId
+     * @param storeIds
+     * @param block
+     */
     deleteProduct(productId, storeIds, block)
     {
         block.closest('.basket-store-block').classList.add('overlay');
         this.runDeleteProductComponentAjax(productId, storeIds, block);
     }
 
+    /**
+     * Функция для ajax запроса очистки корзины
+     *
+     * @param products
+     */
     runDeleteAllProductComponentAjax(products)
     {
         this.runAjax(
@@ -279,12 +334,21 @@ class CustomBasket
 
                 if (res.SUCCESS === true) {
                     window.location.reload();
+                } else {
+                    console.log('ERROR MESSAGE: ' . res.ERROR_MESSAGE);
                 }
             },
             () => {}
         );
     }
 
+    /**
+     * Функция для ajax запроса удалению товара из корзины
+     *
+     * @param productId
+     * @param storeIds
+     * @param block
+     */
     runDeleteProductComponentAjax(productId, storeIds, block)
     {
         this.runAjax(
@@ -302,12 +366,23 @@ class CustomBasket
 
                     block.remove();
                     this.recalcPrice(parent);
+                } else {
+                    console.log('ERROR MESSAGE: ' . res.ERROR_MESSAGE);
                 }
             },
             () => {}
         );
     }
 
+    /**
+     * Функция для ajax запроса обновлению товара в корзине
+     *
+     * @param productId
+     * @param storeIds
+     * @param quantity
+     * @param block
+     * @param mode
+     */
     runUpdateProductComponentAjax(productId, storeIds, quantity, block, mode = 'all')
     {
         this.runAjax(
@@ -324,12 +399,22 @@ class CustomBasket
                 if (res.SUCCESS === true) {
                     block.closest('.basket-store-block').classList.remove('overlay');
                     this.recalcPrice(block.closest('.basket-store-block'));
+                } else {
+                    console.log('ERROR MESSAGE: ' . res.ERROR_MESSAGE);
                 }
             },
             () => {}
         );
     }
 
+    /**
+     * ajax метод
+     *
+     * @param url
+     * @param data
+     * @param responseHandler
+     * @param errorHandler
+     */
     runAjax(url, data, responseHandler, errorHandler)
     {
         BX.ajax({

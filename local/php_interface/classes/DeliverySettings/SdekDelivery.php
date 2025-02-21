@@ -2,16 +2,30 @@
 
 namespace Classes;
 
+use Bitrix\Main\Db\SqlQueryException;
+use Bitrix\Main\Diag\Debug;
 use DateTime;
 use Local\Util\HighloadblockManager;
 use Local\Util\HelperMethods;
 
+/**
+ * Класс по получению и форматированию информации
+ * о времени доставки товара с помощью СДЭКа
+ */
 class SdekDelivery
 {
     private static array $productInfo = [];
     private static string $userSelectedCityId = '';
     private static string $senderCity = '';
 
+    /**
+     * Собирающий и обрабатывающий итог метод
+     *
+     * @param string $userSelectedCityId
+     * @param array $productInfo
+     * @return string
+     * @throws SqlQueryException
+     */
     public static function getDelivery(string $userSelectedCityId, array $productInfo) : string
     {
         static::$productInfo = $productInfo;
@@ -31,9 +45,18 @@ class SdekDelivery
         return '';
     }
 
+    /**
+     * Получение информации из HL блока
+     *
+     * @param string $productId
+     * @param string $senderCity
+     * @param string $reservedCity
+     * @return array
+     * @throws SqlQueryException
+     */
     private static function getInfoFromBD(string $productId, string $senderCity, string $reservedCity) : array
     {
-        $sdekDeliveryDates = new HighloadblockManager('SdekDeliveryDates');
+        $sdekDeliveryDates = new HighloadblockManager(QUARTA_HL_SDEK_DELIVERY_DATES_BLOCK_CODE);
 
         $sdekDeliveryDates->prepareParamsQuery(
             [
@@ -67,6 +90,12 @@ class SdekDelivery
         return $sdekDeliveryDates->getData();
     }
 
+    /**
+     * Получение и обработка информации из api СДЭКа
+     *
+     * @return array
+     * @throws \Bitrix\Main\Db\SqlQueryException
+     */
     private static function getSdekApiInfo() : array
     {
         if (
@@ -103,6 +132,15 @@ class SdekDelivery
         return $result;
     }
 
+
+    /**
+     * Обновление информации в HL блоке
+     * если записи не обновлялась больше недели
+     *
+     * @param string $id
+     * @return void
+     * @throws \Bitrix\Main\Db\SqlQueryException
+     */
     private static function updateHlInfo(string $id) : void
     {
         if (!$id) {
@@ -115,7 +153,7 @@ class SdekDelivery
             return;
         }
 
-        $sdekDeliveryDates = new HighloadblockManager('SdekDeliveryDates');
+        $sdekDeliveryDates = new HighloadblockManager(QUARTA_HL_SDEK_DELIVERY_DATES_BLOCK_CODE);
 
         $fields = [
             'UF_LAST_UPDATE_DATE' => date('d.m.Y'),
@@ -126,16 +164,26 @@ class SdekDelivery
             'UF_DELIVERY_PERIOD_MIN' => $sdekInfo['deliveryPeriodMin']
         ];
 
-        $sdekDeliveryDates->update($id, $fields);
+        try {
+            $sdekDeliveryDates->update($id, $fields);
+        } catch (\Exception $error) {
+            Debug::dumpToFile(var_export($error->getMessage(), true), 'ERROR MESSAGE ' . __FILE__, 'deliverySettings.log');
+        }
     }
 
+    /**
+     * Добавление элемент в HL блок
+     *
+     * @param array $sdekInfo
+     * @return void
+     */
     private static function addHlItem(array $sdekInfo) : void
     {
         if (empty($sdekInfo)) {
             return;
         }
 
-        $sdekDeliveryDates = new HighloadblockManager('SdekDeliveryDates');
+        $sdekDeliveryDates = new HighloadblockManager(QUARTA_HL_SDEK_DELIVERY_DATES_BLOCK_CODE);
 
         $fields = [
             'UF_LAST_UPDATE_DATE' => date('d.m.Y'),
@@ -146,9 +194,19 @@ class SdekDelivery
             'UF_DELIVERY_PERIOD_MIN' => $sdekInfo['deliveryPeriodMin']
         ];
 
-        $sdekDeliveryDates->add($fields);
+        try {
+            $sdekDeliveryDates->add($fields);
+        } catch (\Exception $error) {
+            Debug::dumpToFile(var_export($error->getMessage(), true), 'ERROR MESSAGE ' . __FILE__, 'deliverySettings.log');
+        }
     }
 
+    /**
+     * Проверка даты обновления записи в HL блоке
+     *
+     * @param string $date
+     * @return bool
+     */
     private static function checkLastUpdateDate(string $date) : bool
     {
         if (!$date) {

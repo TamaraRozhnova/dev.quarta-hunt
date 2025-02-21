@@ -2,9 +2,14 @@
 
 namespace Classes;
 
+use Bitrix\Main\Application;
+use Bitrix\Main\Db\SqlQueryException;
 use Sdek\CalculatePriceDeliverySdek;
 use \Ammina\Regions\BlockTable;
 
+/**
+ * Класс по обращению к api СДЭКа
+ */
 class SdekApi
 {
     private static int $sdekTariffId = 136;
@@ -16,6 +21,14 @@ class SdekApi
         'HEIGHT' => 40
     ];
 
+    /**
+     * Функция по получению данных с помощью api СДЭКа
+     *
+     * @param string $senderCity
+     * @param string $userSelectedCityId
+     * @return array
+     * @throws SqlQueryException
+     */
     public static function getSdekApiDates(string $senderCity, string $userSelectedCityId) : array
     {
         $sdekAuth = IblockDeliverySettings::getSdekIntegrationInfo();
@@ -56,6 +69,13 @@ class SdekApi
         return $result['result']['result'];
     }
 
+    /**
+     * Получение ID города для СДЭКа из ID города Битрикса
+     *
+     * @param string $amminaId
+     * @return string
+     * @throws SqlQueryException
+     */
     public static function getSdekCityIdFromBitrixId(string $amminaId) : string
     {
         if (!$amminaId) {
@@ -67,7 +87,10 @@ class SdekApi
         if ($bitrixId) {
             global $DB;
             $sdekId = '';
-            $result = $DB->Query("SELECT * FROM `ipol_sdekcities` WHERE BITRIX_ID = " . $bitrixId);
+
+            $connection = Application::getConnection();
+            $sql = "SELECT * FROM ipol_sdekcities WHERE BITRIX_ID = " . $connection->getSqlHelper()->forSql($bitrixId);
+            $result = $connection->query($sql);
 
             while ($row = $result->Fetch()) {
                 $sdekId = $row['SDEK_ID'];
@@ -79,6 +102,12 @@ class SdekApi
         return '';
     }
 
+    /**
+     * Получение ID города Битрикса из ID города модуля Ammina
+     *
+     * @param string $amminaId
+     * @return string
+     */
     public static function getBitrixCityIdFromAmminaId(string $amminaId) : string
     {
         if (!$amminaId) {

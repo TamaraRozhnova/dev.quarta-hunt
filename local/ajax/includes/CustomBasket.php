@@ -12,19 +12,19 @@ use \Bitrix\Sale\Fuser;
 
 $request = Application::getInstance()->getContext()->getRequest();
 
-$productId = $request->getPost('productId') ?: '0';
+$productId = intval($request->getPost('productId')) ?: 0;
 
-if ($productId == '0') {
+if ($productId === 0) {
     die(json_encode(['SUCCESS' => false]));
 }
 
-$storeId = $request->getPost('storeId') ?: '0';
-$mode = $request->getPost('mode') ?: 'ADD';
-$quantity = $request->getPost('quantity') ?: '1';
+$storeId = intval($request->getPost('storeId')) ?: 0;
+$mode = (string)$request->getPost('mode') ?: 'ADD';
+$quantity = intval($request->getPost('quantity')) ?: 1;
 
 $fUser = Fuser::getId();
 
-$customBasketsHl = new HighloadblockManager('CustomBaskets');
+$customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
 $customBasketsHl->prepareParamsQuery(
     [
@@ -52,25 +52,54 @@ switch ($mode) {
             'UF_STORE_ID' => $storeId
         ];
 
-        $customBasketsHl->add($fields);
+        $result = $customBasketsHl->add($fields);
 
-        die(json_encode(['SUCCESS' => true]));
+        if ($result->isSuccess()) {
+            die(json_encode(['SUCCESS' => true]));
+        }
+
+        die(json_encode([
+            'SUCCESS' => false,
+            'ERROR_MESSAGE' => implode(', ', $result->getErrorMessages())
+        ]));
     case 'UPDATE' :
         if (!empty($product)) {
             $fields = [
                 'UF_QUANTITY' => $quantity
             ];
 
-            $customBasketsHl->update($product['ID'], $fields);
-            die(json_encode(['SUCCESS' => true]));
+            $result = $customBasketsHl->update($product['ID'], $fields);
+
+            if ($result->isSuccess()) {
+                die(json_encode(['SUCCESS' => true]));
+            }
+
+            die(json_encode([
+                'SUCCESS' => false,
+                'ERROR_MESSAGE' => implode(', ', $result->getErrorMessages())
+            ]));
         }
 
-        die(json_encode(['SUCCESS' => false]));
+        die(json_encode([
+            'SUCCESS' => false,
+            'ERROR_MESSAGE' => 'empty product'
+        ]));
     case 'DELETE' :
         if (!empty($product)) {
-            $customBasketsHl->delete($product['ID']);
-            die(json_encode(['SUCCESS' => true]));
+            $result = $customBasketsHl->delete($product['ID']);
+
+            if ($result->isSuccess()) {
+                die(json_encode(['SUCCESS' => true]));
+            }
+
+            die(json_encode([
+                'SUCCESS' => false,
+                'ERROR_MESSAGE' => implode(', ', $result->getErrorMessages())
+            ]));
         }
 
-        die(json_encode(['SUCCESS' => false]));
+        die(json_encode([
+            'SUCCESS' => false,
+            'ERROR_MESSAGE' => 'empty product'
+        ]));
 }

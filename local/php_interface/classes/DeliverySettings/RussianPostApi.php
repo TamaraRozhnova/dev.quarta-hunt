@@ -3,8 +3,10 @@
 namespace Classes;
 
 use RussianPostApi\Request;
-use \Ammina\Regions\BlockTable;
 
+/**
+ * Класс по обращению к api Почты России
+ */
 class RussianPostApi
 {
     private static array $defaultProductInfo = [
@@ -12,6 +14,13 @@ class RussianPostApi
         'PRICE' => 5000
     ];
 
+    /**
+     * Функция по получению данных с помощью api Почты России
+     *
+     * @param array $productInfo
+     * @param array $cityInfo
+     * @return array
+     */
     public static function getRussianPostApiDates(array $productInfo, array $cityInfo) : array
     {
         if (

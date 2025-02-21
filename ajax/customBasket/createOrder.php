@@ -25,20 +25,17 @@ if (
 
 $fUser = Fuser::getId();
 
-$oldBasket = CSaleBasket::GetList([], [
-        'FUSER_ID' => $fUser,
-        'LID' => SITE_ID,
-        'ORDER_ID' => 'null'
-    ]
-);
-
-while ($item = $oldBasket->fetch()) {
-    CSaleBasket::Delete($item['ID']);
-}
-
 $_SESSION['PRODUCTS_IN_ORDER'] = [];
 
 $basket = Basket::loadItemsForFUser($fUser, SITE_ID);
+$basketItems = $basket->getBasketItems();
+
+if (is_array($basketItems) && !empty($basketItems)) {
+    foreach ($basketItems as $basketItem) {
+        $basket->getItemById($basketItem->getId())->delete();
+    }
+}
+
 foreach ($products as $product) {
     $item = $basket->createItem('catalog', $product['ID']);
 

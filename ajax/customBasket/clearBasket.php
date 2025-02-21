@@ -25,7 +25,7 @@ foreach ($products as $key => $product) {
 
     if (is_array($store) && !empty($store)) {
         foreach ($store as $storeId) {
-            $customBasketsHl = new HighloadblockManager('CustomBaskets');
+            $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
             $customBasketsHl->prepareParamsQuery(
                 ['ID'],
@@ -41,7 +41,14 @@ foreach ($products as $key => $product) {
             $item = $customBasketsHl->getData();
 
             if ($item) {
-                $customBasketsHl->delete($item['ID']);
+                try {
+                    $customBasketsHl->delete($item['ID']);
+                } catch (Exception $error) {
+                    die(json_encode([
+                        'SUCCESS' => false,
+                        'ERROR_MESSAGE' => $error->getMessage()
+                    ]));
+                }
             }
         }
     }

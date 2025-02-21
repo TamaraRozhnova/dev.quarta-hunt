@@ -12,12 +12,12 @@ use \Bitrix\Sale\Fuser;
 
 $request = Application::getInstance()->getContext()->getRequest();
 
-$productId = $request->getPost('productId') ?: '0';
-$storeIds = $request->getPost('storeIds') ?: null;
+$productId = intval($request->getPost('productId')) ?: 0;
+$storeIds = (string)$request->getPost('storeIds') ?: '';
 
 if (
-    $productId == '0' ||
-    $storeIds == null
+    $productId === 0 ||
+    $storeIds === ''
 ) {
     die(json_encode(['SUCCESS' => false]));
 }
@@ -25,9 +25,13 @@ if (
 $storeIds = explode(',', $storeIds);
 $fUser = Fuser::getId();
 
-if (is_array($storeIds)) {
-    foreach ($storeIds as $storeId) {
-        $customBasketsHl = new HighloadblockManager('CustomBaskets');
+if (!is_array($storeIds) || count($storeIds) <= 0) {
+    die(json_encode(['SUCCESS' => false]));
+}
+
+foreach ($storeIds as $storeId) {
+    if ($storeId) {
+        $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
 
         $customBasketsHl->prepareParamsQuery(
             ['ID'],
@@ -43,11 +47,16 @@ if (is_array($storeIds)) {
         $item = $customBasketsHl->getData();
 
         if ($item) {
-            $customBasketsHl->delete($item['ID']);
+            try {
+                $customBasketsHl->delete($item['ID']);
+            } catch (Exception $error) {
+                die(json_encode([
+                    'SUCCESS' => false,
+                    'ERROR_MESSAGE' => $error->getMessage()
+                ]));
+            }
         }
     }
-
-    die(json_encode(['SUCCESS' => true]));
 }
 
-die(json_encode(['SUCCESS' => false]));
+die(json_encode(['SUCCESS' => true]));

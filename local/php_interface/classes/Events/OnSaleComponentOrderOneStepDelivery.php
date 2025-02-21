@@ -6,8 +6,21 @@ use Bitrix\Main\Diag\Debug;
 use \Classes\LinkCityToStore;
 use \Classes\DeliverySettings;
 
+/**
+ * Класс обработчик события OnSaleComponentOrderOneStepDelivery
+ */
 class OnSaleComponentOrderOneStepDelivery
 {
+    /**
+     * Функция убирающая лишние варианты доставки,
+     * если выбран самовывоз
+     *
+     * @param $arResult
+     * @param $arUserResult
+     * @param $arParams
+     * @return void
+     * @throws \Bitrix\Main\LoaderException
+     */
     public static function removeDeliveriesMethods(&$arResult, $arUserResult, $arParams) : void
     {
         $selectedUserCity = DeliverySettings::getUserSelectedCity();
