@@ -4,13 +4,9 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Localization\Loc;
-
 if (!isset($arResult['ITEM'])) {
     return;
 }
-
-Loc::loadMessages(__FILE__);
 
 $item = &$arResult['ITEM'];
 
@@ -168,17 +164,9 @@ if (!empty($item['PREVIEW_PICTURE']) && is_array($item['PREVIEW_PICTURE'])) {
             </div>
 
         <? else: ?>
-        <div class="product-card__add">
-            <?php if ($item['AVAILABLE']) : ?>
-                <button onclick="ym(30377432,'reachGoal','product-card__add-basket')" class="btn btn-primary product-card__button product-card__add-basket" disabled>
-                    <?= Loc::getMessage('ADD_TO_BASKET_BTN_TEXT') ?>
-                </button>
-            <?php else : ?>
-                <button class="btn btn-outline-primary product-card__availability" disabled>
-                    <?= Loc::getMessage('NO_AVAILABLE_BTN_TEXT') ?>
-                </button>
-            <?php endif; ?>
-        </div>
+            <div class="product-card__add placeholder-glow">
+                <div class="placeholder"></div>
+            </div>
         <? endif; ?>
 
         <? if ($item['AVAILABLE'] && !isset($arResult['RESTRICTED_SECTION']) && !CSite::InGroup([OPT_GROUP_ID])) { ?>
