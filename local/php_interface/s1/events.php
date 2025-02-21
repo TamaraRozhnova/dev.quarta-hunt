@@ -90,6 +90,31 @@ $eventManager->addEventHandler(
 );
 
 /**
+ * Добавляем округление заказа до рублей при оплате наличными
+ */
+$eventManager->addEventHandler(
+    'sale',
+    'OnSaleComponentOrderCreated',
+    [
+        'CustomEvents\OnOrder',
+        'OnSaleComponentOrderShowAjaxAnswer'
+    ]
+);
+
+
+/**
+ *  Изменяем сумму оплаты по заказу при оплате в кредит по данным платежной системы
+ */
+$eventManager->addEventHandler(
+    'sale',
+    'OnSalePaymentEntitySaved',
+    [
+        'CustomEvents\OnOrder',
+        'OnSalePaymentEntitySaved'
+    ]
+);
+
+/**
  * Убираем начисление бонусов для оплаты рассрочкой
  */
 $eventManager->addEventHandler(

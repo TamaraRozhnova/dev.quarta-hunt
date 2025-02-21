@@ -20,11 +20,12 @@ $this->setFrameMode( true );
                 <button class="swiper-button-prev ui-swiper-button">
                     <? \Spro\Image::showSVG( 'arrow-prev' ) ?>
                 </button>
-                <div class="section__title">ПОПУЛЯРНЫЕ ТОВАРЫ</div>
+                <div class="section__title">Популярные товары</div>
                 <button class="swiper-button-next ui-swiper-button">
                     <? \Spro\Image::showSVG( 'arrow-next' ) ?>
                 </button>
             </div>
+            <p class="recomm__text">Самые любимые товары наших клиентов! Не пропустите возможность открыть для себя их преимущества.</p>
 			<div class="swiper-wrapper">
 				<?php foreach ($arResult['ITEMS'] as $index => $arItem): ?>
 					<div class="swiper-slide catalog__item-slide">

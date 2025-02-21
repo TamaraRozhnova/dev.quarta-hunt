@@ -23,10 +23,40 @@ while ($arRestr = $dbRestr->fetch()) {
 }
 
  if (!empty($arResult['BASKET_ITEMS'])) {
+     $haveLicenceProducts = false;
+
     foreach ($arResult['BASKET_ITEMS'] as $arItem) {        
         $arProductsIDS[$arItem['PRODUCT_ID']] = $arItem['PRODUCT_ID'];
         $arResult['JS_DATA']['PRODUCTS_RESTRICT_INFO'][$arItem['PRODUCT_ID']]['NAME'] = $arItem['NAME'];
+
+        $res = CIBlockElement::GetByID($arItem['PRODUCT_ID']);
+
+        if ($element = $res->GetNext()) {
+            $sectionsList = CIBlockSection::GetNavChain(CATALOG_IBLOCK_ID, $element['IBLOCK_SECTION_ID'], ['ID'], true);
+
+            if (!empty($sectionsList)) {
+                foreach ($sectionsList as $section) {
+                    $rsSection = CIBlockSection::GetList([],
+                        [
+                            'ID' => $section['ID'],
+                            'IBLOCK_ID' => CATALOG_IBLOCK_ID
+                        ],
+                        false,
+                        [
+                            'ID',
+                            'UF_LISENCE_PRODUCTS'
+                        ]
+                    )->GetNext();
+
+                    if ($rsSection['UF_LISENCE_PRODUCTS'] == 1) {
+                        $haveLicenceProducts = true;
+                    }
+                }
+            }
+        }
     }
+
+     $arResult['HAVE_LICENCE_PRODUCTS'] = $haveLicenceProducts;
  }
 
  foreach ($arProductsIDS as $arProduct) {

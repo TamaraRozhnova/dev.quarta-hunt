@@ -39,6 +39,7 @@ html {
     padding: 0;
     display: flex;
     margin-bottom: 0;
+    max-width: 660px;
 }
 .filter__li {
     flex: 1;
@@ -397,9 +398,46 @@ html {
     .catalog__item-img {
         max-width: 100%;
     }
+    .inner__left-sort{
+        display: block;
+    }
+    .inner__wrapper-sort{
+        flex-direction: column;
+    }
+    .inner__left-sort .filter__title{
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .filter__li .nav-link {
+        font-size: 14px;
+    }
 }
 @media screen and (max-width: 550px) {
-    .filter__ul {
-        flex-direction: column;
+    .catalog__item-buttons .ui-button.add2compare{
+        border: 1px solid #323232;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        color: #323232;
+        text-transform: none;
+    }
+    .catalog__item-buttons .ui-button {
+        font-size: 17px;
+        text-transform: unset;
+    }
+    .catalog__item-buttons .ui-button.add2compare .nactive:before{
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url("images/compare.svg");
+        background-repeat: no-repeat;
+        margin-right: 16px;
+        margin-bottom: -3px;
+    }
+    .catalog_bnr{
+        position: relative;
+        left: -15px;
+        max-width: calc(100% + 30px);
     }
 }
