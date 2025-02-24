@@ -19,7 +19,16 @@ class OneCImportHandler
         if ($arFields['IBLOCK_ID'] == self::$HUT_CATALOG_OFFERS_IBLOCK_ID) {
             Loader::includeModule('iblock');
 
-            $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0]['VALUE'] ?? $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]['n0']['VALUE'] ;
+            $oneCSize = false;
+            if (is_array($arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]) && isset($arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0])) {
+                $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C][0]['VALUE'];
+            }
+            if (is_array($arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]) &&  isset($arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]['n0'])) {
+                $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]['n0']['VALUE'];
+            }
+            if (isset($arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]) && intval($arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C]) > 0) {
+                $oneCSize = $arFields['PROPERTY_VALUES'][self::$HUT_SIZE_PROPD_ID_1C];
+            }
 
             if ($oneCSize) {
                 $sizeProp = PropertyEnumerationTable::getList([
