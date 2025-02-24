@@ -111,6 +111,10 @@
     .promo-product-slide__price-old {
         font-size: .875rem
     }
+
+    .col-6.promo-product-slide__price {
+        padding-left: 10px !important;
+    }
 }
 
 
