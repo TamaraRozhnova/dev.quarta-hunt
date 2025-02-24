@@ -146,3 +146,15 @@ $eventManager->addEventHandler(
     'OnEndBufferContent',
     'removeType'
 );
+
+$eventManager->addEventHandler(
+    'sale',
+    'OnSaleComponentOrderOneStepDelivery',
+    ['CustomEvents\OnSaleComponentOrderOneStepDelivery', 'removeDeliveriesMethods']
+);
+
+$eventManager->addEventHandler(
+    'sale',
+    'OnSaleOrderSaved',
+    ['CustomEvents\OnSaleOrderSaved', 'deleteProductFromCustomBasket']
+);
