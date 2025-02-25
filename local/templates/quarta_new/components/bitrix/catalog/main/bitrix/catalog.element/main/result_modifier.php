@@ -137,7 +137,10 @@ if (is_array($recommendedProductIds) && count($recommendedProductIds) > 0) {
     $arResult['RECOMMENDED_PRODUCTS'] = RecommendedProductsHelper::getRecommendedProducts($recommendedProductIds, $sectionId, 4, $arParams['DETAIL_URL']);
 }
 
-$arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECTION']['ID']);
+if($arResult['SECTION'] && $arResult['SECTION']['ID']){
+    $arResult['VIDEO_REVIEWS'] = VideoReviewsHelper::getVideoReviews($arResult['SECTION']['ID']);
+}
+    
 
 DiscountsHelper::fillProductWithBonuses($arResult);
 
