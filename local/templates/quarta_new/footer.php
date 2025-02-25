@@ -292,11 +292,13 @@ if (
             let modal = document.querySelector('.empty-user-email-modal');
             let backgroundModal = document.querySelector('.background-empty-email-modal');
             let closeBtn = document.querySelector('.close-empty-email-modal');
+            let modalLink = modal.querySelector('a');
 
             if (
                 modal &&
                 backgroundModal &&
-                closeBtn
+                closeBtn &&
+                modalLink
             ) {
                 closeBtn.addEventListener('click', () => {
                     modal.remove();
@@ -308,6 +310,12 @@ if (
                     modal.remove();
                     backgroundModal.remove();
                     document.cookie = "showModalEmptyEmail=N";
+                });
+
+                modalLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    document.cookie = "showModalEmptyEmail=N";
+                    window.location.href = modalLink.href;
                 });
             }
         });

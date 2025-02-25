@@ -121,12 +121,16 @@
 }
 .empty-user-email-block {
     margin-bottom: 16px;
+    border: 1px solid #eeeff3;
+    padding: 12px;
+    border-radius: 8px;
 }
 .empty-user-email-block > span {
     font-size: 16px;
     display: block;
     margin-bottom: 8px;
     line-height: 130%;
+    color: #eb5806;
 }
 .empty-user-email-block > a {
     padding: 12px 16px;
