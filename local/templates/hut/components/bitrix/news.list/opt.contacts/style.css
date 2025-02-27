@@ -1,0 +1,34 @@
+.contacts__card {
+	color: var(--color-dark4);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 135%;
+	margin: 0;
+}
+
+.opt_contacts  h2 {
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 52.8px;
+	letter-spacing: -0.001rem;
+	margin: 0 0 48px 0;
+}
+@media (max-width: 1210px) {
+	.contacts__wrap {
+		gap: 24px !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.opt_contacts h2 {
+		font-weight: 600;
+		font-size: 28px;
+		line-height: 30.8px;
+	}
+}
+
+@media (max-width: 500px) {
+	.opt_contacts h2 {
+		margin: 0 0 32px 0;
+	}
+}
