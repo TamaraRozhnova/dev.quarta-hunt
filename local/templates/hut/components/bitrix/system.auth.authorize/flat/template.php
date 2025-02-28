@@ -58,7 +58,7 @@ $this->setFrameMode(false); ?>
 							</div>
 						</div>
 						<? if ($arResult["CAPTCHA_CODE"]): ?>
-							<div class="register-capthca-auth" style="display: none">
+							<div class="register-capthca-auth">
 								<div class="">
 									<label for="" class="form-label">
 										<?= GetMessage("AUTH_CAPTCHA_PROMT") ?>:<span class="starrequired">*</span>

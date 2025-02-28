@@ -311,8 +311,7 @@ window.addEventListener("load", (e) => {
     dataSend.sessid = $('input[name="sessid"]').val();
 
     if (isCaptcha) {
-      dataSend.captcha = $("#form_auth_phone").serialize();
-      dataSend.captcha_sid = $('input[name="captcha_sid"]').val();
+      dataSend.captcha = document.querySelector('#auth .h-captcha > iframe').dataset.hcaptchaResponse;
     }
 
     BX.ajax({
