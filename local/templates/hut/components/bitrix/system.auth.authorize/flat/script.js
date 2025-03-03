@@ -311,7 +311,11 @@ window.addEventListener("load", (e) => {
     dataSend.sessid = $('input[name="sessid"]').val();
 
     if (isCaptcha) {
-      dataSend.captcha = document.querySelector('#auth .h-captcha > iframe').dataset.hcaptchaResponse;
+      const hCaptchaBlock = document.querySelector('#auth .h-captcha > iframe');
+
+      if (hCaptchaBlock) {
+        dataSend.captcha = hCaptchaBlock.dataset.hcaptchaResponse;
+      }
     }
 
     BX.ajax({

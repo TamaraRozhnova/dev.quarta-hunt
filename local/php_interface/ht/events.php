@@ -7,3 +7,12 @@ use Bitrix\Sale\DiscountCouponsManagerBase;
 Loader::includeModule('sale');
 
 $eventManager = EventManager::getInstance();
+
+$eventManager->addEventHandler(
+    'main',
+    'OnBeforeUserRegister',
+    [
+        'CustomEvents\CUserEx',
+        'OnBeforeUserRegister'
+    ]
+);
