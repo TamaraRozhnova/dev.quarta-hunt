@@ -2511,7 +2511,7 @@
                 return e
             }).apply(this, arguments)
         }
-
+console.log('qweqwe');
         var t = "undefined" != typeof window,
             n = t && !("onscroll" in window) || "undefined" != typeof navigator && /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent),
             i = t && "IntersectionObserver" in window, s = t && "classList" in document.createElement("p"),
