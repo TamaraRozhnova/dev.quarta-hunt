@@ -38,12 +38,13 @@ $favoritesCount = $favorites->getFavoritesCount();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400..700&display=swap" rel="stylesheet">
 
-    <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/normalize.css") ?>
-    <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css") ?>
-    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/jsCookie.min.js"); ?>
-    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/script.js"); ?>
-    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/request.js"); ?>
-    <? Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/favoritesApi.js"); ?>
+    <?php Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/normalize.css") ?>
+    <?php Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css") ?>
+    <?php Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/jsCookie.min.js"); ?>
+    <?php Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/script.js"); ?>
+    <?php Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/request.js"); ?>
+    <?php Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/favoritesApi.js"); ?>
+    <?php Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/modal.js"); ?>
 
     <? $APPLICATION->AddHeadString('<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>', true); ?>
     <? $APPLICATION->AddHeadString('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" type="text/javascript"></script>', true); ?>

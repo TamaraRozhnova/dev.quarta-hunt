@@ -168,6 +168,12 @@ window.addEventListener("load", (e) => {
 
     handleQuickRegister(data, modalQuickRegister);
 
+    let authMainBlock = document.getElementById('auth');
+
+    if (authMainBlock) {
+      authMainBlock.style.display = 'none';
+    }
+
     objModalQuickRegister.open();
   }
 
@@ -267,6 +273,20 @@ window.addEventListener("load", (e) => {
           });
         }
       });
+
+      const btnCloseModal = document.getElementById('quick-register-window').querySelector('.modal__close');
+
+      if (btnCloseModal) {
+        btnCloseModal.addEventListener('click', () => {
+          let allModalBlock = document.querySelector('.jquery-modal.blocker.current');
+
+          if (allModalBlock) {
+            allModalBlock.remove();
+          }
+
+          document.querySelector('body').style.overflow = '';
+        });
+      }
     }
   }
 

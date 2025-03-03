@@ -179,6 +179,60 @@ $this->setFrameMode(false); ?>
 	</div>
 </div>
 
+<div id="quick-register-window" class="modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="quick-register-accounts-header">
+                <div class="quick-register-accounts-header-title">
+                    <h3>Регистрация</h3>
+                </div>
+            </div>
+            <div class="quick-register-accounts-content">
+                <div class="bx-authform-formgroup-container input mb-4 input--lg reg-name-qr">
+                    <label class="bx-authform-label-container form-label">
+                        Имя
+                    </label>
+                    <div class="bx-authform-input-container input--lg">
+                        <input type="text" class="form-control"  name="NAME" maxlength="255" value="" />
+                    </div>
+                </div>
+                <div class="bx-authform-formgroup-container input mb-4 input--lg reg-last-name-qr">
+                    <label class="bx-authform-label-container form-label">
+                        Фамилия
+                    </label>
+                    <div class="bx-authform-input-container input--lg">
+                        <input type="text" class="form-control"  name="LAST_NAME" maxlength="255" value="" />
+                    </div>
+                </div>
+                <div class="bx-authform-formgroup-container input mb-4 input--lg reg-code-qr">
+                    <label class="bx-authform-label-container form-label">
+                        Код из смс
+                    </label>
+                    <div class="bx-authform-input-container input--lg">
+                        <input type="text" class="form-control"  name="SMS_CODE" maxlength="255" value="" />
+                    </div>
+                </div>
+
+                <div class="quick-register-warning"></div>
+
+                <div class="bx-authform-formgroup-container">
+                    <div class="input-wrapper-form">
+                        <input
+                                type="submit"
+                                class="btn btn-primary btn-lg w-100 form_quick_register"
+                                name="send_account_info"
+                                value="Завершить регистрацию"
+                        />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal__close"></div>
+    </div>
+</div>
+
 <script type="text/javascript">
 	<? if ($arResult["LAST_LOGIN"] <> ''): ?>
 		try {
