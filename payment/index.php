@@ -161,59 +161,6 @@ $APPLICATION->SetTitle('Оплата');?>
                             "STRICT_SECTION_CHECK" => "N"
                         )
                     );?>
-
-                <h3 class="mb-4" >Наши реквизиты</h3>
-                <table class="table table-striped">
-                    <tbody>
-                        <tr>
-                            <td class="w-50">Сокращенное наименование</td>
-                            <td class="w-50">ООО "ПЕТРОВ ДВОР"</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">ОГРН</td>
-                            <td class="w-50">1247800035878</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">ИНН</td>
-                            <td class="w-50">7813679180</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">КПП</td>
-                            <td class="w-50">781301001</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">ОКВЭД</td>
-                            <td class="w-50">47.78.7</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">ОКПО</td>
-                            <td class="w-50">47377500</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">Юр. Адрес</td>
-                            <td class="w-50">197046, г Санкт-Петербург, ул. наб. Петроградская, д.18, литер А, помещ. 6-н</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">Почтовый адрес</td>
-                            <td class="w-50">197046, г Санкт-Петербург, ул. наб. Петроградская, д.18, литер А, помещ. 6-н</td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">Email</td>
-                            <td class="w-50"><a href="mailto:k.kostromina@quarta-hunt.ru">k.kostromina@quarta-hunt.ru</a></td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">Телефон</td>
-                            <td class="w-50"><a href="tel:+7 (900) 199-13-66">+7 (900) 199-13-66</a></td>
-                        </tr>
-                        <tr>
-                            <td class="w-50">Ген. Директор</td>
-                            <td class="w-50">Костромина Ксения Владимировна</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">АО «ТБанк» р/с 40702810110001651263 БИК 044525974 к/с 30101810145250000974</td>
-                        </tr>
-                    </tbody>
-                </table>
                 </div>
             </div>
         </div>
