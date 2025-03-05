@@ -8,6 +8,7 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Config\Option;
 use Skyweb24\YandexCaptcha\YandexCaptcha;
 use Skyweb24\YandexCaptcha\YandexCaptchaOption;
+use Webprostor\hCaptcha;
 
 function getUserFullNameOrEmail(): string
 {
@@ -127,6 +128,23 @@ function checkCustomCaptcha($post)
         //        $word = ReCaptchaTwoGoogle::checkBxCaptcha($output, $moduleParams);
         //        $captcha = new CCaptcha();
         //        return $captcha->CheckCode($word, $_REQUEST["captcha_sid"]);
+    } else {
+        return false;
+    }
+}
+
+function checkCustomHCaptcha($captchaCode)
+{
+    if (
+        Loader::includeModule('webprostor.core') &&
+        Loader::includeModule('webprostor.hcaptcha') &&
+        $captchaCode &&
+        $captchaCode !== ''
+    ) {
+        $siteCode = strtoupper(SITE_ID)."_";
+        $params['SECRETKEY'] = Option::get('webprostor.hcaptcha', "{$siteCode}SECRETKEY");
+
+        return hCaptcha::CheckHCaptcha($captchaCode, $params);
     } else {
         return false;
     }

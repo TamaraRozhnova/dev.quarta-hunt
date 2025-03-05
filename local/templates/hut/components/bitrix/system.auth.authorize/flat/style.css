@@ -101,6 +101,124 @@
   display: none !important;
 }
 
+#quick-register-window {
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 550px;
+  z-index: 1055;
+  width: 100%;
+  height: fit-content;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+#quick-register-window.show {
+  display: block;
+}
+
+#quick-register-window .quick-register-accounts-header-title {
+  padding: 4px 40px 4px 0;
+  color: var(--color-dark6);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+#quick-register-window .quick-register-accounts-header-title h3 {
+  margin: 0;
+}
+
+#quick-register-window .quick-register-accounts-content {
+  margin-top: 36px;
+}
+
+#quick-register-window .quick-register-accounts-content .bx-authform-formgroup-container.input {
+  background: unset;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+#quick-register-window .quick-register-accounts-content .bx-authform-formgroup-container.input label {
+  margin-bottom: 6px;
+  color: var(--color-dark6);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  display: block;
+}
+
+#quick-register-window .quick-register-accounts-content .bx-authform-formgroup-container.input input {
+  background-color: var(--color-gray1);
+  padding: 12px;
+  border-radius: 8px 8px 0 0;
+  border: none;
+  border-bottom: 1px solid var(--color-gray3);
+  color: var(--color-dark6);
+  font-size: 16px;
+  line-height: 21px;
+  width: 100%;
+  outline: none;
+}
+
+#quick-register-window .quick-register-accounts-content input.btn.form_quick_register {
+  color: white;
+  text-transform: uppercase;
+  border-radius: 12px;
+  background-color: var(--color-primary);
+  display: block;
+  width: 100%;
+  padding: 18px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s;
+}
+
+#quick-register-window .quick-register-accounts-content input.btn.form_quick_register:hover {
+  background-color: var(--color-primary7);
+}
+
+#quick-register-window .quick-register-accounts-content .bx-authform-formgroup-container.input input.is-invalid {
+  border-color: var(--color-red5);
+}
+
+#quick-register-window .modal__close {
+  position: absolute;
+  top: 19px;
+  right: 24px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-indent: -9999px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("/local/templates/hut/components/bitrix/system.auth.authorize/flat/images/close.svg");
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+#quick-register-window .modal__close:hover {
+  background-image: url("/local/templates/hut/components/bitrix/system.auth.authorize/flat/images/close-hover.svg");
+}
+
+.quick-register-warning {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #eb5806;
+}
+
 @media (max-width: 768px) {
   #auth.modal {
     vertical-align: bottom;
@@ -109,6 +227,17 @@
   }
 
   #auth.modal {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  #quick-register-window {
+    bottom: 0;
+    top: unset;
+    margin: 0;
+    max-width: 100%;
+    transform: unset;
+    min-width: unset;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }

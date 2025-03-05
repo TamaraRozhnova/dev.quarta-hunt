@@ -34,7 +34,7 @@ define('ENCRYPTION_KEY', 'VPTDI1JY5fLMPunFcTIZ3X-W-e4');
 $currentUser = CurrentUser::get();
 $userObj = new CUser();
 
-if (isset($_POST['captcha']) && !checkCustomCaptcha($_POST['captcha'])) {
+if (isset($_POST['captcha']) && !checkCustomHCaptcha($_POST['captcha'])) {
 	die(Json::encode([
 		'captcha_error' => true,
 		'message' => Loc::getMessage('WRONG_CARTCHA')	

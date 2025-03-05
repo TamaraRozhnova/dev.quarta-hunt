@@ -230,7 +230,7 @@ if ($arResult["SHOW_SMS_FIELD"] == true) {
 					/* CAPTCHA */
 					if ($arResult["USE_CAPTCHA"] == "Y") {
 					?>
-						<div class="register-capthca-auth mb-4" style="display: none">
+						<div class="register-capthca-auth mb-4">
 							<label for="" class="form-label">
 								<?= GetMessage("REGISTER_CAPTCHA_TITLE") ?>
 							</label>
