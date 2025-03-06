@@ -2,7 +2,7 @@
 
 use Bitrix\Highloadblock\HighloadBlockTable;
 use Bitrix\Main\Loader;
-use Bitrix\Iblock\Elements\ElementHutCatalogTable;
+use Bitrix\Iblock\Elements\ElementHutMainCatalogTable;
 use Bitrix\Main\Entity;
 use Bitrix\Main\ORM\Query\Join;
 
@@ -71,13 +71,13 @@ if ($arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']) {
     if ($searchValue) {
         $entity =  HighloadBlockTable::compileEntity(HUT_OFFERS_COLOR_HL_CODE_ONE_C)->getDataClass();
 
-        $similarElements = ElementHutCatalogTable::getList([
+        $similarElements = ElementHutMainCatalogTable::getList([
             'select' => [
                 'NAME',
                 'ID',
                 'FILE' => 'HL_PROPERTY.UF_FILE',
                 'COLOR_NAME' => 'HL_PROPERTY.UF_NAME',
-                'COLOR' => 'TSVET.VALUE',
+                'COLOR_VALUE' => 'TSVET.VALUE',
                 'DETAIL_PAGE_URL' => 'IBLOCK.DETAIL_PAGE_URL',
                 'IBLOCK_ID',
                 'CODE',
@@ -89,7 +89,7 @@ if ($arResult['PROPERTIES']['CML2_ARTICLE']['VALUE']) {
                 new Entity\ReferenceField(
                     'HL_PROPERTY',
                     $entity,
-                    Join::on('this.COLOR', 'ref.UF_XML_ID')
+                    Join::on('this.COLOR_VALUE', 'ref.UF_XML_ID')
                 )
             ]
         ]);

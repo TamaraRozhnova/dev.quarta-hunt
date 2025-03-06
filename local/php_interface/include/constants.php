@@ -49,7 +49,7 @@ const CDEK_RESTRICTION_SECTIONS_RULE_ID = 210; // ID ограничения со
 /** HUT */
 const IMG_PATH = '/img';
 const ICON_PATH = '/img/icons';
-const HUT_CATALOG_IBLOCK_ID = 88;
+const HUT_CATALOG_IBLOCK_ID = 110;
 
 // фильтр разделов для блока на главной
 $GLOBALS['mainSectionsFilter'] = ['UF_SHOW_ON_MAIN' => 1];

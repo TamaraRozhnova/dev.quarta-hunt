@@ -1,6 +1,6 @@
 <?php
 
-use \Bitrix\Iblock\Elements\ElementHutcatalogTable;
+use \Bitrix\Iblock\Elements\ElementHutMainCatalogTable;
 
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
@@ -32,7 +32,7 @@ if (!empty($arResult['GRID']['ROWS'])) {
             }
         }
 
-        $elems = ElementHutcatalogTable::getList([
+        $elems = ElementHutMainCatalogTable::getList([
             'select' => [
                 'RECOMMENDED'
             ],

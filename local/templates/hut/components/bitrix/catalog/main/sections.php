@@ -90,7 +90,7 @@ $this->SetViewTarget('catalog_banner'); ?>
 				"FILTER_NAME" => "mainCatalogFilter",
 				'HIDE_NOT_AVAILABLE' => $arParams['HIDE_NOT_AVAILABLE'],
 				"HIDE_NOT_AVAILABLE_OFFERS" => "N",
-				"IBLOCK_ID" => IblockHelper::getIdByCode("hutcatalog"),
+				"IBLOCK_ID" => IblockHelper::getIdByCode("hutMainCatalog"),
 				"IBLOCK_TYPE" => "hut",
 				"INCLUDE_SUBSECTIONS" => "Y",
 				"LABEL_PROP" => $arParams['LABEL_PROP'] ?? '',

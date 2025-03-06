@@ -25,7 +25,7 @@ $APPLICATION->AddHeadString('<link rel="stylesheet"	href="https://cdn.jsdelivr.n
 $curUser = \Bitrix\Main\Engine\CurrentUser::get();
 $curUserId = $curUser->getId();
 if ($curUserId != 0) {
-	$orders = new OrderHelper($curUser, IblockHelper::getIdByCode("hutcatalogoffers"));
+	$orders = new OrderHelper($curUser, IblockHelper::getIdByCode("hutMainOffersCatalog"));
 	$productIds = $orders->getUserPurchasedProducts();
 }
 
