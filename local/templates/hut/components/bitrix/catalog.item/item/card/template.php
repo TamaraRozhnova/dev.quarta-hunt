@@ -153,9 +153,9 @@ use \Bitrix\Main\Localization\Loc;
 					<div class="product-item-title">
 						<? if ($itemHasDetailUrl): ?>
 							<a href="<?= $item['DETAIL_PAGE_URL'] ?>" title="<?= $productTitle ?>" class="link_hover_1">
-							<? endif; ?>
-							<?= $productTitle ?>
-							<? if ($itemHasDetailUrl): ?>
+						<? endif; ?>
+						<?= $productTitle ?>
+						<? if ($itemHasDetailUrl): ?>
 							</a>
 						<? endif; ?>
 					</div>

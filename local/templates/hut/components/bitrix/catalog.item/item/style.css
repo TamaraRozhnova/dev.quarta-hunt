@@ -465,11 +465,13 @@
 .product-item-title {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
   font-size: 18px;
   line-height: 24px;
   color: var(--color-dark6);
   padding: 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .bx-touch .product-item-title,
