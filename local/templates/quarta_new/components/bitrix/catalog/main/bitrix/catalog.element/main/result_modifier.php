@@ -14,6 +14,10 @@ use Bitrix\Sale\Internals\ServiceRestrictionTable;
 use Bitrix\Sale\Services\PaySystem\Restrictions\Manager;
 use Bitrix\Currency\CurrencyManager;
 use Bitrix\Main\Loader;
+use Classes\DeliverySettings;
+use Classes\LinkCityToStore;
+use Local\Util\HighloadblockManager;
+use \Bitrix\Sale\Fuser;
 
 Loader::includeModule('currency');
 
@@ -195,6 +199,50 @@ if (!empty($rsStoreElement)) {
 
     }
 
+    $selectedUserCity = DeliverySettings::getUserSelectedCity();
+    $linkCityList = LinkCityToStore::getIblockLinkElement($selectedUserCity);
+
+    if (!empty($linkCityList) && !empty($linkCityList['STORE_ID'])) {
+        foreach ($linkCityList['STORE_ID'] as $storeId) {
+            foreach ($arResult['STORES_ELEMENT'] as $key => &$store) {
+                if ($storeId == $store['ID']) {
+                    $store['PICKUP'] = 'Y';
+
+                    if ($store['AMOUNT'] === '1') {
+                        $store['AMOUNT'] = '0';
+                    }
+                }
+            }
+        }
+    }
+
+    $customBasketsHl = new HighloadblockManager(QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE);
+    $fUser = Fuser::getId();
+
+    foreach ($arResult['STORES_ELEMENT'] as &$store) {
+        if ($store['AMOUNT'] > 0) {
+            $customBasketsHl->prepareParamsQuery(
+                [
+                    'ID',
+                    'UF_QUANTITY'
+                ],
+                [],
+                [
+                    'UF_FUSER' => $fUser,
+                    'UF_PRODUCT_ID' => $arResult['ID'],
+                    'UF_ORDER_ID' => 0,
+                    'UF_STORE_ID' => $store['ID']
+                ]
+            );
+
+            $product = $customBasketsHl->getData();
+
+            if (!empty($product)) {
+                $store['PRODUCT_IN_BASKET'] = true;
+                $store['PRODUCT_IN_BASKET_QUANTITY'] = $product['UF_QUANTITY'];
+            }
+        }
+    }
 }
 
 // Получаем ограничения для сервиса через запрос к таблице ограничений
@@ -256,6 +304,14 @@ if ($arResult['RESTRICTED_SECTION'] !== 'Y') {
                 }
             }    
         }
+    }
+}
+
+if ($arResult['AVAILABLE']) {
+    $deliveryMethods = DeliverySettings::getDeliveryMethods($arResult['ID']);
+
+    if (!empty($deliveryMethods)) {
+        $arResult['DELIVERY_METHODS'] = $deliveryMethods;
     }
 }
 

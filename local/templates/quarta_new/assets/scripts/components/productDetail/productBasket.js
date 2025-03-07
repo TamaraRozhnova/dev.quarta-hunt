@@ -7,6 +7,8 @@ class ProductBasket {
         this.basketList = basketList;
         this.productAvailable = this.productElement.dataset.available;
         this.productQuantity = this.productElement.dataset.productQuantity;
+        this.productAddBasketStore = document.querySelectorAll('.product-card__add-basket-store');
+        this.addProductInBasketAjaxUrl = '/local/ajax/includes/CustomBasket.php';
 
         this.productElementPicture = this.productElement.querySelector('.product-photos figure a').style.backgroundImage.slice(5, -2)
         this.productElementName = this.productElement.querySelector('.product__title')
@@ -29,12 +31,206 @@ class ProductBasket {
             this.hangSelectOfferEvent();
             return;
         }
-        const productInBasket = this.basketList[this.productId];
-        if (productInBasket) {
-            this.createCounter(this.productId, this.productQuantity, productInBasket.QUANTITY);
-        } else {
-            this.createAddToBasketButton();
+
+        this.createAddToBasketButton();
+
+        if (this.productAddBasketStore) {
+            this.productAddBasketStore.forEach(btn => {
+                let productId = btn.dataset.id;
+                let storeId = btn.dataset.storeId ? btn.dataset.storeId : 0;
+                let mode = btn.dataset.mode ? btn.dataset.mode : 'ADD';
+                let maxQuantity = btn.dataset.amount ? btn.dataset.amount : 1;
+
+                btn.addEventListener('click', () => {
+                    this.runAddProductComponentAjax(productId, storeId, mode, 1, maxQuantity, btn);
+                });
+
+                let parent = btn.parentNode;
+
+                if (parent) {
+                    let counterStore = parent.querySelector('.product-count');
+
+                    if (counterStore) {
+                        this.hangStoreCounterEvents(id, maxQuantity, 1, parent);
+                    }
+                }
+            });
         }
+    }
+
+    runAddProductComponentAjax(productId, storeId = 0, mode = 'ADD', quantity = 1, maxQuantity = 1, btn)
+    {
+        this.runAjax(
+            this.addProductInBasketAjaxUrl,
+            {
+                productId: productId,
+                storeId: storeId,
+                mode: mode,
+                quantity: quantity
+            },
+            response => {
+                let res = JSON.parse(response);
+
+                if (res.SUCCESS === true) {
+                    if (mode === 'ADD') {
+                        if (window.innerWidth >= 1200) {
+                            if (window.basketPopupActive === true) {
+                                const allBasketPopupActive = document.querySelectorAll('.product-basket-popup__wrapper')
+
+                                if (allBasketPopupActive.length > 0) {
+                                    allBasketPopupActive.forEach((popup) =>  {
+                                        popup.parentNode.removeChild(popup)
+                                    })
+                                    window.productAddedPopupBasket = false
+                                }
+                            }
+
+                            this.lastPopupHtml = this.createPopupIntoBasket()
+                            this.insertPopupIntoBasket(this.lastPopupHtml)
+                            this.deletePopupIntoBasket(this.lastPopupHtml);
+                        }
+
+                        this.createStoreCounter(productId, maxQuantity, quantity, btn);
+                    }
+                } else {
+                    console.log('ERROR MESSAGE: ' + res.ERROR_MESSAGE);
+                }
+            },
+            () => {}
+        );
+    }
+
+    createStoreCounter(id, maxQuantity, quantity, btn)
+    {
+        let parent = btn.parentNode;
+
+        this.hideAddStoreToBasketButton(btn);
+
+        if (parent) {
+            parent.insertAdjacentHTML('afterbegin', this.createCounterHtml(quantity));
+        }
+
+        this.hangStoreCounterEvents(id, maxQuantity, quantity, parent);
+    }
+
+    hangStoreCounterEvents(id, maxQuantity, quantity, parent)
+    {
+        this.productStoreCounter = parent.querySelector('.product-count');
+        if (!this.productStoreCounter) {
+            return;
+        }
+        this.createStoreCounterInstance(id, maxQuantity, quantity, parent);
+    }
+
+    createStoreCounterInstance(id, maxQuantity, quantity, parent)
+    {
+        const minus = parent.querySelector('.product-count__add-minus');
+        const plus = parent.querySelector('.product-count__add-plus');
+        const input = parent.querySelector('.product-count input');
+        const btn = parent.querySelector('.product-card__add-basket-store');
+
+        let storeId = 0;
+
+        if (btn) {
+            storeId =  btn.dataset.storeId ? btn.dataset.storeId : 0;
+        }
+
+        if (!minus || !plus || !input) {
+            return;
+        }
+
+        let inputVal = input.value;
+        let minValue = 1;
+        let maxValue = maxQuantity;
+
+        if (
+            minValue >= maxValue ||
+            inputVal >= maxValue
+        ) {
+            plus.style.pointerEvents = 'none';
+        }
+
+        plus.addEventListener('click', () => {
+            if (maxValue > inputVal) {
+                inputVal++;
+                input.value = inputVal;
+
+                if (inputVal >= maxValue) {
+                    plus.style.pointerEvents = 'none';
+                }
+
+                this.runAddProductComponentAjax(id, storeId, 'UPDATE', inputVal, maxValue);
+            }
+        });
+
+        minus.addEventListener('click', () => {
+            if (inputVal == 1) {
+                this.showAddStoreToBasketButton(parent);
+                this.removeStoreCounter(parent);
+
+                this.runAddProductComponentAjax(id, storeId, 'DELETE', inputVal, maxValue);
+            } else {
+                inputVal--;
+                input.value = inputVal;
+
+                if (inputVal < maxValue) {
+                    plus.style.pointerEvents = 'all';
+                }
+
+                this.runAddProductComponentAjax(id, storeId, 'UPDATE', inputVal, maxValue);
+            }
+        });
+
+        input.addEventListener('change', () => {
+            inputVal = input.value;
+
+            if (parseInt(inputVal) >= parseInt(maxValue)) {
+                input.value = maxValue;
+                inputVal = maxValue;
+                plus.style.pointerEvents = 'none';
+            } else {
+                inputVal = input.value;
+                plus.style.pointerEvents = 'all';
+            }
+
+            this.runAddProductComponentAjax(id, storeId, 'UPDATE', inputVal, maxValue);
+        });
+    }
+
+    removeStoreCounter(parent)
+    {
+        let counter = parent.querySelector('.product-count');
+
+        if (counter) {
+            counter.remove();
+        }
+    }
+
+    showAddStoreToBasketButton(parent)
+    {
+        let btn = parent.querySelector('.product-card__add-basket-store');
+
+        if (btn) {
+            btn.style.display = 'block';
+        }
+    }
+
+    hideAddStoreToBasketButton(btn)
+    {
+        if (btn) {
+            btn.style.display = 'none';
+        }
+    }
+
+    runAjax(url, data, responseHandler, errorHandler)
+    {
+        BX.ajax({
+            url,
+            method: 'POST',
+            data,
+            onsuccess: response => responseHandler(response),
+            onfailure: error => errorHandler(error)
+        });
     }
 
     fillOffersData() {
@@ -84,26 +280,32 @@ class ProductBasket {
         }
 
         this.addToBasketButton.addEventListener('click', () => {
-   
-            this.handleAddFirstProductToBasket(id, maxQuantity);
+            let productTabs = document.querySelectorAll('.product-about__tab');
+            let productTabsContent = document.querySelectorAll('.product__tab');
 
-            if (window.innerWidth >= 1200) {
-                if (window.basketPopupActive = true) {
-                    const allBasketPopupActive = document.querySelectorAll('.product-basket-popup__wrapper')
+            productTabs.forEach(tab => {
+                let tabId = tab.dataset.tab;
 
-                    if (allBasketPopupActive.length > 0) {
-                        allBasketPopupActive.forEach((popup) =>  {
-                            popup.parentNode.removeChild(popup)
-                        })
-                        window.productAddedPopupBasket = false
-                    }
+                if (tabId === '2') {
+                    tab.classList.add('product-about__tab--selected');
+                } else {
+                    tab.classList.remove('product-about__tab--selected');
                 }
+            });
 
-                this.lastPopupHtml = this.createPopupIntoBasket()
-                this.insertPopupIntoBasket(this.lastPopupHtml)
-                this.deletePopupIntoBasket(this.lastPopupHtml);
-            }
-        })
+            let productTabContentAvailable;
+
+            productTabsContent.forEach(content => {
+                if (content.classList.contains('product-availability')) {
+                    content.classList.add('product__tab--active');
+                    productTabContentAvailable = content;
+                } else {
+                    content.classList.remove('product__tab--active');
+                }
+            });
+
+            productTabContentAvailable.scrollIntoView({ behavior: 'smooth' });
+        });
     }
 
     handleAddFirstProductToBasket(id, maxQuantity) {
@@ -150,7 +352,6 @@ class ProductBasket {
     }
 
     createAddToBasketButton(id = this.productId, maxQuantity = this.productQuantity) {
-        this.removeCounter();
         this.productAddElement.insertAdjacentHTML('afterbegin', this.createAddToBasketButtonHtml());
         this.hangAddToBasketButtonEvents(id, maxQuantity);
     }

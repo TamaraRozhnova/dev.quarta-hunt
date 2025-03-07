@@ -8434,6 +8434,9 @@ input.form-check-input:focus {
   align-items: center;
   padding: 0;
 }
+.select-location-block {
+  white-space: nowrap;
+}
 @media (max-width: 1399.98px) {
   .header--desktop .header__location,
   .header--desktop .header__logo-section {

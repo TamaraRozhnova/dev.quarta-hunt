@@ -1,5 +1,14 @@
 {
     "require": {
-        "olegpro/bitrix-sphinx": "^0.3.0"
+        "olegpro/bitrix-sphinx": "^0.3.0",
+        "hflabs/dadata": "^24.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Classes\\": "./local/php_interface/classes/DeliverySettings/",
+            "Local\\": "local/lib/",
+            "Sdek\\": "./api/sdek/",
+            "RussianPostApi\\": "./api/russianPost/"
+        }
     }
 }

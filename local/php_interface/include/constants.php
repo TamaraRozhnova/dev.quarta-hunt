@@ -79,3 +79,15 @@ const HUT_SIZE_PROP_ID_1C = 1506;
 
 // ID каталога торговых предложений
 const HUT_CATALOG_OFFERS_IBLOCK_ID = 108;
+
+// код HL блока кастомных корзин
+const QUARTA_HL_CUSTOM_BASKET_BLOCK_CODE = 'CustomBaskets';
+
+// код HL блока по сохранению запросов СДЭК
+const QUARTA_HL_SDEK_DELIVERY_DATES_BLOCK_CODE = 'SdekDeliveryDates';
+
+// код HL блока по сохранению запросов Почты России
+const QUARTA_HL_RUSSIAN_POST_DELIVERY_DATES_BLOCK_CODE = 'RussianPostDeliveryDates';
+
+// код HL блока по сохранению запросов к сервису Dadata
+const QUARTA_HL_DADATA_DELIVERY_DATES_BLOCK_CODE = 'ZipCodes';

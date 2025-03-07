@@ -49,8 +49,9 @@ Loader::registerAutoLoadClasses(null, [
     'CustomEvents\OnDiscount' => '/local/php_interface/classes/Events/OnDiscount.php',
     'CustomEvents\OnBeforeIBlockElementUpdate' => '/local/php_interface/classes/Events/OnBeforeIBlockElementUpdate.php',
     'CustomEvents\OnOrder' => '/local/php_interface/classes/Events/OnOrder.php',
+    'CustomEvents\OnSaleComponentOrderOneStepDelivery' => '/local/php_interface/classes/Events/OnSaleComponentOrderOneStepDelivery.php',
+    'CustomEvents\OnSaleOrderSaved' => '/local/php_interface/classes/Events/OnSaleOrderSaved.php'
 ]);
-
 
 function AddBonusPoints($order_id, $status) {
 	$order = \Bitrix\Sale\Order::load($order_id);
